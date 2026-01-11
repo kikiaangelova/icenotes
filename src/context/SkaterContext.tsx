@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
-import { SkaterProfile, Goal, DailyPractice, DailyLog, TodoItem } from '@/types/skater';
+import { SkaterProfile, Goal, DailyPractice, DailyLog, TodoItem, JumpAttempt } from '@/types/skater';
 
 interface SkaterContextType {
   profile: SkaterProfile | null;
@@ -16,6 +16,8 @@ interface SkaterContextType {
   updateTodo: (id: string, updates: Partial<TodoItem>) => void;
   deleteTodo: (id: string) => void;
   toggleTodo: (id: string) => void;
+  jumpAttempts: JumpAttempt[];
+  addJumpAttempt: (attempt: JumpAttempt) => void;
 }
 
 const SkaterContext = createContext<SkaterContextType | undefined>(undefined);
@@ -49,6 +51,11 @@ export const SkaterProvider: React.FC<{ children: ReactNode }> = ({ children }) 
     return saved ? JSON.parse(saved) : [];
   });
 
+  const [jumpAttempts, setJumpAttempts] = useState<JumpAttempt[]>(() => {
+    const saved = localStorage.getItem('skaterJumpAttempts');
+    return saved ? JSON.parse(saved) : [];
+  });
+
   useEffect(() => {
     if (profile) {
       localStorage.setItem('skaterProfile', JSON.stringify(profile));
@@ -68,6 +75,10 @@ export const SkaterProvider: React.FC<{ children: ReactNode }> = ({ children }) 
   useEffect(() => {
     localStorage.setItem('skaterTodos', JSON.stringify(todos));
   }, [todos]);
+
+  useEffect(() => {
+    localStorage.setItem('skaterJumpAttempts', JSON.stringify(jumpAttempts));
+  }, [jumpAttempts]);
 
   const setProfile = (newProfile: SkaterProfile | null) => {
     setProfileState(newProfile);
@@ -111,6 +122,10 @@ export const SkaterProvider: React.FC<{ children: ReactNode }> = ({ children }) 
     ));
   };
 
+  const addJumpAttempt = (attempt: JumpAttempt) => {
+    setJumpAttempts(prev => [...prev, attempt]);
+  };
+
   return (
     <SkaterContext.Provider value={{
       profile,
@@ -127,6 +142,8 @@ export const SkaterProvider: React.FC<{ children: ReactNode }> = ({ children }) 
       updateTodo,
       deleteTodo,
       toggleTodo,
+      jumpAttempts,
+      addJumpAttempt,
     }}>
       {children}
     </SkaterContext.Provider>

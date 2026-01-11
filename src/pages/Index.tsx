@@ -2,17 +2,18 @@ import React, { useState } from 'react';
 import { SkaterProvider, useSkater } from '@/context/SkaterContext';
 import { RegistrationForm } from '@/components/RegistrationForm';
 import { Dashboard } from '@/components/Dashboard';
+import { WelcomePage } from '@/components/WelcomePage';
 
 const AppContent: React.FC = () => {
   const { profile } = useSkater();
-  const [isRegistered, setIsRegistered] = useState(!!profile);
+  const [showRegistration, setShowRegistration] = useState(false);
 
-  if (!profile && !isRegistered) {
-    return <RegistrationForm onComplete={() => setIsRegistered(true)} />;
+  if (!profile && !showRegistration) {
+    return <WelcomePage onGetStarted={() => setShowRegistration(true)} />;
   }
 
   if (!profile) {
-    return <RegistrationForm onComplete={() => setIsRegistered(true)} />;
+    return <RegistrationForm onComplete={() => {}} />;
   }
 
   return <Dashboard />;
