@@ -122,6 +122,7 @@ export type Database = {
       profiles: {
         Row: {
           age: number | null
+          avatar_url: string | null
           created_at: string
           height: number | null
           id: string
@@ -129,12 +130,14 @@ export type Database = {
           name: string
           progress_feeling: string | null
           self_level: string | null
+          trial_ends_at: string | null
           updated_at: string
           user_id: string
           weight: number | null
         }
         Insert: {
           age?: number | null
+          avatar_url?: string | null
           created_at?: string
           height?: number | null
           id?: string
@@ -142,12 +145,14 @@ export type Database = {
           name: string
           progress_feeling?: string | null
           self_level?: string | null
+          trial_ends_at?: string | null
           updated_at?: string
           user_id: string
           weight?: number | null
         }
         Update: {
           age?: number | null
+          avatar_url?: string | null
           created_at?: string
           height?: number | null
           id?: string
@@ -155,6 +160,7 @@ export type Database = {
           name?: string
           progress_feeling?: string | null
           self_level?: string | null
+          trial_ends_at?: string | null
           updated_at?: string
           user_id?: string
           weight?: number | null
