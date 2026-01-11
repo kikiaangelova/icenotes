@@ -1,4 +1,4 @@
-// Journal types for the free figure skating app
+// Journal and Training types for the free figure skating app
 
 export interface JournalEntry {
   id: string;
@@ -24,11 +24,45 @@ export interface SkaterProfile {
 export interface JourneyStats {
   totalEntries: number;
   daysReflected: number;
-  currentConnection: number; // days in a row, but we call it "connection" not "streak"
+  currentConnection: number;
   returnsAfterBreak: number;
 }
 
-// Gentle, supportive messages shown after saving a journal entry
+// Training types
+export interface TrainingActivity {
+  id: string;
+  name: string;
+  duration: number; // in minutes
+  completed: boolean;
+  notes?: string;
+}
+
+export interface TrainingSession {
+  id: string;
+  date: Date;
+  type: 'on-ice' | 'off-ice';
+  activities: TrainingActivity[];
+  totalDuration: number;
+  notes?: string;
+  feeling?: 'great' | 'good' | 'okay' | 'tough';
+  createdAt: Date;
+}
+
+// Jump tracking
+export type JumpType = 'toe-loop' | 'salchow' | 'loop' | 'flip' | 'lutz' | 'axel';
+export type JumpLevel = 'single' | 'double' | 'triple' | 'quad';
+
+export interface JumpAttempt {
+  id: string;
+  date: Date;
+  jumpType: JumpType;
+  level: JumpLevel;
+  landed: boolean;
+  quality: 1 | 2 | 3 | 4 | 5;
+  notes?: string;
+}
+
+// Gentle, supportive messages
 export const GENTLE_MESSAGES = [
   "Showing up matters.",
   "One step at a time is enough.",
@@ -40,7 +74,7 @@ export const GENTLE_MESSAGES = [
   "Being here is enough.",
 ];
 
-// Self-defined skating levels (not evaluations)
+// Self-defined skating levels
 export const SELF_LEVELS = [
   { 
     value: 'foundations' as const, 
@@ -71,4 +105,39 @@ export const FEELING_OPTIONS = [
   { value: 'challenging' as const, label: 'Challenging', emoji: '🏔️' },
   { value: 'heavy' as const, label: 'Heavy', emoji: '☁️' },
   { value: 'energizing' as const, label: 'Energizing', emoji: '✨' },
+];
+
+// Training activities templates
+export const ON_ICE_ACTIVITIES = [
+  { name: 'Edge work & stroking', suggestedDuration: 15 },
+  { name: 'Spins practice', suggestedDuration: 20 },
+  { name: 'Jump technique', suggestedDuration: 30 },
+  { name: 'Program run-through', suggestedDuration: 15 },
+  { name: 'Footwork sequences', suggestedDuration: 15 },
+  { name: 'Choreography', suggestedDuration: 20 },
+];
+
+export const OFF_ICE_ACTIVITIES = [
+  { name: 'Warm-up & stretching', suggestedDuration: 15 },
+  { name: 'Core strengthening', suggestedDuration: 20 },
+  { name: 'Jump simulation', suggestedDuration: 25 },
+  { name: 'Ballet & dance', suggestedDuration: 30 },
+  { name: 'Cardio conditioning', suggestedDuration: 20 },
+  { name: 'Flexibility training', suggestedDuration: 15 },
+];
+
+export const JUMP_TYPES: { type: JumpType; name: string; color: string }[] = [
+  { type: 'toe-loop', name: 'Toe Loop', color: 'bg-blue-500' },
+  { type: 'salchow', name: 'Salchow', color: 'bg-green-500' },
+  { type: 'loop', name: 'Loop', color: 'bg-purple-500' },
+  { type: 'flip', name: 'Flip', color: 'bg-orange-500' },
+  { type: 'lutz', name: 'Lutz', color: 'bg-red-500' },
+  { type: 'axel', name: 'Axel', color: 'bg-pink-500' },
+];
+
+export const JUMP_LEVELS: { level: JumpLevel; name: string; short: string }[] = [
+  { level: 'single', name: 'Single', short: '1' },
+  { level: 'double', name: 'Double', short: '2' },
+  { level: 'triple', name: 'Triple', short: '3' },
+  { level: 'quad', name: 'Quad', short: '4' },
 ];
