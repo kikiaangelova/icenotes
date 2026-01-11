@@ -14,7 +14,219 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      goals: {
+        Row: {
+          category: string | null
+          completed: boolean | null
+          created_at: string
+          description: string | null
+          id: string
+          progress: number | null
+          target_date: string | null
+          title: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          category?: string | null
+          completed?: boolean | null
+          created_at?: string
+          description?: string | null
+          id?: string
+          progress?: number | null
+          target_date?: string | null
+          title: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          category?: string | null
+          completed?: boolean | null
+          created_at?: string
+          description?: string | null
+          id?: string
+          progress?: number | null
+          target_date?: string | null
+          title?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      journal_entries: {
+        Row: {
+          created_at: string
+          date: string
+          feeling: string | null
+          id: string
+          small_win: string | null
+          user_id: string
+          worked_on: string
+        }
+        Insert: {
+          created_at?: string
+          date?: string
+          feeling?: string | null
+          id?: string
+          small_win?: string | null
+          user_id: string
+          worked_on: string
+        }
+        Update: {
+          created_at?: string
+          date?: string
+          feeling?: string | null
+          id?: string
+          small_win?: string | null
+          user_id?: string
+          worked_on?: string
+        }
+        Relationships: []
+      }
+      jump_attempts: {
+        Row: {
+          created_at: string
+          date: string
+          id: string
+          jump_type: string
+          landed: boolean
+          level: string
+          notes: string | null
+          quality: number | null
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          date?: string
+          id?: string
+          jump_type: string
+          landed?: boolean
+          level: string
+          notes?: string | null
+          quality?: number | null
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          date?: string
+          id?: string
+          jump_type?: string
+          landed?: boolean
+          level?: string
+          notes?: string | null
+          quality?: number | null
+          user_id?: string
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          age: number | null
+          created_at: string
+          height: number | null
+          id: string
+          main_focus: string | null
+          name: string
+          progress_feeling: string | null
+          self_level: string | null
+          updated_at: string
+          user_id: string
+          weight: number | null
+        }
+        Insert: {
+          age?: number | null
+          created_at?: string
+          height?: number | null
+          id?: string
+          main_focus?: string | null
+          name: string
+          progress_feeling?: string | null
+          self_level?: string | null
+          updated_at?: string
+          user_id: string
+          weight?: number | null
+        }
+        Update: {
+          age?: number | null
+          created_at?: string
+          height?: number | null
+          id?: string
+          main_focus?: string | null
+          name?: string
+          progress_feeling?: string | null
+          self_level?: string | null
+          updated_at?: string
+          user_id?: string
+          weight?: number | null
+        }
+        Relationships: []
+      }
+      training_sessions: {
+        Row: {
+          activities: Json | null
+          created_at: string
+          date: string
+          feeling: string | null
+          id: string
+          notes: string | null
+          session_type: string
+          total_duration: number
+          user_id: string
+        }
+        Insert: {
+          activities?: Json | null
+          created_at?: string
+          date?: string
+          feeling?: string | null
+          id?: string
+          notes?: string | null
+          session_type: string
+          total_duration?: number
+          user_id: string
+        }
+        Update: {
+          activities?: Json | null
+          created_at?: string
+          date?: string
+          feeling?: string | null
+          id?: string
+          notes?: string | null
+          session_type?: string
+          total_duration?: number
+          user_id?: string
+        }
+        Relationships: []
+      }
+      weekly_goals: {
+        Row: {
+          created_at: string
+          id: string
+          jump_targets: Json | null
+          off_ice_sessions_target: number | null
+          on_ice_hours_target: number | null
+          user_id: string
+          week_start: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          jump_targets?: Json | null
+          off_ice_sessions_target?: number | null
+          on_ice_hours_target?: number | null
+          user_id: string
+          week_start: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          jump_targets?: Json | null
+          off_ice_sessions_target?: number | null
+          on_ice_hours_target?: number | null
+          user_id?: string
+          week_start?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
