@@ -1,26 +1,50 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useAuth } from '@/context/AuthContext';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Loader2, Mail, Lock, User, Snowflake } from 'lucide-react';
+import { Loader2, Mail, Lock, User, Snowflake, ArrowLeft, CheckCircle2 } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
+
+type AuthView = 'auth' | 'forgot' | 'reset';
 
 const Auth: React.FC = () => {
-  const { signIn, signUp } = useAuth();
+  const { signIn, signUp, resetPassword, updatePassword, session } = useAuth();
   const { toast } = useToast();
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
   
+  const [view, setView] = useState<AuthView>('auth');
   const [isLoading, setIsLoading] = useState(false);
+  const [emailSent, setEmailSent] = useState(false);
+  
+  // Login fields
   const [loginEmail, setLoginEmail] = useState('');
   const [loginPassword, setLoginPassword] = useState('');
+  
+  // Signup fields
   const [signupName, setSignupName] = useState('');
   const [signupEmail, setSignupEmail] = useState('');
   const [signupPassword, setSignupPassword] = useState('');
   const [signupConfirmPassword, setSignupConfirmPassword] = useState('');
+  
+  // Forgot password field
+  const [forgotEmail, setForgotEmail] = useState('');
+  
+  // Reset password fields
+  const [newPassword, setNewPassword] = useState('');
+  const [confirmNewPassword, setConfirmNewPassword] = useState('');
+
+  // Check if we're in password reset mode
+  useEffect(() => {
+    const mode = searchParams.get('mode');
+    if (mode === 'reset' && session) {
+      setView('reset');
+    }
+  }, [searchParams, session]);
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -101,6 +125,262 @@ const Auth: React.FC = () => {
     }
   };
 
+  const handleForgotPassword = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (!forgotEmail) {
+      toast({
+        title: "Email required",
+        description: "Please enter your email address",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    setIsLoading(true);
+    const { error } = await resetPassword(forgotEmail);
+    setIsLoading(false);
+
+    if (error) {
+      toast({
+        title: "Error",
+        description: error.message,
+        variant: "destructive"
+      });
+    } else {
+      setEmailSent(true);
+      toast({
+        title: "Email sent!",
+        description: "Check your inbox for the password reset link",
+      });
+    }
+  };
+
+  const handleUpdatePassword = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (!newPassword) {
+      toast({
+        title: "Password required",
+        description: "Please enter a new password",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    if (newPassword !== confirmNewPassword) {
+      toast({
+        title: "Passwords don't match",
+        description: "Please make sure your passwords match",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    if (newPassword.length < 6) {
+      toast({
+        title: "Password too short",
+        description: "Password must be at least 6 characters",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    setIsLoading(true);
+    const { error } = await updatePassword(newPassword);
+    setIsLoading(false);
+
+    if (error) {
+      toast({
+        title: "Error",
+        description: error.message,
+        variant: "destructive"
+      });
+    } else {
+      toast({
+        title: "Password updated!",
+        description: "Your password has been successfully changed",
+      });
+      navigate('/');
+    }
+  };
+
+  // Reset password view
+  if (view === 'reset') {
+    return (
+      <div className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-b from-ice/30 to-background">
+        <div className="w-full max-w-md">
+          <div className="text-center mb-8">
+            <div className="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-br from-primary to-accent flex items-center justify-center mb-4">
+              <Snowflake className="w-8 h-8 text-primary-foreground" />
+            </div>
+            <h1 className="text-2xl font-bold text-foreground">Ice Journal</h1>
+            <p className="text-muted-foreground">Set your new password</p>
+          </div>
+
+          <Card className="border-primary/10 shadow-lg">
+            <CardHeader className="pb-4">
+              <CardTitle className="text-xl text-center">New Password</CardTitle>
+              <CardDescription className="text-center">
+                Choose a strong password for your account
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <form onSubmit={handleUpdatePassword} className="space-y-4">
+                <div className="space-y-2">
+                  <Label htmlFor="new-password">New Password</Label>
+                  <div className="relative">
+                    <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                    <Input
+                      id="new-password"
+                      type="password"
+                      placeholder="At least 6 characters"
+                      value={newPassword}
+                      onChange={(e) => setNewPassword(e.target.value)}
+                      className="pl-10 h-11"
+                      disabled={isLoading}
+                      autoComplete="new-password"
+                    />
+                  </div>
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="confirm-new-password">Confirm Password</Label>
+                  <div className="relative">
+                    <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                    <Input
+                      id="confirm-new-password"
+                      type="password"
+                      placeholder="Confirm your password"
+                      value={confirmNewPassword}
+                      onChange={(e) => setConfirmNewPassword(e.target.value)}
+                      className="pl-10 h-11"
+                      disabled={isLoading}
+                      autoComplete="new-password"
+                    />
+                  </div>
+                </div>
+                <Button 
+                  type="submit" 
+                  className="w-full h-11"
+                  disabled={isLoading}
+                >
+                  {isLoading ? (
+                    <>
+                      <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                      Updating...
+                    </>
+                  ) : (
+                    'Update Password'
+                  )}
+                </Button>
+              </form>
+            </CardContent>
+          </Card>
+        </div>
+      </div>
+    );
+  }
+
+  // Forgot password view
+  if (view === 'forgot') {
+    return (
+      <div className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-b from-ice/30 to-background">
+        <div className="w-full max-w-md">
+          <div className="text-center mb-8">
+            <div className="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-br from-primary to-accent flex items-center justify-center mb-4">
+              <Snowflake className="w-8 h-8 text-primary-foreground" />
+            </div>
+            <h1 className="text-2xl font-bold text-foreground">Ice Journal</h1>
+            <p className="text-muted-foreground">Reset your password</p>
+          </div>
+
+          <Card className="border-primary/10 shadow-lg">
+            <CardHeader className="pb-4">
+              <CardTitle className="text-xl text-center">Forgot Password</CardTitle>
+              <CardDescription className="text-center">
+                {emailSent 
+                  ? "Check your email for the reset link"
+                  : "Enter your email and we'll send you a reset link"
+                }
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              {emailSent ? (
+                <div className="text-center space-y-4">
+                  <div className="w-16 h-16 mx-auto rounded-full bg-success/10 flex items-center justify-center">
+                    <CheckCircle2 className="w-8 h-8 text-success" />
+                  </div>
+                  <p className="text-muted-foreground">
+                    We've sent a password reset link to <strong>{forgotEmail}</strong>
+                  </p>
+                  <p className="text-sm text-muted-foreground">
+                    Didn't receive the email? Check your spam folder or try again.
+                  </p>
+                  <Button 
+                    variant="outline" 
+                    className="w-full"
+                    onClick={() => {
+                      setEmailSent(false);
+                      setForgotEmail('');
+                    }}
+                  >
+                    Try again
+                  </Button>
+                </div>
+              ) : (
+                <form onSubmit={handleForgotPassword} className="space-y-4">
+                  <div className="space-y-2">
+                    <Label htmlFor="forgot-email">Email</Label>
+                    <div className="relative">
+                      <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                      <Input
+                        id="forgot-email"
+                        type="email"
+                        placeholder="you@example.com"
+                        value={forgotEmail}
+                        onChange={(e) => setForgotEmail(e.target.value)}
+                        className="pl-10 h-11"
+                        disabled={isLoading}
+                        autoComplete="email"
+                      />
+                    </div>
+                  </div>
+                  <Button 
+                    type="submit" 
+                    className="w-full h-11"
+                    disabled={isLoading}
+                  >
+                    {isLoading ? (
+                      <>
+                        <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                        Sending...
+                      </>
+                    ) : (
+                      'Send Reset Link'
+                    )}
+                  </Button>
+                </form>
+              )}
+              
+              <button
+                onClick={() => {
+                  setView('auth');
+                  setEmailSent(false);
+                  setForgotEmail('');
+                }}
+                className="flex items-center gap-2 mt-4 text-sm text-muted-foreground hover:text-foreground transition-colors mx-auto"
+              >
+                <ArrowLeft className="w-4 h-4" />
+                Back to login
+              </button>
+            </CardContent>
+          </Card>
+        </div>
+      </div>
+    );
+  }
+
+  // Main auth view
   return (
     <div className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-b from-ice/30 to-background">
       <div className="w-full max-w-md">
@@ -141,6 +421,7 @@ const Auth: React.FC = () => {
                         onChange={(e) => setLoginEmail(e.target.value)}
                         className="pl-10 h-11"
                         disabled={isLoading}
+                        autoComplete="email"
                       />
                     </div>
                   </div>
@@ -156,9 +437,19 @@ const Auth: React.FC = () => {
                         onChange={(e) => setLoginPassword(e.target.value)}
                         className="pl-10 h-11"
                         disabled={isLoading}
+                        autoComplete="current-password"
                       />
                     </div>
                   </div>
+                  
+                  <button
+                    type="button"
+                    onClick={() => setView('forgot')}
+                    className="text-sm text-primary hover:underline"
+                  >
+                    Forgot password?
+                  </button>
+                  
                   <Button 
                     type="submit" 
                     className="w-full h-11"
@@ -190,6 +481,7 @@ const Auth: React.FC = () => {
                         onChange={(e) => setSignupName(e.target.value)}
                         className="pl-10 h-11"
                         disabled={isLoading}
+                        autoComplete="name"
                       />
                     </div>
                   </div>
@@ -205,6 +497,7 @@ const Auth: React.FC = () => {
                         onChange={(e) => setSignupEmail(e.target.value)}
                         className="pl-10 h-11"
                         disabled={isLoading}
+                        autoComplete="email"
                       />
                     </div>
                   </div>
@@ -220,6 +513,7 @@ const Auth: React.FC = () => {
                         onChange={(e) => setSignupPassword(e.target.value)}
                         className="pl-10 h-11"
                         disabled={isLoading}
+                        autoComplete="new-password"
                       />
                     </div>
                   </div>
@@ -235,6 +529,7 @@ const Auth: React.FC = () => {
                         onChange={(e) => setSignupConfirmPassword(e.target.value)}
                         className="pl-10 h-11"
                         disabled={isLoading}
+                        autoComplete="new-password"
                       />
                     </div>
                   </div>

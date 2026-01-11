@@ -20,16 +20,20 @@ interface ReminderSettings {
   enabled: boolean;
   trainingTime: string;
   reflectionTime: string;
+  journalTime: string;
   trainingEnabled: boolean;
   reflectionEnabled: boolean;
+  journalEnabled: boolean;
 }
 
 const DEFAULT_SETTINGS: ReminderSettings = {
   enabled: false,
   trainingTime: '09:00',
   reflectionTime: '20:00',
+  journalTime: '21:00',
   trainingEnabled: true,
   reflectionEnabled: true,
+  journalEnabled: true,
 };
 
 const STORAGE_KEY = 'reminderSettings';
@@ -77,8 +81,15 @@ export const ReminderSettings: React.FC = () => {
       
       if (settings.reflectionEnabled && currentTime === settings.reflectionTime) {
         showNotification(
-          '📝 Reflection Time',
+          '💭 Reflection Time',
           'Take a moment to reflect on your skating journey today.'
+        );
+      }
+      
+      if (settings.journalEnabled && currentTime === settings.journalTime) {
+        showNotification(
+          '📔 Write Your Ice Journal',
+          'Don\'t forget to log today\'s training and capture your thoughts!'
         );
       }
     };
@@ -100,6 +111,9 @@ export const ReminderSettings: React.FC = () => {
     
     if (settings.trainingEnabled) {
       times.push({ time: settings.trainingTime, label: 'Training' });
+    }
+    if (settings.journalEnabled) {
+      times.push({ time: settings.journalTime, label: 'Journal' });
     }
     if (settings.reflectionEnabled) {
       times.push({ time: settings.reflectionTime, label: 'Reflection' });
@@ -319,6 +333,37 @@ export const ReminderSettings: React.FC = () => {
                           value={settings.reflectionTime}
                           onChange={(e) => 
                             setSettings(prev => ({ ...prev, reflectionTime: e.target.value }))
+                          }
+                          className="w-32"
+                        />
+                        <span className="text-sm text-muted-foreground">daily</span>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Journal reminder */}
+                  <div className="space-y-3">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <Feather className="w-4 h-4 text-primary" />
+                        <Label htmlFor="journal-enabled">Daily Journal Reminder</Label>
+                      </div>
+                      <Switch
+                        id="journal-enabled"
+                        checked={settings.journalEnabled}
+                        onCheckedChange={(checked) => 
+                          setSettings(prev => ({ ...prev, journalEnabled: checked }))
+                        }
+                      />
+                    </div>
+                    {settings.journalEnabled && (
+                      <div className="flex items-center gap-2 ml-6">
+                        <Clock className="w-4 h-4 text-muted-foreground" />
+                        <Input
+                          type="time"
+                          value={settings.journalTime}
+                          onChange={(e) => 
+                            setSettings(prev => ({ ...prev, journalTime: e.target.value }))
                           }
                           className="w-32"
                         />
