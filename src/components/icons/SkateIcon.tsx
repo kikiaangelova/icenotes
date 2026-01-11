@@ -24,13 +24,20 @@ export const SkateIcon: React.FC<SkateIconProps> = ({
       strokeLinejoin="round"
       className={className}
     >
-      {/* Ice skate boot */}
-      <path d="M5 16V8c0-1 .5-2 2-2h4c1.5 0 3 1 3 3v7" />
-      <path d="M5 12h9" />
-      <path d="M14 14c1 0 2.5.5 3 2" />
-      {/* Blade */}
-      <line x1="3" y1="19" x2="21" y2="19" />
-      <path d="M5 16c0 1.5 1 3 3 3h9c2 0 3-1.5 3-3" />
+      {/* Figure skating boot - tall boot shape */}
+      <path d="M8 3c-1 0-2 1-2 2v9c0 1 .5 2 2 2h7c1.5 0 2.5-1 2.5-2v-3c0-1-.5-2-1.5-2h-2" />
+      {/* Boot top cuff */}
+      <path d="M6 5h5" />
+      {/* Laces */}
+      <line x1="8" y1="7" x2="10" y2="7" />
+      <line x1="8" y1="9" x2="10" y2="9" />
+      <line x1="8" y1="11" x2="10" y2="11" />
+      {/* Blade with toe pick */}
+      <path d="M4 20h16" />
+      <path d="M6 16v2c0 1 .5 2 2 2" />
+      <path d="M17 16v2c0 1-.5 2-1 2" />
+      {/* Toe pick */}
+      <path d="M4 20l1-2" />
     </svg>
   );
 };
