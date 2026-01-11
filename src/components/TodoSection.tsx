@@ -6,10 +6,11 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Plus, Trash2, ListTodo, Snowflake, Dumbbell, Brain, Circle } from 'lucide-react';
+import { Plus, Trash2, ListTodo, Dumbbell, Brain, Circle } from 'lucide-react';
+import { SkateIcon } from '@/components/icons/SkateIcon';
 
 const categoryIcons: Record<string, React.FC<{ className?: string }>> = {
-  'on-ice': Snowflake,
+  'on-ice': SkateIcon,
   'off-ice': Dumbbell,
   'mental': Brain,
   'general': Circle,

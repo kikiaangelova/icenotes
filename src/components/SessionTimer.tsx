@@ -9,11 +9,11 @@ import {
   Square, 
   Flag,
   Timer,
-  Snowflake,
   Dumbbell,
   RotateCcw,
   Clock
 } from 'lucide-react';
+import { SkateIcon } from '@/components/icons/SkateIcon';
 
 interface Lap {
   id: number;
@@ -64,7 +64,7 @@ export const SessionTimer: React.FC<SessionTimerProps> = ({
   const pausedTimeRef = useRef<number>(0);
 
   const isOnIce = type === 'on-ice';
-  const TypeIcon = isOnIce ? Snowflake : Dumbbell;
+  const TypeIcon = isOnIce ? SkateIcon : Dumbbell;
   const accentColor = isOnIce ? 'text-on-ice' : 'text-off-ice';
   const bgColor = isOnIce ? 'bg-on-ice' : 'bg-off-ice';
 
