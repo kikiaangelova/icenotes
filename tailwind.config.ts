@@ -47,7 +47,7 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        // Custom skating colors
+        // Custom skating colors - High Performance Palette
         ice: "hsl(var(--ice))",
         "ice-deep": "hsl(var(--ice-deep))",
         frost: "hsl(var(--frost))",
@@ -56,6 +56,7 @@ export default {
         mental: "hsl(var(--mental))",
         success: "hsl(var(--success))",
         gold: "hsl(var(--gold))",
+        silver: "hsl(var(--silver))",
         // Premium colors
         premium: "hsl(var(--premium))",
         "premium-soft": "hsl(var(--premium-soft))",
