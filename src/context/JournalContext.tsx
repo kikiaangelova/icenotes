@@ -1,14 +1,25 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode, useMemo } from 'react';
-import { JournalEntry, SkaterProfile, JourneyStats } from '@/types/journal';
+import { JournalEntry, SkaterProfile, JourneyStats, TrainingSession, JumpAttempt } from '@/types/journal';
 import { format, differenceInDays, parseISO } from 'date-fns';
 
 interface JournalContextType {
   profile: SkaterProfile | null;
   setProfile: (profile: SkaterProfile | null) => void;
   
+  // Journal entries
   entries: JournalEntry[];
   addEntry: (entry: Omit<JournalEntry, 'id' | 'createdAt'>) => void;
   getTodaysEntry: () => JournalEntry | null;
+  
+  // Training sessions
+  trainingSessions: TrainingSession[];
+  addTrainingSession: (session: Omit<TrainingSession, 'id' | 'createdAt'>) => void;
+  getTodaysSessions: () => TrainingSession[];
+  
+  // Jump attempts
+  jumpAttempts: JumpAttempt[];
+  addJumpAttempt: (attempt: Omit<JumpAttempt, 'id'>) => void;
+  getTodaysJumps: () => JumpAttempt[];
   
   getJourneyStats: () => JourneyStats;
   resetProfile: () => void;
@@ -40,6 +51,16 @@ export const JournalProvider: React.FC<{ children: ReactNode }> = ({ children })
     return saved ? JSON.parse(saved) : [];
   });
 
+  const [trainingSessions, setTrainingSessions] = useState<TrainingSession[]>(() => {
+    const saved = localStorage.getItem('trainingSessions');
+    return saved ? JSON.parse(saved) : [];
+  });
+
+  const [jumpAttempts, setJumpAttempts] = useState<JumpAttempt[]>(() => {
+    const saved = localStorage.getItem('jumpAttempts');
+    return saved ? JSON.parse(saved) : [];
+  });
+
   // Persist state
   useEffect(() => {
     if (profile) {
@@ -52,6 +73,14 @@ export const JournalProvider: React.FC<{ children: ReactNode }> = ({ children })
   useEffect(() => {
     localStorage.setItem('journalEntries', JSON.stringify(entries));
   }, [entries]);
+
+  useEffect(() => {
+    localStorage.setItem('trainingSessions', JSON.stringify(trainingSessions));
+  }, [trainingSessions]);
+
+  useEffect(() => {
+    localStorage.setItem('jumpAttempts', JSON.stringify(jumpAttempts));
+  }, [jumpAttempts]);
 
   const setProfile = (newProfile: SkaterProfile | null) => {
     setProfileState(newProfile);
@@ -73,8 +102,46 @@ export const JournalProvider: React.FC<{ children: ReactNode }> = ({ children })
     ) || null;
   };
 
+  const addTrainingSession = (session: Omit<TrainingSession, 'id' | 'createdAt'>) => {
+    const newSession: TrainingSession = {
+      ...session,
+      id: crypto.randomUUID(),
+      createdAt: new Date()
+    };
+    setTrainingSessions(prev => [...prev, newSession]);
+  };
+
+  const getTodaysSessions = (): TrainingSession[] => {
+    const today = format(new Date(), 'yyyy-MM-dd');
+    return trainingSessions.filter(s => 
+      format(parseStoredDate(s.date), 'yyyy-MM-dd') === today
+    );
+  };
+
+  const addJumpAttempt = (attempt: Omit<JumpAttempt, 'id'>) => {
+    const newAttempt: JumpAttempt = {
+      ...attempt,
+      id: crypto.randomUUID()
+    };
+    setJumpAttempts(prev => [...prev, newAttempt]);
+  };
+
+  const getTodaysJumps = (): JumpAttempt[] => {
+    const today = format(new Date(), 'yyyy-MM-dd');
+    return jumpAttempts.filter(j => 
+      format(parseStoredDate(j.date), 'yyyy-MM-dd') === today
+    );
+  };
+
   const getJourneyStats = (): JourneyStats => {
-    if (entries.length === 0) {
+    // Combine all activity dates
+    const allDates = [
+      ...entries.map(e => format(parseStoredDate(e.date), 'yyyy-MM-dd')),
+      ...trainingSessions.map(s => format(parseStoredDate(s.date), 'yyyy-MM-dd')),
+      ...jumpAttempts.map(j => format(parseStoredDate(j.date), 'yyyy-MM-dd'))
+    ];
+    
+    if (allDates.length === 0) {
       return {
         totalEntries: 0,
         daysReflected: 0,
@@ -83,15 +150,11 @@ export const JournalProvider: React.FC<{ children: ReactNode }> = ({ children })
       };
     }
 
-    // Get unique dates
-    const uniqueDates = [...new Set(
-      entries.map(e => format(parseStoredDate(e.date), 'yyyy-MM-dd'))
-    )].sort().reverse();
-
+    const uniqueDates = [...new Set(allDates)].sort().reverse();
     const daysReflected = uniqueDates.length;
-    const totalEntries = entries.length;
+    const totalEntries = entries.length + trainingSessions.length;
 
-    // Calculate current connection (streak, but gentler)
+    // Calculate current connection
     let currentConnection = 0;
     const today = format(new Date(), 'yyyy-MM-dd');
     
@@ -107,7 +170,7 @@ export const JournalProvider: React.FC<{ children: ReactNode }> = ({ children })
       }
     }
 
-    // Count returns after breaks (gaps > 2 days, showing resilience)
+    // Count returns after breaks
     let returnsAfterBreak = 0;
     for (let i = 1; i < uniqueDates.length; i++) {
       const diff = differenceInDays(parseISO(uniqueDates[i - 1]), parseISO(uniqueDates[i]));
@@ -127,8 +190,12 @@ export const JournalProvider: React.FC<{ children: ReactNode }> = ({ children })
   const resetProfile = () => {
     setProfileState(null);
     setEntries([]);
+    setTrainingSessions([]);
+    setJumpAttempts([]);
     localStorage.removeItem('skaterJournalProfile');
     localStorage.removeItem('journalEntries');
+    localStorage.removeItem('trainingSessions');
+    localStorage.removeItem('jumpAttempts');
   };
 
   const value = useMemo(() => ({
@@ -137,9 +204,15 @@ export const JournalProvider: React.FC<{ children: ReactNode }> = ({ children })
     entries,
     addEntry,
     getTodaysEntry,
+    trainingSessions,
+    addTrainingSession,
+    getTodaysSessions,
+    jumpAttempts,
+    addJumpAttempt,
+    getTodaysJumps,
     getJourneyStats,
     resetProfile
-  }), [profile, entries]);
+  }), [profile, entries, trainingSessions, jumpAttempts]);
 
   return (
     <JournalContext.Provider value={value}>
