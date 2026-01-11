@@ -15,6 +15,7 @@ import { ProgressSummaryCards } from './ProgressSummaryCards';
 import { ActivityCalendar } from './ActivityCalendar';
 import { AvatarUpload } from './AvatarUpload';
 import { TrialBanner } from './TrialBanner';
+import { MotivationalQuote } from './MotivationalQuote';
 import { Button } from '@/components/ui/button';
 import { SELF_LEVELS } from '@/types/journal';
 import { Feather, Compass, Heart, Settings, LogOut, Dumbbell, Target, CalendarCheck, Brain, Timer, Bell, Snowflake } from 'lucide-react';
@@ -131,6 +132,9 @@ export const SimpleDashboard: React.FC = () => {
         <main className="container max-w-2xl mx-auto px-3 sm:px-4 py-4 sm:py-6">
           {/* Trial Banner */}
           <TrialBanner />
+          
+          {/* Daily Motivational Quote */}
+          <MotivationalQuote variant="banner" useDaily showRefresh className="mb-4" />
           
           {/* Focus reminder */}
           <div className="text-center space-y-1 pb-4 sm:pb-6">
