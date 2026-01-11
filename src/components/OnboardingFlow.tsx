@@ -4,18 +4,24 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
-import { useJournal } from '@/context/JournalContext';
+import { useUpdateProfile } from '@/hooks/useSupabaseData';
+import { useAuth } from '@/context/AuthContext';
 import { SELF_LEVELS, SkaterProfile } from '@/types/journal';
-import { Heart, ArrowRight, ArrowLeft, Sparkles } from 'lucide-react';
+import { Heart, ArrowRight, ArrowLeft, Sparkles, Loader2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { useToast } from '@/hooks/use-toast';
 
 type OnboardingStep = 'welcome' | 'level' | 'goals' | 'details' | 'complete';
 
 export const OnboardingFlow: React.FC = () => {
-  const { setProfile } = useJournal();
+  const { user } = useAuth();
+  const updateProfile = useUpdateProfile();
+  const { toast } = useToast();
+  
   const [step, setStep] = useState<OnboardingStep>('welcome');
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
-    name: '',
+    name: user?.user_metadata?.name || '',
     selfLevel: '' as SkaterProfile['selfLevel'] | '',
     mainFocus: '',
     progressFeeling: '',
@@ -24,22 +30,35 @@ export const OnboardingFlow: React.FC = () => {
     weight: ''
   });
 
-  const handleComplete = () => {
+  const handleComplete = async () => {
     if (!formData.name || !formData.selfLevel || !formData.mainFocus) return;
     
-    const profile: SkaterProfile = {
-      id: crypto.randomUUID(),
-      name: formData.name,
-      selfLevel: formData.selfLevel as SkaterProfile['selfLevel'],
-      mainFocus: formData.mainFocus,
-      progressFeeling: formData.progressFeeling || undefined,
-      age: formData.age ? parseInt(formData.age) : undefined,
-      height: formData.height ? parseInt(formData.height) : undefined,
-      weight: formData.weight ? parseFloat(formData.weight) : undefined,
-      createdAt: new Date()
-    };
+    setIsSubmitting(true);
     
-    setProfile(profile);
+    try {
+      await updateProfile.mutateAsync({
+        name: formData.name,
+        selfLevel: formData.selfLevel as SkaterProfile['selfLevel'],
+        mainFocus: formData.mainFocus,
+        progressFeeling: formData.progressFeeling || undefined,
+        age: formData.age ? parseInt(formData.age) : undefined,
+        height: formData.height ? parseInt(formData.height) : undefined,
+        weight: formData.weight ? parseFloat(formData.weight) : undefined,
+      });
+      
+      toast({
+        title: "Welcome to Ice Journal!",
+        description: "Your profile has been set up. Let's begin your journey!",
+      });
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to save your profile. Please try again.",
+        variant: "destructive"
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const canProceed = () => {
@@ -63,10 +82,10 @@ export const OnboardingFlow: React.FC = () => {
               <div className="mx-auto w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center">
                 <Heart className="w-8 h-8 text-primary" />
               </div>
-              <CardTitle className="text-2xl text-foreground">
+              <CardTitle className="text-xl sm:text-2xl text-foreground">
                 Welcome to Ice Journal
               </CardTitle>
-              <CardDescription className="text-base leading-relaxed max-w-sm mx-auto">
+              <CardDescription className="text-sm sm:text-base leading-relaxed max-w-sm mx-auto">
                 This is your personal space to reflect, grow, and stay connected to your skating.
                 <span className="block mt-2 font-medium text-foreground/80">
                   There is no right or wrong here.
@@ -102,10 +121,10 @@ export const OnboardingFlow: React.FC = () => {
         {step === 'level' && (
           <Card className="animate-fade-in border-primary/10 shadow-lg">
             <CardHeader className="space-y-2">
-              <CardTitle className="text-xl text-foreground">
+              <CardTitle className="text-lg sm:text-xl text-foreground">
                 How do you currently see yourself as a skater?
               </CardTitle>
-              <CardDescription className="text-sm">
+              <CardDescription className="text-xs sm:text-sm">
                 This is not an evaluation. It's your self-perception, and you can change it anytime.
               </CardDescription>
             </CardHeader>
@@ -116,14 +135,14 @@ export const OnboardingFlow: React.FC = () => {
                     key={level.value}
                     onClick={() => setFormData(prev => ({ ...prev, selfLevel: level.value }))}
                     className={cn(
-                      "w-full p-4 rounded-xl text-left transition-all border-2",
+                      "w-full p-3 sm:p-4 rounded-xl text-left transition-all border-2",
                       formData.selfLevel === level.value
                         ? "border-primary bg-primary/5 shadow-md"
                         : "border-border hover:border-primary/30 hover:bg-muted/50"
                     )}
                   >
-                    <p className="font-medium text-foreground">{level.label}</p>
-                    <p className="text-sm text-muted-foreground mt-1">{level.description}</p>
+                    <p className="font-medium text-sm sm:text-base text-foreground">{level.label}</p>
+                    <p className="text-xs sm:text-sm text-muted-foreground mt-1">{level.description}</p>
                   </button>
                 ))}
               </div>
@@ -154,10 +173,10 @@ export const OnboardingFlow: React.FC = () => {
         {step === 'goals' && (
           <Card className="animate-fade-in border-primary/10 shadow-lg">
             <CardHeader className="space-y-2">
-              <CardTitle className="text-xl text-foreground">
+              <CardTitle className="text-lg sm:text-xl text-foreground">
                 What would you like to focus on right now?
               </CardTitle>
-              <CardDescription>
+              <CardDescription className="text-xs sm:text-sm">
                 Your focus can evolve. This is just where you are today.
               </CardDescription>
             </CardHeader>
@@ -210,17 +229,17 @@ export const OnboardingFlow: React.FC = () => {
         {step === 'details' && (
           <Card className="animate-fade-in border-primary/10 shadow-lg">
             <CardHeader className="space-y-2">
-              <CardTitle className="text-xl text-foreground">
+              <CardTitle className="text-lg sm:text-xl text-foreground">
                 A bit more about you
               </CardTitle>
-              <CardDescription className="text-sm">
+              <CardDescription className="text-xs sm:text-sm">
                 You can skip this. You can change it anytime.
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-5">
-              <div className="grid grid-cols-3 gap-3">
+              <div className="grid grid-cols-3 gap-2 sm:gap-3">
                 <div className="space-y-2">
-                  <Label className="text-sm text-muted-foreground">Age</Label>
+                  <Label className="text-xs sm:text-sm text-muted-foreground">Age</Label>
                   <Input
                     type="number"
                     placeholder="—"
@@ -230,7 +249,7 @@ export const OnboardingFlow: React.FC = () => {
                   />
                 </div>
                 <div className="space-y-2">
-                  <Label className="text-sm text-muted-foreground">Height (cm)</Label>
+                  <Label className="text-xs sm:text-sm text-muted-foreground">Height (cm)</Label>
                   <Input
                     type="number"
                     placeholder="—"
@@ -240,7 +259,7 @@ export const OnboardingFlow: React.FC = () => {
                   />
                 </div>
                 <div className="space-y-2">
-                  <Label className="text-sm text-muted-foreground">Weight (kg)</Label>
+                  <Label className="text-xs sm:text-sm text-muted-foreground">Weight (kg)</Label>
                   <Input
                     type="number"
                     step="0.1"
@@ -253,7 +272,7 @@ export const OnboardingFlow: React.FC = () => {
               </div>
               
               <p className="text-xs text-center text-muted-foreground italic">
-                This information is optional and stored only on your device.
+                This information is optional and stored securely.
               </p>
               
               <div className="flex gap-3 pt-2">
@@ -261,6 +280,7 @@ export const OnboardingFlow: React.FC = () => {
                   variant="outline"
                   onClick={() => setStep('goals')}
                   className="h-11"
+                  disabled={isSubmitting}
                 >
                   <ArrowLeft className="w-4 h-4 mr-2" />
                   Back
@@ -268,9 +288,19 @@ export const OnboardingFlow: React.FC = () => {
                 <Button 
                   onClick={handleComplete}
                   className="flex-1 h-12 text-base font-medium"
+                  disabled={isSubmitting}
                 >
-                  <Sparkles className="w-4 h-4 mr-2" />
-                  Begin My Journey
+                  {isSubmitting ? (
+                    <>
+                      <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                      Setting up...
+                    </>
+                  ) : (
+                    <>
+                      <Sparkles className="w-4 h-4 mr-2" />
+                      Begin My Journey
+                    </>
+                  )}
                 </Button>
               </div>
               
