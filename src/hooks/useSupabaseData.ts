@@ -36,6 +36,8 @@ export const useProfile = () => {
         age: data.age || undefined,
         height: data.height ? Number(data.height) : undefined,
         weight: data.weight ? Number(data.weight) : undefined,
+        avatarUrl: data.avatar_url || undefined,
+        trialEndsAt: data.trial_ends_at ? parseStoredDate(data.trial_ends_at) : undefined,
         createdAt: parseStoredDate(data.created_at)
       } as SkaterProfile;
     },
@@ -60,7 +62,8 @@ export const useUpdateProfile = () => {
           progress_feeling: profile.progressFeeling,
           age: profile.age,
           height: profile.height,
-          weight: profile.weight
+          weight: profile.weight,
+          avatar_url: profile.avatarUrl
         })
         .eq('user_id', user.id);
       

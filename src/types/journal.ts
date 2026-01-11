@@ -18,6 +18,8 @@ export interface SkaterProfile {
   age?: number;
   height?: number;
   weight?: number;
+  avatarUrl?: string;
+  trialEndsAt?: Date;
   createdAt: Date;
 }
 

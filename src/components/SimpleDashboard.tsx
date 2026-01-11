@@ -13,6 +13,8 @@ import { SessionTimer } from './SessionTimer';
 import { ReminderSettings } from './ReminderSettings';
 import { ProgressSummaryCards } from './ProgressSummaryCards';
 import { ActivityCalendar } from './ActivityCalendar';
+import { AvatarUpload } from './AvatarUpload';
+import { TrialBanner } from './TrialBanner';
 import { Button } from '@/components/ui/button';
 import { SELF_LEVELS } from '@/types/journal';
 import { Feather, Compass, Heart, Settings, LogOut, Dumbbell, Target, CalendarCheck, Brain, Timer, Bell, Snowflake } from 'lucide-react';
@@ -44,7 +46,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 type DashboardView = 'home' | 'journal' | 'journey' | 'reflect' | 'on-ice' | 'off-ice' | 'jumps' | 'pre-training' | 'timer';
 
 export const SimpleDashboard: React.FC = () => {
-  const { profile, getTodaysEntry, getTodaysSessions, resetProfile } = useJournal();
+  const { profile, setProfile, getTodaysEntry, getTodaysSessions, resetProfile } = useJournal();
   const { signOut, user } = useAuth();
   const [currentView, setCurrentView] = useState<DashboardView>('home');
   const [showResetDialog, setShowResetDialog] = useState(false);
@@ -83,11 +85,19 @@ export const SimpleDashboard: React.FC = () => {
         {/* Header */}
         <header className="border-b border-border/50 bg-background/80 backdrop-blur-sm sticky top-0 z-10">
           <div className="container max-w-2xl mx-auto px-3 sm:px-4 py-3 sm:py-4 flex items-center justify-between">
-            <div className="min-w-0 flex-1">
-              <h1 className="text-base sm:text-lg font-semibold text-foreground truncate">
-                Hi, {profile.name.split(' ')[0]}
-              </h1>
-              <p className="text-xs text-muted-foreground truncate">{levelLabel}</p>
+            <div className="flex items-center gap-3 min-w-0 flex-1">
+              <AvatarUpload
+                avatarUrl={profile.avatarUrl}
+                name={profile.name}
+                onAvatarChange={(url) => setProfile({ ...profile, avatarUrl: url })}
+                size="sm"
+              />
+              <div className="min-w-0">
+                <h1 className="text-base sm:text-lg font-semibold text-foreground truncate">
+                  Hi, {profile.name.split(' ')[0]}
+                </h1>
+                <p className="text-xs text-muted-foreground truncate">{levelLabel}</p>
+              </div>
             </div>
             <div className="flex items-center gap-1 sm:gap-2 flex-shrink-0">
               <ExportButton />
@@ -119,6 +129,9 @@ export const SimpleDashboard: React.FC = () => {
 
         {/* Main content */}
         <main className="container max-w-2xl mx-auto px-3 sm:px-4 py-4 sm:py-6">
+          {/* Trial Banner */}
+          <TrialBanner />
+          
           {/* Focus reminder */}
           <div className="text-center space-y-1 pb-4 sm:pb-6">
             <p className="text-xs sm:text-sm text-muted-foreground">Your focus</p>
