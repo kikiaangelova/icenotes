@@ -11,6 +11,8 @@ import { PreTrainingPrep } from './PreTrainingPrep';
 import { ExportButton } from './ExportButton';
 import { SessionTimer } from './SessionTimer';
 import { ReminderSettings } from './ReminderSettings';
+import { ProgressSummaryCards } from './ProgressSummaryCards';
+import { ActivityCalendar } from './ActivityCalendar';
 import { Button } from '@/components/ui/button';
 import { SELF_LEVELS } from '@/types/journal';
 import { Feather, Compass, Heart, Settings, LogOut, Dumbbell, Target, CalendarCheck, Brain, Timer, Bell, Snowflake } from 'lucide-react';
@@ -248,6 +250,8 @@ export const SimpleDashboard: React.FC = () => {
 
             {/* Journey Tab */}
             <TabsContent value="journey" className="space-y-4">
+              <ProgressSummaryCards />
+              <ActivityCalendar />
               <JourneyView />
             </TabsContent>
           </Tabs>
