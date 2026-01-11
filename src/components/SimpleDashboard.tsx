@@ -5,9 +5,10 @@ import { JourneyView } from './JourneyView';
 import { ReflectSpace } from './ReflectSpace';
 import { TrainingLog } from './TrainingLog';
 import { JumpLog } from './JumpLog';
+import { WeeklyGoals } from './WeeklyGoals';
 import { Button } from '@/components/ui/button';
 import { SELF_LEVELS } from '@/types/journal';
-import { Feather, Compass, Heart, Settings, LogOut, Snowflake, Dumbbell, Target } from 'lucide-react';
+import { Feather, Compass, Heart, Settings, LogOut, Snowflake, Dumbbell, Target, CalendarCheck } from 'lucide-react';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -84,25 +85,34 @@ export const SimpleDashboard: React.FC = () => {
           </div>
 
           {/* Tabs for training types */}
-          <Tabs defaultValue="training" className="space-y-6">
-            <TabsList className="grid w-full grid-cols-4 h-12">
-              <TabsTrigger value="training" className="flex items-center gap-2">
+          <Tabs defaultValue="goals" className="space-y-6">
+            <TabsList className="grid w-full grid-cols-5 h-12">
+              <TabsTrigger value="goals" className="flex items-center gap-1.5">
+                <CalendarCheck className="w-4 h-4" />
+                <span className="hidden sm:inline">Goals</span>
+              </TabsTrigger>
+              <TabsTrigger value="training" className="flex items-center gap-1.5">
                 <Snowflake className="w-4 h-4" />
                 <span className="hidden sm:inline">Training</span>
               </TabsTrigger>
-              <TabsTrigger value="jumps" className="flex items-center gap-2">
+              <TabsTrigger value="jumps" className="flex items-center gap-1.5">
                 <Target className="w-4 h-4" />
                 <span className="hidden sm:inline">Jumps</span>
               </TabsTrigger>
-              <TabsTrigger value="journal" className="flex items-center gap-2">
+              <TabsTrigger value="journal" className="flex items-center gap-1.5">
                 <Feather className="w-4 h-4" />
                 <span className="hidden sm:inline">Journal</span>
               </TabsTrigger>
-              <TabsTrigger value="journey" className="flex items-center gap-2">
+              <TabsTrigger value="journey" className="flex items-center gap-1.5">
                 <Compass className="w-4 h-4" />
                 <span className="hidden sm:inline">Journey</span>
               </TabsTrigger>
             </TabsList>
+
+            {/* Weekly Goals Tab */}
+            <TabsContent value="goals" className="space-y-4">
+              <WeeklyGoals />
+            </TabsContent>
 
             {/* Training Tab */}
             <TabsContent value="training" className="space-y-4">
