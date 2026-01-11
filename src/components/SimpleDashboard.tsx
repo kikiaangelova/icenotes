@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useJournal } from '@/context/JournalContext';
+import { useAuth } from '@/context/AuthContext';
 import { DailyJournal } from './DailyJournal';
 import { JourneyView } from './JourneyView';
 import { ReflectSpace } from './ReflectSpace';
@@ -12,7 +13,7 @@ import { SessionTimer } from './SessionTimer';
 import { ReminderSettings } from './ReminderSettings';
 import { Button } from '@/components/ui/button';
 import { SELF_LEVELS } from '@/types/journal';
-import { Feather, Compass, Heart, Settings, LogOut, Snowflake, Dumbbell, Target, CalendarCheck, Brain, FileDown, Timer, Bell } from 'lucide-react';
+import { Feather, Compass, Heart, Settings, LogOut, Snowflake, Dumbbell, Target, CalendarCheck, Brain, Timer, Bell } from 'lucide-react';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -42,6 +43,7 @@ type DashboardView = 'home' | 'journal' | 'journey' | 'reflect' | 'on-ice' | 'of
 
 export const SimpleDashboard: React.FC = () => {
   const { profile, getTodaysEntry, getTodaysSessions, resetProfile } = useJournal();
+  const { signOut, user } = useAuth();
   const [currentView, setCurrentView] = useState<DashboardView>('home');
   const [showResetDialog, setShowResetDialog] = useState(false);
   const [showReminderSettings, setShowReminderSettings] = useState(false);
@@ -67,8 +69,8 @@ export const SimpleDashboard: React.FC = () => {
 
   if (!profile) return null;
 
-  const handleReset = () => {
-    resetProfile();
+  const handleSignOut = async () => {
+    await signOut();
     setShowResetDialog(false);
   };
 
@@ -78,22 +80,26 @@ export const SimpleDashboard: React.FC = () => {
       <div className="min-h-screen bg-gradient-to-b from-ice/20 to-background">
         {/* Header */}
         <header className="border-b border-border/50 bg-background/80 backdrop-blur-sm sticky top-0 z-10">
-          <div className="container max-w-2xl mx-auto px-4 py-4 flex items-center justify-between">
-            <div>
-              <h1 className="text-lg font-semibold text-foreground">
+          <div className="container max-w-2xl mx-auto px-3 sm:px-4 py-3 sm:py-4 flex items-center justify-between">
+            <div className="min-w-0 flex-1">
+              <h1 className="text-base sm:text-lg font-semibold text-foreground truncate">
                 Hi, {profile.name.split(' ')[0]}
               </h1>
-              <p className="text-xs text-muted-foreground">{levelLabel}</p>
+              <p className="text-xs text-muted-foreground truncate">{levelLabel}</p>
             </div>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-1 sm:gap-2 flex-shrink-0">
               <ExportButton />
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <Button variant="ghost" size="icon" className="text-muted-foreground">
+                  <Button variant="ghost" size="icon" className="text-muted-foreground h-9 w-9">
                     <Settings className="w-5 h-5" />
                   </Button>
                 </DropdownMenuTrigger>
-                <DropdownMenuContent align="end">
+                <DropdownMenuContent align="end" className="w-56">
+                  <div className="px-2 py-1.5 text-xs text-muted-foreground">
+                    {user?.email}
+                  </div>
+                  <DropdownMenuSeparator />
                   <DropdownMenuItem onClick={() => setShowReminderSettings(true)}>
                     <Bell className="w-4 h-4 mr-2" />
                     Reminders
@@ -101,7 +107,7 @@ export const SimpleDashboard: React.FC = () => {
                   <DropdownMenuSeparator />
                   <DropdownMenuItem onClick={() => setShowResetDialog(true)} className="text-destructive">
                     <LogOut className="w-4 h-4 mr-2" />
-                    Start Over
+                    Sign Out
                   </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
@@ -110,39 +116,39 @@ export const SimpleDashboard: React.FC = () => {
         </header>
 
         {/* Main content */}
-        <main className="container max-w-2xl mx-auto px-4 py-6">
+        <main className="container max-w-2xl mx-auto px-3 sm:px-4 py-4 sm:py-6">
           {/* Focus reminder */}
-          <div className="text-center space-y-1 pb-6">
-            <p className="text-sm text-muted-foreground">Your focus</p>
-            <p className="text-base font-medium text-foreground">{profile.mainFocus}</p>
+          <div className="text-center space-y-1 pb-4 sm:pb-6">
+            <p className="text-xs sm:text-sm text-muted-foreground">Your focus</p>
+            <p className="text-sm sm:text-base font-medium text-foreground px-4 line-clamp-2">{profile.mainFocus}</p>
           </div>
 
-          {/* Tabs for training types */}
-          <Tabs defaultValue="goals" className="space-y-6">
-            <TabsList className="grid w-full grid-cols-6 h-12">
-              <TabsTrigger value="goals" className="flex items-center gap-1">
-                <CalendarCheck className="w-4 h-4" />
-                <span className="hidden sm:inline">Goals</span>
+          {/* Tabs for training types - responsive */}
+          <Tabs defaultValue="goals" className="space-y-4 sm:space-y-6">
+            <TabsList className="grid w-full grid-cols-6 h-11 sm:h-12">
+              <TabsTrigger value="goals" className="flex items-center justify-center gap-1 px-1 sm:px-3">
+                <CalendarCheck className="w-4 h-4 flex-shrink-0" />
+                <span className="hidden sm:inline text-xs">Goals</span>
               </TabsTrigger>
-              <TabsTrigger value="training" className="flex items-center gap-1">
-                <Snowflake className="w-4 h-4" />
-                <span className="hidden sm:inline">Training</span>
+              <TabsTrigger value="training" className="flex items-center justify-center gap-1 px-1 sm:px-3">
+                <Snowflake className="w-4 h-4 flex-shrink-0" />
+                <span className="hidden sm:inline text-xs">Training</span>
               </TabsTrigger>
-              <TabsTrigger value="mind" className="flex items-center gap-1">
-                <Brain className="w-4 h-4" />
-                <span className="hidden sm:inline">Mind</span>
+              <TabsTrigger value="mind" className="flex items-center justify-center gap-1 px-1 sm:px-3">
+                <Brain className="w-4 h-4 flex-shrink-0" />
+                <span className="hidden sm:inline text-xs">Mind</span>
               </TabsTrigger>
-              <TabsTrigger value="jumps" className="flex items-center gap-1">
-                <Target className="w-4 h-4" />
-                <span className="hidden sm:inline">Jumps</span>
+              <TabsTrigger value="jumps" className="flex items-center justify-center gap-1 px-1 sm:px-3">
+                <Target className="w-4 h-4 flex-shrink-0" />
+                <span className="hidden sm:inline text-xs">Jumps</span>
               </TabsTrigger>
-              <TabsTrigger value="journal" className="flex items-center gap-1">
-                <Feather className="w-4 h-4" />
-                <span className="hidden sm:inline">Journal</span>
+              <TabsTrigger value="journal" className="flex items-center justify-center gap-1 px-1 sm:px-3">
+                <Feather className="w-4 h-4 flex-shrink-0" />
+                <span className="hidden sm:inline text-xs">Journal</span>
               </TabsTrigger>
-              <TabsTrigger value="journey" className="flex items-center gap-1">
-                <Compass className="w-4 h-4" />
-                <span className="hidden sm:inline">Journey</span>
+              <TabsTrigger value="journey" className="flex items-center justify-center gap-1 px-1 sm:px-3">
+                <Compass className="w-4 h-4 flex-shrink-0" />
+                <span className="hidden sm:inline text-xs">Journey</span>
               </TabsTrigger>
             </TabsList>
 
@@ -157,24 +163,24 @@ export const SimpleDashboard: React.FC = () => {
             </TabsContent>
 
             {/* Training Tab */}
-            <TabsContent value="training" className="space-y-4">
+            <TabsContent value="training" className="space-y-3 sm:space-y-4">
               <div className="text-center pb-2">
-                <h2 className="text-lg font-medium">Today's Training</h2>
-                <p className="text-sm text-muted-foreground">Track your on-ice and off-ice work</p>
+                <h2 className="text-base sm:text-lg font-medium">Today's Training</h2>
+                <p className="text-xs sm:text-sm text-muted-foreground">Track your on-ice and off-ice work</p>
               </div>
 
               {/* Session Timer Card */}
               <button
                 onClick={() => setCurrentView('timer')}
-                className="w-full p-4 rounded-xl bg-gradient-to-br from-primary/10 to-primary/5 border-2 border-primary/20 hover:border-primary/40 transition-all text-left"
+                className="w-full p-3 sm:p-4 rounded-xl bg-gradient-to-br from-primary/10 to-primary/5 border-2 border-primary/20 hover:border-primary/40 transition-all text-left"
               >
-                <div className="flex items-center gap-4">
-                  <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
-                    <Timer className="w-5 h-5 text-primary" />
+                <div className="flex items-center gap-3 sm:gap-4">
+                  <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                    <Timer className="w-4 h-4 sm:w-5 sm:h-5 text-primary" />
                   </div>
-                  <div className="flex-1">
-                    <h3 className="font-medium text-foreground">Session Timer</h3>
-                    <p className="text-sm text-muted-foreground">Time your practice with lap tracking</p>
+                  <div className="flex-1 min-w-0">
+                    <h3 className="font-medium text-sm sm:text-base text-foreground">Session Timer</h3>
+                    <p className="text-xs sm:text-sm text-muted-foreground truncate">Time your practice with lap tracking</p>
                   </div>
                 </div>
               </button>
@@ -182,15 +188,15 @@ export const SimpleDashboard: React.FC = () => {
               {/* On-ice card */}
               <button
                 onClick={() => handleStartTraining('on-ice')}
-                className="w-full p-5 rounded-xl bg-gradient-to-br from-on-ice/10 to-on-ice/5 border-2 border-on-ice/20 hover:border-on-ice/40 transition-all text-left"
+                className="w-full p-4 sm:p-5 rounded-xl bg-gradient-to-br from-on-ice/10 to-on-ice/5 border-2 border-on-ice/20 hover:border-on-ice/40 transition-all text-left"
               >
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-full bg-on-ice/10 flex items-center justify-center">
-                    <Snowflake className="w-6 h-6 text-on-ice" />
+                <div className="flex items-center gap-3 sm:gap-4">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-on-ice/10 flex items-center justify-center flex-shrink-0">
+                    <Snowflake className="w-5 h-5 sm:w-6 sm:h-6 text-on-ice" />
                   </div>
-                  <div className="flex-1">
-                    <h3 className="font-medium text-foreground">On-Ice Training</h3>
-                    <p className="text-sm text-muted-foreground">
+                  <div className="flex-1 min-w-0">
+                    <h3 className="font-medium text-sm sm:text-base text-foreground">On-Ice Training</h3>
+                    <p className="text-xs sm:text-sm text-muted-foreground truncate">
                       {hasOnIce ? "Session logged ✓" : "Edges, spins, footwork, programs"}
                     </p>
                   </div>
@@ -200,15 +206,15 @@ export const SimpleDashboard: React.FC = () => {
               {/* Off-ice card */}
               <button
                 onClick={() => handleStartTraining('off-ice')}
-                className="w-full p-5 rounded-xl bg-gradient-to-br from-off-ice/10 to-off-ice/5 border-2 border-off-ice/20 hover:border-off-ice/40 transition-all text-left"
+                className="w-full p-4 sm:p-5 rounded-xl bg-gradient-to-br from-off-ice/10 to-off-ice/5 border-2 border-off-ice/20 hover:border-off-ice/40 transition-all text-left"
               >
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-full bg-off-ice/10 flex items-center justify-center">
-                    <Dumbbell className="w-6 h-6 text-off-ice" />
+                <div className="flex items-center gap-3 sm:gap-4">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-off-ice/10 flex items-center justify-center flex-shrink-0">
+                    <Dumbbell className="w-5 h-5 sm:w-6 sm:h-6 text-off-ice" />
                   </div>
-                  <div className="flex-1">
-                    <h3 className="font-medium text-foreground">Off-Ice Training</h3>
-                    <p className="text-sm text-muted-foreground">
+                  <div className="flex-1 min-w-0">
+                    <h3 className="font-medium text-sm sm:text-base text-foreground">Off-Ice Training</h3>
+                    <p className="text-xs sm:text-sm text-muted-foreground truncate">
                       {hasOffIce ? "Session logged ✓" : "Strength, flexibility, conditioning"}
                     </p>
                   </div>
@@ -218,13 +224,13 @@ export const SimpleDashboard: React.FC = () => {
               {/* Reflect button */}
               <button
                 onClick={() => setCurrentView('reflect')}
-                className="w-full p-4 rounded-xl bg-muted/50 border border-border hover:border-primary/30 transition-all text-left"
+                className="w-full p-3 sm:p-4 rounded-xl bg-muted/50 border border-border hover:border-primary/30 transition-all text-left"
               >
                 <div className="flex items-center gap-3">
-                  <Heart className="w-5 h-5 text-muted-foreground" />
-                  <div>
-                    <h3 className="font-medium text-foreground">Reflect</h3>
-                    <p className="text-xs text-muted-foreground">Deeper thoughts about your skating</p>
+                  <Heart className="w-5 h-5 text-muted-foreground flex-shrink-0" />
+                  <div className="min-w-0">
+                    <h3 className="font-medium text-sm sm:text-base text-foreground">Reflect</h3>
+                    <p className="text-xs text-muted-foreground truncate">Deeper thoughts about your skating</p>
                   </div>
                 </div>
               </button>
@@ -247,24 +253,24 @@ export const SimpleDashboard: React.FC = () => {
           </Tabs>
 
           {/* Gentle message */}
-          <p className="text-center text-sm text-muted-foreground italic pt-8">
+          <p className="text-center text-xs sm:text-sm text-muted-foreground italic pt-6 sm:pt-8">
             Progress, not perfection.
           </p>
         </main>
 
-        {/* Reset confirmation dialog */}
+        {/* Sign out confirmation dialog */}
         <AlertDialog open={showResetDialog} onOpenChange={setShowResetDialog}>
-          <AlertDialogContent>
+          <AlertDialogContent className="max-w-[90vw] sm:max-w-lg">
             <AlertDialogHeader>
-              <AlertDialogTitle>Start over?</AlertDialogTitle>
+              <AlertDialogTitle>Sign out?</AlertDialogTitle>
               <AlertDialogDescription>
-                This will clear your profile and all training data. You can always begin again.
+                Your data is safely stored. You can sign back in anytime to continue your journey.
               </AlertDialogDescription>
             </AlertDialogHeader>
-            <AlertDialogFooter>
-              <AlertDialogCancel>Keep my journey</AlertDialogCancel>
-              <AlertDialogAction onClick={handleReset} className="bg-destructive hover:bg-destructive/90">
-                Start fresh
+            <AlertDialogFooter className="flex-col sm:flex-row gap-2">
+              <AlertDialogCancel className="w-full sm:w-auto">Stay signed in</AlertDialogCancel>
+              <AlertDialogAction onClick={handleSignOut} className="w-full sm:w-auto bg-destructive hover:bg-destructive/90">
+                Sign out
               </AlertDialogAction>
             </AlertDialogFooter>
           </AlertDialogContent>
@@ -272,7 +278,7 @@ export const SimpleDashboard: React.FC = () => {
 
         {/* Reminder Settings Dialog */}
         <Dialog open={showReminderSettings} onOpenChange={setShowReminderSettings}>
-          <DialogContent className="max-w-md max-h-[90vh] overflow-y-auto">
+          <DialogContent className="max-w-[90vw] sm:max-w-md max-h-[90vh] overflow-y-auto">
             <DialogHeader>
               <DialogTitle>Reminder Settings</DialogTitle>
             </DialogHeader>
@@ -287,18 +293,18 @@ export const SimpleDashboard: React.FC = () => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-ice/20 to-background">
       <header className="border-b border-border/50 bg-background/80 backdrop-blur-sm sticky top-0 z-10">
-        <div className="container max-w-2xl mx-auto px-4 py-4">
+        <div className="container max-w-2xl mx-auto px-3 sm:px-4 py-3 sm:py-4">
           <Button 
             variant="ghost" 
             onClick={() => setCurrentView('home')}
-            className="text-muted-foreground hover:text-foreground -ml-2"
+            className="text-muted-foreground hover:text-foreground -ml-2 text-sm"
           >
             ← Back
           </Button>
         </div>
       </header>
 
-      <main className="container max-w-2xl mx-auto px-4 py-6">
+      <main className="container max-w-2xl mx-auto px-3 sm:px-4 py-4 sm:py-6">
         {currentView === 'timer' && (
           <SessionTimer type="on-ice" />
         )}
