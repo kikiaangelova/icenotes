@@ -9,14 +9,16 @@ import { WeeklyGoals } from './WeeklyGoals';
 import { PreTrainingPrep } from './PreTrainingPrep';
 import { ExportButton } from './ExportButton';
 import { SessionTimer } from './SessionTimer';
+import { ReminderSettings } from './ReminderSettings';
 import { Button } from '@/components/ui/button';
 import { SELF_LEVELS } from '@/types/journal';
-import { Feather, Compass, Heart, Settings, LogOut, Snowflake, Dumbbell, Target, CalendarCheck, Brain, FileDown, Timer } from 'lucide-react';
+import { Feather, Compass, Heart, Settings, LogOut, Snowflake, Dumbbell, Target, CalendarCheck, Brain, FileDown, Timer, Bell } from 'lucide-react';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
+  DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
 import {
   AlertDialog,
@@ -28,6 +30,12 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
 type DashboardView = 'home' | 'journal' | 'journey' | 'reflect' | 'on-ice' | 'off-ice' | 'jumps' | 'pre-training' | 'timer';
@@ -36,6 +44,7 @@ export const SimpleDashboard: React.FC = () => {
   const { profile, getTodaysEntry, getTodaysSessions, resetProfile } = useJournal();
   const [currentView, setCurrentView] = useState<DashboardView>('home');
   const [showResetDialog, setShowResetDialog] = useState(false);
+  const [showReminderSettings, setShowReminderSettings] = useState(false);
   const [pendingTrainingType, setPendingTrainingType] = useState<'on-ice' | 'off-ice' | null>(null);
   
   const todaysEntry = getTodaysEntry();
@@ -85,6 +94,11 @@ export const SimpleDashboard: React.FC = () => {
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end">
+                  <DropdownMenuItem onClick={() => setShowReminderSettings(true)}>
+                    <Bell className="w-4 h-4 mr-2" />
+                    Reminders
+                  </DropdownMenuItem>
+                  <DropdownMenuSeparator />
                   <DropdownMenuItem onClick={() => setShowResetDialog(true)} className="text-destructive">
                     <LogOut className="w-4 h-4 mr-2" />
                     Start Over
@@ -255,6 +269,16 @@ export const SimpleDashboard: React.FC = () => {
             </AlertDialogFooter>
           </AlertDialogContent>
         </AlertDialog>
+
+        {/* Reminder Settings Dialog */}
+        <Dialog open={showReminderSettings} onOpenChange={setShowReminderSettings}>
+          <DialogContent className="max-w-md max-h-[90vh] overflow-y-auto">
+            <DialogHeader>
+              <DialogTitle>Reminder Settings</DialogTitle>
+            </DialogHeader>
+            <ReminderSettings />
+          </DialogContent>
+        </Dialog>
       </div>
     );
   }
