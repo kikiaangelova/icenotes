@@ -49,29 +49,29 @@ const FEATURES = [
   {
     icon: Target,
     title: 'Jump Tracker',
-    description: 'Log every 2A and Triple attempt. Track success rates, analyze patterns, and watch your consistency climb.',
+    description: 'Log every attempt from singles to quads. Track success rates, analyze patterns, and watch your consistency climb.',
   },
   {
     icon: Brain,
-    title: 'Mental Anchor Tool',
-    description: 'Pre-jump rituals designed to stop panic attacks. Build unshakeable confidence before every rotation.',
+    title: 'Mental Training',
+    description: 'Breathing exercises, pre-skate rituals, and visualization tools to build unshakeable confidence on the ice.',
   },
   {
     icon: Video,
-    title: 'Video Analysis',
-    description: 'Upload session clips and review frame-by-frame technique. Spot issues your eyes miss in real-time.',
+    title: 'Training Log',
+    description: 'Track on-ice and off-ice sessions. Monitor your physical conditioning and see your progress over time.',
   },
   {
     icon: Sparkles,
-    title: 'Daily Wins',
-    description: 'One thing that went well today. Build confidence through consistent recognition of your progress.',
+    title: 'Daily Reflections',
+    description: 'Journal your wins, challenges, and feelings. Build mental resilience through consistent self-reflection.',
   },
 ];
 
 const STATS = [
-  { value: '94%', label: 'Success Rate Improvement', icon: TrendingUp },
-  { value: '2.3x', label: 'Faster Progression', icon: Activity },
-  { value: '100+', label: 'Athletes Training', icon: Heart },
+  { value: '3-in-1', label: 'Mind, Body & Practice', icon: TrendingUp },
+  { value: '100%', label: 'Free Forever', icon: Activity },
+  { value: '∞', label: 'Your Potential', icon: Heart },
 ];
 
 export const LandingPage: React.FC<LandingPageProps> = ({ 
@@ -109,19 +109,19 @@ export const LandingPage: React.FC<LandingPageProps> = ({
               {/* Badge */}
               <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full frost-glass text-sm font-medium text-primary">
                 <BladeIcon />
-                <span>For Advanced Novice Skaters</span>
+                <span>For Dedicated Figure Skaters</span>
               </div>
 
               {/* Headline */}
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
-                <span className="gradient-text-hero">Master the Ice,</span>
+                <span className="gradient-text-hero">Train Your Mind,</span>
                 <br />
-                <span className="text-foreground">Own the Jump.</span>
+                <span className="text-foreground">Master Your Craft.</span>
               </h1>
 
               {/* Subheadline */}
               <p className="text-lg md:text-xl text-muted-foreground max-w-xl mx-auto lg:mx-0 leading-relaxed">
-                A professional journal designed for Advanced Novice skaters to track progress, overcome mental blocks, and <span className="text-primary font-semibold">land the 2A</span>.
+                A complete training journal for figure skaters. Track your <span className="text-primary font-semibold">mental</span>, <span className="text-primary font-semibold">physical</span>, and <span className="text-primary font-semibold">technical</span> progress—all in one place.
               </p>
 
               {/* CTA */}
@@ -162,36 +162,39 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                 <div className="frost-glass rounded-3xl p-8 md:p-12">
                   <div className="text-center mb-6">
                     <p className="text-sm font-medium text-muted-foreground uppercase tracking-wide">
-                      Consistency to 2A Landing
+                      Weekly Training Progress
                     </p>
                   </div>
                   <ProgressRing progress={73} size={180} strokeWidth={12} className="mx-auto">
                     <div className="text-center">
                       <span className="text-4xl font-bold text-foreground">73%</span>
-                      <p className="text-xs text-muted-foreground mt-1">This Week</p>
+                      <p className="text-xs text-muted-foreground mt-1">Goals Met</p>
                     </div>
                   </ProgressRing>
                   
                   {/* Stats below ring */}
                   <div className="grid grid-cols-3 gap-4 mt-8 pt-6 border-t border-border/50">
                     <div className="text-center">
-                      <p className="text-2xl font-bold text-primary">24</p>
-                      <p className="text-xs text-muted-foreground">Attempts</p>
+                      <p className="text-2xl font-bold text-primary">5</p>
+                      <p className="text-xs text-muted-foreground">Sessions</p>
                     </div>
                     <div className="text-center">
-                      <p className="text-2xl font-bold text-success">18</p>
-                      <p className="text-xs text-muted-foreground">Landed</p>
+                      <p className="text-2xl font-bold text-success">12</p>
+                      <p className="text-xs text-muted-foreground">Reflections</p>
                     </div>
                     <div className="text-center">
-                      <p className="text-2xl font-bold text-gold">+12%</p>
-                      <p className="text-xs text-muted-foreground">vs Last Week</p>
+                      <p className="text-2xl font-bold text-gold">7</p>
+                      <p className="text-xs text-muted-foreground">Day Streak</p>
                     </div>
                   </div>
                 </div>
 
                 {/* Floating decorations */}
                 <div className="absolute -top-4 -right-4 w-20 h-20 rounded-2xl frost-glass flex items-center justify-center animate-float">
-                  <Target className="w-8 h-8 text-primary" />
+                  <Brain className="w-8 h-8 text-mental" />
+                </div>
+                <div className="absolute -bottom-4 -left-4 w-16 h-16 rounded-xl frost-glass flex items-center justify-center animate-float" style={{ animationDelay: '1s' }}>
+                  <Heart className="w-6 h-6 text-accent" />
                 </div>
                 <div className="absolute -bottom-4 -left-4 w-16 h-16 rounded-xl frost-glass flex items-center justify-center animate-float" style={{ animationDelay: '1s' }}>
                   <Activity className="w-6 h-6 text-success" />
@@ -207,10 +210,10 @@ export const LandingPage: React.FC<LandingPageProps> = ({
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12 md:mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              Everything You Need to <span className="gradient-text">Land It</span>
+              Everything You Need to <span className="gradient-text">Grow</span>
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Professional tools designed specifically for competitive figure skaters
+              A holistic approach to figure skating improvement—mind, body, and technique
             </p>
           </div>
 
@@ -250,10 +253,10 @@ export const LandingPage: React.FC<LandingPageProps> = ({
       <section className="px-4 py-16 md:py-24">
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Ready to Land Your 2A?
+            Ready to Transform Your Training?
           </h2>
           <p className="text-lg text-muted-foreground mb-8 max-w-xl mx-auto">
-            Join skaters who've transformed their training with focused, mindful practice.
+            Join skaters who train smarter—mentally, physically, and technically.
           </p>
           <button 
             onClick={onGetStarted}
