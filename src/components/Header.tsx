@@ -3,8 +3,7 @@ import { useSkater } from '@/context/SkaterContext';
 import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
-import { Plus, LogOut, User, Settings } from 'lucide-react';
-import { SkateIcon } from '@/components/icons/SkateIcon';
+import { Plus, LogOut, User, Settings, Snowflake } from 'lucide-react';
 
 interface HeaderProps {
   onOpenDailyLog: () => void;
@@ -28,7 +27,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenDailyLog }) => {
       <div className="container max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-accent flex items-center justify-center">
-            <SkateIcon className="w-5 h-5 text-primary-foreground" />
+            <Snowflake className="w-5 h-5 text-primary-foreground" />
           </div>
           <div>
             <h1 className="font-bold text-lg leading-none">IcePrep</h1>

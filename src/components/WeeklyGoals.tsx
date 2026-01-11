@@ -9,8 +9,7 @@ import { Badge } from '@/components/ui/badge';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { JUMP_TYPES, JUMP_LEVELS, JumpType, JumpLevel, JumpTarget } from '@/types/journal';
-import { Target, Plus, Dumbbell, Trash2, Calendar } from 'lucide-react';
-import { SkateIcon } from '@/components/icons/SkateIcon';
+import { Target, Plus, Dumbbell, Trash2, Calendar, Snowflake } from 'lucide-react';
 import { format, startOfWeek, endOfWeek } from 'date-fns';
 
 export const WeeklyGoals: React.FC = () => {
@@ -114,7 +113,7 @@ export const WeeklyGoals: React.FC = () => {
               {/* On-ice hours */}
               <div className="space-y-2">
                 <Label className="flex items-center gap-2">
-                  <SkateIcon className="w-4 h-4 text-on-ice" />
+                  <Snowflake className="w-4 h-4 text-on-ice" />
                   On-Ice Hours Target
                 </Label>
                 <Input
@@ -260,7 +259,7 @@ export const WeeklyGoals: React.FC = () => {
             <CardContent className="p-4">
               <div className="flex items-center justify-between mb-2">
                 <div className="flex items-center gap-2">
-                  <SkateIcon className="w-4 h-4 text-on-ice" />
+                  <Snowflake className="w-4 h-4 text-on-ice" />
                   <span className="font-medium">On-Ice Hours</span>
                 </div>
                 <span className="text-sm text-muted-foreground">
