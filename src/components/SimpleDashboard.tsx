@@ -8,9 +8,10 @@ import { JumpLog } from './JumpLog';
 import { WeeklyGoals } from './WeeklyGoals';
 import { PreTrainingPrep } from './PreTrainingPrep';
 import { ExportButton } from './ExportButton';
+import { SessionTimer } from './SessionTimer';
 import { Button } from '@/components/ui/button';
 import { SELF_LEVELS } from '@/types/journal';
-import { Feather, Compass, Heart, Settings, LogOut, Snowflake, Dumbbell, Target, CalendarCheck, Brain, FileDown } from 'lucide-react';
+import { Feather, Compass, Heart, Settings, LogOut, Snowflake, Dumbbell, Target, CalendarCheck, Brain, FileDown, Timer } from 'lucide-react';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -29,7 +30,7 @@ import {
 } from "@/components/ui/alert-dialog";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
-type DashboardView = 'home' | 'journal' | 'journey' | 'reflect' | 'on-ice' | 'off-ice' | 'jumps' | 'pre-training';
+type DashboardView = 'home' | 'journal' | 'journey' | 'reflect' | 'on-ice' | 'off-ice' | 'jumps' | 'pre-training' | 'timer';
 
 export const SimpleDashboard: React.FC = () => {
   const { profile, getTodaysEntry, getTodaysSessions, resetProfile } = useJournal();
@@ -148,6 +149,22 @@ export const SimpleDashboard: React.FC = () => {
                 <p className="text-sm text-muted-foreground">Track your on-ice and off-ice work</p>
               </div>
 
+              {/* Session Timer Card */}
+              <button
+                onClick={() => setCurrentView('timer')}
+                className="w-full p-4 rounded-xl bg-gradient-to-br from-primary/10 to-primary/5 border-2 border-primary/20 hover:border-primary/40 transition-all text-left"
+              >
+                <div className="flex items-center gap-4">
+                  <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+                    <Timer className="w-5 h-5 text-primary" />
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="font-medium text-foreground">Session Timer</h3>
+                    <p className="text-sm text-muted-foreground">Time your practice with lap tracking</p>
+                  </div>
+                </div>
+              </button>
+
               {/* On-ice card */}
               <button
                 onClick={() => handleStartTraining('on-ice')}
@@ -258,6 +275,9 @@ export const SimpleDashboard: React.FC = () => {
       </header>
 
       <main className="container max-w-2xl mx-auto px-4 py-6">
+        {currentView === 'timer' && (
+          <SessionTimer type="on-ice" />
+        )}
         {currentView === 'pre-training' && (
           <PreTrainingPrep 
             trainingType={pendingTrainingType || 'on-ice'} 
