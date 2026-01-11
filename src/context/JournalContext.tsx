@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode, useMemo } from 'react';
-import { JournalEntry, SkaterProfile, JourneyStats, TrainingSession, JumpAttempt } from '@/types/journal';
-import { format, differenceInDays, parseISO } from 'date-fns';
+import { JournalEntry, SkaterProfile, JourneyStats, TrainingSession, JumpAttempt, WeeklyGoal, WeeklyProgress, JumpTarget } from '@/types/journal';
+import { format, differenceInDays, parseISO, startOfWeek, endOfWeek, isWithinInterval } from 'date-fns';
 
 interface JournalContextType {
   profile: SkaterProfile | null;
@@ -20,6 +20,12 @@ interface JournalContextType {
   jumpAttempts: JumpAttempt[];
   addJumpAttempt: (attempt: Omit<JumpAttempt, 'id'>) => void;
   getTodaysJumps: () => JumpAttempt[];
+  
+  // Weekly goals
+  weeklyGoals: WeeklyGoal[];
+  getCurrentWeekGoal: () => WeeklyGoal | null;
+  setWeeklyGoal: (goal: Omit<WeeklyGoal, 'id' | 'weekStart' | 'createdAt'>) => void;
+  getWeeklyProgress: () => WeeklyProgress;
   
   getJourneyStats: () => JourneyStats;
   resetProfile: () => void;
@@ -61,6 +67,11 @@ export const JournalProvider: React.FC<{ children: ReactNode }> = ({ children })
     return saved ? JSON.parse(saved) : [];
   });
 
+  const [weeklyGoals, setWeeklyGoals] = useState<WeeklyGoal[]>(() => {
+    const saved = localStorage.getItem('weeklyGoals');
+    return saved ? JSON.parse(saved) : [];
+  });
+
   // Persist state
   useEffect(() => {
     if (profile) {
@@ -81,6 +92,10 @@ export const JournalProvider: React.FC<{ children: ReactNode }> = ({ children })
   useEffect(() => {
     localStorage.setItem('jumpAttempts', JSON.stringify(jumpAttempts));
   }, [jumpAttempts]);
+
+  useEffect(() => {
+    localStorage.setItem('weeklyGoals', JSON.stringify(weeklyGoals));
+  }, [weeklyGoals]);
 
   const setProfile = (newProfile: SkaterProfile | null) => {
     setProfileState(newProfile);
@@ -131,6 +146,85 @@ export const JournalProvider: React.FC<{ children: ReactNode }> = ({ children })
     return jumpAttempts.filter(j => 
       format(parseStoredDate(j.date), 'yyyy-MM-dd') === today
     );
+  };
+
+  // Weekly goals functions
+  const getCurrentWeekGoal = (): WeeklyGoal | null => {
+    const weekStart = startOfWeek(new Date(), { weekStartsOn: 1 });
+    const weekKey = format(weekStart, 'yyyy-MM-dd');
+    return weeklyGoals.find(g => 
+      format(parseStoredDate(g.weekStart), 'yyyy-MM-dd') === weekKey
+    ) || null;
+  };
+
+  const setWeeklyGoal = (goal: Omit<WeeklyGoal, 'id' | 'weekStart' | 'createdAt'>) => {
+    const weekStart = startOfWeek(new Date(), { weekStartsOn: 1 });
+    const weekKey = format(weekStart, 'yyyy-MM-dd');
+    
+    setWeeklyGoals(prev => {
+      // Remove existing goal for this week if any
+      const filtered = prev.filter(g => 
+        format(parseStoredDate(g.weekStart), 'yyyy-MM-dd') !== weekKey
+      );
+      
+      const newGoal: WeeklyGoal = {
+        ...goal,
+        id: crypto.randomUUID(),
+        weekStart,
+        createdAt: new Date()
+      };
+      
+      return [...filtered, newGoal];
+    });
+  };
+
+  const getWeeklyProgress = (): WeeklyProgress => {
+    const weekStart = startOfWeek(new Date(), { weekStartsOn: 1 });
+    const weekEnd = endOfWeek(new Date(), { weekStartsOn: 1 });
+    
+    // Filter sessions and jumps for current week
+    const weekSessions = trainingSessions.filter(s => {
+      const sessionDate = parseStoredDate(s.date);
+      return isWithinInterval(sessionDate, { start: weekStart, end: weekEnd });
+    });
+    
+    const weekJumps = jumpAttempts.filter(j => {
+      const jumpDate = parseStoredDate(j.date);
+      return isWithinInterval(jumpDate, { start: weekStart, end: weekEnd });
+    });
+    
+    // Calculate on-ice hours
+    const onIceMinutes = weekSessions
+      .filter(s => s.type === 'on-ice')
+      .reduce((sum, s) => sum + s.totalDuration, 0);
+    
+    // Count off-ice sessions
+    const offIceSessions = weekSessions.filter(s => s.type === 'off-ice').length;
+    
+    // Group jumps by type and level
+    const jumpProgress: WeeklyProgress['jumpProgress'] = [];
+    weekJumps.forEach(jump => {
+      const existing = jumpProgress.find(
+        jp => jp.jumpType === jump.jumpType && jp.level === jump.level
+      );
+      if (existing) {
+        existing.attempted++;
+        if (jump.landed) existing.landed++;
+      } else {
+        jumpProgress.push({
+          jumpType: jump.jumpType,
+          level: jump.level,
+          attempted: 1,
+          landed: jump.landed ? 1 : 0
+        });
+      }
+    });
+    
+    return {
+      onIceHours: onIceMinutes / 60,
+      offIceSessions,
+      jumpProgress
+    };
   };
 
   const getJourneyStats = (): JourneyStats => {
@@ -192,10 +286,12 @@ export const JournalProvider: React.FC<{ children: ReactNode }> = ({ children })
     setEntries([]);
     setTrainingSessions([]);
     setJumpAttempts([]);
+    setWeeklyGoals([]);
     localStorage.removeItem('skaterJournalProfile');
     localStorage.removeItem('journalEntries');
     localStorage.removeItem('trainingSessions');
     localStorage.removeItem('jumpAttempts');
+    localStorage.removeItem('weeklyGoals');
   };
 
   const value = useMemo(() => ({
@@ -210,9 +306,13 @@ export const JournalProvider: React.FC<{ children: ReactNode }> = ({ children })
     jumpAttempts,
     addJumpAttempt,
     getTodaysJumps,
+    weeklyGoals,
+    getCurrentWeekGoal,
+    setWeeklyGoal,
+    getWeeklyProgress,
     getJourneyStats,
     resetProfile
-  }), [profile, entries, trainingSessions, jumpAttempts]);
+  }), [profile, entries, trainingSessions, jumpAttempts, weeklyGoals]);
 
   return (
     <JournalContext.Provider value={value}>

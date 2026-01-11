@@ -141,3 +141,31 @@ export const JUMP_LEVELS: { level: JumpLevel; name: string; short: string }[] = 
   { level: 'triple', name: 'Triple', short: '3' },
   { level: 'quad', name: 'Quad', short: '4' },
 ];
+
+// Weekly goals
+export interface WeeklyGoal {
+  id: string;
+  weekStart: Date;
+  onIceHoursTarget: number;
+  offIceSessionsTarget: number;
+  jumpTargets: JumpTarget[];
+  createdAt: Date;
+}
+
+export interface JumpTarget {
+  jumpType: JumpType;
+  level: JumpLevel;
+  targetAttempts: number;
+  targetLanded: number;
+}
+
+export interface WeeklyProgress {
+  onIceHours: number;
+  offIceSessions: number;
+  jumpProgress: {
+    jumpType: JumpType;
+    level: JumpLevel;
+    attempted: number;
+    landed: number;
+  }[];
+}
