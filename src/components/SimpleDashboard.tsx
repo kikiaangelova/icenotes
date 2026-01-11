@@ -13,8 +13,7 @@ import { SessionTimer } from './SessionTimer';
 import { ReminderSettings } from './ReminderSettings';
 import { Button } from '@/components/ui/button';
 import { SELF_LEVELS } from '@/types/journal';
-import { Feather, Compass, Heart, Settings, LogOut, Dumbbell, Target, CalendarCheck, Brain, Timer, Bell } from 'lucide-react';
-import { SkateIcon } from '@/components/icons/SkateIcon';
+import { Feather, Compass, Heart, Settings, LogOut, Dumbbell, Target, CalendarCheck, Brain, Timer, Bell, Snowflake } from 'lucide-react';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -132,7 +131,7 @@ export const SimpleDashboard: React.FC = () => {
                 <span className="hidden sm:inline text-xs">Goals</span>
               </TabsTrigger>
               <TabsTrigger value="training" className="flex items-center justify-center gap-1 px-1 sm:px-3">
-                <SkateIcon className="w-4 h-4 flex-shrink-0" />
+                <Snowflake className="w-4 h-4 flex-shrink-0" />
                 <span className="hidden sm:inline text-xs">Training</span>
               </TabsTrigger>
               <TabsTrigger value="mind" className="flex items-center justify-center gap-1 px-1 sm:px-3">
@@ -193,7 +192,7 @@ export const SimpleDashboard: React.FC = () => {
               >
                 <div className="flex items-center gap-3 sm:gap-4">
                   <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-on-ice/10 flex items-center justify-center flex-shrink-0">
-                    <SkateIcon className="w-5 h-5 sm:w-6 sm:h-6 text-on-ice" />
+                    <Snowflake className="w-5 h-5 sm:w-6 sm:h-6 text-on-ice" />
                   </div>
                   <div className="flex-1 min-w-0">
                     <h3 className="font-medium text-sm sm:text-base text-foreground">On-Ice Training</h3>

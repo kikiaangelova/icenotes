@@ -4,8 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { ON_ICE_ACTIVITIES, OFF_ICE_ACTIVITIES } from '@/types/journal';
-import { Dumbbell, Clock, Check, Plus, Minus } from 'lucide-react';
-import { SkateIcon } from '@/components/icons/SkateIcon';
+import { Dumbbell, Clock, Check, Plus, Minus, Snowflake } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 interface TrainingLogProps {
@@ -80,7 +79,7 @@ export const TrainingLog: React.FC<TrainingLogProps> = ({ type, onComplete }) =>
     }
   };
 
-  const Icon = type === 'on-ice' ? SkateIcon : Dumbbell;
+  const Icon = type === 'on-ice' ? Snowflake : Dumbbell;
   const colorClass = type === 'on-ice' ? 'text-on-ice' : 'text-off-ice';
   const bgClass = type === 'on-ice' ? 'from-on-ice/10' : 'from-off-ice/10';
 

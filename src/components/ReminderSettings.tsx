@@ -11,9 +11,9 @@ import {
   Clock, 
   CheckCircle2,
   AlertCircle,
-  Feather
+  Feather,
+  Snowflake
 } from 'lucide-react';
-import { SkateIcon } from '@/components/icons/SkateIcon';
 import { toast } from 'sonner';
 
 interface ReminderSettings {
@@ -269,7 +269,7 @@ export const ReminderSettings: React.FC = () => {
                   <div className="space-y-3">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
-                        <SkateIcon className="w-4 h-4 text-on-ice" />
+                        <Snowflake className="w-4 h-4 text-on-ice" />
                         <Label htmlFor="training-enabled">Training Reminder</Label>
                       </div>
                       <Switch

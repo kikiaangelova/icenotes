@@ -1,14 +1,13 @@
 import React from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Dumbbell, Brain, Clock, Star } from 'lucide-react';
-import { SkateIcon } from '@/components/icons/SkateIcon';
+import { Dumbbell, Brain, Clock, Star, Snowflake } from 'lucide-react';
 
 const practiceCategories = [
   {
     id: 'on-ice',
     title: 'On-Ice Training',
     description: 'Jumps, spins, footwork, and programs',
-    icon: SkateIcon,
+    icon: Snowflake,
     colorClass: 'practice-on-ice',
     iconColor: 'text-on-ice',
     activities: [

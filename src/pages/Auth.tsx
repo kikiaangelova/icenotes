@@ -5,8 +5,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Loader2, Mail, Lock, User } from 'lucide-react';
-import { SkateIcon } from '@/components/icons/SkateIcon';
+import { Loader2, Mail, Lock, User, Snowflake } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { useNavigate } from 'react-router-dom';
 
@@ -108,7 +107,7 @@ const Auth: React.FC = () => {
         {/* Logo */}
         <div className="text-center mb-8">
           <div className="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-br from-primary to-accent flex items-center justify-center mb-4">
-            <SkateIcon className="w-8 h-8 text-primary-foreground" />
+            <Snowflake className="w-8 h-8 text-primary-foreground" />
           </div>
           <h1 className="text-2xl font-bold text-foreground">Ice Journal</h1>
           <p className="text-muted-foreground">Your Figure Skating Companion</p>
