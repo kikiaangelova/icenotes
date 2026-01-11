@@ -56,6 +56,14 @@ export default {
         mental: "hsl(var(--mental))",
         success: "hsl(var(--success))",
         gold: "hsl(var(--gold))",
+        // Premium colors
+        premium: "hsl(var(--premium))",
+        "premium-soft": "hsl(var(--premium-soft))",
+        "premium-glow": "hsl(var(--premium-glow))",
+        reflect: "hsl(var(--reflect))",
+        journal: "hsl(var(--journal))",
+        calm: "hsl(var(--calm))",
+        warmth: "hsl(var(--warmth))",
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",

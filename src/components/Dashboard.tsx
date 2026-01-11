@@ -10,8 +10,9 @@ import { MentalHealthHub } from './MentalHealthHub';
 import { ProgressCharts } from './ProgressCharts';
 import { AchievementsSection } from './AchievementsSection';
 import { DailyLogModal } from './DailyLogModal';
+import { PremiumDashboard } from './premium/PremiumDashboard';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Target, ListTodo, Activity, TrendingUp, Sparkles, Brain, Trophy } from 'lucide-react';
+import { Target, ListTodo, Activity, TrendingUp, Sparkles, Brain, Trophy, Crown } from 'lucide-react';
 
 export const Dashboard: React.FC = () => {
   const { profile } = useSkater();
@@ -26,8 +27,12 @@ export const Dashboard: React.FC = () => {
       <main className="container max-w-6xl mx-auto px-4 py-6 space-y-6">
         <StatsOverview />
 
-        <Tabs defaultValue="jumps" className="space-y-6">
-          <TabsList className="grid w-full grid-cols-7 h-12 p-1 bg-muted/50">
+        <Tabs defaultValue="premium" className="space-y-6">
+          <TabsList className="grid w-full grid-cols-8 h-12 p-1 bg-muted/50">
+            <TabsTrigger value="premium" className="flex items-center gap-2 data-[state=active]:bg-premium-soft data-[state=active]:text-premium">
+              <Crown className="w-4 h-4" />
+              <span className="hidden sm:inline">Premium</span>
+            </TabsTrigger>
             <TabsTrigger value="jumps" className="flex items-center gap-2 data-[state=active]:bg-background">
               <Sparkles className="w-4 h-4" />
               <span className="hidden sm:inline">Jumps</span>
@@ -57,6 +62,10 @@ export const Dashboard: React.FC = () => {
               <span className="hidden sm:inline">Awards</span>
             </TabsTrigger>
           </TabsList>
+
+          <TabsContent value="premium" className="animate-fade-in">
+            <PremiumDashboard />
+          </TabsContent>
 
           <TabsContent value="jumps" className="animate-fade-in">
             <JumpTracker />

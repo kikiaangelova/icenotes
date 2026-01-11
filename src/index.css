@@ -48,6 +48,18 @@
     --success: 145 65% 42%;
     --gold: 45 90% 55%;
 
+    /* Premium theme - calm, deep, intentional */
+    --premium: 250 40% 55%;
+    --premium-soft: 250 30% 95%;
+    --premium-glow: 250 45% 70%;
+    --reflect: 220 35% 50%;
+    --journal: 200 25% 45%;
+    --calm: 180 20% 92%;
+    --warmth: 30 60% 95%;
+    
+    --gradient-premium: linear-gradient(135deg, hsl(250 40% 55%) 0%, hsl(220 35% 50%) 100%);
+    --shadow-premium: 0 4px 24px -4px hsl(250 40% 55% / 0.2);
+
     /* Gradients */
     --gradient-ice: linear-gradient(135deg, hsl(200 80% 92%) 0%, hsl(210 60% 85%) 100%);
     --gradient-primary: linear-gradient(135deg, hsl(205 85% 45%) 0%, hsl(195 75% 50%) 100%);
@@ -105,6 +117,18 @@
     --mental: 270 45% 65%;
     --success: 145 60% 50%;
     --gold: 45 85% 60%;
+
+    /* Premium theme dark */
+    --premium: 250 45% 65%;
+    --premium-soft: 250 25% 18%;
+    --premium-glow: 250 50% 75%;
+    --reflect: 220 40% 60%;
+    --journal: 200 30% 55%;
+    --calm: 180 15% 18%;
+    --warmth: 30 50% 20%;
+    
+    --gradient-premium: linear-gradient(135deg, hsl(250 45% 65%) 0%, hsl(220 40% 60%) 100%);
+    --shadow-premium: 0 4px 24px -4px hsl(250 45% 65% / 0.25);
 
     --gradient-ice: linear-gradient(135deg, hsl(205 40% 15%) 0%, hsl(210 35% 20%) 100%);
     --gradient-primary: linear-gradient(135deg, hsl(200 75% 55%) 0%, hsl(190 70% 50%) 100%);
