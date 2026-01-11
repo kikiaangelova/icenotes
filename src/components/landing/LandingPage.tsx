@@ -109,7 +109,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
               {/* Badge */}
               <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full frost-glass text-sm font-medium text-primary">
                 <BladeIcon />
-                <span>For Dedicated Figure Skaters</span>
+                <span>For Every Figure Skater</span>
               </div>
 
               {/* Headline */}
