@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Quote, RefreshCw, Sparkles } from 'lucide-react';
+import { Quote, RefreshCw, Sparkles, Heart } from 'lucide-react';
 import { getRandomQuote, getDailyQuote, SKATING_QUOTES } from '@/data/quotes';
+import { useSavedQuotes, useSaveQuote } from '@/hooks/useSavedQuotes';
 import { cn } from '@/lib/utils';
+import { toast } from 'sonner';
 
 interface MotivationalQuoteProps {
   variant?: 'card' | 'inline' | 'banner';
   showRefresh?: boolean;
+  showSave?: boolean;
   useDaily?: boolean;
   className?: string;
 }
@@ -15,11 +18,30 @@ interface MotivationalQuoteProps {
 export const MotivationalQuote: React.FC<MotivationalQuoteProps> = ({ 
   variant = 'card',
   showRefresh = false,
+  showSave = false,
   useDaily = false,
   className
 }) => {
   const [quote, setQuote] = useState(() => useDaily ? getDailyQuote() : getRandomQuote());
   const [isRefreshing, setIsRefreshing] = useState(false);
+  const { data: savedQuotes = [] } = useSavedQuotes();
+  const saveQuote = useSaveQuote();
+
+  const isQuoteSaved = savedQuotes.some(q => q.quote === quote.quote);
+
+  const handleSaveQuote = async () => {
+    if (isQuoteSaved) return;
+    try {
+      await saveQuote.mutateAsync({
+        quote: quote.quote,
+        author: quote.author,
+        category: quote.category
+      });
+      toast.success('Quote saved!');
+    } catch (error) {
+      toast.error('Failed to save quote');
+    }
+  };
 
   const refreshQuote = () => {
     setIsRefreshing(true);
@@ -54,17 +76,30 @@ export const MotivationalQuote: React.FC<MotivationalQuoteProps> = ({
             </p>
             <p className="text-xs text-muted-foreground mt-1">— {quote.author}</p>
           </div>
-          {showRefresh && (
-            <Button
-              variant="ghost"
-              size="icon"
-              className="h-8 w-8 flex-shrink-0"
-              onClick={refreshQuote}
-              disabled={isRefreshing}
-            >
-              <RefreshCw className={cn("w-4 h-4", isRefreshing && "animate-spin")} />
-            </Button>
-          )}
+          <div className="flex gap-1 flex-shrink-0">
+            {showSave && (
+              <Button
+                variant="ghost"
+                size="icon"
+                className={cn("h-8 w-8", isQuoteSaved && "text-primary")}
+                onClick={handleSaveQuote}
+                disabled={saveQuote.isPending || isQuoteSaved}
+              >
+                <Heart className={cn("w-4 h-4", isQuoteSaved && "fill-current")} />
+              </Button>
+            )}
+            {showRefresh && (
+              <Button
+                variant="ghost"
+                size="icon"
+                className="h-8 w-8"
+                onClick={refreshQuote}
+                disabled={isRefreshing}
+              >
+                <RefreshCw className={cn("w-4 h-4", isRefreshing && "animate-spin")} />
+              </Button>
+            )}
+          </div>
         </div>
       </div>
     );
