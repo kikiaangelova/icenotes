@@ -167,6 +167,33 @@ export type Database = {
         }
         Relationships: []
       }
+      saved_quotes: {
+        Row: {
+          author: string
+          category: string | null
+          id: string
+          quote: string
+          saved_at: string
+          user_id: string
+        }
+        Insert: {
+          author: string
+          category?: string | null
+          id?: string
+          quote: string
+          saved_at?: string
+          user_id: string
+        }
+        Update: {
+          author?: string
+          category?: string | null
+          id?: string
+          quote?: string
+          saved_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       training_sessions: {
         Row: {
           activities: Json | null
