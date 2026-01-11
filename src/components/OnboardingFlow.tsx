@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -7,9 +7,10 @@ import { Textarea } from '@/components/ui/textarea';
 import { useUpdateProfile } from '@/hooks/useSupabaseData';
 import { useAuth } from '@/context/AuthContext';
 import { SELF_LEVELS, SkaterProfile } from '@/types/journal';
-import { Heart, ArrowRight, ArrowLeft, Sparkles, Loader2 } from 'lucide-react';
+import { Heart, ArrowRight, ArrowLeft, Sparkles, Loader2, Quote } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useToast } from '@/hooks/use-toast';
+import { getRandomQuote, getQuoteByCategory } from '@/data/quotes';
 
 type OnboardingStep = 'welcome' | 'level' | 'goals' | 'details' | 'complete';
 
@@ -29,6 +30,15 @@ export const OnboardingFlow: React.FC = () => {
     height: '',
     weight: ''
   });
+
+  // Get quotes for each step
+  const stepQuotes = useMemo(() => ({
+    welcome: getQuoteByCategory('beginning'),
+    level: getQuoteByCategory('self-improvement'),
+    goals: getQuoteByCategory('dedication'),
+    details: getQuoteByCategory('journey'),
+    complete: getQuoteByCategory('progress')
+  }), []);
 
   const handleComplete = async () => {
     if (!formData.name || !formData.selfLevel || !formData.mainFocus) return;
@@ -93,6 +103,12 @@ export const OnboardingFlow: React.FC = () => {
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-6 pt-4">
+              {/* Motivational Quote */}
+              <div className="bg-muted/50 rounded-lg p-3 text-center">
+                <p className="text-sm italic text-muted-foreground">"{stepQuotes.welcome.quote}"</p>
+                <p className="text-xs text-muted-foreground/70 mt-1">— {stepQuotes.welcome.author}</p>
+              </div>
+              
               <div className="space-y-2">
                 <Label htmlFor="name" className="text-sm font-medium">
                   What should we call you?
