@@ -5,11 +5,12 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Loader2, Mail, Lock, User, Snowflake, ArrowLeft, CheckCircle2 } from 'lucide-react';
+import { Loader2, Mail, Lock, User, ArrowLeft, CheckCircle2 } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { useNavigate, useSearchParams } from 'react-router-dom';
+import { LandingPage } from '@/components/landing/LandingPage';
 
-type AuthView = 'auth' | 'forgot' | 'reset';
+type AuthView = 'landing' | 'auth' | 'forgot' | 'reset';
 
 const Auth: React.FC = () => {
   const { signIn, signUp, resetPassword, updatePassword, session } = useAuth();
@@ -17,7 +18,8 @@ const Auth: React.FC = () => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   
-  const [view, setView] = useState<AuthView>('auth');
+  const [view, setView] = useState<AuthView>('landing');
+  const [isDarkMode, setIsDarkMode] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [emailSent, setEmailSent] = useState(false);
   
@@ -38,6 +40,15 @@ const Auth: React.FC = () => {
   const [newPassword, setNewPassword] = useState('');
   const [confirmNewPassword, setConfirmNewPassword] = useState('');
 
+  // Toggle dark mode on document
+  useEffect(() => {
+    if (isDarkMode) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  }, [isDarkMode]);
+
   // Check if we're in password reset mode
   useEffect(() => {
     const mode = searchParams.get('mode');
@@ -45,6 +56,17 @@ const Auth: React.FC = () => {
       setView('reset');
     }
   }, [searchParams, session]);
+
+  // Landing page view
+  if (view === 'landing') {
+    return (
+      <LandingPage 
+        onGetStarted={() => setView('auth')}
+        isDarkMode={isDarkMode}
+        onToggleDarkMode={() => setIsDarkMode(!isDarkMode)}
+      />
+    );
+  }
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -211,8 +233,12 @@ const Auth: React.FC = () => {
       <div className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-b from-ice/30 to-background">
         <div className="w-full max-w-md">
           <div className="text-center mb-8">
-            <div className="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-br from-primary to-accent flex items-center justify-center mb-4">
-              <Snowflake className="w-8 h-8 text-primary-foreground" />
+            <div className="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-br from-primary to-ice-deep flex items-center justify-center mb-4">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-8 h-8 text-primary-foreground">
+                <path d="M2 20h20" />
+                <path d="M4 20c0-4 2-8 8-8s8 4 8 8" />
+                <ellipse cx="12" cy="8" rx="3" ry="4" />
+              </svg>
             </div>
             <h1 className="text-2xl font-bold text-foreground">Ice Journal</h1>
             <p className="text-muted-foreground">Set your new password</p>
@@ -287,8 +313,12 @@ const Auth: React.FC = () => {
       <div className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-b from-ice/30 to-background">
         <div className="w-full max-w-md">
           <div className="text-center mb-8">
-            <div className="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-br from-primary to-accent flex items-center justify-center mb-4">
-              <Snowflake className="w-8 h-8 text-primary-foreground" />
+            <div className="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-br from-primary to-ice-deep flex items-center justify-center mb-4">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-8 h-8 text-primary-foreground">
+                <path d="M2 20h20" />
+                <path d="M4 20c0-4 2-8 8-8s8 4 8 8" />
+                <ellipse cx="12" cy="8" rx="3" ry="4" />
+              </svg>
             </div>
             <h1 className="text-2xl font-bold text-foreground">Ice Journal</h1>
             <p className="text-muted-foreground">Reset your password</p>
@@ -386,8 +416,12 @@ const Auth: React.FC = () => {
       <div className="w-full max-w-md">
         {/* Logo */}
         <div className="text-center mb-8">
-          <div className="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-br from-primary to-accent flex items-center justify-center mb-4">
-            <Snowflake className="w-8 h-8 text-primary-foreground" />
+          <div className="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-br from-primary to-ice-deep flex items-center justify-center mb-4">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-8 h-8 text-primary-foreground">
+              <path d="M2 20h20" />
+              <path d="M4 20c0-4 2-8 8-8s8 4 8 8" />
+              <ellipse cx="12" cy="8" rx="3" ry="4" />
+            </svg>
           </div>
           <h1 className="text-2xl font-bold text-foreground">Ice Journal</h1>
           <p className="text-muted-foreground">Your Figure Skating Companion</p>
@@ -553,7 +587,15 @@ const Auth: React.FC = () => {
           </CardContent>
         </Card>
 
-        <p className="text-center text-sm text-muted-foreground mt-6">
+        <button
+          onClick={() => setView('landing')}
+          className="flex items-center gap-2 mt-6 text-sm text-muted-foreground hover:text-foreground transition-colors mx-auto"
+        >
+          <ArrowLeft className="w-4 h-4" />
+          Back to home
+        </button>
+
+        <p className="text-center text-sm text-muted-foreground mt-4">
           By continuing, you agree to track your skating journey with us.
         </p>
       </div>
