@@ -1,29 +1,23 @@
-import React, { useState } from 'react';
-import { SkaterProvider, useSkater } from '@/context/SkaterContext';
-import { RegistrationForm } from '@/components/RegistrationForm';
-import { Dashboard } from '@/components/Dashboard';
-import { WelcomePage } from '@/components/WelcomePage';
+import React from 'react';
+import { JournalProvider, useJournal } from '@/context/JournalContext';
+import { OnboardingFlow } from '@/components/OnboardingFlow';
+import { SimpleDashboard } from '@/components/SimpleDashboard';
 
 const AppContent: React.FC = () => {
-  const { profile } = useSkater();
-  const [showRegistration, setShowRegistration] = useState(false);
-
-  if (!profile && !showRegistration) {
-    return <WelcomePage onGetStarted={() => setShowRegistration(true)} />;
-  }
+  const { profile } = useJournal();
 
   if (!profile) {
-    return <RegistrationForm onComplete={() => {}} />;
+    return <OnboardingFlow />;
   }
 
-  return <Dashboard />;
+  return <SimpleDashboard />;
 };
 
 const Index: React.FC = () => {
   return (
-    <SkaterProvider>
+    <JournalProvider>
       <AppContent />
-    </SkaterProvider>
+    </JournalProvider>
   );
 };
 
