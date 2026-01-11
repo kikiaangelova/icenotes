@@ -4,49 +4,49 @@
 
 @layer base {
   :root {
-    /* Icy Figure Skating Theme */
-    --background: 210 40% 98%;
-    --foreground: 215 25% 15%;
+    /* Refined Slate & Teal Figure Skating Theme */
+    --background: 220 20% 97%;
+    --foreground: 220 25% 12%;
 
     --card: 0 0% 100%;
-    --card-foreground: 215 25% 15%;
+    --card-foreground: 220 25% 12%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 215 25% 15%;
+    --popover-foreground: 220 25% 12%;
 
-    /* Deep ice blue */
-    --primary: 205 85% 45%;
+    /* Deep slate teal - sophisticated primary */
+    --primary: 185 45% 38%;
     --primary-foreground: 0 0% 100%;
 
-    /* Frost white */
-    --secondary: 210 30% 95%;
-    --secondary-foreground: 215 25% 25%;
+    /* Warm neutral secondary */
+    --secondary: 220 15% 94%;
+    --secondary-foreground: 220 20% 25%;
 
-    --muted: 210 20% 94%;
-    --muted-foreground: 215 15% 50%;
+    --muted: 220 12% 92%;
+    --muted-foreground: 220 10% 45%;
 
-    /* Soft teal accent */
-    --accent: 175 60% 45%;
+    /* Warm coral accent */
+    --accent: 12 70% 58%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 72% 55%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 210 25% 88%;
-    --input: 210 25% 88%;
-    --ring: 205 85% 45%;
+    --border: 220 15% 88%;
+    --input: 220 15% 88%;
+    --ring: 185 45% 38%;
 
     --radius: 0.75rem;
 
-    /* Custom skating theme colors */
-    --ice: 200 80% 92%;
-    --ice-deep: 205 85% 45%;
-    --frost: 195 50% 97%;
-    --on-ice: 190 70% 40%;
-    --off-ice: 15 75% 55%;
-    --mental: 270 50% 60%;
-    --success: 145 65% 42%;
-    --gold: 45 90% 55%;
+    /* Custom skating theme colors - refined palette */
+    --ice: 195 25% 92%;
+    --ice-deep: 185 45% 38%;
+    --frost: 220 15% 97%;
+    --on-ice: 185 50% 35%;
+    --off-ice: 25 65% 50%;
+    --mental: 260 35% 55%;
+    --success: 155 50% 40%;
+    --gold: 40 85% 52%;
 
     /* Premium theme - calm, deep, intentional */
     --premium: 250 40% 55%;
@@ -54,21 +54,21 @@
     --premium-glow: 250 45% 70%;
     --reflect: 220 35% 50%;
     --journal: 200 25% 45%;
-    --calm: 180 20% 92%;
-    --warmth: 30 60% 95%;
+    --calm: 195 15% 92%;
+    --warmth: 35 50% 95%;
     
     --gradient-premium: linear-gradient(135deg, hsl(250 40% 55%) 0%, hsl(220 35% 50%) 100%);
     --shadow-premium: 0 4px 24px -4px hsl(250 40% 55% / 0.2);
 
-    /* Gradients */
-    --gradient-ice: linear-gradient(135deg, hsl(200 80% 92%) 0%, hsl(210 60% 85%) 100%);
-    --gradient-primary: linear-gradient(135deg, hsl(205 85% 45%) 0%, hsl(195 75% 50%) 100%);
-    --gradient-hero: linear-gradient(180deg, hsl(200 80% 95%) 0%, hsl(210 40% 98%) 100%);
+    /* Gradients - softer, more refined */
+    --gradient-ice: linear-gradient(135deg, hsl(195 25% 92%) 0%, hsl(220 15% 88%) 100%);
+    --gradient-primary: linear-gradient(135deg, hsl(185 45% 38%) 0%, hsl(175 40% 42%) 100%);
+    --gradient-hero: linear-gradient(180deg, hsl(195 20% 96%) 0%, hsl(220 20% 97%) 100%);
 
-    /* Shadows */
-    --shadow-soft: 0 4px 20px -4px hsl(205 85% 45% / 0.15);
-    --shadow-card: 0 2px 12px -2px hsl(215 25% 15% / 0.08);
-    --shadow-glow: 0 0 30px -5px hsl(205 85% 45% / 0.3);
+    /* Shadows - refined */
+    --shadow-soft: 0 4px 20px -4px hsl(185 45% 38% / 0.12);
+    --shadow-card: 0 2px 12px -2px hsl(220 25% 12% / 0.06);
+    --shadow-glow: 0 0 30px -5px hsl(185 45% 38% / 0.2);
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
@@ -77,46 +77,46 @@
     --sidebar-accent: 240 4.8% 95.9%;
     --sidebar-accent-foreground: 240 5.9% 10%;
     --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-ring: 185 45% 38%;
   }
 
   .dark {
-    --background: 215 30% 8%;
-    --foreground: 210 40% 96%;
+    --background: 220 20% 8%;
+    --foreground: 220 15% 95%;
 
-    --card: 215 28% 12%;
-    --card-foreground: 210 40% 96%;
+    --card: 220 18% 12%;
+    --card-foreground: 220 15% 95%;
 
-    --popover: 215 28% 12%;
-    --popover-foreground: 210 40% 96%;
+    --popover: 220 18% 12%;
+    --popover-foreground: 220 15% 95%;
 
-    --primary: 200 75% 55%;
-    --primary-foreground: 215 30% 8%;
+    --primary: 180 50% 50%;
+    --primary-foreground: 220 20% 8%;
 
-    --secondary: 215 25% 18%;
-    --secondary-foreground: 210 40% 90%;
+    --secondary: 220 18% 16%;
+    --secondary-foreground: 220 15% 88%;
 
-    --muted: 215 25% 18%;
-    --muted-foreground: 210 20% 60%;
+    --muted: 220 18% 16%;
+    --muted-foreground: 220 12% 55%;
 
-    --accent: 175 55% 50%;
-    --accent-foreground: 215 30% 8%;
+    --accent: 15 65% 55%;
+    --accent-foreground: 220 20% 8%;
 
     --destructive: 0 65% 50%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 215 25% 20%;
-    --input: 215 25% 20%;
-    --ring: 200 75% 55%;
+    --border: 220 18% 18%;
+    --input: 220 18% 18%;
+    --ring: 180 50% 50%;
 
-    --ice: 205 40% 15%;
-    --ice-deep: 200 75% 55%;
-    --frost: 210 30% 12%;
-    --on-ice: 190 65% 50%;
-    --off-ice: 15 70% 60%;
-    --mental: 270 45% 65%;
-    --success: 145 60% 50%;
-    --gold: 45 85% 60%;
+    --ice: 195 20% 14%;
+    --ice-deep: 180 50% 50%;
+    --frost: 220 18% 10%;
+    --on-ice: 180 45% 45%;
+    --off-ice: 25 60% 55%;
+    --mental: 260 40% 60%;
+    --success: 155 45% 48%;
+    --gold: 40 80% 55%;
 
     /* Premium theme dark */
     --premium: 250 45% 65%;
@@ -124,15 +124,15 @@
     --premium-glow: 250 50% 75%;
     --reflect: 220 40% 60%;
     --journal: 200 30% 55%;
-    --calm: 180 15% 18%;
-    --warmth: 30 50% 20%;
+    --calm: 195 12% 16%;
+    --warmth: 35 40% 18%;
     
     --gradient-premium: linear-gradient(135deg, hsl(250 45% 65%) 0%, hsl(220 40% 60%) 100%);
     --shadow-premium: 0 4px 24px -4px hsl(250 45% 65% / 0.25);
 
-    --gradient-ice: linear-gradient(135deg, hsl(205 40% 15%) 0%, hsl(210 35% 20%) 100%);
-    --gradient-primary: linear-gradient(135deg, hsl(200 75% 55%) 0%, hsl(190 70% 50%) 100%);
-    --gradient-hero: linear-gradient(180deg, hsl(215 30% 10%) 0%, hsl(215 30% 8%) 100%);
+    --gradient-ice: linear-gradient(135deg, hsl(195 20% 14%) 0%, hsl(220 18% 16%) 100%);
+    --gradient-primary: linear-gradient(135deg, hsl(180 50% 50%) 0%, hsl(170 45% 45%) 100%);
+    --gradient-hero: linear-gradient(180deg, hsl(220 20% 10%) 0%, hsl(220 20% 8%) 100%);
 
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
@@ -141,7 +141,7 @@
     --sidebar-accent: 240 3.7% 15.9%;
     --sidebar-accent-foreground: 240 4.8% 95.9%;
     --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-ring: 180 50% 50%;
   }
 }
 
