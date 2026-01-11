@@ -6,9 +6,10 @@ import { ReflectSpace } from './ReflectSpace';
 import { TrainingLog } from './TrainingLog';
 import { JumpLog } from './JumpLog';
 import { WeeklyGoals } from './WeeklyGoals';
+import { PreTrainingPrep } from './PreTrainingPrep';
 import { Button } from '@/components/ui/button';
 import { SELF_LEVELS } from '@/types/journal';
-import { Feather, Compass, Heart, Settings, LogOut, Snowflake, Dumbbell, Target, CalendarCheck } from 'lucide-react';
+import { Feather, Compass, Heart, Settings, LogOut, Snowflake, Dumbbell, Target, CalendarCheck, Brain } from 'lucide-react';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -27,18 +28,31 @@ import {
 } from "@/components/ui/alert-dialog";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
-type DashboardView = 'home' | 'journal' | 'journey' | 'reflect' | 'on-ice' | 'off-ice' | 'jumps';
+type DashboardView = 'home' | 'journal' | 'journey' | 'reflect' | 'on-ice' | 'off-ice' | 'jumps' | 'pre-training';
 
 export const SimpleDashboard: React.FC = () => {
   const { profile, getTodaysEntry, getTodaysSessions, resetProfile } = useJournal();
   const [currentView, setCurrentView] = useState<DashboardView>('home');
   const [showResetDialog, setShowResetDialog] = useState(false);
+  const [pendingTrainingType, setPendingTrainingType] = useState<'on-ice' | 'off-ice' | null>(null);
   
   const todaysEntry = getTodaysEntry();
   const todaysSessions = getTodaysSessions();
   const hasOnIce = todaysSessions.some(s => s.type === 'on-ice');
   const hasOffIce = todaysSessions.some(s => s.type === 'off-ice');
   const levelLabel = SELF_LEVELS.find(l => l.value === profile?.selfLevel)?.label || '';
+
+  const handleStartTraining = (type: 'on-ice' | 'off-ice') => {
+    setPendingTrainingType(type);
+    setCurrentView('pre-training');
+  };
+
+  const handlePrepComplete = () => {
+    if (pendingTrainingType) {
+      setCurrentView(pendingTrainingType);
+      setPendingTrainingType(null);
+    }
+  };
 
   if (!profile) return null;
 
@@ -86,24 +100,28 @@ export const SimpleDashboard: React.FC = () => {
 
           {/* Tabs for training types */}
           <Tabs defaultValue="goals" className="space-y-6">
-            <TabsList className="grid w-full grid-cols-5 h-12">
-              <TabsTrigger value="goals" className="flex items-center gap-1.5">
+            <TabsList className="grid w-full grid-cols-6 h-12">
+              <TabsTrigger value="goals" className="flex items-center gap-1">
                 <CalendarCheck className="w-4 h-4" />
                 <span className="hidden sm:inline">Goals</span>
               </TabsTrigger>
-              <TabsTrigger value="training" className="flex items-center gap-1.5">
+              <TabsTrigger value="training" className="flex items-center gap-1">
                 <Snowflake className="w-4 h-4" />
                 <span className="hidden sm:inline">Training</span>
               </TabsTrigger>
-              <TabsTrigger value="jumps" className="flex items-center gap-1.5">
+              <TabsTrigger value="mind" className="flex items-center gap-1">
+                <Brain className="w-4 h-4" />
+                <span className="hidden sm:inline">Mind</span>
+              </TabsTrigger>
+              <TabsTrigger value="jumps" className="flex items-center gap-1">
                 <Target className="w-4 h-4" />
                 <span className="hidden sm:inline">Jumps</span>
               </TabsTrigger>
-              <TabsTrigger value="journal" className="flex items-center gap-1.5">
+              <TabsTrigger value="journal" className="flex items-center gap-1">
                 <Feather className="w-4 h-4" />
                 <span className="hidden sm:inline">Journal</span>
               </TabsTrigger>
-              <TabsTrigger value="journey" className="flex items-center gap-1.5">
+              <TabsTrigger value="journey" className="flex items-center gap-1">
                 <Compass className="w-4 h-4" />
                 <span className="hidden sm:inline">Journey</span>
               </TabsTrigger>
@@ -112,6 +130,11 @@ export const SimpleDashboard: React.FC = () => {
             {/* Weekly Goals Tab */}
             <TabsContent value="goals" className="space-y-4">
               <WeeklyGoals />
+            </TabsContent>
+
+            {/* Mental Prep Tab */}
+            <TabsContent value="mind" className="space-y-4">
+              <PreTrainingPrep trainingType="on-ice" />
             </TabsContent>
 
             {/* Training Tab */}
@@ -123,7 +146,7 @@ export const SimpleDashboard: React.FC = () => {
 
               {/* On-ice card */}
               <button
-                onClick={() => setCurrentView('on-ice')}
+                onClick={() => handleStartTraining('on-ice')}
                 className="w-full p-5 rounded-xl bg-gradient-to-br from-on-ice/10 to-on-ice/5 border-2 border-on-ice/20 hover:border-on-ice/40 transition-all text-left"
               >
                 <div className="flex items-center gap-4">
@@ -141,7 +164,7 @@ export const SimpleDashboard: React.FC = () => {
 
               {/* Off-ice card */}
               <button
-                onClick={() => setCurrentView('off-ice')}
+                onClick={() => handleStartTraining('off-ice')}
                 className="w-full p-5 rounded-xl bg-gradient-to-br from-off-ice/10 to-off-ice/5 border-2 border-off-ice/20 hover:border-off-ice/40 transition-all text-left"
               >
                 <div className="flex items-center gap-4">
@@ -231,6 +254,12 @@ export const SimpleDashboard: React.FC = () => {
       </header>
 
       <main className="container max-w-2xl mx-auto px-4 py-6">
+        {currentView === 'pre-training' && (
+          <PreTrainingPrep 
+            trainingType={pendingTrainingType || 'on-ice'} 
+            onComplete={handlePrepComplete}
+          />
+        )}
         {currentView === 'on-ice' && (
           <TrainingLog type="on-ice" onComplete={() => setCurrentView('home')} />
         )}
