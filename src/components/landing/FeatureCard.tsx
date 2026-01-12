@@ -15,19 +15,26 @@ export const FeatureCard: React.FC<FeatureCardProps> = ({
   description,
   className,
   iconClassName,
+  ...props
 }) => {
   return (
-    <div className={cn("feature-card group", className)}>
+    <div 
+      className={cn(
+        "p-6 rounded-2xl bg-background/80 backdrop-blur-sm border border-border/50",
+        "hover:-translate-y-1 hover:shadow-lg transition-all duration-300 cursor-default",
+        className
+      )}
+      {...props}
+    >
       <div className={cn(
-        "w-14 h-14 rounded-xl flex items-center justify-center mb-4",
-        "bg-gradient-to-br from-primary/10 to-ice-deep/10",
-        "group-hover:from-primary/20 group-hover:to-ice-deep/20 transition-colors",
+        "w-12 h-12 rounded-xl flex items-center justify-center mb-4",
+        "bg-primary/10",
         iconClassName
       )}>
-        <Icon className="w-7 h-7 text-primary" />
+        <Icon className="w-6 h-6 text-primary" />
       </div>
-      <h3 className="text-lg font-semibold text-foreground mb-2">{title}</h3>
-      <p className="text-sm text-muted-foreground leading-relaxed">{description}</p>
+      <h3 className="text-lg font-semibold text-foreground mb-2 tracking-[-0.01em]">{title}</h3>
+      <p className="text-sm text-muted-foreground leading-loose">{description}</p>
     </div>
   );
 };
