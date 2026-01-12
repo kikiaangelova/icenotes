@@ -1,24 +1,48 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
-import { FeatureCard } from './FeatureCard';
 import { 
-  Target, 
-  Brain, 
-  BookOpen, 
-  Sparkles, 
   ArrowRight,
   Moon,
-  Sun,
-  Check
+  Sun
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
-// Custom skating blade icon
+// Custom minimal icons as inline SVGs - clean, geometric, professional
 const BladeIcon = ({ className }: { className?: string }) => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={cn("w-5 h-5", className)}>
     <path d="M2 20h20" />
     <path d="M4 20c0-4 2-8 8-8s8 4 8 8" />
     <ellipse cx="12" cy="8" rx="3" ry="4" />
+  </svg>
+);
+
+// Simple geometric feature icons
+const JumpIcon = ({ className }: { className?: string }) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={cn("w-6 h-6", className)}>
+    <path d="M12 19V5" />
+    <path d="M5 12l7-7 7 7" />
+  </svg>
+);
+
+const MindIcon = ({ className }: { className?: string }) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={cn("w-6 h-6", className)}>
+    <circle cx="12" cy="12" r="9" />
+    <circle cx="12" cy="12" r="3" />
+  </svg>
+);
+
+const LogIcon = ({ className }: { className?: string }) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={cn("w-6 h-6", className)}>
+    <path d="M4 6h16" />
+    <path d="M4 12h12" />
+    <path d="M4 18h8" />
+  </svg>
+);
+
+const ReflectIcon = ({ className }: { className?: string }) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={cn("w-6 h-6", className)}>
+    <path d="M12 3v18" />
+    <path d="M3 12h18" />
   </svg>
 );
 
@@ -46,32 +70,35 @@ interface LandingPageProps {
 
 const FEATURES = [
   {
-    icon: Target,
+    Icon: JumpIcon,
     title: 'Jump Tracker',
-    description: 'Log every attempt from singles to quads. Track success rates and watch your consistency improve over time.',
+    description: 'Log every attempt. Track success rates and watch your consistency improve over time.',
+    number: '01',
   },
   {
-    icon: Brain,
+    Icon: MindIcon,
     title: 'Mental Training',
-    description: 'Pre-skate rituals, breathing exercises, and visualization tools to build unshakeable confidence.',
+    description: 'Pre-skate rituals, breathing exercises, and visualization tools for confidence.',
+    number: '02',
   },
   {
-    icon: BookOpen,
+    Icon: LogIcon,
     title: 'Training Log',
-    description: 'Track on-ice and off-ice sessions. Monitor conditioning, technique work, and recovery.',
+    description: 'Track on-ice and off-ice sessions. Monitor conditioning and recovery.',
+    number: '03',
   },
   {
-    icon: Sparkles,
+    Icon: ReflectIcon,
     title: 'Daily Reflections',
-    description: 'Journal your wins and challenges. Build resilience through consistent self-reflection.',
+    description: 'Journal your wins and challenges. Build resilience through self-reflection.',
+    number: '04',
   },
 ];
 
-const BENEFITS = [
-  'Track mental, physical & technical progress',
-  'Build pre-competition routines that work',
-  'Identify patterns in your training',
-  'Stay motivated with daily reflections',
+const PILLARS = [
+  { label: 'Mind', description: 'Mental resilience' },
+  { label: 'Body', description: 'Physical training' },
+  { label: 'Technique', description: 'Technical precision' },
 ];
 
 export const LandingPage: React.FC<LandingPageProps> = ({ 
@@ -90,104 +117,115 @@ export const LandingPage: React.FC<LandingPageProps> = ({
           variant="ghost"
           size="icon"
           onClick={onToggleDarkMode}
-          className="frost-glass rounded-full w-10 h-10"
+          className="rounded-full w-10 h-10 bg-background/80 backdrop-blur-sm border border-border/50"
         >
           {isDarkMode ? (
-            <Sun className="w-5 h-5 text-gold" />
+            <Sun className="w-4 h-4 text-foreground" />
           ) : (
-            <Moon className="w-5 h-5 text-primary" />
+            <Moon className="w-4 h-4 text-foreground" />
           )}
         </Button>
       </div>
 
       {/* Hero Section */}
-      <section className="relative px-4 pt-20 pb-16 md:pt-28 md:pb-24 z-10">
-        <div className="max-w-5xl mx-auto">
+      <section className="relative px-4 pt-20 pb-16 md:pt-32 md:pb-28 z-10">
+        <div className="max-w-4xl mx-auto">
           <div className="text-center space-y-8">
-            {/* Simple Badge */}
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-sm font-medium text-primary">
-              <BladeIcon className="w-4 h-4" />
-              <span>For Every Figure Skater</span>
-            </div>
-
-            {/* Headline - Tighter tracking */}
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-[-0.02em] leading-[1.1]">
-              <span className="text-foreground">Train Your Mind.</span>
-              <br />
-              <span className="text-primary">Master Your Craft.</span>
-            </h1>
-
-            {/* Subheadline - Looser line height */}
-            <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-loose">
-              The complete training journal for figure skaters. Track your mental, 
-              physical, and technical progress in one focused place.
+            {/* Minimal text badge */}
+            <p className="text-sm font-medium text-primary tracking-wide uppercase">
+              For Figure Skaters
             </p>
 
-            {/* Single CTA */}
-            <div className="pt-4">
+            {/* Headline - Editorial style */}
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-[-0.03em] leading-[1.05]">
+              <span className="text-foreground">Train your mind.</span>
+              <br />
+              <span className="text-foreground/60">Master your craft.</span>
+            </h1>
+
+            {/* Subheadline */}
+            <p className="text-lg md:text-xl text-muted-foreground max-w-xl mx-auto leading-relaxed">
+              The complete training journal for figure skaters. 
+              Mental, physical, and technical progress—all in one place.
+            </p>
+
+            {/* CTA */}
+            <div className="pt-6">
               <button 
                 onClick={onGetStarted}
-                className="group inline-flex items-center gap-3 px-8 py-4 bg-primary text-primary-foreground text-lg font-semibold rounded-2xl shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+                className="group inline-flex items-center gap-3 px-8 py-4 bg-foreground text-background text-base font-medium rounded-full hover:opacity-90 transition-opacity"
               >
-                Start Your Journey
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                Start your journey
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
               </button>
             </div>
 
-            {/* Simple trust indicator */}
-            <p className="text-sm text-muted-foreground">
-              Free forever. No credit card needed.
+            {/* Minimal trust text */}
+            <p className="text-xs text-muted-foreground/60 tracking-wide">
+              Free forever · No credit card
             </p>
           </div>
         </div>
       </section>
 
-      {/* About Section with organic image shape */}
-      <section className="relative px-4 py-16 md:py-24 z-10">
-        <div className="max-w-5xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            {/* Image with organic shape */}
-            <div className="order-2 md:order-1">
+      {/* Three Pillars - Simple visual */}
+      <section className="px-4 py-16 md:py-20 z-10 relative">
+        <div className="max-w-3xl mx-auto">
+          <div className="grid grid-cols-3 gap-4 md:gap-8">
+            {PILLARS.map((pillar, index) => (
               <div 
-                className="relative bg-gradient-to-br from-primary/20 to-primary/5 rounded-tr-[80px] rounded-bl-[80px] rounded-tl-2xl rounded-br-2xl p-8 md:p-12"
+                key={pillar.label}
+                className="text-center space-y-3 p-6 rounded-tr-[40px] rounded-bl-[40px] rounded-tl-lg rounded-br-lg bg-muted/30"
               >
-                <div className="space-y-6">
-                  <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center">
-                    <BladeIcon className="w-8 h-8 text-primary" />
-                  </div>
-                  <h3 className="text-2xl font-bold text-foreground">Built by skaters, for skaters</h3>
-                  <p className="text-muted-foreground leading-loose">
-                    We understand the unique challenges of figure skating—the mental 
-                    battles, the physical demands, and the technical precision required. 
-                    This journal is designed to help you grow in all three areas.
-                  </p>
-                  <ul className="space-y-3">
-                    {BENEFITS.map((benefit) => (
-                      <li key={benefit} className="flex items-start gap-3 text-sm text-muted-foreground">
-                        <Check className="w-5 h-5 text-primary shrink-0 mt-0.5" />
-                        <span>{benefit}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+                <span className="text-xs font-medium text-muted-foreground/60 tracking-widest">
+                  0{index + 1}
+                </span>
+                <h3 className="text-xl md:text-2xl font-bold text-foreground tracking-tight">
+                  {pillar.label}
+                </h3>
+                <p className="text-xs md:text-sm text-muted-foreground">
+                  {pillar.description}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* About Section with organic shape */}
+      <section className="relative px-4 py-16 md:py-24 z-10">
+        <div className="max-w-4xl mx-auto">
+          <div className="grid md:grid-cols-5 gap-8 md:gap-12 items-center">
+            {/* Organic shape visual */}
+            <div className="md:col-span-2 order-2 md:order-1">
+              <div 
+                className="aspect-square bg-gradient-to-br from-primary/15 via-primary/5 to-transparent rounded-tr-[80px] rounded-bl-[80px] rounded-tl-xl rounded-br-xl flex items-center justify-center"
+              >
+                <BladeIcon className="w-16 h-16 text-primary/40" />
               </div>
             </div>
 
             {/* Text content */}
-            <div className="order-1 md:order-2 space-y-6">
-              <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.02em] text-foreground">
-                More than just a training log
+            <div className="md:col-span-3 order-1 md:order-2 space-y-6">
+              <h2 className="text-2xl md:text-3xl font-bold tracking-[-0.02em] text-foreground leading-tight">
+                Built by skaters who understand the journey
               </h2>
-              <p className="text-lg text-muted-foreground leading-loose">
-                Ice Journal combines mental training, physical tracking, and technical 
-                analysis into one seamless experience. Whether you're working on your 
-                first single jump or perfecting your triple combinations, we're here 
-                to support your journey.
+              <p className="text-muted-foreground leading-relaxed">
+                We know the mental battles, the physical demands, and the technical 
+                precision required. This journal helps you grow in all three areas—whether 
+                you're working on singles or perfecting triples.
               </p>
-              <p className="text-lg text-muted-foreground leading-loose">
-                Track your progress, build mental resilience, and develop the 
-                consistent training habits that lead to breakthrough performances.
-              </p>
+              <div className="flex flex-wrap gap-3 pt-2">
+                <span className="px-3 py-1.5 text-xs font-medium text-muted-foreground bg-muted/50 rounded-full">
+                  Progress tracking
+                </span>
+                <span className="px-3 py-1.5 text-xs font-medium text-muted-foreground bg-muted/50 rounded-full">
+                  Mental routines
+                </span>
+                <span className="px-3 py-1.5 text-xs font-medium text-muted-foreground bg-muted/50 rounded-full">
+                  Daily reflections
+                </span>
+              </div>
             </div>
           </div>
         </div>
@@ -196,26 +234,40 @@ export const LandingPage: React.FC<LandingPageProps> = ({
       {/* Wave Separator */}
       <WaveSeparator />
 
-      {/* Features Section */}
-      <section className="px-4 py-16 md:py-24 bg-muted/40 relative z-10">
-        <div className="max-w-5xl mx-auto">
+      {/* Features Section - Minimal numbered list */}
+      <section className="px-4 py-16 md:py-24 bg-muted/30 relative z-10">
+        <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12 md:mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.02em] text-foreground mb-4">
-              Everything you need to grow
+            <h2 className="text-2xl md:text-3xl font-bold tracking-[-0.02em] text-foreground">
+              Everything you need
             </h2>
-            <p className="text-lg text-muted-foreground max-w-xl mx-auto leading-loose">
-              A holistic approach to figure skating improvement
-            </p>
           </div>
 
-          <div className="grid sm:grid-cols-2 gap-6">
+          <div className="grid md:grid-cols-2 gap-6 md:gap-8">
             {FEATURES.map((feature) => (
-              <FeatureCard
+              <div
                 key={feature.title}
-                icon={feature.icon}
-                title={feature.title}
-                description={feature.description}
-              />
+                className="group p-6 md:p-8 rounded-2xl bg-background/60 backdrop-blur-sm border border-border/30 hover:-translate-y-1 hover:shadow-md transition-all duration-300"
+              >
+                <div className="flex items-start gap-4">
+                  <div className="shrink-0 w-10 h-10 rounded-xl bg-muted/50 flex items-center justify-center">
+                    <feature.Icon className="text-foreground/70" />
+                  </div>
+                  <div className="space-y-2">
+                    <div className="flex items-center gap-3">
+                      <h3 className="text-base font-semibold text-foreground tracking-tight">
+                        {feature.title}
+                      </h3>
+                      <span className="text-[10px] font-medium text-muted-foreground/50">
+                        {feature.number}
+                      </span>
+                    </div>
+                    <p className="text-sm text-muted-foreground leading-relaxed">
+                      {feature.description}
+                    </p>
+                  </div>
+                </div>
+              </div>
             ))}
           </div>
         </div>
@@ -223,33 +275,28 @@ export const LandingPage: React.FC<LandingPageProps> = ({
 
       {/* Final CTA Section */}
       <section className="px-4 py-20 md:py-28 relative z-10">
-        <div className="max-w-2xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.02em] text-foreground mb-6">
-            Ready to transform your training?
+        <div className="max-w-xl mx-auto text-center space-y-8">
+          <h2 className="text-2xl md:text-3xl font-bold tracking-[-0.02em] text-foreground">
+            Ready to train smarter?
           </h2>
-          <p className="text-lg text-muted-foreground mb-10 leading-loose">
-            Join skaters who train smarter—mentally, physically, and technically.
-          </p>
           <button 
             onClick={onGetStarted}
-            className="group inline-flex items-center gap-3 px-10 py-5 bg-primary text-primary-foreground text-lg font-semibold rounded-2xl shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+            className="group inline-flex items-center gap-3 px-8 py-4 bg-foreground text-background text-base font-medium rounded-full hover:opacity-90 transition-opacity"
           >
-            Start Your Journey
-            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            Start your journey
+            <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
           </button>
         </div>
       </section>
 
-      {/* Simple Footer */}
-      <footer className="px-4 py-8 border-t border-border/30 relative z-10">
-        <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-muted-foreground">
+      {/* Minimal Footer */}
+      <footer className="px-4 py-8 border-t border-border/20 relative z-10">
+        <div className="max-w-4xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-muted-foreground/60">
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center">
-              <BladeIcon className="w-4 h-4 text-primary" />
-            </div>
-            <span className="font-semibold text-foreground">Ice Journal</span>
+            <BladeIcon className="w-4 h-4" />
+            <span className="font-medium text-foreground/80">Ice Journal</span>
           </div>
-          <p className="text-muted-foreground/70">Built for figure skaters</p>
+          <p>For figure skaters</p>
         </div>
       </footer>
     </div>
