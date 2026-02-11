@@ -8,9 +8,9 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Loader2, Mail, Lock, User, ArrowLeft, CheckCircle2, Snowflake } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import { LandingPage } from '@/components/landing/LandingPage';
+import { Navbar } from '@/components/landing/Navbar';
 
-type AuthView = 'landing' | 'auth' | 'forgot' | 'reset';
+type AuthView = 'auth' | 'forgot' | 'reset';
 
 const Auth: React.FC = () => {
   const { signIn, signUp, resetPassword, updatePassword, session } = useAuth();
@@ -18,7 +18,7 @@ const Auth: React.FC = () => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   
-  const [view, setView] = useState<AuthView>('landing');
+  const [view, setView] = useState<AuthView>('auth');
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [emailSent, setEmailSent] = useState(false);
@@ -57,16 +57,8 @@ const Auth: React.FC = () => {
     }
   }, [searchParams, session]);
 
-  // Landing page view
-  if (view === 'landing') {
-    return (
-      <LandingPage 
-        onGetStarted={() => setView('auth')}
-        isDarkMode={isDarkMode}
-        onToggleDarkMode={() => setIsDarkMode(!isDarkMode)}
-      />
-    );
-  }
+  // Redirect destination after auth
+  const authRedirect = '/dashboard';
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -94,7 +86,7 @@ const Auth: React.FC = () => {
         title: "Welcome back!",
         description: "You've successfully logged in",
       });
-      navigate('/');
+      navigate('/dashboard');
     }
   };
 
@@ -143,7 +135,7 @@ const Auth: React.FC = () => {
         title: "Account created!",
         description: "Welcome to IceNotes",
       });
-      navigate('/');
+      navigate('/dashboard');
     }
   };
 
@@ -223,7 +215,7 @@ const Auth: React.FC = () => {
         title: "Password updated!",
         description: "Your password has been successfully changed",
       });
-      navigate('/');
+      navigate('/dashboard');
     }
   };
 
@@ -576,7 +568,7 @@ const Auth: React.FC = () => {
         </Card>
 
         <button
-          onClick={() => setView('landing')}
+          onClick={() => navigate('/')}
           className="flex items-center gap-2 mt-6 text-sm text-muted-foreground hover:text-foreground transition-colors mx-auto"
         >
           <ArrowLeft className="w-4 h-4" />

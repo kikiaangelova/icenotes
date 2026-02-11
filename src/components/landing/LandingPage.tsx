@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
-import { Moon, Sun, Snowflake, BookOpen, Brain, Target, TrendingUp, Feather, CheckCircle2, Zap, BarChart3, Heart, Shield, ArrowRight } from 'lucide-react';
+import { Snowflake, BookOpen, Brain, Target, TrendingUp, Feather, Zap, BarChart3, Heart, Shield, ArrowRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 interface LandingPageProps {
@@ -11,41 +11,9 @@ interface LandingPageProps {
 
 export const LandingPage: React.FC<LandingPageProps> = ({ 
   onGetStarted, 
-  isDarkMode, 
-  onToggleDarkMode 
 }) => {
   return (
-    <div className={cn(
-      "min-h-screen relative",
-      isDarkMode ? "dark bg-background" : "bg-background"
-    )}>
-      {/* Header */}
-      <header className="relative z-20 px-6 md:px-12 py-5 border-b border-border/50">
-        <div className="max-w-6xl mx-auto flex items-center justify-between">
-          <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
-              <Snowflake className="w-4 h-4 text-primary-foreground" />
-            </div>
-            <span className="text-lg font-semibold tracking-tight text-foreground font-serif">
-              IceNotes
-            </span>
-          </div>
-          <div className="flex items-center gap-3">
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={onToggleDarkMode}
-              className="rounded-full w-9 h-9"
-            >
-              {isDarkMode ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
-            </Button>
-            <Button onClick={onGetStarted} size="sm" className="font-semibold">
-              Get Started
-            </Button>
-          </div>
-        </div>
-      </header>
-
+    <>
       {/* ─── Hero ─── */}
       <section className="relative z-10 px-6 md:px-12 pt-20 pb-24 md:pt-28 md:pb-32">
         <div className="max-w-4xl mx-auto text-center">
@@ -127,41 +95,14 @@ export const LandingPage: React.FC<LandingPageProps> = ({
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
-              {
-                icon: Target,
-                title: 'Competitive Skaters',
-                text: 'Track jump consistency, set weekly goals, and build the mental edge that makes the difference in competition.',
-              },
-              {
-                icon: TrendingUp,
-                title: 'Ambitious Learners',
-                text: 'Whether you\'re learning doubles or refining triples, structured reflection accelerates skill development.',
-              },
-              {
-                icon: Brain,
-                title: 'Mindset-Focused Athletes',
-                text: 'Use daily reflections, breathing exercises, and pre-skate routines to build unshakeable confidence.',
-              },
-              {
-                icon: Heart,
-                title: 'Skaters Returning to the Ice',
-                text: 'Coming back after a break? Track your progress without pressure and rebuild at your own pace.',
-              },
-              {
-                icon: Shield,
-                title: 'Coaches & Their Athletes',
-                text: 'A private space for athletes to develop self-awareness — the foundation of coachability.',
-              },
-              {
-                icon: Zap,
-                title: 'Performance-Driven Athletes',
-                text: 'Turn every training session into data. See patterns, identify plateaus, and break through them.',
-              },
+              { icon: Target, title: 'Competitive Skaters', text: 'Track jump consistency, set weekly goals, and build the mental edge that makes the difference in competition.' },
+              { icon: TrendingUp, title: 'Ambitious Learners', text: 'Whether you\'re learning doubles or refining triples, structured reflection accelerates skill development.' },
+              { icon: Brain, title: 'Mindset-Focused Athletes', text: 'Use daily reflections, breathing exercises, and pre-skate routines to build unshakeable confidence.' },
+              { icon: Heart, title: 'Skaters Returning to the Ice', text: 'Coming back after a break? Track your progress without pressure and rebuild at your own pace.' },
+              { icon: Shield, title: 'Coaches & Their Athletes', text: 'A private space for athletes to develop self-awareness — the foundation of coachability.' },
+              { icon: Zap, title: 'Performance-Driven Athletes', text: 'Turn every training session into data. See patterns, identify plateaus, and break through them.' },
             ].map((item) => (
-              <div 
-                key={item.title} 
-                className="p-6 rounded-xl border border-border/60 bg-card hover:shadow-md transition-all duration-200 group"
-              >
+              <div key={item.title} className="p-6 rounded-xl border border-border/60 bg-card hover:shadow-md transition-all duration-200 group">
                 <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/15 transition-colors">
                   <item.icon className="w-5 h-5 text-primary" />
                 </div>
@@ -188,44 +129,17 @@ export const LandingPage: React.FC<LandingPageProps> = ({
 
           <div className="grid md:grid-cols-3 gap-8">
             {[
-              {
-                num: '01',
-                icon: Brain,
-                title: 'Mindset',
-                text: 'Daily reflections help you process emotions, build resilience, and develop the mental toughness competitive skating demands. Pre-skate rituals and breathing exercises prepare you to perform under pressure.',
-                color: 'text-mental',
-                bg: 'bg-mental/10',
-              },
-              {
-                num: '02',
-                icon: BarChart3,
-                title: 'Training',
-                text: 'Log every on-ice and off-ice session with detail. See your training volume, identify patterns in your best performances, and make sure your preparation matches your ambition.',
-                color: 'text-on-ice',
-                bg: 'bg-on-ice/10',
-              },
-              {
-                num: '03',
-                icon: Target,
-                title: 'Performance',
-                text: 'Track jump attempts and landing rates. Set weekly targets. Measure consistency over time. Transform subjective feelings about your skating into objective data you can act on.',
-                color: 'text-primary',
-                bg: 'bg-primary/10',
-              },
+              { num: '01', icon: Brain, title: 'Mindset', text: 'Daily reflections help you process emotions, build resilience, and develop the mental toughness competitive skating demands.', color: 'text-mental', bg: 'bg-mental/10' },
+              { num: '02', icon: BarChart3, title: 'Training', text: 'Log every on-ice and off-ice session with detail. See your training volume, identify patterns in your best performances.', color: 'text-on-ice', bg: 'bg-on-ice/10' },
+              { num: '03', icon: Target, title: 'Performance', text: 'Track jump attempts and landing rates. Set weekly targets. Measure consistency over time.', color: 'text-primary', bg: 'bg-primary/10' },
             ].map((pillar) => (
               <div key={pillar.num} className="relative">
-                <span className="text-xs font-mono font-medium tracking-[0.15em] text-muted-foreground/50 mb-3 block">
-                  {pillar.num}
-                </span>
+                <span className="text-xs font-mono font-medium tracking-[0.15em] text-muted-foreground/50 mb-3 block">{pillar.num}</span>
                 <div className={cn("w-12 h-12 rounded-xl flex items-center justify-center mb-5", pillar.bg)}>
                   <pillar.icon className={cn("w-6 h-6", pillar.color)} />
                 </div>
-                <h3 className="text-xl md:text-2xl font-bold tracking-tight text-foreground mb-3 font-serif">
-                  {pillar.title}
-                </h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  {pillar.text}
-                </p>
+                <h3 className="text-xl md:text-2xl font-bold tracking-tight text-foreground mb-3 font-serif">{pillar.title}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">{pillar.text}</p>
               </div>
             ))}
           </div>
@@ -247,51 +161,16 @@ export const LandingPage: React.FC<LandingPageProps> = ({
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {[
-              {
-                icon: Feather,
-                title: 'Daily Journal',
-                text: 'Capture what you worked on, how you felt, and your small wins after every session.',
-              },
-              {
-                icon: Target,
-                title: 'Jump Tracker',
-                text: 'Log attempts, track landing rates, and see your technical progress over time.',
-              },
-              {
-                icon: TrendingUp,
-                title: 'Weekly Goals',
-                text: 'Set targets for on-ice hours, off-ice sessions, and specific skills each week.',
-              },
-              {
-                icon: Brain,
-                title: 'Mental Prep',
-                text: 'Breathing exercises, visualizations, and affirmations for pre-skate routines.',
-              },
-              {
-                icon: BarChart3,
-                title: 'Progress Analytics',
-                text: 'Activity calendars, training summaries, and consistency tracking at a glance.',
-              },
-              {
-                icon: BookOpen,
-                title: 'Training Logs',
-                text: 'Detailed on-ice and off-ice session logging with custom activities and notes.',
-              },
-              {
-                icon: Heart,
-                title: 'Reflection Space',
-                text: 'A private space for deeper thoughts about your skating journey and growth.',
-              },
-              {
-                icon: Zap,
-                title: 'Session Timer',
-                text: 'Time your practice sessions with lap tracking to stay focused and accountable.',
-              },
+              { icon: Feather, title: 'Daily Journal', text: 'Capture what you worked on, how you felt, and your small wins after every session.' },
+              { icon: Target, title: 'Jump Tracker', text: 'Log attempts, track landing rates, and see your technical progress over time.' },
+              { icon: TrendingUp, title: 'Weekly Goals', text: 'Set targets for on-ice hours, off-ice sessions, and specific skills each week.' },
+              { icon: Brain, title: 'Mental Prep', text: 'Breathing exercises, visualizations, and affirmations for pre-skate routines.' },
+              { icon: BarChart3, title: 'Progress Analytics', text: 'Activity calendars, training summaries, and consistency tracking at a glance.' },
+              { icon: BookOpen, title: 'Training Logs', text: 'Detailed on-ice and off-ice session logging with custom activities and notes.' },
+              { icon: Heart, title: 'Reflection Space', text: 'A private space for deeper thoughts about your skating journey and growth.' },
+              { icon: Zap, title: 'Session Timer', text: 'Time your practice sessions with lap tracking to stay focused and accountable.' },
             ].map((feature) => (
-              <div 
-                key={feature.title} 
-                className="p-5 rounded-xl border border-border/50 bg-card/80 hover:bg-card hover:shadow-sm transition-all duration-200"
-              >
+              <div key={feature.title} className="p-5 rounded-xl border border-border/50 bg-card/80 hover:bg-card hover:shadow-sm transition-all duration-200">
                 <feature.icon className="w-5 h-5 text-primary mb-3" />
                 <h3 className="text-sm font-semibold text-foreground mb-1.5 font-serif">{feature.title}</h3>
                 <p className="text-xs text-muted-foreground leading-relaxed">{feature.text}</p>
@@ -326,21 +205,6 @@ export const LandingPage: React.FC<LandingPageProps> = ({
           </p>
         </div>
       </section>
-
-      {/* Footer */}
-      <footer className="relative z-10 px-6 md:px-12 py-8 border-t border-border">
-        <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-2.5">
-            <div className="w-5 h-5 rounded bg-primary/60 flex items-center justify-center">
-              <Snowflake className="w-3 h-3 text-primary-foreground" />
-            </div>
-            <span className="text-sm font-semibold text-foreground">IceNotes</span>
-          </div>
-          <p className="text-xs text-muted-foreground">
-            © {new Date().getFullYear()} IceNotes. Built for skaters who take their craft seriously.
-          </p>
-        </div>
-      </footer>
-    </div>
+    </>
   );
 };
