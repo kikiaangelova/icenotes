@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { Snowflake, Brain, Target, TrendingUp, Dumbbell, PenLine, Sprout, ArrowRight } from 'lucide-react';
+import { Snowflake, Brain, Target, TrendingUp, Dumbbell, PenLine, Sprout, ArrowRight, Users } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { supabase } from '@/integrations/supabase/client';
 
 interface LandingPageProps {
   onGetStarted: () => void;
@@ -10,6 +11,28 @@ interface LandingPageProps {
 }
 
 export const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted }) => {
+  const [userCount, setUserCount] = useState<number | null>(null);
+
+  useEffect(() => {
+    const fetchCount = async () => {
+      try {
+        const { data, error } = await supabase.functions.invoke('get-user-count');
+        if (!error && data?.count != null) setUserCount(data.count);
+      } catch {}
+    };
+    fetchCount();
+
+    // Real-time: listen for new profiles
+    const channel = supabase
+      .channel('user-count')
+      .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'profiles' }, () => {
+        fetchCount();
+      })
+      .subscribe();
+
+    return () => { supabase.removeChannel(channel); };
+  }, []);
+
   return (
     <>
       {/* ─── Hero ─── */}
@@ -35,6 +58,15 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted }) => {
           <p className="text-xs text-muted-foreground mt-2">
             100% free · Always private
           </p>
+
+          {userCount !== null && userCount > 0 && (
+            <div className="mt-6 inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-primary/10 border border-primary/20">
+              <Users className="w-4 h-4 text-primary" />
+              <span className="text-sm font-medium text-foreground">
+                Join <span className="font-bold text-primary">{userCount.toLocaleString()}</span> skater{userCount !== 1 ? 's' : ''} already using IceNotes
+              </span>
+            </div>
+          )}
         </div>
       </section>
 

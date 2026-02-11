@@ -1,1 +1,4 @@
 project_id = "nwymxujtsoytspnuomrc"
+
+[functions.get-user-count]
+verify_jwt = false
