@@ -222,15 +222,13 @@ const Auth: React.FC = () => {
   // Reset password view
   if (view === 'reset') {
     return (
-    <div className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-b from-ice/20 via-background to-lavender/10 relative overflow-hidden">
-        <div className="absolute top-10 right-10 w-56 h-56 bg-gradient-to-br from-mint/20 to-primary/15 rounded-full blur-3xl" />
-        <div className="absolute bottom-10 left-10 w-64 h-64 bg-gradient-to-br from-lavender/20 to-rose/15 rounded-full blur-3xl animate-pulse" />
-        <div className="w-full max-w-md relative z-10">
+      <div className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-b from-ice/30 to-background">
+        <div className="w-full max-w-md">
           <div className="text-center mb-8">
-            <div className="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-br from-primary via-lavender to-mint flex items-center justify-center mb-4 shadow-lg shadow-primary/20">
-              <Snowflake className="w-8 h-8 text-white" />
+            <div className="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-br from-primary to-ice-deep flex items-center justify-center mb-4">
+              <Snowflake className="w-8 h-8 text-primary-foreground" />
             </div>
-            <h1 className="text-2xl font-bold bg-gradient-to-r from-primary via-lavender to-grape bg-clip-text text-transparent font-serif">IceNotes</h1>
+            <h1 className="text-2xl font-bold text-foreground font-serif">IceNotes</h1>
             <p className="text-muted-foreground">Set your new password</p>
           </div>
 
@@ -300,15 +298,13 @@ const Auth: React.FC = () => {
   // Forgot password view
   if (view === 'forgot') {
     return (
-    <div className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-b from-ice/20 via-background to-lavender/10 relative overflow-hidden">
-        <div className="absolute top-10 left-10 w-64 h-64 bg-gradient-to-br from-primary/20 to-mint/20 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-20 right-10 w-56 h-56 bg-gradient-to-br from-lavender/20 to-rose/15 rounded-full blur-3xl" />
-        <div className="w-full max-w-md relative z-10">
+      <div className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-b from-ice/30 to-background">
+        <div className="w-full max-w-md">
           <div className="text-center mb-8">
-            <div className="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-br from-primary via-lavender to-mint flex items-center justify-center mb-4 shadow-lg shadow-primary/20">
-              <Snowflake className="w-8 h-8 text-white" />
+            <div className="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-br from-primary to-ice-deep flex items-center justify-center mb-4">
+              <Snowflake className="w-8 h-8 text-primary-foreground" />
             </div>
-            <h1 className="text-2xl font-bold bg-gradient-to-r from-primary via-lavender to-grape bg-clip-text text-transparent font-serif">IceNotes</h1>
+            <h1 className="text-2xl font-bold text-foreground font-serif">IceNotes</h1>
             <p className="text-muted-foreground">Reset your password</p>
           </div>
 
@@ -400,34 +396,29 @@ const Auth: React.FC = () => {
 
   // Main auth view
   return (
-    <div className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-b from-ice/20 via-background to-lavender/10 relative overflow-hidden">
-      {/* Decorative blobs */}
-      <div className="absolute top-10 left-10 w-64 h-64 bg-gradient-to-br from-primary/20 to-mint/20 rounded-full blur-3xl animate-pulse" />
-      <div className="absolute bottom-20 right-10 w-72 h-72 bg-gradient-to-br from-lavender/20 to-rose/15 rounded-full blur-3xl" />
-      <div className="absolute top-1/3 right-1/4 w-40 h-40 bg-gradient-to-br from-mint/15 to-sky/15 rounded-full blur-2xl" />
-
-      <div className="w-full max-w-md relative z-10">
+    <div className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-b from-ice/30 to-background">
+      <div className="w-full max-w-md">
         {/* Logo */}
         <div className="text-center mb-8">
-          <div className="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-br from-primary via-lavender to-mint flex items-center justify-center mb-4 shadow-lg shadow-primary/20">
-            <Snowflake className="w-8 h-8 text-white" />
+          <div className="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-br from-primary to-ice-deep flex items-center justify-center mb-4">
+            <Snowflake className="w-8 h-8 text-primary-foreground" />
           </div>
-          <h1 className="text-2xl font-bold bg-gradient-to-r from-primary via-lavender to-grape bg-clip-text text-transparent font-serif">IceNotes</h1>
+          <h1 className="text-2xl font-bold text-foreground font-serif">IceNotes</h1>
           <p className="text-muted-foreground">Reflect. Train. Perform.</p>
         </div>
 
-        <Card className="border-primary/10 shadow-xl shadow-primary/5 backdrop-blur-sm bg-card/90">
+        <Card className="border-primary/10 shadow-lg">
           <CardHeader className="pb-4">
-            <CardTitle className="text-xl text-center bg-gradient-to-r from-foreground to-foreground/80 bg-clip-text">Welcome</CardTitle>
+            <CardTitle className="text-xl text-center">Welcome</CardTitle>
             <CardDescription className="text-center">
-              Track your skating journey ✨
+              Track your skating journey
             </CardDescription>
           </CardHeader>
           <CardContent>
             <Tabs defaultValue="login" className="w-full">
-              <TabsList className="grid w-full grid-cols-2 mb-6 bg-muted/60">
-                <TabsTrigger value="login" className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-primary/90 data-[state=active]:to-lavender/80 data-[state=active]:text-white">Log In</TabsTrigger>
-                <TabsTrigger value="signup" className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-mint/80 data-[state=active]:to-primary/80 data-[state=active]:text-white">Sign Up</TabsTrigger>
+              <TabsList className="grid w-full grid-cols-2 mb-6">
+                <TabsTrigger value="login">Log In</TabsTrigger>
+                <TabsTrigger value="signup">Sign Up</TabsTrigger>
               </TabsList>
 
               <TabsContent value="login">
@@ -585,7 +576,7 @@ const Auth: React.FC = () => {
         </button>
 
         <p className="text-center text-sm text-muted-foreground mt-4">
-          By continuing, you agree to track your skating journey with us. 🧊
+          By continuing, you agree to track your skating journey with us.
         </p>
       </div>
     </div>
