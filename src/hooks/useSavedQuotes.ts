@@ -63,14 +63,17 @@ export const useSaveQuote = () => {
 };
 
 export const useDeleteSavedQuote = () => {
+  const { user } = useAuth();
   const queryClient = useQueryClient();
   
   return useMutation({
     mutationFn: async (quoteId: string) => {
+      if (!user) throw new Error('Not authenticated');
       const { error } = await supabase
         .from('saved_quotes')
         .delete()
-        .eq('id', quoteId);
+        .eq('id', quoteId)
+        .eq('user_id', user.id);
       
       if (error) throw error;
     },
