@@ -7,7 +7,7 @@
 
 @layer base {
   :root {
-    /* IceNotes – Soft, Calm & Friendly Design System */
+    /* IceNotes – Colorful, Calm & Expressive */
     --background: 210 30% 99%;
     --foreground: 220 40% 16%;
 
@@ -21,7 +21,6 @@
     --primary: 200 75% 58%;
     --primary-foreground: 0 0% 100%;
 
-    /* Light cool secondary */
     --secondary: 210 25% 93%;
     --secondary-foreground: 220 30% 30%;
 
@@ -32,7 +31,7 @@
     --accent: 260 50% 95%;
     --accent-foreground: 260 40% 40%;
 
-    --destructive: 10 60% 58%;
+    --destructive: 10 55% 58%;
     --destructive-foreground: 0 0% 100%;
 
     --border: 210 25% 90%;
@@ -63,6 +62,7 @@
     --calm: 170 40% 55%;
     --warmth: 30 55% 60%;
 
+    /* ─── Multi-color palette ─── */
     /* Pastel mint */
     --mint: 165 45% 88%;
     --mint-foreground: 165 40% 30%;
@@ -70,6 +70,22 @@
     /* Pastel lavender */
     --lavender: 260 50% 92%;
     --lavender-foreground: 260 35% 40%;
+
+    /* Gentle pink */
+    --rose: 340 50% 90%;
+    --rose-foreground: 340 40% 38%;
+
+    /* Warm purple */
+    --grape: 280 40% 88%;
+    --grape-foreground: 280 35% 38%;
+
+    /* Peach / warm accent */
+    --peach: 20 65% 90%;
+    --peach-foreground: 20 50% 35%;
+
+    /* Sky – lighter than primary */
+    --sky: 200 60% 92%;
+    --sky-foreground: 200 55% 32%;
 
     --ink: 220 40% 16%;
     --paper: 210 30% 99%;
@@ -112,7 +128,6 @@
   }
 
   .dark {
-    /* IceNotes Dark – Calm & Cozy */
     --background: 220 25% 8%;
     --foreground: 210 25% 92%;
 
@@ -165,6 +180,18 @@
 
     --lavender: 260 25% 20%;
     --lavender-foreground: 260 40% 72%;
+
+    --rose: 340 30% 18%;
+    --rose-foreground: 340 40% 72%;
+
+    --grape: 280 25% 20%;
+    --grape-foreground: 280 35% 72%;
+
+    --peach: 20 35% 18%;
+    --peach-foreground: 20 45% 72%;
+
+    --sky: 200 30% 16%;
+    --sky-foreground: 200 50% 72%;
 
     --ink: 210 20% 88%;
     --paper: 220 25% 8%;
@@ -271,10 +298,26 @@
     @apply transform -rotate-90;
   }
 
-  /* Soft card style for dashboard cards */
   .soft-card {
     @apply bg-card rounded-2xl border border-border/40 p-5 transition-all duration-200 hover:shadow-md;
     box-shadow: var(--shadow-card);
+  }
+
+  /* Section-specific colored cards */
+  .section-card-goals {
+    @apply bg-gradient-to-br from-lavender/60 to-lavender/20 border border-lavender-foreground/10;
+  }
+  .section-card-training {
+    @apply bg-gradient-to-br from-mint/60 to-sky/30 border border-mint-foreground/10;
+  }
+  .section-card-mind {
+    @apply bg-gradient-to-br from-rose/50 to-peach/30 border border-rose-foreground/10;
+  }
+  .section-card-progress {
+    @apply bg-gradient-to-br from-sky/60 to-primary/10 border border-sky-foreground/10;
+  }
+  .section-card-psych {
+    @apply bg-gradient-to-br from-grape/50 to-lavender/30 border border-grape-foreground/10;
   }
 }
 
