@@ -97,6 +97,16 @@ export const useJournalEntries = () => {
         workedOn: entry.worked_on,
         feeling: entry.feeling as JournalEntry['feeling'],
         smallWin: entry.small_win || '',
+        sessionType: entry.session_type || undefined,
+        whatWentWell: entry.what_went_well || undefined,
+        whatWasChallenging: entry.what_was_challenging || undefined,
+        whatILearned: entry.what_i_learned || undefined,
+        emotionalState: entry.emotional_state || undefined,
+        confidenceLevel: entry.confidence_level || undefined,
+        focusLevel: entry.focus_level || undefined,
+        nextGoal: entry.next_goal || undefined,
+        coachNotes: entry.coach_notes || undefined,
+        personalReflections: entry.personal_reflections || undefined,
         createdAt: parseStoredDate(entry.created_at)
       })) as JournalEntry[];
     },
@@ -119,7 +129,17 @@ export const useAddJournalEntry = () => {
           date: format(entry.date, 'yyyy-MM-dd'),
           worked_on: entry.workedOn,
           feeling: entry.feeling,
-          small_win: entry.smallWin
+          small_win: entry.smallWin,
+          session_type: entry.sessionType || null,
+          what_went_well: entry.whatWentWell || null,
+          what_was_challenging: entry.whatWasChallenging || null,
+          what_i_learned: entry.whatILearned || null,
+          emotional_state: entry.emotionalState || null,
+          confidence_level: entry.confidenceLevel || null,
+          focus_level: entry.focusLevel || null,
+          next_goal: entry.nextGoal || null,
+          coach_notes: entry.coachNotes || null,
+          personal_reflections: entry.personalReflections || null
         });
       
       if (error) throw error;

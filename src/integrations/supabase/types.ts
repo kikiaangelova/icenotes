@@ -55,30 +55,60 @@ export type Database = {
       }
       journal_entries: {
         Row: {
+          coach_notes: string | null
+          confidence_level: number | null
           created_at: string
           date: string
+          emotional_state: number | null
           feeling: string | null
+          focus_level: number | null
           id: string
+          next_goal: string | null
+          personal_reflections: string | null
+          session_type: string | null
           small_win: string | null
           user_id: string
+          what_i_learned: string | null
+          what_was_challenging: string | null
+          what_went_well: string | null
           worked_on: string
         }
         Insert: {
+          coach_notes?: string | null
+          confidence_level?: number | null
           created_at?: string
           date?: string
+          emotional_state?: number | null
           feeling?: string | null
+          focus_level?: number | null
           id?: string
+          next_goal?: string | null
+          personal_reflections?: string | null
+          session_type?: string | null
           small_win?: string | null
           user_id: string
+          what_i_learned?: string | null
+          what_was_challenging?: string | null
+          what_went_well?: string | null
           worked_on: string
         }
         Update: {
+          coach_notes?: string | null
+          confidence_level?: number | null
           created_at?: string
           date?: string
+          emotional_state?: number | null
           feeling?: string | null
+          focus_level?: number | null
           id?: string
+          next_goal?: string | null
+          personal_reflections?: string | null
+          session_type?: string | null
           small_win?: string | null
           user_id?: string
+          what_i_learned?: string | null
+          what_was_challenging?: string | null
+          what_went_well?: string | null
           worked_on?: string
         }
         Relationships: []

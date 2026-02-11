@@ -10,6 +10,7 @@ import Home from "./pages/Home";
 import HowItWorks from "./pages/HowItWorks";
 import Features from "./pages/Features";
 import Contact from "./pages/Contact";
+import JournalPage from "./pages/Journal";
 import NotFound from "./pages/NotFound";
 import { Loader2 } from "lucide-react";
 
@@ -67,6 +68,7 @@ const AppRoutes = () => {
       <Route path="/how-it-works" element={<HowItWorks />} />
       <Route path="/features" element={<Features />} />
       <Route path="/contact" element={<Contact />} />
+      <Route path="/journal" element={<JournalPage />} />
       <Route 
         path="/auth" 
         element={
