@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
-import { Moon, Sun } from 'lucide-react';
+import { Moon, Sun, Snowflake, BookOpen, Brain, Target, TrendingUp, Feather } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 interface LandingPageProps {
@@ -19,20 +19,15 @@ export const LandingPage: React.FC<LandingPageProps> = ({
       "min-h-screen relative",
       isDarkMode ? "dark bg-background" : "bg-background"
     )}>
-      {/* Subtle grain texture */}
-      <div className="fixed inset-0 opacity-[0.015] pointer-events-none z-0"
-        style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`
-        }}
-      />
-
       {/* Header */}
-      <header className="relative z-20 px-6 md:px-12 py-6">
+      <header className="relative z-20 px-6 md:px-12 py-5">
         <div className="max-w-6xl mx-auto flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-full bg-primary" />
-            <span className="text-lg font-semibold tracking-tight text-foreground">
-              Ice Journal
+          <div className="flex items-center gap-2.5">
+            <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
+              <Snowflake className="w-4 h-4 text-primary-foreground" />
+            </div>
+            <span className="text-lg font-semibold tracking-tight text-foreground font-serif">
+              IceNotes
             </span>
           </div>
           <Button
@@ -41,81 +36,84 @@ export const LandingPage: React.FC<LandingPageProps> = ({
             onClick={onToggleDarkMode}
             className="rounded-full w-9 h-9"
           >
-            {isDarkMode ? (
-              <Sun className="w-4 h-4" />
-            ) : (
-              <Moon className="w-4 h-4" />
-            )}
+            {isDarkMode ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
           </Button>
         </div>
       </header>
 
-      {/* Hero - Asymmetric editorial layout */}
-      <section className="relative z-10 px-6 md:px-12 pt-12 pb-24 md:pt-20 md:pb-32">
+      {/* Hero */}
+      <section className="relative z-10 px-6 md:px-12 pt-16 pb-24 md:pt-24 md:pb-32">
         <div className="max-w-6xl mx-auto">
           <div className="grid md:grid-cols-12 gap-8 md:gap-12">
-            {/* Main headline - takes more space */}
             <div className="md:col-span-7 lg:col-span-8">
-              <p className="text-xs font-medium tracking-[0.2em] uppercase text-primary mb-6">
-                For Figure Skaters
+              <p className="text-xs font-semibold tracking-[0.2em] uppercase text-primary mb-5">
+                For Competitive Figure Skaters
               </p>
-              <h1 className="text-[2.5rem] md:text-[3.5rem] lg:text-[4.5rem] font-bold leading-[1.05] tracking-[-0.03em] text-foreground">
-                Your training
+              <h1 className="text-[2.5rem] md:text-[3.5rem] lg:text-[4.5rem] font-bold leading-[1.05] tracking-[-0.03em] text-foreground font-serif">
+                Reflect.
                 <br />
-                <span className="text-muted-foreground">deserves</span>
+                <span className="text-primary">Train.</span>
                 <br />
-                intention.
+                Perform.
               </h1>
             </div>
 
-            {/* Supporting text - smaller column */}
             <div className="md:col-span-5 lg:col-span-4 flex flex-col justify-end">
               <p className="text-base md:text-lg text-muted-foreground leading-relaxed mb-8">
-                A journal for the skater who knows that progress happens 
-                in the mind as much as on the ice.
+                The digital journal built for figure skaters who take their 
+                development seriously. Track your mindset, structure your 
+                reflections, and see your growth.
               </p>
               <button 
                 onClick={onGetStarted}
-                className="self-start px-6 py-3 bg-foreground text-background text-sm font-medium tracking-wide hover:opacity-80 transition-opacity"
+                className="self-start px-7 py-3.5 bg-primary text-primary-foreground text-sm font-semibold tracking-wide rounded-lg hover:brightness-110 transition-all"
               >
-                Begin journaling
+                Start Your Journal
               </button>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Divider line */}
+      {/* Divider */}
       <div className="px-6 md:px-12">
         <div className="max-w-6xl mx-auto border-t border-border" />
       </div>
 
-      {/* Three pillars - Editorial grid */}
+      {/* Three pillars */}
       <section className="relative z-10 px-6 md:px-12 py-20 md:py-28">
         <div className="max-w-6xl mx-auto">
           <div className="grid md:grid-cols-3 gap-12 md:gap-8">
             {[
               {
                 num: '01',
-                title: 'Mind',
-                text: 'Pre-skate rituals. Breathing exercises. The mental work that makes the difference when it counts.',
+                icon: Brain,
+                title: 'Mindset',
+                text: 'Build emotional awareness with daily reflections, breathing exercises, and pre-skate mental preparation routines.',
               },
               {
-                num: '02', 
-                title: 'Body',
-                text: 'Track your sessions—on ice and off. See the patterns. Understand your training rhythms.',
+                num: '02',
+                icon: TrendingUp,
+                title: 'Training',
+                text: 'Log on-ice and off-ice sessions. Identify patterns in your training. Understand what drives your best performances.',
               },
               {
                 num: '03',
-                title: 'Practice',
-                text: 'Log your jumps. Note what works. Build the consistency that leads to breakthroughs.',
+                icon: Target,
+                title: 'Performance',
+                text: 'Track jump progress, set weekly goals, and measure consistency. Turn data into competitive advantage.',
               },
             ].map((pillar) => (
               <div key={pillar.num} className="group">
-                <span className="text-xs font-medium tracking-[0.15em] text-muted-foreground/60">
-                  {pillar.num}
-                </span>
-                <h3 className="text-2xl md:text-3xl font-bold tracking-tight text-foreground mt-3 mb-4">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
+                    <pillar.icon className="w-5 h-5 text-primary" />
+                  </div>
+                  <span className="text-xs font-mono font-medium tracking-[0.1em] text-muted-foreground">
+                    {pillar.num}
+                  </span>
+                </div>
+                <h3 className="text-2xl md:text-3xl font-bold tracking-tight text-foreground mb-3 font-serif">
                   {pillar.title}
                 </h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">
@@ -127,42 +125,39 @@ export const LandingPage: React.FC<LandingPageProps> = ({
         </div>
       </section>
 
-      {/* Feature highlight - Offset layout */}
+      {/* Feature highlight */}
       <section className="relative z-10 px-6 md:px-12 py-16 md:py-24 bg-muted/30">
         <div className="max-w-6xl mx-auto">
           <div className="grid md:grid-cols-12 gap-8 items-center">
-            {/* Visual element - organic shape */}
             <div className="md:col-span-5 md:col-start-1">
-              <div 
-                className="aspect-[4/5] bg-gradient-to-br from-primary/8 via-primary/4 to-transparent rounded-tl-[120px] rounded-br-[120px] rounded-tr-2xl rounded-bl-2xl flex items-end justify-start p-8"
-              >
+              <div className="aspect-[4/5] bg-gradient-to-br from-primary/6 via-accent/30 to-transparent rounded-2xl flex items-end justify-start p-8">
                 <div className="space-y-1">
-                  <p className="text-6xl md:text-7xl font-bold text-primary/20">3</p>
-                  <p className="text-xs tracking-[0.15em] uppercase text-muted-foreground">
-                    Areas of focus
+                  <p className="text-6xl md:text-7xl font-bold text-primary/15 font-serif">3</p>
+                  <p className="text-xs tracking-[0.15em] uppercase text-muted-foreground font-semibold">
+                    Pillars of growth
                   </p>
                 </div>
               </div>
             </div>
 
-            {/* Text content */}
             <div className="md:col-span-6 md:col-start-7 space-y-6">
-              <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-foreground leading-snug">
-                Progress isn't just about landing jumps. It's about understanding yourself.
+              <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-foreground leading-snug font-serif">
+                Performance starts with self-awareness. IceNotes helps you build it.
               </h2>
               <p className="text-muted-foreground leading-relaxed">
-                Every session tells a story. How you felt. What you noticed. 
-                The small wins that add up. Ice Journal helps you capture it all—so 
-                you can see your growth clearly.
+                Every session on the ice tells a story — how you felt, what you 
+                noticed, what clicked. IceNotes gives you the structure to capture 
+                it all and turn reflection into competitive edge.
               </p>
               <ul className="space-y-3 pt-2">
                 {[
-                  'Daily reflections to build mental resilience',
-                  'Jump tracking with success patterns',
-                  'Training logs for on-ice and off-ice work',
+                  'Structured daily reflections for emotional resilience',
+                  'Jump tracking with consistency analytics',
+                  'On-ice and off-ice training logs with progress insights',
+                  'Weekly goal-setting to keep your training intentional',
                 ].map((item) => (
                   <li key={item} className="flex items-start gap-3 text-sm text-muted-foreground">
-                    <span className="w-1 h-1 rounded-full bg-primary mt-2 shrink-0" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 shrink-0" />
                     <span>{item}</span>
                   </li>
                 ))}
@@ -172,33 +167,35 @@ export const LandingPage: React.FC<LandingPageProps> = ({
         </div>
       </section>
 
-      {/* Final CTA - Minimal */}
+      {/* Final CTA */}
       <section className="relative z-10 px-6 md:px-12 py-24 md:py-32">
         <div className="max-w-2xl mx-auto text-center">
-          <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-foreground mb-4">
-            Start where you are.
+          <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-foreground mb-4 font-serif">
+            Your next level starts with reflection.
           </h2>
           <p className="text-muted-foreground mb-10">
-            Free. No credit card. Just you and your journal.
+            Free. No credit card. Built for skaters who want more from their training.
           </p>
           <button 
             onClick={onGetStarted}
-            className="px-8 py-4 bg-foreground text-background text-sm font-medium tracking-wide hover:opacity-80 transition-opacity"
+            className="px-8 py-4 bg-primary text-primary-foreground text-sm font-semibold tracking-wide rounded-lg hover:brightness-110 transition-all"
           >
-            Create your journal
+            Create Your IceNotes Journal
           </button>
         </div>
       </section>
 
-      {/* Footer - Minimal */}
+      {/* Footer */}
       <footer className="relative z-10 px-6 md:px-12 py-8 border-t border-border">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-3">
-            <div className="w-5 h-5 rounded-full bg-primary/60" />
-            <span className="text-sm font-medium text-foreground">Ice Journal</span>
+          <div className="flex items-center gap-2.5">
+            <div className="w-5 h-5 rounded bg-primary/60 flex items-center justify-center">
+              <Snowflake className="w-3 h-3 text-primary-foreground" />
+            </div>
+            <span className="text-sm font-semibold text-foreground">IceNotes</span>
           </div>
           <p className="text-xs text-muted-foreground">
-            Made for skaters who take their craft seriously.
+            Built for skaters who take their craft seriously.
           </p>
         </div>
       </footer>

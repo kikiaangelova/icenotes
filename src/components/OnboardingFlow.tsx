@@ -57,8 +57,8 @@ export const OnboardingFlow: React.FC = () => {
       });
       
       toast({
-        title: "Welcome to Ice Journal!",
-        description: "Your profile has been set up. Let's begin your journey!",
+        title: "Welcome to IceNotes!",
+        description: "Your profile is set up. Let's start building your competitive edge.",
       });
     } catch (error) {
       toast({
@@ -92,13 +92,13 @@ export const OnboardingFlow: React.FC = () => {
               <div className="mx-auto w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center">
                 <Heart className="w-8 h-8 text-primary" />
               </div>
-              <CardTitle className="text-xl sm:text-2xl text-foreground">
-                Welcome to Ice Journal
+              <CardTitle className="text-xl sm:text-2xl text-foreground font-serif">
+                Welcome to IceNotes
               </CardTitle>
               <CardDescription className="text-sm sm:text-base leading-relaxed max-w-sm mx-auto">
-                This is your personal space to reflect, grow, and stay connected to your skating.
+                Your structured journal for mindset, training, and performance growth.
                 <span className="block mt-2 font-medium text-foreground/80">
-                  There is no right or wrong here.
+                  Built for skaters who want to level up.
                 </span>
               </CardDescription>
             </CardHeader>
