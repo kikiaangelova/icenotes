@@ -101,6 +101,28 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted }) => {
         </div>
       </section>
 
+      {/* ─── Social Proof ─── */}
+      <section className="relative z-10 px-5 md:px-12 py-12 md:py-20">
+        <div className="max-w-2xl mx-auto text-center space-y-5">
+          {userCount !== null && userCount > 0 ? (
+            <div className="text-6xl md:text-8xl font-bold text-primary font-serif tracking-tight">
+              {userCount.toLocaleString()}
+            </div>
+          ) : (
+            <div className="text-6xl md:text-8xl font-bold text-primary font-serif tracking-tight opacity-0">0</div>
+          )}
+          <p className="text-base md:text-lg text-muted-foreground max-w-md mx-auto leading-relaxed">
+            Skaters are already reflecting, tracking, and growing with IceNotes every day.
+          </p>
+          <Link to="/auth?mode=signup">
+            <Button size="lg" className="h-14 px-10 text-base font-semibold rounded-xl gap-2 mt-2">
+              Join IceNotes
+              <ArrowRight className="w-4 h-4" />
+            </Button>
+          </Link>
+        </div>
+      </section>
+
       {/* ─── How It Works ─── */}
       <section className="relative z-10 px-5 md:px-12 py-8 md:py-16 bg-primary/5 border-y border-border/50">
         <div className="max-w-4xl mx-auto">
