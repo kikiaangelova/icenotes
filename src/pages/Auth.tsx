@@ -5,7 +5,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Loader2, Mail, Lock, User, ArrowLeft, CheckCircle2 } from 'lucide-react';
+import { Loader2, Mail, Lock, User, ArrowLeft, CheckCircle2, Snowflake } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { LandingPage } from '@/components/landing/LandingPage';
@@ -141,7 +141,7 @@ const Auth: React.FC = () => {
     } else {
       toast({
         title: "Account created!",
-        description: "Welcome to Ice Journal",
+        description: "Welcome to IceNotes",
       });
       navigate('/');
     }
@@ -234,13 +234,9 @@ const Auth: React.FC = () => {
         <div className="w-full max-w-md">
           <div className="text-center mb-8">
             <div className="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-br from-primary to-ice-deep flex items-center justify-center mb-4">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-8 h-8 text-primary-foreground">
-                <path d="M2 20h20" />
-                <path d="M4 20c0-4 2-8 8-8s8 4 8 8" />
-                <ellipse cx="12" cy="8" rx="3" ry="4" />
-              </svg>
+              <Snowflake className="w-8 h-8 text-primary-foreground" />
             </div>
-            <h1 className="text-2xl font-bold text-foreground">Ice Journal</h1>
+            <h1 className="text-2xl font-bold text-foreground font-serif">IceNotes</h1>
             <p className="text-muted-foreground">Set your new password</p>
           </div>
 
@@ -314,13 +310,9 @@ const Auth: React.FC = () => {
         <div className="w-full max-w-md">
           <div className="text-center mb-8">
             <div className="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-br from-primary to-ice-deep flex items-center justify-center mb-4">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-8 h-8 text-primary-foreground">
-                <path d="M2 20h20" />
-                <path d="M4 20c0-4 2-8 8-8s8 4 8 8" />
-                <ellipse cx="12" cy="8" rx="3" ry="4" />
-              </svg>
+              <Snowflake className="w-8 h-8 text-primary-foreground" />
             </div>
-            <h1 className="text-2xl font-bold text-foreground">Ice Journal</h1>
+            <h1 className="text-2xl font-bold text-foreground font-serif">IceNotes</h1>
             <p className="text-muted-foreground">Reset your password</p>
           </div>
 
@@ -417,14 +409,10 @@ const Auth: React.FC = () => {
         {/* Logo */}
         <div className="text-center mb-8">
           <div className="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-br from-primary to-ice-deep flex items-center justify-center mb-4">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-8 h-8 text-primary-foreground">
-              <path d="M2 20h20" />
-              <path d="M4 20c0-4 2-8 8-8s8 4 8 8" />
-              <ellipse cx="12" cy="8" rx="3" ry="4" />
-            </svg>
+            <Snowflake className="w-8 h-8 text-primary-foreground" />
           </div>
-          <h1 className="text-2xl font-bold text-foreground">Ice Journal</h1>
-          <p className="text-muted-foreground">Your Figure Skating Companion</p>
+          <h1 className="text-2xl font-bold text-foreground font-serif">IceNotes</h1>
+          <p className="text-muted-foreground">Reflect. Train. Perform.</p>
         </div>
 
         <Card className="border-primary/10 shadow-lg">

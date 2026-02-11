@@ -283,9 +283,9 @@ export const SimpleDashboard: React.FC = () => {
             </TabsContent>
           </Tabs>
 
-          {/* Gentle message */}
+          {/* Motivational footer */}
           <p className="text-center text-xs sm:text-sm text-muted-foreground italic pt-6 sm:pt-8">
-            Progress, not perfection.
+            Every session counts. Keep building.
           </p>
         </main>
 
