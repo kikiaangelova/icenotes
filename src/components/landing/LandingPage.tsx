@@ -315,46 +315,33 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted }) => {
         </div>
       </section>
 
-      {/* ─── Testimonials ─── */}
+      {/* ─── Your Voice Matters ─── */}
       <section className="relative z-10 px-6 md:px-12 py-16 md:py-24 bg-muted/30 border-y border-border/50">
-        <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-12">
-            <p className="text-xs font-semibold tracking-[0.2em] uppercase text-primary mb-4">From Skaters Like You</p>
-            <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-foreground font-serif">
-              Here's what skaters are saying.
-            </h2>
+        <div className="max-w-3xl mx-auto text-center">
+          <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto mb-6">
+            <Heart className="w-6 h-6 text-primary" />
           </div>
-
-          <div className="grid md:grid-cols-3 gap-6">
-            {[
-              {
-                quote: "I used to leave practice feeling frustrated without knowing why. Now I write it down, and suddenly it makes sense. I can see what's actually bothering me — and fix it.",
-                name: 'Sofia, 16',
-                detail: 'Competitive skater · 3 years of journaling',
-              },
-              {
-                quote: "My coach asked me to start journaling. I didn't want to. But after two weeks with IceNotes, I realized I'd been ignoring how anxious I felt before run-throughs. That changed everything.",
-                name: 'Emma, 19',
-                detail: 'University team · Working on triple combinations',
-              },
-              {
-                quote: "As a coach, I love when my skaters can tell me HOW a session felt — not just what they did. IceNotes gives them the vocabulary and the habit to do that.",
-                name: 'Coach David',
-                detail: 'PSA-rated coach · 12 years experience',
-              },
-            ].map((testimonial) => (
-              <div key={testimonial.name} className="p-6 rounded-xl border border-border/50 bg-card flex flex-col">
-                <Quote className="w-5 h-5 text-primary/30 mb-3 shrink-0" />
-                <p className="text-sm text-foreground/90 leading-relaxed italic flex-1 mb-5">
-                  "{testimonial.quote}"
-                </p>
-                <div>
-                  <p className="text-sm font-semibold text-foreground">{testimonial.name}</p>
-                  <p className="text-xs text-muted-foreground">{testimonial.detail}</p>
-                </div>
-              </div>
-            ))}
-          </div>
+          <p className="text-xs font-semibold tracking-[0.2em] uppercase text-primary mb-4">Your Voice Matters</p>
+          <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-foreground font-serif mb-5">
+            IceNotes is brand new — and we're building it for you.
+          </h2>
+          <p className="text-muted-foreground leading-relaxed mb-4 max-w-xl mx-auto">
+            This platform was created for real skaters who believe that reflection is part of training. 
+            We're just getting started, and your experience means everything to us.
+          </p>
+          <p className="text-foreground/80 leading-relaxed mb-8 max-w-xl mx-auto">
+            If IceNotes helps you reflect, grow or train better, we would love to hear your story.
+            Share how journaling supports your skating journey and help inspire other skaters.
+          </p>
+          <Link to="/share-experience">
+            <Button size="lg" className="h-13 px-8 text-base font-semibold rounded-lg gap-2">
+              <MessageCircle className="w-4 h-4" />
+              Share Your Experience
+            </Button>
+          </Link>
+          <p className="text-xs text-muted-foreground mt-4">
+            It only takes a minute — and it helps us build something truly meaningful.
+          </p>
         </div>
       </section>
 
