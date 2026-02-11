@@ -1,5 +1,5 @@
-@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap");
 @tailwind base;
 @tailwind components;
@@ -7,184 +7,197 @@
 
 @layer base {
   :root {
-    /* IceNotes – Clean Athletic Design System */
-    --background: 210 20% 98%;
-    --foreground: 215 25% 12%;
+    /* IceNotes – Soft, Calm & Friendly Design System */
+    --background: 210 30% 99%;
+    --foreground: 220 40% 16%;
 
-    --card: 210 15% 100%;
-    --card-foreground: 215 25% 12%;
+    --card: 210 40% 100%;
+    --card-foreground: 220 40% 16%;
 
-    --popover: 210 15% 97%;
-    --popover-foreground: 215 25% 12%;
+    --popover: 210 30% 99%;
+    --popover-foreground: 220 40% 16%;
 
-    /* Deep slate-blue primary */
-    --primary: 215 65% 36%;
-    --primary-foreground: 210 40% 98%;
+    /* Soft icy blue primary */
+    --primary: 200 75% 58%;
+    --primary-foreground: 0 0% 100%;
 
-    /* Cool gray secondary */
-    --secondary: 210 12% 90%;
-    --secondary-foreground: 215 20% 25%;
+    /* Light cool secondary */
+    --secondary: 210 25% 93%;
+    --secondary-foreground: 220 30% 30%;
 
-    --muted: 210 12% 92%;
-    --muted-foreground: 215 10% 46%;
+    --muted: 210 20% 95%;
+    --muted-foreground: 220 15% 50%;
 
-    /* Ice-blue accent */
-    --accent: 195 80% 94%;
-    --accent-foreground: 200 70% 30%;
+    /* Pastel lavender accent */
+    --accent: 260 50% 95%;
+    --accent-foreground: 260 40% 40%;
 
-    --destructive: 0 68% 52%;
+    --destructive: 10 60% 58%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 210 16% 88%;
-    --input: 210 16% 88%;
-    --ring: 215 65% 36%;
+    --border: 210 25% 90%;
+    --input: 210 25% 90%;
+    --ring: 200 75% 58%;
 
-    --radius: 0.625rem;
+    --radius: 0.875rem;
 
     /* Functional tokens */
-    --ice: 200 30% 95%;
-    --ice-deep: 200 55% 38%;
-    --frost: 210 20% 97%;
-    --on-ice: 200 55% 38%;
-    --off-ice: 25 50% 48%;
-    --mental: 260 45% 52%;
-    --success: 152 55% 40%;
-    --gold: 42 80% 52%;
-    --silver: 210 8% 68%;
+    --ice: 200 40% 96%;
+    --ice-deep: 200 60% 50%;
+    --frost: 210 30% 98%;
+    --on-ice: 200 60% 52%;
+    --off-ice: 25 50% 55%;
+    --mental: 260 40% 60%;
+    --success: 155 50% 48%;
+    --gold: 42 75% 58%;
+    --silver: 210 10% 72%;
 
     /* Premium tokens */
-    --premium: 215 65% 36%;
-    --premium-soft: 210 40% 95%;
-    --premium-glow: 200 60% 50%;
+    --premium: 200 75% 58%;
+    --premium-soft: 200 50% 96%;
+    --premium-glow: 200 60% 60%;
 
     /* Feature tokens */
-    --reflect: 260 40% 55%;
-    --journal: 215 50% 45%;
-    --calm: 170 35% 50%;
-    --warmth: 30 60% 55%;
+    --reflect: 260 35% 62%;
+    --journal: 200 50% 52%;
+    --calm: 170 40% 55%;
+    --warmth: 30 55% 60%;
 
-    /* Ink/Paper editorial */
-    --ink: 215 25% 12%;
-    --paper: 210 20% 98%;
-    --highlight: 195 80% 70%;
+    /* Pastel mint */
+    --mint: 165 45% 88%;
+    --mint-foreground: 165 40% 30%;
 
-    --shadow-soft: 0 2px 12px -2px hsl(215 20% 20% / 0.06);
-    --shadow-card: 0 1px 3px 0px hsl(215 20% 20% / 0.04);
+    /* Pastel lavender */
+    --lavender: 260 50% 92%;
+    --lavender-foreground: 260 35% 40%;
 
-    --sidebar-background: 210 15% 99%;
-    --sidebar-foreground: 215 25% 12%;
-    --sidebar-primary: 215 65% 36%;
-    --sidebar-primary-foreground: 210 40% 98%;
-    --sidebar-accent: 210 12% 90%;
-    --sidebar-accent-foreground: 215 20% 25%;
-    --sidebar-border: 210 16% 88%;
-    --sidebar-ring: 215 65% 36%;
+    --ink: 220 40% 16%;
+    --paper: 210 30% 99%;
+    --highlight: 200 70% 75%;
 
-    --chart-1: 215 65% 45%;
-    --chart-2: 200 55% 50%;
-    --chart-3: 195 60% 55%;
-    --chart-4: 42 80% 52%;
-    --chart-5: 152 55% 40%;
+    --shadow-soft: 0 4px 20px -4px hsl(200 30% 50% / 0.08);
+    --shadow-card: 0 2px 12px -2px hsl(200 30% 50% / 0.06);
 
-    --sidebar: 210 15% 100%;
+    --sidebar-background: 210 30% 99%;
+    --sidebar-foreground: 220 40% 16%;
+    --sidebar-primary: 200 75% 58%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 210 25% 93%;
+    --sidebar-accent-foreground: 220 30% 30%;
+    --sidebar-border: 210 25% 90%;
+    --sidebar-ring: 200 75% 58%;
 
-    --font-sans: 'DM Sans', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
-    --font-serif: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
+    --chart-1: 200 70% 55%;
+    --chart-2: 165 50% 55%;
+    --chart-3: 260 45% 65%;
+    --chart-4: 42 75% 58%;
+    --chart-5: 155 50% 48%;
+
+    --sidebar: 210 40% 100%;
+
+    --font-sans: 'Nunito', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+    --font-serif: 'Quicksand', ui-sans-serif, system-ui, sans-serif;
     --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 
-    --shadow-2xs: 0 1px 2px 0px hsl(0 0% 0% / 0.03);
-    --shadow-xs: 0 1px 3px 0px hsl(0 0% 0% / 0.04);
-    --shadow-sm: 0 1px 3px 0px hsl(0 0% 0% / 0.08), 0 1px 2px -1px hsl(0 0% 0% / 0.06);
-    --shadow: 0 1px 3px 0px hsl(0 0% 0% / 0.08), 0 1px 2px -1px hsl(0 0% 0% / 0.06);
-    --shadow-md: 0 4px 6px -1px hsl(0 0% 0% / 0.08), 0 2px 4px -2px hsl(0 0% 0% / 0.06);
-    --shadow-lg: 0 10px 15px -3px hsl(0 0% 0% / 0.08), 0 4px 6px -4px hsl(0 0% 0% / 0.06);
-    --shadow-xl: 0 20px 25px -5px hsl(0 0% 0% / 0.08), 0 8px 10px -6px hsl(0 0% 0% / 0.06);
-    --shadow-2xl: 0 25px 50px -12px hsl(0 0% 0% / 0.2);
+    --shadow-2xs: 0 1px 2px 0px hsl(200 20% 50% / 0.04);
+    --shadow-xs: 0 1px 3px 0px hsl(200 20% 50% / 0.06);
+    --shadow-sm: 0 2px 6px -1px hsl(200 20% 50% / 0.08), 0 1px 2px -1px hsl(200 20% 50% / 0.04);
+    --shadow: 0 2px 6px -1px hsl(200 20% 50% / 0.08), 0 1px 2px -1px hsl(200 20% 50% / 0.04);
+    --shadow-md: 0 6px 16px -4px hsl(200 20% 50% / 0.1), 0 2px 4px -2px hsl(200 20% 50% / 0.06);
+    --shadow-lg: 0 12px 28px -6px hsl(200 20% 50% / 0.1), 0 4px 8px -4px hsl(200 20% 50% / 0.06);
+    --shadow-xl: 0 20px 40px -8px hsl(200 20% 50% / 0.12), 0 8px 16px -6px hsl(200 20% 50% / 0.06);
+    --shadow-2xl: 0 28px 56px -12px hsl(200 20% 50% / 0.18);
     --tracking-normal: 0em;
     --spacing: 0.25rem;
   }
 
   .dark {
-    /* IceNotes Dark Mode */
-    --background: 215 20% 8%;
-    --foreground: 210 20% 95%;
+    /* IceNotes Dark – Calm & Cozy */
+    --background: 220 25% 8%;
+    --foreground: 210 25% 92%;
 
-    --card: 215 18% 12%;
-    --card-foreground: 210 20% 95%;
+    --card: 220 22% 12%;
+    --card-foreground: 210 25% 92%;
 
-    --popover: 215 18% 14%;
-    --popover-foreground: 210 20% 95%;
+    --popover: 220 22% 14%;
+    --popover-foreground: 210 25% 92%;
 
-    --primary: 200 70% 55%;
-    --primary-foreground: 215 25% 8%;
+    --primary: 200 70% 60%;
+    --primary-foreground: 220 30% 8%;
 
-    --secondary: 215 15% 20%;
-    --secondary-foreground: 210 15% 85%;
+    --secondary: 220 18% 18%;
+    --secondary-foreground: 210 20% 82%;
 
-    --muted: 215 12% 22%;
-    --muted-foreground: 210 10% 60%;
+    --muted: 220 15% 20%;
+    --muted-foreground: 210 12% 58%;
 
-    --accent: 200 50% 15%;
-    --accent-foreground: 200 70% 65%;
+    --accent: 260 35% 22%;
+    --accent-foreground: 260 50% 75%;
 
-    --destructive: 0 72% 55%;
+    --destructive: 10 55% 55%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 215 12% 22%;
-    --input: 215 12% 22%;
-    --ring: 200 70% 55%;
+    --border: 220 15% 20%;
+    --input: 220 15% 20%;
+    --ring: 200 70% 60%;
 
-    --ice: 200 20% 12%;
+    --ice: 200 25% 12%;
     --ice-deep: 200 55% 55%;
-    --frost: 215 18% 10%;
-    --on-ice: 200 50% 50%;
-    --off-ice: 25 45% 52%;
-    --mental: 260 40% 58%;
-    --success: 152 45% 45%;
-    --gold: 42 70% 55%;
-    --silver: 210 6% 50%;
+    --frost: 220 20% 10%;
+    --on-ice: 200 50% 55%;
+    --off-ice: 25 45% 55%;
+    --mental: 260 35% 60%;
+    --success: 155 45% 50%;
+    --gold: 42 65% 58%;
+    --silver: 210 8% 52%;
 
-    --premium: 200 70% 55%;
-    --premium-soft: 215 25% 15%;
-    --premium-glow: 200 60% 55%;
+    --premium: 200 70% 60%;
+    --premium-soft: 220 25% 14%;
+    --premium-glow: 200 55% 58%;
 
-    --reflect: 260 35% 60%;
-    --journal: 210 45% 55%;
+    --reflect: 260 30% 62%;
+    --journal: 200 45% 55%;
     --calm: 170 35% 55%;
-    --warmth: 30 55% 58%;
+    --warmth: 30 50% 58%;
 
-    --ink: 210 15% 90%;
-    --paper: 215 20% 8%;
-    --highlight: 200 60% 55%;
+    --mint: 165 30% 18%;
+    --mint-foreground: 165 40% 70%;
 
-    --shadow-soft: 0 2px 12px -2px hsl(0 0% 0% / 0.3);
-    --shadow-card: 0 1px 3px 0px hsl(0 0% 0% / 0.2);
+    --lavender: 260 25% 20%;
+    --lavender-foreground: 260 40% 72%;
 
-    --sidebar-background: 215 18% 9%;
-    --sidebar-foreground: 210 20% 95%;
-    --sidebar-primary: 200 70% 55%;
-    --sidebar-primary-foreground: 215 25% 8%;
-    --sidebar-accent: 215 15% 20%;
-    --sidebar-accent-foreground: 210 15% 85%;
-    --sidebar-border: 215 12% 22%;
-    --sidebar-ring: 200 70% 55%;
+    --ink: 210 20% 88%;
+    --paper: 220 25% 8%;
+    --highlight: 200 55% 55%;
 
-    --chart-1: 200 70% 60%;
-    --chart-2: 195 60% 55%;
-    --chart-3: 200 50% 70%;
-    --chart-4: 42 70% 55%;
-    --chart-5: 152 45% 50%;
+    --shadow-soft: 0 4px 20px -4px hsl(0 0% 0% / 0.3);
+    --shadow-card: 0 2px 12px -2px hsl(0 0% 0% / 0.25);
 
-    --sidebar: 215 18% 12%;
+    --sidebar-background: 220 22% 9%;
+    --sidebar-foreground: 210 25% 92%;
+    --sidebar-primary: 200 70% 60%;
+    --sidebar-primary-foreground: 220 30% 8%;
+    --sidebar-accent: 220 18% 18%;
+    --sidebar-accent-foreground: 210 20% 82%;
+    --sidebar-border: 220 15% 20%;
+    --sidebar-ring: 200 70% 60%;
+
+    --chart-1: 200 65% 60%;
+    --chart-2: 165 45% 55%;
+    --chart-3: 260 40% 65%;
+    --chart-4: 42 65% 58%;
+    --chart-5: 155 45% 52%;
+
+    --sidebar: 220 22% 12%;
 
     --shadow-2xs: 0 1px 2px 0px hsl(0 0% 0% / 0.1);
     --shadow-xs: 0 1px 3px 0px hsl(0 0% 0% / 0.12);
-    --shadow-sm: 0 1px 3px 0px hsl(0 0% 0% / 0.15), 0 1px 2px -1px hsl(0 0% 0% / 0.12);
-    --shadow: 0 1px 3px 0px hsl(0 0% 0% / 0.15), 0 1px 2px -1px hsl(0 0% 0% / 0.12);
-    --shadow-md: 0 4px 6px -1px hsl(0 0% 0% / 0.15), 0 2px 4px -2px hsl(0 0% 0% / 0.12);
-    --shadow-lg: 0 10px 15px -3px hsl(0 0% 0% / 0.15), 0 4px 6px -4px hsl(0 0% 0% / 0.12);
-    --shadow-xl: 0 20px 25px -5px hsl(0 0% 0% / 0.15), 0 8px 10px -6px hsl(0 0% 0% / 0.12);
-    --shadow-2xl: 0 25px 50px -12px hsl(0 0% 0% / 0.3);
+    --shadow-sm: 0 2px 6px -1px hsl(0 0% 0% / 0.15), 0 1px 2px -1px hsl(0 0% 0% / 0.1);
+    --shadow: 0 2px 6px -1px hsl(0 0% 0% / 0.15), 0 1px 2px -1px hsl(0 0% 0% / 0.1);
+    --shadow-md: 0 6px 16px -4px hsl(0 0% 0% / 0.2), 0 2px 4px -2px hsl(0 0% 0% / 0.12);
+    --shadow-lg: 0 12px 28px -6px hsl(0 0% 0% / 0.2), 0 4px 8px -4px hsl(0 0% 0% / 0.12);
+    --shadow-xl: 0 20px 40px -8px hsl(0 0% 0% / 0.2), 0 8px 16px -6px hsl(0 0% 0% / 0.12);
+    --shadow-2xl: 0 28px 56px -12px hsl(0 0% 0% / 0.35);
   }
 }
 
@@ -199,18 +212,19 @@
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply font-semibold tracking-tight;
+    @apply font-bold tracking-tight;
     font-family: var(--font-serif);
   }
 }
 
 @layer components {
   .glass-card {
-    @apply bg-card/80 backdrop-blur-md border border-border/50 shadow-[var(--shadow-card)];
+    @apply bg-card/80 backdrop-blur-md border border-border/40 rounded-2xl;
+    box-shadow: var(--shadow-card);
   }
 
   .frost-glass {
-    @apply bg-gradient-to-br from-card/95 to-card/80 backdrop-blur-xl border border-border/30;
+    @apply bg-gradient-to-br from-card/95 to-card/80 backdrop-blur-xl border border-border/30 rounded-2xl;
     box-shadow: var(--shadow-md);
   }
 
@@ -223,7 +237,7 @@
   }
 
   .practice-card {
-    @apply relative overflow-hidden rounded-xl p-5 transition-all duration-300 hover:scale-[1.01] hover:shadow-md;
+    @apply relative overflow-hidden rounded-2xl p-5 transition-all duration-300 hover:scale-[1.01] hover:shadow-md;
   }
 
   .practice-on-ice {
@@ -239,13 +253,13 @@
   }
 
   .feature-card {
-    @apply frost-glass rounded-xl p-6 transition-all duration-300 hover:shadow-lg;
+    @apply frost-glass rounded-2xl p-6 transition-all duration-300 hover:shadow-lg;
   }
 
   .cta-button {
-    @apply h-12 px-8 text-base font-semibold rounded-lg transition-all duration-200;
+    @apply h-13 px-10 text-base font-bold rounded-2xl transition-all duration-200;
     @apply bg-primary text-primary-foreground;
-    @apply hover:shadow-lg hover:brightness-110 active:scale-[0.98];
+    @apply hover:shadow-lg hover:brightness-105 active:scale-[0.97];
     @apply touch-manipulation;
   }
 
@@ -255,6 +269,12 @@
 
   .progress-ring svg {
     @apply transform -rotate-90;
+  }
+
+  /* Soft card style for dashboard cards */
+  .soft-card {
+    @apply bg-card rounded-2xl border border-border/40 p-5 transition-all duration-200 hover:shadow-md;
+    box-shadow: var(--shadow-card);
   }
 }
 
@@ -276,5 +296,14 @@
   @keyframes shimmer {
     0% { background-position: -200% 0; }
     100% { background-position: 200% 0; }
+  }
+
+  .animate-gentle-pulse {
+    animation: gentle-pulse 3s ease-in-out infinite;
+  }
+
+  @keyframes gentle-pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
   }
 }
