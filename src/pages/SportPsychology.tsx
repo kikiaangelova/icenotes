@@ -20,32 +20,32 @@ const SportPsychology: React.FC = () => {
     {
       icon: Brain,
       title: 'Mental Preparation',
-      description: 'Learn pre-skate routines including box breathing, 4-7-8 technique, and energizing breathwork to get into the right headspace before every session.',
+      description: 'Box breathing, 4-7-8 technique, and energizing breathwork before every session.',
     },
     {
       icon: Eye,
       title: 'Visualization',
-      description: 'Guided imagery exercises to mentally rehearse programs, jumps, and competition scenarios. Train your brain to perform before your body does.',
+      description: 'Mentally rehearse programs, jumps, and competition scenarios.',
     },
     {
       icon: Shield,
       title: 'Building Confidence',
-      description: 'Daily affirmations, small-win tracking, and structured reflection help you develop unshakeable belief in your abilities as a skater.',
+      description: 'Daily affirmations, small-win tracking, and structured reflection.',
     },
     {
       icon: Flame,
       title: 'Competition Mindset',
-      description: 'Techniques for managing pre-competition nerves, staying focused under pressure, and turning anxiety into performance energy.',
+      description: 'Manage nerves, stay focused, and turn anxiety into energy.',
     },
     {
       icon: Heart,
       title: 'Emotional Resilience',
-      description: 'Learn to process frustration after bad sessions, bounce back from falls, and maintain motivation through plateaus and setbacks.',
+      description: 'Process frustration, bounce back from falls, and stay motivated.',
     },
     {
       icon: Zap,
       title: 'Focus & Flow State',
-      description: 'Strategies to eliminate distractions, enter the zone during practice, and maintain deep concentration throughout your programs.',
+      description: 'Eliminate distractions and maintain deep concentration.',
     },
   ];
 
@@ -54,45 +54,45 @@ const SportPsychology: React.FC = () => {
       <div className="min-h-screen bg-background">
         <Navbar isDarkMode={isDarkMode} onToggleDarkMode={() => setIsDarkMode(!isDarkMode)} />
 
-        <section className="px-6 md:px-12 pt-20 pb-16 md:pt-28 md:pb-20">
+        <section className="px-5 md:px-12 pt-14 pb-10 md:pt-28 md:pb-16">
           <div className="max-w-3xl mx-auto text-center">
-            <p className="text-xs font-semibold tracking-[0.2em] uppercase text-primary mb-4">Sport Psychology</p>
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-foreground font-serif mb-5">
-              Train your mind like you train your body.
+            <p className="text-xs font-semibold tracking-[0.2em] uppercase text-primary mb-3">Sport Psychology</p>
+            <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold tracking-tight text-foreground font-serif mb-4">
+              Train your mind like your body.
             </h1>
-            <p className="text-lg text-muted-foreground leading-relaxed max-w-xl mx-auto">
-              The mental side of skating is what separates good skaters from great ones. IceNotes gives you the tools to build mental strength alongside physical skill.
+            <p className="text-sm md:text-lg text-muted-foreground leading-relaxed max-w-xl mx-auto">
+              Build mental strength alongside physical skill.
             </p>
           </div>
         </section>
 
-        <section className="px-6 md:px-12 pb-24 md:pb-32">
-          <div className="max-w-5xl mx-auto grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <section className="px-5 md:px-12 pb-16 md:pb-24">
+          <div className="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {topics.map((topic) => (
               <div
                 key={topic.title}
-                className="p-6 rounded-xl border border-border/60 bg-card hover:shadow-md transition-all duration-200 group"
+                className="p-5 rounded-xl border border-border/60 bg-card hover:shadow-md transition-all duration-200 group"
               >
-                <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/15 transition-colors">
-                  <topic.icon className="w-5 h-5 text-primary" />
+                <div className="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center mb-3 group-hover:bg-primary/15 transition-colors">
+                  <topic.icon className="w-4 h-4 text-primary" />
                 </div>
-                <h3 className="text-base font-semibold text-foreground mb-2 font-serif">{topic.title}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">{topic.description}</p>
+                <h3 className="text-sm font-semibold text-foreground mb-1.5 font-serif">{topic.title}</h3>
+                <p className="text-xs text-muted-foreground leading-relaxed">{topic.description}</p>
               </div>
             ))}
           </div>
         </section>
 
-        <section className="px-6 md:px-12 py-20 bg-primary/5 border-t border-border/50">
+        <section className="px-5 md:px-12 py-14 bg-primary/5 border-t border-border/50">
           <div className="max-w-2xl mx-auto text-center">
-            <h2 className="text-2xl md:text-3xl font-bold text-foreground font-serif mb-4">
+            <h2 className="text-xl md:text-3xl font-bold text-foreground font-serif mb-3">
               Start building your mental game.
             </h2>
-            <p className="text-muted-foreground mb-8">
-              All mental training tools are included free in IceNotes.
+            <p className="text-sm text-muted-foreground mb-6">
+              All mental training tools are included free.
             </p>
-            <Link to="/auth">
-              <Button size="lg" className="font-semibold gap-2">
+            <Link to="/auth" className="inline-block w-full sm:w-auto">
+              <Button size="lg" className="h-14 px-10 text-base font-semibold rounded-xl gap-2 w-full sm:w-auto">
                 Get Started Free <ArrowRight className="w-4 h-4" />
               </Button>
             </Link>

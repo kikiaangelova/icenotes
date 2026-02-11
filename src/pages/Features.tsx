@@ -99,38 +99,37 @@ const Features: React.FC = () => {
       <div className="min-h-screen bg-background">
         <Navbar isDarkMode={isDarkMode} onToggleDarkMode={() => setIsDarkMode(!isDarkMode)} />
 
-        {/* Hero */}
-        <section className="px-6 md:px-12 pt-20 pb-16 md:pt-28 md:pb-20">
+        <section className="px-5 md:px-12 pt-14 pb-10 md:pt-28 md:pb-16">
           <div className="max-w-3xl mx-auto text-center">
-            <p className="text-xs font-semibold tracking-[0.2em] uppercase text-primary mb-4">Features</p>
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-foreground font-serif mb-5">
+            <p className="text-xs font-semibold tracking-[0.2em] uppercase text-primary mb-3">Features</p>
+            <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold tracking-tight text-foreground font-serif mb-4">
               Everything you need to train with intention.
             </h1>
-            <p className="text-lg text-muted-foreground leading-relaxed max-w-xl mx-auto">
-              Purpose-built tools for figure skaters who want structured reflection, detailed tracking, and measurable growth.
+            <p className="text-sm md:text-lg text-muted-foreground leading-relaxed max-w-xl mx-auto">
+              Purpose-built tools for structured reflection, tracking, and growth.
             </p>
           </div>
         </section>
 
         {/* Features by category */}
-        <section className="px-6 md:px-12 pb-24 md:pb-32">
-          <div className="max-w-6xl mx-auto space-y-16">
+        <section className="px-5 md:px-12 pb-16 md:pb-24">
+          <div className="max-w-6xl mx-auto space-y-12">
             {categories.map((category) => (
               <div key={category}>
-                <p className="text-xs font-semibold tracking-[0.2em] uppercase text-primary mb-6">{category}</p>
-                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                <p className="text-xs font-semibold tracking-[0.2em] uppercase text-primary mb-4">{category}</p>
+                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
                   {features
                     .filter(f => f.category === category)
                     .map((feature) => (
                       <div
                         key={feature.title}
-                        className="p-6 rounded-xl border border-border/60 bg-card hover:shadow-md transition-all duration-200 group"
+                        className="p-5 rounded-xl border border-border/60 bg-card hover:shadow-md transition-all duration-200 group"
                       >
-                        <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/15 transition-colors">
-                          <feature.icon className="w-5 h-5 text-primary" />
+                        <div className="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center mb-3 group-hover:bg-primary/15 transition-colors">
+                          <feature.icon className="w-4 h-4 text-primary" />
                         </div>
-                        <h3 className="text-base font-semibold text-foreground mb-2 font-serif">{feature.title}</h3>
-                        <p className="text-sm text-muted-foreground leading-relaxed">{feature.description}</p>
+                        <h3 className="text-sm font-semibold text-foreground mb-1.5 font-serif">{feature.title}</h3>
+                        <p className="text-xs text-muted-foreground leading-relaxed">{feature.description}</p>
                       </div>
                     ))}
                 </div>
@@ -140,16 +139,16 @@ const Features: React.FC = () => {
         </section>
 
         {/* CTA */}
-        <section className="px-6 md:px-12 py-20 bg-primary/5 border-t border-border/50">
+        <section className="px-5 md:px-12 py-14 bg-primary/5 border-t border-border/50">
           <div className="max-w-2xl mx-auto text-center">
-            <h2 className="text-2xl md:text-3xl font-bold text-foreground font-serif mb-4">
+            <h2 className="text-xl md:text-3xl font-bold text-foreground font-serif mb-3">
               Start using these tools today.
             </h2>
-            <p className="text-muted-foreground mb-8">
-              All features are free. No credit card. No trial period.
+            <p className="text-sm text-muted-foreground mb-6">
+              All features are free. No credit card needed.
             </p>
-            <Link to="/auth">
-              <Button size="lg" className="font-semibold gap-2">
+            <Link to="/auth" className="inline-block w-full sm:w-auto">
+              <Button size="lg" className="h-14 px-10 text-base font-semibold rounded-xl gap-2 w-full sm:w-auto">
                 Create Your Free Account <ArrowRight className="w-4 h-4" />
               </Button>
             </Link>
