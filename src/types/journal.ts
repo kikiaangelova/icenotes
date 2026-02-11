@@ -6,6 +6,16 @@ export interface JournalEntry {
   workedOn: string;
   feeling: 'calm' | 'focused' | 'challenging' | 'heavy' | 'energizing';
   smallWin: string;
+  sessionType?: string;
+  whatWentWell?: string;
+  whatWasChallenging?: string;
+  whatILearned?: string;
+  emotionalState?: number;
+  confidenceLevel?: number;
+  focusLevel?: number;
+  nextGoal?: string;
+  coachNotes?: string;
+  personalReflections?: string;
   createdAt: Date;
 }
 
