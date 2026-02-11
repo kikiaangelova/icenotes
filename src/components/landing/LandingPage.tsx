@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
-import { Snowflake, BookOpen, Brain, Target, TrendingUp, Feather, BarChart3, Heart, ArrowRight, Quote, Sparkles, Activity, Music, Eye, MessageCircle } from 'lucide-react';
+import { Snowflake, BookOpen, Brain, Target, TrendingUp, Feather, BarChart3, Heart, ArrowRight, Quote, Sparkles, Activity, Music, Eye, MessageCircle, Dumbbell, PenLine, Sprout } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Link } from 'react-router-dom';
 
@@ -13,11 +13,11 @@ interface LandingPageProps {
 export const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted }) => {
   return (
     <>
-      {/* ─── Hero – Emotional Opening ─── */}
+      {/* ─── Hero – Warm & Welcoming ─── */}
       <section className="relative z-10 px-6 md:px-12 pt-20 pb-16 md:pt-32 md:pb-24">
         <div className="max-w-3xl mx-auto">
-          <p className="text-sm md:text-base text-primary font-medium mb-6 tracking-wide">
-            For every skater who has ever wondered — <em>"Am I getting better?"</em>
+          <p className="text-sm md:text-base text-primary font-medium mb-6">
+            Hey, skater 👋 — this one's for you.
           </p>
           <h1 className="text-[2rem] md:text-[3rem] lg:text-[3.75rem] font-bold leading-[1.12] tracking-[-0.025em] text-foreground font-serif mb-8">
             Your skating journey
@@ -27,13 +27,69 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted }) => {
             <span className="text-primary">remembered.</span>
           </h1>
           <p className="text-base md:text-lg text-muted-foreground leading-relaxed max-w-xl mb-10">
-            IceNotes is a digital journal built for figure skaters — a quiet, personal space 
-            to reflect on your training, understand your emotions, and watch yourself grow 
-            in ways no scoreboard ever shows.
+            IceNotes is your personal skating journal — a friendly, private space to write 
+            about your sessions, notice how you're feeling, and see just how far you've come. 
+            No grades, no pressure. Just you and your journey.
           </p>
           <div className="flex items-center gap-3 text-xs text-muted-foreground">
             <span className="w-8 border-t border-border" />
-            Free · Private · Made by skaters, for skaters
+            100% free · Always private · Made by skaters, for skaters
+          </div>
+        </div>
+      </section>
+
+      {/* ─── How It Works in 3 Steps ─── */}
+      <section className="relative z-10 px-6 md:px-12 py-16 md:py-24 bg-primary/5 border-y border-border/50">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-14">
+            <p className="text-xs font-semibold tracking-[0.2em] uppercase text-primary mb-4">Simple as 1-2-3</p>
+            <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-foreground font-serif mb-3">
+              How it works
+            </h2>
+            <p className="text-muted-foreground max-w-md mx-auto">
+              IceNotes fits right into your skating routine. Here's how a typical day looks:
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8 md:gap-6 relative">
+            {/* Connecting line (desktop) */}
+            <div className="hidden md:block absolute top-14 left-[calc(16.67%+24px)] right-[calc(16.67%+24px)] h-[2px] bg-gradient-to-r from-primary/20 via-primary/30 to-primary/20" />
+
+            {[
+              {
+                step: '1',
+                icon: Dumbbell,
+                title: 'Train',
+                headline: 'Go to the rink and do your thing.',
+                text: 'Practice your jumps, spins, footwork — whatever your coach has planned or whatever feels right. IceNotes waits for you.',
+              },
+              {
+                step: '2',
+                icon: PenLine,
+                title: 'Reflect',
+                headline: 'Take 5 minutes to write about it.',
+                text: 'After your session, open IceNotes and jot down what you worked on, how you felt, and one thing you noticed. That\'s it — no essays required.',
+              },
+              {
+                step: '3',
+                icon: Sprout,
+                title: 'Grow',
+                headline: 'Watch yourself improve over time.',
+                text: 'Over days and weeks, your entries become a story of growth. You\'ll spot patterns, celebrate wins you forgot, and build real confidence.',
+              },
+            ].map((item) => (
+              <div key={item.step} className="text-center relative">
+                <div className="w-14 h-14 rounded-2xl bg-card border-2 border-primary/20 flex items-center justify-center mx-auto mb-5 relative z-10 shadow-sm">
+                  <item.icon className="w-6 h-6 text-primary" />
+                </div>
+                <div className="inline-flex items-center gap-1.5 mb-3">
+                  <span className="text-xs font-mono font-bold text-primary bg-primary/10 w-5 h-5 rounded-full flex items-center justify-center">{item.step}</span>
+                  <span className="text-lg font-bold text-foreground font-serif">{item.title}</span>
+                </div>
+                <p className="text-sm font-medium text-foreground mb-2">{item.headline}</p>
+                <p className="text-sm text-muted-foreground leading-relaxed max-w-xs mx-auto">{item.text}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -81,50 +137,52 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted }) => {
           <div className="max-w-2xl mb-14">
             <p className="text-xs font-semibold tracking-[0.2em] uppercase text-primary mb-4">Why Reflection Matters</p>
             <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-foreground font-serif mb-4 leading-snug">
-              The skaters who grow fastest aren't just the ones who train the most — they're 
-              the ones who <span className="text-primary">understand</span> their training.
+              The best skaters don't just train more — they <span className="text-primary">understand</span> themselves better.
             </h2>
             <p className="text-muted-foreground leading-relaxed">
-              Sport psychology research shows that athletes who regularly reflect on their performance 
-              develop stronger self-awareness, recover faster from setbacks, and build more sustainable confidence.
+              When you take a few minutes to think about your session, something powerful happens. 
+              You start to notice what works, what doesn't, and how your feelings affect your skating. 
+              That's where real growth begins.
             </p>
           </div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
               {
-                title: 'Emotional awareness',
-                text: 'When you name what you feel — fear, frustration, excitement — you stop being controlled by it. You start choosing how to respond.',
+                title: 'Know how you feel',
+                text: 'When you can name your emotions — nervous, excited, frustrated — you stop being stuck in them. You start choosing how to respond.',
                 icon: Heart,
               },
               {
-                title: 'Pattern recognition',
-                text: 'Writing things down reveals what you can\'t see in the moment: the warm-ups that work, the thoughts that derail you, the conditions where you perform best.',
+                title: 'See your patterns',
+                text: 'Writing things down shows you what you can\'t see in the moment: which warm-ups help, what throws you off, when you skate your best.',
                 icon: Eye,
               },
               {
-                title: 'Resilience building',
-                text: 'Bad sessions happen. Reflection helps you process them constructively instead of letting them shake your confidence for the next week.',
+                title: 'Bounce back faster',
+                text: 'Tough sessions happen to everyone. Writing about them helps you move forward instead of carrying frustration to the next practice.',
                 icon: Activity,
               },
               {
-                title: 'Goal clarity',
-                text: 'When you regularly ask "What do I want to work on next?", your training becomes intentional — not just a list of elements to survive.',
+                title: 'Know what to focus on',
+                text: 'When you ask yourself "What do I want to work on next?" after each session, your training stops being random and starts being intentional.',
                 icon: Target,
               },
               {
-                title: 'Coach communication',
-                text: 'A skater who can articulate what they\'re feeling and where they\'re stuck is a skater who gets better coaching.',
+                title: 'Talk to your coach better',
+                text: 'When you can explain how a session felt — not just what you did — your coach can help you in ways that really matter.',
                 icon: MessageCircle,
               },
               {
-                title: 'Confidence that lasts',
-                text: 'Reading back through your own entries — seeing how far you\'ve come — builds a kind of confidence no medal can give you.',
+                title: 'Build real confidence',
+                text: 'Reading your own entries from weeks ago and seeing how much you\'ve grown? That\'s a kind of confidence no medal can give you.',
                 icon: Sparkles,
               },
             ].map((item) => (
-              <div key={item.title} className="space-y-3">
-                <item.icon className="w-5 h-5 text-primary/70" />
+              <div key={item.title} className="p-5 rounded-xl bg-card/60 border border-border/40 space-y-3">
+                <div className="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center">
+                  <item.icon className="w-4.5 h-4.5 text-primary" />
+                </div>
                 <h3 className="text-base font-semibold text-foreground font-serif">{item.title}</h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">{item.text}</p>
               </div>
@@ -139,36 +197,39 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted }) => {
           <div className="text-center max-w-2xl mx-auto mb-14">
             <p className="text-xs font-semibold tracking-[0.2em] uppercase text-primary mb-4">How IceNotes Helps You Grow</p>
             <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-foreground font-serif mb-4">
-              A structured system for the three pillars of skating development.
+              Three ways IceNotes supports your skating.
             </h2>
+            <p className="text-muted-foreground">
+              Think of it as your personal toolkit — covering how you feel, how you train, and how you're progressing.
+            </p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-10">
             {[
               {
-                num: '01',
+                num: '💭',
                 icon: Brain,
-                title: 'Mindset',
-                text: 'Daily reflections, emotional check-ins, and pre-skate mental routines. Build the inner game that competition demands.',
-                details: ['Daily emotional state tracking', 'Confidence & focus ratings', 'Pre-session breathing exercises', 'Personal reflections journal'],
+                title: 'Your Mindset',
+                text: 'Check in with yourself after every session. How are you feeling? What\'s on your mind? Build the mental strength that great skating requires.',
+                details: ['Rate how you feel each day', 'Track your confidence over time', 'Calm your nerves before sessions', 'Write private reflections'],
               },
               {
-                num: '02',
+                num: '📋',
                 icon: BarChart3,
-                title: 'Training',
-                text: 'Log every session with detail and purpose. Track what you practiced, what clicked, and what needs attention.',
-                details: ['On-ice & off-ice session logs', 'Session type categorization', 'Coach notes after each session', 'Training volume overview'],
+                title: 'Your Training',
+                text: 'Write down what you practiced, what went well, and what was tricky. Over time, you\'ll see exactly what works for you.',
+                details: ['Log on-ice & off-ice sessions', 'Note what type of session it was', 'Leave notes for your coach', 'See how much you\'re training'],
               },
               {
-                num: '03',
+                num: '🎯',
                 icon: Target,
-                title: 'Performance',
-                text: 'Track technical progress with data. See your landing rates improve, your consistency grow, your goals being met.',
-                details: ['Jump attempt tracking', 'Landing rate analytics', 'Weekly goal setting', 'Progress trend visualization'],
+                title: 'Your Progress',
+                text: 'Keep track of your jumps, set goals for the week, and watch your landing rate climb. Seeing the numbers go up feels amazing.',
+                details: ['Track every jump attempt', 'See which jumps are improving', 'Set goals for each week', 'Watch your progress over time'],
               },
             ].map((pillar) => (
               <div key={pillar.num} className="space-y-5">
-                <span className="text-xs font-mono text-muted-foreground/50 tracking-widest">{pillar.num}</span>
+                <span className="text-2xl mb-1 block">{pillar.num}</span>
                 <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
                   <pillar.icon className="w-6 h-6 text-primary" />
                 </div>
@@ -194,10 +255,10 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted }) => {
           <div className="text-center max-w-2xl mx-auto mb-14">
             <p className="text-xs font-semibold tracking-[0.2em] uppercase text-primary mb-4">What You Can Track</p>
             <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-foreground font-serif mb-4">
-              Every part of your skating, in one place.
+              Everything about your skating — all in one place.
             </h2>
             <p className="text-muted-foreground leading-relaxed">
-              IceNotes covers the technical, emotional, and strategic layers of your development.
+              From the jumps you're landing to how you're feeling — IceNotes keeps it all together for you.
             </p>
           </div>
 
@@ -228,22 +289,22 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted }) => {
       <section className="relative z-10 px-6 md:px-12 py-16 md:py-24">
         <div className="max-w-3xl mx-auto">
           <div className="text-center mb-12">
-            <p className="text-xs font-semibold tracking-[0.2em] uppercase text-primary mb-4">Sport Psychology Support</p>
+            <p className="text-xs font-semibold tracking-[0.2em] uppercase text-primary mb-4">Your Mental Game</p>
             <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-foreground font-serif mb-4">
-              Your mental game is part of your training.
+              Because how you feel matters just as much as how you skate.
             </h2>
             <p className="text-muted-foreground leading-relaxed max-w-xl mx-auto">
-              IceNotes integrates sport psychology principles directly into your daily routine — 
-              not as an afterthought, but as a core part of how you train.
+              IceNotes gently weaves sport psychology into your daily routine — helping you understand 
+              your emotions, build confidence, and take care of the person behind the skater.
             </p>
           </div>
 
           <div className="grid sm:grid-cols-2 gap-5">
             {[
-              { title: 'Pre-Session Preparation', text: 'Guided breathing exercises and intention-setting to help you arrive at the rink focused and ready.' },
-              { title: 'Emotional Check-Ins', text: 'Rate your emotional state, confidence, and focus after every session. See how your inner state affects your performance over time.' },
-              { title: 'Growth Mindset Prompts', text: '"What did I learn?" and "What was challenging?" questions that train your brain to find growth in every session — even the hard ones.' },
-              { title: 'Reflection History', text: 'Look back at your entries over weeks and months. Seeing your own words of resilience builds deeper, lasting confidence.' },
+              { title: 'Get focused before you skate', text: 'Simple breathing exercises and a moment to set your intention — so you step on the ice calm and ready.' },
+              { title: 'Check in with yourself', text: 'After each session, rate how you felt emotionally, how confident you were, and how focused you stayed. It takes 30 seconds.' },
+              { title: 'Find the good in every session', text: '"What did I learn today?" and "What was hard?" — these simple questions help you grow from every session, even the tough ones.' },
+              { title: 'See how far you\'ve come', text: 'Look back at your entries from weeks ago. You\'ll be surprised how much has changed — and that feeling builds real, lasting confidence.' },
             ].map((item) => (
               <div key={item.title} className="p-6 rounded-xl border border-border/50 bg-card/60 space-y-2">
                 <h3 className="text-sm font-semibold text-foreground font-serif">{item.title}</h3>
@@ -260,7 +321,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted }) => {
           <div className="text-center mb-12">
             <p className="text-xs font-semibold tracking-[0.2em] uppercase text-primary mb-4">From Skaters Like You</p>
             <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-foreground font-serif">
-              Words from the ice.
+              Here's what skaters are saying.
             </h2>
           </div>
 
