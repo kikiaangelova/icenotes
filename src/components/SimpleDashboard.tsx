@@ -14,7 +14,7 @@ import { ReminderSettings } from './ReminderSettings';
 import { ProgressSummaryCards } from './ProgressSummaryCards';
 import { ActivityCalendar } from './ActivityCalendar';
 import { AvatarUpload } from './AvatarUpload';
-import { TrialBanner } from './TrialBanner';
+
 import { MotivationalQuote } from './MotivationalQuote';
 import { QuotesCollection } from './QuotesCollection';
 import { SkatingGoals } from './SkatingGoals';
@@ -134,8 +134,6 @@ export const SimpleDashboard: React.FC = () => {
 
         {/* Main content */}
         <main className="container max-w-2xl mx-auto px-3 sm:px-4 py-4 sm:py-6">
-          {/* Trial Banner */}
-          <TrialBanner />
           
           {/* Daily Motivational Quote */}
           <MotivationalQuote variant="banner" useDaily showRefresh showSave className="mb-4" />
