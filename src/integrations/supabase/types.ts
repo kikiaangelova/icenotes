@@ -14,6 +14,33 @@ export type Database = {
   }
   public: {
     Tables: {
+      feedback: {
+        Row: {
+          age: number | null
+          created_at: string
+          id: string
+          message: string
+          name: string
+          skating_level: string | null
+        }
+        Insert: {
+          age?: number | null
+          created_at?: string
+          id?: string
+          message: string
+          name: string
+          skating_level?: string | null
+        }
+        Update: {
+          age?: number | null
+          created_at?: string
+          id?: string
+          message?: string
+          name?: string
+          skating_level?: string | null
+        }
+        Relationships: []
+      }
       goals: {
         Row: {
           category: string | null

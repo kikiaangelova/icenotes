@@ -44,7 +44,7 @@ const ShareExperience: React.FC = () => {
 
     setSubmitting(true);
     try {
-      const { error } = await supabase.from('feedback').insert({
+      const { error } = await (supabase as any).from('feedback').insert({
         name: form.name.trim().slice(0, 100),
         age: form.age ? parseInt(form.age) : null,
         skating_level: form.skatingLevel || null,
