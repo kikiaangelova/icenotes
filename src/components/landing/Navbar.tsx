@@ -6,8 +6,10 @@ import { cn } from '@/lib/utils';
 
 const NAV_LINKS = [
   { label: 'Home', href: '/' },
-  { label: 'How It Works', href: '/how-it-works' },
+  { label: 'About IceNotes', href: '/about' },
   { label: 'Features', href: '/features' },
+  { label: 'How It Works', href: '/how-it-works' },
+  { label: 'Sport Psychology', href: '/sport-psychology' },
   { label: 'Contact', href: '/contact' },
 ];
 
