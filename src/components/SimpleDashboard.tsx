@@ -17,9 +17,12 @@ import { AvatarUpload } from './AvatarUpload';
 import { TrialBanner } from './TrialBanner';
 import { MotivationalQuote } from './MotivationalQuote';
 import { QuotesCollection } from './QuotesCollection';
+import { SkatingGoals } from './SkatingGoals';
+import { ProgressOverview } from './ProgressOverview';
+import { SportPsychology } from './SportPsychology';
 import { Button } from '@/components/ui/button';
 import { SELF_LEVELS } from '@/types/journal';
-import { Feather, Compass, Heart, Settings, LogOut, Dumbbell, Target, CalendarCheck, Brain, Timer, Bell, Snowflake, BookHeart } from 'lucide-react';
+import { Feather, Compass, Heart, Settings, LogOut, Dumbbell, Target, CalendarCheck, Brain, Timer, Bell, Snowflake, BookHeart, TrendingUp, Sparkles } from 'lucide-react';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -145,10 +148,14 @@ export const SimpleDashboard: React.FC = () => {
 
           {/* Tabs for training types - responsive */}
           <Tabs defaultValue="goals" className="space-y-4 sm:space-y-6">
-            <TabsList className="grid w-full grid-cols-7 h-11 sm:h-12">
+            <TabsList className="grid w-full grid-cols-5 sm:grid-cols-10 h-11 sm:h-12">
               <TabsTrigger value="goals" className="flex items-center justify-center gap-1 px-1 sm:px-2">
                 <CalendarCheck className="w-4 h-4 flex-shrink-0" />
                 <span className="hidden sm:inline text-xs">Goals</span>
+              </TabsTrigger>
+              <TabsTrigger value="mygoals" className="flex items-center justify-center gap-1 px-1 sm:px-2">
+                <Target className="w-4 h-4 flex-shrink-0" />
+                <span className="hidden sm:inline text-xs">Plan</span>
               </TabsTrigger>
               <TabsTrigger value="training" className="flex items-center justify-center gap-1 px-1 sm:px-2">
                 <Snowflake className="w-4 h-4 flex-shrink-0" />
@@ -158,6 +165,10 @@ export const SimpleDashboard: React.FC = () => {
                 <Brain className="w-4 h-4 flex-shrink-0" />
                 <span className="hidden sm:inline text-xs">Mind</span>
               </TabsTrigger>
+              <TabsTrigger value="psychology" className="flex items-center justify-center gap-1 px-1 sm:px-2">
+                <Sparkles className="w-4 h-4 flex-shrink-0" />
+                <span className="hidden sm:inline text-xs">Psych</span>
+              </TabsTrigger>
               <TabsTrigger value="jumps" className="flex items-center justify-center gap-1 px-1 sm:px-2">
                 <Target className="w-4 h-4 flex-shrink-0" />
                 <span className="hidden sm:inline text-xs">Jumps</span>
@@ -165,6 +176,10 @@ export const SimpleDashboard: React.FC = () => {
               <TabsTrigger value="journal" className="flex items-center justify-center gap-1 px-1 sm:px-2">
                 <Feather className="w-4 h-4 flex-shrink-0" />
                 <span className="hidden sm:inline text-xs">Journal</span>
+              </TabsTrigger>
+              <TabsTrigger value="progress" className="flex items-center justify-center gap-1 px-1 sm:px-2">
+                <TrendingUp className="w-4 h-4 flex-shrink-0" />
+                <span className="hidden sm:inline text-xs">Progress</span>
               </TabsTrigger>
               <TabsTrigger value="quotes" className="flex items-center justify-center gap-1 px-1 sm:px-2">
                 <BookHeart className="w-4 h-4 flex-shrink-0" />
@@ -181,9 +196,19 @@ export const SimpleDashboard: React.FC = () => {
               <WeeklyGoals />
             </TabsContent>
 
+            {/* Skating Goals (Weekly/Monthly/Season) */}
+            <TabsContent value="mygoals" className="space-y-4">
+              <SkatingGoals />
+            </TabsContent>
+
             {/* Mental Prep Tab */}
             <TabsContent value="mind" className="space-y-4">
               <PreTrainingPrep trainingType="on-ice" />
+            </TabsContent>
+
+            {/* Sport Psychology Tab */}
+            <TabsContent value="psychology" className="space-y-4">
+              <SportPsychology />
             </TabsContent>
 
             {/* Quotes Tab */}
@@ -273,6 +298,11 @@ export const SimpleDashboard: React.FC = () => {
             {/* Journal Tab */}
             <TabsContent value="journal" className="space-y-4">
               <DailyJournal />
+            </TabsContent>
+
+            {/* Progress Overview Tab */}
+            <TabsContent value="progress" className="space-y-4">
+              <ProgressOverview />
             </TabsContent>
 
             {/* Journey Tab */}
