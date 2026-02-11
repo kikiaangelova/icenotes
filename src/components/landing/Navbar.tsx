@@ -6,10 +6,10 @@ import { cn } from '@/lib/utils';
 
 const NAV_LINKS = [
   { label: 'Home', href: '/' },
-  { label: 'About IceNotes', href: '/about' },
+  { label: 'About', href: '/about' },
   { label: 'Features', href: '/features' },
   { label: 'How It Works', href: '/how-it-works' },
-  { label: 'Sport Psychology', href: '/sport-psychology' },
+  { label: 'Psychology', href: '/sport-psychology' },
   { label: 'Contact', href: '/contact' },
 ];
 
@@ -23,29 +23,29 @@ export const Navbar: React.FC<NavbarProps> = ({ isDarkMode, onToggleDarkMode }) 
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border/50 bg-background/90 backdrop-blur-md">
-      <div className="max-w-6xl mx-auto px-6 md:px-12 h-14 flex items-center justify-between">
+    <header className="sticky top-0 z-50 w-full border-b border-border/30 bg-background/85 backdrop-blur-xl">
+      <div className="max-w-5xl mx-auto px-5 md:px-10 h-16 flex items-center justify-between">
         {/* Logo */}
-        <Link to="/" className="flex items-center gap-2.5 shrink-0">
-          <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
-            <Snowflake className="w-4 h-4 text-primary-foreground" />
+        <Link to="/" className="flex items-center gap-2.5 shrink-0 group">
+          <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-primary to-primary/80 flex items-center justify-center shadow-sm group-hover:shadow-md transition-shadow">
+            <Snowflake className="w-4.5 h-4.5 text-primary-foreground" />
           </div>
-          <span className="text-lg font-semibold tracking-tight text-foreground font-serif">
+          <span className="text-lg font-bold tracking-tight text-foreground font-serif">
             IceNotes
           </span>
         </Link>
 
         {/* Desktop nav */}
-        <nav className="hidden md:flex items-center gap-1">
+        <nav className="hidden md:flex items-center gap-0.5">
           {NAV_LINKS.map((link) => (
             <Link
               key={link.href}
               to={link.href}
               className={cn(
-                "px-3 py-1.5 rounded-md text-sm font-medium transition-colors",
+                "px-3.5 py-2 rounded-xl text-sm font-semibold transition-all duration-200",
                 location.pathname === link.href
                   ? "text-primary bg-primary/10"
-                  : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
+                  : "text-muted-foreground hover:text-foreground hover:bg-muted/60"
               )}
             >
               {link.label}
@@ -54,34 +54,34 @@ export const Navbar: React.FC<NavbarProps> = ({ isDarkMode, onToggleDarkMode }) 
         </nav>
 
         {/* Right actions */}
-        <div className="hidden md:flex items-center gap-2">
+        <div className="hidden md:flex items-center gap-2.5">
           <Button
             variant="ghost"
             size="icon"
             onClick={onToggleDarkMode}
-            className="rounded-full w-9 h-9"
+            className="rounded-xl w-9 h-9"
           >
             {isDarkMode ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
           </Button>
           <Link to="/auth">
-            <Button variant="outline" size="sm" className="font-medium">
+            <Button variant="ghost" size="sm" className="font-semibold rounded-xl px-4">
               Log In
             </Button>
           </Link>
-          <Link to="/auth">
-            <Button size="sm" className="font-semibold">
-              Sign Up
+          <Link to="/auth?mode=signup">
+            <Button size="sm" className="font-bold rounded-xl px-5 shadow-sm">
+              Get Started ✨
             </Button>
           </Link>
         </div>
 
         {/* Mobile toggle */}
-        <div className="flex md:hidden items-center gap-2">
+        <div className="flex md:hidden items-center gap-1.5">
           <Button
             variant="ghost"
             size="icon"
             onClick={onToggleDarkMode}
-            className="rounded-full w-9 h-9"
+            className="rounded-xl w-9 h-9"
           >
             {isDarkMode ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
           </Button>
@@ -89,7 +89,7 @@ export const Navbar: React.FC<NavbarProps> = ({ isDarkMode, onToggleDarkMode }) 
             variant="ghost"
             size="icon"
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="rounded-full w-9 h-9"
+            className="rounded-xl w-9 h-9"
           >
             {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </Button>
@@ -98,15 +98,15 @@ export const Navbar: React.FC<NavbarProps> = ({ isDarkMode, onToggleDarkMode }) 
 
       {/* Mobile menu */}
       {mobileOpen && (
-        <div className="md:hidden border-t border-border/50 bg-background animate-fade-in">
-          <nav className="flex flex-col px-6 py-4 gap-1">
+        <div className="md:hidden border-t border-border/30 bg-background/95 backdrop-blur-xl animate-fade-in">
+          <nav className="flex flex-col px-5 py-4 gap-1">
             {NAV_LINKS.map((link) => (
               <Link
                 key={link.href}
                 to={link.href}
                 onClick={() => setMobileOpen(false)}
                 className={cn(
-                  "px-3 py-2.5 rounded-lg text-sm font-medium transition-colors",
+                  "px-4 py-3 rounded-xl text-sm font-semibold transition-all",
                   location.pathname === link.href
                     ? "text-primary bg-primary/10"
                     : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
@@ -115,15 +115,15 @@ export const Navbar: React.FC<NavbarProps> = ({ isDarkMode, onToggleDarkMode }) 
                 {link.label}
               </Link>
             ))}
-            <div className="border-t border-border/50 mt-2 pt-3 flex flex-col gap-2">
+            <div className="border-t border-border/30 mt-3 pt-4 flex flex-col gap-2.5">
               <Link to="/auth" onClick={() => setMobileOpen(false)}>
-                <Button variant="outline" className="w-full font-medium">
+                <Button variant="outline" className="w-full font-semibold rounded-xl h-11">
                   Log In
                 </Button>
               </Link>
-              <Link to="/auth" onClick={() => setMobileOpen(false)}>
-                <Button className="w-full font-semibold">
-                  Sign Up
+              <Link to="/auth?mode=signup" onClick={() => setMobileOpen(false)}>
+                <Button className="w-full font-bold rounded-xl h-11 shadow-sm">
+                  Get Started ✨
                 </Button>
               </Link>
             </div>
