@@ -347,6 +347,134 @@ export const useSetWeeklyGoal = () => {
   });
 };
 
+// Goals hooks (timeframe-based goals from goals table)
+export interface SkatingGoal {
+  id: string;
+  title: string;
+  description?: string;
+  category: string;
+  timeframe: 'weekly' | 'monthly' | 'season';
+  targetDate?: string;
+  progress: number;
+  completed: boolean;
+  notes?: string;
+}
+
+export const useGoals = () => {
+  const { user } = useAuth();
+  
+  return useQuery({
+    queryKey: ['goals', user?.id],
+    queryFn: async () => {
+      if (!user) return [];
+      const { data, error } = await supabase
+        .from('goals')
+        .select('*')
+        .eq('user_id', user.id)
+        .order('created_at', { ascending: false });
+      
+      if (error) throw error;
+      
+      return data.map(g => ({
+        id: g.id,
+        title: g.title,
+        description: g.description || undefined,
+        category: g.category || 'general',
+        timeframe: (g as any).timeframe || 'weekly',
+        targetDate: g.target_date || undefined,
+        progress: g.progress || 0,
+        completed: g.completed || false,
+        notes: (g as any).notes || undefined,
+      })) as SkatingGoal[];
+    },
+    enabled: !!user
+  });
+};
+
+export const useAddGoal = () => {
+  const { user } = useAuth();
+  const queryClient = useQueryClient();
+  
+  return useMutation({
+    mutationFn: async (goal: Omit<SkatingGoal, 'id' | 'progress' | 'completed'>) => {
+      if (!user) throw new Error('Not authenticated');
+      
+      const { error } = await (supabase as any)
+        .from('goals')
+        .insert({
+          user_id: user.id,
+          title: goal.title,
+          description: goal.description || null,
+          category: goal.category,
+          timeframe: goal.timeframe,
+          target_date: goal.targetDate || null,
+          progress: 0,
+          completed: false,
+          notes: goal.notes || null,
+        });
+      
+      if (error) throw error;
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['goals'] });
+    }
+  });
+};
+
+export const useUpdateGoal = () => {
+  const { user } = useAuth();
+  const queryClient = useQueryClient();
+  
+  return useMutation({
+    mutationFn: async ({ id, updates }: { id: string; updates: Partial<SkatingGoal> }) => {
+      if (!user) throw new Error('Not authenticated');
+      
+      const dbUpdates: Record<string, any> = {};
+      if (updates.title !== undefined) dbUpdates.title = updates.title;
+      if (updates.description !== undefined) dbUpdates.description = updates.description;
+      if (updates.category !== undefined) dbUpdates.category = updates.category;
+      if (updates.timeframe !== undefined) dbUpdates.timeframe = updates.timeframe;
+      if (updates.targetDate !== undefined) dbUpdates.target_date = updates.targetDate;
+      if (updates.progress !== undefined) dbUpdates.progress = updates.progress;
+      if (updates.completed !== undefined) dbUpdates.completed = updates.completed;
+      if (updates.notes !== undefined) dbUpdates.notes = updates.notes;
+      
+      const { error } = await (supabase as any)
+        .from('goals')
+        .update(dbUpdates)
+        .eq('id', id)
+        .eq('user_id', user.id);
+      
+      if (error) throw error;
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['goals'] });
+    }
+  });
+};
+
+export const useDeleteGoal = () => {
+  const { user } = useAuth();
+  const queryClient = useQueryClient();
+  
+  return useMutation({
+    mutationFn: async (id: string) => {
+      if (!user) throw new Error('Not authenticated');
+      
+      const { error } = await supabase
+        .from('goals')
+        .delete()
+        .eq('id', id)
+        .eq('user_id', user.id);
+      
+      if (error) throw error;
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['goals'] });
+    }
+  });
+};
+
 // Helper functions
 export const getTodaysEntry = (entries: JournalEntry[]) => {
   const today = format(new Date(), 'yyyy-MM-dd');

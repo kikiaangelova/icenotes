@@ -12,6 +12,11 @@ import {
   useAddJumpAttempt,
   useWeeklyGoals,
   useSetWeeklyGoal,
+  useGoals,
+  useAddGoal,
+  useUpdateGoal,
+  useDeleteGoal,
+  SkatingGoal,
   getTodaysEntry as getTodaysEntryHelper,
   getTodaysSessions as getTodaysSessionsHelper,
   getTodaysJumps as getTodaysJumpsHelper,
@@ -45,6 +50,12 @@ interface JournalContextType {
   getCurrentWeekGoal: () => WeeklyGoal | null;
   setWeeklyGoal: (goal: Omit<WeeklyGoal, 'id' | 'weekStart' | 'createdAt'>) => void;
   getWeeklyProgress: () => WeeklyProgress;
+  
+  // Goals (timeframe-based)
+  goals: SkatingGoal[];
+  addGoal: (goal: Omit<SkatingGoal, 'id' | 'progress' | 'completed'>) => void;
+  updateGoal: (id: string, updates: Partial<SkatingGoal>) => void;
+  deleteGoal: (id: string) => void;
   
   getJourneyStats: () => JourneyStats;
   resetProfile: () => void;
@@ -84,7 +95,13 @@ export const JournalProvider: React.FC<{ children: ReactNode }> = ({ children })
   const { data: weeklyGoals = [], isLoading: goalsLoading } = useWeeklyGoals();
   const setGoalMutation = useSetWeeklyGoal();
 
-  const isLoading = profileLoading || entriesLoading || sessionsLoading || jumpsLoading || goalsLoading;
+  // Goals (timeframe-based)
+  const { data: goals = [], isLoading: skatingGoalsLoading } = useGoals();
+  const addGoalMutation = useAddGoal();
+  const updateGoalMutation = useUpdateGoal();
+  const deleteGoalMutation = useDeleteGoal();
+
+  const isLoading = profileLoading || entriesLoading || sessionsLoading || jumpsLoading || goalsLoading || skatingGoalsLoading;
 
   const setProfile = (newProfile: SkaterProfile | null) => {
     if (newProfile) {
@@ -130,6 +147,18 @@ export const JournalProvider: React.FC<{ children: ReactNode }> = ({ children })
 
   const getWeeklyProgress = (): WeeklyProgress => {
     return getWeeklyProgressHelper(trainingSessions, jumpAttempts);
+  };
+
+  const addGoal = (goal: Omit<SkatingGoal, 'id' | 'progress' | 'completed'>) => {
+    addGoalMutation.mutate(goal);
+  };
+
+  const updateGoal = (id: string, updates: Partial<SkatingGoal>) => {
+    updateGoalMutation.mutate({ id, updates });
+  };
+
+  const deleteGoal = (id: string) => {
+    deleteGoalMutation.mutate(id);
   };
 
   const getJourneyStats = (): JourneyStats => {
@@ -187,7 +216,6 @@ export const JournalProvider: React.FC<{ children: ReactNode }> = ({ children })
   };
 
   const resetProfile = () => {
-    // Sign out the user - this will clear their session
     signOut();
   };
 
@@ -208,9 +236,13 @@ export const JournalProvider: React.FC<{ children: ReactNode }> = ({ children })
     getCurrentWeekGoal,
     setWeeklyGoal,
     getWeeklyProgress,
+    goals,
+    addGoal,
+    updateGoal,
+    deleteGoal,
     getJourneyStats,
     resetProfile
-  }), [profile, isLoading, entries, trainingSessions, jumpAttempts, weeklyGoals]);
+  }), [profile, isLoading, entries, trainingSessions, jumpAttempts, weeklyGoals, goals]);
 
   return (
     <JournalContext.Provider value={value}>

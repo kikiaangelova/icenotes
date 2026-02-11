@@ -48,8 +48,10 @@ export type Database = {
           created_at: string
           description: string | null
           id: string
+          notes: string | null
           progress: number | null
           target_date: string | null
+          timeframe: string
           title: string
           updated_at: string
           user_id: string
@@ -60,8 +62,10 @@ export type Database = {
           created_at?: string
           description?: string | null
           id?: string
+          notes?: string | null
           progress?: number | null
           target_date?: string | null
+          timeframe?: string
           title: string
           updated_at?: string
           user_id: string
@@ -72,8 +76,10 @@ export type Database = {
           created_at?: string
           description?: string | null
           id?: string
+          notes?: string | null
           progress?: number | null
           target_date?: string | null
+          timeframe?: string
           title?: string
           updated_at?: string
           user_id?: string
@@ -89,6 +95,7 @@ export type Database = {
           emotional_state: number | null
           feeling: string | null
           focus_level: number | null
+          goal_id: string | null
           id: string
           next_goal: string | null
           personal_reflections: string | null
@@ -108,6 +115,7 @@ export type Database = {
           emotional_state?: number | null
           feeling?: string | null
           focus_level?: number | null
+          goal_id?: string | null
           id?: string
           next_goal?: string | null
           personal_reflections?: string | null
@@ -127,6 +135,7 @@ export type Database = {
           emotional_state?: number | null
           feeling?: string | null
           focus_level?: number | null
+          goal_id?: string | null
           id?: string
           next_goal?: string | null
           personal_reflections?: string | null
@@ -138,7 +147,15 @@ export type Database = {
           what_went_well?: string | null
           worked_on?: string
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "journal_entries_goal_id_fkey"
+            columns: ["goal_id"]
+            isOneToOne: false
+            referencedRelation: "goals"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       jump_attempts: {
         Row: {
