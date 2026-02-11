@@ -7,8 +7,10 @@ import { AuthProvider, useAuth } from "@/context/AuthContext";
 import Index from "./pages/Index";
 import Auth from "./pages/Auth";
 import Home from "./pages/Home";
+import About from "./pages/About";
 import HowItWorks from "./pages/HowItWorks";
 import Features from "./pages/Features";
+import SportPsychology from "./pages/SportPsychology";
 import Contact from "./pages/Contact";
 import JournalPage from "./pages/Journal";
 import ShareExperience from "./pages/ShareExperience";
@@ -66,8 +68,10 @@ const AppRoutes = () => {
     <Routes>
       {/* Public pages */}
       <Route path="/" element={<Home />} />
+      <Route path="/about" element={<About />} />
       <Route path="/how-it-works" element={<HowItWorks />} />
       <Route path="/features" element={<Features />} />
+      <Route path="/sport-psychology" element={<SportPsychology />} />
       <Route path="/contact" element={<Contact />} />
       <Route path="/journal" element={<JournalPage />} />
       <Route path="/share-experience" element={<ShareExperience />} />
