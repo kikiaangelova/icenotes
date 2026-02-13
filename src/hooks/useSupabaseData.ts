@@ -3,6 +3,7 @@ import { supabase } from '@/integrations/supabase/client';
 import { useAuth } from '@/context/AuthContext';
 import { JournalEntry, SkaterProfile, TrainingSession, JumpAttempt, WeeklyGoal, TrainingActivity } from '@/types/journal';
 import { format, parseISO, startOfWeek, endOfWeek, isWithinInterval } from 'date-fns';
+import { toast } from 'sonner';
 
 // Helper to parse dates
 const parseStoredDate = (dateStr: string | Date): Date => {
@@ -71,6 +72,9 @@ export const useUpdateProfile = () => {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['profile'] });
+    },
+    onError: () => {
+      toast.error('Failed to update profile. Please try again.');
     }
   });
 };
@@ -87,7 +91,8 @@ export const useJournalEntries = () => {
         .from('journal_entries')
         .select('*')
         .eq('user_id', user.id)
-        .order('date', { ascending: false });
+        .order('date', { ascending: false })
+        .limit(500);
       
       if (error) throw error;
       
@@ -146,6 +151,9 @@ export const useAddJournalEntry = () => {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['journal_entries'] });
+    },
+    onError: () => {
+      toast.error('Failed to save journal entry. Please try again.');
     }
   });
 };
@@ -162,7 +170,8 @@ export const useTrainingSessions = () => {
         .from('training_sessions')
         .select('*')
         .eq('user_id', user.id)
-        .order('date', { ascending: false });
+        .order('date', { ascending: false })
+        .limit(500);
       
       if (error) throw error;
       
@@ -205,6 +214,9 @@ export const useAddTrainingSession = () => {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['training_sessions'] });
+    },
+    onError: () => {
+      toast.error('Failed to save training session. Please try again.');
     }
   });
 };
@@ -221,7 +233,8 @@ export const useJumpAttempts = () => {
         .from('jump_attempts')
         .select('*')
         .eq('user_id', user.id)
-        .order('date', { ascending: false });
+        .order('date', { ascending: false })
+        .limit(1000);
       
       if (error) throw error;
       
@@ -263,6 +276,9 @@ export const useAddJumpAttempt = () => {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['jump_attempts'] });
+    },
+    onError: () => {
+      toast.error('Failed to log jump attempt. Please try again.');
     }
   });
 };
@@ -343,6 +359,9 @@ export const useSetWeeklyGoal = () => {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['weekly_goals'] });
+    },
+    onError: () => {
+      toast.error('Failed to save weekly goal. Please try again.');
     }
   });
 };
@@ -380,11 +399,11 @@ export const useGoals = () => {
         title: g.title,
         description: g.description || undefined,
         category: g.category || 'general',
-        timeframe: (g as any).timeframe || 'weekly',
+        timeframe: (g.timeframe as SkatingGoal['timeframe']) || 'weekly',
         targetDate: g.target_date || undefined,
         progress: g.progress || 0,
         completed: g.completed || false,
-        notes: (g as any).notes || undefined,
+        notes: g.notes || undefined,
       })) as SkatingGoal[];
     },
     enabled: !!user
@@ -399,7 +418,7 @@ export const useAddGoal = () => {
     mutationFn: async (goal: Omit<SkatingGoal, 'id' | 'progress' | 'completed'>) => {
       if (!user) throw new Error('Not authenticated');
       
-      const { error } = await (supabase as any)
+      const { error } = await supabase
         .from('goals')
         .insert({
           user_id: user.id,
@@ -417,6 +436,9 @@ export const useAddGoal = () => {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['goals'] });
+    },
+    onError: () => {
+      toast.error('Failed to create goal. Please try again.');
     }
   });
 };
@@ -429,7 +451,7 @@ export const useUpdateGoal = () => {
     mutationFn: async ({ id, updates }: { id: string; updates: Partial<SkatingGoal> }) => {
       if (!user) throw new Error('Not authenticated');
       
-      const dbUpdates: Record<string, any> = {};
+      const dbUpdates: Record<string, unknown> = {};
       if (updates.title !== undefined) dbUpdates.title = updates.title;
       if (updates.description !== undefined) dbUpdates.description = updates.description;
       if (updates.category !== undefined) dbUpdates.category = updates.category;
@@ -439,7 +461,7 @@ export const useUpdateGoal = () => {
       if (updates.completed !== undefined) dbUpdates.completed = updates.completed;
       if (updates.notes !== undefined) dbUpdates.notes = updates.notes;
       
-      const { error } = await (supabase as any)
+      const { error } = await supabase
         .from('goals')
         .update(dbUpdates)
         .eq('id', id)
@@ -449,6 +471,9 @@ export const useUpdateGoal = () => {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['goals'] });
+    },
+    onError: () => {
+      toast.error('Failed to update goal. Please try again.');
     }
   });
 };
@@ -471,6 +496,9 @@ export const useDeleteGoal = () => {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['goals'] });
+    },
+    onError: () => {
+      toast.error('Failed to delete goal. Please try again.');
     }
   });
 };

@@ -28,6 +28,7 @@ export const TrainingLog: React.FC<TrainingLogProps> = ({ type, onComplete }) =>
   const [notes, setNotes] = useState('');
   const [feeling, setFeeling] = useState<'great' | 'good' | 'okay' | 'tough' | ''>('');
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const toggleActivity = (name: string) => {
     setSelectedActivities(prev => ({
@@ -52,6 +53,7 @@ export const TrainingLog: React.FC<TrainingLogProps> = ({ type, onComplete }) =>
     .reduce((sum, [_, a]) => sum + a.duration, 0);
 
   const handleSubmit = () => {
+    if (isSubmitting) return;
     const activitiesList = Object.entries(selectedActivities)
       .filter(([_, a]) => a.selected)
       .map(([name, a]) => ({
@@ -63,6 +65,7 @@ export const TrainingLog: React.FC<TrainingLogProps> = ({ type, onComplete }) =>
 
     if (activitiesList.length === 0) return;
 
+    setIsSubmitting(true);
     addTrainingSession({
       date: new Date(),
       type,
@@ -73,6 +76,7 @@ export const TrainingLog: React.FC<TrainingLogProps> = ({ type, onComplete }) =>
     });
 
     setIsSubmitted(true);
+    setIsSubmitting(false);
     
     if (onComplete) {
       setTimeout(onComplete, 1500);
@@ -233,10 +237,10 @@ export const TrainingLog: React.FC<TrainingLogProps> = ({ type, onComplete }) =>
           
           <Button 
             onClick={handleSubmit}
-            disabled={selectedCount === 0}
+            disabled={selectedCount === 0 || isSubmitting}
             className="w-full h-11"
           >
-            Log Training Session
+            {isSubmitting ? 'Logging...' : 'Log Training Session'}
           </Button>
           
           <p className="text-xs text-center text-muted-foreground italic">

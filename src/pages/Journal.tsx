@@ -103,36 +103,40 @@ const JournalForm: React.FC = () => {
   });
 
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const update = (field: keyof JournalFormData, value: unknown) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
   };
 
-  const handleSubmit = () => {
-    if (!formData.workedOn.trim()) {
-      toast({ title: 'Missing field', description: 'Please fill in what you practiced today.', variant: 'destructive' });
-      return;
+  const handleSubmit = async () => {
+    if (!formData.workedOn.trim() || isSubmitting) return;
+    
+    setIsSubmitting(true);
+    try {
+      addEntry({
+        date: formData.date,
+        workedOn: formData.workedOn.trim(),
+        feeling: formData.feeling || 'focused',
+        smallWin: formData.whatWentWell.trim(),
+        sessionType: formData.sessionType || undefined,
+        whatWentWell: formData.whatWentWell.trim() || undefined,
+        whatWasChallenging: formData.whatWasChallenging.trim() || undefined,
+        whatILearned: formData.whatILearned.trim() || undefined,
+        emotionalState: formData.emotionalState,
+        confidenceLevel: formData.confidenceLevel,
+        focusLevel: formData.focusLevel,
+        nextGoal: formData.nextGoal.trim() || undefined,
+        coachNotes: formData.coachNotes.trim() || undefined,
+        personalReflections: formData.personalReflections.trim() || undefined,
+      });
+      setIsSubmitted(true);
+      toast({ title: 'Journal saved', description: 'Your reflection has been recorded.' });
+    } catch (error) {
+      toast({ title: 'Error', description: 'Failed to save journal entry. Please try again.', variant: 'destructive' });
+    } finally {
+      setIsSubmitting(false);
     }
-
-    addEntry({
-      date: formData.date,
-      workedOn: formData.workedOn.trim(),
-      feeling: formData.feeling || 'focused',
-      smallWin: formData.whatWentWell.trim(),
-      sessionType: formData.sessionType || undefined,
-      whatWentWell: formData.whatWentWell.trim() || undefined,
-      whatWasChallenging: formData.whatWasChallenging.trim() || undefined,
-      whatILearned: formData.whatILearned.trim() || undefined,
-      emotionalState: formData.emotionalState,
-      confidenceLevel: formData.confidenceLevel,
-      focusLevel: formData.focusLevel,
-      nextGoal: formData.nextGoal.trim() || undefined,
-      coachNotes: formData.coachNotes.trim() || undefined,
-      personalReflections: formData.personalReflections.trim() || undefined,
-    });
-
-    setIsSubmitted(true);
-    toast({ title: 'Journal saved', description: 'Your reflection has been recorded.' });
   };
 
   if (isSubmitted) {
@@ -375,9 +379,18 @@ const JournalForm: React.FC = () => {
 
       {/* Submit */}
       <div className="pt-2 pb-8">
-        <Button onClick={handleSubmit} disabled={!formData.workedOn.trim()} className="w-full h-12 text-base">
-          <Sparkles className="w-4 h-4 mr-2" />
-          Save Journal Entry
+        <Button onClick={handleSubmit} disabled={!formData.workedOn.trim() || isSubmitting} className="w-full h-12 text-base">
+          {isSubmitting ? (
+            <>
+              <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+              Saving...
+            </>
+          ) : (
+            <>
+              <Sparkles className="w-4 h-4 mr-2" />
+              Save Journal Entry
+            </>
+          )}
         </Button>
         <p className="text-xs text-center text-muted-foreground mt-3 italic">
           Consistency builds champions. Keep showing up.
