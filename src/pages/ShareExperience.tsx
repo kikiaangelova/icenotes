@@ -7,9 +7,11 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Heart, Check, Send } from 'lucide-react';
+import { Heart, Check, Send, LogIn } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
+import { useAuth } from '@/context/AuthContext';
+import { Link } from 'react-router-dom';
 
 const SKATING_LEVELS = [
   { value: 'beginner', label: 'Beginner — Just getting started' },
@@ -23,6 +25,7 @@ const SKATING_LEVELS = [
 const ShareExperience: React.FC = () => {
   const [isDarkMode, setIsDarkMode] = useState(() => document.documentElement.classList.contains('dark'));
   const { toast } = useToast();
+  const { user } = useAuth();
 
   const [form, setForm] = useState({ name: '', age: '', skatingLevel: '', message: '' });
   const [submitted, setSubmitted] = useState(false);
@@ -93,6 +96,23 @@ const ShareExperience: React.FC = () => {
                   </p>
                 </div>
 
+                {!user ? (
+                  <Card className="border-primary/10">
+                    <CardContent className="pt-8 pb-8 text-center space-y-4">
+                      <LogIn className="w-10 h-10 mx-auto text-primary" />
+                      <h3 className="text-lg font-bold text-foreground font-serif">Sign in to share your story</h3>
+                      <p className="text-sm text-muted-foreground max-w-sm mx-auto">
+                        Please log in or create an account to submit your experience. It only takes a moment!
+                      </p>
+                      <Link to="/auth">
+                        <Button className="h-11 px-8">
+                          <LogIn className="w-4 h-4 mr-2" />
+                          Sign In
+                        </Button>
+                      </Link>
+                    </CardContent>
+                  </Card>
+                ) : (
                 <Card>
                   <CardContent className="pt-6">
                     <form onSubmit={handleSubmit} className="space-y-5">
@@ -161,6 +181,7 @@ const ShareExperience: React.FC = () => {
                     </form>
                   </CardContent>
                 </Card>
+                )}
               </>
             )}
           </div>
