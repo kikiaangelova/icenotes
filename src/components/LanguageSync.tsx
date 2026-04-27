@@ -34,15 +34,32 @@ export const LanguageSync: React.FC = () => {
     if (appliedForUserRef.current === user.id) return;
 
     const fromProfile = profile.language;
+    const fromStorage = (() => {
+      try {
+        const v = localStorage.getItem('icenotes.language');
+        return v && SUPPORTED.includes(v as Language) ? (v as Language) : null;
+      } catch {
+        return null;
+      }
+    })();
+
     if (fromProfile && SUPPORTED.includes(fromProfile)) {
+      // Profile has an explicit saved preference → it wins (cross-device source of truth).
       setLanguageSilent(fromProfile);
       lastSavedRef.current = fromProfile;
+    } else if (fromStorage) {
+      // No profile preference yet — promote the local preference to the profile so
+      // the choice follows the user across devices from now on.
+      setLanguageSilent(fromStorage);
+      lastSavedRef.current = fromStorage;
+      updateProfile.mutate({ language: fromStorage });
     } else {
-      // No saved preference yet — seed with current UI language.
+      // Nothing anywhere — seed with current UI language (likely browser default).
       lastSavedRef.current = language;
     }
     appliedForUserRef.current = user.id;
-  }, [user, profile, setLanguageSilent, language]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user, profile, setLanguageSilent]);
 
   // Reset the "applied" guard when the user signs out / changes.
   useEffect(() => {
