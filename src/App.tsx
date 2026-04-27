@@ -17,6 +17,7 @@ import CoachProfile from "./pages/CoachProfile";
 import Contact from "./pages/Contact";
 import JournalPage from "./pages/Journal";
 import ShareExperience from "./pages/ShareExperience";
+import AdminPage from "./pages/Admin";
 import NotFound from "./pages/NotFound";
 import { Loader2 } from "lucide-react";
 
@@ -96,6 +97,15 @@ const AppRoutes = () => {
             <Index />
           </ProtectedRoute>
         } 
+      />
+
+      <Route
+        path="/admin"
+        element={
+          <ProtectedRoute>
+            <AdminPage />
+          </ProtectedRoute>
+        }
       />
 
       {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
