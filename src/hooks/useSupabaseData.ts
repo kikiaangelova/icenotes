@@ -451,7 +451,16 @@ export const useUpdateGoal = () => {
     mutationFn: async ({ id, updates }: { id: string; updates: Partial<SkatingGoal> }) => {
       if (!user) throw new Error('Not authenticated');
       
-      const dbUpdates: Record<string, unknown> = {};
+      const dbUpdates: {
+        title?: string;
+        description?: string;
+        category?: string;
+        timeframe?: string;
+        target_date?: string;
+        progress?: number;
+        completed?: boolean;
+        notes?: string;
+      } = {};
       if (updates.title !== undefined) dbUpdates.title = updates.title;
       if (updates.description !== undefined) dbUpdates.description = updates.description;
       if (updates.category !== undefined) dbUpdates.category = updates.category;
