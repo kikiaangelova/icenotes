@@ -289,6 +289,45 @@ export type Database = {
         }
         Relationships: []
       }
+      mindfulness_tool_usage: {
+        Row: {
+          affirmation_text: string | null
+          created_at: string
+          date: string
+          duration_seconds: number | null
+          gratitude_items: Json | null
+          id: string
+          notes: string | null
+          tool_type: string
+          user_id: string
+          visualization_event: string | null
+        }
+        Insert: {
+          affirmation_text?: string | null
+          created_at?: string
+          date?: string
+          duration_seconds?: number | null
+          gratitude_items?: Json | null
+          id?: string
+          notes?: string | null
+          tool_type: string
+          user_id: string
+          visualization_event?: string | null
+        }
+        Update: {
+          affirmation_text?: string | null
+          created_at?: string
+          date?: string
+          duration_seconds?: number | null
+          gratitude_items?: Json | null
+          id?: string
+          notes?: string | null
+          tool_type?: string
+          user_id?: string
+          visualization_event?: string | null
+        }
+        Relationships: []
+      }
       profiles: {
         Row: {
           age: number | null
