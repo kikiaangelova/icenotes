@@ -2,11 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { Navbar } from '@/components/landing/Navbar';
 import { Footer } from '@/components/landing/Footer';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Snowflake, UserPlus, Feather, Target, TrendingUp, Brain, BarChart3 } from 'lucide-react';
+import { ArrowRight, UserPlus, Feather, Target, Brain, BarChart3 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { useLanguage } from '@/context/LanguageContext';
 
 const HowItWorks: React.FC = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const { t } = useLanguage();
 
   useEffect(() => {
     if (isDarkMode) {
@@ -17,36 +19,11 @@ const HowItWorks: React.FC = () => {
   }, [isDarkMode]);
 
   const steps = [
-    {
-      num: '01',
-      icon: UserPlus,
-      title: 'Create Your Free Account',
-      description: 'Sign up in under two minutes. Tell us your name, how you see yourself as a skater, and what you want to focus on. No credit card required.',
-    },
-    {
-      num: '02',
-      icon: Feather,
-      title: 'Reflect After Every Session',
-      description: 'Use the daily journal to capture what you worked on, how you felt, and your small wins. Structured prompts help you build the habit of self-reflection.',
-    },
-    {
-      num: '03',
-      icon: Target,
-      title: 'Track Your Training & Jumps',
-      description: 'Log on-ice and off-ice sessions with detail. Track jump attempts, landing rates, and technical progress. Set weekly goals to keep your training intentional.',
-    },
-    {
-      num: '04',
-      icon: Brain,
-      title: 'Develop Your Mental Game',
-      description: 'Use pre-skate breathing exercises, guided visualizations, and daily affirmations. Build the emotional resilience that separates good skaters from great ones.',
-    },
-    {
-      num: '05',
-      icon: BarChart3,
-      title: 'See Your Growth Over Time',
-      description: 'Activity calendars, progress summaries, and consistency analytics help you identify patterns and celebrate how far you\'ve come.',
-    },
+    { num: '01', icon: UserPlus, title: t('how.step1.title'), description: t('how.step1.desc') },
+    { num: '02', icon: Feather, title: t('how.step2.title'), description: t('how.step2.desc') },
+    { num: '03', icon: Target, title: t('how.step3.title'), description: t('how.step3.desc') },
+    { num: '04', icon: Brain, title: t('how.step4.title'), description: t('how.step4.desc') },
+    { num: '05', icon: BarChart3, title: t('how.step5.title'), description: t('how.step5.desc') },
   ];
 
   return (
@@ -54,20 +31,18 @@ const HowItWorks: React.FC = () => {
       <div className="min-h-screen bg-background">
         <Navbar isDarkMode={isDarkMode} onToggleDarkMode={() => setIsDarkMode(!isDarkMode)} />
 
-        {/* Hero */}
         <section className="px-6 md:px-12 pt-20 pb-16 md:pt-28 md:pb-20">
           <div className="max-w-3xl mx-auto text-center">
-            <p className="text-xs font-semibold tracking-[0.2em] uppercase text-primary mb-4">How It Works</p>
+            <p className="text-xs font-semibold tracking-[0.2em] uppercase text-primary mb-4">{t('how.eyebrow')}</p>
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-foreground font-serif mb-5">
-              Five steps to smarter training.
+              {t('how.title')}
             </h1>
             <p className="text-lg text-muted-foreground leading-relaxed max-w-xl mx-auto">
-              IceNotes is designed to fit naturally into your skating routine. Here's how it works.
+              {t('how.subtitle')}
             </p>
           </div>
         </section>
 
-        {/* Steps */}
         <section className="px-6 md:px-12 pb-24 md:pb-32">
           <div className="max-w-3xl mx-auto space-y-12">
             {steps.map((step, i) => (
@@ -90,18 +65,17 @@ const HowItWorks: React.FC = () => {
           </div>
         </section>
 
-        {/* CTA */}
         <section className="px-6 md:px-12 py-20 bg-primary/5 border-t border-border/50">
           <div className="max-w-2xl mx-auto text-center">
             <h2 className="text-2xl md:text-3xl font-bold text-foreground font-serif mb-4">
-              Ready to start?
+              {t('how.cta.title')}
             </h2>
             <p className="text-muted-foreground mb-8">
-              Create your free account and start journaling after your next session.
+              {t('how.cta.subtitle')}
             </p>
             <Link to="/auth">
               <Button size="lg" className="font-semibold gap-2">
-                Create Your Free Account <ArrowRight className="w-4 h-4" />
+                {t('how.cta.button')} <ArrowRight className="w-4 h-4" />
               </Button>
             </Link>
           </div>
