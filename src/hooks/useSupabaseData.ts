@@ -65,8 +65,9 @@ export const useUpdateProfile = () => {
           age: profile.age,
           height: profile.height,
           weight: profile.weight,
-          avatar_url: profile.avatarUrl
-        })
+          avatar_url: profile.avatarUrl,
+          ...(profile.language ? { language: profile.language } : {}),
+        } as never)
         .eq('user_id', user.id);
       
       if (error) throw error;
