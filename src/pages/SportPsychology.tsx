@@ -96,8 +96,7 @@ const SportPsychology: React.FC = () => {
           </div>
         </section>
 
-        <Footer />
-      </div>
+      <Footer />
     </div>
   );
 };
