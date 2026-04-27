@@ -1,62 +1,65 @@
 import React from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Dumbbell, Brain, Clock, Star, Snowflake } from 'lucide-react';
-
-const practiceCategories = [
-  {
-    id: 'on-ice',
-    title: 'On-Ice Training',
-    description: 'Jumps, spins, footwork, and programs',
-    icon: Snowflake,
-    colorClass: 'practice-on-ice',
-    iconColor: 'text-on-ice',
-    activities: [
-      { name: 'Edge work & stroking', duration: '15-20 min' },
-      { name: 'Spins practice', duration: '20-30 min' },
-      { name: 'Jump technique', duration: '30-45 min' },
-      { name: 'Program run-through', duration: '15-20 min' },
-      { name: 'Choreography', duration: '20-30 min' },
-    ],
-  },
-  {
-    id: 'off-ice',
-    title: 'Off-Ice Training',
-    description: 'Strength, flexibility, and conditioning',
-    icon: Dumbbell,
-    colorClass: 'practice-off-ice',
-    iconColor: 'text-off-ice',
-    activities: [
-      { name: 'Warm-up & stretching', duration: '10-15 min' },
-      { name: 'Core strengthening', duration: '15-20 min' },
-      { name: 'Jump simulation', duration: '20-30 min' },
-      { name: 'Ballet & dance', duration: '30-45 min' },
-      { name: 'Cardio conditioning', duration: '20-30 min' },
-    ],
-  },
-  {
-    id: 'mental',
-    title: 'Mental Preparation',
-    description: 'Visualization, focus, and mindset',
-    icon: Brain,
-    colorClass: 'practice-mental',
-    iconColor: 'text-mental',
-    activities: [
-      { name: 'Program visualization', duration: '10-15 min' },
-      { name: 'Breathing exercises', duration: '5-10 min' },
-      { name: 'Goal review', duration: '5-10 min' },
-      { name: 'Competition simulation', duration: '15-20 min' },
-      { name: 'Positive affirmations', duration: '5 min' },
-    ],
-  },
-];
+import { useLanguage } from '@/context/LanguageContext';
 
 export const PracticeSection: React.FC = () => {
+  const { t } = useLanguage();
+
+  const practiceCategories = [
+    {
+      id: 'on-ice',
+      title: t('training.onIce.title'),
+      description: t('training.onIce.desc'),
+      icon: Snowflake,
+      colorClass: 'practice-on-ice',
+      iconColor: 'text-on-ice',
+      activities: [
+        { name: t('training.onIce.edges'), duration: '15-20 min' },
+        { name: t('training.onIce.spins'), duration: '20-30 min' },
+        { name: t('training.onIce.jumps'), duration: '30-45 min' },
+        { name: t('training.onIce.program'), duration: '15-20 min' },
+        { name: t('training.onIce.choreo'), duration: '20-30 min' },
+      ],
+    },
+    {
+      id: 'off-ice',
+      title: t('training.offIce.title'),
+      description: t('training.offIce.desc'),
+      icon: Dumbbell,
+      colorClass: 'practice-off-ice',
+      iconColor: 'text-off-ice',
+      activities: [
+        { name: t('training.offIce.warmup'), duration: '10-15 min' },
+        { name: t('training.offIce.core'), duration: '15-20 min' },
+        { name: t('training.offIce.jumpSim'), duration: '20-30 min' },
+        { name: t('training.offIce.ballet'), duration: '30-45 min' },
+        { name: t('training.offIce.cardio'), duration: '20-30 min' },
+      ],
+    },
+    {
+      id: 'mental',
+      title: t('training.mental.title'),
+      description: t('training.mental.desc'),
+      icon: Brain,
+      colorClass: 'practice-mental',
+      iconColor: 'text-mental',
+      activities: [
+        { name: t('training.mental.visualization'), duration: '10-15 min' },
+        { name: t('training.mental.breathing'), duration: '5-10 min' },
+        { name: t('training.mental.goalReview'), duration: '5-10 min' },
+        { name: t('training.mental.competition'), duration: '15-20 min' },
+        { name: t('training.mental.affirmations'), duration: '5 min' },
+      ],
+    },
+  ];
+
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h2 className="text-2xl font-bold">Daily Practice</h2>
-          <p className="text-muted-foreground">Track your training across all disciplines</p>
+          <h2 className="text-2xl font-bold">{t('training.heading')}</h2>
+          <p className="text-muted-foreground">{t('training.subheading')}</p>
         </div>
       </div>
 
