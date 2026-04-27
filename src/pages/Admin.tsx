@@ -135,7 +135,10 @@ const AdminPage: React.FC = () => {
         const last = u.last_active ? new Date(u.last_active).getTime() : 0;
         if (activityFilter === 'active_7d' && last < now - 7 * day) return false;
         if (activityFilter === 'active_30d' && last < now - 30 * day) return false;
+        if (activityFilter === 'active_90d' && last < now - 90 * day) return false;
         if (activityFilter === 'inactive_30d' && last >= now - 30 * day) return false;
+        if (activityFilter === 'inactive_90d' && last >= now - 90 * day) return false;
+        if (activityFilter === 'never' && last > 0) return false;
       }
       return true;
     });
@@ -337,9 +340,12 @@ const AdminPage: React.FC = () => {
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="all">All users</SelectItem>
-                  <SelectItem value="active_7d">Active last 7d</SelectItem>
-                  <SelectItem value="active_30d">Active last 30d</SelectItem>
-                  <SelectItem value="inactive_30d">Inactive 30d+</SelectItem>
+                  <SelectItem value="active_7d">Active last 7 days</SelectItem>
+                  <SelectItem value="active_30d">Active last 30 days</SelectItem>
+                  <SelectItem value="active_90d">Active last 90 days</SelectItem>
+                  <SelectItem value="inactive_30d">Inactive 30+ days</SelectItem>
+                  <SelectItem value="inactive_90d">Inactive 90+ days</SelectItem>
+                  <SelectItem value="never">Never active</SelectItem>
                 </SelectContent>
               </Select>
             </div>
