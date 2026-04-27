@@ -335,6 +335,7 @@ export type Database = {
           created_at: string
           height: number | null
           id: string
+          language: string
           main_focus: string | null
           name: string
           progress_feeling: string | null
@@ -350,6 +351,7 @@ export type Database = {
           created_at?: string
           height?: number | null
           id?: string
+          language?: string
           main_focus?: string | null
           name: string
           progress_feeling?: string | null
@@ -365,6 +367,7 @@ export type Database = {
           created_at?: string
           height?: number | null
           id?: string
+          language?: string
           main_focus?: string | null
           name?: string
           progress_feeling?: string | null
