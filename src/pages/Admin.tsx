@@ -348,10 +348,9 @@ const AdminPage: React.FC = () => {
             <Table>
               <TableHeader>
                 <TableRow>
-                  <TableHead>Name</TableHead>
+                  <TableHead>First name</TableHead>
                   <TableHead>Email</TableHead>
-                  <TableHead>Country</TableHead>
-                  <TableHead>Lang</TableHead>
+                  <TableHead>Language</TableHead>
                   <TableHead>Last active</TableHead>
                   <TableHead className="text-right">Sessions</TableHead>
                 </TableRow>
@@ -359,11 +358,12 @@ const AdminPage: React.FC = () => {
               <TableBody>
                 {filteredUsers.map((u) => (
                   <TableRow key={u.id}>
-                    <TableCell className="font-medium">{u.name}</TableCell>
+                    <TableCell className="font-medium">
+                      {(u.name ?? '').split(' ')[0] || '—'}
+                    </TableCell>
                     <TableCell className="text-muted-foreground">
                       {u.email}
                     </TableCell>
-                    <TableCell>{u.country}</TableCell>
                     <TableCell className="uppercase">{u.language}</TableCell>
                     <TableCell>
                       {u.last_active
@@ -378,7 +378,7 @@ const AdminPage: React.FC = () => {
                 {filteredUsers.length === 0 && (
                   <TableRow>
                     <TableCell
-                      colSpan={6}
+                      colSpan={5}
                       className="text-center text-muted-foreground py-8"
                     >
                       No users match your filters.
