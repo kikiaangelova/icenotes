@@ -19,7 +19,7 @@ export interface JournalEntry {
   createdAt: Date;
 }
 
-export type AppLanguage = 'en' | 'bg' | 'ru' | 'it' | 'fr' | 'tr' | 'de';
+export type AppLanguage = 'en' | 'bg';
 
 export interface SkaterProfile {
   id: string;
