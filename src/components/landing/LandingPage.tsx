@@ -91,8 +91,8 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted }) => {
           {[
             {
               icon: Brain,
-              title: 'Strengthen Your Mind',
-              text: 'Build confidence and mental resilience through structured reflection.',
+              title: t('benefit.mind.title'),
+              text: t('benefit.mind.text'),
               gradient: 'from-rose/50 to-grape/20',
               iconBg: 'bg-gradient-to-br from-rose to-grape/30',
               iconColor: 'text-rose-foreground',
@@ -100,8 +100,8 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted }) => {
             },
             {
               icon: Target,
-              title: 'Track Your Training',
-              text: 'Log sessions, jumps, and goals. Train with clear intention.',
+              title: t('benefit.training.title'),
+              text: t('benefit.training.text'),
               gradient: 'from-sky/50 to-primary/10',
               iconBg: 'bg-gradient-to-br from-sky to-primary/20',
               iconColor: 'text-sky-foreground',
@@ -109,8 +109,8 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted }) => {
             },
             {
               icon: TrendingUp,
-              title: 'See Your Growth',
-              text: 'Spot patterns and celebrate wins over weeks and months.',
+              title: t('benefit.growth.title'),
+              text: t('benefit.growth.text'),
               gradient: 'from-mint/60 to-mint/20',
               iconBg: 'bg-gradient-to-br from-mint to-mint-foreground/10',
               iconColor: 'text-mint-foreground',
