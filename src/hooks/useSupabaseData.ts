@@ -134,9 +134,10 @@ export const useAddJournalEntry = () => {
         .insert({
           user_id: user.id,
           date: format(entry.date, 'yyyy-MM-dd'),
-          worked_on: entry.workedOn,
-          feeling: entry.feeling,
-          small_win: entry.smallWin,
+          // Allow partial reflections — empty strings are valid "captured" entries
+          worked_on: entry.workedOn ?? '',
+          feeling: entry.feeling || null,
+          small_win: entry.smallWin ?? '',
           session_type: entry.sessionType || null,
           what_went_well: entry.whatWentWell || null,
           what_was_challenging: entry.whatWasChallenging || null,
