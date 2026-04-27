@@ -56,7 +56,7 @@ type DashboardView = 'home' | 'journal' | 'journey' | 'reflect' | 'on-ice' | 'of
 export const SimpleDashboard: React.FC = () => {
   const { profile, setProfile, getTodaysEntry, getTodaysSessions, resetProfile } = useJournal();
   const { signOut, user } = useAuth();
-  const { language } = useLanguage();
+  const { language, t } = useLanguage();
   const [currentView, setCurrentView] = useState<DashboardView>('home');
   const [showResetDialog, setShowResetDialog] = useState(false);
   const [showReminderSettings, setShowReminderSettings] = useState(false);
