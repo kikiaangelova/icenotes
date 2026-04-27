@@ -2,11 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { Navbar } from '@/components/landing/Navbar';
 import { Footer } from '@/components/landing/Footer';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Snowflake, Heart, Users, Sparkles } from 'lucide-react';
+import { ArrowRight, Heart, Users, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { useLanguage } from '@/context/LanguageContext';
 
 const About: React.FC = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const { t } = useLanguage();
 
   useEffect(() => {
     if (isDarkMode) {
@@ -23,12 +25,12 @@ const About: React.FC = () => {
 
         <section className="px-5 md:px-12 pt-14 pb-10 md:pt-28 md:pb-20">
           <div className="max-w-3xl mx-auto text-center">
-            <p className="text-xs font-semibold tracking-[0.2em] uppercase text-primary mb-3">About</p>
+            <p className="text-xs font-semibold tracking-[0.2em] uppercase text-primary mb-3">{t('about.eyebrow')}</p>
             <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold tracking-tight text-foreground font-serif mb-4">
-              Built by skaters, for skaters.
+              {t('about.title')}
             </h1>
             <p className="text-sm md:text-lg text-muted-foreground leading-relaxed max-w-xl mx-auto">
-              A private space to reflect, train intentionally, and grow — on and off the ice.
+              {t('about.subtitle')}
             </p>
           </div>
         </section>
@@ -41,14 +43,14 @@ const About: React.FC = () => {
                   <Heart className="w-4 h-4 text-primary" />
                 </div>
                 <div>
-                  <h3 className="text-base font-semibold text-foreground font-serif mb-2">Our Story</h3>
+                  <h3 className="text-base font-semibold text-foreground font-serif mb-2">{t('about.story.title')}</h3>
                   <p className="text-sm text-muted-foreground leading-relaxed mb-2">
-                    Created by a young figure skater and her mom who saw a gap: skaters often struggle not from lack of talent, but lack of tools.
+                    {t('about.story.lead')}
                   </p>
                   <ul className="text-sm text-muted-foreground space-y-1 list-disc list-inside">
-                    <li>Reflect after every session</li>
-                    <li>Track progress over time</li>
-                    <li>Build mental resilience</li>
+                    <li>{t('about.story.b1')}</li>
+                    <li>{t('about.story.b2')}</li>
+                    <li>{t('about.story.b3')}</li>
                   </ul>
                 </div>
               </div>
@@ -60,12 +62,12 @@ const About: React.FC = () => {
                   <Sparkles className="w-4 h-4 text-primary" />
                 </div>
                 <div>
-                  <h3 className="text-base font-semibold text-foreground font-serif mb-2">Our Mission</h3>
+                  <h3 className="text-base font-semibold text-foreground font-serif mb-2">{t('about.mission.title')}</h3>
                   <ul className="text-sm text-muted-foreground space-y-1 list-disc list-inside">
-                    <li>Help skaters train with intention</li>
-                    <li>Reflect with honesty</li>
-                    <li>Grow with confidence</li>
-                    <li>Make mental prep as valued as ice time</li>
+                    <li>{t('about.mission.b1')}</li>
+                    <li>{t('about.mission.b2')}</li>
+                    <li>{t('about.mission.b3')}</li>
+                    <li>{t('about.mission.b4')}</li>
                   </ul>
                 </div>
               </div>
@@ -77,11 +79,11 @@ const About: React.FC = () => {
                   <Users className="w-4 h-4 text-primary" />
                 </div>
                 <div>
-                  <h3 className="text-base font-semibold text-foreground font-serif mb-2">Who It's For</h3>
+                  <h3 className="text-base font-semibold text-foreground font-serif mb-2">{t('about.who.title')}</h3>
                   <ul className="text-sm text-muted-foreground space-y-1 list-disc list-inside">
-                    <li>Beginners learning their first waltz jump</li>
-                    <li>Competitive skaters training for nationals</li>
-                    <li>Coaches and skating families</li>
+                    <li>{t('about.who.b1')}</li>
+                    <li>{t('about.who.b2')}</li>
+                    <li>{t('about.who.b3')}</li>
                   </ul>
                 </div>
               </div>
@@ -92,14 +94,14 @@ const About: React.FC = () => {
         <section className="px-5 md:px-12 py-14 bg-primary/5 border-t border-border/50">
           <div className="max-w-2xl mx-auto text-center">
             <h2 className="text-xl md:text-3xl font-bold text-foreground font-serif mb-3">
-              Join the IceNotes community.
+              {t('about.cta.title')}
             </h2>
             <p className="text-sm text-muted-foreground mb-6">
-              Free forever. Private by default. Made with love for skating.
+              {t('about.cta.subtitle')}
             </p>
             <Link to="/auth" className="inline-block w-full sm:w-auto">
               <Button size="lg" className="h-14 px-10 text-base font-semibold rounded-xl gap-2 w-full sm:w-auto">
-                Get Started Free <ArrowRight className="w-4 h-4" />
+                {t('about.cta.button')} <ArrowRight className="w-4 h-4" />
               </Button>
             </Link>
           </div>

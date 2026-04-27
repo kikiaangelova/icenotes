@@ -180,6 +180,228 @@ const dict: Dict = {
   'footer.rights': { en: 'All rights reserved.', bg: 'Всички права запазени.' },
   'footer.builtWith': { en: 'Built with', bg: 'Създадено с' },
   'footer.forSkaters': { en: 'for skaters who dream big.', bg: 'за фигуристи, които мечтаят на едро.' },
+
+  // ── About page ──
+  'about.eyebrow': { en: 'About', bg: 'За нас' },
+  'about.title': { en: 'Built by skaters, for skaters.', bg: 'Създадено от фигуристи. За фигуристи.' },
+  'about.subtitle': {
+    en: 'A private space to reflect, train intentionally, and grow — on and off the ice.',
+    bg: 'Лично пространство, в което рефлектираш, тренираш с цел и растеш — на леда и извън него.',
+  },
+  'about.story.title': { en: 'Our Story', bg: 'Нашата история' },
+  'about.story.lead': {
+    en: 'Created by a young figure skater and her mom who saw a gap: skaters often struggle not from lack of talent, but lack of tools.',
+    bg: 'Създадохме IceNotes заедно — млада фигуристка и нейната майка. Видяхме нещо просто, но важно: на повечето състезатели не им липсва талант, а инструменти, с които да го развиват спокойно и последователно.',
+  },
+  'about.story.b1': { en: 'Reflect after every session', bg: 'Спокойна рефлексия след всяка тренировка' },
+  'about.story.b2': { en: 'Track progress over time', bg: 'Ясен поглед върху прогреса във времето' },
+  'about.story.b3': { en: 'Build mental resilience', bg: 'Силна психика и устойчивост на леда' },
+  'about.mission.title': { en: 'Our Mission', bg: 'Нашата мисия' },
+  'about.mission.b1': { en: 'Help skaters train with intention', bg: 'Да помогнем на фигуристите да тренират с яснота и цел' },
+  'about.mission.b2': { en: 'Reflect with honesty', bg: 'Да рефлектират честно — пред себе си' },
+  'about.mission.b3': { en: 'Grow with confidence', bg: 'Да израстват с увереност, стъпка по стъпка' },
+  'about.mission.b4': { en: 'Make mental prep as valued as ice time', bg: 'Да поставим психичната подготовка наравно с времето на леда' },
+  'about.who.title': { en: "Who It's For", bg: 'За кого е създадено' },
+  'about.who.b1': { en: 'Beginners learning their first waltz jump', bg: 'Начинаещи, които учат първите си елементи' },
+  'about.who.b2': { en: 'Competitive skaters training for nationals', bg: 'Състезатели, които се готвят за национални първенства' },
+  'about.who.b3': { en: 'Coaches and skating families', bg: 'Треньори и семейства, които живеят с фигурното пързаляне' },
+  'about.cta.title': { en: 'Join the IceNotes community.', bg: 'Стани част от общността на IceNotes.' },
+  'about.cta.subtitle': {
+    en: 'Free forever. Private by default. Made with love for skating.',
+    bg: 'Безплатно завинаги. Поверително по подразбиране. Създадено с обич към фигурното пързаляне.',
+  },
+  'about.cta.button': { en: 'Get Started Free', bg: 'Започни безплатно' },
+
+  // ── How It Works page ──
+  'how.eyebrow': { en: 'How It Works', bg: 'Как работи' },
+  'how.title': { en: 'Five steps to smarter training.', bg: 'Пет стъпки към по-осъзната тренировка.' },
+  'how.subtitle': {
+    en: "IceNotes is designed to fit naturally into your skating routine. Here's how it works.",
+    bg: 'IceNotes се вписва естествено в твоето ежедневие на леда. Ето как:',
+  },
+  'how.step1.title': { en: 'Create Your Free Account', bg: 'Създай безплатен профил' },
+  'how.step1.desc': {
+    en: 'Sign up in under two minutes. Tell us your name, how you see yourself as a skater, and what you want to focus on. No credit card required.',
+    bg: 'Регистрацията отнема под две минути. Сподели как се виждаш като фигурист и върху какво искаш да работиш. Без банкова карта.',
+  },
+  'how.step2.title': { en: 'Reflect After Every Session', bg: 'Рефлектирай след всяка тренировка' },
+  'how.step2.desc': {
+    en: 'Use the daily journal to capture what you worked on, how you felt, and your small wins. Structured prompts help you build the habit of self-reflection.',
+    bg: 'В дневника записваш върху какво работи, как се чувстваше и кои бяха малките победи. Подредените въпроси ти помагат да изградиш навика да се вслушваш в себе си.',
+  },
+  'how.step3.title': { en: 'Track Your Training & Jumps', bg: 'Проследявай тренировки и скокове' },
+  'how.step3.desc': {
+    en: 'Log on-ice and off-ice sessions with detail. Track jump attempts, landing rates, and technical progress. Set weekly goals to keep your training intentional.',
+    bg: 'Записвай тренировките на лед и извън него с подробности. Следи опитите за скокове, успешните приземявания и техническия напредък. Поставяй седмични цели, за да тренираш с фокус.',
+  },
+  'how.step4.title': { en: 'Develop Your Mental Game', bg: 'Развивай психичната си игра' },
+  'how.step4.desc': {
+    en: 'Use pre-skate breathing exercises, guided visualizations, and daily affirmations. Build the emotional resilience that separates good skaters from great ones.',
+    bg: 'Използвай дихателни упражнения преди тренировка, водени визуализации и ежедневни утвърждения. Това е емоционалната устойчивост, която отличава добрите фигуристи от великите.',
+  },
+  'how.step5.title': { en: 'See Your Growth Over Time', bg: 'Виж как растеш с времето' },
+  'how.step5.desc': {
+    en: "Activity calendars, progress summaries, and consistency analytics help you identify patterns and celebrate how far you've come.",
+    bg: 'Календар на активността, обобщения и анализ на постоянството ти показват тенденциите и колко път вече си изминал/а.',
+  },
+  'how.cta.title': { en: 'Ready to start?', bg: 'Готов/а да започнеш?' },
+  'how.cta.subtitle': {
+    en: 'Create your free account and start journaling after your next session.',
+    bg: 'Създай безплатен профил и започни да водиш дневник още след следващата си тренировка.',
+  },
+  'how.cta.button': { en: 'Create Your Free Account', bg: 'Създай безплатен профил' },
+
+  // ── Features page ──
+  'features.eyebrow': { en: 'Features', bg: 'Функции' },
+  'features.title': { en: 'Everything you need to train with intention.', bg: 'Всичко, от което имаш нужда, за да тренираш с цел.' },
+  'features.subtitle': {
+    en: 'Purpose-built tools for structured reflection, tracking, and growth.',
+    bg: 'Инструменти, създадени специално за подредена рефлексия, проследяване и растеж.',
+  },
+  'features.cat.reflection': { en: 'Reflection', bg: 'Рефлексия' },
+  'features.cat.mindset': { en: 'Mindset', bg: 'Нагласа' },
+  'features.cat.performance': { en: 'Performance', bg: 'Изпълнение' },
+  'features.cat.training': { en: 'Training', bg: 'Тренировка' },
+  'features.cat.planning': { en: 'Planning', bg: 'Планиране' },
+  'features.cat.insights': { en: 'Insights', bg: 'Прозрения' },
+  'features.cat.tools': { en: 'Tools', bg: 'Инструменти' },
+  'features.f1.title': { en: 'Daily Journal', bg: 'Ежедневен дневник' },
+  'features.f1.desc': {
+    en: 'Capture what you worked on, how you felt, and your small wins after every session. Structured prompts make reflection easy and consistent.',
+    bg: 'Записвай върху какво работи, как се чувстваше и кои бяха малките победи след всяка тренировка. Подредени въпроси правят рефлексията лесна и постоянна.',
+  },
+  'features.f2.title': { en: 'Reflection Space', bg: 'Пространство за рефлексия' },
+  'features.f2.desc': {
+    en: 'A private, free-form space for deeper thoughts about your skating journey. Process emotions, set intentions, and grow through self-awareness.',
+    bg: 'Лично, свободно пространство за по-дълбоки мисли по пътя ти в пързалянето. Прехвърляй емоции, задавай намерения и растеш чрез себепознание.',
+  },
+  'features.f3.title': { en: 'Mental Preparation', bg: 'Психична подготовка' },
+  'features.f3.desc': {
+    en: 'Pre-skate breathing exercises (Box, 4-7-8, Energizing), guided visualizations for programs and confidence, and daily affirmations.',
+    bg: 'Дихателни упражнения преди лед (Кутия, 4-7-8, Енергизиращо), водени визуализации за програми и увереност, и ежедневни утвърждения.',
+  },
+  'features.f4.title': { en: 'Jump Tracker', bg: 'Дневник на скоковете' },
+  'features.f4.desc': {
+    en: 'Log every jump attempt with type, level, quality, and landing success. Track your consistency and see technical progress over time.',
+    bg: 'Записвай всеки опит за скок — вид, ниво, качество и приземяване. Виж постоянството си и техническия напредък във времето.',
+  },
+  'features.f5.title': { en: 'On-Ice Training Log', bg: 'Дневник на тренировките на лед' },
+  'features.f5.desc': {
+    en: 'Detailed session logging for edges, spins, footwork, and programs. Track duration, activities, and how each session felt.',
+    bg: 'Подробен запис на тренировки — кантове, пирети, стъпки и програми. Проследявай продължителност, активности и усещане от всяка сесия.',
+  },
+  'features.f6.title': { en: 'Off-Ice Training Log', bg: 'Дневник на тренировките извън лед' },
+  'features.f6.desc': {
+    en: 'Log strength, flexibility, and conditioning work. Keep your off-ice preparation as structured as your time on the ice.',
+    bg: 'Записвай силова, гъвкавост и кондиционна работа. Подготовката извън лед е също толкова важна, колкото времето на леда.',
+  },
+  'features.f7.title': { en: 'Weekly Goals', bg: 'Седмични цели' },
+  'features.f7.desc': {
+    en: 'Set targets for on-ice hours, off-ice sessions, and specific jump attempts each week. Stay intentional about your development.',
+    bg: 'Задавай цели за часове на лед, тренировки извън лед и конкретни скокове всяка седмица. Развивай се с яснота.',
+  },
+  'features.f8.title': { en: 'Session Timer', bg: 'Таймер за тренировка' },
+  'features.f8.desc': {
+    en: 'Time your practice sessions with lap tracking. Stay accountable and build awareness of how you spend your ice time.',
+    bg: 'Засичай тренировките си с отделни обиколки. Бъди наясно как използваш времето си на леда.',
+  },
+  'features.f9.title': { en: 'Progress Analytics', bg: 'Анализ на прогреса' },
+  'features.f9.desc': {
+    en: 'Activity calendars, training volume summaries, and consistency tracking. See patterns and celebrate your growth at a glance.',
+    bg: 'Календар на активността, обобщение на обема и проследяване на постоянството. Виждаш тенденциите и празнуваш растежа с един поглед.',
+  },
+  'features.f10.title': { en: 'Journey View', bg: 'Изглед на пътя' },
+  'features.f10.desc': {
+    en: "A complete timeline of your skating development. Look back at your entries, sessions, and milestones to see how far you've come.",
+    bg: 'Цялостна времева линия на твоето развитие. Връщаш се към записите, тренировките и важните моменти и виждаш колко път си изминал/а.',
+  },
+  'features.f11.title': { en: 'Motivational Quotes', bg: 'Мотивиращи цитати' },
+  'features.f11.desc': {
+    en: 'A curated collection of quotes for athletes. Save your favorites and get daily inspiration before you step on the ice.',
+    bg: 'Подбрана колекция от цитати за спортисти. Запази любимите си и получавай ежедневно вдъхновение преди да стъпиш на леда.',
+  },
+  'features.f12.title': { en: 'PDF Export', bg: 'Експорт в PDF' },
+  'features.f12.desc': {
+    en: 'Export your training data and journal entries as a PDF. Share progress with coaches or keep a personal archive of your journey.',
+    bg: 'Изнеси тренировките и записите си в PDF. Сподели прогреса с треньора или си запази личен архив на пътя.',
+  },
+  'features.cta.title': { en: 'Start using these tools today.', bg: 'Започни да използваш тези инструменти още днес.' },
+  'features.cta.subtitle': { en: 'All features are free. No credit card needed.', bg: 'Всички функции са безплатни. Без банкова карта.' },
+  'features.cta.button': { en: 'Create Your Free Account', bg: 'Създай безплатен профил' },
+
+  // ── Contact page ──
+  'contact.eyebrow': { en: 'Contact', bg: 'Контакт' },
+  'contact.title': { en: 'Get in touch.', bg: 'Свържи се с нас.' },
+  'contact.subtitle': {
+    en: "Have a question, suggestion, or feedback? We'd love to hear from you.",
+    bg: 'Имаш въпрос, идея или обратна връзка? С удоволствие ще те чуем.',
+  },
+  'contact.form.title': { en: 'Send us a message', bg: 'Изпрати ни съобщение' },
+  'contact.form.desc': { en: 'We typically respond within 24 hours.', bg: 'Обикновено отговаряме до 24 часа.' },
+  'contact.form.name': { en: 'Name', bg: 'Име' },
+  'contact.form.namePh': { en: 'Your name', bg: 'Твоето име' },
+  'contact.form.email': { en: 'Email', bg: 'Имейл' },
+  'contact.form.emailPh': { en: 'you@example.com', bg: 'ti@primer.com' },
+  'contact.form.subject': { en: 'Subject', bg: 'Тема' },
+  'contact.form.subjectPh': { en: "What's this about?", bg: 'За какво е съобщението?' },
+  'contact.form.message': { en: 'Message', bg: 'Съобщение' },
+  'contact.form.messagePh': { en: 'Tell us more...', bg: 'Разкажи ни повече…' },
+  'contact.form.send': { en: 'Send Message', bg: 'Изпрати съобщение' },
+  'contact.form.thanks': { en: 'Thank you!', bg: 'Благодарим ти!' },
+  'contact.form.thanksDesc': { en: "Your message has been sent. We'll get back to you soon.", bg: 'Получихме съобщението ти. Ще ти отговорим съвсем скоро.' },
+  'contact.form.another': { en: 'Send another message', bg: 'Изпрати ново съобщение' },
+  'contact.toast.title': { en: 'Message sent!', bg: 'Съобщението е изпратено!' },
+  'contact.toast.desc': { en: "We'll get back to you as soon as possible.", bg: 'Ще се свържем с теб възможно най-скоро.' },
+  'contact.email.title': { en: 'Email', bg: 'Имейл' },
+  'contact.email.desc': { en: 'For general inquiries, reach out at:', bg: 'За общи въпроси ни пиши на:' },
+  'contact.feedback.title': { en: 'Feedback & Ideas', bg: 'Обратна връзка и идеи' },
+  'contact.feedback.desc': {
+    en: 'IceNotes is built for skaters, by people who care about skating. Your feedback directly shapes the product.',
+    bg: 'IceNotes е създаден за фигуристите от хора, на които пързалянето им е на сърцето. Твоето мнение пряко оформя продукта.',
+  },
+  'contact.coach.text': {
+    en: "Are you a coach? We're exploring features for coaches and their athletes. Let us know what would be most useful for your team.",
+    bg: 'Треньор ли си? Разработваме нови функции за треньори и техните състезатели. Сподели какво би ти било най-полезно.',
+  },
+  'contact.coach.bold': { en: 'Are you a coach?', bg: 'Треньор ли си?' },
+
+  // ── Sport Psychology page ──
+  'psy.eyebrow': { en: 'Sport Psychology', bg: 'Спортна психология' },
+  'psy.title': { en: 'Train your mind like your body.', bg: 'Тренирай ума така, както тренираш тялото.' },
+  'psy.subtitle': { en: 'Build mental strength alongside physical skill.', bg: 'Изгради психична сила паралелно с техническото умение.' },
+  'psy.t1.title': { en: 'Mental Preparation', bg: 'Психична подготовка' },
+  'psy.t1.desc': {
+    en: 'Box breathing, 4-7-8 technique, and energizing breathwork before every session.',
+    bg: 'Дишане по квадрат, техника 4-7-8 и енергизиращо дишане преди всяка тренировка.',
+  },
+  'psy.t2.title': { en: 'Visualization', bg: 'Визуализация' },
+  'psy.t2.desc': {
+    en: 'Mentally rehearse programs, jumps, and competition scenarios.',
+    bg: 'Мислено повтаряй програми, скокове и състезателни сценарии.',
+  },
+  'psy.t3.title': { en: 'Building Confidence', bg: 'Изграждане на увереност' },
+  'psy.t3.desc': {
+    en: 'Daily affirmations, small-win tracking, and structured reflection.',
+    bg: 'Ежедневни утвърждения, проследяване на малките победи и подредена рефлексия.',
+  },
+  'psy.t4.title': { en: 'Competition Mindset', bg: 'Състезателна нагласа' },
+  'psy.t4.desc': {
+    en: 'Manage nerves, stay focused, and turn anxiety into energy.',
+    bg: 'Управлявай вълнението, остани фокусиран/а и превърни тревогата в енергия.',
+  },
+  'psy.t5.title': { en: 'Emotional Resilience', bg: 'Емоционална устойчивост' },
+  'psy.t5.desc': {
+    en: 'Process frustration, bounce back from falls, and stay motivated.',
+    bg: 'Преработвай разочарованието, ставай след падане и пази мотивацията си жива.',
+  },
+  'psy.t6.title': { en: 'Focus & Flow State', bg: 'Фокус и състояние на поток' },
+  'psy.t6.desc': {
+    en: 'Eliminate distractions and maintain deep concentration.',
+    bg: 'Премахни разсейването и задръж дълбока концентрация.',
+  },
+  'psy.cta.title': { en: 'Start building your mental game.', bg: 'Започни да изграждаш психичната си игра.' },
+  'psy.cta.subtitle': { en: 'All mental training tools are included free.', bg: 'Всички инструменти за психична тренировка са безплатни.' },
+  'psy.cta.button': { en: 'Get Started Free', bg: 'Започни безплатно' },
 };
 
 interface LanguageContextValue {

@@ -5,40 +5,18 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, Brain, Shield, Eye, Flame, Heart, Zap } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { MindfulnessTools } from '@/components/MindfulnessTools';
+import { useLanguage } from '@/context/LanguageContext';
 
 const SportPsychology: React.FC = () => {
+  const { t } = useLanguage();
 
   const topics = [
-    {
-      icon: Brain,
-      title: 'Mental Preparation',
-      description: 'Box breathing, 4-7-8 technique, and energizing breathwork before every session.',
-    },
-    {
-      icon: Eye,
-      title: 'Visualization',
-      description: 'Mentally rehearse programs, jumps, and competition scenarios.',
-    },
-    {
-      icon: Shield,
-      title: 'Building Confidence',
-      description: 'Daily affirmations, small-win tracking, and structured reflection.',
-    },
-    {
-      icon: Flame,
-      title: 'Competition Mindset',
-      description: 'Manage nerves, stay focused, and turn anxiety into energy.',
-    },
-    {
-      icon: Heart,
-      title: 'Emotional Resilience',
-      description: 'Process frustration, bounce back from falls, and stay motivated.',
-    },
-    {
-      icon: Zap,
-      title: 'Focus & Flow State',
-      description: 'Eliminate distractions and maintain deep concentration.',
-    },
+    { icon: Brain, title: t('psy.t1.title'), description: t('psy.t1.desc') },
+    { icon: Eye, title: t('psy.t2.title'), description: t('psy.t2.desc') },
+    { icon: Shield, title: t('psy.t3.title'), description: t('psy.t3.desc') },
+    { icon: Flame, title: t('psy.t4.title'), description: t('psy.t4.desc') },
+    { icon: Heart, title: t('psy.t5.title'), description: t('psy.t5.desc') },
+    { icon: Zap, title: t('psy.t6.title'), description: t('psy.t6.desc') },
   ];
 
   return (
@@ -47,12 +25,12 @@ const SportPsychology: React.FC = () => {
 
         <section className="px-5 md:px-12 pt-14 pb-10 md:pt-28 md:pb-16">
           <div className="max-w-3xl mx-auto text-center">
-            <p className="text-xs font-semibold tracking-[0.2em] uppercase text-primary mb-3">Sport Psychology</p>
+            <p className="text-xs font-semibold tracking-[0.2em] uppercase text-primary mb-3">{t('psy.eyebrow')}</p>
             <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold tracking-tight text-foreground font-serif mb-4">
-              Train your mind like your body.
+              {t('psy.title')}
             </h1>
             <p className="text-sm md:text-lg text-muted-foreground leading-relaxed max-w-xl mx-auto">
-              Build mental strength alongside physical skill.
+              {t('psy.subtitle')}
             </p>
           </div>
         </section>
@@ -83,14 +61,14 @@ const SportPsychology: React.FC = () => {
         <section className="px-5 md:px-12 py-14 bg-primary/5 border-t border-border/50">
           <div className="max-w-2xl mx-auto text-center">
             <h2 className="text-xl md:text-3xl font-bold text-foreground font-serif mb-3">
-              Start building your mental game.
+              {t('psy.cta.title')}
             </h2>
             <p className="text-sm text-muted-foreground mb-6">
-              All mental training tools are included free.
+              {t('psy.cta.subtitle')}
             </p>
             <Link to="/auth" className="inline-block w-full sm:w-auto">
               <Button size="lg" className="h-14 px-10 text-base font-semibold rounded-xl gap-2 w-full sm:w-auto">
-                Get Started Free <ArrowRight className="w-4 h-4" />
+                {t('psy.cta.button')} <ArrowRight className="w-4 h-4" />
               </Button>
             </Link>
           </div>
