@@ -37,7 +37,22 @@ const dict: Dict = {
   'benefit.training.title': { en: 'Track Your Training', bg: 'Проследявай тренировките' },
   'benefit.training.text': { en: 'Log sessions, jumps, and goals. Train with clear intention.', bg: 'Записвай тренировки, скокове и цели. Тренирай с ясно намерение.' },
   'benefit.growth.title': { en: 'See Your Growth', bg: 'Виж своя растеж' },
-  'benefit.growth.text': { en: 'Visualize progress over time and celebrate every step forward.', bg: 'Визуализирай прогреса и празнувай всяка крачка напред.' },
+  'benefit.growth.text': { en: 'Spot patterns and celebrate wins over weeks and months.', bg: 'Забелязвай тенденции и празнувай победи в седмиците и месеците.' },
+
+  // Social proof + steps + final CTA
+  'social.text': { en: 'Skaters are already reflecting, training smarter, and growing with IceNotes every day ⛸️', bg: 'Фигуристи вече рефлектират, тренират по-умно и растат с IceNotes всеки ден ⛸️' },
+  'social.cta': { en: 'Join IceNotes', bg: 'Присъедини се към IceNotes' },
+  'steps.heading': { en: 'Simple as 1-2-3 ✨', bg: 'Просто като 1-2-3 ✨' },
+  'steps.train.title': { en: 'Train', bg: 'Тренирай' },
+  'steps.train.text': { en: 'Practice as usual — on or off ice.', bg: 'Тренирай както обикновено — на лед или извън него.' },
+  'steps.reflect.title': { en: 'Reflect', bg: 'Рефлектирай' },
+  'steps.reflect.text': { en: '5 quiet minutes to write it down.', bg: '5 спокойни минути, за да го запишеш.' },
+  'steps.grow.title': { en: 'Grow', bg: 'Развивай се' },
+  'steps.grow.text': { en: 'Watch your confidence bloom.', bg: 'Виж как увереността ти разцъфтява.' },
+  'finalCta.heading': { en: 'Ready to grow as a skater?', bg: 'Готов/а ли си да израснеш като фигурист?' },
+  'finalCta.subtitle.before': { en: 'Free, private, and built with', bg: 'Безплатно, поверително и създадено с' },
+  'finalCta.subtitle.after': { en: 'for this beautiful sport.', bg: 'за този прекрасен спорт.' },
+  'finalCta.welcomeBack': { en: 'Welcome Back', bg: 'Добре дошъл обратно' },
 
   // Footer
   'footer.tagline': { en: 'A cozy journaling space for ambitious figure skaters. ⛸️', bg: 'Уютно дневниково пространство за амбициозни фигуристи. ⛸️' },
