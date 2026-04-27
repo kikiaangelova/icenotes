@@ -38,6 +38,7 @@ export const useProfile = () => {
         height: data.height ? Number(data.height) : undefined,
         weight: data.weight ? Number(data.weight) : undefined,
         avatarUrl: data.avatar_url || undefined,
+        language: ((data as { language?: string }).language as SkaterProfile['language']) || 'en',
         trialEndsAt: data.trial_ends_at ? parseStoredDate(data.trial_ends_at) : undefined,
         createdAt: parseStoredDate(data.created_at)
       } as SkaterProfile;
@@ -64,8 +65,9 @@ export const useUpdateProfile = () => {
           age: profile.age,
           height: profile.height,
           weight: profile.weight,
-          avatar_url: profile.avatarUrl
-        })
+          avatar_url: profile.avatarUrl,
+          ...(profile.language ? { language: profile.language } : {}),
+        } as never)
         .eq('user_id', user.id);
       
       if (error) throw error;

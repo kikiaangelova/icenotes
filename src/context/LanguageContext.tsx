@@ -1,8 +1,18 @@
 import React, { createContext, useContext, useEffect, useState, useCallback } from 'react';
 
-export type Language = 'en' | 'bg';
+export type Language = 'en' | 'bg' | 'ru' | 'it' | 'fr';
 
-type Dict = Record<string, { en: string; bg: string }>;
+export const LANGUAGES: { code: Language; label: string; nativeLabel: string }[] = [
+  { code: 'en', label: 'English', nativeLabel: 'English' },
+  { code: 'bg', label: 'Bulgarian', nativeLabel: 'Български' },
+  { code: 'ru', label: 'Russian', nativeLabel: 'Русский' },
+  { code: 'it', label: 'Italian', nativeLabel: 'Italiano' },
+  { code: 'fr', label: 'French', nativeLabel: 'Français' },
+];
+
+// Each entry must have `en`. Other languages are optional and fall back to EN.
+type Entry = { en: string } & Partial<Record<Language, string>>;
+type Dict = Record<string, Entry>;
 
 const dict: Dict = {
   // Navbar
@@ -467,25 +477,38 @@ const dict: Dict = {
 interface LanguageContextValue {
   language: Language;
   setLanguage: (lang: Language) => void;
+  /** Set the language without persisting back to localStorage (used when syncing from profile). */
+  setLanguageSilent: (lang: Language) => void;
   toggleLanguage: () => void;
   t: (key: keyof typeof dict | string) => string;
+  availableLanguages: typeof LANGUAGES;
 }
 
 const LanguageContext = createContext<LanguageContextValue | undefined>(undefined);
 
 const STORAGE_KEY = 'icenotes.language';
+const SUPPORTED: ReadonlyArray<Language> = ['en', 'bg', 'ru', 'it', 'fr'];
+
+const isLanguage = (val: unknown): val is Language =>
+  typeof val === 'string' && (SUPPORTED as ReadonlyArray<string>).includes(val);
+
+const detectInitialLanguage = (): Language => {
+  try {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (isLanguage(saved)) return saved;
+    const browser = typeof navigator !== 'undefined' ? navigator.language.toLowerCase() : 'en';
+    if (browser.startsWith('bg')) return 'bg';
+    if (browser.startsWith('ru')) return 'ru';
+    if (browser.startsWith('it')) return 'it';
+    if (browser.startsWith('fr')) return 'fr';
+    return 'en';
+  } catch {
+    return 'en';
+  }
+};
 
 export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [language, setLanguageState] = useState<Language>(() => {
-    try {
-      const saved = localStorage.getItem(STORAGE_KEY) as Language | null;
-      if (saved === 'en' || saved === 'bg') return saved;
-      const browser = typeof navigator !== 'undefined' ? navigator.language.toLowerCase() : 'en';
-      return browser.startsWith('bg') ? 'bg' : 'en';
-    } catch {
-      return 'en';
-    }
-  });
+  const [language, setLanguageState] = useState<Language>(detectInitialLanguage);
 
   useEffect(() => {
     try {
@@ -494,20 +517,36 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     } catch {}
   }, [language]);
 
-  const setLanguage = useCallback((lang: Language) => setLanguageState(lang), []);
-  const toggleLanguage = useCallback(() => setLanguageState((p) => (p === 'en' ? 'bg' : 'en')), []);
+  const setLanguage = useCallback((lang: Language) => {
+    if (isLanguage(lang)) setLanguageState(lang);
+  }, []);
+
+  const setLanguageSilent = useCallback((lang: Language) => {
+    if (!isLanguage(lang)) return;
+    setLanguageState((current) => (current === lang ? current : lang));
+  }, []);
+
+  const toggleLanguage = useCallback(() => {
+    setLanguageState((p) => {
+      const i = SUPPORTED.indexOf(p);
+      return SUPPORTED[(i + 1) % SUPPORTED.length];
+    });
+  }, []);
 
   const t = useCallback(
     (key: string) => {
       const entry = dict[key];
       if (!entry) return key;
-      return entry[language] ?? entry.en;
+      // Fallback chain: requested language → English → key
+      return entry[language] ?? entry.en ?? key;
     },
     [language]
   );
 
   return (
-    <LanguageContext.Provider value={{ language, setLanguage, toggleLanguage, t }}>
+    <LanguageContext.Provider
+      value={{ language, setLanguage, setLanguageSilent, toggleLanguage, t, availableLanguages: LANGUAGES }}
+    >
       {children}
     </LanguageContext.Provider>
   );
