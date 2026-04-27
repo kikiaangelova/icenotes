@@ -4,6 +4,7 @@ import { Footer } from '@/components/landing/Footer';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Brain, Shield, Eye, Flame, Heart, Zap } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { MindfulnessTools } from '@/components/MindfulnessTools';
 
 const SportPsychology: React.FC = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -80,6 +81,12 @@ const SportPsychology: React.FC = () => {
                 <p className="text-xs text-muted-foreground leading-relaxed">{topic.description}</p>
               </div>
             ))}
+          </div>
+        </section>
+
+        <section className="px-5 md:px-12 pb-16 md:pb-24">
+          <div className="max-w-5xl mx-auto">
+            <MindfulnessTools />
           </div>
         </section>
 
