@@ -72,6 +72,36 @@ const dict: Dict = {
   'feeling.heavy': { en: 'Heavy', bg: 'Тежък' },
   'feeling.energizing': { en: 'Energizing', bg: 'Енергичен' },
 
+  // Journal — partial input / supportive microcopy
+  'journal.helper': {
+    en: 'Write as much or as little as you want.',
+    bg: 'Напиши толкова, колкото искаш.',
+    ru: 'Пиши столько, сколько хочешь.',
+    it: 'Scrivi quanto vuoi, anche poco.',
+    fr: "Écris autant ou aussi peu que tu veux.",
+  },
+  'journal.enoughForToday': {
+    en: "That's enough for today.",
+    bg: 'Това е достатъчно за днес.',
+    ru: 'На сегодня этого достаточно.',
+    it: 'Per oggi è abbastanza.',
+    fr: "C'est assez pour aujourd'hui.",
+  },
+  'journal.saveReflection': {
+    en: "Save today's reflection",
+    bg: 'Запази днешната рефлексия',
+    ru: 'Сохранить сегодняшнюю рефлексию',
+    it: 'Salva la riflessione di oggi',
+    fr: "Enregistrer la réflexion d'aujourd'hui",
+  },
+  'journal.captured': {
+    en: "Today's reflection captured",
+    bg: 'Днешната рефлексия е запазена',
+    ru: 'Сегодняшняя рефлексия записана',
+    it: 'Riflessione di oggi salvata',
+    fr: "Réflexion d'aujourd'hui enregistrée",
+  },
+
   // Mind Journal (psychologist-informed)
   'mind.heading': { en: 'Mind Journal', bg: 'Психологически дневник' },
   'mind.subheading': { en: 'Tools to support your mental training', bg: 'Инструменти за подкрепа на психичната тренировка' },
