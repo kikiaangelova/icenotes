@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Brain, Flame, Target, Trophy, Sparkles, ChevronRight, RotateCcw, Heart } from 'lucide-react';
+import { MindfulnessTools } from '@/components/MindfulnessTools';
 
 const MENTAL_TIPS = [
   {
@@ -318,6 +319,9 @@ export const SportPsychology: React.FC = () => {
           ))}
         </TabsContent>
       </Tabs>
+
+      {/* Mindfulness Tools — quick rink-side practices */}
+      <MindfulnessTools />
 
       {/* All Daily Exercises */}
       <Card>
