@@ -88,6 +88,24 @@ const About: React.FC = () => {
                 </div>
               </div>
             </div>
+
+            <Link
+              to="/coach-profile"
+              className="block p-5 rounded-xl border border-border/60 bg-card hover:bg-muted/40 hover:shadow-md transition-all group"
+            >
+              <div className="flex items-center justify-between gap-3">
+                <div className="flex items-center gap-3">
+                  <div className="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
+                    <Users className="w-4 h-4 text-primary" />
+                  </div>
+                  <div>
+                    <h3 className="text-base font-semibold text-foreground font-serif">{t('nav.coach')}</h3>
+                    <p className="text-xs text-muted-foreground mt-0.5">{t('about.coach.desc')}</p>
+                  </div>
+                </div>
+                <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-primary group-hover:translate-x-0.5 transition-all" />
+              </div>
+            </Link>
           </div>
         </section>
 

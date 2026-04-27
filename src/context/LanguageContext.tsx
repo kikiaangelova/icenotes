@@ -211,6 +211,7 @@ const dict: Dict = {
     bg: 'Безплатно завинаги. Поверително по подразбиране. Създадено с обич към фигурното пързаляне.',
   },
   'about.cta.button': { en: 'Get Started Free', bg: 'Започни безплатно' },
+  'about.coach.desc': { en: 'Meet the coaches behind IceNotes', bg: 'Запознай се с треньорите зад IceNotes' },
 
   // ── How It Works page ──
   'how.eyebrow': { en: 'How It Works', bg: 'Как работи' },
