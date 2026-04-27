@@ -3,7 +3,12 @@ import { useAuth } from '@/context/AuthContext';
 import { useLanguage, Language } from '@/context/LanguageContext';
 import { useProfile, useUpdateProfile } from '@/hooks/useSupabaseData';
 
-const SUPPORTED: ReadonlyArray<Language> = ['en', 'bg', 'ru', 'it', 'fr', 'tr', 'de'];
+const SUPPORTED: ReadonlyArray<Language> = ['en', 'bg'];
+
+const coerce = (val: unknown): Language | null =>
+  typeof val === 'string' && (SUPPORTED as ReadonlyArray<string>).includes(val)
+    ? (val as Language)
+    : null;
 
 /**
  * Bridges the LanguageContext with the user's saved profile.language.
@@ -33,17 +38,16 @@ export const LanguageSync: React.FC = () => {
     if (!user || !profile) return;
     if (appliedForUserRef.current === user.id) return;
 
-    const fromProfile = profile.language;
+    const fromProfile = coerce(profile.language);
     const fromStorage = (() => {
       try {
-        const v = localStorage.getItem('icenotes.language');
-        return v && SUPPORTED.includes(v as Language) ? (v as Language) : null;
+        return coerce(localStorage.getItem('icenotes.language'));
       } catch {
         return null;
       }
     })();
 
-    if (fromProfile && SUPPORTED.includes(fromProfile)) {
+    if (fromProfile) {
       // Profile has an explicit saved preference → it wins (cross-device source of truth).
       setLanguageSilent(fromProfile);
       lastSavedRef.current = fromProfile;
@@ -54,8 +58,12 @@ export const LanguageSync: React.FC = () => {
       lastSavedRef.current = fromStorage;
       updateProfile.mutate({ language: fromStorage });
     } else {
-      // Nothing anywhere — seed with current UI language (likely browser default).
+      // Nothing valid anywhere (or profile has a now-disabled language). Seed with
+      // current UI language and persist so the disabled value is overwritten.
       lastSavedRef.current = language;
+      if (profile.language && !coerce(profile.language)) {
+        updateProfile.mutate({ language });
+      }
     }
     appliedForUserRef.current = user.id;
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -77,11 +85,8 @@ export const LanguageSync: React.FC = () => {
     // Race guard: if the profile already holds a valid value and the UI hasn't
     // caught up yet to it, do nothing — the silent sync from effect #1 is still
     // propagating. We must never write the stale pre-sync language back.
-    if (
-      profile.language &&
-      SUPPORTED.includes(profile.language) &&
-      profile.language !== language
-    ) {
+    const profileLang = coerce(profile.language);
+    if (profileLang && profileLang !== language) {
       return;
     }
 
