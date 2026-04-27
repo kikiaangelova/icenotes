@@ -403,6 +403,65 @@ const dict: Dict = {
   'psy.cta.title': { en: 'Start building your mental game.', bg: 'Започни да изграждаш психичната си игра.' },
   'psy.cta.subtitle': { en: 'All mental training tools are included free.', bg: 'Всички инструменти за психична тренировка са безплатни.' },
   'psy.cta.button': { en: 'Get Started Free', bg: 'Започни безплатно' },
+
+  // Today / Guided Journey
+  'today.tab': { en: 'Today', bg: 'Днес' },
+  'today.title': { en: "Today's Journey", bg: 'Дневен ритуал' },
+  'today.subtitle': {
+    en: 'A calm, guided path through your training day.',
+    bg: 'Спокоен, направляван път през тренировъчния ти ден.',
+  },
+  'today.progress': { en: 'Step {current} of {total}', bg: 'Стъпка {current} от {total}' },
+  'today.next': { en: 'Continue', bg: 'Продължи' },
+  'today.back': { en: 'Back', bg: 'Назад' },
+  'today.skip': { en: 'Skip for today', bg: 'Пропусни за днес' },
+  'today.done.title': { en: 'You showed up today.', bg: 'Беше тук днес.' },
+  'today.done.subtitle': {
+    en: 'That is what builds a skater. Rest well.',
+    bg: 'Точно това гради фигурист. Почивай добре.',
+  },
+  'today.restart': { en: 'Start again', bg: 'Започни отново' },
+
+  'today.stage.pre.label': { en: 'Pre-training', bg: 'Преди тренировка' },
+  'today.stage.pre.title': { en: 'Arrive in your body', bg: 'Влез в тялото си' },
+  'today.stage.pre.desc': {
+    en: 'Breathe, visualize, and set an intention before you step on the ice.',
+    bg: 'Поеми въздух, визуализирай и постави намерение, преди да стъпиш на леда.',
+  },
+
+  'today.stage.training.label': { en: 'Training', bg: 'Тренировка' },
+  'today.stage.training.title': { en: 'Train with focus', bg: 'Тренирай с фокус' },
+  'today.stage.training.desc': {
+    en: 'Use the timer, log your session, and track your jumps when you are ready.',
+    bg: 'Използвай таймера, запиши сесията и отбележи скоковете си, когато си готов/а.',
+  },
+
+  'today.stage.post.label': { en: 'Post-training', bg: 'След тренировка' },
+  'today.stage.post.title': { en: 'Reflect with kindness', bg: 'Рефлектирай с добрина' },
+  'today.stage.post.desc': {
+    en: 'What went well, what was hard, what you learned — then a softer view of yourself.',
+    bg: 'Какво се получи, какво беше трудно, какво научи — и след това по-меко отношение към себе си.',
+  },
+
+  'today.stage.grounding.label': { en: 'Daily grounding', bg: 'Заземяване' },
+  'today.stage.grounding.title': { en: 'Land back into yourself', bg: 'Върни се към себе си' },
+  'today.stage.grounding.desc': {
+    en: 'Gratitude, a body scan, and a quiet check-in with how you really feel.',
+    bg: 'Благодарност, скан на тялото и тих разговор с това как наистина се чувстваш.',
+  },
+
+  'today.stage.weekly.label': { en: 'Weekly review', bg: 'Седмичен преглед' },
+  'today.stage.weekly.title': { en: 'Look back, look ahead', bg: 'Поглед назад и напред' },
+  'today.stage.weekly.desc': {
+    en: 'Notice the patterns of the week and choose your focus for the next one.',
+    bg: 'Забележи моделите от седмицата и избери своя фокус за следващата.',
+  },
+  'today.weekly.improved': { en: 'What improved this week?', bg: 'Какво се подобри тази седмица?' },
+  'today.weekly.patterns': { en: 'What patterns do you notice?', bg: 'Какви модели забелязваш?' },
+  'today.weekly.next': { en: 'What will you focus on next?', bg: 'Върху какво ще се фокусираш след това?' },
+  'today.weekly.placeholder': { en: 'Write freely…', bg: 'Пиши свободно…' },
+  'today.weekly.save': { en: 'Save weekly review', bg: 'Запази прегледа' },
+  'today.weekly.saved': { en: 'Saved for this week 💙', bg: 'Запазено за тази седмица 💙' },
 };
 
 interface LanguageContextValue {
