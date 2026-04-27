@@ -81,6 +81,7 @@ export const PremiumDashboard: React.FC = () => {
               See how far you've come, without pressure.
             </p>
           </div>
+          <PsychologicalProfile />
           <ConsistencyInsights />
           <GoalEvolutionSection />
         </TabsContent>
