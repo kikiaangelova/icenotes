@@ -66,6 +66,11 @@ export const SimpleDashboard: React.FC = () => {
   const hasOffIce = todaysSessions.some(s => s.type === 'off-ice');
   const levelLabel = SELF_LEVELS.find(l => l.value === profile?.selfLevel)?.label || '';
 
+  const firstName = profile?.name?.trim().split(/\s+/)[0] || '';
+  const greeting = firstName
+    ? (language === 'bg' ? `Здравей, ${firstName} 👋` : `Hi, ${firstName} 👋`)
+    : (language === 'bg' ? 'Здравей 👋' : 'Hi there 👋');
+
   const handleStartTraining = (type: 'on-ice' | 'off-ice') => {
     setPendingTrainingType(type);
     setCurrentView('pre-training');
