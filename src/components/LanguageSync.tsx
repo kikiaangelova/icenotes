@@ -74,6 +74,16 @@ export const LanguageSync: React.FC = () => {
     if (!user || !profile) return;
     if (appliedForUserRef.current !== user.id) return;
     if (lastSavedRef.current === language) return;
+    // Race guard: if the profile already holds a valid value and the UI hasn't
+    // caught up yet to it, do nothing — the silent sync from effect #1 is still
+    // propagating. We must never write the stale pre-sync language back.
+    if (
+      profile.language &&
+      SUPPORTED.includes(profile.language) &&
+      profile.language !== language
+    ) {
+      return;
+    }
 
     lastSavedRef.current = language;
     updateProfile.mutate({ language });
