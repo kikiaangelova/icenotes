@@ -143,11 +143,11 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted }) => {
             <div className="text-6xl md:text-8xl font-extrabold text-primary font-serif tracking-tight opacity-0">0</div>
           )}
           <p className="text-base md:text-lg text-muted-foreground max-w-md mx-auto leading-relaxed">
-            Skaters are already reflecting, training smarter, and growing with IceNotes every day ⛸️
+            {t('social.text')}
           </p>
           <Link to="/auth?mode=signup">
             <Button size="lg" className="h-14 px-10 text-base font-bold rounded-2xl gap-2.5 mt-3 shadow-md bg-gradient-to-r from-primary to-primary/85">
-              Join IceNotes
+              {t('social.cta')}
               <ArrowRight className="w-4 h-4" />
             </Button>
           </Link>
@@ -158,16 +158,16 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted }) => {
       <section className="relative z-10 px-5 md:px-12 py-10 md:py-20 bg-gradient-to-b from-mint/15 via-sky/10 to-background border-y border-border/30">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-2xl md:text-4xl font-extrabold tracking-tight text-foreground font-serif text-center mb-10">
-            Simple as 1-2-3 ✨
+            {t('steps.heading')}
           </h2>
 
           <div className="grid md:grid-cols-3 gap-8 relative">
             <div className="hidden md:block absolute top-8 left-[calc(16.67%+28px)] right-[calc(16.67%+28px)] h-[2px] bg-gradient-to-r from-mint-foreground/15 via-lavender-foreground/20 to-rose-foreground/15" />
 
             {[
-              { step: '1', icon: Dumbbell, title: 'Train', text: 'Practice as usual — on or off ice.', bg: 'bg-gradient-to-br from-mint to-mint-foreground/10', stepBg: 'bg-mint-foreground', color: 'text-mint-foreground' },
-              { step: '2', icon: PenLine, title: 'Reflect', text: '5 quiet minutes to write it down.', bg: 'bg-gradient-to-br from-lavender to-grape/30', stepBg: 'bg-lavender-foreground', color: 'text-lavender-foreground' },
-              { step: '3', icon: Sprout, title: 'Grow', text: 'Watch your confidence bloom.', bg: 'bg-gradient-to-br from-rose to-peach/30', stepBg: 'bg-rose-foreground', color: 'text-rose-foreground' },
+              { step: '1', icon: Dumbbell, title: t('steps.train.title'), text: t('steps.train.text'), bg: 'bg-gradient-to-br from-mint to-mint-foreground/10', stepBg: 'bg-mint-foreground', color: 'text-mint-foreground' },
+              { step: '2', icon: PenLine, title: t('steps.reflect.title'), text: t('steps.reflect.text'), bg: 'bg-gradient-to-br from-lavender to-grape/30', stepBg: 'bg-lavender-foreground', color: 'text-lavender-foreground' },
+              { step: '3', icon: Sprout, title: t('steps.grow.title'), text: t('steps.grow.text'), bg: 'bg-gradient-to-br from-rose to-peach/30', stepBg: 'bg-rose-foreground', color: 'text-rose-foreground' },
             ].map((item) => (
               <div key={item.step} className="text-center relative">
                 <div className={`w-14 h-14 rounded-2xl ${item.bg} border border-border/20 flex items-center justify-center mx-auto mb-4 relative z-10 shadow-sm`}>
@@ -195,21 +195,21 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted }) => {
             <Snowflake className="w-7 h-7 text-primary" />
           </div>
           <h2 className="text-2xl md:text-4xl font-extrabold tracking-tight text-foreground font-serif mb-4 leading-snug">
-            Ready to grow as a skater?
+            {t('finalCta.heading')}
           </h2>
           <p className="text-base text-muted-foreground mb-8 max-w-lg mx-auto leading-relaxed flex items-center justify-center gap-1.5">
-            Free, private, and built with <Heart className="w-4 h-4 text-rose-foreground inline" /> for this beautiful sport.
+            {t('finalCta.subtitle.before')} <Heart className="w-4 h-4 text-rose-foreground inline" /> {t('finalCta.subtitle.after')}
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
             <Link to="/auth?mode=signup" className="w-full sm:w-auto">
               <Button size="lg" className="h-14 px-10 text-base font-bold rounded-2xl gap-2.5 w-full shadow-md bg-gradient-to-r from-primary to-primary/85">
-                Start Your Journey
+                {t('hero.cta')}
                 <ArrowRight className="w-4 h-4" />
               </Button>
             </Link>
             <Link to="/auth" className="w-full sm:w-auto">
               <Button variant="outline" size="lg" className="h-14 px-10 text-base font-semibold rounded-2xl w-full">
-                Welcome Back
+                {t('finalCta.welcomeBack')}
               </Button>
             </Link>
           </div>
