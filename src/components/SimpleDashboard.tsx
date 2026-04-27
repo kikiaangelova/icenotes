@@ -15,6 +15,7 @@ import { ReminderSettings } from './ReminderSettings';
 import { ProgressSummaryCards } from './ProgressSummaryCards';
 import { ActivityCalendar } from './ActivityCalendar';
 import { AvatarUpload } from './AvatarUpload';
+import { getGreeting } from '@/lib/greeting';
 
 import { MotivationalQuote } from './MotivationalQuote';
 import { QuotesCollection } from './QuotesCollection';
@@ -65,11 +66,7 @@ export const SimpleDashboard: React.FC = () => {
   const hasOnIce = todaysSessions.some(s => s.type === 'on-ice');
   const hasOffIce = todaysSessions.some(s => s.type === 'off-ice');
   const levelLabel = SELF_LEVELS.find(l => l.value === profile?.selfLevel)?.label || '';
-
-  const firstName = profile?.name?.trim().split(/\s+/)[0] || '';
-  const greeting = firstName
-    ? (language === 'bg' ? `Здравей, ${firstName} 👋` : `Hi, ${firstName} 👋`)
-    : (language === 'bg' ? 'Здравей 👋' : 'Hi there 👋');
+  const greeting = getGreeting(profile?.name, language);
 
   const handleStartTraining = (type: 'on-ice' | 'off-ice') => {
     setPendingTrainingType(type);
