@@ -8,6 +8,7 @@ import { FEELING_OPTIONS, GENTLE_MESSAGES } from '@/types/journal';
 import { Feather, Check, Sparkles } from 'lucide-react';
 import { format } from 'date-fns';
 import { cn } from '@/lib/utils';
+import { useLanguage } from '@/context/LanguageContext';
 
 interface DailyJournalProps {
   onComplete?: () => void;
@@ -15,6 +16,7 @@ interface DailyJournalProps {
 
 export const DailyJournal: React.FC<DailyJournalProps> = ({ onComplete }) => {
   const { addEntry, getTodaysEntry } = useJournal();
+  const { t } = useLanguage();
   const existingEntry = getTodaysEntry();
   
   const [formData, setFormData] = useState({
@@ -122,7 +124,7 @@ export const DailyJournal: React.FC<DailyJournalProps> = ({ onComplete }) => {
                 )}
               >
                 <span className="mr-1.5">{feeling.emoji}</span>
-                {feeling.label}
+                {t(`feeling.${feeling.value}`)}
               </button>
             ))}
           </div>
