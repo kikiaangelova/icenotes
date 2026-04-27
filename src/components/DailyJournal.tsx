@@ -30,21 +30,26 @@ export const DailyJournal: React.FC<DailyJournalProps> = ({ onComplete }) => {
   const [gentleMessage, setGentleMessage] = useState('');
 
   const handleSubmit = () => {
-    if (!formData.workedOn.trim() || !formData.feeling) return;
-    
+    // Reflection capture, not form completion — accept any input (or none).
+    const hasAnyInput =
+      formData.workedOn.trim() ||
+      formData.feeling ||
+      formData.smallWin.trim() ||
+      formData.coachNotes.trim();
+    if (!hasAnyInput) return;
+
     addEntry({
       date: new Date(),
       workedOn: formData.workedOn.trim(),
-      feeling: formData.feeling,
+      feeling: formData.feeling || undefined,
       smallWin: formData.smallWin.trim(),
       coachNotes: formData.coachNotes.trim() || undefined
     });
-    
-    // Show a random gentle message
-    const randomMessage = GENTLE_MESSAGES[Math.floor(Math.random() * GENTLE_MESSAGES.length)];
-    setGentleMessage(randomMessage);
+
+    // Show supportive microcopy for partial input
+    setGentleMessage(t('journal.enoughForToday'));
     setIsSubmitted(true);
-    
+
     if (onComplete) {
       setTimeout(onComplete, 2000);
     }
@@ -59,10 +64,10 @@ export const DailyJournal: React.FC<DailyJournalProps> = ({ onComplete }) => {
           </div>
           <div className="space-y-2">
             <h3 className="text-lg font-medium text-foreground">
-              Today's reflection complete
+              {t('journal.captured')}
             </h3>
             <p className="text-muted-foreground italic">
-              "{gentleMessage || 'Showing up matters.'}"
+              "{gentleMessage || t('journal.enoughForToday')}"
             </p>
           </div>
           {onComplete && (
@@ -90,7 +95,7 @@ export const DailyJournal: React.FC<DailyJournalProps> = ({ onComplete }) => {
           {format(new Date(), 'EEEE, MMMM d')}
         </CardTitle>
         <p className="text-sm text-muted-foreground">
-          There's no right way to feel. Just be honest.
+          {t('journal.helper')}
         </p>
       </CardHeader>
       
@@ -168,11 +173,10 @@ export const DailyJournal: React.FC<DailyJournalProps> = ({ onComplete }) => {
         <div className="pt-2">
           <Button 
             onClick={handleSubmit}
-            disabled={!formData.workedOn.trim() || !formData.feeling}
             className="w-full h-12 text-base"
           >
             <Sparkles className="w-4 h-4 mr-2" />
-            Save Today's Reflection
+            {t('journal.saveReflection')}
           </Button>
           <p className="text-xs text-center text-muted-foreground mt-3 italic">
             You can always start again tomorrow.
