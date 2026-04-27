@@ -61,6 +61,44 @@ const dict: Dict = {
   'feeling.heavy': { en: 'Heavy', bg: 'Тежък' },
   'feeling.energizing': { en: 'Energizing', bg: 'Енергичен' },
 
+  // Training section
+  'training.heading': { en: 'Daily Practice', bg: 'Ежедневна тренировка' },
+  'training.subheading': { en: 'Track your training across all disciplines', bg: 'Проследявай тренировките си във всички дисциплини' },
+  'training.onIce.title': { en: 'On-Ice Training', bg: 'На лед — Тренировка' },
+  'training.onIce.desc': { en: 'Jumps, spins, footwork, and programs', bg: 'Скокове, пирети, стъпки и програми' },
+  'training.offIce.title': { en: 'Off-Ice Training', bg: 'Извън лед — Тренировка' },
+  'training.offIce.desc': { en: 'Strength, flexibility, and conditioning', bg: 'Сила, гъвкавост и кондиция' },
+  'training.mental.title': { en: 'Mental Preparation', bg: 'Психологична подготовка' },
+  'training.mental.desc': { en: 'Visualization, focus, and mindset', bg: 'Визуализация, фокус и нагласа' },
+
+  // On-ice activities
+  'training.onIce.edges': { en: 'Edge work & stroking', bg: 'Кантове и свободно' },
+  'training.onIce.spins': { en: 'Spins practice', bg: 'Пирети' },
+  'training.onIce.jumps': { en: 'Jump technique', bg: 'Техника на скоковете' },
+  'training.onIce.program': { en: 'Program run-through', bg: 'Прогон на програма' },
+  'training.onIce.choreo': { en: 'Choreography', bg: 'Хореография' },
+  'training.onIce.moves': { en: 'Moves in the Field', bg: 'Движения в полето' },
+  'training.onIce.free': { en: 'Free Skate', bg: 'Свободно пързаляне' },
+
+  // Off-ice activities
+  'training.offIce.warmup': { en: 'Warm-up & stretching', bg: 'Загряване и разтягане' },
+  'training.offIce.core': { en: 'Core strengthening', bg: 'Сила на корпуса' },
+  'training.offIce.jumpSim': { en: 'Jump simulation', bg: 'Симулация на скокове' },
+  'training.offIce.ballet': { en: 'Ballet & dance', bg: 'Балет и танци' },
+  'training.offIce.cardio': { en: 'Cardio conditioning', bg: 'Кардио кондиция' },
+  'training.offIce.strength': { en: 'Strength', bg: 'Сила' },
+
+  // Mental activities
+  'training.mental.visualization': { en: 'Program visualization', bg: 'Визуализация на програма' },
+  'training.mental.breathing': { en: 'Breathing exercises', bg: 'Дихателни упражнения' },
+  'training.mental.goalReview': { en: 'Goal review', bg: 'Преглед на целите' },
+  'training.mental.competition': { en: 'Competition simulation', bg: 'Симулация на състезание' },
+  'training.mental.affirmations': { en: 'Positive affirmations', bg: 'Позитивни утвърждения' },
+
+  // Common training labels
+  'training.onIceShort': { en: 'On-Ice', bg: 'На лед' },
+  'training.offIceShort': { en: 'Off-Ice', bg: 'Извън лед' },
+
   // Footer
   'footer.tagline': { en: 'A cozy journaling space for ambitious figure skaters. ⛸️', bg: 'Уютно дневниково пространство за амбициозни фигуристи. ⛸️' },
   'footer.navigate': { en: 'Navigate', bg: 'Навигация' },
