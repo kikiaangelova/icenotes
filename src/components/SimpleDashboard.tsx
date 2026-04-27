@@ -22,9 +22,10 @@ import { QuotesCollection } from './QuotesCollection';
 import { SkatingGoals } from './SkatingGoals';
 import { ProgressOverview } from './ProgressOverview';
 import { SportPsychology } from './SportPsychology';
+import { TodayJourney } from './TodayJourney';
 import { Button } from '@/components/ui/button';
 import { SELF_LEVELS } from '@/types/journal';
-import { Feather, Compass, Heart, Settings, LogOut, Dumbbell, Target, CalendarCheck, Brain, Timer, Bell, Snowflake, BookHeart, TrendingUp, Sparkles } from 'lucide-react';
+import { Feather, Compass, Heart, Settings, LogOut, Dumbbell, Target, CalendarCheck, Brain, Timer, Bell, Snowflake, BookHeart, TrendingUp, Sparkles, Sun } from 'lucide-react';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -55,7 +56,7 @@ type DashboardView = 'home' | 'journal' | 'journey' | 'reflect' | 'on-ice' | 'of
 export const SimpleDashboard: React.FC = () => {
   const { profile, setProfile, getTodaysEntry, getTodaysSessions, resetProfile } = useJournal();
   const { signOut, user } = useAuth();
-  const { language } = useLanguage();
+  const { language, t } = useLanguage();
   const [currentView, setCurrentView] = useState<DashboardView>('home');
   const [showResetDialog, setShowResetDialog] = useState(false);
   const [showReminderSettings, setShowReminderSettings] = useState(false);
@@ -154,49 +155,58 @@ export const SimpleDashboard: React.FC = () => {
           </div>
 
           {/* Tabs with color-coded icons */}
-          <Tabs defaultValue="goals" className="space-y-5 sm:space-y-7">
-            <TabsList className="grid w-full grid-cols-5 sm:grid-cols-10 h-12 sm:h-13 rounded-2xl bg-muted/50 p-1 backdrop-blur-sm">
-              <TabsTrigger value="goals" className="flex items-center justify-center gap-1 px-1 sm:px-2 rounded-xl data-[state=active]:bg-lavender data-[state=active]:text-lavender-foreground data-[state=active]:shadow-sm transition-all">
+          <Tabs defaultValue="today" className="space-y-5 sm:space-y-7">
+            <TabsList className="flex w-full overflow-x-auto sm:grid sm:grid-cols-11 h-12 sm:h-13 rounded-2xl bg-muted/50 p-1 backdrop-blur-sm gap-1 no-scrollbar">
+              <TabsTrigger value="today" className="flex-shrink-0 sm:flex-shrink flex items-center justify-center gap-1 px-2 sm:px-2 rounded-xl data-[state=active]:bg-grape data-[state=active]:text-grape-foreground data-[state=active]:shadow-sm transition-all">
+                <Sun className="w-4 h-4 flex-shrink-0" />
+                <span className="hidden sm:inline text-xs font-semibold">{t('today.tab')}</span>
+              </TabsTrigger>
+              <TabsTrigger value="goals" className="flex-shrink-0 sm:flex-shrink flex items-center justify-center gap-1 px-2 sm:px-2 rounded-xl data-[state=active]:bg-lavender data-[state=active]:text-lavender-foreground data-[state=active]:shadow-sm transition-all">
                 <CalendarCheck className="w-4 h-4 flex-shrink-0" />
                 <span className="hidden sm:inline text-xs font-semibold">Goals</span>
               </TabsTrigger>
-              <TabsTrigger value="mygoals" className="flex items-center justify-center gap-1 px-1 sm:px-2 rounded-xl data-[state=active]:bg-grape data-[state=active]:text-grape-foreground data-[state=active]:shadow-sm transition-all">
+              <TabsTrigger value="mygoals" className="flex-shrink-0 sm:flex-shrink flex items-center justify-center gap-1 px-2 sm:px-2 rounded-xl data-[state=active]:bg-grape data-[state=active]:text-grape-foreground data-[state=active]:shadow-sm transition-all">
                 <Target className="w-4 h-4 flex-shrink-0" />
                 <span className="hidden sm:inline text-xs font-semibold">Plan</span>
               </TabsTrigger>
-              <TabsTrigger value="training" className="flex items-center justify-center gap-1 px-1 sm:px-2 rounded-xl data-[state=active]:bg-mint data-[state=active]:text-mint-foreground data-[state=active]:shadow-sm transition-all">
+              <TabsTrigger value="training" className="flex-shrink-0 sm:flex-shrink flex items-center justify-center gap-1 px-2 sm:px-2 rounded-xl data-[state=active]:bg-mint data-[state=active]:text-mint-foreground data-[state=active]:shadow-sm transition-all">
                 <Snowflake className="w-4 h-4 flex-shrink-0" />
                 <span className="hidden sm:inline text-xs font-semibold">Training</span>
               </TabsTrigger>
-              <TabsTrigger value="mind" className="flex items-center justify-center gap-1 px-1 sm:px-2 rounded-xl data-[state=active]:bg-rose data-[state=active]:text-rose-foreground data-[state=active]:shadow-sm transition-all">
+              <TabsTrigger value="mind" className="flex-shrink-0 sm:flex-shrink flex items-center justify-center gap-1 px-2 sm:px-2 rounded-xl data-[state=active]:bg-rose data-[state=active]:text-rose-foreground data-[state=active]:shadow-sm transition-all">
                 <Brain className="w-4 h-4 flex-shrink-0" />
                 <span className="hidden sm:inline text-xs font-semibold">Mind</span>
               </TabsTrigger>
-              <TabsTrigger value="psychology" className="flex items-center justify-center gap-1 px-1 sm:px-2 rounded-xl data-[state=active]:bg-grape data-[state=active]:text-grape-foreground data-[state=active]:shadow-sm transition-all">
+              <TabsTrigger value="psychology" className="flex-shrink-0 sm:flex-shrink flex items-center justify-center gap-1 px-2 sm:px-2 rounded-xl data-[state=active]:bg-grape data-[state=active]:text-grape-foreground data-[state=active]:shadow-sm transition-all">
                 <Sparkles className="w-4 h-4 flex-shrink-0" />
                 <span className="hidden sm:inline text-xs font-semibold">Psych</span>
               </TabsTrigger>
-              <TabsTrigger value="jumps" className="flex items-center justify-center gap-1 px-1 sm:px-2 rounded-xl data-[state=active]:bg-peach data-[state=active]:text-peach-foreground data-[state=active]:shadow-sm transition-all">
+              <TabsTrigger value="jumps" className="flex-shrink-0 sm:flex-shrink flex items-center justify-center gap-1 px-2 sm:px-2 rounded-xl data-[state=active]:bg-peach data-[state=active]:text-peach-foreground data-[state=active]:shadow-sm transition-all">
                 <Target className="w-4 h-4 flex-shrink-0" />
                 <span className="hidden sm:inline text-xs font-semibold">Jumps</span>
               </TabsTrigger>
-              <TabsTrigger value="journal" className="flex items-center justify-center gap-1 px-1 sm:px-2 rounded-xl data-[state=active]:bg-sky data-[state=active]:text-sky-foreground data-[state=active]:shadow-sm transition-all">
+              <TabsTrigger value="journal" className="flex-shrink-0 sm:flex-shrink flex items-center justify-center gap-1 px-2 sm:px-2 rounded-xl data-[state=active]:bg-sky data-[state=active]:text-sky-foreground data-[state=active]:shadow-sm transition-all">
                 <Feather className="w-4 h-4 flex-shrink-0" />
                 <span className="hidden sm:inline text-xs font-semibold">Journal</span>
               </TabsTrigger>
-              <TabsTrigger value="progress" className="flex items-center justify-center gap-1 px-1 sm:px-2 rounded-xl data-[state=active]:bg-sky data-[state=active]:text-sky-foreground data-[state=active]:shadow-sm transition-all">
+              <TabsTrigger value="progress" className="flex-shrink-0 sm:flex-shrink flex items-center justify-center gap-1 px-2 sm:px-2 rounded-xl data-[state=active]:bg-sky data-[state=active]:text-sky-foreground data-[state=active]:shadow-sm transition-all">
                 <TrendingUp className="w-4 h-4 flex-shrink-0" />
                 <span className="hidden sm:inline text-xs font-semibold">Progress</span>
               </TabsTrigger>
-              <TabsTrigger value="quotes" className="flex items-center justify-center gap-1 px-1 sm:px-2 rounded-xl data-[state=active]:bg-peach data-[state=active]:text-peach-foreground data-[state=active]:shadow-sm transition-all">
+              <TabsTrigger value="quotes" className="flex-shrink-0 sm:flex-shrink flex items-center justify-center gap-1 px-2 sm:px-2 rounded-xl data-[state=active]:bg-peach data-[state=active]:text-peach-foreground data-[state=active]:shadow-sm transition-all">
                 <BookHeart className="w-4 h-4 flex-shrink-0" />
                 <span className="hidden sm:inline text-xs font-semibold">Quotes</span>
               </TabsTrigger>
-              <TabsTrigger value="journey" className="flex items-center justify-center gap-1 px-1 sm:px-2 rounded-xl data-[state=active]:bg-mint data-[state=active]:text-mint-foreground data-[state=active]:shadow-sm transition-all">
+              <TabsTrigger value="journey" className="flex-shrink-0 sm:flex-shrink flex items-center justify-center gap-1 px-2 sm:px-2 rounded-xl data-[state=active]:bg-mint data-[state=active]:text-mint-foreground data-[state=active]:shadow-sm transition-all">
                 <Compass className="w-4 h-4 flex-shrink-0" />
                 <span className="hidden sm:inline text-xs font-semibold">Journey</span>
               </TabsTrigger>
             </TabsList>
+
+            {/* Today's guided journey */}
+            <TabsContent value="today" className="space-y-4">
+              <TodayJourney />
+            </TabsContent>
 
             {/* Weekly Goals Tab */}
             <TabsContent value="goals" className="space-y-4">
