@@ -54,6 +54,13 @@ const dict: Dict = {
   'finalCta.subtitle.after': { en: 'for this beautiful sport.', bg: 'за този прекрасен спорт.' },
   'finalCta.welcomeBack': { en: 'Welcome Back', bg: 'Добре дошъл обратно' },
 
+  // Feeling options (journal mood selector)
+  'feeling.calm': { en: 'Calm', bg: 'Спокоен' },
+  'feeling.focused': { en: 'Focused', bg: 'Фокусиран' },
+  'feeling.challenging': { en: 'Challenging', bg: 'Предизвикателен' },
+  'feeling.heavy': { en: 'Heavy', bg: 'Тежък' },
+  'feeling.energizing': { en: 'Energizing', bg: 'Енергичен' },
+
   // Footer
   'footer.tagline': { en: 'A cozy journaling space for ambitious figure skaters. ⛸️', bg: 'Уютно дневниково пространство за амбициозни фигуристи. ⛸️' },
   'footer.navigate': { en: 'Navigate', bg: 'Навигация' },
