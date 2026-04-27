@@ -473,6 +473,10 @@ export const MentalHealthHub: React.FC = () => {
             </CardContent>
           </Card>
         </TabsContent>
+
+        <TabsContent value="mind">
+          <MindJournal />
+        </TabsContent>
       </Tabs>
     </div>
   );
