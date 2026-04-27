@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Snowflake, Brain, Target, TrendingUp, Dumbbell, PenLine, Sprout, ArrowRight, Users, Sparkles, Heart } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { supabase } from '@/integrations/supabase/client';
+import { useLanguage } from '@/context/LanguageContext';
 
 interface LandingPageProps {
   onGetStarted: () => void;
@@ -12,6 +13,7 @@ interface LandingPageProps {
 
 export const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted }) => {
   const [userCount, setUserCount] = useState<number | null>(null);
+  const { t } = useLanguage();
 
   useEffect(() => {
     const fetchCount = async () => {
