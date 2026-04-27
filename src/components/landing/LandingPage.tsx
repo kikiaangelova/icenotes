@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Snowflake, Brain, Target, TrendingUp, Dumbbell, PenLine, Sprout, ArrowRight, Users, Sparkles, Heart } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { supabase } from '@/integrations/supabase/client';
+import { useLanguage } from '@/context/LanguageContext';
 
 interface LandingPageProps {
   onGetStarted: () => void;
@@ -12,6 +13,7 @@ interface LandingPageProps {
 
 export const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted }) => {
   const [userCount, setUserCount] = useState<number | null>(null);
+  const { t } = useLanguage();
 
   useEffect(() => {
     const fetchCount = async () => {
@@ -45,38 +47,38 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted }) => {
         <div className="max-w-3xl mx-auto text-center">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-sky/40 to-lavender/40 border border-primary/10 mb-6">
             <Sparkles className="w-3.5 h-3.5 text-primary" />
-            <span className="text-xs font-semibold text-foreground/80">Made for figure skaters, by a figure skater</span>
+            <span className="text-xs font-semibold text-foreground/80">{t('hero.badge')}</span>
           </div>
           
           <h1 className="text-3xl md:text-6xl font-extrabold leading-tight tracking-tight text-foreground font-serif mb-4">
-            Your skating journey
+            {t('hero.title.line1')}
             <br />
-            deserves to be{' '}
+            {t('hero.title.line2.prefix')}{' '}
             <span className="bg-gradient-to-r from-primary via-grape-foreground to-rose-foreground bg-clip-text text-transparent">
-              remembered
+              {t('hero.title.highlight')}
             </span>
           </h1>
           <p className="text-base md:text-xl text-muted-foreground max-w-xl mx-auto mb-3 leading-relaxed">
-            A cozy space to reflect, track your progress, and grow as an athlete — one session at a time.
+            {t('hero.subtitle')}
           </p>
           <p className="text-xs text-muted-foreground/60 italic mb-7">
-            Created by a young figure skater and her mom 💙
+            {t('hero.attribution')}
           </p>
           <Link to="/auth?mode=signup">
             <Button size="lg" className="h-14 px-10 text-base font-bold rounded-2xl gap-2.5 w-full sm:w-auto shadow-md hover:shadow-lg bg-gradient-to-r from-primary to-primary/85">
-              Start Your Journey
+              {t('hero.cta')}
               <ArrowRight className="w-4 h-4" />
             </Button>
           </Link>
           <p className="text-xs text-muted-foreground mt-3">
-            100% free · Always private · No credit card needed
+            {t('hero.disclaimer')}
           </p>
 
           {userCount !== null && userCount > 0 && (
             <div className="mt-8 inline-flex items-center gap-2.5 px-5 py-3 rounded-2xl bg-gradient-to-r from-mint/50 to-sky/30 border border-mint-foreground/10">
               <Users className="w-4 h-4 text-mint-foreground" />
               <span className="text-sm font-semibold text-foreground">
-                Join <span className="font-extrabold text-primary">{userCount.toLocaleString()}</span> skater{userCount !== 1 ? 's' : ''} already here
+                {t('hero.joinPrefix')} <span className="font-extrabold text-primary">{userCount.toLocaleString()}</span> {userCount !== 1 ? t('hero.joinSuffix.many') : t('hero.joinSuffix.one')}
               </span>
             </div>
           )}
@@ -89,8 +91,8 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted }) => {
           {[
             {
               icon: Brain,
-              title: 'Strengthen Your Mind',
-              text: 'Build confidence and mental resilience through structured reflection.',
+              title: t('benefit.mind.title'),
+              text: t('benefit.mind.text'),
               gradient: 'from-rose/50 to-grape/20',
               iconBg: 'bg-gradient-to-br from-rose to-grape/30',
               iconColor: 'text-rose-foreground',
@@ -98,8 +100,8 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted }) => {
             },
             {
               icon: Target,
-              title: 'Track Your Training',
-              text: 'Log sessions, jumps, and goals. Train with clear intention.',
+              title: t('benefit.training.title'),
+              text: t('benefit.training.text'),
               gradient: 'from-sky/50 to-primary/10',
               iconBg: 'bg-gradient-to-br from-sky to-primary/20',
               iconColor: 'text-sky-foreground',
@@ -107,8 +109,8 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted }) => {
             },
             {
               icon: TrendingUp,
-              title: 'See Your Growth',
-              text: 'Spot patterns and celebrate wins over weeks and months.',
+              title: t('benefit.growth.title'),
+              text: t('benefit.growth.text'),
               gradient: 'from-mint/60 to-mint/20',
               iconBg: 'bg-gradient-to-br from-mint to-mint-foreground/10',
               iconColor: 'text-mint-foreground',
@@ -141,11 +143,11 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted }) => {
             <div className="text-6xl md:text-8xl font-extrabold text-primary font-serif tracking-tight opacity-0">0</div>
           )}
           <p className="text-base md:text-lg text-muted-foreground max-w-md mx-auto leading-relaxed">
-            Skaters are already reflecting, training smarter, and growing with IceNotes every day ⛸️
+            {t('social.text')}
           </p>
           <Link to="/auth?mode=signup">
             <Button size="lg" className="h-14 px-10 text-base font-bold rounded-2xl gap-2.5 mt-3 shadow-md bg-gradient-to-r from-primary to-primary/85">
-              Join IceNotes
+              {t('social.cta')}
               <ArrowRight className="w-4 h-4" />
             </Button>
           </Link>
@@ -156,16 +158,16 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted }) => {
       <section className="relative z-10 px-5 md:px-12 py-10 md:py-20 bg-gradient-to-b from-mint/15 via-sky/10 to-background border-y border-border/30">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-2xl md:text-4xl font-extrabold tracking-tight text-foreground font-serif text-center mb-10">
-            Simple as 1-2-3 ✨
+            {t('steps.heading')}
           </h2>
 
           <div className="grid md:grid-cols-3 gap-8 relative">
             <div className="hidden md:block absolute top-8 left-[calc(16.67%+28px)] right-[calc(16.67%+28px)] h-[2px] bg-gradient-to-r from-mint-foreground/15 via-lavender-foreground/20 to-rose-foreground/15" />
 
             {[
-              { step: '1', icon: Dumbbell, title: 'Train', text: 'Practice as usual — on or off ice.', bg: 'bg-gradient-to-br from-mint to-mint-foreground/10', stepBg: 'bg-mint-foreground', color: 'text-mint-foreground' },
-              { step: '2', icon: PenLine, title: 'Reflect', text: '5 quiet minutes to write it down.', bg: 'bg-gradient-to-br from-lavender to-grape/30', stepBg: 'bg-lavender-foreground', color: 'text-lavender-foreground' },
-              { step: '3', icon: Sprout, title: 'Grow', text: 'Watch your confidence bloom.', bg: 'bg-gradient-to-br from-rose to-peach/30', stepBg: 'bg-rose-foreground', color: 'text-rose-foreground' },
+              { step: '1', icon: Dumbbell, title: t('steps.train.title'), text: t('steps.train.text'), bg: 'bg-gradient-to-br from-mint to-mint-foreground/10', stepBg: 'bg-mint-foreground', color: 'text-mint-foreground' },
+              { step: '2', icon: PenLine, title: t('steps.reflect.title'), text: t('steps.reflect.text'), bg: 'bg-gradient-to-br from-lavender to-grape/30', stepBg: 'bg-lavender-foreground', color: 'text-lavender-foreground' },
+              { step: '3', icon: Sprout, title: t('steps.grow.title'), text: t('steps.grow.text'), bg: 'bg-gradient-to-br from-rose to-peach/30', stepBg: 'bg-rose-foreground', color: 'text-rose-foreground' },
             ].map((item) => (
               <div key={item.step} className="text-center relative">
                 <div className={`w-14 h-14 rounded-2xl ${item.bg} border border-border/20 flex items-center justify-center mx-auto mb-4 relative z-10 shadow-sm`}>
@@ -193,21 +195,21 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted }) => {
             <Snowflake className="w-7 h-7 text-primary" />
           </div>
           <h2 className="text-2xl md:text-4xl font-extrabold tracking-tight text-foreground font-serif mb-4 leading-snug">
-            Ready to grow as a skater?
+            {t('finalCta.heading')}
           </h2>
           <p className="text-base text-muted-foreground mb-8 max-w-lg mx-auto leading-relaxed flex items-center justify-center gap-1.5">
-            Free, private, and built with <Heart className="w-4 h-4 text-rose-foreground inline" /> for this beautiful sport.
+            {t('finalCta.subtitle.before')} <Heart className="w-4 h-4 text-rose-foreground inline" /> {t('finalCta.subtitle.after')}
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
             <Link to="/auth?mode=signup" className="w-full sm:w-auto">
               <Button size="lg" className="h-14 px-10 text-base font-bold rounded-2xl gap-2.5 w-full shadow-md bg-gradient-to-r from-primary to-primary/85">
-                Start Your Journey
+                {t('hero.cta')}
                 <ArrowRight className="w-4 h-4" />
               </Button>
             </Link>
             <Link to="/auth" className="w-full sm:w-auto">
               <Button variant="outline" size="lg" className="h-14 px-10 text-base font-semibold rounded-2xl w-full">
-                Welcome Back
+                {t('finalCta.welcomeBack')}
               </Button>
             </Link>
           </div>

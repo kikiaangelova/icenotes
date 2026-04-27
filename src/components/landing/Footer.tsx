@@ -1,8 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Snowflake, Heart } from 'lucide-react';
+import { useLanguage } from '@/context/LanguageContext';
 
 export const Footer: React.FC = () => {
+  const { t } = useLanguage();
+
   return (
     <footer className="px-6 md:px-12 py-12 border-t border-border/30 bg-muted/30">
       <div className="max-w-5xl mx-auto">
@@ -16,19 +19,19 @@ export const Footer: React.FC = () => {
               <span className="text-base font-bold text-foreground font-serif">IceNotes</span>
             </div>
             <p className="text-sm text-muted-foreground leading-relaxed">
-              A cozy journaling space for ambitious figure skaters. ⛸️
+              {t('footer.tagline')}
             </p>
           </div>
 
           {/* Navigation */}
           <div className="space-y-3">
-            <p className="text-xs font-bold tracking-wider uppercase text-muted-foreground">Navigate</p>
+            <p className="text-xs font-bold tracking-wider uppercase text-muted-foreground">{t('footer.navigate')}</p>
             <div className="flex flex-col gap-2.5">
               {[
-                { label: 'Home', href: '/' },
-                { label: 'How It Works', href: '/how-it-works' },
-                { label: 'Features', href: '/features' },
-                { label: 'Contact', href: '/contact' },
+                { label: t('nav.home'), href: '/' },
+                { label: t('nav.howItWorks'), href: '/how-it-works' },
+                { label: t('nav.features'), href: '/features' },
+                { label: t('nav.contact'), href: '/contact' },
               ].map((link) => (
                 <Link key={link.href} to={link.href} className="text-sm text-muted-foreground hover:text-primary transition-colors font-medium">
                   {link.label}
@@ -39,12 +42,12 @@ export const Footer: React.FC = () => {
 
           {/* Product */}
           <div className="space-y-3">
-            <p className="text-xs font-bold tracking-wider uppercase text-muted-foreground">Product</p>
+            <p className="text-xs font-bold tracking-wider uppercase text-muted-foreground">{t('footer.product')}</p>
             <div className="flex flex-col gap-2.5">
               {[
-                { label: 'Journal', href: '/auth' },
-                { label: 'Goals', href: '/auth' },
-                { label: 'Progress', href: '/auth' },
+                { label: t('footer.journal'), href: '/auth' },
+                { label: t('footer.goals'), href: '/auth' },
+                { label: t('footer.progress'), href: '/auth' },
               ].map((link) => (
                 <Link key={link.label} to={link.href} className="text-sm text-muted-foreground hover:text-primary transition-colors font-medium">
                   {link.label}
@@ -55,13 +58,13 @@ export const Footer: React.FC = () => {
 
           {/* Account */}
           <div className="space-y-3">
-            <p className="text-xs font-bold tracking-wider uppercase text-muted-foreground">Account</p>
+            <p className="text-xs font-bold tracking-wider uppercase text-muted-foreground">{t('footer.account')}</p>
             <div className="flex flex-col gap-2.5">
               <Link to="/auth?mode=signup" className="text-sm text-muted-foreground hover:text-primary transition-colors font-medium">
-                Sign Up
+                {t('footer.signup')}
               </Link>
               <Link to="/auth" className="text-sm text-muted-foreground hover:text-primary transition-colors font-medium">
-                Log In
+                {t('footer.login')}
               </Link>
             </div>
           </div>
@@ -69,10 +72,10 @@ export const Footer: React.FC = () => {
 
         <div className="border-t border-border/30 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3">
           <p className="text-xs text-muted-foreground">
-            © {new Date().getFullYear()} IceNotes. All rights reserved.
+            © {new Date().getFullYear()} IceNotes. {t('footer.rights')}
           </p>
           <p className="text-xs text-muted-foreground flex items-center gap-1">
-            Built with <Heart className="w-3 h-3 text-primary inline" /> for skaters who dream big.
+            {t('footer.builtWith')} <Heart className="w-3 h-3 text-primary inline" /> {t('footer.forSkaters')}
           </p>
         </div>
       </div>

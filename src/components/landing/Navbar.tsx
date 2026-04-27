@@ -3,15 +3,8 @@ import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Snowflake, Moon, Sun, Menu, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
-
-const NAV_LINKS = [
-  { label: 'Home', href: '/' },
-  { label: 'About', href: '/about' },
-  { label: 'Features', href: '/features' },
-  { label: 'How It Works', href: '/how-it-works' },
-  { label: 'Psychology', href: '/sport-psychology' },
-  { label: 'Contact', href: '/contact' },
-];
+import { useLanguage } from '@/context/LanguageContext';
+import { LanguageSwitcher } from './LanguageSwitcher';
 
 interface NavbarProps {
   isDarkMode: boolean;
@@ -21,6 +14,16 @@ interface NavbarProps {
 export const Navbar: React.FC<NavbarProps> = ({ isDarkMode, onToggleDarkMode }) => {
   const location = useLocation();
   const [mobileOpen, setMobileOpen] = useState(false);
+  const { t } = useLanguage();
+
+  const NAV_LINKS = [
+    { label: t('nav.home'), href: '/' },
+    { label: t('nav.about'), href: '/about' },
+    { label: t('nav.features'), href: '/features' },
+    { label: t('nav.howItWorks'), href: '/how-it-works' },
+    { label: t('nav.psychology'), href: '/sport-psychology' },
+    { label: t('nav.contact'), href: '/contact' },
+  ];
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/30 bg-background/85 backdrop-blur-xl">
@@ -54,7 +57,8 @@ export const Navbar: React.FC<NavbarProps> = ({ isDarkMode, onToggleDarkMode }) 
         </nav>
 
         {/* Right actions */}
-        <div className="hidden md:flex items-center gap-2.5">
+        <div className="hidden md:flex items-center gap-2">
+          <LanguageSwitcher />
           <Button
             variant="ghost"
             size="icon"
@@ -65,18 +69,19 @@ export const Navbar: React.FC<NavbarProps> = ({ isDarkMode, onToggleDarkMode }) 
           </Button>
           <Link to="/auth">
             <Button variant="ghost" size="sm" className="font-semibold rounded-xl px-4">
-              Log In
+              {t('nav.login')}
             </Button>
           </Link>
           <Link to="/auth?mode=signup">
             <Button size="sm" className="font-bold rounded-xl px-5 shadow-sm">
-              Get Started ✨
+              {t('nav.getStarted')}
             </Button>
           </Link>
         </div>
 
         {/* Mobile toggle */}
         <div className="flex md:hidden items-center gap-1.5">
+          <LanguageSwitcher />
           <Button
             variant="ghost"
             size="icon"
@@ -118,12 +123,12 @@ export const Navbar: React.FC<NavbarProps> = ({ isDarkMode, onToggleDarkMode }) 
             <div className="border-t border-border/30 mt-3 pt-4 flex flex-col gap-2.5">
               <Link to="/auth" onClick={() => setMobileOpen(false)}>
                 <Button variant="outline" className="w-full font-semibold rounded-xl h-11">
-                  Log In
+                  {t('nav.login')}
                 </Button>
               </Link>
               <Link to="/auth?mode=signup" onClick={() => setMobileOpen(false)}>
                 <Button className="w-full font-bold rounded-xl h-11 shadow-sm">
-                  Get Started ✨
+                  {t('nav.getStarted')}
                 </Button>
               </Link>
             </div>
