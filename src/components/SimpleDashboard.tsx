@@ -15,6 +15,7 @@ import { ReminderSettings } from './ReminderSettings';
 import { ProgressSummaryCards } from './ProgressSummaryCards';
 import { ActivityCalendar } from './ActivityCalendar';
 import { AvatarUpload } from './AvatarUpload';
+import { getGreeting } from '@/lib/greeting';
 
 import { MotivationalQuote } from './MotivationalQuote';
 import { QuotesCollection } from './QuotesCollection';
