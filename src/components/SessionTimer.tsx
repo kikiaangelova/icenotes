@@ -59,7 +59,7 @@ export const SessionTimer: React.FC<SessionTimerProps> = ({
   const [elapsedTime, setElapsedTime] = useState(0);
   const [laps, setLaps] = useState<Lap[]>([]);
   const [lastLapTime, setLastLapTime] = useState(0);
-  const intervalRef = useRef<NodeJS.Timeout | null>(null);
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const startTimeRef = useRef<number>(0);
   const pausedTimeRef = useRef<number>(0);
 

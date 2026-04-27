@@ -140,7 +140,7 @@ export const MentalHealthHub: React.FC = () => {
   const [vizStep, setVizStep] = useState(0);
 
   useEffect(() => {
-    let interval: NodeJS.Timeout;
+    let interval: ReturnType<typeof setInterval>;
     if (isBreathing) {
       const stepDuration = selectedExercise.durations[breathStep] * 1000;
       let elapsed = 0;

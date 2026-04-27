@@ -69,7 +69,7 @@ export const PreTrainingPrep: React.FC<PreTrainingPrepProps> = ({
   }, []);
 
   useEffect(() => {
-    let interval: NodeJS.Timeout;
+    let interval: ReturnType<typeof setInterval>;
     if (isBreathing) {
       const stepDuration = QUICK_BREATHING.durations[breathStep] * 1000;
       let elapsed = 0;
