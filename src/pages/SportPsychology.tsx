@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Navbar } from '@/components/landing/Navbar';
 import { Footer } from '@/components/landing/Footer';
 import { Link } from 'react-router-dom';
@@ -7,15 +7,6 @@ import { Button } from '@/components/ui/button';
 import { MindfulnessTools } from '@/components/MindfulnessTools';
 
 const SportPsychology: React.FC = () => {
-  const [isDarkMode, setIsDarkMode] = useState(false);
-
-  useEffect(() => {
-    if (isDarkMode) {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
-  }, [isDarkMode]);
 
   const topics = [
     {
@@ -51,9 +42,8 @@ const SportPsychology: React.FC = () => {
   ];
 
   return (
-    <div className={isDarkMode ? "dark" : ""}>
-      <div className="min-h-screen bg-background">
-        <Navbar isDarkMode={isDarkMode} onToggleDarkMode={() => setIsDarkMode(!isDarkMode)} />
+    <div className="min-h-screen bg-background">
+      <Navbar isDarkMode={false} onToggleDarkMode={() => {}} />
 
         <section className="px-5 md:px-12 pt-14 pb-10 md:pt-28 md:pb-16">
           <div className="max-w-3xl mx-auto text-center">
