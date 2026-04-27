@@ -19,6 +19,8 @@ export interface JournalEntry {
   createdAt: Date;
 }
 
+export type AppLanguage = 'en' | 'bg' | 'ru' | 'it' | 'fr';
+
 export interface SkaterProfile {
   id: string;
   name: string;
@@ -29,6 +31,7 @@ export interface SkaterProfile {
   height?: number;
   weight?: number;
   avatarUrl?: string;
+  language?: AppLanguage;
   trialEndsAt?: Date;
   createdAt: Date;
 }
