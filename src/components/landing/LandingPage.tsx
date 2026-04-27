@@ -47,38 +47,38 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted }) => {
         <div className="max-w-3xl mx-auto text-center">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-sky/40 to-lavender/40 border border-primary/10 mb-6">
             <Sparkles className="w-3.5 h-3.5 text-primary" />
-            <span className="text-xs font-semibold text-foreground/80">Made for figure skaters, by a figure skater</span>
+            <span className="text-xs font-semibold text-foreground/80">{t('hero.badge')}</span>
           </div>
           
           <h1 className="text-3xl md:text-6xl font-extrabold leading-tight tracking-tight text-foreground font-serif mb-4">
-            Your skating journey
+            {t('hero.title.line1')}
             <br />
-            deserves to be{' '}
+            {t('hero.title.line2.prefix')}{' '}
             <span className="bg-gradient-to-r from-primary via-grape-foreground to-rose-foreground bg-clip-text text-transparent">
-              remembered
+              {t('hero.title.highlight')}
             </span>
           </h1>
           <p className="text-base md:text-xl text-muted-foreground max-w-xl mx-auto mb-3 leading-relaxed">
-            A cozy space to reflect, track your progress, and grow as an athlete — one session at a time.
+            {t('hero.subtitle')}
           </p>
           <p className="text-xs text-muted-foreground/60 italic mb-7">
-            Created by a young figure skater and her mom 💙
+            {t('hero.attribution')}
           </p>
           <Link to="/auth?mode=signup">
             <Button size="lg" className="h-14 px-10 text-base font-bold rounded-2xl gap-2.5 w-full sm:w-auto shadow-md hover:shadow-lg bg-gradient-to-r from-primary to-primary/85">
-              Start Your Journey
+              {t('hero.cta')}
               <ArrowRight className="w-4 h-4" />
             </Button>
           </Link>
           <p className="text-xs text-muted-foreground mt-3">
-            100% free · Always private · No credit card needed
+            {t('hero.disclaimer')}
           </p>
 
           {userCount !== null && userCount > 0 && (
             <div className="mt-8 inline-flex items-center gap-2.5 px-5 py-3 rounded-2xl bg-gradient-to-r from-mint/50 to-sky/30 border border-mint-foreground/10">
               <Users className="w-4 h-4 text-mint-foreground" />
               <span className="text-sm font-semibold text-foreground">
-                Join <span className="font-extrabold text-primary">{userCount.toLocaleString()}</span> skater{userCount !== 1 ? 's' : ''} already here
+                {t('hero.joinPrefix')} <span className="font-extrabold text-primary">{userCount.toLocaleString()}</span> {userCount !== 1 ? t('hero.joinSuffix.many') : t('hero.joinSuffix.one')}
               </span>
             </div>
           )}
