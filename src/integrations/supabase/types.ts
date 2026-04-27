@@ -193,6 +193,102 @@ export type Database = {
         }
         Relationships: []
       }
+      mind_journal_entries: {
+        Row: {
+          body_overall_feeling: number | null
+          body_tension_areas: Json | null
+          cbt_automatic_thought: string | null
+          cbt_balanced_thought: string | null
+          cbt_emotion: string | null
+          cbt_emotion_intensity: number | null
+          cbt_evidence_against: string | null
+          cbt_evidence_for: string | null
+          cbt_new_intensity: number | null
+          cbt_situation: string | null
+          created_at: string
+          date: string
+          emotion_notes: string | null
+          emotion_primary: string | null
+          emotion_secondary: string | null
+          entry_type: string
+          gratitude_items: Json | null
+          id: string
+          precomp_breathing_completed: boolean | null
+          precomp_confidence_anchor: string | null
+          precomp_event_date: string | null
+          precomp_event_name: string | null
+          precomp_intention: string | null
+          precomp_visualization: string | null
+          self_compassion_friend_response: string | null
+          self_compassion_kind_message: string | null
+          self_compassion_situation: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          body_overall_feeling?: number | null
+          body_tension_areas?: Json | null
+          cbt_automatic_thought?: string | null
+          cbt_balanced_thought?: string | null
+          cbt_emotion?: string | null
+          cbt_emotion_intensity?: number | null
+          cbt_evidence_against?: string | null
+          cbt_evidence_for?: string | null
+          cbt_new_intensity?: number | null
+          cbt_situation?: string | null
+          created_at?: string
+          date?: string
+          emotion_notes?: string | null
+          emotion_primary?: string | null
+          emotion_secondary?: string | null
+          entry_type: string
+          gratitude_items?: Json | null
+          id?: string
+          precomp_breathing_completed?: boolean | null
+          precomp_confidence_anchor?: string | null
+          precomp_event_date?: string | null
+          precomp_event_name?: string | null
+          precomp_intention?: string | null
+          precomp_visualization?: string | null
+          self_compassion_friend_response?: string | null
+          self_compassion_kind_message?: string | null
+          self_compassion_situation?: string | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          body_overall_feeling?: number | null
+          body_tension_areas?: Json | null
+          cbt_automatic_thought?: string | null
+          cbt_balanced_thought?: string | null
+          cbt_emotion?: string | null
+          cbt_emotion_intensity?: number | null
+          cbt_evidence_against?: string | null
+          cbt_evidence_for?: string | null
+          cbt_new_intensity?: number | null
+          cbt_situation?: string | null
+          created_at?: string
+          date?: string
+          emotion_notes?: string | null
+          emotion_primary?: string | null
+          emotion_secondary?: string | null
+          entry_type?: string
+          gratitude_items?: Json | null
+          id?: string
+          precomp_breathing_completed?: boolean | null
+          precomp_confidence_anchor?: string | null
+          precomp_event_date?: string | null
+          precomp_event_name?: string | null
+          precomp_intention?: string | null
+          precomp_visualization?: string | null
+          self_compassion_friend_response?: string | null
+          self_compassion_kind_message?: string | null
+          self_compassion_situation?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       profiles: {
         Row: {
           age: number | null

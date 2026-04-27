@@ -19,6 +19,7 @@ import {
   Eye,
   Flame
 } from 'lucide-react';
+import { MindJournal } from './MindJournal';
 
 const AFFIRMATIONS = [
   "I am strong, focused, and ready to perform my best.",
@@ -197,7 +198,7 @@ export const MentalHealthHub: React.FC = () => {
       </Card>
 
       <Tabs defaultValue="breathing" className="space-y-6">
-        <TabsList className="grid w-full grid-cols-4 h-12 p-1">
+        <TabsList className="grid w-full grid-cols-5 h-12 p-1">
           <TabsTrigger value="breathing" className="flex items-center gap-2">
             <Wind className="w-4 h-4" />
             <span className="hidden sm:inline">Breathe</span>
@@ -213,6 +214,10 @@ export const MentalHealthHub: React.FC = () => {
           <TabsTrigger value="journal" className="flex items-center gap-2">
             <PenLine className="w-4 h-4" />
             <span className="hidden sm:inline">Journal</span>
+          </TabsTrigger>
+          <TabsTrigger value="mind" className="flex items-center gap-2">
+            <Brain className="w-4 h-4" />
+            <span className="hidden sm:inline">Mind</span>
           </TabsTrigger>
         </TabsList>
 
@@ -467,6 +472,10 @@ export const MentalHealthHub: React.FC = () => {
               </div>
             </CardContent>
           </Card>
+        </TabsContent>
+
+        <TabsContent value="mind">
+          <MindJournal />
         </TabsContent>
       </Tabs>
     </div>

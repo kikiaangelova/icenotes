@@ -61,6 +61,73 @@ const dict: Dict = {
   'feeling.heavy': { en: 'Heavy', bg: 'Тежък' },
   'feeling.energizing': { en: 'Energizing', bg: 'Енергичен' },
 
+  // Mind Journal (psychologist-informed)
+  'mind.heading': { en: 'Mind Journal', bg: 'Психологически дневник' },
+  'mind.subheading': { en: 'Tools to support your mental training', bg: 'Инструменти за подкрепа на психичната тренировка' },
+  'mind.tab.cbt': { en: 'Reframe', bg: 'Пренастрой' },
+  'mind.tab.gratitude': { en: 'Gratitude', bg: 'Благодарност' },
+  'mind.tab.body': { en: 'Body Scan', bg: 'Скан на тялото' },
+  'mind.tab.compassion': { en: 'Compassion', bg: 'Съчувствие' },
+  'mind.tab.precomp': { en: 'Pre-Comp', bg: 'Преди старт' },
+  'mind.save': { en: 'Save entry', bg: 'Запази' },
+
+  // CBT
+  'mind.cbt.title': { en: 'Thought reframing', bg: 'Пренастройване на мисли' },
+  'mind.cbt.desc': { en: 'Notice a tough thought, examine it gently, find a balanced view.', bg: 'Забележи трудна мисъл, разгледай я внимателно, намери балансирана гледна точка.' },
+  'mind.cbt.situation': { en: 'What happened?', bg: 'Какво се случи?' },
+  'mind.cbt.thought': { en: 'What thought went through your mind?', bg: 'Каква мисъл премина през ума ти?' },
+  'mind.cbt.emotion': { en: 'What emotion did you feel?', bg: 'Каква емоция изпита?' },
+  'mind.cbt.intensity': { en: 'How strong was it? (1-10)', bg: 'Колко силна беше? (1-10)' },
+  'mind.cbt.evidenceFor': { en: 'Evidence the thought is true', bg: 'Доказателства, че мисълта е вярна' },
+  'mind.cbt.evidenceAgainst': { en: 'Evidence the thought might not be true', bg: 'Доказателства, че мисълта може да не е вярна' },
+  'mind.cbt.balanced': { en: 'A more balanced thought', bg: 'По-балансирана мисъл' },
+  'mind.cbt.newIntensity': { en: 'How strong is the emotion now? (1-10)', bg: 'Колко силна е емоцията сега? (1-10)' },
+
+  // Gratitude
+  'mind.gratitude.title': { en: 'Three good things', bg: 'Три хубави неща' },
+  'mind.gratitude.desc': { en: 'Three things you are grateful for today.', bg: 'Три неща, за които си благодарен/на днес.' },
+  'mind.gratitude.placeholder': { en: 'I am grateful for…', bg: 'Благодарен/на съм за…' },
+
+  // Body scan
+  'mind.body.title': { en: 'Body scan & emotion check-in', bg: 'Скан на тялото и емоции' },
+  'mind.body.desc': { en: 'Notice where you carry tension and name what you feel.', bg: 'Забележи къде носиш напрежение и назови това, което чувстваш.' },
+  'mind.body.tension': { en: 'Where do you feel tension?', bg: 'Къде усещаш напрежение?' },
+  'mind.body.overall': { en: 'How does your body feel overall? (1-10)', bg: 'Как се чувства тялото ти като цяло? (1-10)' },
+  'mind.body.primary': { en: 'Main emotion', bg: 'Основна емоция' },
+  'mind.body.secondary': { en: 'Secondary emotion (optional)', bg: 'Втора емоция (по желание)' },
+  'mind.body.notes': { en: 'Notes', bg: 'Бележки' },
+
+  // Body parts
+  'body.head': { en: 'Head', bg: 'Глава' },
+  'body.neck': { en: 'Neck & shoulders', bg: 'Врат и рамене' },
+  'body.chest': { en: 'Chest', bg: 'Гърди' },
+  'body.back': { en: 'Back', bg: 'Гръб' },
+  'body.stomach': { en: 'Stomach', bg: 'Корем' },
+  'body.hips': { en: 'Hips', bg: 'Ханш' },
+  'body.legs': { en: 'Legs', bg: 'Крака' },
+  'body.feet': { en: 'Feet', bg: 'Стъпала' },
+
+  // Self-compassion
+  'mind.compassion.title': { en: 'Speak to yourself like a friend', bg: 'Говори си като на приятел' },
+  'mind.compassion.desc': { en: 'When the inner critic gets loud, kindness creates space.', bg: 'Когато вътрешният критик се обажда, добротата създава пространство.' },
+  'mind.compassion.situation': { en: 'What are you struggling with?', bg: 'С какво се бориш?' },
+  'mind.compassion.friend': { en: 'What would you say to a friend in this situation?', bg: 'Какво би казал/а на приятел в тази ситуация?' },
+  'mind.compassion.kind': { en: 'A kind message to yourself', bg: 'Мило послание към себе си' },
+
+  // Pre-competition
+  'mind.precomp.title': { en: 'Pre-competition mental routine', bg: 'Психологична настройка преди състезание' },
+  'mind.precomp.desc': { en: 'Visualize success, breathe, and set your intention.', bg: 'Визуализирай успех, дишай и задай намерение.' },
+  'mind.precomp.event': { en: 'Event name', bg: 'Име на състезанието' },
+  'mind.precomp.eventDate': { en: 'Event date', bg: 'Дата на състезанието' },
+  'mind.precomp.visualization': { en: 'Visualize your best skate — describe it', bg: 'Визуализирай най-доброто си пързаляне — опиши го' },
+  'mind.precomp.anchor': { en: 'Confidence anchor (a phrase, image, or memory)', bg: 'Котва на увереността (фраза, образ или спомен)' },
+  'mind.precomp.breathing': { en: 'I completed a breathing exercise', bg: 'Направих дихателно упражнение' },
+  'mind.precomp.intention': { en: 'My intention today is…', bg: 'Моето намерение днес е…' },
+
+  // Common
+  'common.optional': { en: 'optional', bg: 'по желание' },
+  'common.add': { en: 'Add', bg: 'Добави' },
+  'common.remove': { en: 'Remove', bg: 'Премахни' },
   // Training section
   'training.heading': { en: 'Daily Practice', bg: 'Ежедневна тренировка' },
   'training.subheading': { en: 'Track your training across all disciplines', bg: 'Проследявай тренировките си във всички дисциплини' },
