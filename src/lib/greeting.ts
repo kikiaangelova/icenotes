@@ -1,4 +1,4 @@
-export type GreetingLanguage = 'en' | 'bg' | 'ru' | 'it' | 'fr';
+export type GreetingLanguage = 'en' | 'bg' | 'ru' | 'it' | 'fr' | 'tr' | 'de';
 
 const NAMED: Record<GreetingLanguage, (n: string) => string> = {
   en: (n) => `Hi, ${n} 👋`,
@@ -6,6 +6,8 @@ const NAMED: Record<GreetingLanguage, (n: string) => string> = {
   ru: (n) => `Привет, ${n} 👋`,
   it: (n) => `Ciao, ${n} 👋`,
   fr: (n) => `Salut, ${n} 👋`,
+  tr: (n) => `Merhaba, ${n} 👋`,
+  de: (n) => `Hallo, ${n} 👋`,
 };
 
 const FALLBACK: Record<GreetingLanguage, string> = {
@@ -14,6 +16,8 @@ const FALLBACK: Record<GreetingLanguage, string> = {
   ru: 'Привет 👋',
   it: 'Ciao 👋',
   fr: 'Salut 👋',
+  tr: 'Merhaba 👋',
+  de: 'Hallo 👋',
 };
 
 /**
