@@ -74,6 +74,12 @@ export const LanguageSync: React.FC = () => {
     if (!user || !profile) return;
     if (appliedForUserRef.current !== user.id) return;
     if (lastSavedRef.current === language) return;
+    // Guard against stale-render races: never write a value that already matches
+    // what the profile currently has on the server.
+    if (profile.language === language) {
+      lastSavedRef.current = language;
+      return;
+    }
 
     lastSavedRef.current = language;
     updateProfile.mutate({ language });
