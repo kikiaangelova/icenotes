@@ -22,9 +22,10 @@ import { QuotesCollection } from './QuotesCollection';
 import { SkatingGoals } from './SkatingGoals';
 import { ProgressOverview } from './ProgressOverview';
 import { SportPsychology } from './SportPsychology';
+import { TodayJourney } from './TodayJourney';
 import { Button } from '@/components/ui/button';
 import { SELF_LEVELS } from '@/types/journal';
-import { Feather, Compass, Heart, Settings, LogOut, Dumbbell, Target, CalendarCheck, Brain, Timer, Bell, Snowflake, BookHeart, TrendingUp, Sparkles } from 'lucide-react';
+import { Feather, Compass, Heart, Settings, LogOut, Dumbbell, Target, CalendarCheck, Brain, Timer, Bell, Snowflake, BookHeart, TrendingUp, Sparkles, Sun } from 'lucide-react';
 import {
   DropdownMenu,
   DropdownMenuContent,
