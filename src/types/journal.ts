@@ -4,7 +4,7 @@ export interface JournalEntry {
   id: string;
   date: Date;
   workedOn: string;
-  feeling: 'calm' | 'focused' | 'challenging' | 'heavy' | 'energizing';
+  feeling?: 'calm' | 'focused' | 'challenging' | 'heavy' | 'energizing';
   smallWin: string;
   sessionType?: string;
   whatWentWell?: string;
