@@ -59,6 +59,8 @@ export const SimpleDashboard: React.FC = () => {
   const { profile, setProfile, getTodaysEntry, getTodaysSessions, resetProfile } = useJournal();
   const { signOut, user } = useAuth();
   const { language, t } = useLanguage();
+  const { isAdmin } = useIsAdmin();
+  const navigate = useNavigate();
   const [currentView, setCurrentView] = useState<DashboardView>('home');
   const [showResetDialog, setShowResetDialog] = useState(false);
   const [showReminderSettings, setShowReminderSettings] = useState(false);
@@ -133,6 +135,15 @@ export const SimpleDashboard: React.FC = () => {
                     <Bell className="w-4 h-4 mr-2" />
                     Reminders
                   </DropdownMenuItem>
+                  {isAdmin && (
+                    <>
+                      <DropdownMenuSeparator />
+                      <DropdownMenuItem onClick={() => navigate('/admin')} className="rounded-lg">
+                        <Shield className="w-4 h-4 mr-2" />
+                        Admin dashboard
+                      </DropdownMenuItem>
+                    </>
+                  )}
                   <DropdownMenuSeparator />
                   <DropdownMenuItem onClick={() => setShowResetDialog(true)} className="text-destructive rounded-lg">
                     <LogOut className="w-4 h-4 mr-2" />
