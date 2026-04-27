@@ -119,7 +119,7 @@ export const MindfulnessTools: React.FC = () => {
 const BreathingDialog: React.FC<{ open: boolean; onClose: () => void }> = ({ open, onClose }) => {
   const [running, setRunning] = useState(false);
   const [phaseIdx, setPhaseIdx] = useState(0);
-  const [secondsLeft, setSecondsLeft] = useState(PHASES[0].seconds);
+  const [secondsLeft, setSecondsLeft] = useState<number>(PHASES[0].seconds);
   const [cycles, setCycles] = useState(0);
   const intervalRef = useRef<number | null>(null);
   const startTimeRef = useRef<number | null>(null);
@@ -157,7 +157,7 @@ const BreathingDialog: React.FC<{ open: boolean; onClose: () => void }> = ({ ope
   const reset = () => {
     setRunning(false);
     setPhaseIdx(0);
-    setSecondsLeft(PHASES[0].seconds);
+    setSecondsLeft(PHASES[0].seconds as number);
     setCycles(0);
     startTimeRef.current = null;
   };
