@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useJournal } from '@/context/JournalContext';
 import { useAuth } from '@/context/AuthContext';
+import { useLanguage } from '@/context/LanguageContext';
 import { DailyJournal } from './DailyJournal';
 import { JourneyView } from './JourneyView';
 import { ReflectSpace } from './ReflectSpace';
