@@ -14,7 +14,7 @@ const dict: Dict = {
   'nav.coach': { en: 'Coach', bg: 'Треньор' },
   'nav.contact': { en: 'Contact', bg: 'Контакт' },
   'nav.login': { en: 'Log In', bg: 'Вход' },
-  'nav.getStarted': { en: 'Get Started ✨', bg: 'Започни ✨' },
+  'nav.getStarted': { en: 'Get Started', bg: 'Започни' },
 
   // Hero
   'hero.badge': { en: 'Made for figure skaters, by a figure skater', bg: 'Създадено за фигуристи, от фигуристка' },
