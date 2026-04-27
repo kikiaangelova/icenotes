@@ -1,8 +1,18 @@
 import React, { createContext, useContext, useEffect, useState, useCallback } from 'react';
 
-export type Language = 'en' | 'bg';
+export type Language = 'en' | 'bg' | 'ru' | 'it' | 'fr';
 
-type Dict = Record<string, { en: string; bg: string }>;
+export const LANGUAGES: { code: Language; label: string; nativeLabel: string }[] = [
+  { code: 'en', label: 'English', nativeLabel: 'English' },
+  { code: 'bg', label: 'Bulgarian', nativeLabel: 'Български' },
+  { code: 'ru', label: 'Russian', nativeLabel: 'Русский' },
+  { code: 'it', label: 'Italian', nativeLabel: 'Italiano' },
+  { code: 'fr', label: 'French', nativeLabel: 'Français' },
+];
+
+// Each entry must have `en`. Other languages are optional and fall back to EN.
+type Entry = { en: string } & Partial<Record<Language, string>>;
+type Dict = Record<string, Entry>;
 
 const dict: Dict = {
   // Navbar
