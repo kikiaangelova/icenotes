@@ -8,7 +8,8 @@ export const LANGUAGES: { code: Language; label: string; nativeLabel: string }[]
 ];
 
 // Each entry must have `en`. Other languages are optional and fall back to EN.
-type Entry = { en: string } & Partial<Record<Language, string>>;
+// Extra keys (legacy translations for disabled languages) are tolerated and ignored.
+type Entry = { en: string } & Partial<Record<Language, string>> & Record<string, string | undefined>;
 type Dict = Record<string, Entry>;
 
 const dict: Dict = {
