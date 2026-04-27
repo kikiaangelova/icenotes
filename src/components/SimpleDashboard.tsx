@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useJournal } from '@/context/JournalContext';
 import { useAuth } from '@/context/AuthContext';
+import { useLanguage } from '@/context/LanguageContext';
 import { DailyJournal } from './DailyJournal';
 import { JourneyView } from './JourneyView';
 import { ReflectSpace } from './ReflectSpace';
@@ -53,6 +54,7 @@ type DashboardView = 'home' | 'journal' | 'journey' | 'reflect' | 'on-ice' | 'of
 export const SimpleDashboard: React.FC = () => {
   const { profile, setProfile, getTodaysEntry, getTodaysSessions, resetProfile } = useJournal();
   const { signOut, user } = useAuth();
+  const { language } = useLanguage();
   const [currentView, setCurrentView] = useState<DashboardView>('home');
   const [showResetDialog, setShowResetDialog] = useState(false);
   const [showReminderSettings, setShowReminderSettings] = useState(false);
@@ -63,6 +65,11 @@ export const SimpleDashboard: React.FC = () => {
   const hasOnIce = todaysSessions.some(s => s.type === 'on-ice');
   const hasOffIce = todaysSessions.some(s => s.type === 'off-ice');
   const levelLabel = SELF_LEVELS.find(l => l.value === profile?.selfLevel)?.label || '';
+
+  const firstName = profile?.name?.trim().split(/\s+/)[0] || '';
+  const greeting = firstName
+    ? (language === 'bg' ? `Здравей, ${firstName} 👋` : `Hi, ${firstName} 👋`)
+    : (language === 'bg' ? 'Здравей 👋' : 'Hi there 👋');
 
   const handleStartTraining = (type: 'on-ice' | 'off-ice') => {
     setPendingTrainingType(type);
@@ -104,7 +111,7 @@ export const SimpleDashboard: React.FC = () => {
               />
               <div className="min-w-0">
                 <h1 className="text-base sm:text-lg font-bold text-foreground truncate font-serif">
-                  Hi, {profile.name.split(' ')[0]} 👋
+                  {greeting}
                 </h1>
                 <p className="text-xs text-muted-foreground truncate">{levelLabel}</p>
               </div>
