@@ -6,6 +6,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { ON_ICE_ACTIVITIES, OFF_ICE_ACTIVITIES } from '@/types/journal';
 import { Dumbbell, Clock, Check, Plus, Minus, Snowflake } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { useLanguage } from '@/context/LanguageContext';
 
 interface TrainingLogProps {
   type: 'on-ice' | 'off-ice';
@@ -14,6 +15,7 @@ interface TrainingLogProps {
 
 export const TrainingLog: React.FC<TrainingLogProps> = ({ type, onComplete }) => {
   const { addTrainingSession } = useJournal();
+  const { t } = useLanguage();
   const activities = type === 'on-ice' ? ON_ICE_ACTIVITIES : OFF_ICE_ACTIVITIES;
   
   const [selectedActivities, setSelectedActivities] = useState<{
@@ -113,7 +115,7 @@ export const TrainingLog: React.FC<TrainingLogProps> = ({ type, onComplete }) =>
         <div className={`flex items-center gap-2 ${colorClass}`}>
           <Icon className="w-5 h-5" />
           <span className="text-xs font-medium uppercase tracking-wide">
-            {type === 'on-ice' ? 'On-Ice' : 'Off-Ice'} Training
+            {type === 'on-ice' ? t('training.onIce.title') : t('training.offIce.title')}
           </span>
         </div>
         <CardTitle className="text-lg font-medium text-foreground">
