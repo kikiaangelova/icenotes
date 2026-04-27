@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useEffect, useState, useCallback } from 'react';
 
-export type Language = 'en' | 'bg' | 'ru' | 'it' | 'fr';
+export type Language = 'en' | 'bg' | 'ru' | 'it' | 'fr' | 'tr' | 'de';
 
 export const LANGUAGES: { code: Language; label: string; nativeLabel: string }[] = [
   { code: 'en', label: 'English', nativeLabel: 'English' },
@@ -8,6 +8,8 @@ export const LANGUAGES: { code: Language; label: string; nativeLabel: string }[]
   { code: 'ru', label: 'Russian', nativeLabel: 'Русский' },
   { code: 'it', label: 'Italian', nativeLabel: 'Italiano' },
   { code: 'fr', label: 'French', nativeLabel: 'Français' },
+  { code: 'tr', label: 'Turkish', nativeLabel: 'Türkçe' },
+  { code: 'de', label: 'German', nativeLabel: 'Deutsch' },
 ];
 
 // Each entry must have `en`. Other languages are optional and fall back to EN.
@@ -517,7 +519,7 @@ interface LanguageContextValue {
 const LanguageContext = createContext<LanguageContextValue | undefined>(undefined);
 
 const STORAGE_KEY = 'icenotes.language';
-const SUPPORTED: ReadonlyArray<Language> = ['en', 'bg', 'ru', 'it', 'fr'];
+const SUPPORTED: ReadonlyArray<Language> = ['en', 'bg', 'ru', 'it', 'fr', 'tr', 'de'];
 
 const isLanguage = (val: unknown): val is Language =>
   typeof val === 'string' && (SUPPORTED as ReadonlyArray<string>).includes(val);
@@ -531,6 +533,8 @@ const detectInitialLanguage = (): Language => {
     if (browser.startsWith('ru')) return 'ru';
     if (browser.startsWith('it')) return 'it';
     if (browser.startsWith('fr')) return 'fr';
+    if (browser.startsWith('tr')) return 'tr';
+    if (browser.startsWith('de')) return 'de';
     return 'en';
   } catch {
     return 'en';

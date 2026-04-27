@@ -3,7 +3,7 @@ import { useAuth } from '@/context/AuthContext';
 import { useLanguage, Language } from '@/context/LanguageContext';
 import { useProfile, useUpdateProfile } from '@/hooks/useSupabaseData';
 
-const SUPPORTED: ReadonlyArray<Language> = ['en', 'bg', 'ru', 'it', 'fr'];
+const SUPPORTED: ReadonlyArray<Language> = ['en', 'bg', 'ru', 'it', 'fr', 'tr', 'de'];
 
 /**
  * Bridges the LanguageContext with the user's saved profile.language.
