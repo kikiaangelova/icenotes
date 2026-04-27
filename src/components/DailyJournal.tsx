@@ -22,7 +22,8 @@ export const DailyJournal: React.FC<DailyJournalProps> = ({ onComplete }) => {
   const [formData, setFormData] = useState({
     workedOn: '',
     feeling: '' as typeof FEELING_OPTIONS[number]['value'] | '',
-    smallWin: ''
+    smallWin: '',
+    coachNotes: ''
   });
   
   const [isSubmitted, setIsSubmitted] = useState(!!existingEntry);
@@ -35,7 +36,8 @@ export const DailyJournal: React.FC<DailyJournalProps> = ({ onComplete }) => {
       date: new Date(),
       workedOn: formData.workedOn.trim(),
       feeling: formData.feeling,
-      smallWin: formData.smallWin.trim()
+      smallWin: formData.smallWin.trim(),
+      coachNotes: formData.coachNotes.trim() || undefined
     });
     
     // Show a random gentle message
@@ -142,6 +144,22 @@ export const DailyJournal: React.FC<DailyJournalProps> = ({ onComplete }) => {
             placeholder="Something clicked, I felt more relaxed, I noticed my breathing..."
             value={formData.smallWin}
             onChange={(e) => setFormData(prev => ({ ...prev, smallWin: e.target.value }))}
+            className="min-h-[80px] resize-none"
+          />
+        </div>
+
+        {/* Coach notes (optional) */}
+        <div className="space-y-2">
+          <Label className="text-sm font-medium">
+            Бележки от треньора <span className="text-muted-foreground font-normal">(по избор)</span>
+          </Label>
+          <p className="text-xs text-muted-foreground -mt-1">
+            Какво каза треньорът ти днес? На какво да обърнеш внимание?
+          </p>
+          <Textarea
+            placeholder="Работим върху позицията на ръцете, повече дишане преди скок..."
+            value={formData.coachNotes}
+            onChange={(e) => setFormData(prev => ({ ...prev, coachNotes: e.target.value }))}
             className="min-h-[80px] resize-none"
           />
         </div>
