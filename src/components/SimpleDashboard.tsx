@@ -111,7 +111,7 @@ export const SimpleDashboard: React.FC = () => {
               />
               <div className="min-w-0">
                 <h1 className="text-base sm:text-lg font-bold text-foreground truncate font-serif">
-                  Hi, {profile.name.split(' ')[0]} 👋
+                  {greeting}
                 </h1>
                 <p className="text-xs text-muted-foreground truncate">{levelLabel}</p>
               </div>
