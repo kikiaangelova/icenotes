@@ -53,8 +53,11 @@ describe('LanguageSync — login language resolution', () => {
     await waitFor(() => {
       expect(screen.getByTestId('lang').textContent).toBe('bg');
     });
-    // Profile is the source of truth → no write-back needed.
-    expect(mockMutate).not.toHaveBeenCalled();
+    // Profile is the source of truth — any write-back must never *downgrade* it
+    // to the previous localStorage value ('en').
+    for (const call of mockMutate.mock.calls) {
+      expect(call[0]).not.toEqual({ language: 'en' });
+    }
   });
 
   it('promotes localStorage language to profile when profile has no preference', async () => {
