@@ -11,6 +11,7 @@ const dict: Dict = {
   'nav.features': { en: 'Features', bg: 'Функции' },
   'nav.howItWorks': { en: 'How It Works', bg: 'Как работи' },
   'nav.psychology': { en: 'Psychology', bg: 'Спортна психология' },
+  'nav.coach': { en: 'Coach', bg: 'Треньор' },
   'nav.contact': { en: 'Contact', bg: 'Контакт' },
   'nav.login': { en: 'Log In', bg: 'Вход' },
   'nav.getStarted': { en: 'Get Started ✨', bg: 'Започни ✨' },

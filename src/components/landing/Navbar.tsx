@@ -22,7 +22,7 @@ export const Navbar: React.FC<NavbarProps> = ({ isDarkMode, onToggleDarkMode }) 
     { label: t('nav.features'), href: '/features' },
     { label: t('nav.howItWorks'), href: '/how-it-works' },
     { label: t('nav.psychology'), href: '/sport-psychology' },
-    { label: 'Треньор', href: '/coach-profile' },
+    { label: t('nav.coach'), href: '/coach-profile' },
     { label: t('nav.contact'), href: '/contact' },
   ];
 
