@@ -525,7 +525,7 @@ interface LanguageContextValue {
 const LanguageContext = createContext<LanguageContextValue | undefined>(undefined);
 
 const STORAGE_KEY = 'icenotes.language';
-const SUPPORTED: ReadonlyArray<Language> = ['en', 'bg', 'ru', 'it', 'fr', 'tr', 'de'];
+const SUPPORTED: ReadonlyArray<Language> = ['en', 'bg'];
 
 const isLanguage = (val: unknown): val is Language =>
   typeof val === 'string' && (SUPPORTED as ReadonlyArray<string>).includes(val);
@@ -536,11 +536,6 @@ const detectInitialLanguage = (): Language => {
     if (isLanguage(saved)) return saved;
     const browser = typeof navigator !== 'undefined' ? navigator.language.toLowerCase() : 'en';
     if (browser.startsWith('bg')) return 'bg';
-    if (browser.startsWith('ru')) return 'ru';
-    if (browser.startsWith('it')) return 'it';
-    if (browser.startsWith('fr')) return 'fr';
-    if (browser.startsWith('tr')) return 'tr';
-    if (browser.startsWith('de')) return 'de';
     return 'en';
   } catch {
     return 'en';
