@@ -3,6 +3,7 @@ import { usePremium } from '@/context/PremiumContext';
 import { GuidedReflection } from './GuidedReflection';
 import { WeeklyReflectionSpace } from './WeeklyReflectionSpace';
 import { ConsistencyInsights } from './ConsistencyInsights';
+import { PsychologicalProfile } from './PsychologicalProfile';
 import { MotivationalMessage } from './MotivationalMessage';
 import { GoalEvolutionSection } from './GoalEvolutionSection';
 import { ReflectionHistory } from './ReflectionHistory';
