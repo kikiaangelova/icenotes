@@ -57,6 +57,11 @@ export const PremiumProvider: React.FC<{ children: ReactNode }> = ({ children })
   // server-side source (Supabase profile column or signed JWT claim).
   const [isPremium, setIsPremiumState] = useState<boolean>(true);
 
+  // Remove any legacy client-controlled premium flag from previous versions.
+  useEffect(() => {
+    try { localStorage.removeItem('isPremium'); } catch {}
+  }, []);
+
   const [dailyReflections, setDailyReflections] = useState<DailyReflection[]>(() => {
     const saved = localStorage.getItem('dailyReflections');
     return saved ? JSON.parse(saved) : [];
