@@ -24,7 +24,7 @@ const dict: Dict = {
   'nav.getStarted': { en: 'Get Started', bg: 'Започни' },
 
   // ───── Hero (landing) ─────
-  'hero.badge': { en: 'Made for figure skaters, by a figure skater', bg: 'Създадено за фигуристи, от фигуристка' },
+  'hero.badge': { en: 'Made for figure skaters, by a 14-year-old figure skater', bg: 'Създадено за фигуристи, от 14-годишна фигуристка' },
   'hero.title.line1': { en: 'Your skating journey', bg: 'Твоят път в пързалянето' },
   'hero.title.line2.prefix': { en: 'deserves to be', bg: 'заслужава да бъде' },
   'hero.title.highlight': { en: 'remembered', bg: 'запомнен' },
@@ -232,7 +232,7 @@ const dict: Dict = {
 
   // ───── About page ─────
   'about.eyebrow': { en: 'About', bg: 'За нас' },
-  'about.title': { en: 'Built by skaters, for skaters.', bg: 'Създадено е от фигуристка за фигуристи.' },
+  'about.title': { en: 'Built by a 14-year-old figure skater, for figure skaters.', bg: 'Създадено от 14-годишна фигуристка за фигуристи.' },
   'about.subtitle': { en: 'A private space to reflect, train intentionally, and grow — on and off the ice.', bg: 'Лично пространство, в което рефлектираш, тренираш с цел и растеш — на леда и извън него.' },
   'about.story.title': { en: 'Our Story', bg: 'Нашата история' },
   'about.story.lead': { en: 'Created by a young figure skater and her mom who saw a gap: skaters often struggle not from lack of talent, but lack of tools.', bg: 'Създадохме IceNotes заедно — млада фигуристка и нейната майка. Видяхме нещо просто, но важно: на повечето състезатели не им липсва талант, а инструменти, с които да го развиват спокойно и последователно.' },
