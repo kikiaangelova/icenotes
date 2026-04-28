@@ -461,10 +461,10 @@ const dict: Dict = {
   'jump.axel': { en: 'Axel', bg: 'Аксел' },
 
   // ───── App-wide common ─────
-  'app.tagline': { en: 'Reflect · Train · Perform', bg: 'Рефлексия · Тренировка · Изпълнение' },
-  'app.loadingJourney': { en: 'Loading your journey…', bg: 'Зареждаме твоя път…' },
-  'app.focusNow': { en: 'Your focus right now', bg: 'Твоят фокус в момента' },
-  'app.everySessionCounts': { en: "Every session counts. You're doing amazing. 💙", bg: 'Всяка тренировка има значение. Справяш се чудесно. 💙' },
+  'app.tagline': { en: 'Reflect · Train · Perform', bg: 'Помисли · Тренирай · Излез' },
+  'app.loadingJourney': { en: 'Loading…', bg: 'Зареждаме…' },
+  'app.focusNow': { en: 'What you’re focused on right now', bg: 'Върху какво си фокусирана сега' },
+  'app.everySessionCounts': { en: 'Every session counts. You’re doing great. 💙', bg: 'Всяка тренировка се брои. Справяш се страхотно. 💙' },
 
   // ───── Header (in-app) ─────
   'header.dailyLog': { en: 'Daily Log', bg: 'Дневен запис' },
@@ -472,10 +472,10 @@ const dict: Dict = {
   'header.settings': { en: 'Settings', bg: 'Настройки' },
   'header.logout': { en: 'Log out', bg: 'Изход' },
   'header.signOut': { en: 'Sign out', bg: 'Излизане' },
-  'header.signOut.confirm.title': { en: 'Sign out?', bg: 'Излизане от профила?' },
-  'header.signOut.confirm.desc': { en: 'Your data is safely stored. You can sign back in anytime to continue your journey. 💙', bg: 'Данните ти са на сигурно място. Можеш да влезеш отново по всяко време, за да продължиш пътя си. 💙' },
-  'header.signOut.confirm.stay': { en: 'Stay signed in', bg: 'Остани в профила' },
-  'header.logoutConfirm': { en: 'Are you sure you want to log out? Your data will remain saved.', bg: 'Сигурен/на ли си, че искаш да излезеш? Данните ти остават запазени.' },
+  'header.signOut.confirm.title': { en: 'Sign out?', bg: 'Излизаш ли?' },
+  'header.signOut.confirm.desc': { en: 'Your data stays safe. Come back whenever. 💙', bg: 'Данните ти остават на сигурно. Върни се, когато решиш. 💙' },
+  'header.signOut.confirm.stay': { en: 'Stay signed in', bg: 'Остани' },
+  'header.logoutConfirm': { en: 'Sure you want to log out? Your data stays saved.', bg: 'Сигурна ли си, че искаш да излезеш? Данните ти остават.' },
   'header.skaterSuffix': { en: 'Skater', bg: 'Фигурист' },
   'header.reminders': { en: 'Reminders', bg: 'Напомняния' },
   'header.adminDashboard': { en: 'Admin dashboard', bg: 'Админ панел' },
@@ -501,99 +501,99 @@ const dict: Dict = {
   'dash.goals.season': { en: 'Season', bg: 'Сезон' },
 
   // Card titles & subtitles
-  'dash.weeklyGoals.title': { en: 'Weekly Goals', bg: 'Седмични цели' },
-  'dash.weeklyGoals.subtitle': { en: 'Set your intentions for the week', bg: 'Задай своите намерения за седмицата' },
-  'dash.skatingPlan.title': { en: 'My Skating Plan', bg: 'Моят план за пързалянето' },
-  'dash.skatingPlan.subtitle': { en: 'Weekly, monthly & season goals', bg: 'Седмични, месечни и сезонни цели' },
-  'dash.mentalPrep.title': { en: 'Mental Prep', bg: 'Психическа подготовка' },
-  'dash.mentalPrep.subtitle': { en: 'Calm your mind before training', bg: 'Успокой ума си преди тренировка' },
-  'dash.sportPsych.title': { en: 'Sport Psychology', bg: 'Спортна психология' },
-  'dash.sportPsych.subtitle': { en: 'Strengthen your mental game', bg: 'Укрепи психичната си игра' },
+  'dash.weeklyGoals.title': { en: 'This week’s goals', bg: 'Цели за седмицата' },
+  'dash.weeklyGoals.subtitle': { en: 'What do you want to work on?', bg: 'Над какво искаш да работиш?' },
+  'dash.skatingPlan.title': { en: 'Skating plan', bg: 'Планът ти' },
+  'dash.skatingPlan.subtitle': { en: 'Week, month, season — your choice.', bg: 'Седмица, месец, сезон — ти избираш.' },
+  'dash.mentalPrep.title': { en: 'Mental prep', bg: 'Психическа подготовка' },
+  'dash.mentalPrep.subtitle': { en: 'Settle your head before you skate.', bg: 'Успокой главата си преди леда.' },
+  'dash.sportPsych.title': { en: 'Sport psychology', bg: 'Спортна психология' },
+  'dash.sportPsych.subtitle': { en: 'Train the mental side too.', bg: 'Тренирай и психичната страна.' },
   'dash.inspiration.title': { en: 'Inspiration', bg: 'Вдъхновение' },
-  'dash.inspiration.subtitle': { en: 'Words that keep you going', bg: 'Думи, които те държат напред' },
-  'dash.todayTraining.title': { en: "Today's Training", bg: 'Днешната тренировка' },
-  'dash.todayTraining.subtitle': { en: 'Track your on-ice and off-ice sessions', bg: 'Записвай тренировките си на лед и извън него' },
-  'dash.sessionTimer.title': { en: 'Session Timer', bg: 'Таймер за тренировка' },
-  'dash.sessionTimer.subtitle': { en: 'Time your practice with lap tracking', bg: 'Засичай тренировката си с обиколки' },
-  'dash.onIce.title': { en: 'On-Ice Training', bg: 'Тренировка на лед' },
-  'dash.onIce.logged': { en: 'Session logged ✨', bg: 'Сесията е записана ✨' },
+  'dash.inspiration.subtitle': { en: 'A few words to keep you going.', bg: 'Няколко думи, които те държат.' },
+  'dash.todayTraining.title': { en: 'Today’s training', bg: 'Днешната тренировка' },
+  'dash.todayTraining.subtitle': { en: 'On-ice and off-ice, in one place.', bg: 'На лед и извън него, на едно място.' },
+  'dash.sessionTimer.title': { en: 'Session timer', bg: 'Таймер за тренировка' },
+  'dash.sessionTimer.subtitle': { en: 'Time your session, lap by lap.', bg: 'Засичай тренировката по обиколки.' },
+  'dash.onIce.title': { en: 'On-ice', bg: 'На лед' },
+  'dash.onIce.logged': { en: 'Saved ✨', bg: 'Запазено ✨' },
   'dash.onIce.activities': { en: 'Edges, spins, footwork, programs', bg: 'Кантове, пируети, стъпки, програми' },
-  'dash.offIce.title': { en: 'Off-Ice Training', bg: 'Тренировка извън лед' },
+  'dash.offIce.title': { en: 'Off-ice', bg: 'Извън лед' },
   'dash.offIce.activities': { en: 'Strength, flexibility, conditioning', bg: 'Сила, гъвкавост, кондиция' },
   'dash.reflect.title': { en: 'Reflect', bg: 'Рефлексия' },
-  'dash.reflect.subtitle': { en: 'Deeper thoughts about your skating', bg: 'По-дълбоки мисли за пързалянето ти' },
-  'dash.jumpTracker.title': { en: 'Jump Tracker', bg: 'Дневник на скоковете' },
-  'dash.jumpTracker.subtitle': { en: 'Log your jumps and track progress', bg: 'Записвай скоковете и следи напредъка си' },
-  'dash.dailyJournal.title': { en: 'Daily Journal', bg: 'Ежедневен дневник' },
-  'dash.dailyJournal.subtitle': { en: "Capture today's reflections", bg: 'Запиши днешните мисли' },
-  'dash.progress.title': { en: 'Your Progress', bg: 'Твоят прогрес' },
-  'dash.progress.subtitle': { en: "See how far you've come", bg: 'Виж колко път си изминал/а' },
-  'dash.journey.title': { en: 'Your Journey', bg: 'Твоят път' },
-  'dash.journey.subtitle': { en: 'The bigger picture of your growth', bg: 'По-голямата картина на твоя растеж' },
+  'dash.reflect.subtitle': { en: 'Deeper thoughts, when you need them.', bg: 'По-дълбоки мисли, когато ти трябват.' },
+  'dash.jumpTracker.title': { en: 'Jumps', bg: 'Скокове' },
+  'dash.jumpTracker.subtitle': { en: 'Log them. See the pattern.', bg: 'Записвай ги. Виж модела.' },
+  'dash.dailyJournal.title': { en: 'Daily journal', bg: 'Дневник' },
+  'dash.dailyJournal.subtitle': { en: 'Today, in your own words.', bg: 'Денят ти, със собствените ти думи.' },
+  'dash.progress.title': { en: 'Progress', bg: 'Прогрес' },
+  'dash.progress.subtitle': { en: 'See how far you’ve come.', bg: 'Виж колко път си изминала.' },
+  'dash.journey.title': { en: 'Your journey', bg: 'Твоят път' },
+  'dash.journey.subtitle': { en: 'The bigger picture.', bg: 'По-голямата картина.' },
 
   // Today summary
-  'dash.todaySummary.title': { en: "Yesterday's training", bg: 'Вчерашната тренировка' },
-  'dash.todaySummary.empty': { en: 'No training logged yesterday — every break is part of the journey too.', bg: 'Вчера нямаше записана тренировка — и почивката е част от пътя.' },
-  'dash.todaySummary.cta': { en: 'Want to write one sentence about it?', bg: 'Искаш ли да напишеш едно изречение за нея?' },
+  'dash.todaySummary.title': { en: 'Yesterday', bg: 'Вчера' },
+  'dash.todaySummary.empty': { en: 'No training yesterday — rest is part of it too.', bg: 'Вчера нямаше тренировка — и почивката е част от това.' },
+  'dash.todaySummary.cta': { en: 'Want to add a sentence?', bg: 'Искаш ли да добавиш едно изречение?' },
 
   // Back button (in-app)
   'dash.back': { en: '← Back', bg: '← Назад' },
 
   // ───── Onboarding ─────
-  'onb.welcome.title': { en: 'Welcome to IceNotes', bg: 'Добре дошъл/дошла в IceNotes' },
-  'onb.welcome.subtitle': { en: 'Your structured journal for mindset, training, and performance growth.', bg: 'Твоят подреден дневник за нагласа, тренировка и растеж.' },
-  'onb.welcome.subtitle2': { en: 'Built for skaters who want to grow.', bg: 'Създаден за фигуристи, които искат да растат.' },
-  'onb.welcome.nameLabel': { en: 'What should we call you?', bg: 'Как да се обръщаме към теб?' },
-  'onb.welcome.namePh': { en: 'Your name', bg: 'Твоето име' },
+  'onb.welcome.title': { en: 'Welcome to IceNotes', bg: 'Здравей в IceNotes' },
+  'onb.welcome.subtitle': { en: 'Your space for the head, the training, and the days in between.', bg: 'Твоето място за главата, за тренировките и за дните между тях.' },
+  'onb.welcome.subtitle2': { en: 'Made for skaters who want to grow.', bg: 'За фигуристи, които искат да растат.' },
+  'onb.welcome.nameLabel': { en: 'What should we call you?', bg: 'Как да ти казваме?' },
+  'onb.welcome.namePh': { en: 'Your name', bg: 'Името ти' },
   'onb.continue': { en: 'Continue', bg: 'Продължи' },
 
-  'onb.level.title': { en: 'How do you currently see yourself as a skater?', bg: 'Как се виждаш в момента като фигурист?' },
-  'onb.level.subtitle': { en: "This is not an evaluation. It's your self-perception, and you can change it anytime.", bg: 'Това не е оценка. Това е как сам/а се виждаш — и можеш да го промениш по всяко време.' },
+  'onb.level.title': { en: 'How do you see yourself right now?', bg: 'Как се виждаш в момента?' },
+  'onb.level.subtitle': { en: 'Not a grade — just where you are. You can change it anytime.', bg: 'Не е оценка — просто къде си сега. Можеш да го смениш по всяко време.' },
 
-  'onb.goals.title': { en: 'What would you like to focus on right now?', bg: 'Върху какво искаш да се фокусираш сега?' },
-  'onb.goals.subtitle': { en: 'Your focus can evolve. This is just where you are today.', bg: 'Фокусът ти може да се променя. Това е просто къде си днес.' },
-  'onb.goals.mainLabel': { en: 'Main focus *', bg: 'Основен фокус *' },
-  'onb.goals.mainPh': { en: 'Working on my axel, building confidence, enjoying practice more…', bg: 'Работя върху аксела си, изграждам увереност, радвам се на тренировките повече…' },
-  'onb.goals.feelingLabel': { en: 'What would progress feel like for you? (optional)', bg: 'Как би се усещал напредъкът за теб? (по желание)' },
-  'onb.goals.feelingPh': { en: 'Feeling more relaxed on the ice, landing jumps more often…', bg: 'Чувствам се по-спокоен/а на леда, приземявам скокове по-често…' },
+  'onb.goals.title': { en: 'What do you want to focus on?', bg: 'Върху какво искаш да се фокусираш?' },
+  'onb.goals.subtitle': { en: 'This will change. That’s the point.', bg: 'Това ще се променя. Точно това е идеята.' },
+  'onb.goals.mainLabel': { en: 'Main focus *', bg: 'Главен фокус *' },
+  'onb.goals.mainPh': { en: 'My axel, more confidence, enjoying practice…', bg: 'Аксела, повече увереност, да ми е по-приятно…' },
+  'onb.goals.feelingLabel': { en: 'What would progress feel like? (optional)', bg: 'Как би изглеждал напредъкът за теб? (по желание)' },
+  'onb.goals.feelingPh': { en: 'Calmer on the ice, landing jumps more often…', bg: 'По-спокойна на леда, по-често приземявам скокове…' },
 
-  'onb.details.title': { en: 'A bit more about you', bg: 'Малко повече за теб' },
-  'onb.details.subtitle': { en: 'You can skip this. You can change it anytime.', bg: 'Можеш да пропуснеш. Можеш да го промениш по всяко време.' },
+  'onb.details.title': { en: 'A bit about you', bg: 'Малко за теб' },
+  'onb.details.subtitle': { en: 'Skip anything you want. Change it later.', bg: 'Пропусни каквото искаш. Сменяш по всяко време.' },
   'onb.details.age': { en: 'Age', bg: 'Възраст' },
   'onb.details.height': { en: 'Height (cm)', bg: 'Височина (см)' },
   'onb.details.weight': { en: 'Weight (kg)', bg: 'Тегло (кг)' },
   'onb.details.weight.label': { en: 'Weight', bg: 'Тегло' },
-  'onb.details.weight.tender': { en: 'Only share if it helps you. You can skip and never see this again.', bg: 'Сподели само ако ти помага. Можеш да пропуснеш и да не виждаш това отново.' },
-  'onb.details.weight.skip': { en: "Don't ask me again", bg: 'Не ме питай отново' },
-  'onb.details.weight.show': { en: 'Show weight field', bg: 'Покажи поле за тегло' },
-  'onb.details.note': { en: 'This information is optional and stored securely.', bg: 'Тази информация е по желание и се съхранява сигурно.' },
-  'onb.details.cta.start': { en: 'Begin My Journey', bg: 'Започни моя път' },
-  'onb.details.cta.starting': { en: 'Setting up…', bg: 'Подготвяме всичко…' },
+  'onb.details.weight.tender': { en: 'Only share if it actually helps you. You can hide this.', bg: 'Сподели само ако наистина ти помага. Можеш да го скриеш.' },
+  'onb.details.weight.skip': { en: 'Don’t ask me again', bg: 'Не ме питай отново' },
+  'onb.details.weight.show': { en: 'Show weight field', bg: 'Покажи полето за тегло' },
+  'onb.details.note': { en: 'Optional. Stored privately.', bg: 'По желание. Пази се поверително.' },
+  'onb.details.cta.start': { en: 'Let’s go', bg: 'Започваме' },
+  'onb.details.cta.starting': { en: 'Setting up…', bg: 'Подготвяме…' },
   'onb.details.footer': { en: 'Progress, not perfection.', bg: 'Напредък, не съвършенство.' },
 
-  'onb.toast.welcome.title': { en: 'Welcome to IceNotes 💙', bg: 'Добре дошъл/дошла в IceNotes 💙' },
-  'onb.toast.welcome.desc': { en: 'Your skating story starts here. One session at a time.', bg: 'Твоята история на леда започва тук. Една тренировка наведнъж.' },
-  'onb.toast.error.title': { en: 'Something went wrong', bg: 'Нещо не се получи' },
-  'onb.toast.error.desc': { en: 'Could not save your profile. Please try again.', bg: 'Профилът не можа да бъде запазен. Моля, опитай отново.' },
+  'onb.toast.welcome.title': { en: 'Welcome to IceNotes 💙', bg: 'Здравей в IceNotes 💙' },
+  'onb.toast.welcome.desc': { en: 'Your story starts here. One session at a time.', bg: 'Историята ти започва тук. Тренировка по тренировка.' },
+  'onb.toast.error.title': { en: 'Something didn’t work', bg: 'Нещо не се получи' },
+  'onb.toast.error.desc': { en: 'Couldn’t save your profile. Try again?', bg: 'Профилът не се запази. Опитай пак?' },
 
   // Self-levels
-  'level.foundations.label': { en: 'Building foundations', bg: 'Изграждам основи' },
-  'level.foundations.desc': { en: 'Learning the basics and finding your balance', bg: 'Уча основите и намирам баланса си' },
-  'level.consistency.label': { en: 'Developing consistency', bg: 'Развивам постоянство' },
-  'level.consistency.desc': { en: 'Working on making skills more reliable', bg: 'Работя елементите ми да са по-надеждни' },
-  'level.refining.label': { en: 'Refining performance', bg: 'Шлифовам изпълнението' },
-  'level.refining.desc': { en: 'Polishing technique and expression', bg: 'Полирам техниката и изразяването' },
-  'level.competing.label': { en: 'Competing with confidence', bg: 'Състезавам се уверено' },
-  'level.competing.desc': { en: 'Preparing for or participating in competitions', bg: 'Подготвям се за или участвам в състезания' },
+  'level.foundations.label': { en: 'Building foundations', bg: 'Изграждам основите' },
+  'level.foundations.desc': { en: 'Learning the basics, finding my balance.', bg: 'Уча базата и намирам баланса си.' },
+  'level.consistency.label': { en: 'Working on consistency', bg: 'Работя над постоянството' },
+  'level.consistency.desc': { en: 'Making the skills more reliable.', bg: 'Правя елементите по-сигурни.' },
+  'level.refining.label': { en: 'Polishing it', bg: 'Шлифовам' },
+  'level.refining.desc': { en: 'Cleaning up technique and expression.', bg: 'Изчиствам техниката и изразяването.' },
+  'level.competing.label': { en: 'Competing', bg: 'Състезавам се' },
+  'level.competing.desc': { en: 'Training for or skating in competitions.', bg: 'Готвя се за състезания или вече се състезавам.' },
 
   // ───── 404 ─────
   'notFound.title': { en: 'Oops! Page not found', bg: 'Опа! Страницата не е намерена' },
   'notFound.return': { en: 'Return to Home', bg: 'Към началото' },
 
   // ───── Auth page ─────
-  'auth.tagline': { en: 'Reflect. Train. Perform.', bg: 'Рефлексия. Тренировка. Изпълнение.' },
-  'auth.welcome': { en: 'Welcome', bg: 'Добре дошъл/дошла' },
-  'auth.welcomeSubtitle': { en: 'Track your skating journey', bg: 'Проследявай своя път в пързалянето' },
+  'auth.tagline': { en: 'Reflect. Train. Perform.', bg: 'Помисли. Тренирай. Излез.' },
+  'auth.welcome': { en: 'Welcome', bg: 'Здравей' },
+  'auth.welcomeSubtitle': { en: 'Your skating, in one place.', bg: 'Пързалянето ти — на едно място.' },
   'auth.tab.login': { en: 'Log In', bg: 'Вход' },
   'auth.tab.signup': { en: 'Sign Up', bg: 'Регистрация' },
   'auth.field.email': { en: 'Email', bg: 'Имейл' },
@@ -611,7 +611,7 @@ const dict: Dict = {
   'auth.cta.signup': { en: 'Create Account', bg: 'Създай профил' },
   'auth.cta.creating': { en: 'Creating account…', bg: 'Създаваме профила…' },
   'auth.backHome': { en: 'Back to home', bg: 'Към началото' },
-  'auth.terms': { en: 'By continuing, you agree to track your skating journey with us.', bg: 'С продължаването приемаш да следваш своя път в пързалянето заедно с нас.' },
+  'auth.terms': { en: 'By continuing, you’re saying yes to journaling your skating with us.', bg: 'С продължаването казваш „да“ на това да водиш дневника си тук.' },
   'auth.forgot.title': { en: 'Forgot Password', bg: 'Забравена парола' },
   'auth.forgot.descAsk': { en: "Enter your email and we'll send you a reset link", bg: 'Въведи имейла си и ще ти изпратим линк за нова парола' },
   'auth.forgot.descSent': { en: 'Check your email for the reset link', bg: 'Провери имейла си за линка за възстановяване' },
@@ -633,11 +633,11 @@ const dict: Dict = {
   'auth.toast.missingFields.desc': { en: 'Please enter your email and password', bg: 'Моля, въведи имейл и парола' },
   'auth.toast.missingFieldsAll.desc': { en: 'Please fill in all required fields', bg: 'Моля, попълни всички задължителни полета' },
   'auth.toast.loginFailed': { en: 'Login failed', bg: 'Входът не успя' },
-  'auth.toast.welcomeBack.title': { en: 'Welcome back!', bg: 'Радваме се, че си отново тук!' },
-  'auth.toast.welcomeBack.desc': { en: "You've successfully logged in", bg: 'Успешно влезе в профила си' },
+  'auth.toast.welcomeBack.title': { en: 'Welcome back!', bg: 'Радваме се, че пак си тук!' },
+  'auth.toast.welcomeBack.desc': { en: 'You’re in.', bg: 'Влезе.' },
   'auth.toast.signupFailed': { en: 'Signup failed', bg: 'Регистрацията не успя' },
-  'auth.toast.created.title': { en: 'Account created!', bg: 'Профилът е създаден!' },
-  'auth.toast.created.desc': { en: 'Welcome to IceNotes', bg: 'Добре дошъл/дошла в IceNotes' },
+  'auth.toast.created.title': { en: 'Account created.', bg: 'Профилът е готов.' },
+  'auth.toast.created.desc': { en: 'Welcome to IceNotes', bg: 'Здравей в IceNotes' },
   'auth.toast.passMismatch.title': { en: "Passwords don't match", bg: 'Паролите не съвпадат' },
   'auth.toast.passMismatch.desc': { en: 'Please make sure your passwords match', bg: 'Увери се, че двете пароли са еднакви' },
   'auth.toast.passShort.title': { en: 'Password too short', bg: 'Паролата е твърде къса' },
@@ -653,21 +653,21 @@ const dict: Dict = {
   'auth.toast.passUpdated.desc': { en: 'Your password has been successfully changed', bg: 'Паролата ти беше успешно сменена' },
 
   // ───── Dashboard misc (extra) ─────
-  'dash.focusNow': { en: '✨ Your focus right now', bg: '✨ Твоят фокус в момента' },
-  'dash.footer.encourage': { en: "Every session counts. You're doing amazing. 💙", bg: 'Всяка тренировка има значение. Справяш се прекрасно. 💙' },
-  'dash.signout.title': { en: 'Sign out?', bg: 'Излизане?' },
-  'dash.signout.desc': { en: 'Your data is safely stored. You can sign back in anytime to continue your journey. 💙', bg: 'Данните ти са в безопасност. Можеш да влезеш отново винаги, когато решиш. 💙' },
-  'dash.signout.stay': { en: 'Stay signed in', bg: 'Остани в профила' },
+  'dash.focusNow': { en: '✨ What you’re focused on', bg: '✨ Върху какво си фокусирана' },
+  'dash.footer.encourage': { en: 'Every session counts. You’re doing great. 💙', bg: 'Всяка тренировка се брои. Справяш се страхотно. 💙' },
+  'dash.signout.title': { en: 'Sign out?', bg: 'Излизаш ли?' },
+  'dash.signout.desc': { en: 'Your data stays safe. Come back whenever. 💙', bg: 'Данните ти остават на сигурно. Върни се, когато решиш. 💙' },
+  'dash.signout.stay': { en: 'Stay signed in', bg: 'Остани' },
   'dash.signout.confirm': { en: 'Sign out', bg: 'Излез' },
 
   // Tone-aware journal save messages (B1)
-  'journal.captured.celebratory': { en: 'Beautiful day on the ice. Capture this feeling. ✨', bg: 'Прекрасен ден на леда. Запомни това усещане. ✨' },
-  'journal.captured.neutral': { en: 'Saved. One more page in your story. 💙', bg: 'Запазено. Още една страница в твоята история. 💙' },
+  'journal.captured.celebratory': { en: 'Beautiful day on the ice. Hold onto this. ✨', bg: 'Прекрасен ден на леда. Запази усещането. ✨' },
+  'journal.captured.neutral': { en: 'Saved. One more page in your story. 💙', bg: 'Запазено. Още една страница в историята ти. 💙' },
 
   // Achievements — softer streak language
   'ach.title': { en: 'Achievements', bg: 'Постижения' },
   'ach.summary.unlocked': { en: 'unlocked', bg: 'отключени' },
-  'ach.keepGoing': { en: 'Keep showing up — every reflection counts.', bg: 'Продължавай да идваш — всяка рефлексия има значение.' },
+  'ach.keepGoing': { en: 'Keep showing up. Every entry adds up.', bg: 'Продължавай да идваш. Всеки запис се натрупва.' },
   'ach.unlocked': { en: 'Unlocked', bg: 'Отключени' },
   'ach.inProgress': { en: 'In progress', bg: 'В прогрес' },
   'ach.locked': { en: 'Coming up', bg: 'Предстои' },
@@ -705,78 +705,78 @@ const dict: Dict = {
   'ach.unit.tasks': { en: 'tasks', bg: 'задачи' },
 
   // ───── Progress · Insights ─────
-  'progress.insights.title': { en: 'Patterns we noticed', bg: 'Забелязани модели' },
-  'progress.insights.subtitle': { en: 'Small observations from your recent days', bg: 'Малки наблюдения от последните ти дни' },
-  'progress.insights.empty': { en: 'Keep logging — patterns will appear here as we learn your rhythm.', bg: 'Продължавай да пишеш — моделите ще се появят тук, когато опознаем ритъма ти.' },
+  'progress.insights.title': { en: 'What we’re noticing', bg: 'Какво забелязваме' },
+  'progress.insights.subtitle': { en: 'A few patterns from your last days.', bg: 'Няколко модела от последните ти дни.' },
+  'progress.insights.empty': { en: 'Keep logging — patterns will show up here as we get to know your rhythm.', bg: 'Продължавай да пишеш — моделите ще се появят, щом опознаем ритъма ти.' },
 
-  'progress.section.frequency': { en: 'Training frequency', bg: 'Честота на тренировките' },
+  'progress.section.frequency': { en: 'How often you trained', bg: 'Колко често тренира' },
   'progress.section.frequency.sub': { en: 'Sessions per day, last 14 days', bg: 'Тренировки на ден, последните 14 дни' },
-  'progress.section.moodFocus': { en: 'Mood & focus trends', bg: 'Тенденции на настроение и фокус' },
-  'progress.section.moodFocus.sub': { en: 'How you felt over your recent reflections', bg: 'Как си се чувствала в последните рефлексии' },
-  'progress.section.jumpConsistency': { en: 'Jump consistency over time', bg: 'Постоянство на скоковете във времето' },
-  'progress.section.jumpConsistency.sub': { en: 'Landing rate week by week', bg: 'Процент приземявания седмица по седмица' },
-  'progress.section.goals': { en: 'Goals progress', bg: 'Прогрес по целите' },
-  'progress.section.notes': { en: 'Personal notes trend', bg: 'Тенденция на личните бележки' },
-  'progress.section.notes.sub': { en: 'How often you’re writing reflections', bg: 'Колко често записваш рефлексии' },
+  'progress.section.moodFocus': { en: 'Mood & focus', bg: 'Настроение и фокус' },
+  'progress.section.moodFocus.sub': { en: 'How you’ve felt across recent entries', bg: 'Как си се чувствала в последните записи' },
+  'progress.section.jumpConsistency': { en: 'Jumps over time', bg: 'Скоковете във времето' },
+  'progress.section.jumpConsistency.sub': { en: 'Landing rate week by week', bg: 'Процент приземявания, седмица по седмица' },
+  'progress.section.goals': { en: 'Goals', bg: 'Цели' },
+  'progress.section.notes': { en: 'How much you wrote', bg: 'Колко много пишеш' },
+  'progress.section.notes.sub': { en: 'Reflections per week', bg: 'Рефлексии на седмица' },
 
   'progress.notes.thisWeek': { en: 'This week', bg: 'Тази седмица' },
   'progress.notes.lastWeek': { en: 'Last week', bg: 'Миналата седмица' },
   'progress.notes.entries': { en: 'entries', bg: 'записа' },
   'progress.notes.entry': { en: 'entry', bg: 'запис' },
 
-  'progress.goals.active': { en: 'Active goals', bg: 'Активни цели' },
-  'progress.goals.completed': { en: 'Completed', bg: 'Завършени' },
+  'progress.goals.active': { en: 'Active', bg: 'Активни' },
+  'progress.goals.completed': { en: 'Done', bg: 'Завършени' },
   'progress.goals.avg': { en: 'Average progress', bg: 'Среден прогрес' },
-  'progress.goals.none': { en: 'No active goals yet — set one to start tracking.', bg: 'Все още няма активни цели — задай една, за да започнеш.' },
+  'progress.goals.none': { en: 'No active goals — set one to start.', bg: 'Няма активни цели — задай една, за да започнеш.' },
 
   // Insight cards (variants)
   'progress.insight.consistency.up': {
-    en: 'You trained more consistently this week.',
+    en: 'You trained more steadily this week.',
     bg: 'Тренира по-постоянно тази седмица.'
   },
   'progress.insight.consistency.same': {
-    en: 'Your training rhythm stayed steady this week.',
-    bg: 'Ритъмът ти на тренировки остана стабилен тази седмица.'
+    en: 'Same rhythm as last week — that’s consistency.',
+    bg: 'Същият ритъм като миналата седмица — това е постоянство.'
   },
   'progress.insight.consistency.down': {
-    en: 'Fewer sessions this week — rest is part of the work.',
-    bg: 'По-малко тренировки тази седмица — почивката също е част от работата.'
+    en: 'Fewer sessions this week. Rest is part of the work.',
+    bg: 'По-малко тренировки тази седмица. Почивката също е работа.'
   },
   'progress.insight.focusAfterRest': {
-    en: 'Your focus was higher after rest days.',
-    bg: 'Фокусът ти беше по-висок след дни за почивка.'
+    en: 'Your focus was sharper after rest days.',
+    bg: 'Фокусът ти беше по-остър след дни почивка.'
   },
   'progress.insight.moodAfterRest': {
-    en: 'You felt lighter on days that followed a break.',
-    bg: 'Чувстваше се по-леко в дните след почивка.'
+    en: 'You felt lighter after a break.',
+    bg: 'Чувстваше се по-леко след почивка.'
   },
   'progress.insight.jumpUp': {
-    en: '{jump} attempts improved compared to last week.',
-    bg: 'Опитите за {jump} се подобриха спрямо миналата седмица.'
+    en: 'Your {jump} got better than last week.',
+    bg: '{jump} ти върви по-добре от миналата седмица.'
   },
   'progress.insight.jumpDown': {
-    en: '{jump} felt harder this week — that’s useful information too.',
-    bg: '{jump} бе по-труден тази седмица — и това е полезна информация.'
+    en: '{jump} was harder this week. Useful to know.',
+    bg: '{jump} беше по-труден тази седмица. Добре е да знаем.'
   },
   'progress.insight.jumpVolume': {
-    en: 'You logged more {jump} attempts this week — volume builds skill.',
-    bg: 'Записа повече опити за {jump} тази седмица — обемът изгражда умението.'
+    en: 'More {jump} attempts this week — volume builds it.',
+    bg: 'Повече опити за {jump} тази седмица — обемът го гради.'
   },
   'progress.insight.reflection.up': {
-    en: 'You reflected more this week than last — your awareness is growing.',
-    bg: 'Размишлява повече от миналата седмица — осъзнатостта ти расте.'
+    en: 'You reflected more this week. Awareness grows here.',
+    bg: 'Писа повече от миналата седмица. Тук расте осъзнатостта.'
   },
   'progress.insight.reflection.steady': {
-    en: 'Steady reflection — small notes add up.',
-    bg: 'Постоянни рефлексии — малките бележки се натрупват.'
+    en: 'Steady reflection. Small notes add up.',
+    bg: 'Постоянни рефлексии. Малките бележки се натрупват.'
   },
   'progress.insight.bestDay': {
-    en: 'Your best focus day recently was {day}.',
-    bg: 'Денят ти с най-добър фокус наскоро беше {day}.'
+    en: 'Your sharpest day lately was {day}.',
+    bg: 'Най-фокусираният ти ден напоследък беше {day}.'
   },
   'progress.insight.streak': {
-    en: 'You showed up {count} days in a row — that’s real consistency.',
-    bg: 'Беше последователна {count} дни подред — това е истинско постоянство.'
+    en: '{count} days in a row. That’s real consistency.',
+    bg: '{count} дни подред. Това е истинско постоянство.'
   },
 };
 
