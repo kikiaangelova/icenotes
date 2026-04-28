@@ -721,7 +721,15 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
         warnMissingKey(key);
         return key;
       }
-      return entry[language] ?? entry.en ?? key;
+      const value = entry[language];
+      // Strict: never silently fall back to another language. Empty BG must not
+      // render English. Surface the gap loudly in dev, return key in prod so
+      // QA can spot it instead of mixed-language UI.
+      if (!value || value.trim() === '') {
+        warnMissingKey(`${key} [${language}]`);
+        return key;
+      }
+      return value;
     },
     [language]
   );
