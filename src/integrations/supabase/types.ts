@@ -90,11 +90,14 @@ export type Database = {
         Row: {
           coach_notes: string | null
           confidence_level: number | null
+          confidence_note: string | null
           created_at: string
           date: string
           emotional_state: number | null
+          emotional_state_note: string | null
           feeling: string | null
           focus_level: number | null
+          focus_note: string | null
           goal_id: string | null
           id: string
           next_goal: string | null
@@ -110,11 +113,14 @@ export type Database = {
         Insert: {
           coach_notes?: string | null
           confidence_level?: number | null
+          confidence_note?: string | null
           created_at?: string
           date?: string
           emotional_state?: number | null
+          emotional_state_note?: string | null
           feeling?: string | null
           focus_level?: number | null
+          focus_note?: string | null
           goal_id?: string | null
           id?: string
           next_goal?: string | null
@@ -130,11 +136,14 @@ export type Database = {
         Update: {
           coach_notes?: string | null
           confidence_level?: number | null
+          confidence_note?: string | null
           created_at?: string
           date?: string
           emotional_state?: number | null
+          emotional_state_note?: string | null
           feeling?: string | null
           focus_level?: number | null
+          focus_note?: string | null
           goal_id?: string | null
           id?: string
           next_goal?: string | null
@@ -213,6 +222,9 @@ export type Database = {
           entry_type: string
           gratitude_items: Json | null
           id: string
+          postcomp_carry_forward: string | null
+          postcomp_did_well: string | null
+          postcomp_surprise: string | null
           precomp_breathing_completed: boolean | null
           precomp_confidence_anchor: string | null
           precomp_event_date: string | null
@@ -244,6 +256,9 @@ export type Database = {
           entry_type: string
           gratitude_items?: Json | null
           id?: string
+          postcomp_carry_forward?: string | null
+          postcomp_did_well?: string | null
+          postcomp_surprise?: string | null
           precomp_breathing_completed?: boolean | null
           precomp_confidence_anchor?: string | null
           precomp_event_date?: string | null
@@ -275,6 +290,9 @@ export type Database = {
           entry_type?: string
           gratitude_items?: Json | null
           id?: string
+          postcomp_carry_forward?: string | null
+          postcomp_did_well?: string | null
+          postcomp_surprise?: string | null
           precomp_breathing_completed?: boolean | null
           precomp_confidence_anchor?: string | null
           precomp_event_date?: string | null
@@ -333,6 +351,7 @@ export type Database = {
           age: number | null
           avatar_url: string | null
           created_at: string
+          dismissed_weight_prompt: boolean
           height: number | null
           id: string
           language: string
@@ -349,6 +368,7 @@ export type Database = {
           age?: number | null
           avatar_url?: string | null
           created_at?: string
+          dismissed_weight_prompt?: boolean
           height?: number | null
           id?: string
           language?: string
@@ -365,6 +385,7 @@ export type Database = {
           age?: number | null
           avatar_url?: string | null
           created_at?: string
+          dismissed_weight_prompt?: boolean
           height?: number | null
           id?: string
           language?: string

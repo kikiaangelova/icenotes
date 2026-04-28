@@ -4,7 +4,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { AuthProvider, useAuth } from "@/context/AuthContext";
-import { LanguageProvider } from "@/context/LanguageContext";
+import { LanguageProvider, useLanguage } from "@/context/LanguageContext";
 import { LanguageSync } from "@/components/LanguageSync";
 import Index from "./pages/Index";
 import Auth from "./pages/Auth";
@@ -23,47 +23,32 @@ import { Loader2 } from "lucide-react";
 
 const queryClient = new QueryClient();
 
+// Shared loading screen
+const LoadingScreen: React.FC = () => {
+  const { t } = useLanguage();
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-background">
+      <div className="text-center space-y-4">
+        <Loader2 className="w-8 h-8 animate-spin mx-auto text-primary" />
+        <p className="text-muted-foreground">{t('common.loading')}</p>
+      </div>
+    </div>
+  );
+};
+
 // Protected route wrapper
 const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const { user, loading } = useAuth();
-  
-  if (loading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-background">
-        <div className="text-center space-y-4">
-          <Loader2 className="w-8 h-8 animate-spin mx-auto text-primary" />
-          <p className="text-muted-foreground">Loading...</p>
-        </div>
-      </div>
-    );
-  }
-  
-  if (!user) {
-    return <Navigate to="/auth" replace />;
-  }
-  
+  if (loading) return <LoadingScreen />;
+  if (!user) return <Navigate to="/auth" replace />;
   return <>{children}</>;
 };
 
 // Public route wrapper - redirects to dashboard if already logged in
 const PublicRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const { user, loading } = useAuth();
-  
-  if (loading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-background">
-        <div className="text-center space-y-4">
-          <Loader2 className="w-8 h-8 animate-spin mx-auto text-primary" />
-          <p className="text-muted-foreground">Loading...</p>
-        </div>
-      </div>
-    );
-  }
-  
-  if (user) {
-    return <Navigate to="/dashboard" replace />;
-  }
-  
+  if (loading) return <LoadingScreen />;
+  if (user) return <Navigate to="/dashboard" replace />;
   return <>{children}</>;
 };
 
