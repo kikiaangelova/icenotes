@@ -232,7 +232,7 @@ const dict: Dict = {
 
   // ───── About page ─────
   'about.eyebrow': { en: 'About', bg: 'За нас' },
-  'about.title': { en: 'Built by skaters, for skaters.', bg: 'Създадено от фигуристи. За фигуристи.' },
+  'about.title': { en: 'Built by skaters, for skaters.', bg: 'Създадено е от фигуристка за фигуристи.' },
   'about.subtitle': { en: 'A private space to reflect, train intentionally, and grow — on and off the ice.', bg: 'Лично пространство, в което рефлектираш, тренираш с цел и растеш — на леда и извън него.' },
   'about.story.title': { en: 'Our Story', bg: 'Нашата история' },
   'about.story.lead': { en: 'Created by a young figure skater and her mom who saw a gap: skaters often struggle not from lack of talent, but lack of tools.', bg: 'Създадохме IceNotes заедно — млада фигуристка и нейната майка. Видяхме нещо просто, но важно: на повечето състезатели не им липсва талант, а инструменти, с които да го развиват спокойно и последователно.' },
