@@ -416,7 +416,7 @@ const dict: Dict = {
   'dash.tab.train': { en: 'Train', bg: 'Тренировка' },
   'dash.tab.mind': { en: 'Mind', bg: 'Ум' },
   'dash.tab.goals': { en: 'Goals', bg: 'Цели' },
-  'dash.tab.growth': { en: 'Growth', bg: 'Растеж' },
+  'dash.tab.growth': { en: 'Progress', bg: 'Прогрес' },
 
   // Mind sub-pills
   'dash.mind.preskate': { en: 'Pre-Skate', bg: 'Преди лед' },
