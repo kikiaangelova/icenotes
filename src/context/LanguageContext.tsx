@@ -688,12 +688,27 @@ export type Tone = 'gentle' | 'neutral' | 'celebratory';
 export const getToneForRatings = (opts: {
   emotionalState?: number | null;
   confidenceLevel?: number | null;
+  focusLevel?: number | null;
 }): Tone => {
   const e = opts.emotionalState ?? null;
   const c = opts.confidenceLevel ?? null;
-  if ((e !== null && e <= 3) || (c !== null && c <= 4)) return 'gentle';
+  const f = opts.focusLevel ?? null;
+  // Gentle tone: low confidence (≤4), low mood (≤3), or low energy/focus (≤3)
+  if (
+    (c !== null && c <= 4) ||
+    (e !== null && e <= 3) ||
+    (f !== null && f <= 3)
+  ) {
+    return 'gentle';
+  }
   if ((e !== null && e >= 8) || (c !== null && c >= 8)) return 'celebratory';
   return 'neutral';
+};
+
+/** Pick a gentle message variant (0-based index) for a hard day. */
+export const pickGentleVariant = (seed?: number): 0 | 1 | 2 => {
+  const n = typeof seed === 'number' && Number.isFinite(seed) ? seed : Date.now();
+  return (Math.abs(Math.floor(n)) % 3) as 0 | 1 | 2;
 };
 
 interface LanguageContextValue {
