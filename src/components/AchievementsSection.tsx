@@ -1,11 +1,12 @@
 import React from 'react';
 import { useSkater } from '@/context/SkaterContext';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
-import { 
-  Trophy, 
-  Flame, 
+import { useLanguage } from '@/context/LanguageContext';
+import {
+  Trophy,
+  Flame,
   Target,
   Star,
   Zap,
@@ -13,10 +14,11 @@ import {
   Crown,
   Sparkles,
   Heart,
-  Brain
+  Brain,
 } from 'lucide-react';
 import { Achievement } from '@/types/skater';
 import { LucideIcon } from 'lucide-react';
+import { startOfMonth, isSameMonth } from 'date-fns';
 
 interface AchievementDefinition {
   id: string;
