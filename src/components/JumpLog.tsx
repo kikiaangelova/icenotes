@@ -43,6 +43,7 @@ interface JumpLogProps {
 }
 
 export const JumpLog: React.FC<JumpLogProps> = ({ onComplete }) => {
+  const { t } = useLanguage();
   const { jumpAttempts, addJumpAttempt, getTodaysJumps } = useJournal();
   const [selectedJump, setSelectedJump] = useState(JUMP_TYPES[0].type);
   const [selectedLevel, setSelectedLevel] = useState(JUMP_LEVELS[0].level);
@@ -52,24 +53,26 @@ export const JumpLog: React.FC<JumpLogProps> = ({ onComplete }) => {
   const todaysJumps = getTodaysJumps();
   const todayLanded = todaysJumps.filter(j => j.landed).length;
 
-  const logAttempt = (quality: 1 | 2 | 3 | 4 | 5) => {
+  const logAttempt = (quality: QualityValue) => {
+    // Internal: 'landed' = quality >= 3 (Okay or better). DB still stores numeric quality.
     const landed = quality >= 3;
-    
+
     addJumpAttempt({
       date: new Date(),
       jumpType: selectedJump,
       level: selectedLevel,
       landed,
       quality,
-      notes: notes.trim() || undefined
+      notes: notes.trim() || undefined,
     });
 
     const jumpName = JUMP_TYPES.find(j => j.type === selectedJump)?.name;
     const levelName = JUMP_LEVELS.find(l => l.level === selectedLevel)?.name;
-    setLastLogged(`${levelName} ${jumpName} - ${QUALITY_LABELS[quality - 1]}`);
+    const qualityLabel = t(QUALITY_OPTIONS.find(o => o.value === quality)!.labelKey);
+    setLastLogged(`${levelName} ${jumpName} — ${qualityLabel}`);
     setNotes('');
-    
-    setTimeout(() => setLastLogged(null), 2000);
+
+    setTimeout(() => setLastLogged(null), 2200);
   };
 
   // Calculate stats per jump
@@ -167,27 +170,21 @@ export const JumpLog: React.FC<JumpLogProps> = ({ onComplete }) => {
             />
           </div>
 
-          {/* Quality buttons */}
+          {/* Experience-based quality buttons */}
           <div className="space-y-2">
-            <label className="text-sm font-medium">How was it?</label>
-            <div className="grid grid-cols-5 gap-2">
-              {([1, 2, 3, 4, 5] as const).map((quality) => (
+            <label className="text-sm font-medium">{t('jumpLog.quality.label')}</label>
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+              {QUALITY_OPTIONS.map((opt) => (
                 <Button
-                  key={quality}
-                  variant={quality >= 3 ? "default" : "outline"}
+                  key={opt.value}
+                  variant="outline"
                   className={cn(
-                    "h-14 flex-col gap-1 px-2",
-                    quality >= 4 && "bg-success hover:bg-success/90",
-                    quality === 3 && "bg-gold hover:bg-gold/90 text-foreground"
+                    'h-14 rounded-xl border-2 font-semibold text-sm transition-all',
+                    opt.className
                   )}
-                  onClick={() => logAttempt(quality)}
+                  onClick={() => logAttempt(opt.value)}
                 >
-                  <div className="flex gap-0.5">
-                    {Array.from({ length: quality }).map((_, i) => (
-                      <Star key={i} className="w-2.5 h-2.5 fill-current" />
-                    ))}
-                  </div>
-                  <span className="text-[10px]">{QUALITY_LABELS[quality - 1]}</span>
+                  {t(opt.labelKey)}
                 </Button>
               ))}
             </div>
