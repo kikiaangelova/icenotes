@@ -27,7 +27,7 @@ const PHASES = [
 ] as const;
 
 const interp = (s: string, vars: Record<string, string | number>) =>
-  Object.entries(vars).reduce((acc, [k, v]) => acc.replaceAll(`{${k}}`, String(v)), s);
+  Object.entries(vars).reduce((acc, [k, v]) => acc.split(`{${k}}`).join(String(v)), s);
 
 export const MindfulnessTools: React.FC = () => {
   const [open, setOpen] = useState<ToolKey>(null);
