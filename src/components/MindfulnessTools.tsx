@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -7,71 +7,37 @@ import { Input } from '@/components/ui/input';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import { Wind, Eye, Heart, Sparkles, Play, Pause, RotateCcw, ChevronLeft, ChevronRight, Check } from 'lucide-react';
 import { useMindfulnessTools } from '@/hooks/useMindfulnessTools';
+import { useLanguage } from '@/context/LanguageContext';
 import { toast } from 'sonner';
 
 type ToolKey = 'breathing' | 'visualization' | 'gratitude' | 'affirmations' | null;
 
-const SKATER_AFFIRMATIONS = [
-  'Аз съм силен/а, балансиран/а и уверен/а върху леда.',
-  'Всеки скок е възможност да се доверя на тялото си.',
-  'Падането е част от ученето — ставам отново и продължавам.',
-  'Моят лед, моят момент, моето темпо.',
-  'Дишам, центрирам се и изпълнявам с лекота.',
-  'Аз съм по-силен/а от своите съмнения.',
-  'Тренировката ми гради бъдещата ми изява.',
-  'Имам право да правя грешки и да расна от тях.',
-  'Моето тяло знае какво да прави — доверявам му се.',
-  'Аз танцувам с леда, а не срещу него.',
+const AFFIRMATION_KEYS = [
+  'mt.aff.1', 'mt.aff.2', 'mt.aff.3', 'mt.aff.4', 'mt.aff.5',
+  'mt.aff.6', 'mt.aff.7', 'mt.aff.8', 'mt.aff.9', 'mt.aff.10',
 ];
+
+const VISUALIZATION_KEYS = ['mt.viz.s1', 'mt.viz.s2', 'mt.viz.s3', 'mt.viz.s4', 'mt.viz.s5', 'mt.viz.s6'];
 
 // 4-7-8 breathing phases in seconds
 const PHASES = [
-  { label: 'Вдишай', seconds: 4, color: 'text-purple-500' },
-  { label: 'Задръж', seconds: 7, color: 'text-purple-700' },
-  { label: 'Издишай', seconds: 8, color: 'text-purple-400' },
+  { labelKey: 'mt.breathing.phase.inhale', seconds: 4, color: 'text-purple-500' },
+  { labelKey: 'mt.breathing.phase.hold', seconds: 7, color: 'text-purple-700' },
+  { labelKey: 'mt.breathing.phase.exhale', seconds: 8, color: 'text-purple-400' },
 ] as const;
 
-const VISUALIZATION_SCRIPT = [
-  'Затвори очи и направи 3 дълбоки вдишвания.',
-  'Представи си, че влизаш в залата — усещаш студа на леда, чуваш звука на кънките.',
-  'Виждаш себе си в стартова позиция — спокоен/а, фокусиран/а, готов/а.',
-  'Изпълняваш програмата си безупречно — всеки елемент идва естествено.',
-  'Усещаш гордост и радост, когато завършваш. Публиката аплодира.',
-  'Запомни това чувство. То е твое — носиш го със себе си на леда.',
-];
+const interp = (s: string, vars: Record<string, string | number>) =>
+  Object.entries(vars).reduce((acc, [k, v]) => acc.replaceAll(`{${k}}`, String(v)), s);
 
 export const MindfulnessTools: React.FC = () => {
   const [open, setOpen] = useState<ToolKey>(null);
+  const { t } = useLanguage();
 
-  const tools: Array<{ key: Exclude<ToolKey, null>; title: string; desc: string; icon: any; gradient: string }> = [
-    {
-      key: 'breathing',
-      title: 'Дишане 4-7-8',
-      desc: 'Успокояващо упражнение с визуален таймер',
-      icon: Wind,
-      gradient: 'from-purple-500/15 to-purple-300/5',
-    },
-    {
-      key: 'visualization',
-      title: 'Визуализация преди изява',
-      desc: 'Водена визуализация за състезание',
-      icon: Eye,
-      gradient: 'from-purple-500/15 to-pink-300/5',
-    },
-    {
-      key: 'gratitude',
-      title: 'Благодарствен дневник',
-      desc: '3 неща, за които си благодарен/а днес',
-      icon: Heart,
-      gradient: 'from-pink-400/15 to-purple-300/5',
-    },
-    {
-      key: 'affirmations',
-      title: 'Афирмации за пързалячи',
-      desc: 'Силови фрази, написани за теб',
-      icon: Sparkles,
-      gradient: 'from-purple-400/15 to-purple-200/5',
-    },
+  const tools: Array<{ key: Exclude<ToolKey, null>; titleKey: string; descKey: string; icon: any; gradient: string }> = [
+    { key: 'breathing', titleKey: 'mt.breathing.title', descKey: 'mt.breathing.desc', icon: Wind, gradient: 'from-purple-500/15 to-purple-300/5' },
+    { key: 'visualization', titleKey: 'mt.viz.title', descKey: 'mt.viz.desc', icon: Eye, gradient: 'from-purple-500/15 to-pink-300/5' },
+    { key: 'gratitude', titleKey: 'mt.gratitude.title', descKey: 'mt.gratitude.desc', icon: Heart, gradient: 'from-pink-400/15 to-purple-300/5' },
+    { key: 'affirmations', titleKey: 'mt.aff.title', descKey: 'mt.aff.desc', icon: Sparkles, gradient: 'from-purple-400/15 to-purple-200/5' },
   ];
 
   return (
@@ -80,25 +46,23 @@ export const MindfulnessTools: React.FC = () => {
         <CardContent className="p-4 space-y-3">
           <div className="flex items-center gap-2">
             <Sparkles className="w-4 h-4 text-purple-500" />
-            <h3 className="font-medium">Инструменти за осъзнатост</h3>
+            <h3 className="font-medium">{t('mt.heading')}</h3>
           </div>
-          <p className="text-xs text-muted-foreground">
-            Кратки практики, които можеш да направиш до леда — преди тренировка, между елементи или преди изява.
-          </p>
+          <p className="text-xs text-muted-foreground">{t('mt.intro')}</p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
-            {tools.map((t) => (
+            {tools.map((tool) => (
               <button
-                key={t.key}
-                onClick={() => setOpen(t.key)}
-                className={`text-left p-4 rounded-xl border border-purple-200/40 bg-gradient-to-br ${t.gradient} hover:border-purple-400/60 transition-all min-h-[88px]`}
+                key={tool.key}
+                onClick={() => setOpen(tool.key)}
+                className={`text-left p-4 rounded-xl border border-purple-200/40 bg-gradient-to-br ${tool.gradient} hover:border-purple-400/60 transition-all min-h-[88px]`}
               >
                 <div className="flex items-start gap-3">
                   <div className="w-10 h-10 rounded-lg bg-purple-500/15 flex items-center justify-center flex-shrink-0">
-                    <t.icon className="w-5 h-5 text-purple-600" />
+                    <tool.icon className="w-5 h-5 text-purple-600" />
                   </div>
                   <div>
-                    <p className="font-medium text-sm">{t.title}</p>
-                    <p className="text-xs text-muted-foreground mt-0.5">{t.desc}</p>
+                    <p className="font-medium text-sm">{t(tool.titleKey)}</p>
+                    <p className="text-xs text-muted-foreground mt-0.5">{t(tool.descKey)}</p>
                   </div>
                 </div>
               </button>
@@ -117,6 +81,7 @@ export const MindfulnessTools: React.FC = () => {
 
 // ─────────────────────────── BREATHING 4-7-8 ───────────────────────────
 const BreathingDialog: React.FC<{ open: boolean; onClose: () => void }> = ({ open, onClose }) => {
+  const { t } = useLanguage();
   const [running, setRunning] = useState(false);
   const [phaseIdx, setPhaseIdx] = useState(0);
   const [secondsLeft, setSecondsLeft] = useState<number>(PHASES[0].seconds);
@@ -165,24 +130,24 @@ const BreathingDialog: React.FC<{ open: boolean; onClose: () => void }> = ({ ope
   const handleClose = async () => {
     if (startTimeRef.current && cycles > 0) {
       const duration = Math.floor((Date.now() - startTimeRef.current) / 1000);
-      await logUsage({ tool_type: 'breathing_478', duration_seconds: duration, notes: `${cycles} цикъла` });
-      toast.success(`Браво! ${cycles} цикъла записани 🌬️`);
+      await logUsage({ tool_type: 'breathing_478', duration_seconds: duration, notes: interp(t('mt.breathing.cycleNote'), { count: cycles }) });
+      toast.success(interp(t('mt.breathing.toast'), { count: cycles }));
     }
     reset();
     onClose();
   };
 
   const phase = PHASES[phaseIdx];
-  const scale = phase.label === 'Вдишай' ? 1.4 : phase.label === 'Издишай' ? 0.7 : 1.4;
+  const scale = phase.labelKey === 'mt.breathing.phase.inhale' ? 1.4 : phase.labelKey === 'mt.breathing.phase.exhale' ? 0.7 : 1.4;
 
   return (
     <Dialog open={open} onOpenChange={(v) => !v && handleClose()}>
       <DialogContent className="max-w-md">
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2">
-            <Wind className="w-5 h-5 text-purple-500" /> Дишане 4-7-8
+            <Wind className="w-5 h-5 text-purple-500" /> {t('mt.breathing.title')}
           </DialogTitle>
-          <DialogDescription>Вдишай 4с · Задръж 7с · Издишай 8с</DialogDescription>
+          <DialogDescription>{t('mt.breathing.subtitle')}</DialogDescription>
         </DialogHeader>
 
         <div className="flex flex-col items-center gap-6 py-6">
@@ -192,21 +157,21 @@ const BreathingDialog: React.FC<{ open: boolean; onClose: () => void }> = ({ ope
               style={{ transform: `scale(${running ? scale : 1})` }}
             />
             <div className="relative text-center">
-              <p className={`text-xl font-medium ${phase.color}`}>{phase.label}</p>
+              <p className={`text-xl font-medium ${phase.color}`}>{t(phase.labelKey)}</p>
               <p className="text-5xl font-bold text-purple-700 mt-1">{secondsLeft}</p>
             </div>
           </div>
           <Badge variant="outline" className="text-purple-600 border-purple-300">
-            Цикъл: {cycles}
+            {interp(t('mt.breathing.cycle'), { count: cycles })}
           </Badge>
           <div className="flex gap-2">
             {!running ? (
               <Button onClick={start} className="bg-purple-500 hover:bg-purple-600 h-12">
-                <Play className="w-4 h-4 mr-2" /> Старт
+                <Play className="w-4 h-4 mr-2" /> {t('mt.breathing.start')}
               </Button>
             ) : (
               <Button onClick={pause} variant="outline" className="h-12">
-                <Pause className="w-4 h-4 mr-2" /> Пауза
+                <Pause className="w-4 h-4 mr-2" /> {t('mt.breathing.pause')}
               </Button>
             )}
             <Button onClick={reset} variant="outline" className="h-12">
@@ -214,7 +179,7 @@ const BreathingDialog: React.FC<{ open: boolean; onClose: () => void }> = ({ ope
             </Button>
           </div>
           <Button variant="ghost" onClick={handleClose} className="text-muted-foreground">
-            Готово
+            {t('mt.breathing.done')}
           </Button>
         </div>
       </DialogContent>
@@ -224,6 +189,7 @@ const BreathingDialog: React.FC<{ open: boolean; onClose: () => void }> = ({ ope
 
 // ─────────────────────────── VISUALIZATION ───────────────────────────
 const VisualizationDialog: React.FC<{ open: boolean; onClose: () => void }> = ({ open, onClose }) => {
+  const { t } = useLanguage();
   const [step, setStep] = useState(0);
   const [eventName, setEventName] = useState('');
   const [completed, setCompleted] = useState(false);
@@ -235,10 +201,10 @@ const VisualizationDialog: React.FC<{ open: boolean; onClose: () => void }> = ({
     await logUsage({
       tool_type: 'visualization',
       visualization_event: eventName || undefined,
-      notes: 'Завършена визуализация',
+      notes: t('mt.viz.completeNote'),
     });
     setCompleted(true);
-    toast.success('Готов/а си — носи това чувство със себе си 🌟');
+    toast.success(t('mt.viz.toast'));
     setTimeout(() => { reset(); onClose(); }, 1500);
   };
 
@@ -247,25 +213,27 @@ const VisualizationDialog: React.FC<{ open: boolean; onClose: () => void }> = ({
       <DialogContent className="max-w-md">
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2">
-            <Eye className="w-5 h-5 text-purple-500" /> Визуализация преди изява
+            <Eye className="w-5 h-5 text-purple-500" /> {t('mt.viz.title')}
           </DialogTitle>
-          <DialogDescription>Стъпка {step + 1} от {VISUALIZATION_SCRIPT.length}</DialogDescription>
+          <DialogDescription>
+            {interp(t('mt.viz.step'), { current: step + 1, total: VISUALIZATION_KEYS.length })}
+          </DialogDescription>
         </DialogHeader>
 
         {step === 0 && (
           <div className="space-y-3 py-2">
-            <label className="text-sm font-medium">За кое събитие се готвиш? (по избор)</label>
+            <label className="text-sm font-medium">{t('mt.viz.eventLabel')}</label>
             <Input
               value={eventName}
               onChange={(e) => setEventName(e.target.value)}
-              placeholder="напр. Държавно първенство"
+              placeholder={t('mt.viz.eventPlaceholder')}
               className="h-12"
             />
           </div>
         )}
 
         <div className="bg-purple-500/5 border border-purple-200/40 rounded-xl p-5 min-h-[140px] flex items-center">
-          <p className="text-base leading-relaxed">{VISUALIZATION_SCRIPT[step]}</p>
+          <p className="text-base leading-relaxed">{t(VISUALIZATION_KEYS[step])}</p>
         </div>
 
         <div className="flex justify-between items-center gap-2">
@@ -278,20 +246,20 @@ const VisualizationDialog: React.FC<{ open: boolean; onClose: () => void }> = ({
             <ChevronLeft className="w-4 h-4" />
           </Button>
           <div className="flex gap-1">
-            {VISUALIZATION_SCRIPT.map((_, i) => (
+            {VISUALIZATION_KEYS.map((_, i) => (
               <div
                 key={i}
                 className={`h-1.5 rounded-full transition-all ${i === step ? 'w-6 bg-purple-500' : 'w-1.5 bg-purple-200'}`}
               />
             ))}
           </div>
-          {step < VISUALIZATION_SCRIPT.length - 1 ? (
+          {step < VISUALIZATION_KEYS.length - 1 ? (
             <Button onClick={() => setStep((s) => s + 1)} className="bg-purple-500 hover:bg-purple-600 h-12">
               <ChevronRight className="w-4 h-4" />
             </Button>
           ) : (
             <Button onClick={finish} disabled={saving || completed} className="bg-purple-500 hover:bg-purple-600 h-12">
-              <Check className="w-4 h-4 mr-1" /> Готово
+              <Check className="w-4 h-4 mr-1" /> {t('mt.viz.complete')}
             </Button>
           )}
         </div>
@@ -302,6 +270,7 @@ const VisualizationDialog: React.FC<{ open: boolean; onClose: () => void }> = ({
 
 // ─────────────────────────── GRATITUDE ───────────────────────────
 const GratitudeDialog: React.FC<{ open: boolean; onClose: () => void }> = ({ open, onClose }) => {
+  const { t } = useLanguage();
   const [items, setItems] = useState<string[]>(['', '', '']);
   const { logUsage, saving } = useMindfulnessTools();
 
@@ -312,11 +281,11 @@ const GratitudeDialog: React.FC<{ open: boolean; onClose: () => void }> = ({ ope
   const save = async () => {
     const filtered = items.map((s) => s.trim()).filter(Boolean);
     if (filtered.length === 0) {
-      toast.error('Напиши поне едно нещо ✨');
+      toast.error(t('mt.gr.empty'));
       return;
     }
     await logUsage({ tool_type: 'gratitude', gratitude_items: filtered });
-    toast.success('Благодарността записана 💜');
+    toast.success(t('mt.gr.toast'));
     setItems(['', '', '']);
     onClose();
   };
@@ -326,9 +295,9 @@ const GratitudeDialog: React.FC<{ open: boolean; onClose: () => void }> = ({ ope
       <DialogContent className="max-w-md">
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2">
-            <Heart className="w-5 h-5 text-pink-500" /> Благодарствен дневник
+            <Heart className="w-5 h-5 text-pink-500" /> {t('mt.gratitude.title')}
           </DialogTitle>
-          <DialogDescription>Кои са 3 неща, за които си благодарен/а днес?</DialogDescription>
+          <DialogDescription>{t('mt.gr.subtitle')}</DialogDescription>
         </DialogHeader>
 
         <div className="space-y-3 py-2">
@@ -338,12 +307,12 @@ const GratitudeDialog: React.FC<{ open: boolean; onClose: () => void }> = ({ ope
                 <span className="w-5 h-5 rounded-full bg-pink-500/15 text-pink-600 flex items-center justify-center text-xs">
                   {i + 1}
                 </span>
-                Благодарен/а съм за…
+                {t('mt.gr.label')}
               </label>
               <Textarea
                 value={val}
                 onChange={(e) => update(i, e.target.value)}
-                placeholder={i === 0 ? 'напр. треньорката ми, която вярва в мен' : ''}
+                placeholder={i === 0 ? t('mt.gr.placeholder') : ''}
                 rows={2}
                 className="resize-none"
               />
@@ -352,7 +321,7 @@ const GratitudeDialog: React.FC<{ open: boolean; onClose: () => void }> = ({ ope
         </div>
 
         <Button onClick={save} disabled={saving} className="w-full h-12 bg-pink-500 hover:bg-pink-600">
-          <Check className="w-4 h-4 mr-2" /> Запази
+          <Check className="w-4 h-4 mr-2" /> {t('mt.gr.save')}
         </Button>
       </DialogContent>
     </Dialog>
@@ -361,15 +330,18 @@ const GratitudeDialog: React.FC<{ open: boolean; onClose: () => void }> = ({ ope
 
 // ─────────────────────────── AFFIRMATIONS CAROUSEL ───────────────────────────
 const AffirmationsDialog: React.FC<{ open: boolean; onClose: () => void }> = ({ open, onClose }) => {
-  const [idx, setIdx] = useState(() => Math.floor(Math.random() * SKATER_AFFIRMATIONS.length));
+  const { t } = useLanguage();
+  const [idx, setIdx] = useState(() => Math.floor(Math.random() * AFFIRMATION_KEYS.length));
   const { logUsage, saving } = useMindfulnessTools();
 
-  const prev = () => setIdx((i) => (i - 1 + SKATER_AFFIRMATIONS.length) % SKATER_AFFIRMATIONS.length);
-  const next = () => setIdx((i) => (i + 1) % SKATER_AFFIRMATIONS.length);
+  const current = useMemo(() => t(AFFIRMATION_KEYS[idx]), [idx, t]);
+
+  const prev = () => setIdx((i) => (i - 1 + AFFIRMATION_KEYS.length) % AFFIRMATION_KEYS.length);
+  const next = () => setIdx((i) => (i + 1) % AFFIRMATION_KEYS.length);
 
   const save = async () => {
-    await logUsage({ tool_type: 'affirmations', affirmation_text: SKATER_AFFIRMATIONS[idx] });
-    toast.success('Афирмацията резонира с теб ✨');
+    await logUsage({ tool_type: 'affirmations', affirmation_text: current });
+    toast.success(t('mt.aff.toast'));
   };
 
   return (
@@ -377,14 +349,14 @@ const AffirmationsDialog: React.FC<{ open: boolean; onClose: () => void }> = ({ 
       <DialogContent className="max-w-md">
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2">
-            <Sparkles className="w-5 h-5 text-purple-500" /> Афирмации за пързалячи
+            <Sparkles className="w-5 h-5 text-purple-500" /> {t('mt.aff.title')}
           </DialogTitle>
-          <DialogDescription>Прочети на глас. Усети думите.</DialogDescription>
+          <DialogDescription>{t('mt.aff.subtitle')}</DialogDescription>
         </DialogHeader>
 
         <div className="bg-gradient-to-br from-purple-500/10 to-pink-300/10 border border-purple-200/40 rounded-2xl p-6 min-h-[160px] flex items-center justify-center text-center">
           <p className="text-lg font-medium leading-relaxed text-purple-900">
-            {SKATER_AFFIRMATIONS[idx]}
+            {current}
           </p>
         </div>
 
@@ -393,7 +365,7 @@ const AffirmationsDialog: React.FC<{ open: boolean; onClose: () => void }> = ({ 
             <ChevronLeft className="w-5 h-5" />
           </Button>
           <span className="text-xs text-muted-foreground">
-            {idx + 1} / {SKATER_AFFIRMATIONS.length}
+            {idx + 1} / {AFFIRMATION_KEYS.length}
           </span>
           <Button onClick={next} variant="outline" size="icon" className="h-12 w-12">
             <ChevronRight className="w-5 h-5" />
@@ -401,7 +373,7 @@ const AffirmationsDialog: React.FC<{ open: boolean; onClose: () => void }> = ({ 
         </div>
 
         <Button onClick={save} disabled={saving} className="w-full h-12 bg-purple-500 hover:bg-purple-600">
-          <Heart className="w-4 h-4 mr-2" /> Тази резонира с мен
+          <Heart className="w-4 h-4 mr-2" /> {t('mt.aff.save')}
         </Button>
       </DialogContent>
     </Dialog>
