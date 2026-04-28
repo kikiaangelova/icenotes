@@ -1,15 +1,42 @@
 import React, { useState } from 'react';
 import { useJournal } from '@/context/JournalContext';
+import { useLanguage } from '@/context/LanguageContext';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { JUMP_TYPES, JUMP_LEVELS } from '@/types/journal';
-import { Target, Star, Check, TrendingUp } from 'lucide-react';
+import { Target, Check, TrendingUp } from 'lucide-react';
 import { Progress } from '@/components/ui/progress';
 import { cn } from '@/lib/utils';
-import { format, parseISO } from 'date-fns';
 
-const QUALITY_LABELS = ['Fall', 'Shaky', 'OK', 'Good', 'Perfect'];
+// Experience-based quality input. Internal numeric value preserved for analytics.
+type QualityValue = 2 | 3 | 4 | 5;
+const QUALITY_OPTIONS: {
+  value: QualityValue;
+  labelKey: string;
+  className: string;
+}[] = [
+  {
+    value: 2,
+    labelKey: 'jumpLog.quality.shaky',
+    className: 'bg-rose/40 hover:bg-rose/60 border-rose-foreground/30 text-foreground',
+  },
+  {
+    value: 3,
+    labelKey: 'jumpLog.quality.okay',
+    className: 'bg-peach/50 hover:bg-peach/70 border-peach-foreground/30 text-foreground',
+  },
+  {
+    value: 4,
+    labelKey: 'jumpLog.quality.good',
+    className: 'bg-mint/50 hover:bg-mint/70 border-mint-foreground/30 text-foreground',
+  },
+  {
+    value: 5,
+    labelKey: 'jumpLog.quality.best',
+    className: 'bg-gradient-to-br from-mint/70 to-sky/70 hover:from-mint/90 hover:to-sky/90 border-mint-foreground/40 text-foreground',
+  },
+];
 
 interface JumpLogProps {
   onComplete?: () => void;
