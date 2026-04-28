@@ -23,6 +23,7 @@ import { SkatingGoals } from './SkatingGoals';
 import { ProgressOverview } from './ProgressOverview';
 import { ProgressInsights } from './ProgressInsights';
 import { SportPsychology } from './SportPsychology';
+import { MindReflection } from './MindReflection';
 import { TodayJourney } from './TodayJourney';
 import { TodayQuickLog } from './TodayQuickLog';
 import { Button } from '@/components/ui/button';
@@ -318,12 +319,28 @@ export const SimpleDashboard: React.FC = () => {
 
             {/* MIND: pre-skate + sport psychology + inspiration */}
             <TabsContent value="mind" className="space-y-4">
-              <Tabs defaultValue="preskate" className="w-full">
-                <TabsList className="grid w-full grid-cols-3 h-10 rounded-xl bg-muted/40 p-0.5">
+              <Tabs defaultValue="reflect" className="w-full">
+                <TabsList className="grid w-full grid-cols-4 h-10 rounded-xl bg-muted/40 p-0.5">
+                  <TabsTrigger value="reflect" className="text-xs rounded-lg">{t('dash.mind.reflect')}</TabsTrigger>
                   <TabsTrigger value="preskate" className="text-xs rounded-lg">{t('dash.mind.preskate')}</TabsTrigger>
                   <TabsTrigger value="psych" className="text-xs rounded-lg">{t('dash.mind.psych')}</TabsTrigger>
                   <TabsTrigger value="inspire" className="text-xs rounded-lg">{t('dash.mind.inspire')}</TabsTrigger>
                 </TabsList>
+
+                <TabsContent value="reflect" className="space-y-4 mt-4">
+                  <div className="rounded-2xl section-card-mind p-4 mb-3">
+                    <div className="flex items-center gap-2 mb-1">
+                      <Heart className="w-4 h-4 text-rose-foreground" />
+                      <h2 className="text-sm font-bold text-rose-foreground font-serif">{t('dash.mind.reflect')}</h2>
+                    </div>
+                    <p className="text-xs text-rose-foreground/70">
+                      {language === 'bg'
+                        ? 'Кратки въпроси, за да настроиш ума преди и след леда.'
+                        : 'Short prompts to settle your mind before and after the ice.'}
+                    </p>
+                  </div>
+                  <MindReflection />
+                </TabsContent>
 
                 <TabsContent value="preskate" className="space-y-4 mt-4">
                   <div className="rounded-2xl section-card-mind p-4 mb-3">
