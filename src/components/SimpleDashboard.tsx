@@ -23,6 +23,7 @@ import { SkatingGoals } from './SkatingGoals';
 import { ProgressOverview } from './ProgressOverview';
 import { SportPsychology } from './SportPsychology';
 import { TodayJourney } from './TodayJourney';
+import { TodayQuickLog } from './TodayQuickLog';
 import { Button } from '@/components/ui/button';
 import { SELF_LEVELS } from '@/types/journal';
 import { Feather, Compass, Heart, Settings, LogOut, Dumbbell, Target, CalendarCheck, Brain, Timer, Bell, Snowflake, BookHeart, TrendingUp, Sparkles, Sun, Shield, Sparkle } from 'lucide-react';
@@ -192,17 +193,37 @@ export const SimpleDashboard: React.FC = () => {
               </TabsTrigger>
             </TabsList>
 
-            {/* TODAY: guided journey + daily journal */}
+            {/* TODAY: quick log first, then guided journey + daily journal as a deeper pass */}
             <TabsContent value="today" className="space-y-4">
-              <TodayJourney />
-              <div className="rounded-2xl section-card-progress p-4 mb-3">
-                <div className="flex items-center gap-2 mb-1">
-                  <Feather className="w-4 h-4 text-sky-foreground" />
-                  <h2 className="text-sm font-bold text-sky-foreground font-serif">{t('dash.dailyJournal.title')}</h2>
+              <TodayQuickLog />
+
+              <details className="group rounded-2xl border border-border/40 bg-card/50">
+                <summary className="cursor-pointer list-none p-4 flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <Sparkles className="w-4 h-4 text-grape-foreground" />
+                    <span className="text-sm font-semibold text-foreground">
+                      {t('today.deeper.title')}
+                    </span>
+                  </div>
+                  <span className="text-xs text-muted-foreground group-open:hidden">
+                    {t('today.deeper.open')}
+                  </span>
+                  <span className="text-xs text-muted-foreground hidden group-open:inline">
+                    {t('today.deeper.close')}
+                  </span>
+                </summary>
+                <div className="p-4 pt-0 space-y-4">
+                  <TodayJourney />
+                  <div className="rounded-2xl section-card-progress p-4 mb-3">
+                    <div className="flex items-center gap-2 mb-1">
+                      <Feather className="w-4 h-4 text-sky-foreground" />
+                      <h2 className="text-sm font-bold text-sky-foreground font-serif">{t('dash.dailyJournal.title')}</h2>
+                    </div>
+                    <p className="text-xs text-sky-foreground/70">{t('dash.dailyJournal.subtitle')}</p>
+                  </div>
+                  <DailyJournal />
                 </div>
-                <p className="text-xs text-sky-foreground/70">{t('dash.dailyJournal.subtitle')}</p>
-              </div>
-              <DailyJournal />
+              </details>
             </TabsContent>
 
             {/* TRAIN: training + jumps + timer */}
