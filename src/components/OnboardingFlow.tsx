@@ -66,7 +66,6 @@ export const OnboardingFlow: React.FC = () => {
         try {
           await supabase
             .from('profiles')
-            // @ts-expect-error — column exists in DB; types may lag
             .update({ dismissed_weight_prompt: true })
             .eq('user_id', user.id);
         } catch {
