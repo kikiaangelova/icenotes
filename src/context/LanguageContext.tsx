@@ -493,6 +493,7 @@ const dict: Dict = {
   'dash.mind.journal': { en: 'Mind Journal', bg: 'Дневник на ума' },
   'dash.mind.psych': { en: 'Sport Psych', bg: 'Спортна психология' },
   'dash.mind.inspire': { en: 'Inspiration', bg: 'Вдъхновение' },
+  'dash.mind.reflect': { en: 'Reflect', bg: 'Рефлексия' },
 
   // Goals timeframe toggle
   'dash.goals.week': { en: 'Week', bg: 'Седмица' },
