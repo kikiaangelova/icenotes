@@ -778,6 +778,72 @@ const dict: Dict = {
     en: '{count} days in a row. That’s real consistency.',
     bg: '{count} дни подред. Това е истинско постоянство.'
   },
+
+  // ───── Mindfulness Tools ─────
+  'mt.heading': { en: 'Mindfulness tools', bg: 'Инструменти за осъзнатост' },
+  'mt.intro': {
+    en: 'Short practices you can do right by the rink — before training, between elements, or before a performance.',
+    bg: 'Кратки практики, които можеш да направиш до леда — преди тренировка, между елементи или преди изява.',
+  },
+
+  // Tool cards
+  'mt.breathing.title': { en: '4-7-8 Breathing', bg: 'Дишане 4-7-8' },
+  'mt.breathing.desc': { en: 'Calming exercise with a visual timer', bg: 'Успокояващо упражнение с визуален таймер' },
+  'mt.viz.title': { en: 'Pre-performance visualization', bg: 'Визуализация преди изява' },
+  'mt.viz.desc': { en: 'Guided visualization for competition', bg: 'Водена визуализация за състезание' },
+  'mt.gratitude.title': { en: 'Gratitude journal', bg: 'Благодарствен дневник' },
+  'mt.gratitude.desc': { en: '3 things you’re grateful for today', bg: '3 неща, за които си благодарен/а днес' },
+  'mt.aff.title': { en: 'Skater affirmations', bg: 'Афирмации за пързалячи' },
+  'mt.aff.desc': { en: 'Power phrases written for you', bg: 'Силови фрази, написани за теб' },
+
+  // Breathing dialog
+  'mt.breathing.subtitle': { en: 'Inhale 4s · Hold 7s · Exhale 8s', bg: 'Вдишай 4с · Задръж 7с · Издишай 8с' },
+  'mt.breathing.phase.inhale': { en: 'Inhale', bg: 'Вдишай' },
+  'mt.breathing.phase.hold': { en: 'Hold', bg: 'Задръж' },
+  'mt.breathing.phase.exhale': { en: 'Exhale', bg: 'Издишай' },
+  'mt.breathing.cycle': { en: 'Cycle: {count}', bg: 'Цикъл: {count}' },
+  'mt.breathing.cycleNote': { en: '{count} cycles', bg: '{count} цикъла' },
+  'mt.breathing.start': { en: 'Start', bg: 'Старт' },
+  'mt.breathing.pause': { en: 'Pause', bg: 'Пауза' },
+  'mt.breathing.done': { en: 'Done', bg: 'Готово' },
+  'mt.breathing.toast': { en: 'Nice work — {count} cycles saved 🌬️', bg: 'Браво! {count} цикъла записани 🌬️' },
+
+  // Visualization dialog
+  'mt.viz.step': { en: 'Step {current} of {total}', bg: 'Стъпка {current} от {total}' },
+  'mt.viz.eventLabel': { en: 'What event are you preparing for? (optional)', bg: 'За кое събитие се готвиш? (по избор)' },
+  'mt.viz.eventPlaceholder': { en: 'e.g. Nationals', bg: 'напр. Държавно първенство' },
+  'mt.viz.complete': { en: 'Done', bg: 'Готово' },
+  'mt.viz.completeNote': { en: 'Visualization complete', bg: 'Завършена визуализация' },
+  'mt.viz.toast': { en: 'You’re ready — carry that feeling with you 🌟', bg: 'Готов/а си — носи това чувство със себе си 🌟' },
+  'mt.viz.s1': { en: 'Close your eyes and take 3 deep breaths.', bg: 'Затвори очи и направи 3 дълбоки вдишвания.' },
+  'mt.viz.s2': { en: 'Picture yourself walking into the rink — feel the cold, hear the blades.', bg: 'Представи си, че влизаш в залата — усещаш студа на леда, чуваш звука на кънките.' },
+  'mt.viz.s3': { en: 'See yourself in starting position — calm, focused, ready.', bg: 'Виждаш себе си в стартова позиция — спокоен/а, фокусиран/а, готов/а.' },
+  'mt.viz.s4': { en: 'You skate the program flawlessly — every element comes naturally.', bg: 'Изпълняваш програмата си безупречно — всеки елемент идва естествено.' },
+  'mt.viz.s5': { en: 'You feel pride and joy as you finish. The crowd cheers.', bg: 'Усещаш гордост и радост, когато завършваш. Публиката аплодира.' },
+  'mt.viz.s6': { en: 'Hold onto that feeling. It’s yours — bring it onto the ice.', bg: 'Запомни това чувство. То е твое — носиш го със себе си на леда.' },
+
+  // Gratitude dialog
+  'mt.gr.subtitle': { en: 'What are 3 things you’re grateful for today?', bg: 'Кои са 3 неща, за които си благодарен/а днес?' },
+  'mt.gr.label': { en: 'I’m grateful for…', bg: 'Благодарен/а съм за…' },
+  'mt.gr.placeholder': { en: 'e.g. my coach, who believes in me', bg: 'напр. треньорката ми, която вярва в мен' },
+  'mt.gr.empty': { en: 'Write at least one thing ✨', bg: 'Напиши поне едно нещо ✨' },
+  'mt.gr.save': { en: 'Save', bg: 'Запази' },
+  'mt.gr.toast': { en: 'Gratitude saved 💜', bg: 'Благодарността записана 💜' },
+
+  // Affirmations dialog
+  'mt.aff.subtitle': { en: 'Read it out loud. Feel the words.', bg: 'Прочети на глас. Усети думите.' },
+  'mt.aff.save': { en: 'This one resonates with me', bg: 'Тази резонира с мен' },
+  'mt.aff.toast': { en: 'That affirmation resonates ✨', bg: 'Афирмацията резонира с теб ✨' },
+  'mt.aff.1': { en: 'I am strong, balanced, and confident on the ice.', bg: 'Аз съм силен/а, балансиран/а и уверен/а върху леда.' },
+  'mt.aff.2': { en: 'Every jump is a chance to trust my body.', bg: 'Всеки скок е възможност да се доверя на тялото си.' },
+  'mt.aff.3': { en: 'Falling is part of learning — I get up and keep going.', bg: 'Падането е част от ученето — ставам отново и продължавам.' },
+  'mt.aff.4': { en: 'My ice, my moment, my pace.', bg: 'Моят лед, моят момент, моето темпо.' },
+  'mt.aff.5': { en: 'I breathe, I center, I perform with ease.', bg: 'Дишам, центрирам се и изпълнявам с лекота.' },
+  'mt.aff.6': { en: 'I am stronger than my doubts.', bg: 'Аз съм по-силен/а от своите съмнения.' },
+  'mt.aff.7': { en: 'My training builds my future performance.', bg: 'Тренировката ми гради бъдещата ми изява.' },
+  'mt.aff.8': { en: 'I’m allowed to make mistakes and grow from them.', bg: 'Имам право да правя грешки и да расна от тях.' },
+  'mt.aff.9': { en: 'My body knows what to do — I trust it.', bg: 'Моето тяло знае какво да прави — доверявам му се.' },
+  'mt.aff.10': { en: 'I dance with the ice, not against it.', bg: 'Аз танцувам с леда, а не срещу него.' },
 };
 
 // ───── Tone helper (B1) ─────
