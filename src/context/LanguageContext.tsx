@@ -418,6 +418,26 @@ const dict: Dict = {
   'today.deeper.open': { en: 'Open', bg: 'Отвори' },
   'today.deeper.close': { en: 'Hide', bg: 'Скрий' },
 
+  // ───── Today: post-save summary card ─────
+  'today.summary.eyebrow': { en: "Today's summary", bg: 'Обобщение за днес' },
+  'today.summary.title': { en: 'Nicely done.', bg: 'Браво на теб.' },
+  'today.summary.minutes': { en: 'minutes', bg: 'минути' },
+  'today.summary.focus': { en: 'focus', bg: 'фокус' },
+  'today.summary.mood': { en: 'mood', bg: 'настроение' },
+  'today.summary.elements': { en: 'Elements practiced', bg: 'Елементи, върху които работи' },
+  'today.summary.prompt': { en: 'Want to add one sentence?', bg: 'Искаш ли да добавиш едно изречение?' },
+  'today.summary.promptPlaceholder': { en: 'A thought, a feeling, a moment from today…', bg: 'Мисъл, усещане, момент от днешния ден…' },
+  'today.summary.promptSave': { en: 'Save reflection', bg: 'Запази рефлексията' },
+  'today.summary.promptThanks': { en: 'Saved. Rest well tonight.', bg: 'Запазено. Почивай добре тази вечер.' },
+
+  // ───── Jump type labels ─────
+  'jump.toe-loop': { en: 'Toe Loop', bg: 'Тулуп' },
+  'jump.salchow': { en: 'Salchow', bg: 'Салхов' },
+  'jump.loop': { en: 'Loop', bg: 'Луп' },
+  'jump.flip': { en: 'Flip', bg: 'Флип' },
+  'jump.lutz': { en: 'Lutz', bg: 'Лутц' },
+  'jump.axel': { en: 'Axel', bg: 'Аксел' },
+
   // ───── App-wide common ─────
   'app.tagline': { en: 'Reflect · Train · Perform', bg: 'Рефлексия · Тренировка · Изпълнение' },
   'app.loadingJourney': { en: 'Loading your journey…', bg: 'Зареждаме твоя път…' },

@@ -7,10 +7,10 @@ import { Textarea } from '@/components/ui/textarea';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Slider } from '@/components/ui/slider';
-import { Sun, Sparkles, Check, Snowflake, Dumbbell, Wind } from 'lucide-react';
+import { Sun, Sparkles, Check, Snowflake, Dumbbell, Wind, Clock, Target, Heart, Pencil } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { format } from 'date-fns';
-import { FEELING_OPTIONS } from '@/types/journal';
+import { FEELING_OPTIONS, type JumpType } from '@/types/journal';
 
 type TrainingType = 'on-ice' | 'off-ice' | 'rest';
 
@@ -35,9 +35,18 @@ const TYPE_OPTIONS: {
   { value: 'rest', icon: Wind, labelKey: 'today.quick.type.rest', cls: 'from-rose/40 to-peach/10 text-rose-foreground border-rose-foreground/20' },
 ];
 
+const JUMP_LABEL_KEY: Record<JumpType, string> = {
+  'toe-loop': 'jump.toe-loop',
+  salchow: 'jump.salchow',
+  loop: 'jump.loop',
+  flip: 'jump.flip',
+  lutz: 'jump.lutz',
+  axel: 'jump.axel',
+};
+
 export const TodayQuickLog: React.FC = () => {
-  const { t } = useLanguage();
-  const { addEntry, addTrainingSession, getTodaysEntry } = useJournal();
+  const { language, t } = useLanguage();
+  const { addEntry, addTrainingSession, getTodaysEntry, getTodaysSessions, getTodaysJumps } = useJournal();
   const existing = getTodaysEntry();
 
   const [form, setForm] = useState<FormState>({
@@ -50,6 +59,8 @@ export const TodayQuickLog: React.FC = () => {
     oneLine: '',
   });
   const [saved, setSaved] = useState(!!existing);
+  const [reflection, setReflection] = useState('');
+  const [reflectionSaved, setReflectionSaved] = useState(false);
 
   const todayLabel = useMemo(() => format(new Date(), 'EEEE, MMMM d'), []);
 
@@ -92,18 +103,179 @@ export const TodayQuickLog: React.FC = () => {
   };
 
   if (saved) {
+    // Pull live data so the summary works even on a fresh page load.
+    const todaysSessions = getTodaysSessions();
+    const todaysJumps = getTodaysJumps();
+    const entry = getTodaysEntry();
+
+    const totalMinutes =
+      todaysSessions.reduce((sum, s) => sum + (s.totalDuration || 0), 0) ||
+      (Number.isFinite(parseInt(form.duration, 10)) ? parseInt(form.duration, 10) : 0);
+
+    const focus = entry?.focusLevel ?? form.focus;
+
+    const moodValue = (entry?.feeling ?? form.mood) as
+      | typeof FEELING_OPTIONS[number]['value']
+      | ''
+      | undefined;
+    const moodOpt = FEELING_OPTIONS.find((f) => f.value === moodValue);
+
+    // Main elements practiced: unique jump types from today's attempts.
+    const elements = Array.from(new Set(todaysJumps.map((j) => j.jumpType)));
+    const elementLabels = elements.map((e) => t(JUMP_LABEL_KEY[e]));
+
+    // Build the human sentence with proper grammar in EN/BG.
+    const sentence = (() => {
+      const minutesStr = totalMinutes > 0 ? String(totalMinutes) : '—';
+      const focusStr = `${focus}/10`;
+      const moodStr = moodOpt ? t(`feeling.${moodOpt.value}`).toLowerCase() : '';
+
+      // Element list with localized conjunction.
+      const joinList = (arr: string[]) => {
+        if (arr.length === 0) return '';
+        if (arr.length === 1) return arr[0];
+        const and = language === 'bg' ? ' и ' : ' and ';
+        return arr.slice(0, -1).join(', ') + and + arr[arr.length - 1];
+      };
+      const elementsStr = joinList(elementLabels);
+
+      if (language === 'bg') {
+        const parts: string[] = [];
+        parts.push(
+          totalMinutes > 0
+            ? `Тренира ${minutesStr} минути`
+            : 'Записа днешния си ден'
+        );
+        parts.push(`фокусира се на ${focusStr}`);
+        if (moodStr) parts.push(`чувстваше се ${moodStr}`);
+        if (elementsStr) parts.push(`и работи върху ${elementsStr}`);
+        return parts.join(', ').replace(/, и /, ' и ') + '.';
+      }
+
+      const parts: string[] = [];
+      parts.push(
+        totalMinutes > 0
+          ? `You trained ${minutesStr} minutes`
+          : 'You logged today'
+      );
+      parts.push(`felt ${focusStr} focused`);
+      if (moodStr) parts.push(`mood was ${moodStr}`);
+      if (elementsStr) parts.push(`and worked on ${elementsStr}`);
+      return parts.join(', ').replace(/, and /, ' and ') + '.';
+    })();
+
+    const handleSaveReflection = () => {
+      const text = reflection.trim();
+      if (!text) return;
+      addEntry({
+        date: new Date(),
+        workedOn: text,
+        smallWin: '',
+      });
+      setReflectionSaved(true);
+    };
+
     return (
-      <Card className="rounded-2xl border-mint-foreground/20 bg-gradient-to-br from-mint/30 to-sky/15">
-        <CardContent className="p-6 text-center space-y-3">
-          <div className="w-12 h-12 mx-auto rounded-full bg-mint/40 flex items-center justify-center">
-            <Check className="w-6 h-6 text-mint-foreground" />
+      <Card className="rounded-2xl border-mint-foreground/20 bg-gradient-to-br from-mint/30 via-sky/15 to-lavender/20 overflow-hidden">
+        <CardHeader className="pb-3">
+          <div className="flex items-center gap-2 text-mint-foreground">
+            <Check className="w-4 h-4" />
+            <span className="text-xs font-semibold uppercase tracking-wider">
+              {t('today.summary.eyebrow')}
+            </span>
           </div>
-          <h3 className="text-lg font-serif font-semibold text-foreground">
-            {t('today.quick.saved.title')}
-          </h3>
-          <p className="text-sm text-muted-foreground max-w-sm mx-auto">
-            {t('today.quick.saved.subtitle')}
+          <CardTitle className="text-xl sm:text-2xl font-serif text-foreground">
+            {t('today.summary.title')}
+          </CardTitle>
+        </CardHeader>
+
+        <CardContent className="space-y-5">
+          {/* Human sentence */}
+          <p className="text-base sm:text-lg leading-relaxed text-foreground font-medium">
+            {sentence}
           </p>
+
+          {/* Stat chips */}
+          <div className="grid grid-cols-3 gap-2">
+            <div className="rounded-xl bg-background/60 border border-border/50 p-3 flex flex-col items-center text-center">
+              <Clock className="w-4 h-4 text-sky-foreground mb-1" />
+              <span className="text-base font-bold text-foreground">
+                {totalMinutes > 0 ? totalMinutes : '—'}
+              </span>
+              <span className="text-[10px] uppercase tracking-wider text-muted-foreground">
+                {t('today.summary.minutes')}
+              </span>
+            </div>
+            <div className="rounded-xl bg-background/60 border border-border/50 p-3 flex flex-col items-center text-center">
+              <Target className="w-4 h-4 text-grape-foreground mb-1" />
+              <span className="text-base font-bold text-foreground">{focus}/10</span>
+              <span className="text-[10px] uppercase tracking-wider text-muted-foreground">
+                {t('today.summary.focus')}
+              </span>
+            </div>
+            <div className="rounded-xl bg-background/60 border border-border/50 p-3 flex flex-col items-center text-center">
+              <Heart className="w-4 h-4 text-rose-foreground mb-1" />
+              <span className="text-base font-bold text-foreground">
+                {moodOpt ? moodOpt.emoji : '—'}
+              </span>
+              <span className="text-[10px] uppercase tracking-wider text-muted-foreground truncate max-w-full">
+                {moodOpt ? t(`feeling.${moodOpt.value}`) : t('today.summary.mood')}
+              </span>
+            </div>
+          </div>
+
+          {/* Elements practiced */}
+          {elementLabels.length > 0 && (
+            <div className="space-y-1.5">
+              <p className="text-[11px] uppercase tracking-wider text-muted-foreground font-semibold">
+                {t('today.summary.elements')}
+              </p>
+              <div className="flex flex-wrap gap-1.5">
+                {elementLabels.map((label) => (
+                  <span
+                    key={label}
+                    className="px-3 py-1 rounded-full bg-peach/40 border border-peach-foreground/20 text-xs font-semibold text-peach-foreground"
+                  >
+                    {label}
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Optional reflection prompt */}
+          {!reflectionSaved ? (
+            <div className="space-y-2 rounded-xl bg-background/70 border border-border/50 p-4">
+              <div className="flex items-center gap-2">
+                <Pencil className="w-4 h-4 text-grape-foreground" />
+                <Label className="text-sm font-semibold">
+                  {t('today.summary.prompt')}
+                </Label>
+              </div>
+              <Textarea
+                value={reflection}
+                onChange={(e) => setReflection(e.target.value)}
+                placeholder={t('today.summary.promptPlaceholder')}
+                className="min-h-[70px] rounded-xl resize-none"
+                maxLength={280}
+              />
+              <Button
+                onClick={handleSaveReflection}
+                disabled={!reflection.trim()}
+                className="w-full h-11 rounded-xl font-semibold bg-grape-foreground/90 hover:bg-grape-foreground text-background"
+              >
+                <Sparkles className="w-4 h-4 mr-2" />
+                {t('today.summary.promptSave')}
+              </Button>
+            </div>
+          ) : (
+            <div className="rounded-xl bg-mint/30 border border-mint-foreground/20 p-3 flex items-center gap-2">
+              <Check className="w-4 h-4 text-mint-foreground" />
+              <span className="text-sm text-foreground font-medium">
+                {t('today.summary.promptThanks')}
+              </span>
+            </div>
+          )}
         </CardContent>
       </Card>
     );
