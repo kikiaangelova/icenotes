@@ -702,6 +702,81 @@ const dict: Dict = {
   'ach.unit.goal': { en: 'goal', bg: 'цел' },
   'ach.unit.goals': { en: 'goals', bg: 'цели' },
   'ach.unit.tasks': { en: 'tasks', bg: 'задачи' },
+
+  // ───── Progress · Insights ─────
+  'progress.insights.title': { en: 'Patterns we noticed', bg: 'Забелязани модели' },
+  'progress.insights.subtitle': { en: 'Small observations from your recent days', bg: 'Малки наблюдения от последните ти дни' },
+  'progress.insights.empty': { en: 'Keep logging — patterns will appear here as we learn your rhythm.', bg: 'Продължавай да пишеш — моделите ще се появят тук, когато опознаем ритъма ти.' },
+
+  'progress.section.frequency': { en: 'Training frequency', bg: 'Честота на тренировките' },
+  'progress.section.frequency.sub': { en: 'Sessions per day, last 14 days', bg: 'Тренировки на ден, последните 14 дни' },
+  'progress.section.moodFocus': { en: 'Mood & focus trends', bg: 'Тенденции на настроение и фокус' },
+  'progress.section.moodFocus.sub': { en: 'How you felt over your recent reflections', bg: 'Как си се чувствала в последните рефлексии' },
+  'progress.section.jumpConsistency': { en: 'Jump consistency over time', bg: 'Постоянство на скоковете във времето' },
+  'progress.section.jumpConsistency.sub': { en: 'Landing rate week by week', bg: 'Процент приземявания седмица по седмица' },
+  'progress.section.goals': { en: 'Goals progress', bg: 'Прогрес по целите' },
+  'progress.section.notes': { en: 'Personal notes trend', bg: 'Тенденция на личните бележки' },
+  'progress.section.notes.sub': { en: 'How often you’re writing reflections', bg: 'Колко често записваш рефлексии' },
+
+  'progress.notes.thisWeek': { en: 'This week', bg: 'Тази седмица' },
+  'progress.notes.lastWeek': { en: 'Last week', bg: 'Миналата седмица' },
+  'progress.notes.entries': { en: 'entries', bg: 'записа' },
+  'progress.notes.entry': { en: 'entry', bg: 'запис' },
+
+  'progress.goals.active': { en: 'Active goals', bg: 'Активни цели' },
+  'progress.goals.completed': { en: 'Completed', bg: 'Завършени' },
+  'progress.goals.avg': { en: 'Average progress', bg: 'Среден прогрес' },
+  'progress.goals.none': { en: 'No active goals yet — set one to start tracking.', bg: 'Все още няма активни цели — задай една, за да започнеш.' },
+
+  // Insight cards (variants)
+  'progress.insight.consistency.up': {
+    en: 'You trained more consistently this week.',
+    bg: 'Тренира по-постоянно тази седмица.'
+  },
+  'progress.insight.consistency.same': {
+    en: 'Your training rhythm stayed steady this week.',
+    bg: 'Ритъмът ти на тренировки остана стабилен тази седмица.'
+  },
+  'progress.insight.consistency.down': {
+    en: 'Fewer sessions this week — rest is part of the work.',
+    bg: 'По-малко тренировки тази седмица — почивката също е част от работата.'
+  },
+  'progress.insight.focusAfterRest': {
+    en: 'Your focus was higher after rest days.',
+    bg: 'Фокусът ти беше по-висок след дни за почивка.'
+  },
+  'progress.insight.moodAfterRest': {
+    en: 'You felt lighter on days that followed a break.',
+    bg: 'Чувстваше се по-леко в дните след почивка.'
+  },
+  'progress.insight.jumpUp': {
+    en: '{jump} attempts improved compared to last week.',
+    bg: 'Опитите за {jump} се подобриха спрямо миналата седмица.'
+  },
+  'progress.insight.jumpDown': {
+    en: '{jump} felt harder this week — that’s useful information too.',
+    bg: '{jump} бе по-труден тази седмица — и това е полезна информация.'
+  },
+  'progress.insight.jumpVolume': {
+    en: 'You logged more {jump} attempts this week — volume builds skill.',
+    bg: 'Записа повече опити за {jump} тази седмица — обемът изгражда умението.'
+  },
+  'progress.insight.reflection.up': {
+    en: 'You reflected more this week than last — your awareness is growing.',
+    bg: 'Размишлява повече от миналата седмица — осъзнатостта ти расте.'
+  },
+  'progress.insight.reflection.steady': {
+    en: 'Steady reflection — small notes add up.',
+    bg: 'Постоянни рефлексии — малките бележки се натрупват.'
+  },
+  'progress.insight.bestDay': {
+    en: 'Your best focus day recently was {day}.',
+    bg: 'Денят ти с най-добър фокус наскоро беше {day}.'
+  },
+  'progress.insight.streak': {
+    en: 'You showed up {count} days in a row — that’s real consistency.',
+    bg: 'Беше последователна {count} дни подред — това е истинско постоянство.'
+  },
 };
 
 // ───── Tone helper (B1) ─────

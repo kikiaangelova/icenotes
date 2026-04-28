@@ -21,6 +21,7 @@ import { MotivationalQuote } from './MotivationalQuote';
 import { QuotesCollection } from './QuotesCollection';
 import { SkatingGoals } from './SkatingGoals';
 import { ProgressOverview } from './ProgressOverview';
+import { ProgressInsights } from './ProgressInsights';
 import { SportPsychology } from './SportPsychology';
 import { TodayJourney } from './TodayJourney';
 import { TodayQuickLog } from './TodayQuickLog';
@@ -407,6 +408,7 @@ export const SimpleDashboard: React.FC = () => {
                     </div>
                     <p className="text-xs text-sky-foreground/70">{t('dash.progress.subtitle')}</p>
                   </div>
+                  <ProgressInsights />
                   <ProgressOverview />
                 </TabsContent>
 
