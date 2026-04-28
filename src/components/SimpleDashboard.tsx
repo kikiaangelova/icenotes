@@ -167,7 +167,7 @@ export const SimpleDashboard: React.FC = () => {
             <p className="text-sm sm:text-base font-semibold text-foreground px-4 line-clamp-2">{profile.mainFocus}</p>
           </div>
 
-          {/* 5-tab consolidated structure: Today / Train / Mind / Goals / Growth */}
+          {/* 5-tab consolidated structure: Today / Train / Mind / Goals / Progress */}
           <Tabs defaultValue="today" className="space-y-5 sm:space-y-7">
             <TabsList className="grid w-full grid-cols-5 h-13 sm:h-14 rounded-2xl bg-muted/50 p-1 backdrop-blur-sm gap-1">
               <TabsTrigger value="today" className="flex flex-col sm:flex-row items-center justify-center gap-0.5 sm:gap-1.5 px-1 sm:px-2 rounded-xl data-[state=active]:bg-grape data-[state=active]:text-grape-foreground data-[state=active]:shadow-sm transition-all">
@@ -186,9 +186,9 @@ export const SimpleDashboard: React.FC = () => {
                 <Target className="w-4 h-4 flex-shrink-0" />
                 <span className="text-[10px] sm:text-xs font-semibold">{t('dash.tab.goals')}</span>
               </TabsTrigger>
-              <TabsTrigger value="growth" className="flex flex-col sm:flex-row items-center justify-center gap-0.5 sm:gap-1.5 px-1 sm:px-2 rounded-xl data-[state=active]:bg-sky data-[state=active]:text-sky-foreground data-[state=active]:shadow-sm transition-all">
+              <TabsTrigger value="progress" className="flex flex-col sm:flex-row items-center justify-center gap-0.5 sm:gap-1.5 px-1 sm:px-2 rounded-xl data-[state=active]:bg-sky data-[state=active]:text-sky-foreground data-[state=active]:shadow-sm transition-all">
                 <TrendingUp className="w-4 h-4 flex-shrink-0" />
-                <span className="text-[10px] sm:text-xs font-semibold">{t('dash.tab.growth')}</span>
+                <span className="text-[10px] sm:text-xs font-semibold">{t('dash.tab.progress')}</span>
               </TabsTrigger>
             </TabsList>
 
@@ -370,8 +370,8 @@ export const SimpleDashboard: React.FC = () => {
               </Tabs>
             </TabsContent>
 
-            {/* GROWTH: progress + journey */}
-            <TabsContent value="growth" className="space-y-4">
+            {/* PROGRESS: progress + journey */}
+            <TabsContent value="progress" className="space-y-4">
               <Tabs defaultValue="progress" className="w-full">
                 <TabsList className="grid w-full grid-cols-2 h-10 rounded-xl bg-muted/40 p-0.5">
                   <TabsTrigger value="progress" className="text-xs rounded-lg">{t('dash.progress.title')}</TabsTrigger>
