@@ -197,9 +197,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted }) => {
           <h2 className="text-2xl md:text-4xl font-extrabold tracking-tight text-foreground font-serif mb-4 leading-snug">
             {t('finalCta.heading')}
           </h2>
-          <p className="text-base text-muted-foreground mb-8 max-w-lg mx-auto leading-relaxed flex items-center justify-center gap-1.5">
-            {t('finalCta.subtitle.before')} <Heart className="w-4 h-4 text-rose-foreground inline" /> {t('finalCta.subtitle.after')}
-          </p>
+          <div className="mb-8" />
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
             <Link to="/auth?mode=signup" className="w-full sm:w-auto">
               <Button size="lg" className="h-14 px-10 text-base font-bold rounded-2xl gap-2.5 w-full shadow-md bg-gradient-to-r from-primary to-primary/85">
