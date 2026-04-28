@@ -78,22 +78,14 @@ export const Navbar: React.FC<NavbarProps> = ({ isDarkMode, onToggleDarkMode }) 
           </Link>
         </div>
 
-        {/* Mobile toggle */}
-        <div className="flex md:hidden items-center gap-1.5">
-          <LanguageSwitcher />
+        {/* Mobile toggle (logo + hamburger only) */}
+        <div className="flex md:hidden items-center">
           <Button
             variant="ghost"
             size="icon"
-            onClick={onToggleDarkMode}
-            className="rounded-xl w-9 h-9"
-          >
-            {isDarkMode ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
-          </Button>
-          <Button
-            variant="ghost"
-            size="icon"
+            aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="rounded-xl w-9 h-9"
+            className="rounded-xl w-10 h-10"
           >
             {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </Button>
@@ -130,6 +122,18 @@ export const Navbar: React.FC<NavbarProps> = ({ isDarkMode, onToggleDarkMode }) 
                   {t('nav.getStarted')}
                 </Button>
               </Link>
+            </div>
+            <div className="border-t border-border/30 mt-3 pt-4 flex items-center justify-between">
+              <LanguageSwitcher />
+              <Button
+                variant="ghost"
+                size="icon"
+                aria-label="Toggle theme"
+                onClick={onToggleDarkMode}
+                className="rounded-xl w-10 h-10"
+              >
+                {isDarkMode ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+              </Button>
             </div>
           </nav>
         </div>
