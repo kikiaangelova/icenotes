@@ -421,6 +421,21 @@ const dict: Dict = {
   // ───── Today: post-save summary card ─────
   'today.summary.eyebrow': { en: "Today's summary", bg: 'Обобщение за днес' },
   'today.summary.title': { en: 'Nicely done.', bg: 'Браво на теб.' },
+  'today.summary.title.gentle': { en: 'Saved. Be kind to yourself today.', bg: 'Запазено. Бъди мил/а със себе си днес.' },
+  'today.summary.title.celebratory': { en: 'What a day. Hold on to this. ✨', bg: 'Какъв ден. Запомни това усещане. ✨' },
+  // Three rotating gentle messages for hard days (low confidence/mood/energy)
+  'today.summary.gentle.0': {
+    en: 'Saved. Take a moment — recovery is part of performance.',
+    bg: 'Запазено. Дай си миг — възстановяването също е част от изпълнението.',
+  },
+  'today.summary.gentle.1': {
+    en: 'Not every training needs to feel strong to matter.',
+    bg: 'Не всяка тренировка трябва да усещаш силна, за да е важна.',
+  },
+  'today.summary.gentle.2': {
+    en: 'A difficult day still gives useful information.',
+    bg: 'Дори трудният ден носи полезна информация.',
+  },
   'today.summary.minutes': { en: 'minutes', bg: 'минути' },
   'today.summary.focus': { en: 'focus', bg: 'фокус' },
   'today.summary.mood': { en: 'mood', bg: 'настроение' },
