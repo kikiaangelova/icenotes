@@ -273,15 +273,15 @@
   }
 
   .practice-on-ice {
-    @apply bg-gradient-to-br from-on-ice/8 to-on-ice/3 border border-on-ice/15;
+    @apply bg-gradient-to-br from-on-ice/10 to-on-ice/5 border border-on-ice/20;
   }
 
   .practice-off-ice {
-    @apply bg-gradient-to-br from-off-ice/8 to-off-ice/3 border border-off-ice/15;
+    @apply bg-gradient-to-br from-off-ice/10 to-off-ice/5 border border-off-ice/20;
   }
 
   .practice-mental {
-    @apply bg-gradient-to-br from-mental/8 to-mental/3 border border-mental/15;
+    @apply bg-gradient-to-br from-mental/10 to-mental/5 border border-mental/20;
   }
 
   .feature-card {
@@ -311,19 +311,19 @@
 
   /* Section-specific tinted cards — restrained, near-flat */
   .section-card-goals {
-    @apply bg-lavender/40 border border-lavender-foreground/15;
+    @apply bg-lavender/40 border border-lavender-foreground/20;
   }
   .section-card-training {
-    @apply bg-mint/40 border border-mint-foreground/15;
+    @apply bg-mint/40 border border-mint-foreground/20;
   }
   .section-card-mind {
-    @apply bg-rose/40 border border-rose-foreground/15;
+    @apply bg-rose/40 border border-rose-foreground/20;
   }
   .section-card-progress {
-    @apply bg-sky/40 border border-sky-foreground/15;
+    @apply bg-sky/40 border border-sky-foreground/20;
   }
   .section-card-psych {
-    @apply bg-grape/40 border border-grape-foreground/15;
+    @apply bg-grape/40 border border-grape-foreground/20;
   }
 }
 
