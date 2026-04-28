@@ -22,12 +22,12 @@ import { startOfMonth, isSameMonth } from 'date-fns';
 
 interface AchievementDefinition {
   id: string;
-  title: string;
-  description: string;
+  titleKey: string;
+  descKey: string;
   icon: LucideIcon;
   category: Achievement['category'];
   requirement: number;
-  unit: string;
+  unitKey: string;
   color: string;
   getProgress: (data: AchievementData) => number;
 }
@@ -36,7 +36,7 @@ interface AchievementData {
   totalJumps: number;
   landedJumps: number;
   dailyLogs: number;
-  streak: number;
+  monthJournaled: number;
   completedGoals: number;
   completedTodos: number;
   tripleAttempts: number;
@@ -44,143 +44,19 @@ interface AchievementData {
 }
 
 const ACHIEVEMENTS: AchievementDefinition[] = [
-  // Streak Achievements
-  {
-    id: 'streak_3',
-    title: 'Getting Started',
-    description: 'Log 3 days in a row',
-    icon: Flame,
-    category: 'streak',
-    requirement: 3,
-    unit: 'days',
-    color: 'text-orange-500',
-    getProgress: (data) => data.streak,
-  },
-  {
-    id: 'streak_7',
-    title: 'Week Warrior',
-    description: 'Log 7 days in a row',
-    icon: Flame,
-    category: 'streak',
-    requirement: 7,
-    unit: 'days',
-    color: 'text-orange-500',
-    getProgress: (data) => data.streak,
-  },
-  {
-    id: 'streak_30',
-    title: 'Dedicated Skater',
-    description: 'Log 30 days in a row',
-    icon: Crown,
-    category: 'streak',
-    requirement: 30,
-    unit: 'days',
-    color: 'text-gold',
-    getProgress: (data) => data.streak,
-  },
-  // Jump Achievements
-  {
-    id: 'jumps_10',
-    title: 'First Flight',
-    description: 'Log 10 jump attempts',
-    icon: Star,
-    category: 'jumps',
-    requirement: 10,
-    unit: 'jumps',
-    color: 'text-primary',
-    getProgress: (data) => data.totalJumps,
-  },
-  {
-    id: 'jumps_50',
-    title: 'Jump Master',
-    description: 'Log 50 jump attempts',
-    icon: Medal,
-    category: 'jumps',
-    requirement: 50,
-    unit: 'jumps',
-    color: 'text-primary',
-    getProgress: (data) => data.totalJumps,
-  },
-  {
-    id: 'jumps_100',
-    title: 'Century Club',
-    description: 'Log 100 jump attempts',
-    icon: Trophy,
-    category: 'jumps',
-    requirement: 100,
-    unit: 'jumps',
-    color: 'text-gold',
-    getProgress: (data) => data.totalJumps,
-  },
-  {
-    id: 'landed_25',
-    title: 'Clean Landings',
-    description: 'Land 25 jumps',
-    icon: Zap,
-    category: 'jumps',
-    requirement: 25,
-    unit: 'landings',
-    color: 'text-success',
-    getProgress: (data) => data.landedJumps,
-  },
-  {
-    id: 'triple_5',
-    title: 'Triple Threat',
-    description: 'Land 5 triple jumps',
-    icon: Sparkles,
-    category: 'jumps',
-    requirement: 5,
-    unit: 'triples',
-    color: 'text-mental',
-    getProgress: (data) => data.tripleLanded,
-  },
-  // Practice Achievements
-  {
-    id: 'logs_10',
-    title: 'Consistent Tracker',
-    description: 'Log 10 daily entries',
-    icon: Target,
-    category: 'practice',
-    requirement: 10,
-    unit: 'logs',
-    color: 'text-on-ice',
-    getProgress: (data) => data.dailyLogs,
-  },
-  // Goal Achievements
-  {
-    id: 'goals_1',
-    title: 'Goal Getter',
-    description: 'Complete your first goal',
-    icon: Heart,
-    category: 'milestone',
-    requirement: 1,
-    unit: 'goal',
-    color: 'text-off-ice',
-    getProgress: (data) => data.completedGoals,
-  },
-  {
-    id: 'goals_5',
-    title: 'Achiever',
-    description: 'Complete 5 goals',
-    icon: Trophy,
-    category: 'milestone',
-    requirement: 5,
-    unit: 'goals',
-    color: 'text-gold',
-    getProgress: (data) => data.completedGoals,
-  },
-  // Mental Achievements
-  {
-    id: 'tasks_20',
-    title: 'Task Champion',
-    description: 'Complete 20 tasks',
-    icon: Brain,
-    category: 'mental',
-    requirement: 20,
-    unit: 'tasks',
-    color: 'text-mental',
-    getProgress: (data) => data.completedTodos,
-  },
+  // Monthly journaling presence (softened from "streak")
+  { id: 'streak_3', titleKey: 'ach.streak3.title', descKey: 'ach.streak3.desc', icon: Flame, category: 'streak', requirement: 3, unitKey: 'ach.unit.days', color: 'text-orange-500', getProgress: (d) => d.monthJournaled },
+  { id: 'streak_7', titleKey: 'ach.streak7.title', descKey: 'ach.streak7.desc', icon: Flame, category: 'streak', requirement: 7, unitKey: 'ach.unit.days', color: 'text-orange-500', getProgress: (d) => d.monthJournaled },
+  { id: 'streak_30', titleKey: 'ach.streak30.title', descKey: 'ach.streak30.desc', icon: Crown, category: 'streak', requirement: 30, unitKey: 'ach.unit.days', color: 'text-gold', getProgress: (d) => d.monthJournaled },
+  { id: 'jumps_10', titleKey: 'ach.jumps10.title', descKey: 'ach.jumps10.desc', icon: Star, category: 'jumps', requirement: 10, unitKey: 'ach.unit.jumps', color: 'text-primary', getProgress: (d) => d.totalJumps },
+  { id: 'jumps_50', titleKey: 'ach.jumps50.title', descKey: 'ach.jumps50.desc', icon: Medal, category: 'jumps', requirement: 50, unitKey: 'ach.unit.jumps', color: 'text-primary', getProgress: (d) => d.totalJumps },
+  { id: 'jumps_100', titleKey: 'ach.jumps100.title', descKey: 'ach.jumps100.desc', icon: Trophy, category: 'jumps', requirement: 100, unitKey: 'ach.unit.jumps', color: 'text-gold', getProgress: (d) => d.totalJumps },
+  { id: 'landed_25', titleKey: 'ach.landed25.title', descKey: 'ach.landed25.desc', icon: Zap, category: 'jumps', requirement: 25, unitKey: 'ach.unit.landings', color: 'text-success', getProgress: (d) => d.landedJumps },
+  { id: 'triple_5', titleKey: 'ach.triple5.title', descKey: 'ach.triple5.desc', icon: Sparkles, category: 'jumps', requirement: 5, unitKey: 'ach.unit.triples', color: 'text-mental', getProgress: (d) => d.tripleLanded },
+  { id: 'logs_10', titleKey: 'ach.logs10.title', descKey: 'ach.logs10.desc', icon: Target, category: 'practice', requirement: 10, unitKey: 'ach.unit.logs', color: 'text-on-ice', getProgress: (d) => d.dailyLogs },
+  { id: 'goals_1', titleKey: 'ach.goals1.title', descKey: 'ach.goals1.desc', icon: Heart, category: 'milestone', requirement: 1, unitKey: 'ach.unit.goal', color: 'text-off-ice', getProgress: (d) => d.completedGoals },
+  { id: 'goals_5', titleKey: 'ach.goals5.title', descKey: 'ach.goals5.desc', icon: Trophy, category: 'milestone', requirement: 5, unitKey: 'ach.unit.goals', color: 'text-gold', getProgress: (d) => d.completedGoals },
+  { id: 'tasks_20', titleKey: 'ach.tasks20.title', descKey: 'ach.tasks20.desc', icon: Brain, category: 'mental', requirement: 20, unitKey: 'ach.unit.tasks', color: 'text-mental', getProgress: (d) => d.completedTodos },
 ];
 
 export const AchievementsSection: React.FC = () => {
