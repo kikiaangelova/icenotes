@@ -1,5 +1,6 @@
 import React from 'react';
 import { useSkater } from '@/context/SkaterContext';
+import { useLanguage } from '@/context/LanguageContext';
 import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
@@ -11,13 +12,14 @@ interface HeaderProps {
 
 export const Header: React.FC<HeaderProps> = ({ onOpenDailyLog }) => {
   const { profile, setProfile } = useSkater();
+  const { t } = useLanguage();
 
   const getInitials = (name: string) => {
     return name.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2);
   };
 
   const handleLogout = () => {
-    if (confirm('Are you sure you want to log out? Your data will remain saved.')) {
+    if (confirm(t('header.logoutConfirm'))) {
       setProfile(null);
     }
   };
@@ -31,14 +33,14 @@ export const Header: React.FC<HeaderProps> = ({ onOpenDailyLog }) => {
           </div>
           <div>
             <h1 className="font-bold text-lg leading-none font-serif">IceNotes</h1>
-            <p className="text-xs text-muted-foreground">Reflect · Train · Perform</p>
+            <p className="text-xs text-muted-foreground">{t('app.tagline')}</p>
           </div>
         </div>
 
         <div className="flex items-center gap-3">
           <Button onClick={onOpenDailyLog} size="sm" className="gap-2">
             <Plus className="w-4 h-4" />
-            <span className="hidden sm:inline">Daily Log</span>
+            <span className="hidden sm:inline">{t('header.dailyLog')}</span>
           </Button>
 
           <DropdownMenu>
@@ -60,22 +62,24 @@ export const Header: React.FC<HeaderProps> = ({ onOpenDailyLog }) => {
                 </Avatar>
                 <div className="flex flex-col space-y-0.5">
                   <p className="text-sm font-medium">{profile?.name}</p>
-                  <p className="text-xs text-muted-foreground capitalize">{profile?.level} Skater</p>
+                  <p className="text-xs text-muted-foreground capitalize">
+                    {profile?.level} {t('header.skaterSuffix')}
+                  </p>
                 </div>
               </div>
               <DropdownMenuSeparator />
               <DropdownMenuItem>
                 <User className="mr-2 h-4 w-4" />
-                Profile
+                {t('header.profile')}
               </DropdownMenuItem>
               <DropdownMenuItem>
                 <Settings className="mr-2 h-4 w-4" />
-                Settings
+                {t('header.settings')}
               </DropdownMenuItem>
               <DropdownMenuSeparator />
               <DropdownMenuItem onClick={handleLogout} className="text-destructive">
                 <LogOut className="mr-2 h-4 w-4" />
-                Log out
+                {t('header.logout')}
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>

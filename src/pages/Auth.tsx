@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '@/context/AuthContext';
+import { useLanguage } from '@/context/LanguageContext';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -8,46 +9,36 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Loader2, Mail, Lock, User, ArrowLeft, CheckCircle2, Snowflake } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import { Navbar } from '@/components/landing/Navbar';
 
 type AuthView = 'auth' | 'forgot' | 'reset';
 
 const Auth: React.FC = () => {
   const { signIn, signUp, resetPassword, updatePassword, session } = useAuth();
+  const { t } = useLanguage();
   const { toast } = useToast();
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
-  
+
   const [view, setView] = useState<AuthView>('auth');
-  const [isDarkMode, setIsDarkMode] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [emailSent, setEmailSent] = useState(false);
-  
+
   // Login fields
   const [loginEmail, setLoginEmail] = useState('');
   const [loginPassword, setLoginPassword] = useState('');
-  
+
   // Signup fields
   const [signupName, setSignupName] = useState('');
   const [signupEmail, setSignupEmail] = useState('');
   const [signupPassword, setSignupPassword] = useState('');
   const [signupConfirmPassword, setSignupConfirmPassword] = useState('');
-  
+
   // Forgot password field
   const [forgotEmail, setForgotEmail] = useState('');
-  
+
   // Reset password fields
   const [newPassword, setNewPassword] = useState('');
   const [confirmNewPassword, setConfirmNewPassword] = useState('');
-
-  // Toggle dark mode on document
-  useEffect(() => {
-    if (isDarkMode) {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
-  }, [isDarkMode]);
 
   // Check if we're in password reset mode
   useEffect(() => {
@@ -57,16 +48,13 @@ const Auth: React.FC = () => {
     }
   }, [searchParams, session]);
 
-  // Redirect destination after auth
-  const authRedirect = '/dashboard';
-
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!loginEmail || !loginPassword) {
       toast({
-        title: "Missing fields",
-        description: "Please enter your email and password",
-        variant: "destructive"
+        title: t('auth.toast.missingFields.title'),
+        description: t('auth.toast.missingFields.desc'),
+        variant: 'destructive',
       });
       return;
     }
@@ -77,14 +65,14 @@ const Auth: React.FC = () => {
 
     if (error) {
       toast({
-        title: "Login failed",
+        title: t('auth.toast.loginFailed'),
         description: error.message,
-        variant: "destructive"
+        variant: 'destructive',
       });
     } else {
       toast({
-        title: "Welcome back!",
-        description: "You've successfully logged in",
+        title: t('auth.toast.welcomeBack.title'),
+        description: t('auth.toast.welcomeBack.desc'),
       });
       navigate('/dashboard');
     }
@@ -92,30 +80,30 @@ const Auth: React.FC = () => {
 
   const handleSignup = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!signupName || !signupEmail || !signupPassword) {
       toast({
-        title: "Missing fields",
-        description: "Please fill in all required fields",
-        variant: "destructive"
+        title: t('auth.toast.missingFields.title'),
+        description: t('auth.toast.missingFieldsAll.desc'),
+        variant: 'destructive',
       });
       return;
     }
 
     if (signupPassword !== signupConfirmPassword) {
       toast({
-        title: "Passwords don't match",
-        description: "Please make sure your passwords match",
-        variant: "destructive"
+        title: t('auth.toast.passMismatch.title'),
+        description: t('auth.toast.passMismatch.desc'),
+        variant: 'destructive',
       });
       return;
     }
 
     if (signupPassword.length < 6) {
       toast({
-        title: "Password too short",
-        description: "Password must be at least 6 characters",
-        variant: "destructive"
+        title: t('auth.toast.passShort.title'),
+        description: t('auth.toast.passShort.desc'),
+        variant: 'destructive',
       });
       return;
     }
@@ -126,14 +114,14 @@ const Auth: React.FC = () => {
 
     if (error) {
       toast({
-        title: "Signup failed",
+        title: t('auth.toast.signupFailed'),
         description: error.message,
-        variant: "destructive"
+        variant: 'destructive',
       });
     } else {
       toast({
-        title: "Account created!",
-        description: "Welcome to IceNotes",
+        title: t('auth.toast.created.title'),
+        description: t('auth.toast.created.desc'),
       });
       navigate('/dashboard');
     }
@@ -141,12 +129,12 @@ const Auth: React.FC = () => {
 
   const handleForgotPassword = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!forgotEmail) {
       toast({
-        title: "Email required",
-        description: "Please enter your email address",
-        variant: "destructive"
+        title: t('auth.toast.emailRequired.title'),
+        description: t('auth.toast.emailRequired.desc'),
+        variant: 'destructive',
       });
       return;
     }
@@ -157,45 +145,45 @@ const Auth: React.FC = () => {
 
     if (error) {
       toast({
-        title: "Error",
+        title: t('auth.toast.error'),
         description: error.message,
-        variant: "destructive"
+        variant: 'destructive',
       });
     } else {
       setEmailSent(true);
       toast({
-        title: "Email sent!",
-        description: "Check your inbox for the password reset link",
+        title: t('auth.toast.emailSent.title'),
+        description: t('auth.toast.emailSent.desc'),
       });
     }
   };
 
   const handleUpdatePassword = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!newPassword) {
       toast({
-        title: "Password required",
-        description: "Please enter a new password",
-        variant: "destructive"
+        title: t('auth.toast.passRequired.title'),
+        description: t('auth.toast.passRequired.desc'),
+        variant: 'destructive',
       });
       return;
     }
 
     if (newPassword !== confirmNewPassword) {
       toast({
-        title: "Passwords don't match",
-        description: "Please make sure your passwords match",
-        variant: "destructive"
+        title: t('auth.toast.passMismatch.title'),
+        description: t('auth.toast.passMismatch.desc'),
+        variant: 'destructive',
       });
       return;
     }
 
     if (newPassword.length < 6) {
       toast({
-        title: "Password too short",
-        description: "Password must be at least 6 characters",
-        variant: "destructive"
+        title: t('auth.toast.passShort.title'),
+        description: t('auth.toast.passShort.desc'),
+        variant: 'destructive',
       });
       return;
     }
@@ -206,14 +194,14 @@ const Auth: React.FC = () => {
 
     if (error) {
       toast({
-        title: "Error",
+        title: t('auth.toast.error'),
         description: error.message,
-        variant: "destructive"
+        variant: 'destructive',
       });
     } else {
       toast({
-        title: "Password updated!",
-        description: "Your password has been successfully changed",
+        title: t('auth.toast.passUpdated.title'),
+        description: t('auth.toast.passUpdated.desc'),
       });
       navigate('/dashboard');
     }
@@ -229,26 +217,24 @@ const Auth: React.FC = () => {
               <Snowflake className="w-8 h-8 text-primary-foreground" />
             </div>
             <h1 className="text-2xl font-bold text-foreground font-serif">IceNotes</h1>
-            <p className="text-muted-foreground">Set your new password</p>
+            <p className="text-muted-foreground">{t('auth.reset.heading')}</p>
           </div>
 
           <Card className="border-primary/10 shadow-lg">
             <CardHeader className="pb-4">
-              <CardTitle className="text-xl text-center">New Password</CardTitle>
-              <CardDescription className="text-center">
-                Choose a strong password for your account
-              </CardDescription>
+              <CardTitle className="text-xl text-center">{t('auth.reset.title')}</CardTitle>
+              <CardDescription className="text-center">{t('auth.reset.desc')}</CardDescription>
             </CardHeader>
             <CardContent>
               <form onSubmit={handleUpdatePassword} className="space-y-4">
                 <div className="space-y-2">
-                  <Label htmlFor="new-password">New Password</Label>
+                  <Label htmlFor="new-password">{t('auth.reset.field.new')}</Label>
                   <div className="relative">
                     <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
                     <Input
                       id="new-password"
                       type="password"
-                      placeholder="At least 6 characters"
+                      placeholder={t('auth.placeholder.passwordMin')}
                       value={newPassword}
                       onChange={(e) => setNewPassword(e.target.value)}
                       className="pl-10 h-11"
@@ -258,13 +244,13 @@ const Auth: React.FC = () => {
                   </div>
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="confirm-new-password">Confirm Password</Label>
+                  <Label htmlFor="confirm-new-password">{t('auth.reset.field.confirm')}</Label>
                   <div className="relative">
                     <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
                     <Input
                       id="confirm-new-password"
                       type="password"
-                      placeholder="Confirm your password"
+                      placeholder={t('auth.placeholder.confirmPassword')}
                       value={confirmNewPassword}
                       onChange={(e) => setConfirmNewPassword(e.target.value)}
                       className="pl-10 h-11"
@@ -273,18 +259,14 @@ const Auth: React.FC = () => {
                     />
                   </div>
                 </div>
-                <Button 
-                  type="submit" 
-                  className="w-full h-11"
-                  disabled={isLoading}
-                >
+                <Button type="submit" className="w-full h-11" disabled={isLoading}>
                   {isLoading ? (
                     <>
                       <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                      Updating...
+                      {t('auth.reset.updating')}
                     </>
                   ) : (
-                    'Update Password'
+                    t('auth.reset.cta')
                   )}
                 </Button>
               </form>
@@ -305,17 +287,14 @@ const Auth: React.FC = () => {
               <Snowflake className="w-8 h-8 text-primary-foreground" />
             </div>
             <h1 className="text-2xl font-bold text-foreground font-serif">IceNotes</h1>
-            <p className="text-muted-foreground">Reset your password</p>
+            <p className="text-muted-foreground">{t('auth.forgot.heading')}</p>
           </div>
 
           <Card className="border-primary/10 shadow-lg">
             <CardHeader className="pb-4">
-              <CardTitle className="text-xl text-center">Forgot Password</CardTitle>
+              <CardTitle className="text-xl text-center">{t('auth.forgot.title')}</CardTitle>
               <CardDescription className="text-center">
-                {emailSent 
-                  ? "Check your email for the reset link"
-                  : "Enter your email and we'll send you a reset link"
-                }
+                {emailSent ? t('auth.forgot.descSent') : t('auth.forgot.descAsk')}
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -325,32 +304,30 @@ const Auth: React.FC = () => {
                     <CheckCircle2 className="w-8 h-8 text-success" />
                   </div>
                   <p className="text-muted-foreground">
-                    We've sent a password reset link to <strong>{forgotEmail}</strong>
+                    {t('auth.forgot.sentTo')} <strong>{forgotEmail}</strong>
                   </p>
-                  <p className="text-sm text-muted-foreground">
-                    Didn't receive the email? Check your spam folder or try again.
-                  </p>
-                  <Button 
-                    variant="outline" 
+                  <p className="text-sm text-muted-foreground">{t('auth.forgot.checkSpam')}</p>
+                  <Button
+                    variant="outline"
                     className="w-full"
                     onClick={() => {
                       setEmailSent(false);
                       setForgotEmail('');
                     }}
                   >
-                    Try again
+                    {t('auth.forgot.tryAgain')}
                   </Button>
                 </div>
               ) : (
                 <form onSubmit={handleForgotPassword} className="space-y-4">
                   <div className="space-y-2">
-                    <Label htmlFor="forgot-email">Email</Label>
+                    <Label htmlFor="forgot-email">{t('auth.field.email')}</Label>
                     <div className="relative">
                       <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
                       <Input
                         id="forgot-email"
                         type="email"
-                        placeholder="you@example.com"
+                        placeholder={t('auth.placeholder.email')}
                         value={forgotEmail}
                         onChange={(e) => setForgotEmail(e.target.value)}
                         className="pl-10 h-11"
@@ -359,23 +336,19 @@ const Auth: React.FC = () => {
                       />
                     </div>
                   </div>
-                  <Button 
-                    type="submit" 
-                    className="w-full h-11"
-                    disabled={isLoading}
-                  >
+                  <Button type="submit" className="w-full h-11" disabled={isLoading}>
                     {isLoading ? (
                       <>
                         <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                        Sending...
+                        {t('auth.forgot.sending')}
                       </>
                     ) : (
-                      'Send Reset Link'
+                      t('auth.forgot.send')
                     )}
                   </Button>
                 </form>
               )}
-              
+
               <button
                 onClick={() => {
                   setView('auth');
@@ -385,7 +358,7 @@ const Auth: React.FC = () => {
                 className="flex items-center gap-2 mt-4 text-sm text-muted-foreground hover:text-foreground transition-colors mx-auto"
               >
                 <ArrowLeft className="w-4 h-4" />
-                Back to login
+                {t('auth.forgot.back')}
               </button>
             </CardContent>
           </Card>
@@ -404,33 +377,31 @@ const Auth: React.FC = () => {
             <Snowflake className="w-8 h-8 text-primary-foreground" />
           </div>
           <h1 className="text-2xl font-bold text-foreground font-serif">IceNotes</h1>
-          <p className="text-muted-foreground">Reflect. Train. Perform.</p>
+          <p className="text-muted-foreground">{t('auth.tagline')}</p>
         </div>
 
         <Card className="border-primary/10 shadow-lg">
           <CardHeader className="pb-4">
-            <CardTitle className="text-xl text-center">Welcome</CardTitle>
-            <CardDescription className="text-center">
-              Track your skating journey
-            </CardDescription>
+            <CardTitle className="text-xl text-center">{t('auth.welcome')}</CardTitle>
+            <CardDescription className="text-center">{t('auth.welcomeSubtitle')}</CardDescription>
           </CardHeader>
           <CardContent>
             <Tabs defaultValue="login" className="w-full">
               <TabsList className="grid w-full grid-cols-2 mb-6">
-                <TabsTrigger value="login">Log In</TabsTrigger>
-                <TabsTrigger value="signup">Sign Up</TabsTrigger>
+                <TabsTrigger value="login">{t('auth.tab.login')}</TabsTrigger>
+                <TabsTrigger value="signup">{t('auth.tab.signup')}</TabsTrigger>
               </TabsList>
 
               <TabsContent value="login">
                 <form onSubmit={handleLogin} className="space-y-4">
                   <div className="space-y-2">
-                    <Label htmlFor="login-email">Email</Label>
+                    <Label htmlFor="login-email">{t('auth.field.email')}</Label>
                     <div className="relative">
                       <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
                       <Input
                         id="login-email"
                         type="email"
-                        placeholder="you@example.com"
+                        placeholder={t('auth.placeholder.email')}
                         value={loginEmail}
                         onChange={(e) => setLoginEmail(e.target.value)}
                         className="pl-10 h-11"
@@ -440,13 +411,13 @@ const Auth: React.FC = () => {
                     </div>
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="login-password">Password</Label>
+                    <Label htmlFor="login-password">{t('auth.field.password')}</Label>
                     <div className="relative">
                       <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
                       <Input
                         id="login-password"
                         type="password"
-                        placeholder="••••••••"
+                        placeholder={t('auth.placeholder.password')}
                         value={loginPassword}
                         onChange={(e) => setLoginPassword(e.target.value)}
                         className="pl-10 h-11"
@@ -455,27 +426,23 @@ const Auth: React.FC = () => {
                       />
                     </div>
                   </div>
-                  
+
                   <button
                     type="button"
                     onClick={() => setView('forgot')}
                     className="text-sm text-primary hover:underline"
                   >
-                    Forgot password?
+                    {t('auth.forgot.link')}
                   </button>
-                  
-                  <Button 
-                    type="submit" 
-                    className="w-full h-11"
-                    disabled={isLoading}
-                  >
+
+                  <Button type="submit" className="w-full h-11" disabled={isLoading}>
                     {isLoading ? (
                       <>
                         <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                        Logging in...
+                        {t('auth.cta.loggingIn')}
                       </>
                     ) : (
-                      'Log In'
+                      t('auth.cta.login')
                     )}
                   </Button>
                 </form>
@@ -484,13 +451,13 @@ const Auth: React.FC = () => {
               <TabsContent value="signup">
                 <form onSubmit={handleSignup} className="space-y-4">
                   <div className="space-y-2">
-                    <Label htmlFor="signup-name">Name</Label>
+                    <Label htmlFor="signup-name">{t('auth.field.name')}</Label>
                     <div className="relative">
                       <User className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
                       <Input
                         id="signup-name"
                         type="text"
-                        placeholder="Your name"
+                        placeholder={t('auth.placeholder.name')}
                         value={signupName}
                         onChange={(e) => setSignupName(e.target.value)}
                         className="pl-10 h-11"
@@ -500,13 +467,13 @@ const Auth: React.FC = () => {
                     </div>
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="signup-email">Email</Label>
+                    <Label htmlFor="signup-email">{t('auth.field.email')}</Label>
                     <div className="relative">
                       <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
                       <Input
                         id="signup-email"
                         type="email"
-                        placeholder="you@example.com"
+                        placeholder={t('auth.placeholder.email')}
                         value={signupEmail}
                         onChange={(e) => setSignupEmail(e.target.value)}
                         className="pl-10 h-11"
@@ -516,13 +483,13 @@ const Auth: React.FC = () => {
                     </div>
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="signup-password">Password</Label>
+                    <Label htmlFor="signup-password">{t('auth.field.password')}</Label>
                     <div className="relative">
                       <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
                       <Input
                         id="signup-password"
                         type="password"
-                        placeholder="At least 6 characters"
+                        placeholder={t('auth.placeholder.passwordMin')}
                         value={signupPassword}
                         onChange={(e) => setSignupPassword(e.target.value)}
                         className="pl-10 h-11"
@@ -532,13 +499,13 @@ const Auth: React.FC = () => {
                     </div>
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="signup-confirm">Confirm Password</Label>
+                    <Label htmlFor="signup-confirm">{t('auth.field.confirmPassword')}</Label>
                     <div className="relative">
                       <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
                       <Input
                         id="signup-confirm"
                         type="password"
-                        placeholder="Confirm your password"
+                        placeholder={t('auth.placeholder.confirmPassword')}
                         value={signupConfirmPassword}
                         onChange={(e) => setSignupConfirmPassword(e.target.value)}
                         className="pl-10 h-11"
@@ -547,18 +514,14 @@ const Auth: React.FC = () => {
                       />
                     </div>
                   </div>
-                  <Button 
-                    type="submit" 
-                    className="w-full h-11"
-                    disabled={isLoading}
-                  >
+                  <Button type="submit" className="w-full h-11" disabled={isLoading}>
                     {isLoading ? (
                       <>
                         <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                        Creating account...
+                        {t('auth.cta.creating')}
                       </>
                     ) : (
-                      'Create Account'
+                      t('auth.cta.signup')
                     )}
                   </Button>
                 </form>
@@ -572,11 +535,11 @@ const Auth: React.FC = () => {
           className="flex items-center gap-2 mt-6 text-sm text-muted-foreground hover:text-foreground transition-colors mx-auto"
         >
           <ArrowLeft className="w-4 h-4" />
-          Back to home
+          {t('auth.backHome')}
         </button>
 
         <p className="text-center text-sm text-muted-foreground mt-4">
-          By continuing, you agree to track your skating journey with us.
+          {t('auth.terms')}
         </p>
       </div>
     </div>

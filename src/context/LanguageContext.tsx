@@ -510,6 +510,104 @@ const dict: Dict = {
   'today.weekly.placeholder': { en: 'Write freely…', bg: 'Пиши свободно…' },
   'today.weekly.save': { en: 'Save weekly review', bg: 'Запази прегледа' },
   'today.weekly.saved': { en: 'Saved for this week 💙', bg: 'Запазено за тази седмица 💙' },
+
+  // ── App-wide common ──
+  'app.tagline': { en: 'Reflect · Train · Perform', bg: 'Рефлексия · Тренировка · Изпълнение' },
+  'app.loadingJourney': { en: 'Loading your journey...', bg: 'Зареждаме твоя път…' },
+
+  // ── Header (in-app) ──
+  'header.dailyLog': { en: 'Daily Log', bg: 'Дневен запис' },
+  'header.profile': { en: 'Profile', bg: 'Профил' },
+  'header.settings': { en: 'Settings', bg: 'Настройки' },
+  'header.logout': { en: 'Log out', bg: 'Изход' },
+  'header.logoutConfirm': {
+    en: 'Are you sure you want to log out? Your data will remain saved.',
+    bg: 'Сигурен/на ли си, че искаш да излезеш? Данните ти остават запазени.',
+  },
+  'header.skaterSuffix': { en: 'Skater', bg: 'Фигурист' },
+
+  // ── 404 ──
+  'notFound.title': { en: 'Oops! Page not found', bg: 'Опа! Страницата не е намерена' },
+  'notFound.return': { en: 'Return to Home', bg: 'Към началото' },
+
+  // ── Auth page ──
+  'auth.tagline': { en: 'Reflect. Train. Perform.', bg: 'Рефлексия. Тренировка. Изпълнение.' },
+  'auth.welcome': { en: 'Welcome', bg: 'Добре дошъл/дошла' },
+  'auth.welcomeSubtitle': { en: 'Track your skating journey', bg: 'Проследявай своя път в пързалянето' },
+  'auth.tab.login': { en: 'Log In', bg: 'Вход' },
+  'auth.tab.signup': { en: 'Sign Up', bg: 'Регистрация' },
+
+  'auth.field.email': { en: 'Email', bg: 'Имейл' },
+  'auth.field.password': { en: 'Password', bg: 'Парола' },
+  'auth.field.name': { en: 'Name', bg: 'Име' },
+  'auth.field.confirmPassword': { en: 'Confirm Password', bg: 'Потвърди паролата' },
+  'auth.placeholder.email': { en: 'you@example.com', bg: 'ti@primer.com' },
+  'auth.placeholder.password': { en: '••••••••', bg: '••••••••' },
+  'auth.placeholder.name': { en: 'Your name', bg: 'Твоето име' },
+  'auth.placeholder.passwordMin': { en: 'At least 6 characters', bg: 'Поне 6 символа' },
+  'auth.placeholder.confirmPassword': { en: 'Confirm your password', bg: 'Потвърди паролата си' },
+
+  'auth.forgot.link': { en: 'Forgot password?', bg: 'Забравена парола?' },
+  'auth.cta.login': { en: 'Log In', bg: 'Влез' },
+  'auth.cta.loggingIn': { en: 'Logging in...', bg: 'Влизаме…' },
+  'auth.cta.signup': { en: 'Create Account', bg: 'Създай профил' },
+  'auth.cta.creating': { en: 'Creating account...', bg: 'Създаваме профила…' },
+  'auth.backHome': { en: 'Back to home', bg: 'Към началото' },
+  'auth.terms': {
+    en: 'By continuing, you agree to track your skating journey with us.',
+    bg: 'С продължаването приемаш да следваш своя път в пързалянето заедно с нас.',
+  },
+
+  // Forgot password
+  'auth.forgot.title': { en: 'Forgot Password', bg: 'Забравена парола' },
+  'auth.forgot.descAsk': {
+    en: "Enter your email and we'll send you a reset link",
+    bg: 'Въведи имейла си и ще ти изпратим линк за нова парола',
+  },
+  'auth.forgot.descSent': { en: 'Check your email for the reset link', bg: 'Провери имейла си за линка за възстановяване' },
+  'auth.forgot.heading': { en: 'Reset your password', bg: 'Възстанови паролата си' },
+  'auth.forgot.send': { en: 'Send Reset Link', bg: 'Изпрати линк' },
+  'auth.forgot.sending': { en: 'Sending...', bg: 'Изпращаме…' },
+  'auth.forgot.sentTo': { en: "We've sent a password reset link to", bg: 'Изпратихме линк за нова парола на' },
+  'auth.forgot.checkSpam': {
+    en: "Didn't receive the email? Check your spam folder or try again.",
+    bg: 'Не получаваш имейл? Провери папка „Спам“ или опитай отново.',
+  },
+  'auth.forgot.tryAgain': { en: 'Try again', bg: 'Опитай отново' },
+  'auth.forgot.back': { en: 'Back to login', bg: 'Назад към вход' },
+
+  // Reset password
+  'auth.reset.heading': { en: 'Set your new password', bg: 'Задай нова парола' },
+  'auth.reset.title': { en: 'New Password', bg: 'Нова парола' },
+  'auth.reset.desc': { en: 'Choose a strong password for your account', bg: 'Избери силна парола за профила си' },
+  'auth.reset.field.new': { en: 'New Password', bg: 'Нова парола' },
+  'auth.reset.field.confirm': { en: 'Confirm Password', bg: 'Потвърди паролата' },
+  'auth.reset.cta': { en: 'Update Password', bg: 'Запази паролата' },
+  'auth.reset.updating': { en: 'Updating...', bg: 'Запазваме…' },
+
+  // Auth toasts / errors
+  'auth.toast.missingFields.title': { en: 'Missing fields', bg: 'Липсват полета' },
+  'auth.toast.missingFields.desc': { en: 'Please enter your email and password', bg: 'Моля, въведи имейл и парола' },
+  'auth.toast.missingFieldsAll.desc': { en: 'Please fill in all required fields', bg: 'Моля, попълни всички задължителни полета' },
+  'auth.toast.loginFailed': { en: 'Login failed', bg: 'Входът не успя' },
+  'auth.toast.welcomeBack.title': { en: 'Welcome back!', bg: 'Радваме се, че си отново тук!' },
+  'auth.toast.welcomeBack.desc': { en: "You've successfully logged in", bg: 'Успешно влезе в профила си' },
+  'auth.toast.signupFailed': { en: 'Signup failed', bg: 'Регистрацията не успя' },
+  'auth.toast.created.title': { en: 'Account created!', bg: 'Профилът е създаден!' },
+  'auth.toast.created.desc': { en: 'Welcome to IceNotes', bg: 'Добре дошъл/дошла в IceNotes' },
+  'auth.toast.passMismatch.title': { en: "Passwords don't match", bg: 'Паролите не съвпадат' },
+  'auth.toast.passMismatch.desc': { en: 'Please make sure your passwords match', bg: 'Увери се, че двете пароли са еднакви' },
+  'auth.toast.passShort.title': { en: 'Password too short', bg: 'Паролата е твърде къса' },
+  'auth.toast.passShort.desc': { en: 'Password must be at least 6 characters', bg: 'Паролата трябва да е поне 6 символа' },
+  'auth.toast.emailRequired.title': { en: 'Email required', bg: 'Имейлът е задължителен' },
+  'auth.toast.emailRequired.desc': { en: 'Please enter your email address', bg: 'Моля, въведи своя имейл' },
+  'auth.toast.error': { en: 'Error', bg: 'Грешка' },
+  'auth.toast.emailSent.title': { en: 'Email sent!', bg: 'Имейлът е изпратен!' },
+  'auth.toast.emailSent.desc': { en: 'Check your inbox for the password reset link', bg: 'Провери пощата си за линка за нова парола' },
+  'auth.toast.passRequired.title': { en: 'Password required', bg: 'Паролата е задължителна' },
+  'auth.toast.passRequired.desc': { en: 'Please enter a new password', bg: 'Моля, въведи нова парола' },
+  'auth.toast.passUpdated.title': { en: 'Password updated!', bg: 'Паролата е обновена!' },
+  'auth.toast.passUpdated.desc': { en: 'Your password has been successfully changed', bg: 'Паролата ти беше успешно сменена' },
 };
 
 interface LanguageContextValue {
