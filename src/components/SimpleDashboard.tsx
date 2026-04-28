@@ -25,7 +25,7 @@ import { SportPsychology } from './SportPsychology';
 import { TodayJourney } from './TodayJourney';
 import { Button } from '@/components/ui/button';
 import { SELF_LEVELS } from '@/types/journal';
-import { Feather, Compass, Heart, Settings, LogOut, Dumbbell, Target, CalendarCheck, Brain, Timer, Bell, Snowflake, BookHeart, TrendingUp, Sparkles, Sun, Shield } from 'lucide-react';
+import { Feather, Compass, Heart, Settings, LogOut, Dumbbell, Target, CalendarCheck, Brain, Timer, Bell, Snowflake, BookHeart, TrendingUp, Sparkles, Sun, Shield, Sparkle } from 'lucide-react';
 import { useIsAdmin } from '@/hooks/useIsAdmin';
 import { useNavigate } from 'react-router-dom';
 import {
@@ -133,21 +133,21 @@ export const SimpleDashboard: React.FC = () => {
                   <DropdownMenuSeparator />
                   <DropdownMenuItem onClick={() => setShowReminderSettings(true)} className="rounded-lg">
                     <Bell className="w-4 h-4 mr-2" />
-                    Reminders
+                    {t('header.reminders')}
                   </DropdownMenuItem>
                   {isAdmin && (
                     <>
                       <DropdownMenuSeparator />
                       <DropdownMenuItem onClick={() => navigate('/admin')} className="rounded-lg">
                         <Shield className="w-4 h-4 mr-2" />
-                        Admin dashboard
+                        {t('header.adminDashboard')}
                       </DropdownMenuItem>
                     </>
                   )}
                   <DropdownMenuSeparator />
                   <DropdownMenuItem onClick={() => setShowResetDialog(true)} className="text-destructive rounded-lg">
                     <LogOut className="w-4 h-4 mr-2" />
-                    Sign Out
+                    {t('dash.signout.confirm')}
                   </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
