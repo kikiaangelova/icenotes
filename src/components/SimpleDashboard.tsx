@@ -163,257 +163,251 @@ export const SimpleDashboard: React.FC = () => {
           
           {/* Focus reminder */}
           <div className="text-center space-y-1.5 pb-5 sm:pb-7">
-            <p className="text-xs sm:text-sm text-muted-foreground font-medium">✨ Your focus right now</p>
+            <p className="text-xs sm:text-sm text-muted-foreground font-medium">{t('dash.focusNow')}</p>
             <p className="text-sm sm:text-base font-semibold text-foreground px-4 line-clamp-2">{profile.mainFocus}</p>
           </div>
 
-          {/* Tabs with color-coded icons */}
+          {/* 5-tab consolidated structure: Today / Train / Mind / Goals / Growth */}
           <Tabs defaultValue="today" className="space-y-5 sm:space-y-7">
-            <TabsList className="flex w-full overflow-x-auto sm:grid sm:grid-cols-11 h-12 sm:h-13 rounded-2xl bg-muted/50 p-1 backdrop-blur-sm gap-1 no-scrollbar">
-              <TabsTrigger value="today" className="flex-shrink-0 sm:flex-shrink flex items-center justify-center gap-1 px-2 sm:px-2 rounded-xl data-[state=active]:bg-grape data-[state=active]:text-grape-foreground data-[state=active]:shadow-sm transition-all">
+            <TabsList className="grid w-full grid-cols-5 h-13 sm:h-14 rounded-2xl bg-muted/50 p-1 backdrop-blur-sm gap-1">
+              <TabsTrigger value="today" className="flex flex-col sm:flex-row items-center justify-center gap-0.5 sm:gap-1.5 px-1 sm:px-2 rounded-xl data-[state=active]:bg-grape data-[state=active]:text-grape-foreground data-[state=active]:shadow-sm transition-all">
                 <Sun className="w-4 h-4 flex-shrink-0" />
-                <span className="hidden sm:inline text-xs font-semibold">{t('today.tab')}</span>
+                <span className="text-[10px] sm:text-xs font-semibold">{t('dash.tab.today')}</span>
               </TabsTrigger>
-              <TabsTrigger value="goals" className="flex-shrink-0 sm:flex-shrink flex items-center justify-center gap-1 px-2 sm:px-2 rounded-xl data-[state=active]:bg-lavender data-[state=active]:text-lavender-foreground data-[state=active]:shadow-sm transition-all">
-                <CalendarCheck className="w-4 h-4 flex-shrink-0" />
-                <span className="hidden sm:inline text-xs font-semibold">Goals</span>
-              </TabsTrigger>
-              <TabsTrigger value="mygoals" className="flex-shrink-0 sm:flex-shrink flex items-center justify-center gap-1 px-2 sm:px-2 rounded-xl data-[state=active]:bg-grape data-[state=active]:text-grape-foreground data-[state=active]:shadow-sm transition-all">
-                <Target className="w-4 h-4 flex-shrink-0" />
-                <span className="hidden sm:inline text-xs font-semibold">Plan</span>
-              </TabsTrigger>
-              <TabsTrigger value="training" className="flex-shrink-0 sm:flex-shrink flex items-center justify-center gap-1 px-2 sm:px-2 rounded-xl data-[state=active]:bg-mint data-[state=active]:text-mint-foreground data-[state=active]:shadow-sm transition-all">
+              <TabsTrigger value="train" className="flex flex-col sm:flex-row items-center justify-center gap-0.5 sm:gap-1.5 px-1 sm:px-2 rounded-xl data-[state=active]:bg-mint data-[state=active]:text-mint-foreground data-[state=active]:shadow-sm transition-all">
                 <Snowflake className="w-4 h-4 flex-shrink-0" />
-                <span className="hidden sm:inline text-xs font-semibold">Training</span>
+                <span className="text-[10px] sm:text-xs font-semibold">{t('dash.tab.train')}</span>
               </TabsTrigger>
-              <TabsTrigger value="mind" className="flex-shrink-0 sm:flex-shrink flex items-center justify-center gap-1 px-2 sm:px-2 rounded-xl data-[state=active]:bg-rose data-[state=active]:text-rose-foreground data-[state=active]:shadow-sm transition-all">
+              <TabsTrigger value="mind" className="flex flex-col sm:flex-row items-center justify-center gap-0.5 sm:gap-1.5 px-1 sm:px-2 rounded-xl data-[state=active]:bg-rose data-[state=active]:text-rose-foreground data-[state=active]:shadow-sm transition-all">
                 <Brain className="w-4 h-4 flex-shrink-0" />
-                <span className="hidden sm:inline text-xs font-semibold">Mind</span>
+                <span className="text-[10px] sm:text-xs font-semibold">{t('dash.tab.mind')}</span>
               </TabsTrigger>
-              <TabsTrigger value="psychology" className="flex-shrink-0 sm:flex-shrink flex items-center justify-center gap-1 px-2 sm:px-2 rounded-xl data-[state=active]:bg-grape data-[state=active]:text-grape-foreground data-[state=active]:shadow-sm transition-all">
-                <Sparkles className="w-4 h-4 flex-shrink-0" />
-                <span className="hidden sm:inline text-xs font-semibold">Psych</span>
-              </TabsTrigger>
-              <TabsTrigger value="jumps" className="flex-shrink-0 sm:flex-shrink flex items-center justify-center gap-1 px-2 sm:px-2 rounded-xl data-[state=active]:bg-peach data-[state=active]:text-peach-foreground data-[state=active]:shadow-sm transition-all">
+              <TabsTrigger value="goals" className="flex flex-col sm:flex-row items-center justify-center gap-0.5 sm:gap-1.5 px-1 sm:px-2 rounded-xl data-[state=active]:bg-lavender data-[state=active]:text-lavender-foreground data-[state=active]:shadow-sm transition-all">
                 <Target className="w-4 h-4 flex-shrink-0" />
-                <span className="hidden sm:inline text-xs font-semibold">Jumps</span>
+                <span className="text-[10px] sm:text-xs font-semibold">{t('dash.tab.goals')}</span>
               </TabsTrigger>
-              <TabsTrigger value="journal" className="flex-shrink-0 sm:flex-shrink flex items-center justify-center gap-1 px-2 sm:px-2 rounded-xl data-[state=active]:bg-sky data-[state=active]:text-sky-foreground data-[state=active]:shadow-sm transition-all">
-                <Feather className="w-4 h-4 flex-shrink-0" />
-                <span className="hidden sm:inline text-xs font-semibold">Journal</span>
-              </TabsTrigger>
-              <TabsTrigger value="progress" className="flex-shrink-0 sm:flex-shrink flex items-center justify-center gap-1 px-2 sm:px-2 rounded-xl data-[state=active]:bg-sky data-[state=active]:text-sky-foreground data-[state=active]:shadow-sm transition-all">
+              <TabsTrigger value="growth" className="flex flex-col sm:flex-row items-center justify-center gap-0.5 sm:gap-1.5 px-1 sm:px-2 rounded-xl data-[state=active]:bg-sky data-[state=active]:text-sky-foreground data-[state=active]:shadow-sm transition-all">
                 <TrendingUp className="w-4 h-4 flex-shrink-0" />
-                <span className="hidden sm:inline text-xs font-semibold">Progress</span>
-              </TabsTrigger>
-              <TabsTrigger value="quotes" className="flex-shrink-0 sm:flex-shrink flex items-center justify-center gap-1 px-2 sm:px-2 rounded-xl data-[state=active]:bg-peach data-[state=active]:text-peach-foreground data-[state=active]:shadow-sm transition-all">
-                <BookHeart className="w-4 h-4 flex-shrink-0" />
-                <span className="hidden sm:inline text-xs font-semibold">Quotes</span>
-              </TabsTrigger>
-              <TabsTrigger value="journey" className="flex-shrink-0 sm:flex-shrink flex items-center justify-center gap-1 px-2 sm:px-2 rounded-xl data-[state=active]:bg-mint data-[state=active]:text-mint-foreground data-[state=active]:shadow-sm transition-all">
-                <Compass className="w-4 h-4 flex-shrink-0" />
-                <span className="hidden sm:inline text-xs font-semibold">Journey</span>
+                <span className="text-[10px] sm:text-xs font-semibold">{t('dash.tab.growth')}</span>
               </TabsTrigger>
             </TabsList>
 
-            {/* Today's guided journey */}
+            {/* TODAY: guided journey + daily journal */}
             <TabsContent value="today" className="space-y-4">
               <TodayJourney />
-            </TabsContent>
-
-            {/* Weekly Goals Tab */}
-            <TabsContent value="goals" className="space-y-4">
-              <div className="rounded-2xl section-card-goals p-4 mb-3">
-                <div className="flex items-center gap-2 mb-1">
-                  <CalendarCheck className="w-4 h-4 text-lavender-foreground" />
-                  <h2 className="text-sm font-bold text-lavender-foreground font-serif">Weekly Goals</h2>
-                </div>
-                <p className="text-xs text-lavender-foreground/70">Set your intentions for the week</p>
-              </div>
-              <WeeklyGoals />
-            </TabsContent>
-
-            {/* Skating Goals */}
-            <TabsContent value="mygoals" className="space-y-4">
-              <div className="rounded-2xl section-card-psych p-4 mb-3">
-                <div className="flex items-center gap-2 mb-1">
-                  <Target className="w-4 h-4 text-grape-foreground" />
-                  <h2 className="text-sm font-bold text-grape-foreground font-serif">My Skating Plan</h2>
-                </div>
-                <p className="text-xs text-grape-foreground/70">Weekly, monthly & season goals</p>
-              </div>
-              <SkatingGoals />
-            </TabsContent>
-
-            {/* Mental Prep Tab */}
-            <TabsContent value="mind" className="space-y-4">
-              <div className="rounded-2xl section-card-mind p-4 mb-3">
-                <div className="flex items-center gap-2 mb-1">
-                  <Brain className="w-4 h-4 text-rose-foreground" />
-                  <h2 className="text-sm font-bold text-rose-foreground font-serif">Mental Prep</h2>
-                </div>
-                <p className="text-xs text-rose-foreground/70">Calm your mind before training</p>
-              </div>
-              <PreTrainingPrep trainingType="on-ice" />
-            </TabsContent>
-
-            {/* Sport Psychology Tab */}
-            <TabsContent value="psychology" className="space-y-4">
-              <div className="rounded-2xl section-card-psych p-4 mb-3">
-                <div className="flex items-center gap-2 mb-1">
-                  <Sparkles className="w-4 h-4 text-grape-foreground" />
-                  <h2 className="text-sm font-bold text-grape-foreground font-serif">Sport Psychology</h2>
-                </div>
-                <p className="text-xs text-grape-foreground/70">Strengthen your mental game</p>
-              </div>
-              <SportPsychology />
-            </TabsContent>
-
-            {/* Quotes Tab */}
-            <TabsContent value="quotes" className="space-y-4">
-              <div className="rounded-2xl bg-gradient-to-br from-peach/50 to-rose/20 border border-peach-foreground/10 p-4 mb-3">
-                <div className="flex items-center gap-2 mb-1">
-                  <BookHeart className="w-4 h-4 text-peach-foreground" />
-                  <h2 className="text-sm font-bold text-peach-foreground font-serif">Inspiration</h2>
-                </div>
-                <p className="text-xs text-peach-foreground/70">Words that keep you going</p>
-              </div>
-              <QuotesCollection />
-            </TabsContent>
-
-            {/* Training Tab */}
-            <TabsContent value="training" className="space-y-4">
-              <div className="rounded-2xl section-card-training p-4 mb-3">
-                <div className="flex items-center gap-2 mb-1">
-                  <Snowflake className="w-4 h-4 text-mint-foreground" />
-                  <h2 className="text-sm font-bold text-mint-foreground font-serif">Today's Training</h2>
-                </div>
-                <p className="text-xs text-mint-foreground/70">Track your on-ice and off-ice sessions</p>
-              </div>
-
-              {/* Session Timer Card */}
-              <button
-                onClick={() => setCurrentView('timer')}
-                className="w-full p-4 sm:p-5 rounded-2xl bg-gradient-to-br from-lavender/50 to-grape/20 border border-lavender-foreground/10 hover:shadow-md transition-all duration-200 text-left group"
-              >
-                <div className="flex items-center gap-4">
-                  <div className="w-11 h-11 rounded-2xl bg-gradient-to-br from-lavender to-grape/40 flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
-                    <Timer className="w-5 h-5 text-lavender-foreground" />
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <h3 className="font-bold text-sm sm:text-base text-foreground">Session Timer</h3>
-                    <p className="text-xs sm:text-sm text-muted-foreground truncate">Time your practice with lap tracking</p>
-                  </div>
-                </div>
-              </button>
-
-              {/* On-ice card */}
-              <button
-                onClick={() => handleStartTraining('on-ice')}
-                className="w-full p-5 sm:p-6 rounded-2xl bg-gradient-to-br from-sky/60 to-primary/10 border border-sky-foreground/10 hover:shadow-md hover:border-sky-foreground/20 transition-all duration-200 text-left group"
-              >
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-sky to-primary/20 flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
-                    <Snowflake className="w-6 h-6 text-sky-foreground" />
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <h3 className="font-bold text-sm sm:text-base text-foreground">On-Ice Training</h3>
-                    <p className="text-xs sm:text-sm text-muted-foreground truncate">
-                      {hasOnIce ? "Session logged ✨" : "Edges, spins, footwork, programs"}
-                    </p>
-                  </div>
-                </div>
-              </button>
-
-              {/* Off-ice card */}
-              <button
-                onClick={() => handleStartTraining('off-ice')}
-                className="w-full p-5 sm:p-6 rounded-2xl bg-gradient-to-br from-mint/60 to-mint/20 border border-mint-foreground/10 hover:shadow-md hover:border-mint-foreground/20 transition-all duration-200 text-left group"
-              >
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-mint to-mint-foreground/10 flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
-                    <Dumbbell className="w-6 h-6 text-mint-foreground" />
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <h3 className="font-bold text-sm sm:text-base text-foreground">Off-Ice Training</h3>
-                    <p className="text-xs sm:text-sm text-muted-foreground truncate">
-                      {hasOffIce ? "Session logged ✨" : "Strength, flexibility, conditioning"}
-                    </p>
-                  </div>
-                </div>
-              </button>
-
-              {/* Reflect button */}
-              <button
-                onClick={() => setCurrentView('reflect')}
-                className="w-full p-4 sm:p-5 rounded-2xl bg-gradient-to-br from-rose/30 to-peach/20 border border-rose-foreground/10 hover:shadow-md transition-all duration-200 text-left group"
-              >
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-rose to-peach/40 flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
-                    <Heart className="w-5 h-5 text-rose-foreground" />
-                  </div>
-                  <div className="min-w-0">
-                    <h3 className="font-bold text-sm sm:text-base text-foreground">Reflect</h3>
-                    <p className="text-xs text-muted-foreground truncate">Deeper thoughts about your skating</p>
-                  </div>
-                </div>
-              </button>
-            </TabsContent>
-
-            {/* Jumps Tab */}
-            <TabsContent value="jumps" className="space-y-4">
-              <div className="rounded-2xl bg-gradient-to-br from-peach/50 to-peach/20 border border-peach-foreground/10 p-4 mb-3">
-                <div className="flex items-center gap-2 mb-1">
-                  <Target className="w-4 h-4 text-peach-foreground" />
-                  <h2 className="text-sm font-bold text-peach-foreground font-serif">Jump Tracker</h2>
-                </div>
-                <p className="text-xs text-peach-foreground/70">Log your jumps and track progress</p>
-              </div>
-              <JumpLog />
-            </TabsContent>
-
-            {/* Journal Tab */}
-            <TabsContent value="journal" className="space-y-4">
               <div className="rounded-2xl section-card-progress p-4 mb-3">
                 <div className="flex items-center gap-2 mb-1">
                   <Feather className="w-4 h-4 text-sky-foreground" />
-                  <h2 className="text-sm font-bold text-sky-foreground font-serif">Daily Journal</h2>
+                  <h2 className="text-sm font-bold text-sky-foreground font-serif">{t('dash.dailyJournal.title')}</h2>
                 </div>
-                <p className="text-xs text-sky-foreground/70">Capture today's reflections</p>
+                <p className="text-xs text-sky-foreground/70">{t('dash.dailyJournal.subtitle')}</p>
               </div>
               <DailyJournal />
             </TabsContent>
 
-            {/* Progress Overview Tab */}
-            <TabsContent value="progress" className="space-y-4">
-              <div className="rounded-2xl section-card-progress p-4 mb-3">
-                <div className="flex items-center gap-2 mb-1">
-                  <TrendingUp className="w-4 h-4 text-sky-foreground" />
-                  <h2 className="text-sm font-bold text-sky-foreground font-serif">Your Progress</h2>
-                </div>
-                <p className="text-xs text-sky-foreground/70">See how far you've come</p>
-              </div>
-              <ProgressOverview />
+            {/* TRAIN: training + jumps + timer */}
+            <TabsContent value="train" className="space-y-4">
+              <Tabs defaultValue="sessions" className="w-full">
+                <TabsList className="grid w-full grid-cols-3 h-10 rounded-xl bg-muted/40 p-0.5">
+                  <TabsTrigger value="sessions" className="text-xs rounded-lg">{t('dash.todayTraining.title')}</TabsTrigger>
+                  <TabsTrigger value="jumps" className="text-xs rounded-lg">{t('dash.jumpTracker.title')}</TabsTrigger>
+                  <TabsTrigger value="timer" className="text-xs rounded-lg">{t('dash.sessionTimer.title')}</TabsTrigger>
+                </TabsList>
+
+                <TabsContent value="sessions" className="space-y-4 mt-4">
+                  <div className="rounded-2xl section-card-training p-4 mb-3">
+                    <div className="flex items-center gap-2 mb-1">
+                      <Snowflake className="w-4 h-4 text-mint-foreground" />
+                      <h2 className="text-sm font-bold text-mint-foreground font-serif">{t('dash.todayTraining.title')}</h2>
+                    </div>
+                    <p className="text-xs text-mint-foreground/70">{t('dash.todayTraining.subtitle')}</p>
+                  </div>
+                  <button
+                    onClick={() => handleStartTraining('on-ice')}
+                    className="w-full p-5 sm:p-6 rounded-2xl bg-gradient-to-br from-sky/60 to-primary/10 border border-sky-foreground/10 hover:shadow-md hover:border-sky-foreground/20 transition-all duration-200 text-left group"
+                  >
+                    <div className="flex items-center gap-4">
+                      <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-sky to-primary/20 flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
+                        <Snowflake className="w-6 h-6 text-sky-foreground" />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <h3 className="font-bold text-sm sm:text-base text-foreground">{t('dash.onIce.title')}</h3>
+                        <p className="text-xs sm:text-sm text-muted-foreground truncate">
+                          {hasOnIce ? t('dash.onIce.logged') : t('dash.onIce.activities')}
+                        </p>
+                      </div>
+                    </div>
+                  </button>
+                  <button
+                    onClick={() => handleStartTraining('off-ice')}
+                    className="w-full p-5 sm:p-6 rounded-2xl bg-gradient-to-br from-mint/60 to-mint/20 border border-mint-foreground/10 hover:shadow-md hover:border-mint-foreground/20 transition-all duration-200 text-left group"
+                  >
+                    <div className="flex items-center gap-4">
+                      <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-mint to-mint-foreground/10 flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
+                        <Dumbbell className="w-6 h-6 text-mint-foreground" />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <h3 className="font-bold text-sm sm:text-base text-foreground">{t('dash.offIce.title')}</h3>
+                        <p className="text-xs sm:text-sm text-muted-foreground truncate">
+                          {hasOffIce ? t('dash.onIce.logged') : t('dash.offIce.activities')}
+                        </p>
+                      </div>
+                    </div>
+                  </button>
+                  <button
+                    onClick={() => setCurrentView('reflect')}
+                    className="w-full p-4 sm:p-5 rounded-2xl bg-gradient-to-br from-rose/30 to-peach/20 border border-rose-foreground/10 hover:shadow-md transition-all duration-200 text-left group"
+                  >
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-rose to-peach/40 flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
+                        <Heart className="w-5 h-5 text-rose-foreground" />
+                      </div>
+                      <div className="min-w-0">
+                        <h3 className="font-bold text-sm sm:text-base text-foreground">{t('dash.reflect.title')}</h3>
+                        <p className="text-xs text-muted-foreground truncate">{t('dash.reflect.subtitle')}</p>
+                      </div>
+                    </div>
+                  </button>
+                </TabsContent>
+
+                <TabsContent value="jumps" className="space-y-4 mt-4">
+                  <div className="rounded-2xl bg-gradient-to-br from-peach/50 to-peach/20 border border-peach-foreground/10 p-4 mb-3">
+                    <div className="flex items-center gap-2 mb-1">
+                      <Target className="w-4 h-4 text-peach-foreground" />
+                      <h2 className="text-sm font-bold text-peach-foreground font-serif">{t('dash.jumpTracker.title')}</h2>
+                    </div>
+                    <p className="text-xs text-peach-foreground/70">{t('dash.jumpTracker.subtitle')}</p>
+                  </div>
+                  <JumpLog />
+                </TabsContent>
+
+                <TabsContent value="timer" className="space-y-4 mt-4">
+                  <div className="rounded-2xl bg-gradient-to-br from-lavender/50 to-grape/20 border border-lavender-foreground/10 p-4 mb-3">
+                    <div className="flex items-center gap-2 mb-1">
+                      <Timer className="w-4 h-4 text-lavender-foreground" />
+                      <h2 className="text-sm font-bold text-lavender-foreground font-serif">{t('dash.sessionTimer.title')}</h2>
+                    </div>
+                    <p className="text-xs text-lavender-foreground/70">{t('dash.sessionTimer.subtitle')}</p>
+                  </div>
+                  <SessionTimer type="on-ice" />
+                </TabsContent>
+              </Tabs>
             </TabsContent>
 
-            {/* Journey Tab */}
-            <TabsContent value="journey" className="space-y-4">
-              <div className="rounded-2xl section-card-training p-4 mb-3">
-                <div className="flex items-center gap-2 mb-1">
-                  <Compass className="w-4 h-4 text-mint-foreground" />
-                  <h2 className="text-sm font-bold text-mint-foreground font-serif">Your Journey</h2>
-                </div>
-                <p className="text-xs text-mint-foreground/70">The bigger picture of your growth</p>
-              </div>
-              <ProgressSummaryCards />
-              <ActivityCalendar />
-              <JourneyView />
+            {/* MIND: pre-skate + sport psychology + inspiration */}
+            <TabsContent value="mind" className="space-y-4">
+              <Tabs defaultValue="preskate" className="w-full">
+                <TabsList className="grid w-full grid-cols-3 h-10 rounded-xl bg-muted/40 p-0.5">
+                  <TabsTrigger value="preskate" className="text-xs rounded-lg">{t('dash.mind.preskate')}</TabsTrigger>
+                  <TabsTrigger value="psych" className="text-xs rounded-lg">{t('dash.mind.psych')}</TabsTrigger>
+                  <TabsTrigger value="inspire" className="text-xs rounded-lg">{t('dash.mind.inspire')}</TabsTrigger>
+                </TabsList>
+
+                <TabsContent value="preskate" className="space-y-4 mt-4">
+                  <div className="rounded-2xl section-card-mind p-4 mb-3">
+                    <div className="flex items-center gap-2 mb-1">
+                      <Brain className="w-4 h-4 text-rose-foreground" />
+                      <h2 className="text-sm font-bold text-rose-foreground font-serif">{t('dash.mentalPrep.title')}</h2>
+                    </div>
+                    <p className="text-xs text-rose-foreground/70">{t('dash.mentalPrep.subtitle')}</p>
+                  </div>
+                  <PreTrainingPrep trainingType="on-ice" />
+                </TabsContent>
+
+                <TabsContent value="psych" className="space-y-4 mt-4">
+                  <div className="rounded-2xl section-card-psych p-4 mb-3">
+                    <div className="flex items-center gap-2 mb-1">
+                      <Sparkles className="w-4 h-4 text-grape-foreground" />
+                      <h2 className="text-sm font-bold text-grape-foreground font-serif">{t('dash.sportPsych.title')}</h2>
+                    </div>
+                    <p className="text-xs text-grape-foreground/70">{t('dash.sportPsych.subtitle')}</p>
+                  </div>
+                  <SportPsychology />
+                </TabsContent>
+
+                <TabsContent value="inspire" className="space-y-4 mt-4">
+                  <div className="rounded-2xl bg-gradient-to-br from-peach/50 to-rose/20 border border-peach-foreground/10 p-4 mb-3">
+                    <div className="flex items-center gap-2 mb-1">
+                      <BookHeart className="w-4 h-4 text-peach-foreground" />
+                      <h2 className="text-sm font-bold text-peach-foreground font-serif">{t('dash.inspiration.title')}</h2>
+                    </div>
+                    <p className="text-xs text-peach-foreground/70">{t('dash.inspiration.subtitle')}</p>
+                  </div>
+                  <QuotesCollection />
+                </TabsContent>
+              </Tabs>
+            </TabsContent>
+
+            {/* GOALS: weekly + skating plan */}
+            <TabsContent value="goals" className="space-y-4">
+              <Tabs defaultValue="weekly" className="w-full">
+                <TabsList className="grid w-full grid-cols-2 h-10 rounded-xl bg-muted/40 p-0.5">
+                  <TabsTrigger value="weekly" className="text-xs rounded-lg">{t('dash.weeklyGoals.title')}</TabsTrigger>
+                  <TabsTrigger value="plan" className="text-xs rounded-lg">{t('dash.skatingPlan.title')}</TabsTrigger>
+                </TabsList>
+
+                <TabsContent value="weekly" className="space-y-4 mt-4">
+                  <div className="rounded-2xl section-card-goals p-4 mb-3">
+                    <div className="flex items-center gap-2 mb-1">
+                      <CalendarCheck className="w-4 h-4 text-lavender-foreground" />
+                      <h2 className="text-sm font-bold text-lavender-foreground font-serif">{t('dash.weeklyGoals.title')}</h2>
+                    </div>
+                    <p className="text-xs text-lavender-foreground/70">{t('dash.weeklyGoals.subtitle')}</p>
+                  </div>
+                  <WeeklyGoals />
+                </TabsContent>
+
+                <TabsContent value="plan" className="space-y-4 mt-4">
+                  <div className="rounded-2xl section-card-psych p-4 mb-3">
+                    <div className="flex items-center gap-2 mb-1">
+                      <Target className="w-4 h-4 text-grape-foreground" />
+                      <h2 className="text-sm font-bold text-grape-foreground font-serif">{t('dash.skatingPlan.title')}</h2>
+                    </div>
+                    <p className="text-xs text-grape-foreground/70">{t('dash.skatingPlan.subtitle')}</p>
+                  </div>
+                  <SkatingGoals />
+                </TabsContent>
+              </Tabs>
+            </TabsContent>
+
+            {/* GROWTH: progress + journey */}
+            <TabsContent value="growth" className="space-y-4">
+              <Tabs defaultValue="progress" className="w-full">
+                <TabsList className="grid w-full grid-cols-2 h-10 rounded-xl bg-muted/40 p-0.5">
+                  <TabsTrigger value="progress" className="text-xs rounded-lg">{t('dash.progress.title')}</TabsTrigger>
+                  <TabsTrigger value="journey" className="text-xs rounded-lg">{t('dash.journey.title')}</TabsTrigger>
+                </TabsList>
+
+                <TabsContent value="progress" className="space-y-4 mt-4">
+                  <div className="rounded-2xl section-card-progress p-4 mb-3">
+                    <div className="flex items-center gap-2 mb-1">
+                      <TrendingUp className="w-4 h-4 text-sky-foreground" />
+                      <h2 className="text-sm font-bold text-sky-foreground font-serif">{t('dash.progress.title')}</h2>
+                    </div>
+                    <p className="text-xs text-sky-foreground/70">{t('dash.progress.subtitle')}</p>
+                  </div>
+                  <ProgressOverview />
+                </TabsContent>
+
+                <TabsContent value="journey" className="space-y-4 mt-4">
+                  <div className="rounded-2xl section-card-training p-4 mb-3">
+                    <div className="flex items-center gap-2 mb-1">
+                      <Compass className="w-4 h-4 text-mint-foreground" />
+                      <h2 className="text-sm font-bold text-mint-foreground font-serif">{t('dash.journey.title')}</h2>
+                    </div>
+                    <p className="text-xs text-mint-foreground/70">{t('dash.journey.subtitle')}</p>
+                  </div>
+                  <ProgressSummaryCards />
+                  <ActivityCalendar />
+                  <JourneyView />
+                </TabsContent>
+              </Tabs>
             </TabsContent>
           </Tabs>
 
           {/* Motivational footer */}
           <p className="text-center text-xs sm:text-sm text-muted-foreground italic pt-8 sm:pt-10">
-            Every session counts. You're doing amazing. 💙
+            {t('dash.footer.encourage')}
           </p>
         </main>
 
@@ -421,15 +415,13 @@ export const SimpleDashboard: React.FC = () => {
         <AlertDialog open={showResetDialog} onOpenChange={setShowResetDialog}>
           <AlertDialogContent className="max-w-[90vw] sm:max-w-lg rounded-2xl">
             <AlertDialogHeader>
-              <AlertDialogTitle className="font-serif">Sign out?</AlertDialogTitle>
-              <AlertDialogDescription>
-                Your data is safely stored. You can sign back in anytime to continue your journey. 💙
-              </AlertDialogDescription>
+              <AlertDialogTitle className="font-serif">{t('dash.signout.title')}</AlertDialogTitle>
+              <AlertDialogDescription>{t('dash.signout.desc')}</AlertDialogDescription>
             </AlertDialogHeader>
             <AlertDialogFooter className="flex-col sm:flex-row gap-2">
-              <AlertDialogCancel className="w-full sm:w-auto rounded-xl">Stay signed in</AlertDialogCancel>
+              <AlertDialogCancel className="w-full sm:w-auto rounded-xl">{t('dash.signout.stay')}</AlertDialogCancel>
               <AlertDialogAction onClick={handleSignOut} className="w-full sm:w-auto bg-destructive hover:bg-destructive/90 rounded-xl">
-                Sign out
+                {t('dash.signout.confirm')}
               </AlertDialogAction>
             </AlertDialogFooter>
           </AlertDialogContent>
@@ -439,7 +431,7 @@ export const SimpleDashboard: React.FC = () => {
         <Dialog open={showReminderSettings} onOpenChange={setShowReminderSettings}>
           <DialogContent className="max-w-[90vw] sm:max-w-md max-h-[90vh] overflow-y-auto rounded-2xl">
             <DialogHeader>
-              <DialogTitle className="font-serif">Reminder Settings</DialogTitle>
+              <DialogTitle className="font-serif">{t('header.reminderSettings')}</DialogTitle>
             </DialogHeader>
             <ReminderSettings />
           </DialogContent>
