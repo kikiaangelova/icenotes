@@ -386,7 +386,7 @@ const Auth: React.FC = () => {
             <CardDescription className="text-center">{t('auth.welcomeSubtitle')}</CardDescription>
           </CardHeader>
           <CardContent>
-            <Tabs defaultValue="login" className="w-full">
+            <Tabs defaultValue={searchParams.get('mode') === 'signup' ? 'signup' : 'login'} className="w-full">
               <TabsList className="grid w-full grid-cols-2 mb-6">
                 <TabsTrigger value="login">{t('auth.tab.login')}</TabsTrigger>
                 <TabsTrigger value="signup">{t('auth.tab.signup')}</TabsTrigger>
