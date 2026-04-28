@@ -51,10 +51,16 @@ const parseStoredDate = (dateStr: string | Date): Date => {
 };
 
 export const PremiumProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [isPremium, setIsPremiumState] = useState<boolean>(() => {
-    const saved = localStorage.getItem('isPremium');
-    return saved ? JSON.parse(saved) : true; // Default to true for demo
-  });
+  // Premium access is intentionally enabled for all signed-in users.
+  // IceNotes is currently free; do NOT trust client-side localStorage flags
+  // for entitlement gating. If paid tiers are added later, validate via a
+  // server-side source (Supabase profile column or signed JWT claim).
+  const [isPremium, setIsPremiumState] = useState<boolean>(true);
+
+  // Remove any legacy client-controlled premium flag from previous versions.
+  useEffect(() => {
+    try { localStorage.removeItem('isPremium'); } catch {}
+  }, []);
 
   const [dailyReflections, setDailyReflections] = useState<DailyReflection[]>(() => {
     const saved = localStorage.getItem('dailyReflections');
@@ -87,10 +93,9 @@ export const PremiumProvider: React.FC<{ children: ReactNode }> = ({ children })
     return saved ? JSON.parse(saved) : 0;
   });
 
-  // Persist state
-  useEffect(() => {
-    localStorage.setItem('isPremium', JSON.stringify(isPremium));
-  }, [isPremium]);
+  // Note: isPremium is intentionally NOT persisted to localStorage.
+  // Client-controlled flags must not gate entitlements.
+
 
   useEffect(() => {
     localStorage.setItem('dailyReflections', JSON.stringify(dailyReflections));
