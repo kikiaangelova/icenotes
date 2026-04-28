@@ -450,7 +450,7 @@ export const SimpleDashboard: React.FC = () => {
             onClick={() => setCurrentView('home')}
             className="text-muted-foreground hover:text-foreground -ml-2 text-sm rounded-xl font-semibold"
           >
-            ← Back
+            {t('dash.back')}
           </Button>
         </div>
       </header>
