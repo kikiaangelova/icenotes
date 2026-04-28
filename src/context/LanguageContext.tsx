@@ -446,6 +446,13 @@ const dict: Dict = {
   'today.summary.promptThanks': { en: 'Saved. Rest well tonight.', bg: 'Запазено. Почивай добре тази вечер.' },
 
   // ───── Jump type labels ─────
+  // ───── Jump log: experience-based quality input ─────
+  'jumpLog.quality.label': { en: 'How did it feel?', bg: 'Как ти се усети?' },
+  'jumpLog.quality.shaky': { en: 'Shaky', bg: 'Нестабилен' },
+  'jumpLog.quality.okay': { en: 'Okay', bg: 'ОК' },
+  'jumpLog.quality.good': { en: 'Good', bg: 'Добър' },
+  'jumpLog.quality.best': { en: 'Best one yet', bg: 'Най-добрият досега' },
+
   'jump.toe-loop': { en: 'Toe Loop', bg: 'Тулуп' },
   'jump.salchow': { en: 'Salchow', bg: 'Салхов' },
   'jump.loop': { en: 'Loop', bg: 'Луп' },
