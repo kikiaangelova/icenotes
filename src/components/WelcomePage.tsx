@@ -156,9 +156,9 @@ export const WelcomePage: React.FC<WelcomePageProps> = ({ onGetStarted }) => {
         {/* Final CTA */}
         <Card className="bg-gradient-to-br from-primary to-accent text-white overflow-hidden">
           <CardContent className="p-8 md:p-12 text-center relative">
-            <div className="absolute inset-0 opacity-10">
-              <div className="absolute top-4 left-8 text-6xl">⛸️</div>
-              <div className="absolute bottom-4 right-8 text-6xl">🏆</div>
+            <div className="absolute inset-0 opacity-[0.06] pointer-events-none">
+              <div className="absolute -top-12 -left-12 w-64 h-64 rounded-full border border-white/40" />
+              <div className="absolute -bottom-16 -right-10 w-72 h-72 rounded-full border border-white/30" />
             </div>
             <div className="relative z-10 space-y-4">
               <Zap className="w-12 h-12 mx-auto opacity-90" />

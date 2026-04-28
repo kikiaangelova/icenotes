@@ -187,16 +187,16 @@ export const SportPsychology: React.FC = () => {
       <Tabs defaultValue="tips" className="space-y-4">
         <TabsList className="grid w-full grid-cols-4 h-10">
           <TabsTrigger value="tips" className="text-xs">
-            💡 Tips
+            Tips
           </TabsTrigger>
           <TabsTrigger value="confidence" className="text-xs">
-            💪 Confidence
+            Confidence
           </TabsTrigger>
           <TabsTrigger value="focus" className="text-xs">
-            🎯 Focus
+            Focus
           </TabsTrigger>
           <TabsTrigger value="competition" className="text-xs">
-            🏆 Compete
+            Compete
           </TabsTrigger>
         </TabsList>
 
