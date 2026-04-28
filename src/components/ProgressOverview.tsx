@@ -296,7 +296,7 @@ export const ProgressOverview: React.FC = () => {
                     </div>
                     <p className="text-sm text-foreground">{entry.workedOn}</p>
                     {entry.smallWin && (
-                      <p className="text-xs text-muted-foreground mt-1">🌟 {entry.smallWin}</p>
+                      <p className="text-xs text-muted-foreground mt-1 italic border-l-2 border-border pl-2">{entry.smallWin}</p>
                     )}
                   </div>
                 ))}
