@@ -421,6 +421,21 @@ const dict: Dict = {
   // ───── Today: post-save summary card ─────
   'today.summary.eyebrow': { en: "Today's summary", bg: 'Обобщение за днес' },
   'today.summary.title': { en: 'Nicely done.', bg: 'Браво на теб.' },
+  'today.summary.title.gentle': { en: 'Saved. Be kind to yourself today.', bg: 'Запазено. Бъди мил/а със себе си днес.' },
+  'today.summary.title.celebratory': { en: 'What a day. Hold on to this. ✨', bg: 'Какъв ден. Запомни това усещане. ✨' },
+  // Three rotating gentle messages for hard days (low confidence/mood/energy)
+  'today.summary.gentle.0': {
+    en: 'Saved. Take a moment — recovery is part of performance.',
+    bg: 'Запазено. Дай си миг — възстановяването също е част от изпълнението.',
+  },
+  'today.summary.gentle.1': {
+    en: 'Not every training needs to feel strong to matter.',
+    bg: 'Не всяка тренировка трябва да усещаш силна, за да е важна.',
+  },
+  'today.summary.gentle.2': {
+    en: 'A difficult day still gives useful information.',
+    bg: 'Дори трудният ден носи полезна информация.',
+  },
   'today.summary.minutes': { en: 'minutes', bg: 'минути' },
   'today.summary.focus': { en: 'focus', bg: 'фокус' },
   'today.summary.mood': { en: 'mood', bg: 'настроение' },
@@ -688,12 +703,27 @@ export type Tone = 'gentle' | 'neutral' | 'celebratory';
 export const getToneForRatings = (opts: {
   emotionalState?: number | null;
   confidenceLevel?: number | null;
+  focusLevel?: number | null;
 }): Tone => {
   const e = opts.emotionalState ?? null;
   const c = opts.confidenceLevel ?? null;
-  if ((e !== null && e <= 3) || (c !== null && c <= 4)) return 'gentle';
+  const f = opts.focusLevel ?? null;
+  // Gentle tone: low confidence (≤4), low mood (≤3), or low energy/focus (≤3)
+  if (
+    (c !== null && c <= 4) ||
+    (e !== null && e <= 3) ||
+    (f !== null && f <= 3)
+  ) {
+    return 'gentle';
+  }
   if ((e !== null && e >= 8) || (c !== null && c >= 8)) return 'celebratory';
   return 'neutral';
+};
+
+/** Pick a gentle message variant (0-based index) for a hard day. */
+export const pickGentleVariant = (seed?: number): 0 | 1 | 2 => {
+  const n = typeof seed === 'number' && Number.isFinite(seed) ? seed : Date.now();
+  return (Math.abs(Math.floor(n)) % 3) as 0 | 1 | 2;
 };
 
 interface LanguageContextValue {

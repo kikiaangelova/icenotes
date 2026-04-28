@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { useJournal } from '@/context/JournalContext';
-import { useLanguage } from '@/context/LanguageContext';
+import { useLanguage, getToneForRatings, pickGentleVariant, type Tone } from '@/context/LanguageContext';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
@@ -175,18 +175,64 @@ export const TodayQuickLog: React.FC = () => {
       setReflectionSaved(true);
     };
 
+    // Tone-aware response: gentle on hard days, celebratory on great ones.
+    const moodScore = moodOpt
+      ? moodOpt.value === 'heavy'
+        ? 2
+        : moodOpt.value === 'challenging'
+        ? 3
+        : moodOpt.value === 'calm'
+        ? 6
+        : moodOpt.value === 'focused'
+        ? 8
+        : 9 // energizing
+      : null;
+    const tone: Tone = getToneForRatings({
+      emotionalState: moodScore,
+      confidenceLevel: focus, // focus stands in for confidence in quick log
+      focusLevel: focus,
+    });
+    const gentleIdx = pickGentleVariant(
+      // stable per-day variant so it doesn't flicker on re-render
+      new Date().getDate() + new Date().getMonth() * 31
+    );
+
+    const titleKey =
+      tone === 'gentle'
+        ? 'today.summary.title.gentle'
+        : tone === 'celebratory'
+        ? 'today.summary.title.celebratory'
+        : 'today.summary.title';
+
+    const containerClass =
+      tone === 'gentle'
+        ? 'rounded-2xl border-rose-foreground/20 bg-gradient-to-br from-rose/25 via-peach/15 to-background overflow-hidden'
+        : tone === 'celebratory'
+        ? 'rounded-2xl border-mint-foreground/30 bg-gradient-to-br from-mint/40 via-sky/20 to-lavender/25 overflow-hidden'
+        : 'rounded-2xl border-mint-foreground/20 bg-gradient-to-br from-mint/30 via-sky/15 to-lavender/20 overflow-hidden';
+
+    const eyebrowClass =
+      tone === 'gentle'
+        ? 'flex items-center gap-2 text-rose-foreground'
+        : 'flex items-center gap-2 text-mint-foreground';
+
     return (
-      <Card className="rounded-2xl border-mint-foreground/20 bg-gradient-to-br from-mint/30 via-sky/15 to-lavender/20 overflow-hidden">
+      <Card className={containerClass}>
         <CardHeader className="pb-3">
-          <div className="flex items-center gap-2 text-mint-foreground">
-            <Check className="w-4 h-4" />
+          <div className={eyebrowClass}>
+            {tone === 'gentle' ? <Heart className="w-4 h-4" /> : <Check className="w-4 h-4" />}
             <span className="text-xs font-semibold uppercase tracking-wider">
               {t('today.summary.eyebrow')}
             </span>
           </div>
           <CardTitle className="text-xl sm:text-2xl font-serif text-foreground">
-            {t('today.summary.title')}
+            {t(titleKey)}
           </CardTitle>
+          {tone === 'gentle' && (
+            <p className="text-sm text-muted-foreground italic pt-1">
+              {t(`today.summary.gentle.${gentleIdx}`)}
+            </p>
+          )}
         </CardHeader>
 
         <CardContent className="space-y-5">
