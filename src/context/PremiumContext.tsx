@@ -88,10 +88,9 @@ export const PremiumProvider: React.FC<{ children: ReactNode }> = ({ children })
     return saved ? JSON.parse(saved) : 0;
   });
 
-  // Persist state
-  useEffect(() => {
-    localStorage.setItem('isPremium', JSON.stringify(isPremium));
-  }, [isPremium]);
+  // Note: isPremium is intentionally NOT persisted to localStorage.
+  // Client-controlled flags must not gate entitlements.
+
 
   useEffect(() => {
     localStorage.setItem('dailyReflections', JSON.stringify(dailyReflections));
