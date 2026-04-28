@@ -51,10 +51,11 @@ const parseStoredDate = (dateStr: string | Date): Date => {
 };
 
 export const PremiumProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [isPremium, setIsPremiumState] = useState<boolean>(() => {
-    const saved = localStorage.getItem('isPremium');
-    return saved ? JSON.parse(saved) : true; // Default to true for demo
-  });
+  // Premium access is intentionally enabled for all signed-in users.
+  // IceNotes is currently free; do NOT trust client-side localStorage flags
+  // for entitlement gating. If paid tiers are added later, validate via a
+  // server-side source (Supabase profile column or signed JWT claim).
+  const [isPremium, setIsPremiumState] = useState<boolean>(true);
 
   const [dailyReflections, setDailyReflections] = useState<DailyReflection[]>(() => {
     const saved = localStorage.getItem('dailyReflections');
