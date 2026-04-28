@@ -7,10 +7,10 @@ import { Textarea } from '@/components/ui/textarea';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Slider } from '@/components/ui/slider';
-import { Sun, Sparkles, Check, Snowflake, Dumbbell, Wind } from 'lucide-react';
+import { Sun, Sparkles, Check, Snowflake, Dumbbell, Wind, Clock, Target, Heart, Pencil } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { format } from 'date-fns';
-import { FEELING_OPTIONS } from '@/types/journal';
+import { FEELING_OPTIONS, type JumpType } from '@/types/journal';
 
 type TrainingType = 'on-ice' | 'off-ice' | 'rest';
 
@@ -35,9 +35,18 @@ const TYPE_OPTIONS: {
   { value: 'rest', icon: Wind, labelKey: 'today.quick.type.rest', cls: 'from-rose/40 to-peach/10 text-rose-foreground border-rose-foreground/20' },
 ];
 
+const JUMP_LABEL_KEY: Record<JumpType, string> = {
+  'toe-loop': 'jump.toe-loop',
+  salchow: 'jump.salchow',
+  loop: 'jump.loop',
+  flip: 'jump.flip',
+  lutz: 'jump.lutz',
+  axel: 'jump.axel',
+};
+
 export const TodayQuickLog: React.FC = () => {
-  const { t } = useLanguage();
-  const { addEntry, addTrainingSession, getTodaysEntry } = useJournal();
+  const { language, t } = useLanguage();
+  const { addEntry, addTrainingSession, getTodaysEntry, getTodaysSessions, getTodaysJumps } = useJournal();
   const existing = getTodaysEntry();
 
   const [form, setForm] = useState<FormState>({
