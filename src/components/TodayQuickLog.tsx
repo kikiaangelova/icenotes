@@ -343,6 +343,37 @@ export const TodayQuickLog: React.FC = () => {
       </CardHeader>
 
       <CardContent className="space-y-6">
+        {/* 0. Pre-session mood check-in */}
+        <div className="space-y-2">
+          <Label className="text-sm font-semibold">{t('today.quick.moodCheckin.label') || 'How are you feeling right now?'}</Label>
+          <div className="grid grid-cols-3 gap-2">
+            {[
+              { value: 'heavy' as const, emoji: '😤', label: 'Tough day', glow: 'shadow-[0_0_0_3px_hsl(var(--rose-foreground)/0.35)]', active: 'border-rose-foreground bg-rose/30' },
+              { value: 'calm' as const, emoji: '😊', label: 'Feeling good', glow: 'shadow-[0_0_0_3px_hsl(var(--mint-foreground)/0.35)]', active: 'border-mint-foreground bg-mint/30' },
+              { value: 'energizing' as const, emoji: '🔥', label: "Let's go", glow: 'shadow-[0_0_0_3px_hsl(var(--peach-foreground)/0.4)]', active: 'border-peach-foreground bg-peach/40' },
+            ].map((m) => {
+              const isActive = form.mood === m.value;
+              return (
+                <button
+                  key={m.value}
+                  type="button"
+                  onClick={() => setForm((p) => ({ ...p, mood: m.value }))}
+                  className={cn(
+                    'min-h-[64px] rounded-2xl border-2 flex flex-col items-center justify-center gap-1 px-2 py-2 transition-all',
+                    isActive
+                      ? `${m.active} ${m.glow} scale-[1.02]`
+                      : 'border-border bg-background/60 hover:border-foreground/20'
+                  )}
+                  aria-pressed={isActive}
+                >
+                  <span className="text-2xl leading-none">{m.emoji}</span>
+                  <span className="text-[11px] font-semibold text-foreground">{m.label}</span>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
         {/* 1. Duration */}
         <div className="space-y-2">
           <Label className="text-sm font-semibold">{t('today.quick.duration.label')}</Label>
