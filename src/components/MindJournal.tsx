@@ -11,6 +11,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Brain, Sparkles, HeartHandshake, Activity, Trophy, Plus, X } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
 import { useAddMindJournalEntry } from '@/hooks/useMindJournal';
+import { CoachIrisReflection } from './CoachIrisReflection';
 
 const BODY_PARTS = ['body.head', 'body.neck', 'body.chest', 'body.back', 'body.stomach', 'body.hips', 'body.legs', 'body.feet'];
 
@@ -28,9 +29,13 @@ const CbtTab: React.FC = () => {
     cbt_balanced_thought: '',
     cbt_new_intensity: 5,
   });
+  const [reflection, setReflection] = useState<{ text: string; key: number } | null>(null);
 
   const submit = async () => {
+    const text = [form.cbt_situation, form.cbt_automatic_thought, form.cbt_emotion, form.cbt_balanced_thought]
+      .map((s) => s.trim()).filter(Boolean).join('\n\n');
     await add.mutateAsync({ entry_type: 'cbt', ...form });
+    if (text) setReflection({ text, key: Date.now() });
     setForm({ cbt_situation: '', cbt_automatic_thought: '', cbt_emotion: '', cbt_emotion_intensity: 5, cbt_evidence_for: '', cbt_evidence_against: '', cbt_balanced_thought: '', cbt_new_intensity: 5 });
   };
 
@@ -53,6 +58,7 @@ const CbtTab: React.FC = () => {
         <SliderField label={t('mind.cbt.newIntensity')} value={form.cbt_new_intensity} onChange={(v) => setForm({ ...form, cbt_new_intensity: v })} />
         <Button onClick={submit} disabled={add.isPending} className="w-full h-12 bg-pink-foreground hover:bg-pink-foreground/90">{t('mind.save')}</Button>
       </CardContent>
+      {reflection && <div className="px-6 pb-6"><CoachIrisReflection journalText={reflection.text} triggerKey={reflection.key} /></div>}
     </Card>
   );
 };
@@ -62,11 +68,13 @@ const GratitudeTab: React.FC = () => {
   const { t } = useLanguage();
   const add = useAddMindJournalEntry();
   const [items, setItems] = useState<string[]>(['', '', '']);
+  const [reflection, setReflection] = useState<{ text: string; key: number } | null>(null);
 
   const submit = async () => {
     const filtered = items.map((i) => i.trim()).filter(Boolean);
     if (filtered.length === 0) return;
     await add.mutateAsync({ entry_type: 'gratitude', gratitude_items: filtered });
+    setReflection({ text: `I'm grateful for:\n- ${filtered.join('\n- ')}`, key: Date.now() });
     setItems(['', '', '']);
   };
 
@@ -93,6 +101,7 @@ const GratitudeTab: React.FC = () => {
         <Button variant="outline" className="w-full h-11" onClick={() => setItems([...items, ''])}><Plus className="w-4 h-4 mr-2" />{t('common.add')}</Button>
         <Button onClick={submit} disabled={add.isPending} className="w-full h-12 bg-mint-foreground hover:bg-mint-foreground/90">{t('mind.save')}</Button>
       </CardContent>
+      {reflection && <div className="px-6 pb-6"><CoachIrisReflection journalText={reflection.text} triggerKey={reflection.key} /></div>}
     </Card>
   );
 };
@@ -103,11 +112,14 @@ const BodyScanTab: React.FC = () => {
   const add = useAddMindJournalEntry();
   const [tensionAreas, setTensionAreas] = useState<string[]>([]);
   const [form, setForm] = useState({ body_overall_feeling: 5, emotion_primary: '', emotion_secondary: '', emotion_notes: '' });
+  const [reflection, setReflection] = useState<{ text: string; key: number } | null>(null);
 
   const toggle = (key: string) => setTensionAreas(tensionAreas.includes(key) ? tensionAreas.filter((x) => x !== key) : [...tensionAreas, key]);
 
   const submit = async () => {
+    const text = [form.emotion_primary, form.emotion_secondary, form.emotion_notes].map(s => s.trim()).filter(Boolean).join(' • ');
     await add.mutateAsync({ entry_type: 'body_scan', body_tension_areas: tensionAreas, ...form });
+    if (text) setReflection({ text, key: Date.now() });
     setTensionAreas([]);
     setForm({ body_overall_feeling: 5, emotion_primary: '', emotion_secondary: '', emotion_notes: '' });
   };
@@ -142,6 +154,7 @@ const BodyScanTab: React.FC = () => {
         <Field label={t('mind.body.notes')}><Textarea rows={2} value={form.emotion_notes} onChange={(e) => setForm({ ...form, emotion_notes: e.target.value })} /></Field>
         <Button onClick={submit} disabled={add.isPending} className="w-full h-12 bg-sky-foreground hover:bg-sky-foreground/90">{t('mind.save')}</Button>
       </CardContent>
+      {reflection && <div className="px-6 pb-6"><CoachIrisReflection journalText={reflection.text} triggerKey={reflection.key} /></div>}
     </Card>
   );
 };
@@ -151,9 +164,12 @@ const CompassionTab: React.FC = () => {
   const { t } = useLanguage();
   const add = useAddMindJournalEntry();
   const [form, setForm] = useState({ self_compassion_situation: '', self_compassion_friend_response: '', self_compassion_kind_message: '' });
+  const [reflection, setReflection] = useState<{ text: string; key: number } | null>(null);
 
   const submit = async () => {
+    const text = [form.self_compassion_situation, form.self_compassion_friend_response, form.self_compassion_kind_message].map(s => s.trim()).filter(Boolean).join('\n\n');
     await add.mutateAsync({ entry_type: 'self_compassion', ...form });
+    if (text) setReflection({ text, key: Date.now() });
     setForm({ self_compassion_situation: '', self_compassion_friend_response: '', self_compassion_kind_message: '' });
   };
 
@@ -169,6 +185,7 @@ const CompassionTab: React.FC = () => {
         <Field label={t('mind.compassion.kind')}><Textarea rows={3} value={form.self_compassion_kind_message} onChange={(e) => setForm({ ...form, self_compassion_kind_message: e.target.value })} /></Field>
         <Button onClick={submit} disabled={add.isPending} className="w-full h-12 bg-rose-foreground hover:bg-rose-foreground/90">{t('mind.save')}</Button>
       </CardContent>
+      {reflection && <div className="px-6 pb-6"><CoachIrisReflection journalText={reflection.text} triggerKey={reflection.key} /></div>}
     </Card>
   );
 };
@@ -185,9 +202,12 @@ const PreCompTab: React.FC = () => {
     precomp_breathing_completed: false,
     precomp_intention: '',
   });
+  const [reflection, setReflection] = useState<{ text: string; key: number } | null>(null);
 
   const submit = async () => {
+    const text = [form.precomp_event_name, form.precomp_visualization, form.precomp_intention].map(s => s.trim()).filter(Boolean).join('\n\n');
     await add.mutateAsync({ entry_type: 'pre_competition', ...form, precomp_event_date: form.precomp_event_date || undefined });
+    if (text) setReflection({ text, key: Date.now() });
     setForm({ precomp_event_name: '', precomp_event_date: '', precomp_visualization: '', precomp_confidence_anchor: '', precomp_breathing_completed: false, precomp_intention: '' });
   };
 
@@ -211,6 +231,7 @@ const PreCompTab: React.FC = () => {
         </label>
         <Button onClick={submit} disabled={add.isPending} className="w-full h-12 bg-lavender-foreground hover:bg-lavender-foreground/90">{t('mind.save')}</Button>
       </CardContent>
+      {reflection && <div className="px-6 pb-6"><CoachIrisReflection journalText={reflection.text} triggerKey={reflection.key} /></div>}
     </Card>
   );
 };
