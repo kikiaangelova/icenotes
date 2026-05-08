@@ -29,7 +29,7 @@ const BREATH_PHASES = [
 export const GameDayMode: React.FC<GameDayModeProps> = ({ open, onOpenChange }) => {
   const [step, setStep] = useState(0);
   const [breathPhase, setBreathPhase] = useState(0);
-  const [secondsLeft, setSecondsLeft] = useState(BREATH_PHASES[0].seconds);
+  const [secondsLeft, setSecondsLeft] = useState<number>(BREATH_PHASES[0].seconds);
   const [breathDone, setBreathDone] = useState(false);
   const [affirmation] = useState(
     () => AFFIRMATIONS[Math.floor(Math.random() * AFFIRMATIONS.length)]
