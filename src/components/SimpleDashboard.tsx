@@ -78,6 +78,7 @@ export const SimpleDashboard: React.FC = () => {
   const levelLabel = SELF_LEVELS.find(l => l.value === profile?.selfLevel)?.label || '';
   const greeting = getGreeting(profile?.name, language);
   const streak = useStreak();
+  const [gameDayOpen, setGameDayOpen] = useState(false);
 
   const handleStartTraining = (type: 'on-ice' | 'off-ice') => {
     setPendingTrainingType(type);
