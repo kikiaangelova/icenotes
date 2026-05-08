@@ -46,13 +46,22 @@ const SportPsychology: React.FC = () => {
             {topics.map((topic) => (
               <div
                 key={topic.title}
-                className="p-5 rounded-xl border border-border/60 bg-card hover:shadow-md transition-all duration-200 group"
+                className="p-5 rounded-xl border border-border/60 bg-card hover:shadow-md transition-all duration-200 group flex flex-col"
               >
                 <div className="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center mb-3 group-hover:bg-primary/15 transition-colors">
                   <topic.icon className="w-4 h-4 text-primary" />
                 </div>
                 <h3 className="text-sm font-semibold text-foreground mb-1.5 font-serif">{topic.title}</h3>
-                <p className="text-xs text-muted-foreground leading-relaxed">{topic.description}</p>
+                <p className="text-xs text-muted-foreground leading-relaxed mb-4 flex-1">{topic.description}</p>
+                <Button
+                  size="sm"
+                  variant="outline"
+                  onClick={() => startSession(topic.prompt)}
+                  className="w-full gap-2 mt-auto border-primary/30 text-primary hover:bg-primary/10 hover:text-primary"
+                >
+                  <Sparkles className="w-3.5 h-3.5" />
+                  Start Session with Coach Iris
+                </Button>
               </div>
             ))}
           </div>
