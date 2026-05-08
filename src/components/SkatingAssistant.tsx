@@ -27,7 +27,18 @@ export const SkatingAssistant: React.FC = () => {
 
   useEffect(() => {
     scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight, behavior: 'smooth' });
-  }, [messages, loading]);
+  useEffect(() => {
+    const handler = (e: Event) => {
+      const detail = (e as CustomEvent<{ message: string }>).detail;
+      if (!detail?.message) return;
+      setOpen(true);
+      // small delay so sheet mounts before sending
+      setTimeout(() => send(detail.message, { reset: true }), 150);
+    };
+    window.addEventListener('coach-iris:open', handler as EventListener);
+    return () => window.removeEventListener('coach-iris:open', handler as EventListener);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const send = async (text: string, opts?: { reset?: boolean }) => {
     if (!text.trim() || loadingRef.current) return;
