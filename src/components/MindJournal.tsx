@@ -11,6 +11,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Brain, Sparkles, HeartHandshake, Activity, Trophy, Plus, X } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
 import { useAddMindJournalEntry } from '@/hooks/useMindJournal';
+import { CoachIrisReflection } from './CoachIrisReflection';
 
 const BODY_PARTS = ['body.head', 'body.neck', 'body.chest', 'body.back', 'body.stomach', 'body.hips', 'body.legs', 'body.feet'];
 
