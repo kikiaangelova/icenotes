@@ -112,11 +112,14 @@ const BodyScanTab: React.FC = () => {
   const add = useAddMindJournalEntry();
   const [tensionAreas, setTensionAreas] = useState<string[]>([]);
   const [form, setForm] = useState({ body_overall_feeling: 5, emotion_primary: '', emotion_secondary: '', emotion_notes: '' });
+  const [reflection, setReflection] = useState<{ text: string; key: number } | null>(null);
 
   const toggle = (key: string) => setTensionAreas(tensionAreas.includes(key) ? tensionAreas.filter((x) => x !== key) : [...tensionAreas, key]);
 
   const submit = async () => {
+    const text = [form.emotion_primary, form.emotion_secondary, form.emotion_notes].map(s => s.trim()).filter(Boolean).join(' • ');
     await add.mutateAsync({ entry_type: 'body_scan', body_tension_areas: tensionAreas, ...form });
+    if (text) setReflection({ text, key: Date.now() });
     setTensionAreas([]);
     setForm({ body_overall_feeling: 5, emotion_primary: '', emotion_secondary: '', emotion_notes: '' });
   };
@@ -151,6 +154,7 @@ const BodyScanTab: React.FC = () => {
         <Field label={t('mind.body.notes')}><Textarea rows={2} value={form.emotion_notes} onChange={(e) => setForm({ ...form, emotion_notes: e.target.value })} /></Field>
         <Button onClick={submit} disabled={add.isPending} className="w-full h-12 bg-sky-foreground hover:bg-sky-foreground/90">{t('mind.save')}</Button>
       </CardContent>
+      {reflection && <div className="px-6 pb-6"><CoachIrisReflection journalText={reflection.text} triggerKey={reflection.key} /></div>}
     </Card>
   );
 };
@@ -160,9 +164,12 @@ const CompassionTab: React.FC = () => {
   const { t } = useLanguage();
   const add = useAddMindJournalEntry();
   const [form, setForm] = useState({ self_compassion_situation: '', self_compassion_friend_response: '', self_compassion_kind_message: '' });
+  const [reflection, setReflection] = useState<{ text: string; key: number } | null>(null);
 
   const submit = async () => {
+    const text = [form.self_compassion_situation, form.self_compassion_friend_response, form.self_compassion_kind_message].map(s => s.trim()).filter(Boolean).join('\n\n');
     await add.mutateAsync({ entry_type: 'self_compassion', ...form });
+    if (text) setReflection({ text, key: Date.now() });
     setForm({ self_compassion_situation: '', self_compassion_friend_response: '', self_compassion_kind_message: '' });
   };
 
