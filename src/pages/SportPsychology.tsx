@@ -90,6 +90,7 @@ const SportPsychology: React.FC = () => {
         </section>
 
       <Footer />
+      <SkatingAssistant />
     </div>
   );
 };
