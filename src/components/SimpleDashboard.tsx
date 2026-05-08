@@ -542,6 +542,7 @@ export const SimpleDashboard: React.FC = () => {
         )}
         {currentView === 'reflect' && <ReflectSpace />}
       </main>
+      <GameDayMode open={gameDayOpen} onOpenChange={setGameDayOpen} />
     </div>
   );
 };
