@@ -99,6 +99,7 @@ const SportPsychology: React.FC = () => {
 
       <Footer />
       <SkatingAssistant />
+      <GameDayMode open={gameDayOpen} onOpenChange={setGameDayOpen} />
     </div>
   );
 };
