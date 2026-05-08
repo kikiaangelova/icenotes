@@ -43,6 +43,12 @@ const SportPsychology: React.FC = () => {
           </div>
         </section>
 
+        <section className="px-5 md:px-12 pb-8">
+          <div className="max-w-2xl mx-auto">
+            <GameDayCard onClick={() => setGameDayOpen(true)} />
+          </div>
+        </section>
+
         <section className="px-5 md:px-12 pb-16 md:pb-24">
           <div className="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {topics.map((topic) => (
