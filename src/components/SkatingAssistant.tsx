@@ -19,15 +19,33 @@ export const SkatingAssistant: React.FC = () => {
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
+  const messagesRef = useRef<Msg[]>([]);
+  const loadingRef = useRef(false);
+
+  useEffect(() => { messagesRef.current = messages; }, [messages]);
+  useEffect(() => { loadingRef.current = loading; }, [loading]);
 
   useEffect(() => {
     scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight, behavior: 'smooth' });
   }, [messages, loading]);
 
-  const send = async (text: string) => {
-    if (!text.trim() || loading) return;
+  useEffect(() => {
+    const handler = (e: Event) => {
+      const detail = (e as CustomEvent<{ message: string }>).detail;
+      if (!detail?.message) return;
+      setOpen(true);
+      setTimeout(() => send(detail.message, { reset: true }), 150);
+    };
+    window.addEventListener('coach-iris:open', handler as EventListener);
+    return () => window.removeEventListener('coach-iris:open', handler as EventListener);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const send = async (text: string, opts?: { reset?: boolean }) => {
+    if (!text.trim() || loadingRef.current) return;
+    const base = opts?.reset ? [] : messagesRef.current;
     const userMsg: Msg = { role: 'user', content: text };
-    const next = [...messages, userMsg];
+    const next = [...base, userMsg];
     setMessages(next);
     setInput('');
     setLoading(true);
