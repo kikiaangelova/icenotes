@@ -58,6 +58,7 @@ const CbtTab: React.FC = () => {
         <SliderField label={t('mind.cbt.newIntensity')} value={form.cbt_new_intensity} onChange={(v) => setForm({ ...form, cbt_new_intensity: v })} />
         <Button onClick={submit} disabled={add.isPending} className="w-full h-12 bg-pink-foreground hover:bg-pink-foreground/90">{t('mind.save')}</Button>
       </CardContent>
+      {reflection && <div className="px-6 pb-6"><CoachIrisReflection journalText={reflection.text} triggerKey={reflection.key} /></div>}
     </Card>
   );
 };
