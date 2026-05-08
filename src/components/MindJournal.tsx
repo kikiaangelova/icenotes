@@ -101,6 +101,7 @@ const GratitudeTab: React.FC = () => {
         <Button variant="outline" className="w-full h-11" onClick={() => setItems([...items, ''])}><Plus className="w-4 h-4 mr-2" />{t('common.add')}</Button>
         <Button onClick={submit} disabled={add.isPending} className="w-full h-12 bg-mint-foreground hover:bg-mint-foreground/90">{t('mind.save')}</Button>
       </CardContent>
+      {reflection && <div className="px-6 pb-6"><CoachIrisReflection journalText={reflection.text} triggerKey={reflection.key} /></div>}
     </Card>
   );
 };
