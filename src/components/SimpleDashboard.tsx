@@ -31,6 +31,7 @@ import { SELF_LEVELS } from '@/types/journal';
 import { Feather, Compass, Heart, Settings, LogOut, Dumbbell, Target, CalendarCheck, Brain, Timer, Bell, Snowflake, BookHeart, TrendingUp, Sparkles, Sun, Shield, Sparkle } from 'lucide-react';
 import { useIsAdmin } from '@/hooks/useIsAdmin';
 import { useStreak } from '@/hooks/useStreak';
+import { GameDayCard, GameDayMode } from '@/components/GameDayMode';
 import { useNavigate } from 'react-router-dom';
 import {
   DropdownMenu,
