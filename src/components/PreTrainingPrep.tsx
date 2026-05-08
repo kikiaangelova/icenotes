@@ -226,35 +226,56 @@ export const PreTrainingPrep: React.FC<PreTrainingPrepProps> = ({
             </p>
 
             {/* Breathing animation */}
-            <div className="relative mx-auto w-40 h-40">
-              <div 
-                className={`absolute inset-0 rounded-full bg-mental/20 transition-all ${
-                  isBreathing ? 'opacity-100' : 'opacity-50'
-                }`}
-                style={{
-                  transform: isBreathing 
-                    ? breathStep === 0 
-                      ? 'scale(1.3)' 
-                      : breathStep === 1 
-                        ? 'scale(1.3)' 
-                        : 'scale(0.8)'
-                    : 'scale(1)',
-                  transition: `transform ${QUICK_BREATHING.durations[breathStep]}s ease-in-out`
-                }}
-              />
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="text-center">
-                  <div className="text-2xl font-bold text-mental">
-                    {isBreathing ? QUICK_BREATHING.steps[breathStep] : 'Ready'}
-                  </div>
-                  {isBreathing && (
-                    <div className="text-sm text-muted-foreground mt-1">
-                      Round {breathRound} of {QUICK_BREATHING.rounds}
+            {(() => {
+              const phaseDuration = QUICK_BREATHING.durations[breathStep];
+              const phaseMs = phaseDuration * 1000;
+              const secondsRemaining = isBreathing
+                ? Math.max(0, Math.ceil(phaseDuration - (breathProgress / 100) * phaseDuration))
+                : phaseDuration;
+              const targetScale = isBreathing
+                ? breathStep === 0
+                  ? 1.3
+                  : breathStep === 1
+                    ? 1.3
+                    : 0.8
+                : 1;
+              const targetOpacity = isBreathing
+                ? breathStep === 2
+                  ? 0.6
+                  : 1.0
+                : 0.6;
+              return (
+                <div className="relative mx-auto w-40 h-40">
+                  <div
+                    className="absolute inset-0 rounded-full"
+                    style={{
+                      background:
+                        'linear-gradient(135deg, hsl(270 80% 65%), hsl(240 75% 55%))',
+                      transform: `scale(${targetScale})`,
+                      opacity: targetOpacity,
+                      transition: `transform ${phaseMs}ms ease-in-out, opacity ${phaseMs}ms ease-in-out`,
+                    }}
+                  />
+                  <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                    <div className="text-center">
+                      <div className="text-xl font-bold text-white drop-shadow">
+                        {isBreathing ? QUICK_BREATHING.steps[breathStep] : 'Ready'}
+                      </div>
+                      {isBreathing && (
+                        <>
+                          <div className="text-3xl font-bold text-white drop-shadow mt-1 tabular-nums">
+                            {secondsRemaining}s
+                          </div>
+                          <div className="text-xs text-white/80 mt-1">
+                            Round {breathRound} of {QUICK_BREATHING.rounds}
+                          </div>
+                        </>
+                      )}
                     </div>
-                  )}
+                  </div>
                 </div>
-              </div>
-            </div>
+              );
+            })()}
 
             {isBreathing && (
               <Progress value={breathProgress} className="w-32 mx-auto h-2" />
