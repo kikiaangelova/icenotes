@@ -68,11 +68,13 @@ const GratitudeTab: React.FC = () => {
   const { t } = useLanguage();
   const add = useAddMindJournalEntry();
   const [items, setItems] = useState<string[]>(['', '', '']);
+  const [reflection, setReflection] = useState<{ text: string; key: number } | null>(null);
 
   const submit = async () => {
     const filtered = items.map((i) => i.trim()).filter(Boolean);
     if (filtered.length === 0) return;
     await add.mutateAsync({ entry_type: 'gratitude', gratitude_items: filtered });
+    setReflection({ text: `I'm grateful for:\n- ${filtered.join('\n- ')}`, key: Date.now() });
     setItems(['', '', '']);
   };
 
