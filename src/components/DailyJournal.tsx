@@ -10,6 +10,7 @@ import { Feather, Check, Sparkles, Heart } from 'lucide-react';
 import { format } from 'date-fns';
 import { cn } from '@/lib/utils';
 import { useLanguage, getToneForRatings, type Tone } from '@/context/LanguageContext';
+import { CoachIrisReflection } from './CoachIrisReflection';
 
 interface DailyJournalProps {
   onComplete?: () => void;
@@ -35,6 +36,14 @@ export const DailyJournal: React.FC<DailyJournalProps> = ({ onComplete }) => {
 
   const [isSubmitted, setIsSubmitted] = useState(!!existingEntry);
   const [savedTone, setSavedTone] = useState<Tone>('neutral');
+  const [savedText, setSavedText] = useState<string>(() => {
+    if (!existingEntry) return '';
+    return [
+      existingEntry.workedOn,
+      existingEntry.smallWin,
+      existingEntry.coachNotes,
+    ].filter(Boolean).join('\n\n');
+  });
 
   // Tone-aware preview based on current sliders + feeling
   const previewTone: Tone = (() => {
@@ -67,6 +76,11 @@ export const DailyJournal: React.FC<DailyJournalProps> = ({ onComplete }) => {
     });
 
     setSavedTone(previewTone);
+    setSavedText(
+      [formData.workedOn.trim(), formData.smallWin.trim(), formData.coachNotes.trim()]
+        .filter(Boolean)
+        .join('\n\n')
+    );
     setIsSubmitted(true);
     if (onComplete) setTimeout(onComplete, 2000);
   };
