@@ -93,33 +93,36 @@ export const DailyJournal: React.FC<DailyJournalProps> = ({ onComplete }) => {
         ? 'journal.captured.celebratory'
         : 'journal.captured.gentle';
     return (
-      <Card
-        className={cn(
-          'border-success/20 bg-gradient-to-br',
-          savedTone === 'gentle'
-            ? 'from-rose/15 to-background border-rose-foreground/20'
-            : 'from-success/5 to-background'
-        )}
-      >
-        <CardContent className="pt-8 pb-8 text-center space-y-4">
-          <div className="w-14 h-14 mx-auto rounded-full bg-success/10 flex items-center justify-center">
-            {savedTone === 'gentle' ? (
-              <Heart className="w-7 h-7 text-rose-foreground" />
-            ) : (
-              <Check className="w-7 h-7 text-success" />
-            )}
-          </div>
-          <div className="space-y-2">
-            <h3 className="text-lg font-medium text-foreground">{t('journal.captured')}</h3>
-            <p className="text-muted-foreground italic max-w-md mx-auto">{t(messageKey)}</p>
-          </div>
-          {onComplete && (
-            <Button variant="outline" onClick={onComplete} className="mt-4">
-              {t('journal.backDashboard')}
-            </Button>
+      <>
+        <Card
+          className={cn(
+            'border-success/20 bg-gradient-to-br',
+            savedTone === 'gentle'
+              ? 'from-rose/15 to-background border-rose-foreground/20'
+              : 'from-success/5 to-background'
           )}
-        </CardContent>
-      </Card>
+        >
+          <CardContent className="pt-8 pb-8 text-center space-y-4">
+            <div className="w-14 h-14 mx-auto rounded-full bg-success/10 flex items-center justify-center">
+              {savedTone === 'gentle' ? (
+                <Heart className="w-7 h-7 text-rose-foreground" />
+              ) : (
+                <Check className="w-7 h-7 text-success" />
+              )}
+            </div>
+            <div className="space-y-2">
+              <h3 className="text-lg font-medium text-foreground">{t('journal.captured')}</h3>
+              <p className="text-muted-foreground italic max-w-md mx-auto">{t(messageKey)}</p>
+            </div>
+            {onComplete && (
+              <Button variant="outline" onClick={onComplete} className="mt-4">
+                {t('journal.backDashboard')}
+              </Button>
+            )}
+          </CardContent>
+        </Card>
+        {savedText && <CoachIrisReflection journalText={savedText} />}
+      </>
     );
   }
 
