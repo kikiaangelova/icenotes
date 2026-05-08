@@ -2,3 +2,6 @@ project_id = "nwymxujtsoytspnuomrc"
 
 [functions.get-user-count]
 verify_jwt = false
+
+[functions.skating-coach]
+verify_jwt = false
