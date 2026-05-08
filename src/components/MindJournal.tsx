@@ -231,6 +231,7 @@ const PreCompTab: React.FC = () => {
         </label>
         <Button onClick={submit} disabled={add.isPending} className="w-full h-12 bg-lavender-foreground hover:bg-lavender-foreground/90">{t('mind.save')}</Button>
       </CardContent>
+      {reflection && <div className="px-6 pb-6"><CoachIrisReflection journalText={reflection.text} triggerKey={reflection.key} /></div>}
     </Card>
   );
 };
