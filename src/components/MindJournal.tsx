@@ -185,6 +185,7 @@ const CompassionTab: React.FC = () => {
         <Field label={t('mind.compassion.kind')}><Textarea rows={3} value={form.self_compassion_kind_message} onChange={(e) => setForm({ ...form, self_compassion_kind_message: e.target.value })} /></Field>
         <Button onClick={submit} disabled={add.isPending} className="w-full h-12 bg-rose-foreground hover:bg-rose-foreground/90">{t('mind.save')}</Button>
       </CardContent>
+      {reflection && <div className="px-6 pb-6"><CoachIrisReflection journalText={reflection.text} triggerKey={reflection.key} /></div>}
     </Card>
   );
 };
@@ -201,9 +202,12 @@ const PreCompTab: React.FC = () => {
     precomp_breathing_completed: false,
     precomp_intention: '',
   });
+  const [reflection, setReflection] = useState<{ text: string; key: number } | null>(null);
 
   const submit = async () => {
+    const text = [form.precomp_event_name, form.precomp_visualization, form.precomp_intention].map(s => s.trim()).filter(Boolean).join('\n\n');
     await add.mutateAsync({ entry_type: 'pre_competition', ...form, precomp_event_date: form.precomp_event_date || undefined });
+    if (text) setReflection({ text, key: Date.now() });
     setForm({ precomp_event_name: '', precomp_event_date: '', precomp_visualization: '', precomp_confidence_anchor: '', precomp_breathing_completed: false, precomp_intention: '' });
   };
 
