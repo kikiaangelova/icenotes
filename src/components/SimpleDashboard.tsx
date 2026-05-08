@@ -185,6 +185,9 @@ export const SimpleDashboard: React.FC = () => {
             </div>
           )}
 
+          {/* Game Day ritual */}
+          <GameDayCard onClick={() => setGameDayOpen(true)} className="mb-5" />
+
           {/* Daily Motivational Quote */}
           <MotivationalQuote variant="banner" useDaily showRefresh showSave className="mb-5" />
           
