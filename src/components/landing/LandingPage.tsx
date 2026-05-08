@@ -4,6 +4,7 @@ import { Snowflake, Brain, Target, TrendingUp, Dumbbell, PenLine, Sprout, ArrowR
 import { Link } from 'react-router-dom';
 import { supabase } from '@/integrations/supabase/client';
 import { useLanguage } from '@/context/LanguageContext';
+import { ProfileCard } from '@/components/ProfileCard';
 
 interface LandingPageProps {
   onGetStarted: () => void;
@@ -50,11 +51,11 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted }) => {
             <span className="text-xs font-semibold text-foreground/80">{t('hero.badge')}</span>
           </div>
           
-          <h1 className="text-3xl md:text-6xl font-extrabold leading-tight tracking-tight text-foreground font-serif mb-4">
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-black leading-[0.95] tracking-tighter text-foreground mb-6">
             {t('hero.title.line1')}
             <br />
             {t('hero.title.line2.prefix')}{' '}
-            <span className="bg-gradient-to-r from-primary via-grape-foreground to-rose-foreground bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-primary via-grape-foreground to-rose-foreground bg-clip-text text-transparent italic">
               {t('hero.title.highlight')}
             </span>
           </h1>
