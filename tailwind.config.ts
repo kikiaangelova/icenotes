@@ -105,6 +105,10 @@ export default {
 				'glow-pulse': {
 					'0%, 100%': { boxShadow: '0 0 0 0 hsl(var(--primary) / 0.4)' },
 					'50%': { boxShadow: '0 0 0 12px hsl(var(--primary) / 0)' }
+				},
+				'game-day-sparkle': {
+					'0%, 100%': { opacity: '0', transform: 'scale(0.6)' },
+					'50%': { opacity: '1', transform: 'scale(1.1)' }
 				}
 			},
 			animation: {
@@ -113,7 +117,8 @@ export default {
 				'fade-in': 'fade-in 0.5s ease-out',
 				'slide-in': 'slide-in 0.4s ease-out',
 				'float-soft': 'float-soft 5s ease-in-out infinite',
-				'glow-pulse': 'glow-pulse 2.4s ease-out infinite'
+				'glow-pulse': 'glow-pulse 2.4s ease-out infinite',
+				'game-day-sparkle': 'game-day-sparkle 4s ease-in-out infinite'
 			},
 			boxShadow: {
 				'2xs': 'var(--shadow-2xs)',

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Navbar } from '@/components/landing/Navbar';
 import { Footer } from '@/components/landing/Footer';
 import { Link } from 'react-router-dom';
@@ -6,10 +6,12 @@ import { ArrowRight, Brain, Shield, Eye, Flame, Heart, Zap, Sparkles } from 'luc
 import { Button } from '@/components/ui/button';
 import { MindfulnessTools } from '@/components/MindfulnessTools';
 import { SkatingAssistant } from '@/components/SkatingAssistant';
+import { GameDayCard, GameDayMode } from '@/components/GameDayMode';
 import { useLanguage } from '@/context/LanguageContext';
 
 const SportPsychology: React.FC = () => {
   const { t } = useLanguage();
+  const [gameDayOpen, setGameDayOpen] = useState(false);
 
   const topics = [
     { icon: Brain, title: t('psy.t1.title'), description: t('psy.t1.desc'), prompt: "I want to work on my mental resilience. Can you guide me through a short session?" },
@@ -38,6 +40,12 @@ const SportPsychology: React.FC = () => {
             <p className="text-sm md:text-lg text-muted-foreground leading-relaxed max-w-xl mx-auto">
               {t('psy.subtitle')}
             </p>
+          </div>
+        </section>
+
+        <section className="px-5 md:px-12 pb-8">
+          <div className="max-w-2xl mx-auto">
+            <GameDayCard onClick={() => setGameDayOpen(true)} />
           </div>
         </section>
 
@@ -91,6 +99,7 @@ const SportPsychology: React.FC = () => {
 
       <Footer />
       <SkatingAssistant />
+      <GameDayMode open={gameDayOpen} onOpenChange={setGameDayOpen} />
     </div>
   );
 };

@@ -31,6 +31,7 @@ import { SELF_LEVELS } from '@/types/journal';
 import { Feather, Compass, Heart, Settings, LogOut, Dumbbell, Target, CalendarCheck, Brain, Timer, Bell, Snowflake, BookHeart, TrendingUp, Sparkles, Sun, Shield, Sparkle } from 'lucide-react';
 import { useIsAdmin } from '@/hooks/useIsAdmin';
 import { useStreak } from '@/hooks/useStreak';
+import { GameDayCard, GameDayMode } from '@/components/GameDayMode';
 import { useNavigate } from 'react-router-dom';
 import {
   DropdownMenu,
@@ -77,6 +78,7 @@ export const SimpleDashboard: React.FC = () => {
   const levelLabel = SELF_LEVELS.find(l => l.value === profile?.selfLevel)?.label || '';
   const greeting = getGreeting(profile?.name, language);
   const streak = useStreak();
+  const [gameDayOpen, setGameDayOpen] = useState(false);
 
   const handleStartTraining = (type: 'on-ice' | 'off-ice') => {
     setPendingTrainingType(type);
@@ -184,6 +186,9 @@ export const SimpleDashboard: React.FC = () => {
               </div>
             </div>
           )}
+
+          {/* Game Day ritual */}
+          <GameDayCard onClick={() => setGameDayOpen(true)} className="mb-5" />
 
           {/* Daily Motivational Quote */}
           <MotivationalQuote variant="banner" useDaily showRefresh showSave className="mb-5" />
@@ -537,6 +542,7 @@ export const SimpleDashboard: React.FC = () => {
         )}
         {currentView === 'reflect' && <ReflectSpace />}
       </main>
+      <GameDayMode open={gameDayOpen} onOpenChange={setGameDayOpen} />
     </div>
   );
 };
