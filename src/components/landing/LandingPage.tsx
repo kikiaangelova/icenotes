@@ -4,6 +4,7 @@ import { Snowflake, Brain, Target, TrendingUp, Dumbbell, PenLine, Sprout, ArrowR
 import { Link } from 'react-router-dom';
 import { supabase } from '@/integrations/supabase/client';
 import { useLanguage } from '@/context/LanguageContext';
+import { ProfileCard } from '@/components/ProfileCard';
 
 interface LandingPageProps {
   onGetStarted: () => void;
@@ -50,11 +51,11 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted }) => {
             <span className="text-xs font-semibold text-foreground/80">{t('hero.badge')}</span>
           </div>
           
-          <h1 className="text-3xl md:text-6xl font-extrabold leading-tight tracking-tight text-foreground font-serif mb-4">
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-black leading-[0.95] tracking-tighter text-foreground mb-6">
             {t('hero.title.line1')}
             <br />
             {t('hero.title.line2.prefix')}{' '}
-            <span className="bg-gradient-to-r from-primary via-grape-foreground to-rose-foreground bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-primary via-grape-foreground to-rose-foreground bg-clip-text text-transparent italic">
               {t('hero.title.highlight')}
             </span>
           </h1>
@@ -180,6 +181,27 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted }) => {
                 <p className="text-sm text-muted-foreground">{item.text}</p>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ─── Safe space / community preview ─── */}
+      <section className="relative z-10 px-5 md:px-12 py-16 md:py-24">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center max-w-2xl mx-auto mb-10">
+            <p className="text-xs font-bold tracking-[0.25em] uppercase text-primary mb-3">A safe space, not a scoreboard</p>
+            <h2 className="text-3xl md:text-5xl font-black tracking-tight leading-[1.05] mb-4">
+              You're not stacking blocks.<br />
+              <span className="italic bg-gradient-to-r from-rose-foreground to-primary bg-clip-text text-transparent">You're sharing the journey.</span>
+            </h2>
+            <p className="text-base text-muted-foreground leading-relaxed">
+              Follow skaters who get it. Share the wins, the falls, and the days you almost didn't lace up.
+            </p>
+          </div>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            <ProfileCard name="Mira Chen" handle="mira.skates" level="Junior" bio="Working on my Lutz. Trusting the process 🩷" />
+            <ProfileCard name="Sasha Ivanova" handle="sashaonice" level="Senior" bio="Ice is therapy. Comp prep mode." />
+            <ProfileCard name="Theo Park" handle="theo.axel" level="Novice" bio="Falling, getting up, repeat. ⛸️" />
           </div>
         </div>
       </section>

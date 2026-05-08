@@ -25,8 +25,8 @@ export const Navbar: React.FC<NavbarProps> = ({ isDarkMode, onToggleDarkMode }) 
   ];
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border/30 bg-background/85 backdrop-blur-xl">
-      <div className="max-w-5xl mx-auto px-5 md:px-10 h-16 flex items-center justify-between">
+    <header className="sticky top-3 md:top-5 z-50 w-full px-3 md:px-6 animate-float-soft">
+      <div className="max-w-5xl mx-auto glass-nav rounded-2xl px-4 md:px-6 h-14 md:h-16 flex items-center justify-between transition-shadow duration-300 hover:shadow-xl">
         {/* Logo */}
         <Link to="/" className="flex items-center gap-2.5 shrink-0 group">
           <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-primary to-primary/80 flex items-center justify-center shadow-sm group-hover:shadow-md transition-shadow">
