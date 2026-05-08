@@ -4,8 +4,9 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { SELF_LEVELS } from '@/types/journal';
-import { Heart, Target, RefreshCw, Check } from 'lucide-react';
+import { Heart, Target, RefreshCw, Check, Sparkles } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { CoachIrisReflection } from './CoachIrisReflection';
 
 // Gentle reflection prompts
 const REFLECTION_PROMPTS = [
@@ -17,14 +18,23 @@ const REFLECTION_PROMPTS = [
 ];
 
 export const ReflectSpace: React.FC = () => {
-  const { profile, setProfile } = useJournal();
+  const { profile, setProfile, addEntry } = useJournal();
   const [reflectionText, setReflectionText] = useState('');
-  const [currentPrompt] = useState(() => 
+  const [savedReflection, setSavedReflection] = useState<{ text: string; key: number } | null>(null);
+  const [currentPrompt] = useState(() =>
     REFLECTION_PROMPTS[Math.floor(Math.random() * REFLECTION_PROMPTS.length)]
   );
   const [showGoalReflection, setShowGoalReflection] = useState(false);
   const [newFocus, setNewFocus] = useState(profile?.mainFocus || '');
   const [goalSaved, setGoalSaved] = useState(false);
+
+  const handleSaveReflection = () => {
+    const text = reflectionText.trim();
+    if (!text) return;
+    addEntry({ date: new Date(), workedOn: text, smallWin: '' });
+    setSavedReflection({ text, key: Date.now() });
+    setReflectionText('');
+  };
 
   const handleUpdateFocus = () => {
     if (!profile || !newFocus.trim()) return;
@@ -61,9 +71,23 @@ export const ReflectSpace: React.FC = () => {
             onChange={(e) => setReflectionText(e.target.value)}
             className="min-h-[150px] resize-none"
           />
-          <p className="text-xs text-center text-muted-foreground mt-4 italic">
+          <Button
+            onClick={handleSaveReflection}
+            disabled={!reflectionText.trim()}
+            className="w-full h-12 mt-3 rounded-xl"
+          >
+            <Sparkles className="w-4 h-4 mr-2" />
+            Save reflection
+          </Button>
+          <p className="text-xs text-center text-muted-foreground mt-3 italic">
             This space is just for you. Your thoughts stay private.
           </p>
+          {savedReflection && (
+            <CoachIrisReflection
+              journalText={savedReflection.text}
+              triggerKey={savedReflection.key}
+            />
+          )}
         </CardContent>
       </Card>
 
