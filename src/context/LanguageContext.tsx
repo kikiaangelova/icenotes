@@ -33,7 +33,7 @@ const dict: Dict = {
     bg: 'Тихо място, в което да помислиш, да тренираш и да видиш как растеш — тренировка по тренировка.',
   },
   'hero.attribution': { en: 'Created by a young figure skater and her mom 💙', bg: 'Създадено от млада фигуристка и нейната майка 💙' },
-  'hero.cta': { en: 'Start Your Journey', bg: 'Започни своя път' },
+  'hero.cta': { en: 'Trust in the process', bg: 'Доверѝ се на процеса' },
   'hero.disclaimer': { en: '100% free · Always private · No credit card needed', bg: '100% безплатно · Винаги поверително · Без банкова карта' },
   'hero.joinPrefix': { en: 'Join', bg: 'Присъедини се към' },
   'hero.joinSuffix.one': { en: 'skater already here', bg: 'фигурист, който вече е тук' },
