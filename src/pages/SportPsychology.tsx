@@ -2,22 +2,28 @@ import React from 'react';
 import { Navbar } from '@/components/landing/Navbar';
 import { Footer } from '@/components/landing/Footer';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Brain, Shield, Eye, Flame, Heart, Zap } from 'lucide-react';
+import { ArrowRight, Brain, Shield, Eye, Flame, Heart, Zap, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { MindfulnessTools } from '@/components/MindfulnessTools';
+import { SkatingAssistant } from '@/components/SkatingAssistant';
 import { useLanguage } from '@/context/LanguageContext';
 
 const SportPsychology: React.FC = () => {
   const { t } = useLanguage();
 
   const topics = [
-    { icon: Brain, title: t('psy.t1.title'), description: t('psy.t1.desc') },
-    { icon: Eye, title: t('psy.t2.title'), description: t('psy.t2.desc') },
-    { icon: Shield, title: t('psy.t3.title'), description: t('psy.t3.desc') },
-    { icon: Flame, title: t('psy.t4.title'), description: t('psy.t4.desc') },
-    { icon: Heart, title: t('psy.t5.title'), description: t('psy.t5.desc') },
-    { icon: Zap, title: t('psy.t6.title'), description: t('psy.t6.desc') },
+    { icon: Brain, title: t('psy.t1.title'), description: t('psy.t1.desc'), prompt: "I want to work on my mental resilience. Can you guide me through a short session?" },
+    { icon: Eye, title: t('psy.t2.title'), description: t('psy.t2.desc'), prompt: "I want to practice visualization for my skating. Let's do a guided session." },
+    { icon: Shield, title: t('psy.t3.title'), description: t('psy.t3.desc'), prompt: "I want to build more confidence on the ice. Can you help me?" },
+    { icon: Flame, title: t('psy.t4.title'), description: t('psy.t4.desc'), prompt: "I'm struggling with motivation lately. Can we talk about it?" },
+    { icon: Heart, title: t('psy.t5.title'), description: t('psy.t5.desc'), prompt: "I want to work on managing my emotions during competition." },
+    { icon: Zap, title: t('psy.t6.title'), description: t('psy.t6.desc'), prompt: "Help me improve my focus and concentration during practice." },
   ];
+
+  const startSession = (prompt: string) => {
+    window.dispatchEvent(new CustomEvent('coach-iris:open', { detail: { message: prompt } }));
+  };
+
 
   return (
     <div className="min-h-screen bg-background">
