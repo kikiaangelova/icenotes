@@ -19,15 +19,21 @@ export const SkatingAssistant: React.FC = () => {
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
+  const messagesRef = useRef<Msg[]>([]);
+  const loadingRef = useRef(false);
+
+  useEffect(() => { messagesRef.current = messages; }, [messages]);
+  useEffect(() => { loadingRef.current = loading; }, [loading]);
 
   useEffect(() => {
     scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight, behavior: 'smooth' });
   }, [messages, loading]);
 
-  const send = async (text: string) => {
-    if (!text.trim() || loading) return;
+  const send = async (text: string, opts?: { reset?: boolean }) => {
+    if (!text.trim() || loadingRef.current) return;
+    const base = opts?.reset ? [] : messagesRef.current;
     const userMsg: Msg = { role: 'user', content: text };
-    const next = [...messages, userMsg];
+    const next = [...base, userMsg];
     setMessages(next);
     setInput('');
     setLoading(true);
