@@ -6,6 +6,7 @@ import { supabase } from '@/integrations/supabase/client';
 import { useLanguage } from '@/context/LanguageContext';
 import { ProfileCard } from '@/components/ProfileCard';
 import heroVideo from '@/assets/hero-skater.mp4.asset.json';
+import { HeroVideo } from './HeroVideo';
 
 interface LandingPageProps {
   onGetStarted: () => void;
@@ -41,24 +42,17 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted }) => {
       {/* ─── Cinematic Hero ─── */}
       <section className="relative z-10 -mt-px overflow-hidden">
         <div className="relative min-h-[92vh] md:min-h-[100vh] w-full flex items-end md:items-center">
-          {/* Video layer */}
+          {/* Video layer with controls */}
           <div className="absolute inset-0 -z-10">
-            <video
+            <HeroVideo
               src={heroVideo.url}
-              autoPlay
-              muted
-              loop
-              playsInline
-              poster=""
-              className="w-full h-full object-cover scale-105"
-              style={{ filter: 'saturate(0.92) contrast(1.05)' }}
+              className="w-full h-full"
+              videoClassName="scale-105"
+              filter="saturate(0.92) contrast(1.05)"
             />
-            {/* Cinematic gradient veils for dramatic contrast */}
-            <div className="absolute inset-0 bg-gradient-to-b from-foreground/10 via-foreground/30 to-foreground/85" />
-            <div className="absolute inset-0 bg-gradient-to-tr from-peach/20 via-transparent to-lavender/20 mix-blend-overlay" />
-            {/* Soft motion-blur orbs */}
-            <div className="absolute top-1/4 -left-20 w-[28rem] h-[28rem] rounded-full bg-warmth/20 blur-3xl animate-float" />
-            <div className="absolute bottom-1/4 -right-20 w-[32rem] h-[32rem] rounded-full bg-primary/25 blur-3xl animate-float" style={{ animationDelay: '2s' }} />
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-peach/20 via-transparent to-lavender/20 mix-blend-overlay" />
+            <div className="pointer-events-none absolute top-1/4 -left-20 w-[28rem] h-[28rem] rounded-full bg-warmth/20 blur-3xl animate-float" />
+            <div className="pointer-events-none absolute bottom-1/4 -right-20 w-[32rem] h-[32rem] rounded-full bg-primary/25 blur-3xl animate-float" style={{ animationDelay: '2s' }} />
           </div>
 
           {/* Content */}
