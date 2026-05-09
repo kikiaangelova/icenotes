@@ -192,7 +192,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted }) => {
       </section>
 
       {/* ─── How It Works ─── */}
-      <section className="relative z-10 px-5 md:px-12 py-10 md:py-20 bg-gradient-to-b from-mint/15 via-sky/10 to-background border-y border-border/30">
+      <section id="how-it-works" className="relative z-10 px-5 md:px-12 py-10 md:py-20 bg-gradient-to-b from-mint/15 via-sky/10 to-background border-y border-border/30">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-2xl md:text-4xl font-extrabold tracking-tight text-foreground font-serif text-center mb-10">
             {t('steps.heading')}
@@ -221,7 +221,56 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted }) => {
         </div>
       </section>
 
-      {/* ─── Safe space / community preview ─── */}
+      {/* ─── Inside the Platform — cinematic preview ─── */}
+      <section className="relative z-10 px-5 md:px-12 py-16 md:py-28 overflow-hidden">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center max-w-2xl mx-auto mb-10 md:mb-14">
+            <p className="text-xs font-bold tracking-[0.3em] uppercase text-primary mb-3">Inside the platform</p>
+            <h2 className="text-3xl md:text-6xl font-black tracking-[-0.03em] leading-[1.02] text-foreground mb-4">
+              Calm tools.<br />
+              <span className="italic font-light text-warmth">Cinematic feels.</span>
+            </h2>
+            <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
+              Journaling, jump tracking, mindset prep — all in one warm, distraction-free space designed for the way you actually train.
+            </p>
+          </div>
+
+          <div className="relative rounded-[2rem] md:rounded-[2.5rem] overflow-hidden shadow-2xl border border-border/40 group">
+            <video
+              src={heroVideo.url}
+              autoPlay
+              muted
+              loop
+              playsInline
+              className="w-full aspect-[16/10] md:aspect-[21/9] object-cover"
+              style={{ filter: 'saturate(0.95)' }}
+            />
+            {/* Translucent UI panels overlay */}
+            <div className="absolute inset-0 bg-gradient-to-t from-foreground/70 via-foreground/10 to-transparent" />
+
+            <div className="absolute inset-x-0 bottom-0 p-5 md:p-10 flex flex-col md:flex-row md:items-end md:justify-between gap-4">
+              <div className="bg-background/15 backdrop-blur-2xl border border-background/20 rounded-2xl p-4 md:p-6 max-w-xs">
+                <div className="flex items-center gap-2 mb-2">
+                  <Heart className="w-4 h-4 text-rose fill-rose" />
+                  <span className="text-xs font-semibold text-background/90 uppercase tracking-wider">Today's reflection</span>
+                </div>
+                <p className="text-sm md:text-base text-background font-medium leading-relaxed">
+                  "Felt my edges click on the back outside spiral. Trusting the lean."
+                </p>
+              </div>
+              <div className="bg-background/15 backdrop-blur-2xl border border-background/20 rounded-2xl px-5 py-4 flex items-center gap-3">
+                <div className="w-10 h-10 rounded-xl bg-mint/80 flex items-center justify-center">
+                  <TrendingUp className="w-5 h-5 text-mint-foreground" />
+                </div>
+                <div>
+                  <div className="text-2xl md:text-3xl font-black text-background leading-none">+12%</div>
+                  <div className="text-[10px] uppercase tracking-wider text-background/70 mt-1">Confidence this month</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
       <section className="relative z-10 px-5 md:px-12 py-16 md:py-24">
         <div className="max-w-5xl mx-auto">
           <div className="text-center max-w-2xl mx-auto mb-10">
@@ -259,7 +308,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted }) => {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
             <Link to="/auth?mode=signup" className="w-full sm:w-auto">
               <Button size="lg" className="h-14 px-10 text-base font-bold rounded-2xl gap-2.5 w-full shadow-md bg-gradient-to-r from-primary to-primary/85">
-                {t('hero.cta')}
+                Start Training Smart
                 <ArrowRight className="w-4 h-4" />
               </Button>
             </Link>
