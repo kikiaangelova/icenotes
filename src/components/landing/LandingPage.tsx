@@ -38,52 +38,87 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted }) => {
 
   return (
     <>
-      {/* ─── Hero ─── */}
-      <section className="relative z-10 px-5 md:px-12 pt-16 pb-10 md:pt-32 md:pb-20 overflow-hidden">
-        {/* Multi-color decorative blobs */}
-        <div className="absolute top-0 left-0 w-80 h-80 bg-gradient-to-br from-sky/30 to-primary/10 rounded-full blur-3xl -z-10" />
-        <div className="absolute top-20 right-0 w-64 h-64 bg-gradient-to-bl from-lavender/40 to-grape/20 rounded-full blur-3xl -z-10" />
-        <div className="absolute bottom-0 left-1/3 w-72 h-48 bg-gradient-to-r from-mint/25 to-rose/15 rounded-full blur-3xl -z-10" />
-        <div className="absolute top-40 left-1/2 w-40 h-40 bg-peach/20 rounded-full blur-3xl -z-10" />
-
-        <div className="max-w-3xl mx-auto text-center">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-sky/40 to-lavender/40 border border-primary/10 mb-6">
-            <Sparkles className="w-3.5 h-3.5 text-primary" />
-            <span className="text-xs font-semibold text-foreground/80">{t('hero.badge')}</span>
+      {/* ─── Cinematic Hero ─── */}
+      <section className="relative z-10 -mt-px overflow-hidden">
+        <div className="relative min-h-[92vh] md:min-h-[100vh] w-full flex items-end md:items-center">
+          {/* Video layer */}
+          <div className="absolute inset-0 -z-10">
+            <video
+              src={heroVideo.url}
+              autoPlay
+              muted
+              loop
+              playsInline
+              poster=""
+              className="w-full h-full object-cover scale-105"
+              style={{ filter: 'saturate(0.92) contrast(1.05)' }}
+            />
+            {/* Cinematic gradient veils for dramatic contrast */}
+            <div className="absolute inset-0 bg-gradient-to-b from-foreground/10 via-foreground/30 to-foreground/85" />
+            <div className="absolute inset-0 bg-gradient-to-tr from-peach/20 via-transparent to-lavender/20 mix-blend-overlay" />
+            {/* Soft motion-blur orbs */}
+            <div className="absolute top-1/4 -left-20 w-[28rem] h-[28rem] rounded-full bg-warmth/20 blur-3xl animate-float" />
+            <div className="absolute bottom-1/4 -right-20 w-[32rem] h-[32rem] rounded-full bg-primary/25 blur-3xl animate-float" style={{ animationDelay: '2s' }} />
           </div>
-          
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-black leading-[0.95] tracking-tighter text-foreground mb-6">
-            {t('hero.title.line1')}
-            <br />
-            {t('hero.title.line2.prefix')}{' '}
-            <span className="bg-gradient-to-r from-primary via-grape-foreground to-rose-foreground bg-clip-text text-transparent italic">
-              {t('hero.title.highlight')}
-            </span>
-          </h1>
-          <p className="text-base md:text-xl text-muted-foreground max-w-xl mx-auto mb-3 leading-relaxed">
-            {t('hero.subtitle')}
-          </p>
-          <p className="text-xs text-muted-foreground/60 italic mb-7">
-            {t('hero.attribution')}
-          </p>
-          <Link to="/auth?mode=signup">
-            <Button size="lg" className="h-14 px-10 text-base font-bold rounded-2xl gap-2.5 w-full sm:w-auto shadow-md hover:shadow-lg bg-gradient-to-r from-primary to-primary/85">
-              {t('hero.cta')}
-              <ArrowRight className="w-4 h-4" />
-            </Button>
-          </Link>
-          <p className="text-xs text-muted-foreground mt-3">
-            {t('hero.disclaimer')}
-          </p>
 
-          {userCount !== null && userCount > 0 && (
-            <div className="mt-8 inline-flex items-center gap-2.5 px-5 py-3 rounded-2xl bg-gradient-to-r from-mint/50 to-sky/30 border border-mint-foreground/10">
-              <Users className="w-4 h-4 text-mint-foreground" />
-              <span className="text-sm font-semibold text-foreground">
-                {t('hero.joinPrefix')} <span className="font-extrabold text-primary">{userCount.toLocaleString()}</span> {userCount !== 1 ? t('hero.joinSuffix.many') : t('hero.joinSuffix.one')}
-              </span>
+          {/* Content */}
+          <div className="relative w-full px-5 md:px-12 pb-16 pt-28 md:pb-24 md:pt-32">
+            <div className="max-w-5xl mx-auto md:mx-0">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-background/15 backdrop-blur-xl border border-background/25 mb-6 md:mb-8">
+                <Sparkles className="w-3.5 h-3.5 text-background" />
+                <span className="text-xs font-semibold tracking-wide text-background/95 uppercase">For figure skaters who train with intention</span>
+              </div>
+
+              <h1 className="text-[2.75rem] sm:text-6xl md:text-8xl lg:text-[7.5rem] font-black leading-[0.9] tracking-[-0.04em] text-background mb-6 md:mb-8 max-w-4xl"
+                  style={{ textShadow: '0 2px 40px hsl(var(--foreground) / 0.4)' }}>
+                Train smart.<br />
+                <span className="italic font-light bg-gradient-to-r from-peach via-background to-lavender bg-clip-text text-transparent">
+                  Skate from within.
+                </span>
+              </h1>
+
+              <p className="text-base md:text-2xl text-background/85 max-w-xl mb-8 md:mb-10 leading-relaxed font-light">
+                The journaling, mindset & training space built for the next generation of figure skaters.
+              </p>
+
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 max-w-md sm:max-w-none">
+                <Link to="/auth?mode=signup" className="w-full sm:w-auto">
+                  <Button
+                    size="lg"
+                    className="h-16 px-10 text-base md:text-lg font-bold rounded-2xl gap-2.5 w-full bg-background text-foreground hover:bg-background/95 shadow-2xl hover:scale-[1.02] transition-all"
+                  >
+                    Start Training Smart
+                    <ArrowRight className="w-5 h-5" />
+                  </Button>
+                </Link>
+                <a href="#how-it-works" className="w-full sm:w-auto">
+                  <Button
+                    size="lg"
+                    variant="outline"
+                    className="h-16 px-8 text-base font-semibold rounded-2xl gap-2.5 w-full bg-background/10 backdrop-blur-xl border-background/30 text-background hover:bg-background/20 hover:text-background"
+                  >
+                    <Play className="w-4 h-4 fill-background" />
+                    See how it works
+                  </Button>
+                </a>
+              </div>
+
+              {userCount !== null && userCount > 0 && (
+                <div className="mt-10 inline-flex items-center gap-2.5 px-4 py-2.5 rounded-full bg-background/15 backdrop-blur-xl border border-background/20">
+                  <Users className="w-4 h-4 text-background" />
+                  <span className="text-sm font-medium text-background/90">
+                    Joining <span className="font-bold text-background">{userCount.toLocaleString()}</span> skaters already training smart
+                  </span>
+                </div>
+              )}
             </div>
-          )}
+          </div>
+
+          {/* Scroll hint */}
+          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-2 text-background/60">
+            <span className="text-[10px] tracking-[0.3em] uppercase">Scroll</span>
+            <div className="w-px h-10 bg-gradient-to-b from-background/60 to-transparent" />
+          </div>
         </div>
       </section>
 
