@@ -230,17 +230,15 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted }) => {
           </div>
 
           <div className="relative rounded-[2rem] md:rounded-[2.5rem] overflow-hidden shadow-2xl border border-border/40 group">
-            <video
+            <HeroVideo
               src={heroVideo.url}
-              autoPlay
-              muted
-              loop
-              playsInline
-              className="w-full aspect-[16/10] md:aspect-[21/9] object-cover"
-              style={{ filter: 'saturate(0.95)' }}
+              className="block aspect-[16/10] md:aspect-[21/9]"
+              videoClassName=""
+              filter="saturate(0.95)"
+              withOverlay={false}
             />
             {/* Translucent UI panels overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-foreground/70 via-foreground/10 to-transparent" />
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-foreground/70 via-foreground/10 to-transparent" />
 
             <div className="absolute inset-x-0 bottom-0 p-5 md:p-10 flex flex-col md:flex-row md:items-end md:justify-between gap-4">
               <div className="bg-background/15 backdrop-blur-2xl border border-background/20 rounded-2xl p-4 md:p-6 max-w-xs">
