@@ -240,7 +240,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted }) => {
             {/* Translucent UI panels overlay */}
             <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-foreground/70 via-foreground/10 to-transparent" />
 
-            <div className="absolute inset-x-0 bottom-0 p-5 md:p-10 flex flex-col md:flex-row md:items-end md:justify-between gap-4">
+            <div className="pointer-events-none absolute inset-x-0 bottom-0 p-5 md:p-10 pr-20 md:pr-32 flex flex-col md:flex-row md:items-end md:justify-between gap-4">
               <div className="bg-background/15 backdrop-blur-2xl border border-background/20 rounded-2xl p-4 md:p-6 max-w-xs">
                 <div className="flex items-center gap-2 mb-2">
                   <Heart className="w-4 h-4 text-rose fill-rose" />
