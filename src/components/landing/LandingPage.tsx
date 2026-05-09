@@ -43,7 +43,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted }) => {
       <section className="relative z-10 -mt-px overflow-hidden">
         <div className="relative min-h-[92vh] md:min-h-[100vh] w-full flex items-end md:items-center">
           {/* Video layer with controls */}
-          <div className="absolute inset-0 -z-10">
+          <div className="absolute inset-0 z-0">
             <HeroVideo
               src={heroVideo.url}
               className="w-full h-full"
@@ -56,8 +56,8 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted }) => {
           </div>
 
           {/* Content */}
-          <div className="relative w-full px-5 md:px-12 pb-16 pt-28 md:pb-24 md:pt-32">
-            <div className="max-w-5xl mx-auto md:mx-0">
+          <div className="relative z-10 w-full px-5 md:px-12 pb-16 pt-28 md:pb-24 md:pt-32 pointer-events-none">
+            <div className="max-w-5xl mx-auto md:mx-0 [&_a]:pointer-events-auto [&_button]:pointer-events-auto">
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-background/15 backdrop-blur-xl border border-background/25 mb-6 md:mb-8">
                 <Sparkles className="w-3.5 h-3.5 text-background" />
                 <span className="text-xs font-semibold tracking-wide text-background/95 uppercase">For figure skaters who train with intention</span>
