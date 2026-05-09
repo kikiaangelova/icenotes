@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { Snowflake, Moon, Sun, Menu, X } from 'lucide-react';
+import { Snowflake, Moon, Sun, Menu, X, Home, Compass, Sparkles, Brain, Heart } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useLanguage } from '@/context/LanguageContext';
 import { LanguageSwitcher } from './LanguageSwitcher';
@@ -17,11 +17,11 @@ export const Navbar: React.FC<NavbarProps> = ({ isDarkMode, onToggleDarkMode }) 
   const { t } = useLanguage();
 
   const NAV_LINKS = [
-    { label: t('nav.home'), href: '/' },
-    { label: t('nav.howItWorks'), href: '/how-it-works' },
-    { label: t('nav.features'), href: '/features' },
-    { label: t('nav.psychology'), href: '/sport-psychology' },
-    { label: t('nav.about'), href: '/about' },
+    { label: t('nav.home'), href: '/', icon: Home },
+    { label: t('nav.howItWorks'), href: '/how-it-works', icon: Compass },
+    { label: t('nav.features'), href: '/features', icon: Sparkles },
+    { label: t('nav.psychology'), href: '/sport-psychology', icon: Brain },
+    { label: t('nav.about'), href: '/about', icon: Heart },
   ];
 
   return (
@@ -39,20 +39,25 @@ export const Navbar: React.FC<NavbarProps> = ({ isDarkMode, onToggleDarkMode }) 
 
         {/* Desktop nav */}
         <nav className="hidden md:flex items-center gap-0.5">
-          {NAV_LINKS.map((link) => (
-            <Link
-              key={link.href}
-              to={link.href}
-              className={cn(
-                "px-3.5 py-2 rounded-xl text-sm font-semibold transition-all duration-200",
-                location.pathname === link.href
-                  ? "text-primary bg-primary/10"
-                  : "text-muted-foreground hover:text-foreground hover:bg-muted/60"
-              )}
-            >
-              {link.label}
-            </Link>
-          ))}
+          {NAV_LINKS.map((link) => {
+            const Icon = link.icon;
+            const active = location.pathname === link.href;
+            return (
+              <Link
+                key={link.href}
+                to={link.href}
+                className={cn(
+                  "px-3 py-2 rounded-xl text-sm font-semibold transition-all duration-200 flex items-center gap-1.5",
+                  active
+                    ? "text-primary bg-primary/10"
+                    : "text-muted-foreground hover:text-foreground hover:bg-muted/60 hover:scale-[1.03]"
+                )}
+              >
+                <Icon className={cn("w-4 h-4 transition-transform", active ? "" : "group-hover:scale-110")} />
+                {link.label}
+              </Link>
+            );
+          })}
         </nav>
 
         {/* Right actions */}
@@ -96,21 +101,26 @@ export const Navbar: React.FC<NavbarProps> = ({ isDarkMode, onToggleDarkMode }) 
       {mobileOpen && (
         <div className="md:hidden border-t border-border/30 bg-background/95 backdrop-blur-xl animate-fade-in">
           <nav className="flex flex-col px-5 py-4 gap-1">
-            {NAV_LINKS.map((link) => (
-              <Link
-                key={link.href}
-                to={link.href}
-                onClick={() => setMobileOpen(false)}
-                className={cn(
-                  "px-4 py-3 rounded-xl text-sm font-semibold transition-all",
-                  location.pathname === link.href
-                    ? "text-primary bg-primary/10"
-                    : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
-                )}
-              >
-                {link.label}
-              </Link>
-            ))}
+            {NAV_LINKS.map((link) => {
+              const Icon = link.icon;
+              const active = location.pathname === link.href;
+              return (
+                <Link
+                  key={link.href}
+                  to={link.href}
+                  onClick={() => setMobileOpen(false)}
+                  className={cn(
+                    "px-4 py-3 rounded-xl text-sm font-semibold transition-all flex items-center gap-3",
+                    active
+                      ? "text-primary bg-primary/10"
+                      : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
+                  )}
+                >
+                  <Icon className="w-4 h-4" />
+                  {link.label}
+                </Link>
+              );
+            })}
             <div className="border-t border-border/30 mt-3 pt-4 flex flex-col gap-2.5">
               <Link to="/auth" onClick={() => setMobileOpen(false)}>
                 <Button variant="outline" className="w-full font-semibold rounded-xl h-11">
