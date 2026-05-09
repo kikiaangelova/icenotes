@@ -100,9 +100,7 @@ export const HeroVideo: React.FC<HeroVideoProps> = ({
         muted
         loop
         playsInline
-        // iOS hint for inline playback
-        // @ts-expect-error vendor attribute
-        webkit-playsinline="true"
+        {...({ 'webkit-playsinline': 'true' } as Record<string, string>)}
         preload="auto"
         className={cn('w-full h-full object-cover', videoClassName)}
         style={filter ? { filter } : undefined}
