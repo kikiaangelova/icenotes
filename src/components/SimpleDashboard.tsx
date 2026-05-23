@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useJournal } from '@/context/JournalContext';
 import { useAuth } from '@/context/AuthContext';
 import { useLanguage } from '@/context/LanguageContext';
@@ -28,7 +28,9 @@ import { TodayJourney } from './TodayJourney';
 import { TodayQuickLog } from './TodayQuickLog';
 import { Button } from '@/components/ui/button';
 import { SELF_LEVELS } from '@/types/journal';
-import { Feather, Compass, Heart, Settings, LogOut, Dumbbell, Target, CalendarCheck, Brain, Timer, Bell, Snowflake, BookHeart, TrendingUp, Sparkles, Sun, Shield, Sparkle } from 'lucide-react';
+import { Feather, Compass, Heart, Settings, LogOut, Dumbbell, Target, CalendarCheck, Brain, Timer, Bell, Snowflake, BookHeart, TrendingUp, Sparkles, Sun, Shield, Sparkle, Play, ChevronLeft, Home as HomeIcon } from 'lucide-react';
+import { MobileBottomNav, type BottomTab } from './MobileBottomNav';
+import { ProfileSheet } from './ProfileSheet';
 import { useIsAdmin } from '@/hooks/useIsAdmin';
 import { useStreak } from '@/hooks/useStreak';
 import { GameDayCard, GameDayMode } from '@/components/GameDayMode';
@@ -67,10 +69,20 @@ export const SimpleDashboard: React.FC = () => {
   const { isAdmin } = useIsAdmin();
   const navigate = useNavigate();
   const [currentView, setCurrentView] = useState<DashboardView>('home');
+  const [activeTab, setActiveTab] = useState<'today' | 'train' | 'mind' | 'goals' | 'progress'>(() => {
+    if (typeof window === 'undefined') return 'today';
+    return (localStorage.getItem('icenotes:lastTab') as any) || 'today';
+  });
+  const [profileOpen, setProfileOpen] = useState(false);
   const [showResetDialog, setShowResetDialog] = useState(false);
   const [showReminderSettings, setShowReminderSettings] = useState(false);
   const [pendingTrainingType, setPendingTrainingType] = useState<'on-ice' | 'off-ice' | null>(null);
-  
+
+  // Persist last viewed tab so "Continue where you left off" works
+  useEffect(() => {
+    try { localStorage.setItem('icenotes:lastTab', activeTab); } catch {}
+  }, [activeTab]);
+
   const todaysEntry = getTodaysEntry();
   const todaysSessions = getTodaysSessions();
   const hasOnIce = todaysSessions.some(s => s.type === 'on-ice');
@@ -79,6 +91,47 @@ export const SimpleDashboard: React.FC = () => {
   const greeting = getGreeting(profile?.name, language);
   const streak = useStreak();
   const [gameDayOpen, setGameDayOpen] = useState(false);
+
+  // Map the persistent bottom-nav tab to the existing internal structure.
+  // - home    → top-level "today" tab on the home view
+  // - goals/training/mind → matching top tab on the home view
+  // - journal → opens the dedicated Reflect sub-view
+  // - profile → opens the Profile drawer
+  const handleBottomNav = (tab: BottomTab) => {
+    if (tab === 'profile') {
+      setProfileOpen(true);
+      return;
+    }
+    if (tab === 'journal') {
+      setCurrentView('reflect');
+      return;
+    }
+    // Any tab change exits sub-views back to home
+    setCurrentView('home');
+    if (tab === 'home') setActiveTab('today');
+    else if (tab === 'training') setActiveTab('train');
+    else setActiveTab(tab as 'goals' | 'mind');
+  };
+
+  // Derive which bottom-nav item should be highlighted
+  const bottomActive: BottomTab = (() => {
+    if (profileOpen) return 'profile';
+    if (currentView === 'reflect') return 'journal';
+    if (currentView !== 'home') return 'training';
+    if (activeTab === 'today' || activeTab === 'progress') return 'home';
+    if (activeTab === 'train') return 'training';
+    if (activeTab === 'mind') return 'mind';
+    if (activeTab === 'goals') return 'goals';
+    return 'home';
+  })();
+
+  const tabLabels: Record<typeof activeTab, string> = {
+    today: t('dash.tab.today'),
+    train: t('dash.tab.train'),
+    mind: t('dash.tab.mind'),
+    goals: t('dash.tab.goals'),
+    progress: t('dash.tab.progress'),
+  };
 
   const handleStartTraining = (type: 'on-ice' | 'off-ice') => {
     setPendingTrainingType(type);
@@ -211,20 +264,45 @@ export const SimpleDashboard: React.FC = () => {
             </div>
           )}
 
+          {/* Continue where you left off — primary action, always one tap away */}
+          {activeTab !== 'today' && (
+            <button
+              onClick={() => setActiveTab(activeTab)}
+              className="w-full mb-4 p-4 rounded-2xl bg-gradient-to-r from-primary to-primary/85 text-primary-foreground flex items-center gap-3 shadow-md hover:shadow-lg active:scale-[0.99] transition-all text-left"
+            >
+              <div className="w-11 h-11 rounded-xl bg-background/20 backdrop-blur flex items-center justify-center flex-shrink-0">
+                <Play className="w-5 h-5 fill-current" />
+              </div>
+              <div className="flex-1 min-w-0">
+                <p className="text-[10px] font-bold tracking-[0.18em] uppercase opacity-80">Continue training</p>
+                <p className="text-sm font-bold truncate">Jump back into {tabLabels[activeTab]}</p>
+              </div>
+              <ChevronLeft className="w-4 h-4 rotate-180 opacity-70" />
+            </button>
+          )}
+
           {/* Game Day ritual */}
           <GameDayCard onClick={() => setGameDayOpen(true)} className="mb-5" />
 
           {/* Daily Motivational Quote */}
           <MotivationalQuote variant="banner" useDaily showRefresh showSave className="mb-5" />
-          
+
           {/* Focus reminder */}
           <div className="text-center space-y-1.5 pb-5 sm:pb-7">
             <p className="text-xs sm:text-sm text-muted-foreground font-medium">{t('dash.focusNow')}</p>
             <p className="text-sm sm:text-base font-semibold text-foreground px-4 line-clamp-2">{profile.mainFocus}</p>
           </div>
 
+          {/* Breadcrumb — always know where you are */}
+          <div className="flex items-center justify-center gap-1.5 mb-3 text-[11px] text-muted-foreground">
+            <HomeIcon className="w-3 h-3" />
+            <span>Home</span>
+            <span className="opacity-50">/</span>
+            <span className="font-semibold text-foreground">{tabLabels[activeTab]}</span>
+          </div>
+
           {/* 5-tab consolidated structure: Today / Train / Mind / Goals / Progress */}
-          <Tabs defaultValue="today" className="space-y-5 sm:space-y-7">
+          <Tabs value={activeTab} onValueChange={(v) => setActiveTab(v as typeof activeTab)} className="space-y-5 sm:space-y-7">
             <TabsList className="grid w-full grid-cols-5 h-13 sm:h-14 rounded-2xl bg-muted/50 p-1 backdrop-blur-sm gap-1">
               <TabsTrigger value="today" className="flex flex-col sm:flex-row items-center justify-center gap-0.5 sm:gap-1.5 px-1 sm:px-2 rounded-xl data-[state=active]:bg-grape data-[state=active]:text-grape-foreground data-[state=active]:shadow-sm transition-all">
                 <Sun className="w-4 h-4 flex-shrink-0" />
@@ -502,7 +580,20 @@ export const SimpleDashboard: React.FC = () => {
           <p className="text-center text-xs sm:text-sm text-muted-foreground italic pt-8 sm:pt-10">
             {t('dash.footer.encourage')}
           </p>
+          <div className="h-24" aria-hidden="true" />
         </main>
+
+        {/* Persistent bottom nav */}
+        <MobileBottomNav active={bottomActive} onChange={handleBottomNav} />
+
+        {/* Profile drawer */}
+        <ProfileSheet
+          open={profileOpen}
+          onOpenChange={setProfileOpen}
+          onGoHome={() => { setCurrentView('home'); setActiveTab('today'); }}
+          onOpenReminders={() => setShowReminderSettings(true)}
+          onLogout={() => { setProfileOpen(false); setShowResetDialog(true); }}
+        />
 
         {/* Sign out confirmation dialog */}
         <AlertDialog open={showResetDialog} onOpenChange={setShowResetDialog}>
@@ -533,28 +624,56 @@ export const SimpleDashboard: React.FC = () => {
     );
   }
 
-  // Sub-views with back button
+  // Sub-views with back + home buttons + persistent bottom nav (no dead ends)
+  const subViewLabel: Record<Exclude<DashboardView, 'home'>, string> = {
+    journal: t('dash.tab.today'),
+    journey: t('dash.journey.title'),
+    reflect: t('dash.mind.reflect'),
+    'on-ice': t('dash.onIce.title'),
+    'off-ice': t('dash.offIce.title'),
+    jumps: t('dash.jumpTracker.title'),
+    'pre-training': t('dash.mentalPrep.title'),
+    timer: t('dash.sessionTimer.title'),
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-sky/30 via-background to-lavender/15">
       <header className="border-b border-border/30 bg-background/80 backdrop-blur-xl sticky top-0 z-10">
-        <div className="container max-w-2xl mx-auto px-4 sm:px-5 py-3.5 sm:py-4">
-          <Button 
-            variant="ghost" 
+        <div className="container max-w-2xl mx-auto px-4 sm:px-5 py-3 flex items-center justify-between gap-2">
+          <Button
+            variant="ghost"
+            size="sm"
             onClick={() => setCurrentView('home')}
-            className="text-muted-foreground hover:text-foreground -ml-2 text-sm rounded-xl font-semibold"
+            className="gap-1.5 -ml-2 rounded-xl font-semibold text-sm h-10"
           >
+            <ChevronLeft className="w-4 h-4" />
             {t('dash.back')}
+          </Button>
+          <div className="flex items-center gap-1.5 text-[11px] text-muted-foreground">
+            <HomeIcon className="w-3 h-3" />
+            <span className="opacity-70">Home</span>
+            <span className="opacity-40">/</span>
+            <span className="font-semibold text-foreground">{subViewLabel[currentView as Exclude<DashboardView, 'home'>]}</span>
+          </div>
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={() => { setCurrentView('home'); setActiveTab('today'); }}
+            className="gap-1.5 -mr-2 rounded-xl font-semibold text-sm h-10"
+          >
+            <HomeIcon className="w-4 h-4" />
+            Home
           </Button>
         </div>
       </header>
 
-      <main className="container max-w-2xl mx-auto px-4 sm:px-5 py-5 sm:py-7">
+      <main className="container max-w-2xl mx-auto px-4 sm:px-5 py-5 sm:py-7 pb-28">
         {currentView === 'timer' && (
           <SessionTimer type="on-ice" />
         )}
         {currentView === 'pre-training' && (
-          <PreTrainingPrep 
-            trainingType={pendingTrainingType || 'on-ice'} 
+          <PreTrainingPrep
+            trainingType={pendingTrainingType || 'on-ice'}
             onComplete={handlePrepComplete}
           />
         )}
@@ -566,6 +685,17 @@ export const SimpleDashboard: React.FC = () => {
         )}
         {currentView === 'reflect' && <ReflectSpace />}
       </main>
+
+      <MobileBottomNav active={bottomActive} onChange={handleBottomNav} />
+
+      <ProfileSheet
+        open={profileOpen}
+        onOpenChange={setProfileOpen}
+        onGoHome={() => { setCurrentView('home'); setActiveTab('today'); }}
+        onOpenReminders={() => setShowReminderSettings(true)}
+        onLogout={() => { setProfileOpen(false); setShowResetDialog(true); }}
+      />
+
       <GameDayMode open={gameDayOpen} onOpenChange={setGameDayOpen} />
     </div>
   );
