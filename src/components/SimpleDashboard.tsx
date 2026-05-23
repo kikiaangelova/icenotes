@@ -69,6 +69,7 @@ export const SimpleDashboard: React.FC = () => {
   const { language, t } = useLanguage();
   const { isAdmin } = useIsAdmin();
   const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams();
   const [currentView, setCurrentView] = useState<DashboardView>('home');
   const [activeTab, setActiveTab] = useState<'today' | 'train' | 'mind' | 'goals' | 'progress'>(() => {
     if (typeof window === 'undefined') return 'today';
