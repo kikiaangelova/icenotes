@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useJournal } from '@/context/JournalContext';
 import { useAuth } from '@/context/AuthContext';
 import { useLanguage } from '@/context/LanguageContext';
@@ -28,7 +28,9 @@ import { TodayJourney } from './TodayJourney';
 import { TodayQuickLog } from './TodayQuickLog';
 import { Button } from '@/components/ui/button';
 import { SELF_LEVELS } from '@/types/journal';
-import { Feather, Compass, Heart, Settings, LogOut, Dumbbell, Target, CalendarCheck, Brain, Timer, Bell, Snowflake, BookHeart, TrendingUp, Sparkles, Sun, Shield, Sparkle } from 'lucide-react';
+import { Feather, Compass, Heart, Settings, LogOut, Dumbbell, Target, CalendarCheck, Brain, Timer, Bell, Snowflake, BookHeart, TrendingUp, Sparkles, Sun, Shield, Sparkle, Play, ChevronLeft, Home as HomeIcon } from 'lucide-react';
+import { MobileBottomNav, type BottomTab } from './MobileBottomNav';
+import { ProfileSheet } from './ProfileSheet';
 import { useIsAdmin } from '@/hooks/useIsAdmin';
 import { useStreak } from '@/hooks/useStreak';
 import { GameDayCard, GameDayMode } from '@/components/GameDayMode';
