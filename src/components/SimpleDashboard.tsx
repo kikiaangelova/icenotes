@@ -35,7 +35,7 @@ import { useIsAdmin } from '@/hooks/useIsAdmin';
 import { useStreak } from '@/hooks/useStreak';
 import { GameDayCard, GameDayMode } from '@/components/GameDayMode';
 import { GuidedTour } from '@/components/GuidedTour';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -69,6 +69,7 @@ export const SimpleDashboard: React.FC = () => {
   const { language, t } = useLanguage();
   const { isAdmin } = useIsAdmin();
   const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams();
   const [currentView, setCurrentView] = useState<DashboardView>('home');
   const [activeTab, setActiveTab] = useState<'today' | 'train' | 'mind' | 'goals' | 'progress'>(() => {
     if (typeof window === 'undefined') return 'today';
@@ -83,6 +84,32 @@ export const SimpleDashboard: React.FC = () => {
   useEffect(() => {
     try { localStorage.setItem('icenotes:lastTab', activeTab); } catch {}
   }, [activeTab]);
+
+  // Honor ?action=… from Smart CTAs (e.g. SmartStartCTA on landing).
+  // Routes the freshly-arrived user straight to the right next step.
+  useEffect(() => {
+    const action = searchParams.get('action');
+    if (!action) return;
+    if (action === 'log-today') {
+      setCurrentView('home');
+      setActiveTab('today');
+      // small scroll cue so the daily log feels like the destination
+      setTimeout(() => window.scrollTo({ top: 240, behavior: 'smooth' }), 250);
+    } else if (action === 'start-tour') {
+      try { localStorage.removeItem('icenotes:tourV1'); } catch {}
+      window.location.reload();
+      return;
+    } else if (action === 'open-coach') {
+      window.dispatchEvent(new CustomEvent('coach-iris:open'));
+    } else if (action === 'game-day') {
+      setGameDayOpen(true);
+    }
+    // Clear the param so a refresh doesn't re-trigger.
+    const next = new URLSearchParams(searchParams);
+    next.delete('action');
+    setSearchParams(next, { replace: true });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchParams]);
 
   const todaysEntry = getTodaysEntry();
   const todaysSessions = getTodaysSessions();
