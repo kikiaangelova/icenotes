@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { Snowflake, Moon, Sun, Menu, X, Home, Compass, Sparkles, Brain, Heart } from 'lucide-react';
+import { Moon, Sun, Menu, X, Home, Compass, Sparkles, Brain, Heart } from 'lucide-react';
+import { SkateBootIcon } from './SkateBootIcon';
 import { cn } from '@/lib/utils';
 import { useLanguage } from '@/context/LanguageContext';
 import { LanguageSwitcher } from './LanguageSwitcher';
