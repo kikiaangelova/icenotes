@@ -292,7 +292,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted }) => {
         
         <div className="max-w-2xl mx-auto text-center">
           <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-sky/50 via-lavender/40 to-rose/30 flex items-center justify-center mx-auto mb-5 shadow-sm">
-            <Snowflake className="w-7 h-7 text-primary" />
+            <SkateBootIcon className="w-7 h-7 text-primary" />
           </div>
           <h2 className="text-2xl md:text-4xl font-extrabold tracking-tight text-foreground font-serif mb-4 leading-snug">
             {t('finalCta.heading')}
