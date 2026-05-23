@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { Snowflake, Moon, Sun, Menu, X, Home, Compass, Sparkles, Brain, Heart } from 'lucide-react';
+import { Moon, Sun, Menu, X, Home, Compass, Sparkles, Brain, Heart } from 'lucide-react';
+import { SkateBootIcon } from './SkateBootIcon';
 import { cn } from '@/lib/utils';
 import { useLanguage } from '@/context/LanguageContext';
 import { LanguageSwitcher } from './LanguageSwitcher';
@@ -29,10 +30,11 @@ export const Navbar: React.FC<NavbarProps> = ({ isDarkMode, onToggleDarkMode }) 
       <div className="max-w-5xl mx-auto glass-nav rounded-2xl px-4 md:px-6 h-14 md:h-16 flex items-center justify-between transition-shadow duration-300 hover:shadow-xl">
         {/* Logo */}
         <Link to="/" className="flex items-center gap-2.5 shrink-0 group">
-          <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-primary to-primary/80 flex items-center justify-center shadow-sm group-hover:shadow-md transition-shadow">
-            <Snowflake className="w-4.5 h-4.5 text-primary-foreground" />
+          <div className="relative w-10 h-10 rounded-2xl bg-gradient-to-br from-primary via-grape-foreground to-rose-foreground flex items-center justify-center shadow-md shadow-primary/30 group-hover:shadow-lg group-hover:shadow-primary/40 group-hover:-rotate-6 transition-all duration-300">
+            <SkateBootIcon className="w-6 h-6 text-primary-foreground" />
+            <span className="absolute -top-0.5 -right-0.5 w-2.5 h-2.5 rounded-full bg-peach animate-pulse" />
           </div>
-          <span className="text-lg font-bold tracking-tight text-foreground font-serif">
+          <span className="text-lg font-black tracking-tight text-foreground font-serif">
             IceNotes
           </span>
         </Link>

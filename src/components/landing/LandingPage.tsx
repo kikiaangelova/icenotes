@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { Snowflake, Brain, Target, TrendingUp, Dumbbell, PenLine, Sprout, ArrowRight, Users, Sparkles, Heart, Play } from 'lucide-react';
+import { Brain, Target, TrendingUp, Dumbbell, PenLine, Sprout, ArrowRight, Users, Sparkles, Heart, Play } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { supabase } from '@/integrations/supabase/client';
 import { useLanguage } from '@/context/LanguageContext';
 import { ProfileCard } from '@/components/ProfileCard';
+import { SkateBootIcon } from './SkateBootIcon';
 import heroVideo from '@/assets/hero-skater.mp4.asset.json';
 import { HeroVideo } from './HeroVideo';
 
@@ -41,55 +42,86 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted }) => {
     <>
       {/* ─── Cinematic Hero ─── */}
       <section className="relative z-10 -mt-px overflow-hidden">
-        <div className="relative min-h-[92vh] md:min-h-[100vh] w-full flex items-end md:items-center">
+        <div className="relative min-h-[94vh] md:min-h-[100vh] w-full flex items-end md:items-center">
           {/* Video layer with controls */}
           <div className="absolute inset-0 z-0">
             <HeroVideo
               src={heroVideo.url}
               className="w-full h-full"
-              videoClassName="scale-105"
-              filter="saturate(0.92) contrast(1.05)"
+              videoClassName="scale-110"
+              filter="saturate(0.85) contrast(1.15) brightness(0.95)"
+              withOverlay={false}
             />
-            <div className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-peach/20 via-transparent to-lavender/20 mix-blend-overlay" />
-            <div className="pointer-events-none absolute top-1/4 -left-20 w-[28rem] h-[28rem] rounded-full bg-warmth/20 blur-3xl animate-float" />
-            <div className="pointer-events-none absolute bottom-1/4 -right-20 w-[32rem] h-[32rem] rounded-full bg-primary/25 blur-3xl animate-float" style={{ animationDelay: '2s' }} />
+
+            {/* Cinematic stacked overlays for dramatic contrast */}
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-foreground/40 via-foreground/20 to-foreground/90" />
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-foreground/70 via-transparent to-transparent md:from-foreground/60" />
+            {/* Color wash */}
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-primary/30 via-transparent to-rose/20 mix-blend-soft-light" />
+            {/* Vignette */}
+            <div className="pointer-events-none absolute inset-0" style={{ background: 'radial-gradient(ellipse at 30% 50%, transparent 0%, transparent 40%, hsl(var(--foreground) / 0.6) 100%)' }} />
+
+            {/* Soft motion blur orbs — layered depth */}
+            <div className="pointer-events-none absolute top-1/4 -left-32 w-[36rem] h-[36rem] rounded-full bg-warmth/25 blur-[120px] animate-float" />
+            <div className="pointer-events-none absolute bottom-1/4 -right-32 w-[40rem] h-[40rem] rounded-full bg-primary/35 blur-[140px] animate-float" style={{ animationDelay: '2s' }} />
+            <div className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 w-[24rem] h-[24rem] rounded-full bg-lavender/20 blur-[100px] animate-float" style={{ animationDelay: '4s' }} />
+
+            {/* Diagonal motion-blur streak */}
+            <div className="pointer-events-none absolute -top-20 left-1/3 w-1 h-[140%] rotate-[18deg] bg-gradient-to-b from-transparent via-background/15 to-transparent blur-2xl" />
+            <div className="pointer-events-none absolute -top-20 right-1/4 w-0.5 h-[120%] rotate-[14deg] bg-gradient-to-b from-transparent via-peach/20 to-transparent blur-xl" />
+
+            {/* Top + bottom feathered fades for premium frame */}
+            <div className="pointer-events-none absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-foreground/60 to-transparent" />
+            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-foreground/95 to-transparent" />
+
+            {/* Subtle grain texture */}
+            <div className="pointer-events-none absolute inset-0 opacity-[0.08] mix-blend-overlay" style={{ backgroundImage: "url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='0.6'/></svg>\")" }} />
           </div>
 
           {/* Content */}
-          <div className="relative z-10 w-full px-5 md:px-12 pb-16 pt-28 md:pb-24 md:pt-32 pointer-events-none">
-            <div className="max-w-5xl mx-auto md:mx-0 [&_a]:pointer-events-auto [&_button]:pointer-events-auto">
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-background/15 backdrop-blur-xl border border-background/25 mb-6 md:mb-8">
-                <Sparkles className="w-3.5 h-3.5 text-background" />
-                <span className="text-xs font-semibold tracking-wide text-background/95 uppercase">For figure skaters who train with intention</span>
+          <div className="relative z-10 w-full px-5 md:px-12 pb-20 pt-28 md:pb-28 md:pt-32 pointer-events-none">
+            <div className="max-w-6xl mx-auto md:mx-0 [&_a]:pointer-events-auto [&_button]:pointer-events-auto">
+              {/* Floating glass chip */}
+              <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-background/10 backdrop-blur-2xl border border-background/30 mb-6 md:mb-8 shadow-[0_8px_32px_-8px_hsl(var(--foreground)/0.5)]">
+                <span className="relative flex h-2 w-2">
+                  <span className="absolute inline-flex h-full w-full rounded-full bg-peach opacity-75 animate-ping" />
+                  <span className="relative inline-flex h-2 w-2 rounded-full bg-peach" />
+                </span>
+                <span className="text-[11px] md:text-xs font-bold tracking-[0.18em] text-background/95 uppercase">Built for figure skaters · Gen Z</span>
               </div>
 
-              <h1 className="text-[2.75rem] sm:text-6xl md:text-8xl lg:text-[7.5rem] font-black leading-[0.9] tracking-[-0.04em] text-background mb-6 md:mb-8 max-w-4xl"
-                  style={{ textShadow: '0 2px 40px hsl(var(--foreground) / 0.4)' }}>
+              {/* Massive cinematic headline */}
+              <h1 className="text-[3rem] sm:text-7xl md:text-[8.5rem] lg:text-[10rem] font-black leading-[0.86] tracking-[-0.045em] text-background mb-6 md:mb-8 max-w-5xl"
+                  style={{ textShadow: '0 4px 60px hsl(var(--foreground) / 0.65), 0 1px 2px hsl(var(--foreground) / 0.4)' }}>
                 Train smart.<br />
-                <span className="italic font-light bg-gradient-to-r from-peach via-background to-lavender bg-clip-text text-transparent">
+                <span className="italic font-light bg-gradient-to-r from-peach via-background to-lavender bg-clip-text text-transparent" style={{ textShadow: 'none' }}>
                   Skate from within.
                 </span>
               </h1>
 
-              <p className="text-base md:text-2xl text-background/85 max-w-xl mb-8 md:mb-10 leading-relaxed font-light">
-                The journaling, mindset & training space built for the next generation of figure skaters.
-              </p>
+              {/* Subline with translucent glass plate */}
+              <div className="max-w-xl mb-9 md:mb-12">
+                <p className="text-base md:text-2xl text-background/90 leading-relaxed font-light">
+                  The journaling, mindset & training space built for the next generation of figure skaters.
+                </p>
+              </div>
 
+              {/* CTAs */}
               <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 max-w-md sm:max-w-none">
-                <Link to="/auth?mode=signup" className="w-full sm:w-auto">
+                <Link to="/auth?mode=signup" className="w-full sm:w-auto group">
                   <Button
                     size="lg"
-                    className="h-16 px-10 text-base md:text-lg font-bold rounded-2xl gap-2.5 w-full bg-background text-foreground hover:bg-background/95 shadow-2xl hover:scale-[1.02] transition-all"
+                    className="h-16 px-10 text-base md:text-lg font-black rounded-2xl gap-2.5 w-full bg-background text-foreground hover:bg-background shadow-[0_20px_60px_-15px_hsl(var(--background)/0.6)] hover:scale-[1.03] hover:-translate-y-0.5 transition-all duration-300"
                   >
                     Start Training Smart
-                    <ArrowRight className="w-5 h-5" />
+                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                   </Button>
                 </Link>
                 <a href="#how-it-works" className="w-full sm:w-auto">
                   <Button
                     size="lg"
                     variant="outline"
-                    className="h-16 px-8 text-base font-semibold rounded-2xl gap-2.5 w-full bg-background/10 backdrop-blur-xl border-background/30 text-background hover:bg-background/20 hover:text-background"
+                    className="h-16 px-8 text-base font-semibold rounded-2xl gap-2.5 w-full bg-background/10 backdrop-blur-2xl border-background/40 text-background hover:bg-background/20 hover:text-background hover:border-background/60"
                   >
                     <Play className="w-4 h-4 fill-background" />
                     See how it works
@@ -98,10 +130,10 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted }) => {
               </div>
 
               {userCount !== null && userCount > 0 && (
-                <div className="mt-10 inline-flex items-center gap-2.5 px-4 py-2.5 rounded-full bg-background/15 backdrop-blur-xl border border-background/20">
+                <div className="mt-10 inline-flex items-center gap-2.5 px-4 py-2.5 rounded-full bg-background/10 backdrop-blur-2xl border border-background/25 shadow-lg">
                   <Users className="w-4 h-4 text-background" />
                   <span className="text-sm font-medium text-background/90">
-                    Joining <span className="font-bold text-background">{userCount.toLocaleString()}</span> skaters already training smart
+                    Joining <span className="font-bold text-background">{userCount.toLocaleString()}</span> skaters training smart
                   </span>
                 </div>
               )}
@@ -109,9 +141,9 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted }) => {
           </div>
 
           {/* Scroll hint */}
-          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-2 text-background/60">
-            <span className="text-[10px] tracking-[0.3em] uppercase">Scroll</span>
-            <div className="w-px h-10 bg-gradient-to-b from-background/60 to-transparent" />
+          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-2 text-background/70 pointer-events-none">
+            <span className="text-[10px] tracking-[0.35em] uppercase font-semibold">Scroll</span>
+            <div className="w-px h-12 bg-gradient-to-b from-background/70 to-transparent" />
           </div>
         </div>
       </section>
@@ -291,7 +323,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted }) => {
         
         <div className="max-w-2xl mx-auto text-center">
           <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-sky/50 via-lavender/40 to-rose/30 flex items-center justify-center mx-auto mb-5 shadow-sm">
-            <Snowflake className="w-7 h-7 text-primary" />
+            <SkateBootIcon className="w-7 h-7 text-primary" />
           </div>
           <h2 className="text-2xl md:text-4xl font-extrabold tracking-tight text-foreground font-serif mb-4 leading-snug">
             {t('finalCta.heading')}
