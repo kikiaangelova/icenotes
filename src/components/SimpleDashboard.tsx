@@ -264,20 +264,45 @@ export const SimpleDashboard: React.FC = () => {
             </div>
           )}
 
+          {/* Continue where you left off — primary action, always one tap away */}
+          {activeTab !== 'today' && (
+            <button
+              onClick={() => setActiveTab(activeTab)}
+              className="w-full mb-4 p-4 rounded-2xl bg-gradient-to-r from-primary to-primary/85 text-primary-foreground flex items-center gap-3 shadow-md hover:shadow-lg active:scale-[0.99] transition-all text-left"
+            >
+              <div className="w-11 h-11 rounded-xl bg-background/20 backdrop-blur flex items-center justify-center flex-shrink-0">
+                <Play className="w-5 h-5 fill-current" />
+              </div>
+              <div className="flex-1 min-w-0">
+                <p className="text-[10px] font-bold tracking-[0.18em] uppercase opacity-80">Continue training</p>
+                <p className="text-sm font-bold truncate">Jump back into {tabLabels[activeTab]}</p>
+              </div>
+              <ChevronLeft className="w-4 h-4 rotate-180 opacity-70" />
+            </button>
+          )}
+
           {/* Game Day ritual */}
           <GameDayCard onClick={() => setGameDayOpen(true)} className="mb-5" />
 
           {/* Daily Motivational Quote */}
           <MotivationalQuote variant="banner" useDaily showRefresh showSave className="mb-5" />
-          
+
           {/* Focus reminder */}
           <div className="text-center space-y-1.5 pb-5 sm:pb-7">
             <p className="text-xs sm:text-sm text-muted-foreground font-medium">{t('dash.focusNow')}</p>
             <p className="text-sm sm:text-base font-semibold text-foreground px-4 line-clamp-2">{profile.mainFocus}</p>
           </div>
 
+          {/* Breadcrumb — always know where you are */}
+          <div className="flex items-center justify-center gap-1.5 mb-3 text-[11px] text-muted-foreground">
+            <HomeIcon className="w-3 h-3" />
+            <span>Home</span>
+            <span className="opacity-50">/</span>
+            <span className="font-semibold text-foreground">{tabLabels[activeTab]}</span>
+          </div>
+
           {/* 5-tab consolidated structure: Today / Train / Mind / Goals / Progress */}
-          <Tabs defaultValue="today" className="space-y-5 sm:space-y-7">
+          <Tabs value={activeTab} onValueChange={(v) => setActiveTab(v as typeof activeTab)} className="space-y-5 sm:space-y-7">
             <TabsList className="grid w-full grid-cols-5 h-13 sm:h-14 rounded-2xl bg-muted/50 p-1 backdrop-blur-sm gap-1">
               <TabsTrigger value="today" className="flex flex-col sm:flex-row items-center justify-center gap-0.5 sm:gap-1.5 px-1 sm:px-2 rounded-xl data-[state=active]:bg-grape data-[state=active]:text-grape-foreground data-[state=active]:shadow-sm transition-all">
                 <Sun className="w-4 h-4 flex-shrink-0" />
