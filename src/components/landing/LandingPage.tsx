@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { Snowflake, Brain, Target, TrendingUp, Dumbbell, PenLine, Sprout, ArrowRight, Users, Sparkles, Heart, Play } from 'lucide-react';
+import { Brain, Target, TrendingUp, Dumbbell, PenLine, Sprout, ArrowRight, Users, Sparkles, Heart, Play } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { supabase } from '@/integrations/supabase/client';
 import { useLanguage } from '@/context/LanguageContext';
 import { ProfileCard } from '@/components/ProfileCard';
+import { SkateBootIcon } from './SkateBootIcon';
 import heroVideo from '@/assets/hero-skater.mp4.asset.json';
 import { HeroVideo } from './HeroVideo';
 
