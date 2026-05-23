@@ -69,10 +69,20 @@ export const SimpleDashboard: React.FC = () => {
   const { isAdmin } = useIsAdmin();
   const navigate = useNavigate();
   const [currentView, setCurrentView] = useState<DashboardView>('home');
+  const [activeTab, setActiveTab] = useState<'today' | 'train' | 'mind' | 'goals' | 'progress'>(() => {
+    if (typeof window === 'undefined') return 'today';
+    return (localStorage.getItem('icenotes:lastTab') as any) || 'today';
+  });
+  const [profileOpen, setProfileOpen] = useState(false);
   const [showResetDialog, setShowResetDialog] = useState(false);
   const [showReminderSettings, setShowReminderSettings] = useState(false);
   const [pendingTrainingType, setPendingTrainingType] = useState<'on-ice' | 'off-ice' | null>(null);
-  
+
+  // Persist last viewed tab so "Continue where you left off" works
+  useEffect(() => {
+    try { localStorage.setItem('icenotes:lastTab', activeTab); } catch {}
+  }, [activeTab]);
+
   const todaysEntry = getTodaysEntry();
   const todaysSessions = getTodaysSessions();
   const hasOnIce = todaysSessions.some(s => s.type === 'on-ice');
@@ -81,6 +91,47 @@ export const SimpleDashboard: React.FC = () => {
   const greeting = getGreeting(profile?.name, language);
   const streak = useStreak();
   const [gameDayOpen, setGameDayOpen] = useState(false);
+
+  // Map the persistent bottom-nav tab to the existing internal structure.
+  // - home    → top-level "today" tab on the home view
+  // - goals/training/mind → matching top tab on the home view
+  // - journal → opens the dedicated Reflect sub-view
+  // - profile → opens the Profile drawer
+  const handleBottomNav = (tab: BottomTab) => {
+    if (tab === 'profile') {
+      setProfileOpen(true);
+      return;
+    }
+    if (tab === 'journal') {
+      setCurrentView('reflect');
+      return;
+    }
+    // Any tab change exits sub-views back to home
+    setCurrentView('home');
+    if (tab === 'home') setActiveTab('today');
+    else if (tab === 'training') setActiveTab('train');
+    else setActiveTab(tab as 'goals' | 'mind');
+  };
+
+  // Derive which bottom-nav item should be highlighted
+  const bottomActive: BottomTab = (() => {
+    if (profileOpen) return 'profile';
+    if (currentView === 'reflect') return 'journal';
+    if (currentView !== 'home') return 'training';
+    if (activeTab === 'today' || activeTab === 'progress') return 'home';
+    if (activeTab === 'train') return 'training';
+    if (activeTab === 'mind') return 'mind';
+    if (activeTab === 'goals') return 'goals';
+    return 'home';
+  })();
+
+  const tabLabels: Record<typeof activeTab, string> = {
+    today: t('dash.tab.today'),
+    train: t('dash.tab.train'),
+    mind: t('dash.tab.mind'),
+    goals: t('dash.tab.goals'),
+    progress: t('dash.tab.progress'),
+  };
 
   const handleStartTraining = (type: 'on-ice' | 'off-ice') => {
     setPendingTrainingType(type);
