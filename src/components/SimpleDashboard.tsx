@@ -624,28 +624,56 @@ export const SimpleDashboard: React.FC = () => {
     );
   }
 
-  // Sub-views with back button
+  // Sub-views with back + home buttons + persistent bottom nav (no dead ends)
+  const subViewLabel: Record<Exclude<DashboardView, 'home'>, string> = {
+    journal: t('dash.tab.today'),
+    journey: t('dash.journey.title'),
+    reflect: t('dash.mind.reflect'),
+    'on-ice': t('dash.onIce.title'),
+    'off-ice': t('dash.offIce.title'),
+    jumps: t('dash.jumpTracker.title'),
+    'pre-training': t('dash.mentalPrep.title'),
+    timer: t('dash.sessionTimer.title'),
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-sky/30 via-background to-lavender/15">
       <header className="border-b border-border/30 bg-background/80 backdrop-blur-xl sticky top-0 z-10">
-        <div className="container max-w-2xl mx-auto px-4 sm:px-5 py-3.5 sm:py-4">
-          <Button 
-            variant="ghost" 
+        <div className="container max-w-2xl mx-auto px-4 sm:px-5 py-3 flex items-center justify-between gap-2">
+          <Button
+            variant="ghost"
+            size="sm"
             onClick={() => setCurrentView('home')}
-            className="text-muted-foreground hover:text-foreground -ml-2 text-sm rounded-xl font-semibold"
+            className="gap-1.5 -ml-2 rounded-xl font-semibold text-sm h-10"
           >
+            <ChevronLeft className="w-4 h-4" />
             {t('dash.back')}
+          </Button>
+          <div className="flex items-center gap-1.5 text-[11px] text-muted-foreground">
+            <HomeIcon className="w-3 h-3" />
+            <span className="opacity-70">Home</span>
+            <span className="opacity-40">/</span>
+            <span className="font-semibold text-foreground">{subViewLabel[currentView as Exclude<DashboardView, 'home'>]}</span>
+          </div>
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={() => { setCurrentView('home'); setActiveTab('today'); }}
+            className="gap-1.5 -mr-2 rounded-xl font-semibold text-sm h-10"
+          >
+            <HomeIcon className="w-4 h-4" />
+            Home
           </Button>
         </div>
       </header>
 
-      <main className="container max-w-2xl mx-auto px-4 sm:px-5 py-5 sm:py-7">
+      <main className="container max-w-2xl mx-auto px-4 sm:px-5 py-5 sm:py-7 pb-28">
         {currentView === 'timer' && (
           <SessionTimer type="on-ice" />
         )}
         {currentView === 'pre-training' && (
-          <PreTrainingPrep 
-            trainingType={pendingTrainingType || 'on-ice'} 
+          <PreTrainingPrep
+            trainingType={pendingTrainingType || 'on-ice'}
             onComplete={handlePrepComplete}
           />
         )}
@@ -657,6 +685,17 @@ export const SimpleDashboard: React.FC = () => {
         )}
         {currentView === 'reflect' && <ReflectSpace />}
       </main>
+
+      <MobileBottomNav active={bottomActive} onChange={handleBottomNav} />
+
+      <ProfileSheet
+        open={profileOpen}
+        onOpenChange={setProfileOpen}
+        onGoHome={() => { setCurrentView('home'); setActiveTab('today'); }}
+        onOpenReminders={() => setShowReminderSettings(true)}
+        onLogout={() => { setProfileOpen(false); setShowResetDialog(true); }}
+      />
+
       <GameDayMode open={gameDayOpen} onOpenChange={setGameDayOpen} />
     </div>
   );
