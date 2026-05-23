@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Seo } from '@/components/Seo';
 import { supabase } from '@/integrations/supabase/client';
 import { useAuth } from '@/context/AuthContext';
 import { useIsAdmin } from '@/hooks/useIsAdmin';
@@ -180,6 +181,7 @@ const AdminPage: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <Seo title="Admin Console – IceNotes" description="Internal IceNotes admin dashboard for platform analytics, user insights and operational tools." path="/admin" />
       <header className="border-b border-border/60 bg-card/40 backdrop-blur sticky top-0 z-10">
         <div className="container max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center gap-3">

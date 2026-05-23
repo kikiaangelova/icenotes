@@ -9,6 +9,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Loader2, Mail, Lock, User, ArrowLeft, CheckCircle2, Snowflake } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { useNavigate, useSearchParams } from 'react-router-dom';
+import { Seo } from '@/components/Seo';
 
 type AuthView = 'auth' | 'forgot' | 'reset';
 
@@ -211,6 +212,7 @@ const Auth: React.FC = () => {
   if (view === 'reset') {
     return (
       <div className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-b from-ice/30 to-background">
+        <Seo title="Reset Password – IceNotes" description="Set a new password for your IceNotes skater account and get back to training, journaling and tracking your progress." path="/auth?mode=reset" />
         <div className="w-full max-w-md">
           <div className="text-center mb-8">
             <div className="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-br from-primary to-ice-deep flex items-center justify-center mb-4">
@@ -281,6 +283,7 @@ const Auth: React.FC = () => {
   if (view === 'forgot') {
     return (
       <div className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-b from-ice/30 to-background">
+        <Seo title="Forgot Password – IceNotes" description="Recover access to your IceNotes account. We'll email you a secure link to reset your password." path="/auth?mode=forgot" />
         <div className="w-full max-w-md">
           <div className="text-center mb-8">
             <div className="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-br from-primary to-ice-deep flex items-center justify-center mb-4">
@@ -370,6 +373,7 @@ const Auth: React.FC = () => {
   // Main auth view
   return (
     <div className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-b from-ice/30 to-background">
+      <Seo title="Sign In or Sign Up – IceNotes" description="Log in to IceNotes or create a free account to journal your skating, track jumps and train your mindset with Coach Iris." path="/auth" />
       <div className="w-full max-w-md">
         {/* Logo */}
         <div className="text-center mb-8">

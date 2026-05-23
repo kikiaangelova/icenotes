@@ -4,6 +4,7 @@ import { OnboardingFlow } from '@/components/OnboardingFlow';
 import { SimpleDashboard } from '@/components/SimpleDashboard';
 import { Loader2 } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
+import { Seo } from '@/components/Seo';
 
 const AppContent: React.FC = () => {
   const { profile, isLoading } = useJournal();
@@ -31,6 +32,11 @@ const AppContent: React.FC = () => {
 const Index: React.FC = () => {
   return (
     <JournalProvider>
+      <Seo
+        title="Skater Dashboard – IceNotes"
+        description="Your private IceNotes dashboard: log training sessions, track jumps, journal your mindset and chat with Coach Iris."
+        path="/dashboard"
+      />
       <AppContent />
     </JournalProvider>
   );
