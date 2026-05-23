@@ -74,7 +74,7 @@ const Auth: React.FC = () => {
         title: t('auth.toast.welcomeBack.title'),
         description: t('auth.toast.welcomeBack.desc'),
       });
-      navigate('/dashboard');
+      navigate(searchParams.get('next') || '/dashboard');
     }
   };
 
@@ -123,7 +123,7 @@ const Auth: React.FC = () => {
         title: t('auth.toast.created.title'),
         description: t('auth.toast.created.desc'),
       });
-      navigate('/dashboard');
+      navigate(searchParams.get('next') || '/dashboard');
     }
   };
 
@@ -203,7 +203,7 @@ const Auth: React.FC = () => {
         title: t('auth.toast.passUpdated.title'),
         description: t('auth.toast.passUpdated.desc'),
       });
-      navigate('/dashboard');
+      navigate(searchParams.get('next') || '/dashboard');
     }
   };
 
