@@ -8,6 +8,7 @@ import { ProfileCard } from '@/components/ProfileCard';
 import { SkateBootIcon } from './SkateBootIcon';
 import heroVideo from '@/assets/hero-skater.mp4.asset.json';
 import { HeroVideo } from './HeroVideo';
+import { SmartStartCTA } from './SmartStartCTA';
 
 interface LandingPageProps {
   onGetStarted: () => void;
