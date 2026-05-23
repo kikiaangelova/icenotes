@@ -580,7 +580,20 @@ export const SimpleDashboard: React.FC = () => {
           <p className="text-center text-xs sm:text-sm text-muted-foreground italic pt-8 sm:pt-10">
             {t('dash.footer.encourage')}
           </p>
+          <div className="h-24" aria-hidden="true" />
         </main>
+
+        {/* Persistent bottom nav */}
+        <MobileBottomNav active={bottomActive} onChange={handleBottomNav} />
+
+        {/* Profile drawer */}
+        <ProfileSheet
+          open={profileOpen}
+          onOpenChange={setProfileOpen}
+          onGoHome={() => { setCurrentView('home'); setActiveTab('today'); }}
+          onOpenReminders={() => setShowReminderSettings(true)}
+          onLogout={() => { setProfileOpen(false); setShowResetDialog(true); }}
+        />
 
         {/* Sign out confirmation dialog */}
         <AlertDialog open={showResetDialog} onOpenChange={setShowResetDialog}>
