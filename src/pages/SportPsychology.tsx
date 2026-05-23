@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Seo } from '@/components/Seo';
 import { Navbar } from '@/components/landing/Navbar';
 import { Footer } from '@/components/landing/Footer';
 import { Link } from 'react-router-dom';
@@ -30,6 +31,7 @@ const SportPsychology: React.FC = () => {
   return (
     <div className="min-h-screen bg-background">
       <Navbar isDarkMode={false} onToggleDarkMode={() => {}} />
+        <Seo title="Sport Psychology for Figure Skaters – IceNotes" description="Mental-training hub for figure skaters: resilience, visualization, confidence, focus, and Game Day rituals with Coach Iris AI." path="/sport-psychology" />
 
         <section className="px-5 md:px-12 pt-14 pb-10 md:pt-28 md:pb-16">
           <div className="max-w-3xl mx-auto text-center">

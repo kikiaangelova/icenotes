@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Seo } from '@/components/Seo';
 import { Navbar } from '@/components/landing/Navbar';
 import { Footer } from '@/components/landing/Footer';
 import { Card, CardContent } from '@/components/ui/card';
@@ -67,6 +68,7 @@ const ShareExperience: React.FC = () => {
     <div className={isDarkMode ? 'dark' : ''}>
       <div className="min-h-screen bg-background">
         <Navbar isDarkMode={isDarkMode} onToggleDarkMode={toggleDarkMode} />
+        <Seo title="Share Your Skating Story – IceNotes Community" description="Read and share real stories from the IceNotes skating community. A safe space for figure skaters to be heard." path="/share-experience" />
 
         <main className="px-6 md:px-12 py-16 md:py-24">
           <div className="max-w-lg mx-auto">

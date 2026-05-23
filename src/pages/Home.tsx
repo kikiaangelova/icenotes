@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Seo } from '@/components/Seo';
 import { Navbar } from '@/components/landing/Navbar';
 import { Footer } from '@/components/landing/Footer';
 import { LandingPage } from '@/components/landing/LandingPage';
@@ -21,6 +22,7 @@ const Home: React.FC = () => {
     <div className={isDarkMode ? "dark" : ""}>
       <div className="min-h-screen bg-background">
         <Navbar isDarkMode={isDarkMode} onToggleDarkMode={() => setIsDarkMode(!isDarkMode)} />
+        <Seo title="IceNotes – Reflect. Train. Perform." description="A digital journaling and mental-training platform for ambitious figure skaters. Track mindset, training, and performance with Coach Iris AI." path="/" jsonLd={[{"@context": "https://schema.org", "@type": "WebSite", "name": "IceNotes", "url": "https://skategoals.com/"}, {"@context": "https://schema.org", "@type": "Organization", "name": "IceNotes", "url": "https://skategoals.com/", "logo": "https://skategoals.com/og-image.png"}]} />
         <LandingPage 
           onGetStarted={() => navigate('/auth')} 
           isDarkMode={isDarkMode} 
