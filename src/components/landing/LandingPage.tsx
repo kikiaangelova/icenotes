@@ -109,15 +109,12 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted }) => {
 
               {/* CTAs */}
               <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 max-w-md sm:max-w-none">
-                <Link to="/auth?mode=signup" className="w-full sm:w-auto group">
-                  <Button
-                    size="lg"
-                    className="h-16 px-10 text-base md:text-lg font-black rounded-2xl gap-2.5 w-full bg-background text-foreground hover:bg-background shadow-[0_20px_60px_-15px_hsl(var(--background)/0.6)] hover:scale-[1.03] hover:-translate-y-0.5 transition-all duration-300"
-                  >
-                    Start Training Smart
-                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                  </Button>
-                </Link>
+                <SmartStartCTA
+                  action="log-today"
+                  size="lg"
+                  className="h-16 px-10 text-base md:text-lg font-black rounded-2xl gap-2.5 w-full sm:w-auto bg-background text-foreground hover:bg-background shadow-[0_20px_60px_-15px_hsl(var(--background)/0.6)] hover:scale-[1.03] hover:-translate-y-0.5 transition-all duration-300"
+                  label="Start Training Smart"
+                />
                 <a href="#how-it-works" className="w-full sm:w-auto">
                   <Button
                     size="lg"
