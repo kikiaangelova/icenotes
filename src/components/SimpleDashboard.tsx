@@ -698,6 +698,8 @@ export const SimpleDashboard: React.FC = () => {
       />
 
       <GameDayMode open={gameDayOpen} onOpenChange={setGameDayOpen} />
+
+      <GuidedTour setActiveTab={setActiveTab} />
     </div>
   );
 };
