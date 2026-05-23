@@ -1,0 +1,20 @@
+# IceNotes
+
+> A digital journaling, reflection, and mental-training platform for ambitious figure skaters. Track your mindset, training, and performance growth with Coach Iris — an AI sport-psychology mentor built for Gen Z athletes.
+
+IceNotes helps skaters reflect after every session, set weekly and seasonal goals, log jumps and training, and prepare mentally for competition with Game Day rituals and a warm AI coach.
+
+## Pages
+
+- [Home](/): Overview of IceNotes, the cinematic hero, and the "Start Training Smart" call-to-action.
+- [About](/about): The story behind IceNotes — founded by a skater and her mother to bring sport psychology to young athletes.
+- [How It Works](/how-it-works): Walkthrough of the daily flow: reflect, log training, set goals, grow.
+- [Features](/features): Full feature list — journaling, jump tracker, goals, Coach Iris AI, Game Day mode, progress analytics.
+- [Sport Psychology](/sport-psychology): Mental-training hub with topic sessions (resilience, visualization, focus, confidence) and Game Day prep.
+- [Coach Profile](/coach-profile): Meet Coach Iris, the in-app warm-mentor AI for figure skaters.
+- [Contact](/contact): Reach the IceNotes team.
+- [Share Experience](/share-experience): Read and share stories from the skating community.
+
+## Optional
+
+- [Journal](/journal): Public preview of the journaling experience.

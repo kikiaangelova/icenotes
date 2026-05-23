@@ -1,4 +1,5 @@
 import React from 'react';
+import { Seo } from '@/components/Seo';
 import { Navbar } from '@/components/landing/Navbar';
 import { Footer } from '@/components/landing/Footer';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -36,6 +37,7 @@ const CoachProfile: React.FC = () => {
   return (
     <div className="min-h-screen bg-background flex flex-col">
       <Navbar isDarkMode={isDarkMode} onToggleDarkMode={() => setIsDarkMode(!isDarkMode)} />
+        <Seo title="Coach Iris – AI Sport-Psychology Mentor for Skaters" description="Meet Coach Iris, the warm AI mentor inside IceNotes that guides figure skaters through reflection, technique cues, and pre-competition prep." path="/coach-profile" jsonLd={{"@context": "https://schema.org", "@type": "Person", "name": "Coach Iris", "jobTitle": "AI Sport-Psychology Coach for Figure Skaters", "description": "Warm mentor and hype coach inside IceNotes, guiding skaters through reflection, mental resilience, visualization, and competition prep.", "url": "https://skategoals.com/coach-profile"}} />
 
       <main className="flex-1 max-w-4xl mx-auto w-full px-5 md:px-10 py-10 space-y-8">
         {/* Profile header */}

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Seo } from '@/components/Seo';
 import { Navbar } from '@/components/landing/Navbar';
 import { Footer } from '@/components/landing/Footer';
 import { Link } from 'react-router-dom';
@@ -30,6 +31,7 @@ const HowItWorks: React.FC = () => {
     <div className={isDarkMode ? "dark" : ""}>
       <div className="min-h-screen bg-background">
         <Navbar isDarkMode={isDarkMode} onToggleDarkMode={() => setIsDarkMode(!isDarkMode)} />
+        <Seo title="How IceNotes Works – Reflect, Train, Grow" description="See the daily IceNotes flow: log a session, reflect on mindset, set goals, and grow with a warm AI sport-psychology coach." path="/how-it-works" />
 
         <section className="px-6 md:px-12 pt-20 pb-16 md:pt-28 md:pb-20">
           <div className="max-w-3xl mx-auto text-center">

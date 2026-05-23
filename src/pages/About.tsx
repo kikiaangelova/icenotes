@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Seo } from '@/components/Seo';
 import { Navbar } from '@/components/landing/Navbar';
 import { Footer } from '@/components/landing/Footer';
 import { Link } from 'react-router-dom';
@@ -22,6 +23,7 @@ const About: React.FC = () => {
     <div className={isDarkMode ? "dark" : ""}>
       <div className="min-h-screen bg-background">
         <Navbar isDarkMode={isDarkMode} onToggleDarkMode={() => setIsDarkMode(!isDarkMode)} />
+        <Seo title="About IceNotes – Built by skaters, for skaters" description="The story behind IceNotes — founded by a figure skater and her mother to bring sport psychology and reflection to young athletes." path="/about" />
 
         <section className="px-5 md:px-12 pt-14 pb-10 md:pt-28 md:pb-20">
           <div className="max-w-3xl mx-auto text-center">

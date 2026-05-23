@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Seo } from '@/components/Seo';
 import { Navbar } from '@/components/landing/Navbar';
 import { Footer } from '@/components/landing/Footer';
 import { Button } from '@/components/ui/button';
@@ -37,6 +38,7 @@ const Contact: React.FC = () => {
     <div className={isDarkMode ? "dark" : ""}>
       <div className="min-h-screen bg-background">
         <Navbar isDarkMode={isDarkMode} onToggleDarkMode={() => setIsDarkMode(!isDarkMode)} />
+        <Seo title="Contact IceNotes – Get in Touch" description="Questions, feedback, or partnership ideas? Reach the IceNotes team — we love hearing from skaters, coaches, and skating parents." path="/contact" />
 
         <section className="px-6 md:px-12 pt-20 pb-24 md:pt-28 md:pb-32">
           <div className="max-w-5xl mx-auto">
