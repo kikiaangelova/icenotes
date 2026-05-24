@@ -66,6 +66,12 @@ const CbtTab: React.FC = () => {
         <Button onClick={submit} disabled={add.isPending} className="w-full h-12 bg-pink-foreground hover:bg-pink-foreground/90">{t('mind.save')}</Button>
       </CardContent>
       {reflection && <div className="px-6 pb-6"><CoachIrisReflection journalText={reflection.text} triggerKey={reflection.key} /></div>}
+      <DecompressionFlow
+        open={decomp.open}
+        onOpenChange={(o) => setDecomp((d) => ({ ...d, open: o }))}
+        themes={decomp.result.themes}
+        level={decomp.result.level === 'heavy' ? 'heavy' : 'soft'}
+      />
     </Card>
   );
 };
