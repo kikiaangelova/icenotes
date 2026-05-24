@@ -153,11 +153,11 @@ export function moodLabel(mood: DashboardMood, language: GreetingLanguage): stri
     },
     bg: {
       fresh: 'Ново начало',
-      energized: 'С енергия',
-      steady: 'Стабилно',
-      tender: 'Нежен ден',
-      recovering: 'Връщаш се полека',
-      competing: 'Състезателен режим',
+      energized: 'Със заряд',
+      steady: 'На вълна',
+      tender: 'Тих ден',
+      recovering: 'Връщаш се',
+      competing: 'Старт режим',
     },
   } as const;
   return map[language === 'bg' ? 'bg' : 'en'][mood];
@@ -198,13 +198,13 @@ export function getWelcomeState(
   if (hasTodaySession && hasTodayEntry) {
     return {
       key: 'complete',
-      eyebrow: bg ? 'Денят е приключен' : 'Today is wrapped',
+      eyebrow: bg ? 'Денят е готов' : 'Today is wrapped',
       headline: bg ? 'Свали кънките. Дишай.' : 'Skates off. Breathe.',
       micro: bg
-        ? 'Записа сесия и рефлексия. Не ти трябва нищо повече днес.'
+        ? 'Записа тренировка и рефлексия. Толкова.'
         : 'You logged a session and a reflection. Nothing more is needed today.',
       primary: {
-        label: bg ? 'Поговори с Iris' : 'Talk to Coach Iris',
+        label: bg ? 'Говори с Iris' : 'Talk to Coach Iris',
         action: 'coach',
       },
     };
@@ -215,12 +215,12 @@ export function getWelcomeState(
     return {
       key: 'post-training',
       eyebrow: bg ? 'След леда' : 'After the ice',
-      headline: bg ? 'Показа се. Сега поеми въздух.' : 'You showed up. Now breathe.',
+      headline: bg ? 'Излезе на лед. Сега поеми дъх.' : 'You showed up. Now breathe.',
       micro: bg
         ? 'Една кратка рефлексия и денят е твой.'
         : 'A short reflection and the day is yours.',
       primary: {
-        label: bg ? 'Рефлектирай за днес' : 'Reflect on today',
+        label: bg ? 'Запиши деня' : 'Reflect on today',
         action: 'reflect',
       },
     };
@@ -230,13 +230,13 @@ export function getWelcomeState(
   if (!hasTodaySession && hasTodayEntry) {
     return {
       key: 'mental-day',
-      eyebrow: bg ? 'Ден за ума' : 'A mental day',
+      eyebrow: bg ? 'Ден за главата' : 'A mental day',
       headline: bg ? 'И това е тренировка.' : 'This counts as training too.',
       micro: bg
         ? 'Записа какво носиш днес. Това е смелост.'
         : 'You named what you’re carrying. That’s courage.',
       primary: {
-        label: bg ? 'Кратко записване' : 'Quick log',
+        label: bg ? 'Кратък запис' : 'Quick log',
         action: 'quicklog',
       },
     };
@@ -246,14 +246,14 @@ export function getWelcomeState(
   if (mood === 'tender') {
     return {
       key: 'tender',
-      eyebrow: bg ? 'Нежен ден' : 'Tender day',
+      eyebrow: bg ? 'Тих ден' : 'Tender day',
       headline: bg
-        ? 'Не ти трябва перфектна сесия днес.'
+        ? 'Днес не ти трябва перфектна тренировка.'
         : 'You don’t need a perfect session today.',
       micro: bg
-        ? 'Просто се появи. Останалото може да изчака.'
+        ? 'Просто се появи. Останалото може да чака.'
         : 'Just show up. The rest can wait.',
-      primary: { label: bg ? 'Рефлектирай нежно' : 'Reflect gently', action: 'reflect' },
+      primary: { label: bg ? 'Запиши тихо' : 'Reflect gently', action: 'reflect' },
     };
   }
 
@@ -263,7 +263,7 @@ export function getWelcomeState(
       eyebrow: bg ? 'Връщаш се' : 'Coming back',
       headline: bg ? 'Радвам се, че се върна.' : 'Glad you’re back.',
       micro: bg
-        ? 'Без бързане. Едно меко записване е достатъчно.'
+        ? 'Без бързане. Един кратък запис е окей.'
         : 'No rush. One soft log is enough today.',
       primary: { label: bg ? 'Започни леко' : 'Soft start', action: 'quicklog' },
     };
@@ -272,13 +272,13 @@ export function getWelcomeState(
   if (mood === 'energized') {
     return {
       key: 'energized-' + tod,
-      eyebrow: bg ? 'С енергия' : 'Energized',
+      eyebrow: bg ? 'Със заряд' : 'Energized',
       headline:
         tod === 'morning'
-          ? (bg ? 'Готов/а да се довериш на ръбовете?' : 'Ready to trust your edges?')
+          ? (bg ? 'Готов(а) да се довериш на ръбовете?' : 'Ready to trust your edges?')
           : (bg ? 'Тялото ти помни повече, отколкото мислиш.' : 'Your body remembers more than you think.'),
       micro: bg
-        ? 'Лед те очаква, когато си готов/а.'
+        ? 'Ледът е тук, когато си готов(а).'
         : 'The ice is waiting when you are.',
       primary: { label: bg ? 'Започни тренировка' : 'Start training', action: 'train' },
     };
@@ -290,9 +290,9 @@ export function getWelcomeState(
       eyebrow: bg ? 'Ново начало' : 'A fresh start',
       headline: bg ? 'Тук си. Това е достатъчно.' : 'You’re here. That’s enough.',
       micro: bg
-        ? 'Започваме нежно — с едно меко записване.'
+        ? 'Започваме спокойно — с един кратък запис.'
         : 'We’ll start gently — one soft log.',
-      primary: { label: bg ? 'Кратко записване' : 'Quick log', action: 'quicklog' },
+      primary: { label: bg ? 'Кратък запис' : 'Quick log', action: 'quicklog' },
     };
   }
 
@@ -301,8 +301,8 @@ export function getWelcomeState(
     return {
       key: 'steady-morning',
       eyebrow: bg ? 'Тиха сутрин' : 'Quiet morning',
-      headline: bg ? 'Малка крачка днес е достатъчна.' : 'A small step today is plenty.',
-      micro: bg ? 'Когато си готов/а, ледът е тук.' : 'When you’re ready, the ice is here.',
+      headline: bg ? 'Една малка крачка днес е достатъчна.' : 'A small step today is plenty.',
+      micro: bg ? 'Когато си готов(а), ледът е тук.' : 'When you’re ready, the ice is here.',
       primary: { label: bg ? 'Започни тренировка' : 'Start training', action: 'train' },
     };
   }
@@ -311,19 +311,19 @@ export function getWelcomeState(
     return {
       key: 'steady-evening',
       eyebrow: bg ? 'Тиха вечер' : 'Quiet evening',
-      headline: bg ? 'Поеми въздух. Всичко е тук.' : 'Take a breath. Everything’s here.',
+      headline: bg ? 'Поеми дъх. Всичко е тук.' : 'Take a breath. Everything’s here.',
       micro: bg
-        ? 'Една рефлексия преди да си починеш.'
+        ? 'Една кратка рефлексия преди да си починеш.'
         : 'One soft reflection before you rest.',
-      primary: { label: bg ? 'Рефлектирай за днес' : 'Reflect on today', action: 'reflect' },
+      primary: { label: bg ? 'Запиши деня' : 'Reflect on today', action: 'reflect' },
     };
   }
 
   return {
     key: 'steady-day',
-    eyebrow: bg ? 'Стабилно' : 'Steady',
+    eyebrow: bg ? 'На вълна' : 'Steady',
     headline: bg ? 'Покажи се както можеш днес.' : 'Show up as you are today.',
-    micro: bg ? 'Малкото също брои.' : 'The small still counts.',
+    micro: bg ? 'И малкото се брои.' : 'The small still counts.',
     primary: { label: bg ? 'Започни тренировка' : 'Start training', action: 'train' },
   };
 }

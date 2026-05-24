@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Snowflake, Heart, ChevronDown, Instagram, Youtube, Mail } from 'lucide-react';
+import { Snowflake, Heart, ChevronDown, Instagram, Mail } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
 import { cn } from '@/lib/utils';
 
@@ -69,8 +69,7 @@ export const Footer: React.FC = () => {
               </p>
               <div className="flex items-center gap-2">
                 {[
-                  { Icon: Instagram, href: 'https://instagram.com', label: 'Instagram' },
-                  { Icon: Youtube, href: 'https://youtube.com', label: 'YouTube' },
+                  { Icon: Instagram, href: 'https://instagram.com/martina_d_ivanova', label: 'Instagram' },
                   { Icon: Mail, href: '/contact', label: 'Email', internal: true },
                 ].map(({ Icon, href, label, internal }) => {
                   const className =
