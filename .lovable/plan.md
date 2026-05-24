@@ -1,146 +1,105 @@
 
-# IceNotes — Warmth, Care & Clarity Pass
+# Dashboard Redesign — "Today" as Emotional Center
 
-A focused three-part upgrade so the signed-in experience matches the warmth of the marketing site, supports skaters on hard days, and feels calm to navigate.
-
-**No data is touched.** Existing journal entries, jumps, sessions, goals, roles, and the admin grant remain untouched.
+Goal: a 12–16 y/o skater opens IceNotes and instantly knows **where they are**, **what to do next**, and **why this app exists**. Calm, premium, mobile-first. Inspired by Headspace + Nike Run Club.
 
 ---
 
-## Part A — Finish Bulgarian inside the signed-in app
+## 1. Information architecture (what changes)
 
-The marketing pages already speak warm, native Bulgarian. The moment a skater logs in, English creeps back. This pass closes that gap and softens gendered phrasing.
-
-**Components to fully localize** (add `useLanguage`, replace hardcoded strings, add BG keys):
-
-- `SimpleDashboard.tsx` — tab labels, all card titles & subtitles, dialog text
-- `OnboardingFlow.tsx` — every step, placeholders, toasts, body-metrics prompt
-- `JumpTracker.tsx` / `JumpLog.tsx` — labels, empty states, stat captions
-- `DailyLogModal.tsx`, `DailyJournal.tsx` — fields, prompts, save buttons
-- `MentalHealthHub.tsx`, `ReflectSpace.tsx`, `PreTrainingPrep.tsx`, `SessionTimer.tsx`
-- `AchievementsSection.tsx`, `MotivationalQuote.tsx`, `QuotesCollection.tsx`
-- `ProgressCharts.tsx`, `JourneyView.tsx`, `ActivityCalendar.tsx`, `ProgressOverview.tsx`, `ProgressSummaryCards.tsx`
-- `Header.tsx` (verify all strings), `App.tsx` loading states
-- `Admin.tsx` — for tone consistency (admin tools too)
-
-**Bulgarian copy refinements (tone & gender):**
-
-- Add `/на` gendered forms where missing: `Спокоен/на`, `Фокусиран/а`, `Готов/а`, `Добре дошъл/дошла`, `Благодарен/на`, etc. Or pick neutral nouns where it reads better (`Спокойствие`, `Фокус`).
-- Use figure-skating-correct terms: `пирует` (not "пирети"), `Тренировка на лед` / `Тренировка извън лед` (natural word order).
-- Rename `Психологически дневник` → **`Дневник на ума`** (warmer, matches "Mind Journal").
-- Soften the welcome toast: replace *"Let's start building your competitive edge"* with *"Your skating story starts here. One session at a time."* (and BG equivalent: *"Твоята история на леда започва тук. Една тренировка наведнъж."*).
-
-**Quality safeguards:**
-
-- Add a dev-mode console warning in `LanguageContext.t()` when a key is missing — silent gaps stop being silent.
-- Remove legacy `tr/de/ru/it/fr` keys from the dictionary (deferred cleanup, no behavior change).
-
----
-
-## Part B — Tone-aware messaging + Post-Competition module
-
-The app currently sounds equally upbeat whether the skater feels great or terrible. This part teaches it to read the room.
-
-**B1. Adaptive copy on low-rating days**
-
-When a journal entry is saved with `emotional_state ≤ 3` *or* `confidence_level ≤ 4`, replace the standard cheerful confirmation with gentle copy:
-
-- EN: *"Hard days are part of the journey. Be gentle with yourself today — tomorrow is a fresh sheet of ice. 💙"*
-- BG: *"Трудните дни също са част от пътя. Бъди мил/а със себе си днес — утре е нов лед. 💙"*
-
-Same logic on the home greeting the next morning if the previous day was a low-rating day: a soft check-in instead of a cheer.
-
-**B2. Pair every numeric rating with an optional one-liner**
-
-Under each 1–10 slider in the daily journal (emotional state, confidence, focus), add an optional text field:
-
-- EN: *"What was behind that today? (optional)"*
-- BG: *"Какво стоеше зад това днес? (по желание)"*
-
-Stored as a free-text addendum on the journal entry. No schema change required — appended into existing `personal_reflections` field with a labeled prefix, or adds three new optional text columns via a small additive migration (decide at build time, default = additive migration, three nullable text columns).
-
-**B3. Soften the streak/achievement mechanic**
-
-- Replace `7-day streak — don't lose it!` framing with `You've journaled 12 days this month` (count, not threat).
-- Achievements stay, but never display a "streak broken" state. Missing days are simply not counted, never punished.
-
-**B4. New Post-Competition module**
-
-Add a sixth tab to the Mind Journal alongside `Reframe / Gratitude / Body Scan / Compassion / Pre-Comp`:
-
-**Post-Comp** — three soft prompts:
-
-1. *"What did you do well today, regardless of placement?"*
-2. *"What surprised you — about your skating or yourself?"*
-3. *"What will you carry from this competition into your next training week?"*
-
-Stored in `mind_journal_entries` with `entry_type = 'postcomp'` and three new optional fields (`postcomp_did_well`, `postcomp_surprise`, `postcomp_carry_forward`). Additive migration, RLS unchanged.
-
-**B5. Gentler body-metrics prompt in onboarding**
-
-Separate weight from age/height. Wrap the weight field in its own block with copy:
-
-- EN: *"Only share if it helps you. You can skip this and never see it again."*
-- BG: *"Сподели само ако ти помага. Можеш да пропуснеш и да не виждаш това отново."*
-
-Add a `dismissed_weight_prompt` flag in the profile so once skipped, it's never shown again.
-
----
-
-## Part C — Consolidate dashboard from 8 tabs to 5
-
-Today's `SimpleDashboard` has overlapping tabs (`Mind` vs `Psych`, `Goals` vs `My Skating Plan`, `Progress` vs `Journey`). Skaters get decision fatigue. Collapse to five tabs that map to how a skater actually thinks about their week:
+Today the home screen mixes equal-weight cards: hero video, StreakCard, GameDayCard, MotivationalQuote, focus reminder, breadcrumb, 5-tab block. Everything competes. We collapse it into **three clear layers**.
 
 ```text
-Today  ·  Train  ·  Mind  ·  Goals  ·  Growth
+┌──────────────────────────────────────────┐
+│  HEADER  avatar · greeting · settings    │  (slimmer, calmer)
+├──────────────────────────────────────────┤
+│  TODAY HERO                              │  PRIMARY — emotional center
+│  · mood-aware greeting + micro-line      │
+│  · ONE big primary CTA (adaptive):       │
+│      Reflect · Train · Coach · Rest      │
+│  · 2 soft secondaries below              │
+├──────────────────────────────────────────┤
+│  CONTINUE / GAME DAY (conditional)       │  PRIMARY — only if relevant
+├──────────────────────────────────────────┤
+│  QUICK ACTIONS — 4 calm tiles            │  PRIMARY shortcuts
+│  Reflection · Training · Journal · Goals │
+│  + Mental prep tile                      │
+├──────────────────────────────────────────┤
+│  COACH IRIS NOTICED (if signal)          │  SUPPORT
+├──────────────────────────────────────────┤
+│  ── soft divider ──                      │
+│  SECONDARY (collapsed by default)        │
+│  · Today's stats (streak, sessions)      │
+│  · Daily quote                           │
+│  · History / Activity calendar           │
+│  · Progress summary                      │
+└──────────────────────────────────────────┘
+            BottomNav (already redone)
 ```
 
-| New tab | Replaces | Contains |
-|---|---|---|
-| **Today** | (existing) | `TodayJourney` — daily greeting, today's-in-one-sentence summary, save-today's-reflection CTA |
-| **Train** | Training + Jumps | Session Timer, On-Ice card, Off-Ice card, Jump Log, Reflect button |
-| **Mind** | Mental Prep + Sport Psychology + Quotes | Sub-pills inside the tab: *Pre-Skate · Mind Journal · Sport Psych · Inspiration* |
-| **Goals** | Weekly Goals + My Skating Plan | Top toggle: *Week · Month · Season* — single unified goals view |
-| **Growth** | Progress + Journey | Progress summary cards, charts, activity calendar, journey timeline |
-
-**New: "Today, in one sentence" home view** — at the top of the **Today** tab, show a single-line summary of yesterday's training when applicable: *"Yesterday you trained on-ice for 45 min, landed 3 of 5 loops, and felt 7/10 focused. Want to write one sentence about it?"* — links straight into the journal.
-
-**Tab visuals:** Keep current module color coding (Goals lavender, Train mint, Mind pink, Growth blue, Today peach). Larger touch targets retained for rink usability.
+The 5 top tabs (`Today / Train / Mind / Goals / Progress`) are **removed from the Today view**. Navigation lives only in the bottom nav now → one nav system, no duplication. The legacy `activeTab` state still drives non-Today tabs but is hidden behind the bottom nav and the quick-action tiles.
 
 ---
 
-## Technical notes (for Lovable, not the user)
+## 2. Visual hierarchy + typography
 
-- **Database (additive only):**
-  - `journal_entries`: optional new columns `emotional_state_note`, `confidence_note`, `focus_note` (text, nullable).
-  - `mind_journal_entries`: optional new columns `postcomp_did_well`, `postcomp_surprise`, `postcomp_carry_forward` (text, nullable).
-  - `profiles`: optional new column `dismissed_weight_prompt` (boolean, default false).
-  - All RLS policies inherit from existing per-user policies — no policy changes.
-  - One migration, fully additive, zero risk to existing rows.
-- **`LanguageContext.tsx`:** add ~120 new keys (dashboard, onboarding, journal, mind, jumps, progress, journey, achievements, admin, low-rating responses, post-comp prompts). Add dev-mode missing-key warning. Strip dead `tr/de/ru/it/fr` entries.
-- **Tab consolidation:** purely a JSX restructure inside `SimpleDashboard.tsx`. Sub-pills inside `Mind` and toggle inside `Goals` use existing `Tabs` + `ToggleGroup` shadcn primitives.
-- **Adaptive tone:** new helper `getToneForEntry(entry)` returns `'gentle' | 'neutral' | 'celebratory'`; consumed by save toasts and the Today greeting.
-- **Achievements:** swap `streak` display from "X-day streak" to "X days journaled this month" — no DB or logic change, only label change in the achievements component.
+- **H1 greeting**: `text-3xl sm:text-4xl font-black font-serif` (currently `text-base`)
+- **Hero headline**: `text-2xl sm:text-3xl` already in `TodayHero` — keep, but increase line-height + breathing room
+- **Body**: bump from `text-xs/sm` to `text-sm/base` minimum on all primary content
+- **Tap targets**: every actionable card ≥ 64px tall (rink-glove friendly, matches the Core memory rule)
+- **Contrast**: replace `text-muted-foreground` on critical labels with `text-foreground/75`
+- **Spacing**: vertical rhythm of `space-y-5` between primary blocks, `space-y-3` inside blocks
+- **Cards**: rounded-3xl, soft shadow, no harsh borders; one accent color per module (lavender/mint/rose/sky/grape — matches Module Colors memory)
 
 ---
 
-## Out of scope (not touched)
+## 3. Quick Actions tile grid (new component)
 
-- No changes to auth, roles, admin grant, RLS policies, or existing data.
-- `Dashboard.tsx` (the unused Premium dashboard) is left alone — flagged for separate review.
-- Visual identity, fonts, and color tokens unchanged.
-- No changes to feedback system, email delivery, or analytics events.
+Replaces the dense tab strip on Home. Five tiles, 2-column mobile / 5-column desktop:
+
+| Tile         | Color    | Icon       | Action                              |
+|--------------|----------|------------|-------------------------------------|
+| Reflection   | rose     | Feather    | open Reflect view                   |
+| Training     | mint     | Snowflake  | start pre-training prep             |
+| Journal      | sky      | BookHeart  | open Daily Journal                  |
+| Goals        | lavender | Target     | jump to Goals tab                   |
+| Mental prep  | grape    | Brain      | open Mind / Coach Iris drawer       |
+
+Each tile = large icon + bold label + one-line micro-copy ("Кратко · 2 мин"). Full localization via `LanguageContext` (new keys `quick.reflection.label`, `.micro`, etc.).
 
 ---
 
-## Suggested execution order
+## 4. Secondary section ("More for today")
 
-1. Database migration (additive columns) — single approval, minutes to run.
-2. Bulgarian dictionary expansion + missing-key warning + dead-key cleanup.
-3. Localize `SimpleDashboard`, `OnboardingFlow`, `Header`, then feature components in waves.
-4. Tab consolidation in `SimpleDashboard` (5-tab structure).
-5. Adaptive tone helper + low-rating responses + soften streak labels.
-6. Post-Comp tab + onboarding weight-prompt softening.
-7. QA pass: switch language EN ↔ BG on every screen, log a low-rating entry, log a Post-Comp entry, verify no key falls back to a raw key.
+Stats, calendar, quote, progress cards get demoted into a `<details>` block with a calm "Виж повече за днес / See more for today" trigger. Reduces cognitive load on first paint; power users still one tap away.
 
-Approve this plan and I'll start with the migration, then move through the steps in order.
+`StreakCard`, `MotivationalQuote`, `ActivityCalendar`, `ProgressSummaryCards` move here.
+
+---
+
+## 5. Files touched
+
+- `src/components/SimpleDashboard.tsx` — restructure Home view (remove top Tabs from Today, add QuickActions, move secondary into collapsible)
+- `src/components/QuickActionTile.tsx` *(new)* — single reusable tile
+- `src/components/QuickActionsGrid.tsx` *(new)* — the 5-tile grid
+- `src/components/TodayHero.tsx` — typography pass (h1 bigger, more spacing); no logic changes
+- `src/context/LanguageContext.tsx` — add `quick.*`, `secondary.title`, `home.section.now`, `home.section.more` keys (BG + EN)
+
+No backend, no schema, no auth changes.
+
+---
+
+## 6. Out of scope for this pass
+
+- Train / Mind / Goals / Progress internal tabs (already redesigned in prior passes)
+- Animation overhaul beyond existing `motion-*` utilities
+- New illustrations / video assets
+
+---
+
+## 7. Success check (post-build)
+
+1. Mobile preview (390×844): hero + quick actions visible above the fold, no horizontal scroll
+2. BG language switch — zero English strings on Home
+3. Tap targets ≥ 60px on all tiles + bottom nav (already done)
+4. Lighthouse contrast: no AA failures on primary text

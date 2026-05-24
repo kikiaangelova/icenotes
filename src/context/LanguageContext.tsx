@@ -920,6 +920,24 @@ const dict: Dict = {
   'dash.continue.kicker': { en: 'Continue training', bg: 'Продължи' },
   'dash.continue.body':   { en: 'Jump back into',    bg: 'Върни се към' },
 
+  // ───── Home sections + Quick actions ─────
+  'home.section.now':         { en: 'Right now',                 bg: 'Сега' },
+  'home.section.now.kicker':  { en: 'Pick one · 2 min',          bg: 'Избери едно · 2 мин' },
+  'home.section.more':        { en: 'More for today',            bg: 'Още за днес' },
+  'home.section.more.hint':   { en: 'Stats, history & inspiration', bg: 'Статистики, история и вдъхновение' },
+  'quick.reflection.label':   { en: 'Reflection',                bg: 'Рефлексия' },
+  'quick.reflection.micro':   { en: 'A soft check-in',           bg: 'Тих чек-ин' },
+  'quick.training.label':     { en: 'Training',                  bg: 'Тренировка' },
+  'quick.training.micro':     { en: 'Warm up & step on',         bg: 'Загрей и стъпи на леда' },
+  'quick.journal.label':      { en: 'Journal',                   bg: 'Дневник' },
+  'quick.journal.micro':      { en: 'Write the day down',        bg: 'Запиши деня' },
+  'quick.goals.label':        { en: 'Goals',                     bg: 'Цели' },
+  'quick.goals.micro':        { en: 'What you’re building',      bg: 'Към какво вървиш' },
+  'quick.mind.label':         { en: 'Mental prep',               bg: 'Подготовка' },
+  'quick.mind.micro':         { en: 'Calm the noise',            bg: 'Утиши шума' },
+
+
+
   // ───── Goals section ─────
   'goalsX.heading':         { en: 'Goals',                                  bg: 'Цели' },
   'goalsX.subheading':      { en: 'Set and track your skating objectives',  bg: 'Постави си цели и виж как се сбъдват' },

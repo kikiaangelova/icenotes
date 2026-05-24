@@ -32,6 +32,8 @@ import { Feather, Compass, Heart, Settings, LogOut, Dumbbell, Target, CalendarCh
 import { TodayHero } from './TodayHero';
 import { CoachNoticed } from './CoachNoticed';
 import { MobileBottomNav, type BottomTab } from './MobileBottomNav';
+import { QuickActionsGrid } from './QuickActionsGrid';
+
 import { ProfileSheet } from './ProfileSheet';
 import { useIsAdmin } from '@/hooks/useIsAdmin';
 import { useStreak } from '@/hooks/useStreak';
@@ -203,11 +205,12 @@ export const SimpleDashboard: React.FC = () => {
                 size="sm"
               />
               <div className="min-w-0">
-                <h1 className="text-base sm:text-lg font-bold text-foreground truncate font-serif">
+                <h1 className="text-xl sm:text-2xl font-black text-foreground truncate font-serif leading-tight">
                   {greeting}
                 </h1>
-                <p className="text-xs text-muted-foreground truncate">{levelLabel}</p>
+                <p className="text-xs sm:text-sm text-foreground/60 truncate">{levelLabel}</p>
               </div>
+
             </div>
             <div className="flex items-center gap-1.5 flex-shrink-0">
               <ExportButton />
@@ -256,41 +259,14 @@ export const SimpleDashboard: React.FC = () => {
           </div>
         </header>
 
-        {/* Cinematic ambient strip */}
-        <div className="container max-w-2xl mx-auto px-4 sm:px-5 pt-4">
-          <div className="relative rounded-2xl overflow-hidden border border-border/40 shadow-md">
-            <video
-              src={"/__l5e/assets-v1/3daacbd1-7cdb-4f6a-8b80-1829ab0b700d/hero-skater.mp4"}
-              autoPlay
-              muted
-              loop
-              playsInline
-              className="w-full h-32 sm:h-40 object-cover"
-              style={{ filter: 'saturate(0.92)' }}
-            />
-            <div className="absolute inset-0 bg-gradient-to-r from-foreground/70 via-foreground/30 to-transparent" />
-            <div className="absolute inset-0 flex items-center px-5 sm:px-7">
-              <div>
-                <p className="text-[10px] font-bold tracking-[0.25em] uppercase text-background/80 mb-1">{t('dash.hero.kicker')}</p>
-                <p className="text-lg sm:text-2xl font-black text-background leading-tight max-w-[220px] sm:max-w-none">
-                  {t('dash.hero.poetic.a')}<br className="sm:hidden" /> <span className="italic font-light">{t('dash.hero.poetic.b')}</span>
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
+        {/* Main content — Today is the emotional center */}
+        <main className="container max-w-2xl mx-auto px-4 sm:px-5 pt-5 sm:pt-6 pb-5 sm:pb-7">
 
-        {/* Main content */}
-        <main className="container max-w-2xl mx-auto px-4 sm:px-5 py-5 sm:py-7">
-          
-          {/* Humanized streak — supportive, pause-aware */}
-          <StreakCard />
-
-          {/* Continue where you left off — primary action, always one tap away */}
+          {/* Continue where you left off — only when not on Today */}
           {activeTab !== 'today' && (
             <button
               onClick={() => setActiveTab(activeTab)}
-              className="w-full mb-4 p-4 rounded-2xl bg-gradient-to-r from-primary to-primary/85 text-primary-foreground flex items-center gap-3 shadow-md hover:shadow-lg active:scale-[0.99] transition-all text-left"
+              className="w-full mb-4 p-4 rounded-2xl bg-gradient-to-r from-primary to-primary/85 text-primary-foreground flex items-center gap-3 shadow-md hover:shadow-lg active:scale-[0.99] transition-all text-left min-h-[64px]"
             >
               <div className="w-11 h-11 rounded-xl bg-background/20 backdrop-blur flex items-center justify-center flex-shrink-0">
                 <Play className="w-5 h-5 fill-current" />
@@ -303,78 +279,92 @@ export const SimpleDashboard: React.FC = () => {
             </button>
           )}
 
-          {/* Game Day ritual */}
-          <GameDayCard onClick={() => setGameDayOpen(true)} className="mb-5" />
-
-          {/* Daily Motivational Quote */}
-          <MotivationalQuote variant="banner" useDaily showRefresh showSave className="mb-5" />
-
-          {/* Focus reminder */}
-          <div className="text-center space-y-1.5 pb-5 sm:pb-7">
-            <p className="text-xs sm:text-sm text-muted-foreground font-medium">{t('dash.focusNow')}</p>
-            <p className="text-sm sm:text-base font-semibold text-foreground px-4 line-clamp-2">{profile.mainFocus}</p>
-          </div>
-
-          {/* Breadcrumb — always know where you are */}
-          <div className="flex items-center justify-center gap-1.5 mb-3 text-[11px] text-muted-foreground">
-            <HomeIcon className="w-3 h-3" />
-            <span>Home</span>
-            <span className="opacity-50">/</span>
-            <span className="font-semibold text-foreground">{tabLabels[activeTab]}</span>
-          </div>
-
-          {/* 5-tab consolidated structure: Today / Train / Mind / Goals / Progress */}
           <Tabs value={activeTab} onValueChange={(v) => setActiveTab(v as typeof activeTab)} className="space-y-5 sm:space-y-7">
-            <TabsList className="grid w-full grid-cols-5 h-13 sm:h-14 rounded-2xl bg-muted/50 p-1 backdrop-blur-sm gap-1">
-              <TabsTrigger value="today" className="flex flex-col sm:flex-row items-center justify-center gap-0.5 sm:gap-1.5 px-1 sm:px-2 rounded-xl data-[state=active]:bg-grape data-[state=active]:text-grape-foreground data-[state=active]:shadow-sm transition-all">
-                <Sun className="w-4 h-4 flex-shrink-0" />
-                <span className="text-[10px] sm:text-xs font-semibold">{t('dash.tab.today')}</span>
-              </TabsTrigger>
-              <TabsTrigger value="train" className="flex flex-col sm:flex-row items-center justify-center gap-0.5 sm:gap-1.5 px-1 sm:px-2 rounded-xl data-[state=active]:bg-mint data-[state=active]:text-mint-foreground data-[state=active]:shadow-sm transition-all">
-                <Snowflake className="w-4 h-4 flex-shrink-0" />
-                <span className="text-[10px] sm:text-xs font-semibold">{t('dash.tab.train')}</span>
-              </TabsTrigger>
-              <TabsTrigger value="mind" className="flex flex-col sm:flex-row items-center justify-center gap-0.5 sm:gap-1.5 px-1 sm:px-2 rounded-xl data-[state=active]:bg-rose data-[state=active]:text-rose-foreground data-[state=active]:shadow-sm transition-all">
-                <Brain className="w-4 h-4 flex-shrink-0" />
-                <span className="text-[10px] sm:text-xs font-semibold">{t('dash.tab.mind')}</span>
-              </TabsTrigger>
-              <TabsTrigger value="goals" className="flex flex-col sm:flex-row items-center justify-center gap-0.5 sm:gap-1.5 px-1 sm:px-2 rounded-xl data-[state=active]:bg-lavender data-[state=active]:text-lavender-foreground data-[state=active]:shadow-sm transition-all">
-                <Target className="w-4 h-4 flex-shrink-0" />
-                <span className="text-[10px] sm:text-xs font-semibold">{t('dash.tab.goals')}</span>
-              </TabsTrigger>
-              <TabsTrigger value="progress" className="flex flex-col sm:flex-row items-center justify-center gap-0.5 sm:gap-1.5 px-1 sm:px-2 rounded-xl data-[state=active]:bg-sky data-[state=active]:text-sky-foreground data-[state=active]:shadow-sm transition-all">
-                <TrendingUp className="w-4 h-4 flex-shrink-0" />
-                <span className="text-[10px] sm:text-xs font-semibold">{t('dash.tab.progress')}</span>
-              </TabsTrigger>
+            <TabsList className="sr-only" aria-hidden="true">
+              <TabsTrigger value="today">{t('dash.tab.today')}</TabsTrigger>
+              <TabsTrigger value="train">{t('dash.tab.train')}</TabsTrigger>
+              <TabsTrigger value="mind">{t('dash.tab.mind')}</TabsTrigger>
+              <TabsTrigger value="goals">{t('dash.tab.goals')}</TabsTrigger>
+              <TabsTrigger value="progress">{t('dash.tab.progress')}</TabsTrigger>
             </TabsList>
 
-            {/* TODAY: quick log first, then guided journey + daily journal as a deeper pass */}
-            <TabsContent value="today" className="space-y-4">
+            {/* TODAY — emotional center: hero, quick actions, coach signal, then secondary */}
+            <TabsContent value="today" className="space-y-5">
+              {/* PRIMARY 1 — adaptive hero */}
               <TodayHero
                 onPrimaryAction={() => handleStartTraining('on-ice')}
                 onReflectAction={() => setCurrentView('reflect')}
               />
-              <TodayQuickLog />
+
+              {/* PRIMARY 2 — five calm quick actions */}
+              <QuickActionsGrid
+                onReflect={() => setCurrentView('reflect')}
+                onTrain={() => handleStartTraining('on-ice')}
+                onJournal={() => setActiveTab('today')}
+                onGoals={() => setActiveTab('goals')}
+                onMind={() => setActiveTab('mind')}
+              />
+
+              {/* PRIMARY 3 — Game Day ritual (only renders if relevant date window) */}
+              <GameDayCard onClick={() => setGameDayOpen(true)} />
+
+              {/* SUPPORT — Coach Iris noticed signal */}
               <CoachNoticed onOpenReflect={() => setCurrentView('reflect')} />
 
-              <details className="group rounded-2xl border border-border/40 bg-card/50">
-                <summary className="cursor-pointer list-none p-4 flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <Sparkles className="w-4 h-4 text-grape-foreground" />
-                    <span className="text-sm font-semibold text-foreground">
-                      {t('today.deeper.title')}
+              {/* SECONDARY — collapsed by default */}
+              <details className="group rounded-3xl border border-border/40 bg-card/40 backdrop-blur-sm overflow-hidden">
+                <summary className="cursor-pointer list-none p-4 flex items-center justify-between min-h-[64px]">
+                  <div className="flex items-center gap-3">
+                    <span className="w-10 h-10 rounded-2xl bg-muted/70 flex items-center justify-center">
+                      <Sparkles className="w-4 h-4 text-foreground/70" />
                     </span>
+                    <div className="min-w-0">
+                      <p className="text-sm font-bold text-foreground leading-tight">{t('home.section.more')}</p>
+                      <p className="text-[11px] text-foreground/55 leading-tight">{t('home.section.more.hint')}</p>
+                    </div>
                   </div>
-                  <span className="text-xs text-muted-foreground group-open:hidden">
+                  <span className="text-xs text-foreground/60 font-semibold group-open:hidden">
                     {t('today.deeper.open')}
                   </span>
-                  <span className="text-xs text-muted-foreground hidden group-open:inline">
+                  <span className="text-xs text-foreground/60 font-semibold hidden group-open:inline">
                     {t('today.deeper.close')}
                   </span>
                 </summary>
-                <div className="p-4 pt-0 space-y-4">
+
+                <div className="p-4 pt-0 space-y-5">
+                  {/* Ambient cinematic strip — kept available but not first thing you see */}
+                  <div className="relative rounded-2xl overflow-hidden border border-border/40 shadow-md">
+                    <video
+                      src={"/__l5e/assets-v1/3daacbd1-7cdb-4f6a-8b80-1829ab0b700d/hero-skater.mp4"}
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      className="w-full h-32 sm:h-40 object-cover"
+                      style={{ filter: 'saturate(0.92)' }}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-r from-foreground/70 via-foreground/30 to-transparent" />
+                    <div className="absolute inset-0 flex items-center px-5 sm:px-7">
+                      <div>
+                        <p className="text-[10px] font-bold tracking-[0.25em] uppercase text-background/80 mb-1">{t('dash.hero.kicker')}</p>
+                        <p className="text-lg sm:text-2xl font-black text-background leading-tight max-w-[220px] sm:max-w-none">
+                          {t('dash.hero.poetic.a')}<br className="sm:hidden" /> <span className="italic font-light">{t('dash.hero.poetic.b')}</span>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <StreakCard />
+                  <MotivationalQuote variant="banner" useDaily showRefresh showSave />
+
+                  {/* Focus reminder */}
+                  <div className="text-center space-y-1.5 py-2">
+                    <p className="text-xs sm:text-sm text-foreground/60 font-medium">{t('dash.focusNow')}</p>
+                    <p className="text-sm sm:text-base font-semibold text-foreground px-4 line-clamp-2">{profile.mainFocus}</p>
+                  </div>
+
                   <TodayJourney />
-                  <div className="rounded-2xl section-card-progress p-4 mb-3">
+                  <div className="rounded-2xl section-card-progress p-4">
                     <div className="flex items-center gap-2 mb-1">
                       <Feather className="w-4 h-4 text-sky-foreground" />
                       <h2 className="text-sm font-bold text-sky-foreground font-serif">{t('dash.dailyJournal.title')}</h2>
@@ -382,9 +372,11 @@ export const SimpleDashboard: React.FC = () => {
                     <p className="text-xs text-sky-foreground/70">{t('dash.dailyJournal.subtitle')}</p>
                   </div>
                   <DailyJournal />
+                  <TodayQuickLog />
                 </div>
               </details>
             </TabsContent>
+
 
             {/* TRAIN: training + jumps + timer */}
             <TabsContent value="train" className="space-y-4">
