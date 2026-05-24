@@ -128,13 +128,13 @@ export const PreTrainingPrep: React.FC<PreTrainingPrepProps> = ({
       <div className="text-center space-y-2">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-mental/10 text-mental text-sm">
           <Timer className="w-4 h-4" />
-          Pre-Training Preparation
+          Подготовка преди тренировка
         </div>
         <h2 className="text-lg font-medium">
-          {trainingType === 'on-ice' ? 'Before You Step on the Ice' : 'Before Your Training'}
+          {trainingType === 'on-ice' ? 'Преди да стъпиш на леда' : 'Преди тренировката'}
         </h2>
         <p className="text-sm text-muted-foreground">
-          Take a moment to prepare your mind and body
+          Отдели минута, за да подготвиш ума и тялото си
         </p>
       </div>
 
@@ -160,7 +160,7 @@ export const PreTrainingPrep: React.FC<PreTrainingPrepProps> = ({
           <CardHeader className="pb-3">
             <CardTitle className="text-base flex items-center gap-2">
               <CheckCircle2 className="w-5 h-5 text-mental" />
-              Pre-Skate Checklist
+              Чеклист преди леда
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
@@ -194,17 +194,17 @@ export const PreTrainingPrep: React.FC<PreTrainingPrepProps> = ({
             >
               {allChecked ? (
                 <>
-                  Continue to Breathing
+                  Към дишането
                   <ChevronRight className="w-4 h-4 ml-1" />
                 </>
               ) : (
-                `Complete checklist (${checkedItems.size}/${PRE_SKATE_CHECKLIST.length})`
+                `Отметни всичко (${checkedItems.size}/${PRE_SKATE_CHECKLIST.length})`
               )}
             </Button>
 
             {!allChecked && (
               <p className="text-center text-xs text-muted-foreground">
-                Check all items when you're ready
+                Отметни всичко, когато си готов/а
               </p>
             )}
           </CardContent>
