@@ -350,7 +350,12 @@ export const SimpleDashboard: React.FC = () => {
 
             {/* TODAY: quick log first, then guided journey + daily journal as a deeper pass */}
             <TabsContent value="today" className="space-y-4">
+              <TodayHero
+                onPrimaryAction={() => handleStartTraining('on-ice')}
+                onReflectAction={() => setCurrentView('reflect')}
+              />
               <TodayQuickLog />
+              <CoachNoticed onOpenReflect={() => setCurrentView('reflect')} />
 
               <details className="group rounded-2xl border border-border/40 bg-card/50">
                 <summary className="cursor-pointer list-none p-4 flex items-center justify-between">
