@@ -32,6 +32,7 @@ const Auth: React.FC = () => {
 
   const [view, setView] = useState<AuthView>('auth');
   const [isLoading, setIsLoading] = useState(false);
+  const [googleLoading, setGoogleLoading] = useState(false);
   const [emailSent, setEmailSent] = useState(false);
 
   // Login fields
