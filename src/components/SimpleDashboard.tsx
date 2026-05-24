@@ -271,9 +271,9 @@ export const SimpleDashboard: React.FC = () => {
             <div className="absolute inset-0 bg-gradient-to-r from-foreground/70 via-foreground/30 to-transparent" />
             <div className="absolute inset-0 flex items-center px-5 sm:px-7">
               <div>
-                <p className="text-[10px] font-bold tracking-[0.25em] uppercase text-background/80 mb-1">Today on the ice</p>
+                <p className="text-[10px] font-bold tracking-[0.25em] uppercase text-background/80 mb-1">{t('dash.hero.kicker')}</p>
                 <p className="text-lg sm:text-2xl font-black text-background leading-tight max-w-[220px] sm:max-w-none">
-                  Breathe. Glide.<br className="sm:hidden" /> <span className="italic font-light">Trust your edges.</span>
+                  {t('dash.hero.poetic.a')}<br className="sm:hidden" /> <span className="italic font-light">{t('dash.hero.poetic.b')}</span>
                 </p>
               </div>
             </div>
