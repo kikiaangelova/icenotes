@@ -314,8 +314,14 @@
   }
 
   .soft-card {
-    @apply bg-card rounded-xl border border-border/60 p-5 transition-shadow duration-200;
+    @apply bg-card rounded-xl border border-border/60 p-5 transition-all duration-300 ease-out;
     box-shadow: var(--shadow-card);
+    will-change: transform, box-shadow;
+  }
+  .soft-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px -16px hsl(var(--foreground) / 0.18),
+                0 4px 12px -6px hsl(var(--foreground) / 0.08);
   }
 
   /* Section-specific tinted cards — restrained, near-flat */
