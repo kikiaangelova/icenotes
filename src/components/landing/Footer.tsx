@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Snowflake, Heart, ChevronDown, Instagram, Youtube, Mail } from 'lucide-react';
+import { Snowflake, Heart, ChevronDown, Instagram, Mail } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
 import { cn } from '@/lib/utils';
 
