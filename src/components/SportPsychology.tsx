@@ -301,10 +301,10 @@ export const SportPsychology: React.FC = () => {
             <CardContent className="p-4">
               <div className="flex items-center gap-2 mb-2">
                 <Trophy className="w-4 h-4 text-gold" />
-                <span className="text-xs font-medium text-gold uppercase tracking-wide">Competition Ready</span>
+                <span className="text-xs font-medium text-gold uppercase tracking-wide">Готов/а за старт</span>
               </div>
               <p className="text-sm text-muted-foreground">
-                Competition can feel intense, but with the right mindset, it becomes an opportunity to showcase your hard work.
+                Състезанието може да е интензивно, но с правилната нагласа се превръща във възможност да покажеш труда си.
               </p>
             </CardContent>
           </Card>
@@ -328,7 +328,7 @@ export const SportPsychology: React.FC = () => {
         <CardHeader className="pb-2">
           <CardTitle className="text-base flex items-center gap-2">
             <Heart className="w-4 h-4 text-mental" />
-            Daily Mental Exercises
+            Ежедневни упражнения за ума
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-2">
