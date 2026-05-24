@@ -301,11 +301,11 @@ export const GameDayCard: React.FC<GameDayCardProps> = ({ onClick, className }) 
       </div>
       <div className="flex-1 min-w-0">
         <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-amber-200/90">
-          Game Day
+          Ден на старта
         </p>
-        <h3 className="text-lg font-extrabold leading-tight">Pre-competition ritual</h3>
+        <h3 className="text-lg font-extrabold leading-tight">Ритуал преди състезание</h3>
         <p className="text-xs text-white/80 mt-1">
-          Breathe · Visualize · Affirm · Hear from Coach Iris
+          Дишай · Визуализирай · Афирмирай · Чуй Треньор Ирис
         </p>
       </div>
       <ChevronRight className="w-5 h-5 text-white/70 group-hover:translate-x-1 transition-transform" />
