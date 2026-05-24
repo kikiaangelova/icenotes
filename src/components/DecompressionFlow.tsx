@@ -177,7 +177,7 @@ export const DecompressionFlow: React.FC<DecompressionFlowProps> = ({
             <div className="flex-1 flex flex-col gap-5 animate-fade-in">
               <div className="text-center space-y-1">
                 <h3 className="text-xl font-semibold text-foreground">What would feel kind right now?</h3>
-                <p className="text-sm text-muted-foreground">Pick one. Or none. There\'s no wrong move.</p>
+                <p className="text-sm text-muted-foreground">Pick one. Or none. There's no wrong move.</p>
               </div>
               <div className="grid gap-3 mt-2">
                 <ActionCard
@@ -207,7 +207,7 @@ export const DecompressionFlow: React.FC<DecompressionFlowProps> = ({
               </div>
               {level === 'heavy' && (
                 <p className="text-xs text-center text-muted-foreground/80 pt-2 leading-relaxed">
-                  If you\'re carrying something bigger than skating tonight, please reach out to someone you trust. You don't have to hold it alone.
+                  If you're carrying something bigger than skating tonight, please reach out to someone you trust. You don't have to hold it alone.
                 </p>
               )}
             </div>
