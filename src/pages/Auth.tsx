@@ -428,7 +428,29 @@ const Auth: React.FC = () => {
             <CardDescription className="text-center">{t('auth.welcomeSubtitle')}</CardDescription>
           </CardHeader>
           <CardContent>
+            <Button
+              type="button"
+              variant="outline"
+              onClick={handleGoogle}
+              disabled={googleLoading || isLoading}
+              className="w-full h-12 mb-4 gap-3 bg-background hover:bg-muted/60 font-semibold border-2"
+            >
+              {googleLoading ? (
+                <Loader2 className="w-4 h-4 animate-spin" />
+              ) : (
+                <GoogleIcon />
+              )}
+              {googleLoading ? 'Connecting…' : 'Continue with Google'}
+            </Button>
+
+            <div className="flex items-center gap-3 my-4">
+              <div className="flex-1 h-px bg-border" />
+              <span className="text-xs text-muted-foreground font-medium">or with email</span>
+              <div className="flex-1 h-px bg-border" />
+            </div>
+
             <Tabs defaultValue={searchParams.get('mode') === 'signup' ? 'signup' : 'login'} className="w-full">
+
               <TabsList className="grid w-full grid-cols-2 mb-6">
                 <TabsTrigger value="login">{t('auth.tab.login')}</TabsTrigger>
                 <TabsTrigger value="signup">{t('auth.tab.signup')}</TabsTrigger>
