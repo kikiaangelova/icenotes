@@ -11,6 +11,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Target, Plus, Calendar, Trash2, CheckCircle2 } from 'lucide-react';
 import { format } from 'date-fns';
+import { useLanguage } from '@/context/LanguageContext';
 
 const categoryColors: Record<string, { bg: string; text: string }> = {
   'on-ice': { bg: 'bg-on-ice/10', text: 'text-on-ice' },
@@ -20,6 +21,7 @@ const categoryColors: Record<string, { bg: string; text: string }> = {
 };
 
 export const GoalsSection: React.FC = () => {
+  const { t } = useLanguage();
   const { goals, addGoal, updateGoal, deleteGoal } = useSkater();
   const [isOpen, setIsOpen] = useState(false);
   const [newGoal, setNewGoal] = useState({
@@ -59,43 +61,43 @@ export const GoalsSection: React.FC = () => {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h2 className="text-2xl font-bold">Goals</h2>
-          <p className="text-muted-foreground">Set and track your skating objectives</p>
+          <h2 className="text-2xl font-bold">{t('goalsX.heading')}</h2>
+          <p className="text-muted-foreground">{t('goalsX.subheading')}</p>
         </div>
         <Dialog open={isOpen} onOpenChange={setIsOpen}>
           <DialogTrigger asChild>
             <Button className="gap-2">
               <Plus className="w-4 h-4" />
-              New Goal
+              {t('goalsX.new')}
             </Button>
           </DialogTrigger>
           <DialogContent>
             <DialogHeader>
-              <DialogTitle>Create New Goal</DialogTitle>
-              <DialogDescription>Set a new objective to work towards</DialogDescription>
+              <DialogTitle>{t('goalsX.dialog.title')}</DialogTitle>
+              <DialogDescription>{t('goalsX.dialog.desc')}</DialogDescription>
             </DialogHeader>
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="space-y-2">
-                <Label htmlFor="goal-title">Goal Title</Label>
+                <Label htmlFor="goal-title">{t('goalsX.field.title')}</Label>
                 <Input
                   id="goal-title"
-                  placeholder="e.g., Land a double axel"
+                  placeholder={t('goalsX.field.titlePh')}
                   value={newGoal.title}
                   onChange={(e) => setNewGoal({ ...newGoal, title: e.target.value })}
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="goal-description">Description</Label>
+                <Label htmlFor="goal-description">{t('goalsX.field.desc')}</Label>
                 <Textarea
                   id="goal-description"
-                  placeholder="Describe what you want to achieve..."
+                  placeholder={t('goalsX.field.descPh')}
                   value={newGoal.description}
                   onChange={(e) => setNewGoal({ ...newGoal, description: e.target.value })}
                 />
               </div>
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
-                  <Label>Category</Label>
+                  <Label>{t('goalsX.field.category')}</Label>
                   <Select
                     value={newGoal.category}
                     onValueChange={(value) => setNewGoal({ ...newGoal, category: value as any })}
@@ -104,15 +106,15 @@ export const GoalsSection: React.FC = () => {
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="on-ice">On-Ice</SelectItem>
-                      <SelectItem value="off-ice">Off-Ice</SelectItem>
-                      <SelectItem value="mental">Mental</SelectItem>
-                      <SelectItem value="general">General</SelectItem>
+                      <SelectItem value="on-ice">{t('goalsX.cat.onIce')}</SelectItem>
+                      <SelectItem value="off-ice">{t('goalsX.cat.offIce')}</SelectItem>
+                      <SelectItem value="mental">{t('goalsX.cat.mental')}</SelectItem>
+                      <SelectItem value="general">{t('goalsX.cat.general')}</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="target-date">Target Date</Label>
+                  <Label htmlFor="target-date">{t('goalsX.field.target')}</Label>
                   <Input
                     id="target-date"
                     type="date"
@@ -121,7 +123,7 @@ export const GoalsSection: React.FC = () => {
                   />
                 </div>
               </div>
-              <Button type="submit" className="w-full">Create Goal</Button>
+              <Button type="submit" className="w-full">{t('goalsX.create')}</Button>
             </form>
           </DialogContent>
         </Dialog>
@@ -131,8 +133,8 @@ export const GoalsSection: React.FC = () => {
         <Card className="glass-card">
           <CardContent className="py-12 text-center">
             <Target className="w-12 h-12 mx-auto mb-4 text-muted-foreground/50" />
-            <h3 className="font-semibold mb-1">No goals yet</h3>
-            <p className="text-sm text-muted-foreground">Create your first goal to start tracking progress</p>
+            <h3 className="font-semibold mb-1">{t('goalsX.empty.title')}</h3>
+            <p className="text-sm text-muted-foreground">{t('goalsX.empty.body')}</p>
           </CardContent>
         </Card>
       ) : (
@@ -170,7 +172,7 @@ export const GoalsSection: React.FC = () => {
                 />
                 <div className="flex items-center gap-2 text-xs text-muted-foreground">
                   <Calendar className="w-3 h-3" />
-                  Target: {format(new Date(goal.targetDate), 'MMM d, yyyy')}
+                  {t('goalsX.target')}: {format(new Date(goal.targetDate), 'MMM d, yyyy')}
                 </div>
               </CardContent>
             </Card>
@@ -182,14 +184,15 @@ export const GoalsSection: React.FC = () => {
 };
 
 const GoalProgressBar: React.FC<{ value: number; onChange: (v: number) => void }> = ({ value, onChange }) => {
+  const { t } = useLanguage();
   const [pulse, setPulse] = useState(false);
   const prev = useRef(value);
 
   useEffect(() => {
     if (value > prev.current) {
       setPulse(true);
-      const t = window.setTimeout(() => setPulse(false), 1400);
-      return () => window.clearTimeout(t);
+      const ti = window.setTimeout(() => setPulse(false), 1400);
+      return () => window.clearTimeout(ti);
     }
     prev.current = value;
   }, [value]);
@@ -197,7 +200,7 @@ const GoalProgressBar: React.FC<{ value: number; onChange: (v: number) => void }
   return (
     <div className={`space-y-2 rounded-xl ${pulse ? 'goal-pulse' : ''}`}>
       <div className="flex items-center justify-between text-sm">
-        <span className="text-muted-foreground">Progress</span>
+        <span className="text-muted-foreground">{t('goalsX.progress')}</span>
         <span className={`font-medium transition-colors ${pulse ? 'text-emerald-600' : ''}`}>{value}%</span>
       </div>
       <div className={`relative ${pulse ? 'goal-pulse-bar' : ''}`}>

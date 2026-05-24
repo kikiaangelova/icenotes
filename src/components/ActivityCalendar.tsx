@@ -5,10 +5,13 @@ import { useJournal } from '@/context/JournalContext';
 import { format, isSameDay } from 'date-fns';
 import { Snowflake, Dumbbell, Feather, Target, CalendarDays } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { useLanguage } from '@/context/LanguageContext';
 
 export const ActivityCalendar: React.FC = () => {
+  const { t } = useLanguage();
   const { trainingSessions: sessions, jumpAttempts: jumps, entries } = useJournal();
   const [selectedDate, setSelectedDate] = useState<Date | undefined>(new Date());
+
   
   // Get activity for a specific date
   const getDateActivity = (date: Date) => {
@@ -66,10 +69,10 @@ export const ActivityCalendar: React.FC = () => {
       <CardHeader className="pb-2">
         <CardTitle className="text-sm font-medium flex items-center gap-2">
           <CalendarDays className="w-4 h-4 text-primary" />
-          Activity Calendar
+          {t('calendarX.title')}
         </CardTitle>
         <p className="text-xs text-muted-foreground">
-          Today: {format(new Date(), 'EEEE, MMMM d, yyyy')}
+          {t('calendarX.today')}: {format(new Date(), 'EEEE, MMMM d, yyyy')}
         </p>
       </CardHeader>
       <CardContent className="space-y-4">
@@ -114,19 +117,19 @@ export const ActivityCalendar: React.FC = () => {
         <div className="flex flex-wrap gap-3 text-xs text-muted-foreground justify-center border-t pt-3">
           <div className="flex items-center gap-1">
             <div className="w-2 h-2 rounded-full bg-on-ice" />
-            <span>On-Ice</span>
+            <span>{t('progressX.onIce')}</span>
           </div>
           <div className="flex items-center gap-1">
             <div className="w-2 h-2 rounded-full bg-off-ice" />
-            <span>Off-Ice</span>
+            <span>{t('progressX.offIce')}</span>
           </div>
           <div className="flex items-center gap-1">
             <div className="w-2 h-2 rounded-full bg-primary" />
-            <span>Jumps</span>
+            <span>{t('calendarX.legend.jumps')}</span>
           </div>
           <div className="flex items-center gap-1">
             <div className="w-2 h-2 rounded-full bg-accent-foreground" />
-            <span>Journal</span>
+            <span>{t('progressX.journal')}</span>
           </div>
         </div>
         
@@ -139,44 +142,44 @@ export const ActivityCalendar: React.FC = () => {
             
             {!selectedActivity?.hasOnIce && !selectedActivity?.hasOffIce && 
              !selectedActivity?.hasJumps && !selectedActivity?.hasJournal ? (
-              <p className="text-xs text-muted-foreground italic">No activity recorded</p>
+              <p className="text-xs text-muted-foreground italic">{t('calendarX.noActivity')}</p>
             ) : (
               <div className="grid grid-cols-2 gap-2">
                 {selectedActivity?.hasOnIce && (
                   <div className="flex items-center gap-2 p-2 rounded-lg bg-on-ice/10">
                     <Snowflake className="w-4 h-4 text-on-ice" />
                     <div>
-                      <p className="text-xs font-medium">{totalOnIceMinutes} min</p>
-                      <p className="text-xs text-muted-foreground">On-Ice</p>
+                      <p className="text-xs font-medium">{totalOnIceMinutes} {t('calendarX.min')}</p>
+                      <p className="text-xs text-muted-foreground">{t('progressX.onIce')}</p>
                     </div>
                   </div>
                 )}
-                
+
                 {selectedActivity?.hasOffIce && (
                   <div className="flex items-center gap-2 p-2 rounded-lg bg-off-ice/10">
                     <Dumbbell className="w-4 h-4 text-off-ice" />
                     <div>
-                      <p className="text-xs font-medium">{totalOffIceMinutes} min</p>
-                      <p className="text-xs text-muted-foreground">Off-Ice</p>
+                      <p className="text-xs font-medium">{totalOffIceMinutes} {t('calendarX.min')}</p>
+                      <p className="text-xs text-muted-foreground">{t('progressX.offIce')}</p>
                     </div>
                   </div>
                 )}
-                
+
                 {selectedActivity?.hasJumps && (
                   <div className="flex items-center gap-2 p-2 rounded-lg bg-primary/10">
                     <Target className="w-4 h-4 text-primary" />
                     <div>
-                      <p className="text-xs font-medium">{selectedDayJumps.length} jumps</p>
-                      <p className="text-xs text-muted-foreground">{jumpSuccessRate}% landed</p>
+                      <p className="text-xs font-medium">{selectedDayJumps.length} {t('calendarX.legend.jumps')}</p>
+                      <p className="text-xs text-muted-foreground">{jumpSuccessRate}% {t('calendarX.landed')}</p>
                     </div>
                   </div>
                 )}
-                
+
                 {selectedActivity?.hasJournal && (
                   <div className="flex items-center gap-2 p-2 rounded-lg bg-accent/50">
                     <Feather className="w-4 h-4 text-accent-foreground" />
                     <div>
-                      <p className="text-xs font-medium">Journal</p>
+                      <p className="text-xs font-medium">{t('progressX.journal')}</p>
                       <p className="text-xs text-muted-foreground capitalize">{selectedDayEntry?.feeling}</p>
                     </div>
                   </div>
