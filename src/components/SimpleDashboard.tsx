@@ -33,6 +33,7 @@ import { MobileBottomNav, type BottomTab } from './MobileBottomNav';
 import { ProfileSheet } from './ProfileSheet';
 import { useIsAdmin } from '@/hooks/useIsAdmin';
 import { useStreak } from '@/hooks/useStreak';
+import { StreakCard } from './StreakCard';
 import { GameDayCard, GameDayMode } from '@/components/GameDayMode';
 import { GuidedTour } from '@/components/GuidedTour';
 import { useNavigate, useSearchParams } from 'react-router-dom';
