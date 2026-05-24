@@ -7,6 +7,8 @@ import { Input } from '@/components/ui/input';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Plus, Trash2, ListTodo, Dumbbell, Brain, Circle, Snowflake } from 'lucide-react';
+import { SwipeableCard } from '@/components/ui/SwipeableCard';
+import { toast } from 'sonner';
 
 const categoryIcons: Record<string, React.FC<{ className?: string }>> = {
   'on-ice': Snowflake,
@@ -33,6 +35,19 @@ export const TodoSection: React.FC = () => {
   const [newTodo, setNewTodo] = useState('');
   const [category, setCategory] = useState<TodoItem['category']>('general');
   const [priority, setPriority] = useState<TodoItem['priority']>('medium');
+  const [snoozedIds, setSnoozedIds] = useState<Set<string>>(new Set());
+
+  const snooze = (id: string) => {
+    setSnoozedIds(prev => new Set(prev).add(id));
+    toast('Resting this one. It’ll be back soon.', { description: 'Rest is part of training too.' });
+    window.setTimeout(() => {
+      setSnoozedIds(prev => {
+        const n = new Set(prev);
+        n.delete(id);
+        return n;
+      });
+    }, 1000 * 60 * 30); // 30 min soft snooze
+  };
 
   const handleAdd = () => {
     if (!newTodo.trim()) return;
