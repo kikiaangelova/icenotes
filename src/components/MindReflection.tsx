@@ -40,7 +40,7 @@ const MODES: ModeConfig[] = [
     icon: Moon,
     tone: { ring: 'border-violet-200', soft: 'bg-violet-50/60', chip: 'bg-violet-100 text-violet-700', accent: 'text-violet-700' },
     label: { en: 'After training', bg: 'След тренировка' },
-    intro: { en: 'Soft reflection while it’s still fresh.', bg: 'Спокойна рефлексия, докато е още свежо.' },
+    intro: { en: 'Soft reflection while it’s still fresh.', bg: 'Спокоен запис, докато е още свежо.' },
     prompts: [
       { en: 'What felt good today?', bg: 'Кое ми се усети добре днес?' },
       { en: 'What was harder than expected?', bg: 'Кое беше по-трудно от очакваното?' },
