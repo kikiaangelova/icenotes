@@ -28,7 +28,7 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({ active, onChan
     <nav
       role="navigation"
       aria-label="Primary"
-      className="fixed bottom-0 inset-x-0 z-40 border-t border-border/40 bg-background/95 backdrop-blur-xl shadow-[0_-8px_24px_-12px_hsl(var(--foreground)/0.15)] pb-[env(safe-area-inset-bottom)]"
+      className="fixed bottom-0 inset-x-0 z-40 border-t border-border/40 glass-elevated pb-[env(safe-area-inset-bottom)]"
     >
       <ul className="max-w-2xl mx-auto grid grid-cols-6 px-1.5 pt-1.5 pb-1.5">
         {ITEMS.map((item) => {
@@ -42,13 +42,19 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({ active, onChan
                 aria-current={isActive ? 'page' : undefined}
                 onClick={() => onChange(item.id)}
                 className={cn(
-                  'w-full min-h-[56px] flex flex-col items-center justify-center gap-0.5 rounded-2xl transition-all duration-200 active:scale-95 touch-manipulation',
+                  'relative w-full min-h-[56px] flex flex-col items-center justify-center gap-0.5 rounded-2xl motion-press transition-all duration-300 ease-out touch-manipulation',
                   isActive
                     ? `${item.activeColor} shadow-sm`
                     : 'text-muted-foreground hover:text-foreground hover:bg-muted/60'
                 )}
               >
-                <Icon className={cn('w-5 h-5 transition-transform', isActive && 'scale-110')} />
+                {isActive && (
+                  <span
+                    aria-hidden
+                    className="absolute -top-1 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-current opacity-70 motion-breathe"
+                  />
+                )}
+                <Icon className={cn('w-5 h-5 transition-transform duration-300', isActive && 'scale-110')} />
                 <span className={cn('text-[10px] leading-none font-semibold', isActive ? '' : 'opacity-90')}>
                   {item.label}
                 </span>

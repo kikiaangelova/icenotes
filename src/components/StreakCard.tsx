@@ -76,12 +76,12 @@ export const StreakCard: React.FC = () => {
 
   return (
     <div
-      className={`relative rounded-2xl p-4 sm:p-5 bg-gradient-to-br ${visual.gradient} border ${visual.border} shadow-sm mb-4 transition-all`}
+      className={`relative rounded-2xl p-4 sm:p-5 bg-gradient-to-br ${visual.gradient} border ${visual.border} shadow-sm mb-4 motion-lift motion-fade-up overflow-hidden`}
       role="region"
       aria-label={t('streak.region.label')}
     >
       <div className="flex items-start gap-3">
-        <div className="w-10 h-10 rounded-xl bg-background/80 backdrop-blur flex items-center justify-center flex-shrink-0 shadow-inner animate-fade-in">
+        <div className="w-10 h-10 rounded-xl bg-background/80 backdrop-blur flex items-center justify-center flex-shrink-0 shadow-inner motion-breathe">
           {visual.icon}
         </div>
         <div className="flex-1 min-w-0">

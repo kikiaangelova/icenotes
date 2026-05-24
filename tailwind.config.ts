@@ -109,6 +109,26 @@ export default {
 				'game-day-sparkle': {
 					'0%, 100%': { opacity: '0', transform: 'scale(0.6)' },
 					'50%': { opacity: '1', transform: 'scale(1.1)' }
+				},
+				'breathe': {
+					'0%, 100%': { transform: 'scale(1)', opacity: '0.95' },
+					'50%': { transform: 'scale(1.04)', opacity: '1' }
+				},
+				'shimmer-soft': {
+					'0%': { backgroundPosition: '-150% 0' },
+					'100%': { backgroundPosition: '250% 0' }
+				},
+				'fade-up': {
+					from: { opacity: '0', transform: 'translateY(14px)' },
+					to: { opacity: '1', transform: 'translateY(0)' }
+				},
+				'drift': {
+					'0%, 100%': { transform: 'translate3d(0,0,0)' },
+					'50%': { transform: 'translate3d(0,-6px,0)' }
+				},
+				'glow-soft': {
+					'0%, 100%': { boxShadow: '0 0 0 0 hsl(var(--primary) / 0.25), 0 6px 24px -10px hsl(var(--primary) / 0.35)' },
+					'50%': { boxShadow: '0 0 0 8px hsl(var(--primary) / 0), 0 14px 32px -12px hsl(var(--primary) / 0.55)' }
 				}
 			},
 			animation: {
@@ -118,7 +138,12 @@ export default {
 				'slide-in': 'slide-in 0.4s ease-out',
 				'float-soft': 'float-soft 5s ease-in-out infinite',
 				'glow-pulse': 'glow-pulse 2.4s ease-out infinite',
-				'game-day-sparkle': 'game-day-sparkle 4s ease-in-out infinite'
+				'game-day-sparkle': 'game-day-sparkle 4s ease-in-out infinite',
+				'breathe': 'breathe 4.8s ease-in-out infinite',
+				'shimmer-soft': 'shimmer-soft 3.2s linear infinite',
+				'fade-up': 'fade-up 0.55s cubic-bezier(0.22, 1, 0.36, 1) both',
+				'drift': 'drift 7s ease-in-out infinite',
+				'glow-soft': 'glow-soft 3.6s ease-in-out infinite'
 			},
 			boxShadow: {
 				'2xs': 'var(--shadow-2xs)',

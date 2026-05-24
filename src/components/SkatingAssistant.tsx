@@ -121,9 +121,9 @@ export const SkatingAssistant: React.FC = () => {
       <SheetTrigger asChild>
         <button
           aria-label="Open AI skating coach"
-          className="fixed bottom-6 right-6 z-50 group flex items-center gap-2 px-5 h-14 rounded-full bg-gradient-to-r from-primary via-grape-foreground to-rose-foreground text-primary-foreground shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105 animate-glow-pulse font-bold"
+          className="fixed bottom-24 right-5 sm:bottom-6 sm:right-6 z-50 group flex items-center gap-2 px-5 h-14 rounded-full bg-gradient-to-r from-primary via-grape-foreground to-rose-foreground text-primary-foreground motion-glow motion-shimmer motion-press hover:scale-[1.04] transition-transform duration-300 font-bold"
         >
-          <Sparkles className="w-5 h-5 animate-float-soft" />
+          <Sparkles className="w-5 h-5 motion-breathe" />
           <span className="hidden sm:inline">Ask Coach Iris</span>
         </button>
       </SheetTrigger>

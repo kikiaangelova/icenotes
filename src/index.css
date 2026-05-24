@@ -298,11 +298,14 @@
   }
 
   .cta-button {
-    @apply h-12 px-8 text-sm font-semibold rounded-xl transition-all duration-200 tracking-wide;
+    @apply h-12 px-8 text-sm font-semibold rounded-xl transition-all duration-300 tracking-wide;
     @apply bg-primary text-primary-foreground;
-    @apply hover:brightness-110 active:scale-[0.98];
+    @apply hover:brightness-110 hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.97];
     @apply touch-manipulation;
-    box-shadow: var(--shadow-sm);
+    box-shadow: 0 8px 24px -10px hsl(var(--primary) / 0.45), var(--shadow-sm);
+  }
+  .cta-button:hover {
+    box-shadow: 0 16px 36px -12px hsl(var(--primary) / 0.55), var(--shadow-md);
   }
 
   .progress-ring {
@@ -314,8 +317,14 @@
   }
 
   .soft-card {
-    @apply bg-card rounded-xl border border-border/60 p-5 transition-shadow duration-200;
+    @apply bg-card rounded-xl border border-border/60 p-5 transition-all duration-300 ease-out;
     box-shadow: var(--shadow-card);
+    will-change: transform, box-shadow;
+  }
+  .soft-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px -16px hsl(var(--foreground) / 0.18),
+                0 4px 12px -6px hsl(var(--foreground) / 0.08);
   }
 
   /* Section-specific tinted cards — restrained, near-flat */
@@ -363,5 +372,147 @@
   @keyframes gentle-pulse {
     0%, 100% { opacity: 1; }
     50% { opacity: 0.78; }
+  }
+
+  /* ============================================================
+     Emotional Motion System — calm, cinematic, premium
+     Inspired by Headspace, Calm, Nike Run Club, Duolingo
+     ============================================================ */
+
+  /* Hover lift — soft scale + elevation for interactive cards */
+  .motion-lift {
+    @apply transition-all duration-300 ease-out;
+    will-change: transform, box-shadow;
+  }
+  .motion-lift:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px -16px hsl(var(--foreground) / 0.18),
+                0 4px 12px -6px hsl(var(--foreground) / 0.08);
+  }
+  .motion-lift:active { transform: translateY(0); transition-duration: 120ms; }
+
+  /* Press feedback — haptic-feeling tap response */
+  .motion-press {
+    @apply transition-transform duration-150 ease-out;
+  }
+  .motion-press:active { transform: scale(0.96); }
+
+  /* Fade-up section entry */
+  .motion-fade-up { animation: fade-up 0.6s cubic-bezier(0.22, 1, 0.36, 1) both; }
+  .motion-fade-up-delay-1 { animation: fade-up 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.08s both; }
+  .motion-fade-up-delay-2 { animation: fade-up 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.16s both; }
+  .motion-fade-up-delay-3 { animation: fade-up 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.24s both; }
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Breathing — for mindfulness/coach cards */
+  .motion-breathe { animation: breathe-soft 4.8s ease-in-out infinite; }
+  @keyframes breathe-soft {
+    0%, 100% { transform: scale(1);    opacity: 0.95; }
+    50%      { transform: scale(1.035); opacity: 1; }
+  }
+
+  /* Shimmer overlay — premium accents (Coach Iris, important CTAs) */
+  .motion-shimmer {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+  }
+  .motion-shimmer::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(110deg,
+      transparent 30%,
+      hsl(0 0% 100% / 0.25) 50%,
+      transparent 70%);
+    background-size: 200% 100%;
+    animation: shimmer-sweep 3.4s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 1;
+  }
+  @keyframes shimmer-sweep {
+    0%   { background-position: -150% 0; }
+    60%  { background-position: 250% 0; }
+    100% { background-position: 250% 0; }
+  }
+
+  /* Soft glow ring — for primary actions */
+  .motion-glow {
+    animation: glow-soft 3.6s ease-in-out infinite;
+  }
+  @keyframes glow-soft {
+    0%, 100% { box-shadow: 0 0 0 0 hsl(var(--primary) / 0.22),
+                           0 8px 24px -10px hsl(var(--primary) / 0.35); }
+    50%      { box-shadow: 0 0 0 10px hsl(var(--primary) / 0),
+                           0 16px 36px -12px hsl(var(--primary) / 0.55); }
+  }
+
+  /* Glass-elevated — layered blur for premium surfaces */
+  .glass-elevated {
+    background: hsl(var(--card) / 0.72);
+    backdrop-filter: blur(20px) saturate(140%);
+    -webkit-backdrop-filter: blur(20px) saturate(140%);
+    border: 1px solid hsl(var(--border) / 0.5);
+    box-shadow:
+      0 1px 0 hsl(0 0% 100% / 0.6) inset,
+      0 12px 40px -16px hsl(var(--foreground) / 0.18);
+  }
+
+  /* Ambient gradient — slowly drifting backdrop for hero/empty states */
+  .ambient-gradient {
+    background:
+      radial-gradient(60% 80% at 20% 10%, hsl(var(--lavender) / 0.5), transparent 60%),
+      radial-gradient(50% 70% at 90% 30%, hsl(var(--rose) / 0.4), transparent 60%),
+      radial-gradient(70% 60% at 50% 100%, hsl(var(--sky) / 0.35), transparent 60%),
+      hsl(var(--background));
+    background-size: 200% 200%;
+    animation: ambient-drift 18s ease-in-out infinite;
+  }
+  @keyframes ambient-drift {
+    0%, 100% { background-position: 0% 0%, 100% 50%, 50% 100%; }
+    50%      { background-position: 20% 10%, 80% 40%, 40% 90%; }
+  }
+
+  /* Radix tab panel — auto fade-up on activation */
+  [role="tabpanel"][data-state="active"] {
+    animation: fade-up 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  /* Adaptive motion — calm everything when user reports a heavy day.
+     Toggle by setting <html data-mood="heavy"> in app shell. */
+  html[data-mood="heavy"] .motion-breathe,
+  html[data-mood="heavy"] .motion-glow,
+  html[data-mood="heavy"] .motion-shimmer::after,
+  html[data-mood="heavy"] .animate-glow-pulse,
+  html[data-mood="heavy"] .animate-float-soft,
+  html[data-mood="heavy"] .animate-shimmer {
+    animation-duration: 8s !important;
+    opacity: 0.85;
+  }
+  html[data-mood="heavy"] .ambient-gradient { animation-duration: 30s; }
+
+  /* Energetic mood — slightly snappier */
+  html[data-mood="energized"] .motion-breathe { animation-duration: 3.6s; }
+  html[data-mood="energized"] .motion-glow    { animation-duration: 2.6s; }
+
+  /* Respect user accessibility preference */
+  @media (prefers-reduced-motion: reduce) {
+    .motion-breathe,
+    .motion-glow,
+    .motion-shimmer::after,
+    .ambient-gradient,
+    .animate-float-soft,
+    .animate-glow-pulse,
+    .animate-shimmer,
+    .animate-gentle-pulse,
+    .animate-fade-in,
+    .animate-fade-up,
+    .motion-fade-up,
+    [role="tabpanel"][data-state="active"] {
+      animation: none !important;
+    }
+    .motion-lift:hover { transform: none; }
   }
 }
