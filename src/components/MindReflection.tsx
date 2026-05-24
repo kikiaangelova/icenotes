@@ -28,10 +28,10 @@ const MODES: ModeConfig[] = [
     icon: Sunrise,
     tone: { ring: 'border-emerald-200', soft: 'bg-emerald-50/60', chip: 'bg-emerald-100 text-emerald-700', accent: 'text-emerald-700' },
     label: { en: 'Before training', bg: 'Преди тренировка' },
-    intro: { en: 'A short check-in before you step on the ice.', bg: 'Кратка настройка преди да стъпиш на леда.' },
+    intro: { en: 'A short check-in before you step on the ice.', bg: 'Кратък check-in преди да стъпиш на леда.' },
     prompts: [
-      { en: 'How am I arriving today — body and mind?', bg: 'Как пристигам днес — тяло и ум?' },
-      { en: 'One thing I want to focus on.', bg: 'Едно нещо, върху което искам да се фокусирам.' },
+      { en: 'How am I arriving today — body and mind?', bg: 'Как пристигам днес — тяло и глава?' },
+      { en: 'One thing I want to focus on.', bg: 'Едно нещо, върху което искам да съм фокусиран(а).' },
       { en: 'A word for today’s session.', bg: 'Една дума за днешната тренировка.' },
     ],
   },
