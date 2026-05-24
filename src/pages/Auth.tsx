@@ -60,6 +60,33 @@ const Auth: React.FC = () => {
     }
   }, [searchParams, session]);
 
+  const handleGoogle = async () => {
+    setGoogleLoading(true);
+    try {
+      const result = await lovable.auth.signInWithOAuth('google', {
+        redirect_uri: window.location.origin + (searchParams.get('next') || '/dashboard'),
+      });
+      if (result.error) {
+        toast({
+          title: t('auth.toast.loginFailed') || 'Sign-in failed',
+          description: result.error.message || 'Please try again.',
+          variant: 'destructive',
+        });
+        setGoogleLoading(false);
+        return;
+      }
+      if (result.redirected) return;
+      navigate(searchParams.get('next') || '/dashboard');
+    } catch (err) {
+      toast({
+        title: 'Sign-in failed',
+        description: (err as Error).message || 'Please try again.',
+        variant: 'destructive',
+      });
+      setGoogleLoading(false);
+    }
+  };
+
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!loginEmail || !loginPassword) {
