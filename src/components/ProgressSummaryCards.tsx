@@ -145,7 +145,7 @@ export const ProgressSummaryCards: React.FC = () => {
             <div className="w-6 h-6 rounded-full bg-on-ice/10 flex items-center justify-center">
               <Target className="w-3.5 h-3.5 text-on-ice" />
             </div>
-            This Week
+            {t('progressX.thisWeek')}
           </CardTitle>
           <p className="text-xs text-muted-foreground">
             {format(currentWeekStart, 'MMM d')} - {format(currentWeekEnd, 'MMM d, yyyy')}
@@ -155,36 +155,36 @@ export const ProgressSummaryCards: React.FC = () => {
           <div className="space-y-1">
             <div className="flex items-center gap-1.5">
               <Snowflake className="w-3.5 h-3.5 text-on-ice" />
-              <span className="text-xs text-muted-foreground">On-Ice</span>
+              <span className="text-xs text-muted-foreground">{t('progressX.onIce')}</span>
             </div>
             <p className="text-lg font-semibold">{currentWeekOnIceHours.toFixed(1)}h</p>
             <TrendIndicator current={currentWeekOnIceHours} previous={previousWeekOnIceHours} suffix=" week" />
           </div>
-          
+
           <div className="space-y-1">
             <div className="flex items-center gap-1.5">
               <Dumbbell className="w-3.5 h-3.5 text-off-ice" />
-              <span className="text-xs text-muted-foreground">Off-Ice</span>
+              <span className="text-xs text-muted-foreground">{t('progressX.offIce')}</span>
             </div>
-            <p className="text-lg font-semibold">{currentWeekOffIceSessions} sessions</p>
+            <p className="text-lg font-semibold">{currentWeekOffIceSessions} {t('progressX.sessions')}</p>
             <TrendIndicator current={currentWeekOffIceSessions} previous={previousWeekOffIceSessions} suffix=" week" />
           </div>
-          
+
           <div className="space-y-1">
             <div className="flex items-center gap-1.5">
               <Target className="w-3.5 h-3.5 text-primary" />
-              <span className="text-xs text-muted-foreground">Jump Success</span>
+              <span className="text-xs text-muted-foreground">{t('progressX.jumpSuccess')}</span>
             </div>
             <p className="text-lg font-semibold">{currentWeekJumpSuccess}%</p>
             <TrendIndicator current={currentWeekJumpSuccess} previous={previousWeekJumpSuccess} suffix=" week" />
           </div>
-          
+
           <div className="space-y-1">
             <div className="flex items-center gap-1.5">
               <Feather className="w-3.5 h-3.5 text-accent-foreground" />
-              <span className="text-xs text-muted-foreground">Journal</span>
+              <span className="text-xs text-muted-foreground">{t('progressX.journal')}</span>
             </div>
-            <p className="text-lg font-semibold">{currentWeekEntries} entries</p>
+            <p className="text-lg font-semibold">{currentWeekEntries} {t('progressX.entries')}</p>
             <TrendIndicator current={currentWeekEntries} previous={previousWeekEntries} suffix=" week" />
           </div>
         </CardContent>
@@ -197,7 +197,7 @@ export const ProgressSummaryCards: React.FC = () => {
             <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center">
               <TrendingUp className="w-3.5 h-3.5 text-primary" />
             </div>
-            This Month
+            {t('progressX.thisMonth')}
           </CardTitle>
           <p className="text-xs text-muted-foreground">{format(today, 'MMMM yyyy')}</p>
         </CardHeader>
@@ -205,36 +205,36 @@ export const ProgressSummaryCards: React.FC = () => {
           <div className="space-y-1">
             <div className="flex items-center gap-1.5">
               <Snowflake className="w-3.5 h-3.5 text-on-ice" />
-              <span className="text-xs text-muted-foreground">On-Ice</span>
+              <span className="text-xs text-muted-foreground">{t('progressX.onIce')}</span>
             </div>
             <p className="text-lg font-semibold">{currentMonthOnIceHours.toFixed(1)}h</p>
             <TrendIndicator current={currentMonthOnIceHours} previous={previousMonthOnIceHours} suffix=" month" />
           </div>
-          
+
           <div className="space-y-1">
             <div className="flex items-center gap-1.5">
               <Dumbbell className="w-3.5 h-3.5 text-off-ice" />
-              <span className="text-xs text-muted-foreground">Off-Ice</span>
+              <span className="text-xs text-muted-foreground">{t('progressX.offIce')}</span>
             </div>
-            <p className="text-lg font-semibold">{currentMonthOffIceSessions} sessions</p>
+            <p className="text-lg font-semibold">{currentMonthOffIceSessions} {t('progressX.sessions')}</p>
             <TrendIndicator current={currentMonthOffIceSessions} previous={previousMonthOffIceSessions} suffix=" month" />
           </div>
-          
+
           <div className="space-y-1">
             <div className="flex items-center gap-1.5">
               <Target className="w-3.5 h-3.5 text-primary" />
-              <span className="text-xs text-muted-foreground">Jump Success</span>
+              <span className="text-xs text-muted-foreground">{t('progressX.jumpSuccess')}</span>
             </div>
             <p className="text-lg font-semibold">{currentMonthJumpSuccess}%</p>
             <TrendIndicator current={currentMonthJumpSuccess} previous={previousMonthJumpSuccess} suffix=" month" />
           </div>
-          
+
           <div className="space-y-1">
             <div className="flex items-center gap-1.5">
               <Feather className="w-3.5 h-3.5 text-accent-foreground" />
-              <span className="text-xs text-muted-foreground">Journal</span>
+              <span className="text-xs text-muted-foreground">{t('progressX.journal')}</span>
             </div>
-            <p className="text-lg font-semibold">{currentMonthEntries} entries</p>
+            <p className="text-lg font-semibold">{currentMonthEntries} {t('progressX.entries')}</p>
             <TrendIndicator current={currentMonthEntries} previous={previousMonthEntries} suffix=" month" />
           </div>
         </CardContent>
