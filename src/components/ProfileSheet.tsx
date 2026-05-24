@@ -2,7 +2,7 @@ import React from 'react';
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from '@/components/ui/sheet';
 import { Button } from '@/components/ui/button';
 import { AvatarUpload } from '@/components/AvatarUpload';
-import { Home, ChevronLeft, LogOut, Bell, Shield, Mail } from 'lucide-react';
+import { Home, ChevronLeft, LogOut, Bell, Shield, Mail, ExternalLink, Users } from 'lucide-react';
 import { useJournal } from '@/context/JournalContext';
 import { useAuth } from '@/context/AuthContext';
 import { useIsAdmin } from '@/hooks/useIsAdmin';
@@ -131,10 +131,49 @@ export const ProfileSheet: React.FC<ProfileSheetProps> = ({
               </button>
             )}
           </div>
+
+          {/* Community + Exit */}
+          <div className="space-y-2">
+            <p className="text-[10px] font-bold tracking-[0.2em] uppercase text-muted-foreground px-1">Explore</p>
+
+            <button
+              onClick={() => { navigate('/share-experience'); onOpenChange(false); }}
+              className="w-full h-14 px-4 rounded-2xl bg-card border border-border/50 flex items-center gap-3 hover:bg-muted/60 active:scale-[0.99] transition-all text-left"
+            >
+              <div className="w-9 h-9 rounded-xl bg-mint/50 flex items-center justify-center">
+                <Users className="w-4 h-4 text-mint-foreground" />
+              </div>
+              <div className="flex-1">
+                <p className="text-sm font-semibold text-foreground">Skater Community</p>
+                <p className="text-xs text-muted-foreground">Share your journey, read others'</p>
+              </div>
+            </button>
+
+            <button
+              onClick={() => { navigate('/'); onOpenChange(false); }}
+              className="w-full h-14 px-4 rounded-2xl bg-card border border-border/50 flex items-center gap-3 hover:bg-muted/60 active:scale-[0.99] transition-all text-left"
+            >
+              <div className="w-9 h-9 rounded-xl bg-peach/50 flex items-center justify-center">
+                <ExternalLink className="w-4 h-4 text-peach-foreground" />
+              </div>
+              <div className="flex-1">
+                <p className="text-sm font-semibold text-foreground">Back to landing page</p>
+                <p className="text-xs text-muted-foreground">Exit the app view</p>
+              </div>
+            </button>
+          </div>
         </div>
 
         {/* Sticky footer — Logout always visible, no dead end */}
-        <div className="px-5 py-4 border-t border-border/40 bg-background/80 backdrop-blur-xl pb-[calc(env(safe-area-inset-bottom)+1rem)]">
+        <div className="px-5 py-4 border-t border-border/40 bg-background/80 backdrop-blur-xl pb-[calc(env(safe-area-inset-bottom)+1rem)] space-y-2">
+          <Button
+            onClick={() => { navigate('/'); onOpenChange(false); }}
+            variant="ghost"
+            className="w-full h-12 rounded-2xl font-semibold text-sm gap-2"
+          >
+            <ExternalLink className="w-4 h-4" />
+            Back to landing page
+          </Button>
           <Button
             onClick={onLogout}
             variant="outline"
