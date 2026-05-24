@@ -172,7 +172,7 @@ export const GoalsSection: React.FC = () => {
                 />
                 <div className="flex items-center gap-2 text-xs text-muted-foreground">
                   <Calendar className="w-3 h-3" />
-                  Target: {format(new Date(goal.targetDate), 'MMM d, yyyy')}
+                  {t('goalsX.target')}: {format(new Date(goal.targetDate), 'MMM d, yyyy')}
                 </div>
               </CardContent>
             </Card>
