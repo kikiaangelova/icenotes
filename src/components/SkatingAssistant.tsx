@@ -7,10 +7,10 @@ import { cn } from '@/lib/utils';
 type Msg = { role: 'user' | 'assistant'; content: string };
 
 const STARTERS = [
-  'I keep falling on my Lutz — help?',
-  "I'm nervous about competition this weekend",
-  'I hit a motivation dip. What now?',
-  'Hype me up before practice',
+  'Все падам на лутца — какво да правя?',
+  'Нервен/нервна съм за състезанието този уикенд',
+  'Изгубих мотивация. Какво сега?',
+  'Дай ми енергия преди тренировка',
 ];
 
 export const SkatingAssistant: React.FC = () => {
@@ -73,11 +73,11 @@ export const SkatingAssistant: React.FC = () => {
       });
 
       if (resp.status === 429) {
-        upsert("Slow down a sec — too many requests. Try again in a moment.");
+        upsert('Малко по-бавно — твърде много заявки. Опитай след минута.');
         return;
       }
       if (resp.status === 402) {
-        upsert('AI credits ran out. Ask the team to top up.');
+        upsert('AI кредитите свършиха. Помоли екипа да зареди.');
         return;
       }
       if (!resp.ok || !resp.body) throw new Error('stream failed');
@@ -110,7 +110,7 @@ export const SkatingAssistant: React.FC = () => {
       }
     } catch (e) {
       console.error(e);
-      upsert("Something glitched. Try again in a sec.");
+      upsert('Нещо се закачи. Опитай след секунда.');
     } finally {
       setLoading(false);
     }
@@ -120,11 +120,11 @@ export const SkatingAssistant: React.FC = () => {
     <Sheet open={open} onOpenChange={setOpen}>
       <SheetTrigger asChild>
         <button
-          aria-label="Open AI skating coach"
+          aria-label="Отвори AI треньора"
           className="fixed bottom-24 right-5 sm:bottom-6 sm:right-6 z-50 group flex items-center gap-2 px-5 h-14 rounded-full bg-gradient-to-r from-primary via-grape-foreground to-rose-foreground text-primary-foreground motion-glow motion-shimmer motion-press hover:scale-[1.04] transition-transform duration-300 font-bold"
         >
           <Sparkles className="w-5 h-5 motion-breathe" />
-          <span className="hidden sm:inline">Ask Coach Iris</span>
+          <span className="hidden sm:inline">Питай Треньор Ирис</span>
         </button>
       </SheetTrigger>
       <SheetContent side="right" className="w-full sm:max-w-md flex flex-col p-0 gap-0">
@@ -133,8 +133,8 @@ export const SkatingAssistant: React.FC = () => {
             <span className="w-9 h-9 rounded-full bg-gradient-to-br from-primary to-rose-foreground flex items-center justify-center text-primary-foreground">
               <Sparkles className="w-4 h-4" />
             </span>
-            Coach Iris
-            <span className="text-xs font-medium text-muted-foreground">tutor · mentor · hype</span>
+            Треньор Ирис
+            <span className="text-xs font-medium text-muted-foreground">учи · подкрепя · вдъхновява</span>
           </SheetTitle>
         </SheetHeader>
 
@@ -143,11 +143,11 @@ export const SkatingAssistant: React.FC = () => {
             <div className="space-y-4">
               <div className="rounded-2xl bg-gradient-to-br from-lavender to-rose/60 p-5 border border-border/40">
                 <p className="text-sm leading-relaxed text-foreground">
-                  Hey 👋 I'm Iris. I tutor jumps, talk you through nerves, and hype you up.
-                  Tell me what's on your mind — even if it's "today was rough."
+                  Здрасти 👋 Аз съм Ирис. Помагам ти със скоковете, говорим за нервите и ти давам енергия.
+                  Кажи ми какво те вълнува — дори да е „днес беше тежко“.
                 </p>
               </div>
-              <p className="text-xs font-bold uppercase tracking-wider text-muted-foreground">Try one</p>
+              <p className="text-xs font-bold uppercase tracking-wider text-muted-foreground">Опитай едно</p>
               <div className="grid gap-2">
                 {STARTERS.map((s) => (
                   <button
@@ -191,7 +191,7 @@ export const SkatingAssistant: React.FC = () => {
           <input
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            placeholder="Tell Iris what's up…"
+            placeholder="Кажи на Ирис какво те вълнува…"
             className="flex-1 h-11 px-4 rounded-xl bg-muted/50 border border-border focus:outline-none focus:ring-2 focus:ring-primary text-sm"
             disabled={loading}
           />

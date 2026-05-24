@@ -16,17 +16,17 @@ interface DecompressionFlowProps {
 
 // Pick an opening line tailored to detected themes — never toxic positivity.
 function openingLine(themes: DifficultTheme[] = []): string {
-  if (themes.includes('injury'))      return 'Your body is asking for care. That counts as training too.';
-  if (themes.includes('fear'))        return 'Fear shows up when something matters. You\'re not alone in it.';
-  if (themes.includes('burnout'))     return 'You\'ve been carrying a lot. Let\'s slow down for a minute.';
-  if (themes.includes('overwhelm'))   return 'That sounds like a lot to hold. You don\'t have to figure it all out tonight.';
-  if (themes.includes('self_doubt'))  return 'The hard voice in your head isn\'t the whole story.';
-  if (themes.includes('frustration')) return 'Frustration means you care. That\'s not nothing.';
-  if (themes.includes('bad_practice'))return 'Some practices stay heavy for a while. That\'s allowed.';
-  return 'That sounded like a hard day. You\'re here, and that\'s enough.';
+  if (themes.includes('injury'))      return 'Тялото ти иска грижа. Това също е тренировка.';
+  if (themes.includes('fear'))        return 'Страхът се появява, когато нещо ти е важно. Не си сам/а в това.';
+  if (themes.includes('burnout'))     return 'Носиш много на гърба си. Хайде да забавим за минута.';
+  if (themes.includes('overwhelm'))   return 'Звучи като много за едно вечер. Не трябва да го решаваш цялото сега.';
+  if (themes.includes('self_doubt'))  return 'Острият глас в главата ти не е цялата истина.';
+  if (themes.includes('frustration')) return 'Фрустрацията означава, че ти пука. Това не е малко.';
+  if (themes.includes('bad_practice'))return 'Някои тренировки тежат за известно време. Това е нормално.';
+  return 'Беше тежък ден. Тук си — и това е достатъчно.';
 }
 
-// 4-7-8 breathing — soft, no countdown pressure
+// 4-7-8 дишане — меко, без натиск от обратно броене
 const BreatheStep: React.FC<{ onDone: () => void }> = ({ onDone }) => {
   const [phase, setPhase] = useState<'in' | 'hold' | 'out'>('in');
   const [cycle, setCycle] = useState(0);
@@ -40,7 +40,7 @@ const BreatheStep: React.FC<{ onDone: () => void }> = ({ onDone }) => {
     return () => clearTimeout(id);
   }, [phase]);
 
-  const label = phase === 'in' ? 'Breathe in…' : phase === 'hold' ? 'Hold…' : 'Soft exhale…';
+  const label = phase === 'in' ? 'Вдишвай…' : phase === 'hold' ? 'Задръж…' : 'Меко издишване…';
   const scale = phase === 'in' ? 'scale-110' : phase === 'hold' ? 'scale-110' : 'scale-90';
   const dur   = phase === 'in' ? 'duration-[4000ms]' : phase === 'hold' ? 'duration-[4000ms]' : 'duration-[6000ms]';
 
@@ -55,30 +55,30 @@ const BreatheStep: React.FC<{ onDone: () => void }> = ({ onDone }) => {
         <span className="text-base font-medium text-foreground/85">{label}</span>
       </div>
       <p className="text-sm text-muted-foreground max-w-xs">
-        No rush. No counting. Stay as long as feels right.
+        Без бързане. Без броене. Остани колкото ти е добре.
       </p>
       <div className="flex flex-col gap-2 w-full max-w-xs">
         <Button onClick={onDone} variant="outline" className="h-12 rounded-full">
-          I feel a little softer
+          Малко по-меко ми е
         </Button>
       </div>
-      {cycle > 0 && <p className="text-xs text-muted-foreground/70">{cycle} gentle cycle{cycle === 1 ? '' : 's'}</p>}
+      {cycle > 0 && <p className="text-xs text-muted-foreground/70">{cycle} спокоен {cycle === 1 ? 'цикъл' : 'цикъла'}</p>}
     </div>
   );
 };
 
 const GroundStep: React.FC<{ onDone: () => void }> = ({ onDone }) => {
   const prompts = [
-    '5 things you can see around you',
-    '4 things you can feel — the floor, your hoodie, the air',
-    '3 sounds, even small ones',
-    '2 things you can smell',
-    '1 thing you can taste, or one slow breath',
+    '5 неща, които виждаш около себе си',
+    '4 неща, които можеш да усетиш — пода, дрехите, въздуха',
+    '3 звука, дори малки',
+    '2 неща, които можеш да помиришеш',
+    '1 нещо, което можеш да вкусиш, или едно бавно вдишване',
   ];
   return (
     <div className="flex flex-col gap-6 py-2">
       <p className="text-center text-foreground/80 text-base leading-relaxed">
-        Come back to your body for a moment. No pressure to answer out loud.
+        Върни се в тялото си за момент. Не е нужно да отговаряш на глас.
       </p>
       <ul className="space-y-3">
         {prompts.map((p, i) => (
@@ -92,7 +92,7 @@ const GroundStep: React.FC<{ onDone: () => void }> = ({ onDone }) => {
         ))}
       </ul>
       <Button onClick={onDone} variant="outline" className="h-12 rounded-full">
-        I'm back in my body
+        Върнах се в тялото си
       </Button>
     </div>
   );
@@ -104,16 +104,16 @@ const RestStep: React.FC<{ onClose: () => void }> = ({ onClose }) => (
       <Moon className="w-9 h-9 text-foreground/70" />
     </div>
     <div className="space-y-2 max-w-sm">
-      <h3 className="text-2xl font-semibold text-foreground">Today was enough.</h3>
+      <h3 className="text-2xl font-semibold text-foreground">Днес беше достатъчно.</h3>
       <p className="text-muted-foreground leading-relaxed">
-        You showed up. You wrote it down. Nothing else is needed from you tonight.
+        Беше тук. Записа го. Нищо повече не се иска от теб тази вечер.
       </p>
     </div>
     <Button
       onClick={onClose}
       className="h-12 rounded-full bg-foreground text-background hover:bg-foreground/90 px-8"
     >
-      Close gently
+      Затвори тихо
     </Button>
   </div>
 );
@@ -136,7 +136,7 @@ export const DecompressionFlow: React.FC<DecompressionFlowProps> = ({
         className="max-w-md p-0 overflow-hidden border-0 bg-gradient-to-b from-lavender/30 via-background to-mint/20 sm:rounded-3xl"
       >
         <button
-          aria-label="Close gently"
+          aria-label="Затвори тихо"
           onClick={close}
           className="absolute right-3 top-3 z-10 rounded-full p-2 text-muted-foreground/70 hover:text-foreground hover:bg-background/40 transition-colors"
         >
@@ -153,21 +153,21 @@ export const DecompressionFlow: React.FC<DecompressionFlowProps> = ({
                 {openingLine(themes)}
               </h2>
               <p className="text-sm text-muted-foreground max-w-xs leading-relaxed">
-                You don't need to solve anything right now. Take a breath before moving on.
+                Не е нужно да решаваш нищо сега. Поеми дъх, преди да продължиш.
               </p>
               <div className="flex flex-col gap-2 w-full max-w-xs pt-2">
                 <Button
                   onClick={() => setStep('choose')}
                   className="h-12 rounded-full bg-foreground text-background hover:bg-foreground/90"
                 >
-                  Stay with me a minute
+                  Остани с мен за минута
                 </Button>
                 <Button
                   onClick={() => setStep('rest')}
                   variant="ghost"
                   className="h-11 rounded-full text-muted-foreground"
                 >
-                  I just want to rest
+                  Искам просто да си почина
                 </Button>
               </div>
             </div>
@@ -176,38 +176,38 @@ export const DecompressionFlow: React.FC<DecompressionFlowProps> = ({
           {step === 'choose' && (
             <div className="flex-1 flex flex-col gap-5 animate-fade-in">
               <div className="text-center space-y-1">
-                <h3 className="text-xl font-semibold text-foreground">What would feel kind right now?</h3>
-                <p className="text-sm text-muted-foreground">Pick one. Or none. There's no wrong move.</p>
+                <h3 className="text-xl font-semibold text-foreground">Какво ще ти бъде нежно сега?</h3>
+                <p className="text-sm text-muted-foreground">Избери едно. Или нищо. Няма грешен ход.</p>
               </div>
               <div className="grid gap-3 mt-2">
                 <ActionCard
                   icon={<Wind className="w-5 h-5" />}
-                  title="A slow breath"
-                  desc="A few soft breath cycles, no counting."
+                  title="Бавно дишане"
+                  desc="Няколко меки цикъла, без броене."
                   onClick={() => setStep('breathe')}
                 />
                 <ActionCard
                   icon={<Leaf className="w-5 h-5" />}
-                  title="Ground me"
-                  desc="Come back to your senses, gently."
+                  title="Заземи ме"
+                  desc="Върни се към сетивата си, нежно."
                   onClick={() => setStep('ground')}
                 />
                 <ActionCard
                   icon={<Sparkles className="w-5 h-5" />}
-                  title="One soft reframe"
-                  desc="A reminder that this moment isn't the whole story."
+                  title="Едно меко преосмисляне"
+                  desc="Напомняне, че този момент не е цялата история."
                   onClick={() => setStep('rest')}
                 />
                 <ActionCard
                   icon={<Moon className="w-5 h-5" />}
-                  title="Today was enough"
-                  desc="Save and rest. Nothing else required."
+                  title="Днес беше достатъчно"
+                  desc="Запази и почини. Нищо повече не се иска."
                   onClick={() => setStep('rest')}
                 />
               </div>
               {level === 'heavy' && (
                 <p className="text-xs text-center text-muted-foreground/80 pt-2 leading-relaxed">
-                  If you're carrying something bigger than skating tonight, please reach out to someone you trust. You don't have to hold it alone.
+                  Ако носиш нещо по-голямо от кънките тази вечер, моля те — потърси някой, на когото имаш доверие. Не трябва да го носиш сам/а.
                 </p>
               )}
             </div>

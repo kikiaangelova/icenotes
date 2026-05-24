@@ -10,20 +10,20 @@ interface GameDayModeProps {
 }
 
 const AFFIRMATIONS = [
-  'I am calm, confident, and ready.',
-  'I trust my training. My body knows what to do.',
-  'Every edge, every breath, every beat — I belong here.',
-  'I skate with courage. I skate with joy.',
-  'I am stronger than my nerves. I am bigger than my doubts.',
-  'I have done the work. Today I get to show it.',
-  'I am present. I am powerful. I am prepared.',
+  'Аз съм спокоен/спокойна, уверен/уверена и готов/а.',
+  'Доверявам се на тренировките. Тялото ми знае какво да прави.',
+  'Всеки ръб, всяко дишане, всеки такт — мястото ми е тук.',
+  'Карам с кураж. Карам с радост.',
+  'По-силен/силна съм от нервите си. По-голям/голяма от съмненията си.',
+  'Свърших работата. Днес имам шанса да я покажа.',
+  'Тук съм. Силен/силна съм. Подготвен/а съм.',
 ];
 
-// 4-7-8 breathing: inhale 4s, hold 7s, exhale 8s (one full cycle)
+// 4-7-8 дишане: вдишване 4с, задържане 7с, издишване 8с (един пълен цикъл)
 const BREATH_PHASES = [
-  { label: 'Inhale', seconds: 4, scale: 1.4, opacity: 1.0 },
-  { label: 'Hold', seconds: 7, scale: 1.4, opacity: 1.0 },
-  { label: 'Exhale', seconds: 8, scale: 0.8, opacity: 0.6 },
+  { label: 'Вдишвай', seconds: 4, scale: 1.4, opacity: 1.0 },
+  { label: 'Задръж', seconds: 7, scale: 1.4, opacity: 1.0 },
+  { label: 'Издишвай', seconds: 8, scale: 0.8, opacity: 0.6 },
 ] as const;
 
 export const GameDayMode: React.FC<GameDayModeProps> = ({ open, onOpenChange }) => {
@@ -104,7 +104,7 @@ export const GameDayMode: React.FC<GameDayModeProps> = ({ open, onOpenChange }) 
         {/* Close */}
         <button
           onClick={close}
-          aria-label="Close"
+          aria-label="Затвори"
           className="absolute top-4 right-4 z-20 w-10 h-10 rounded-full bg-white/10 backdrop-blur hover:bg-white/20 text-white flex items-center justify-center transition-colors"
         >
           <X className="w-5 h-5" />
@@ -113,7 +113,7 @@ export const GameDayMode: React.FC<GameDayModeProps> = ({ open, onOpenChange }) 
         {/* Header */}
         <div className="absolute top-4 left-4 z-20 flex items-center gap-2 text-white/90">
           <Trophy className="w-4 h-4 text-amber-300" />
-          <span className="text-xs font-bold uppercase tracking-[0.2em]">Game Day</span>
+          <span className="text-xs font-bold uppercase tracking-[0.2em]">Ден на старта</span>
         </div>
 
         {/* Step indicator */}
@@ -132,14 +132,14 @@ export const GameDayMode: React.FC<GameDayModeProps> = ({ open, onOpenChange }) 
         {/* Content */}
         <div className="relative z-10 h-full w-full flex flex-col items-center justify-center px-6 text-center text-white">
           <div className="absolute top-24 text-xs font-medium text-white/60 tracking-wider">
-            Step {step + 1} / {totalSteps}
+            Стъпка {step + 1} / {totalSteps}
           </div>
 
           {step === 0 && (
             <div className="flex flex-col items-center gap-8 animate-fade-in">
               <div className="flex items-center gap-2 text-white/80">
                 <Wind className="w-4 h-4" />
-                <span className="text-sm font-semibold uppercase tracking-widest">Breathe</span>
+                <span className="text-sm font-semibold uppercase tracking-widest">Дишай</span>
               </div>
 
               <div className="relative w-64 h-64 flex items-center justify-center">
@@ -167,17 +167,17 @@ export const GameDayMode: React.FC<GameDayModeProps> = ({ open, onOpenChange }) 
                     <>
                       <div className="text-3xl font-extrabold drop-shadow">{phase.label}</div>
                       <div className="text-5xl font-black mt-2 tabular-nums drop-shadow">
-                        {secondsLeft}s
+                        {secondsLeft}с
                       </div>
                     </>
                   ) : (
-                    <div className="text-2xl font-bold drop-shadow">Centered ✨</div>
+                    <div className="text-2xl font-bold drop-shadow">Центриран/а ✨</div>
                   )}
                 </div>
               </div>
 
               <p className="text-sm text-white/70 max-w-xs">
-                Inhale 4 · Hold 7 · Exhale 8. Let the noise dissolve.
+                Вдишване 4 · Задържане 7 · Издишване 8. Остави шума да изчезне.
               </p>
 
               <Button
@@ -186,7 +186,7 @@ export const GameDayMode: React.FC<GameDayModeProps> = ({ open, onOpenChange }) 
                 onClick={next}
                 className="h-14 px-10 rounded-full bg-white text-slate-900 hover:bg-white/90 font-bold disabled:opacity-40"
               >
-                Next <ChevronRight className="w-5 h-5 ml-1" />
+                Напред <ChevronRight className="w-5 h-5 ml-1" />
               </Button>
             </div>
           )}
@@ -195,18 +195,18 @@ export const GameDayMode: React.FC<GameDayModeProps> = ({ open, onOpenChange }) 
             <div className="flex flex-col items-center gap-8 animate-fade-in max-w-lg">
               <div className="flex items-center gap-2 text-white/80">
                 <Eye className="w-4 h-4" />
-                <span className="text-sm font-semibold uppercase tracking-widest">Visualize</span>
+                <span className="text-sm font-semibold uppercase tracking-widest">Визуализирай</span>
               </div>
               <p className="text-2xl md:text-3xl font-bold leading-relaxed text-white drop-shadow">
-                Close your eyes. Imagine stepping onto the ice. Your music starts. See yourself
-                landing every element perfectly. Feel the crowd. Finish strong.
+                Затвори очи. Представи си как стъпваш на леда. Музиката започва. Виж как кацаш
+                всеки елемент. Усети публиката. Завърши силно.
               </p>
               <Button
                 size="lg"
                 onClick={next}
                 className="h-14 px-10 rounded-full bg-white text-slate-900 hover:bg-white/90 font-bold"
               >
-                Next <ChevronRight className="w-5 h-5 ml-1" />
+                Напред <ChevronRight className="w-5 h-5 ml-1" />
               </Button>
             </div>
           )}
@@ -215,7 +215,7 @@ export const GameDayMode: React.FC<GameDayModeProps> = ({ open, onOpenChange }) 
             <div className="flex flex-col items-center gap-10 animate-fade-in max-w-2xl">
               <div className="flex items-center gap-2 text-white/80">
                 <Sparkles className="w-4 h-4" />
-                <span className="text-sm font-semibold uppercase tracking-widest">Affirmation</span>
+                <span className="text-sm font-semibold uppercase tracking-widest">Афирмация</span>
               </div>
               <p
                 className="text-3xl md:text-5xl font-black leading-tight text-white"
@@ -231,7 +231,7 @@ export const GameDayMode: React.FC<GameDayModeProps> = ({ open, onOpenChange }) 
                 onClick={next}
                 className="h-14 px-10 rounded-full bg-white text-slate-900 hover:bg-white/90 font-bold"
               >
-                Next <ChevronRight className="w-5 h-5 ml-1" />
+                Напред <ChevronRight className="w-5 h-5 ml-1" />
               </Button>
             </div>
           )}
@@ -242,18 +242,18 @@ export const GameDayMode: React.FC<GameDayModeProps> = ({ open, onOpenChange }) 
                 <Heart className="w-10 h-10 text-white" />
               </div>
               <p className="text-xs font-bold uppercase tracking-[0.2em] text-white/70">
-                Coach Iris
+                Треньор Ирис
               </p>
               <p className="text-2xl md:text-3xl font-bold leading-relaxed text-white drop-shadow">
-                You've prepared for this. Trust your training. Go out there and skate your heart
-                out. I believe in you.
+                Подготвен/а си за това. Доверѝ се на тренировките. Излез и карай от сърце.
+                Вярвам в теб.
               </p>
               <Button
                 size="lg"
                 onClick={close}
                 className="h-14 px-10 rounded-full bg-gradient-to-r from-violet-500 to-indigo-600 text-white hover:opacity-95 font-bold"
               >
-                Let's go <Sparkles className="w-5 h-5 ml-2" />
+                Да тръгваме <Sparkles className="w-5 h-5 ml-2" />
               </Button>
             </div>
           )}
@@ -301,11 +301,11 @@ export const GameDayCard: React.FC<GameDayCardProps> = ({ onClick, className }) 
       </div>
       <div className="flex-1 min-w-0">
         <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-amber-200/90">
-          Game Day
+          Ден на старта
         </p>
-        <h3 className="text-lg font-extrabold leading-tight">Pre-competition ritual</h3>
+        <h3 className="text-lg font-extrabold leading-tight">Ритуал преди състезание</h3>
         <p className="text-xs text-white/80 mt-1">
-          Breathe · Visualize · Affirm · Hear from Coach Iris
+          Дишай · Визуализирай · Афирмирай · Чуй Треньор Ирис
         </p>
       </div>
       <ChevronRight className="w-5 h-5 text-white/70 group-hover:translate-x-1 transition-transform" />

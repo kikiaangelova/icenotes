@@ -20,26 +20,26 @@ import {
 } from 'lucide-react';
 
 const PRE_SKATE_CHECKLIST = [
-  { id: 'hydrate', label: 'Hydrated and ready', icon: '💧' },
-  { id: 'warmup', label: 'Body feels warmed up', icon: '🔥' },
-  { id: 'equipment', label: 'Skates and gear checked', icon: '⛸️' },
-  { id: 'focus', label: 'Mind is clear and focused', icon: '🎯' },
-  { id: 'intention', label: 'Set an intention for this session', icon: '✨' },
+  { id: 'hydrate', label: 'Хидратиран/а и готов/а', icon: '💧' },
+  { id: 'warmup', label: 'Тялото е загрято', icon: '🔥' },
+  { id: 'equipment', label: 'Кънките и екипът са проверени', icon: '⛸️' },
+  { id: 'focus', label: 'Главата е ясна и фокусирана', icon: '🎯' },
+  { id: 'intention', label: 'Имам намерение за тази тренировка', icon: '✨' },
 ];
 
 const FOCUS_REMINDERS = [
-  { text: "Trust your training. You've prepared for this.", icon: Target },
-  { text: "Stay present. One element at a time.", icon: Brain },
-  { text: "Breathe deeply. Let tension release.", icon: Wind },
-  { text: "Embrace the ice. It's where you belong.", icon: Heart },
-  { text: "Focus on quality, not quantity.", icon: Sparkles },
-  { text: "Your body knows what to do.", icon: Zap },
+  { text: "Доверѝ се на тренировките. Подготвен/а си за това.", icon: Target },
+  { text: "Бъди тук и сега. Един елемент в един момент.", icon: Brain },
+  { text: "Дишай дълбоко. Остави напрежението да си тръгне.", icon: Wind },
+  { text: "Прегърни леда. Това е твоето място.", icon: Heart },
+  { text: "Качество, не количество.", icon: Sparkles },
+  { text: "Тялото ти знае какво да прави.", icon: Zap },
 ];
 
 const QUICK_BREATHING = {
-  name: 'Quick Centering Breath',
-  description: 'Center yourself before stepping on the ice',
-  steps: ['Inhale deeply', 'Hold', 'Exhale slowly'],
+  name: 'Бързо центриране с дъх',
+  description: 'Центрирай се, преди да стъпиш на леда',
+  steps: ['Поеми въздух', 'Задръж', 'Издишай бавно'],
   durations: [4, 2, 6],
   rounds: 3,
 };
@@ -128,13 +128,13 @@ export const PreTrainingPrep: React.FC<PreTrainingPrepProps> = ({
       <div className="text-center space-y-2">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-mental/10 text-mental text-sm">
           <Timer className="w-4 h-4" />
-          Pre-Training Preparation
+          Подготовка преди тренировка
         </div>
         <h2 className="text-lg font-medium">
-          {trainingType === 'on-ice' ? 'Before You Step on the Ice' : 'Before Your Training'}
+          {trainingType === 'on-ice' ? 'Преди да стъпиш на леда' : 'Преди тренировката'}
         </h2>
         <p className="text-sm text-muted-foreground">
-          Take a moment to prepare your mind and body
+          Отдели минута, за да подготвиш ума и тялото си
         </p>
       </div>
 
@@ -160,7 +160,7 @@ export const PreTrainingPrep: React.FC<PreTrainingPrepProps> = ({
           <CardHeader className="pb-3">
             <CardTitle className="text-base flex items-center gap-2">
               <CheckCircle2 className="w-5 h-5 text-mental" />
-              Pre-Skate Checklist
+              Чеклист преди леда
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
@@ -194,17 +194,17 @@ export const PreTrainingPrep: React.FC<PreTrainingPrepProps> = ({
             >
               {allChecked ? (
                 <>
-                  Continue to Breathing
+                  Към дишането
                   <ChevronRight className="w-4 h-4 ml-1" />
                 </>
               ) : (
-                `Complete checklist (${checkedItems.size}/${PRE_SKATE_CHECKLIST.length})`
+                `Отметни всичко (${checkedItems.size}/${PRE_SKATE_CHECKLIST.length})`
               )}
             </Button>
 
             {!allChecked && (
               <p className="text-center text-xs text-muted-foreground">
-                Check all items when you're ready
+                Отметни всичко, когато си готов/а
               </p>
             )}
           </CardContent>
@@ -259,15 +259,15 @@ export const PreTrainingPrep: React.FC<PreTrainingPrepProps> = ({
                   <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
                     <div className="text-center">
                       <div className="text-xl font-bold text-white drop-shadow">
-                        {isBreathing ? QUICK_BREATHING.steps[breathStep] : 'Ready'}
+                        {isBreathing ? QUICK_BREATHING.steps[breathStep] : 'Готов/а'}
                       </div>
                       {isBreathing && (
                         <>
                           <div className="text-3xl font-bold text-white drop-shadow mt-1 tabular-nums">
-                            {secondsRemaining}s
+                            {secondsRemaining}с
                           </div>
                           <div className="text-xs text-white/80 mt-1">
-                            Round {breathRound} of {QUICK_BREATHING.rounds}
+                            Кръг {breathRound} от {QUICK_BREATHING.rounds}
                           </div>
                         </>
                       )}
@@ -288,7 +288,7 @@ export const PreTrainingPrep: React.FC<PreTrainingPrepProps> = ({
                   onClick={() => setIsBreathing(true)}
                   className="bg-mental hover:bg-mental/90"
                 >
-                  <Play className="w-5 h-5 mr-2" /> Start Breathing
+                  <Play className="w-5 h-5 mr-2" /> Започни дишането
                 </Button>
               ) : (
                 <>
@@ -302,7 +302,7 @@ export const PreTrainingPrep: React.FC<PreTrainingPrepProps> = ({
                       setBreathRound(1);
                     }}
                   >
-                    <Pause className="w-5 h-5 mr-2" /> Pause
+                    <Pause className="w-5 h-5 mr-2" /> Пауза
                   </Button>
                 </>
               )}
@@ -313,7 +313,7 @@ export const PreTrainingPrep: React.FC<PreTrainingPrepProps> = ({
               className="w-full text-muted-foreground"
               onClick={() => setStep('focus')}
             >
-              Skip to focus reminder
+              Пропусни към фокуса
             </Button>
           </CardContent>
         </Card>
@@ -330,7 +330,7 @@ export const PreTrainingPrep: React.FC<PreTrainingPrepProps> = ({
               
               <div className="space-y-2">
                 <Badge variant="outline" className="text-mental border-mental/30">
-                  Today's Focus
+                  Фокус за днес
                 </Badge>
                 <p className="text-xl font-medium leading-relaxed max-w-sm mx-auto">
                   "{currentFocus.text}"
@@ -343,19 +343,19 @@ export const PreTrainingPrep: React.FC<PreTrainingPrepProps> = ({
                   onClick={() => setFocusIndex((focusIndex + 1) % FOCUS_REMINDERS.length)}
                 >
                   <RotateCcw className="w-4 h-4 mr-2" />
-                  Another
+                  Друг
                 </Button>
                 <Button
                   onClick={handleComplete}
                   className="bg-mental hover:bg-mental/90"
                 >
                   <Sparkles className="w-4 h-4 mr-2" />
-                  I'm Ready
+                  Готов/а съм
                 </Button>
               </div>
 
               <p className="text-xs text-muted-foreground">
-                Carry this intention with you onto the ice
+                Занеси това намерение със себе си на леда
               </p>
             </div>
           </CardContent>
@@ -370,9 +370,9 @@ export const PreTrainingPrep: React.FC<PreTrainingPrepProps> = ({
               <div className="w-20 h-20 mx-auto rounded-full bg-mental/30 flex items-center justify-center">
                 <CheckCircle2 className="w-10 h-10 text-mental" />
               </div>
-              <h3 className="text-xl font-medium">You're ready!</h3>
+              <h3 className="text-xl font-medium">Готов/а си!</h3>
               <p className="text-muted-foreground">
-                Go show the ice what you've got ✨
+                Покажи на леда какво можеш ✨
               </p>
             </div>
           </CardContent>

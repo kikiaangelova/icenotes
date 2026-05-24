@@ -8,147 +8,147 @@ import { MindfulnessTools } from '@/components/MindfulnessTools';
 
 const MENTAL_TIPS = [
   {
-    title: "Process Over Outcome",
-    tip: "Focus on what you can control — your effort, your technique, your attitude. The results will follow when you trust the process.",
-    category: "mindset"
+    title: "Процесът преди резултата",
+    tip: "Фокусирай се върху това, което контролираш — усилие, техника, нагласа. Резултатите идват, когато се довериш на процеса.",
+    category: "нагласа"
   },
   {
-    title: "The 3-Second Rule",
-    tip: "After a fall or mistake, give yourself 3 seconds to feel it. Then take a breath, reset, and move on. Don't carry it into the next element.",
-    category: "resilience"
+    title: "Правилото на 3-те секунди",
+    tip: "След падане или грешка си дай 3 секунди да го усетиш. После — вдишване, рестарт и продължаваш. Не го носи в следващия елемент.",
+    category: "устойчивост"
   },
   {
-    title: "Positive Self-Talk",
-    tip: "Replace 'I can't land this' with 'I'm learning to land this.' The words you use shape how your brain approaches a challenge.",
-    category: "confidence"
+    title: "Говори си добре",
+    tip: "Смени „не мога да го направя“ с „уча се да го направя“. Думите, които използваш, оформят начина, по който мозъкът ти подхожда към предизвикателството.",
+    category: "увереност"
   },
   {
-    title: "Visualize Before You Execute",
-    tip: "Before attempting a jump or spin, close your eyes for 5 seconds and see yourself doing it perfectly. Your brain doesn't fully distinguish imagination from reality.",
-    category: "technique"
+    title: "Визуализирай, преди да изпълниш",
+    tip: "Преди скок или въртене затвори очи за 5 секунди и се виж как го правиш безупречно. Мозъкът ти не различава напълно въображението от реалността.",
+    category: "техника"
   },
   {
-    title: "Celebrate Small Wins",
-    tip: "Did you hold an edge a little longer? Land one more jump today? Notice these moments. Progress is built in small increments.",
-    category: "motivation"
+    title: "Празнувай малките победи",
+    tip: "Задържа ли ръба малко по-дълго? Кацна ли още един скок днес? Забелязвай тези моменти. Прогресът се гради на малки стъпки.",
+    category: "мотивация"
   },
   {
-    title: "Breath Is Your Anchor",
-    tip: "When anxiety rises before a competition or hard practice, take 3 slow belly breaths. It activates your parasympathetic nervous system and calms you down.",
-    category: "anxiety"
+    title: "Дишането е твоята котва",
+    tip: "Когато усетиш напрежение преди състезание или тежка тренировка, поеми 3 бавни вдишвания с корема. Така успокояваш нервната си система.",
+    category: "тревожност"
   },
 ];
 
 const CONFIDENCE_EXERCISES = [
   {
-    title: "Confidence Journal",
-    duration: "2 min",
-    description: "Write down 3 things you did well today on the ice. No matter how small.",
+    title: "Дневник на увереността",
+    duration: "2 мин",
+    description: "Запиши 3 неща, които си направил/а добре днес на леда. Без значение колко малки.",
     steps: [
-      "Grab your journal or a piece of paper.",
-      "Write: 'Today I'm proud that I...'",
-      "List 3 specific things you did well.",
-      "Read them out loud to yourself.",
-      "Notice how it feels to acknowledge your effort."
+      "Вземи дневника си или лист хартия.",
+      "Напиши: „Днес се гордея, че…“",
+      "Изброй 3 конкретни неща, които си направил/а добре.",
+      "Прочети ги на глас.",
+      "Усети как е да признаеш собственото си усилие."
     ]
   },
   {
-    title: "Power Pose",
-    duration: "2 min",
-    description: "Stand tall with your arms raised for 2 minutes before practice. Research shows it boosts confidence hormones.",
+    title: "Поза на силата",
+    duration: "2 мин",
+    description: "Изправи се с вдигнати ръце за 2 минути преди тренировка. Изследванията показват, че повишава хормоните на увереността.",
     steps: [
-      "Find a quiet spot before getting on the ice.",
-      "Stand with feet shoulder-width apart.",
-      "Raise your arms in a 'V' shape above your head.",
-      "Breathe deeply and smile.",
-      "Hold for 2 minutes. Feel the confidence build."
+      "Намери си тихо място преди излизане на леда.",
+      "Стъпи с крака на ширината на раменете.",
+      "Вдигни ръце във форма на „V“ над главата си.",
+      "Дишай дълбоко и се усмихни.",
+      "Задръж 2 минути. Усети как увереността расте."
     ]
   },
   {
-    title: "Success Replay",
-    duration: "3 min",
-    description: "Close your eyes and replay your best skating moment in vivid detail.",
+    title: "Превърти успеха",
+    duration: "3 мин",
+    description: "Затвори очи и превърти най-добрия си момент на леда в детайли.",
     steps: [
-      "Sit comfortably and close your eyes.",
-      "Think of a time you felt amazing on the ice.",
-      "Replay every detail: the sounds, the feeling, the crowd.",
-      "Feel the emotions of that moment fully.",
-      "Carry that feeling into your next practice."
+      "Седни удобно и затвори очи.",
+      "Спомни си момент, в който си се чувствал/а страхотно на леда.",
+      "Превърти всяка подробност: звуците, усещането, публиката.",
+      "Усети напълно емоциите от този момент.",
+      "Занеси това усещане в следващата тренировка."
     ]
   },
 ];
 
 const FOCUS_TECHNIQUES = [
   {
-    title: "The Keyword Technique",
-    description: "Choose one word before practice — like 'smooth,' 'strong,' or 'flow.' Whenever your mind wanders, return to that word.",
+    title: "Една дума, един фокус",
+    description: "Избери една дума преди тренировка — „меко“, „силно“ или „поток“. Щом мислите се разсеят, върни се към нея.",
     icon: Target,
   },
   {
-    title: "Segment Your Practice",
-    description: "Break practice into 10-minute blocks. Focus only on one skill per block. This prevents mental fatigue and keeps attention sharp.",
+    title: "Раздели тренировката",
+    description: "Раздели тренировката на блокове по 10 минути. Фокусирай се само върху едно умение в блок. Така избягваш умствена умора.",
     icon: Brain,
   },
   {
-    title: "Pre-Element Routine",
-    description: "Create a consistent 3-step routine before each jump: breathe, visualize, go. This anchors your focus and creates muscle memory.",
+    title: "Ритуал преди елемент",
+    description: "Създай си постоянен ритуал от 3 стъпки преди всеки скок: вдишай, визуализирай, тръгвай. Това подсилва фокуса и мускулната памет.",
     icon: Sparkles,
   },
   {
-    title: "Distraction Reset",
-    description: "If you get distracted, physically touch the boards. This breaks the mental pattern and signals a fresh start.",
+    title: "Рестарт при разсейване",
+    description: "Ако се разсееш, докосни бордовете. Това прекъсва модела в главата и сигнализира нов старт.",
     icon: RotateCcw,
   },
 ];
 
 const COMPETITION_TIPS = [
   {
-    title: "Competition is just practice with an audience",
-    advice: "Your body knows what to do. You've done these elements hundreds of times. Trust your training.",
+    title: "Състезанието е просто тренировка с публика",
+    advice: "Тялото ти знае какво да прави. Правил/а си тези елементи стотици пъти. Доверѝ се на тренировките.",
   },
   {
-    title: "Control what you can control",
-    advice: "You can't control judges, other skaters, or ice conditions. You CAN control your preparation, attitude, and effort.",
+    title: "Контролирай това, което можеш",
+    advice: "Не можеш да контролираш съдиите, другите състезатели или леда. Можеш да контролираш своята подготовка, нагласа и усилие.",
   },
   {
-    title: "Reframe nerves as excitement",
-    advice: "Anxiety and excitement feel the same in your body. Instead of saying 'I'm nervous,' try 'I'm excited to perform.'",
+    title: "Превърни нервите във вълнение",
+    advice: "Тревожността и вълнението се усещат еднакво в тялото. Вместо „нервен/нервна съм“, опитай „развълнуван/а съм да изляза“.",
   },
   {
-    title: "Have a pre-competition ritual",
-    advice: "Listen to the same playlist, eat the same pre-skate snack, do the same warm-up. Familiarity creates comfort under pressure.",
+    title: "Имай ритуал преди състезание",
+    advice: "Слушай същия плейлист, яж същата закуска, прави същата загрявка. Познатото създава спокойствие под напрежение.",
   },
   {
-    title: "Focus on the first 30 seconds",
-    advice: "Once you get through the opening of your program with confidence, the rest flows naturally. Nail your start.",
+    title: "Фокусирай се върху първите 30 секунди",
+    advice: "След като минеш началото на програмата с увереност, останалото потича от само себе си. Хвани добре старта.",
   },
 ];
 
 const DAILY_EXERCISES = [
   {
-    title: "Morning Affirmation",
-    time: "1 min",
-    exercise: "Say out loud: 'I am a strong, capable skater. Today I will give my best effort and that is enough.'",
+    title: "Сутрешна нагласа",
+    time: "1 мин",
+    exercise: "Кажи на глас: „Аз съм силен/силна и способен/способна скейтър. Днес ще дам най-доброто от себе си и това е достатъчно.“",
   },
   {
-    title: "Gratitude Check",
-    time: "1 min",
-    exercise: "Name one thing about skating you're grateful for today. It could be your coach, your rink, or simply the ability to glide on ice.",
+    title: "Момент на благодарност",
+    time: "1 мин",
+    exercise: "Назови едно нещо в кънките, за което си благодарен/благодарна днес. Може да е треньорът ти, пистата или просто това, че можеш да се плъзгаш.",
   },
   {
-    title: "Micro-Visualization",
-    time: "2 min",
-    exercise: "Close your eyes and visualize landing your hardest jump perfectly. See it 3 times in a row.",
+    title: "Кратка визуализация",
+    time: "2 мин",
+    exercise: "Затвори очи и си представи как кацаш най-трудния си скок безупречно. Виж го 3 пъти подред.",
   },
   {
-    title: "Body Scan",
-    time: "3 min",
-    exercise: "Starting from your toes, slowly scan up your body. Notice any tension and consciously release it. A relaxed body performs better.",
+    title: "Сканиране на тялото",
+    time: "3 мин",
+    exercise: "Започни от пръстите на краката и бавно сканирай нагоре. Забележи напрежението и съзнателно го отпусни. Спокойно тяло работи по-добре.",
   },
   {
-    title: "Evening Reflection",
-    time: "2 min",
-    exercise: "Before bed, think about one moment from today's practice that made you smile. Fall asleep with that positive image.",
+    title: "Вечерна рефлексия",
+    time: "2 мин",
+    exercise: "Преди сън се сети за един момент от днешната тренировка, който те накара да се усмихнеш. Заспи с този образ.",
   },
 ];
 
@@ -166,9 +166,9 @@ export const SportPsychology: React.FC = () => {
       <div>
         <h2 className="text-lg font-medium flex items-center gap-2">
           <Brain className="w-5 h-5 text-mental" />
-          Sport Psychology
+          Спортна психология
         </h2>
-        <p className="text-sm text-muted-foreground">Strengthen your mind to elevate your skating</p>
+        <p className="text-sm text-muted-foreground">Силен ум — по-силно пързаляне</p>
       </div>
 
       {/* Daily Mental Exercise */}
@@ -176,7 +176,7 @@ export const SportPsychology: React.FC = () => {
         <CardContent className="p-4">
           <div className="flex items-center gap-2 mb-2">
             <Sparkles className="w-4 h-4 text-mental" />
-            <span className="text-xs font-medium text-mental uppercase tracking-wide">Today's Exercise</span>
+            <span className="text-xs font-medium text-mental uppercase tracking-wide">Упражнение за днес</span>
           </div>
           <h3 className="font-medium mb-1">{DAILY_EXERCISES[currentDailyExercise].title}</h3>
           <p className="text-sm text-muted-foreground mb-2">{DAILY_EXERCISES[currentDailyExercise].exercise}</p>
@@ -187,16 +187,16 @@ export const SportPsychology: React.FC = () => {
       <Tabs defaultValue="tips" className="space-y-4">
         <TabsList className="grid w-full grid-cols-4 h-10">
           <TabsTrigger value="tips" className="text-xs">
-            Tips
+            Съвети
           </TabsTrigger>
           <TabsTrigger value="confidence" className="text-xs">
-            Confidence
+            Увереност
           </TabsTrigger>
           <TabsTrigger value="focus" className="text-xs">
-            Focus
+            Фокус
           </TabsTrigger>
           <TabsTrigger value="competition" className="text-xs">
-            Compete
+            Старт
           </TabsTrigger>
         </TabsList>
 
@@ -212,7 +212,7 @@ export const SportPsychology: React.FC = () => {
                 </p>
                 <Button variant="outline" size="sm" onClick={nextTip}>
                   <RotateCcw className="w-4 h-4 mr-2" />
-                  Next Tip
+                  Следващ съвет
                 </Button>
               </div>
             </CardContent>
@@ -301,10 +301,10 @@ export const SportPsychology: React.FC = () => {
             <CardContent className="p-4">
               <div className="flex items-center gap-2 mb-2">
                 <Trophy className="w-4 h-4 text-gold" />
-                <span className="text-xs font-medium text-gold uppercase tracking-wide">Competition Ready</span>
+                <span className="text-xs font-medium text-gold uppercase tracking-wide">Готов/а за старт</span>
               </div>
               <p className="text-sm text-muted-foreground">
-                Competition can feel intense, but with the right mindset, it becomes an opportunity to showcase your hard work.
+                Състезанието може да е интензивно, но с правилната нагласа се превръща във възможност да покажеш труда си.
               </p>
             </CardContent>
           </Card>
@@ -328,7 +328,7 @@ export const SportPsychology: React.FC = () => {
         <CardHeader className="pb-2">
           <CardTitle className="text-base flex items-center gap-2">
             <Heart className="w-4 h-4 text-mental" />
-            Daily Mental Exercises
+            Ежедневни упражнения за ума
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-2">
