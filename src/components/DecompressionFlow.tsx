@@ -104,16 +104,16 @@ const RestStep: React.FC<{ onClose: () => void }> = ({ onClose }) => (
       <Moon className="w-9 h-9 text-foreground/70" />
     </div>
     <div className="space-y-2 max-w-sm">
-      <h3 className="text-2xl font-semibold text-foreground">Today was enough.</h3>
+      <h3 className="text-2xl font-semibold text-foreground">Днес беше достатъчно.</h3>
       <p className="text-muted-foreground leading-relaxed">
-        You showed up. You wrote it down. Nothing else is needed from you tonight.
+        Беше тук. Записа го. Нищо повече не се иска от теб тази вечер.
       </p>
     </div>
     <Button
       onClick={onClose}
       className="h-12 rounded-full bg-foreground text-background hover:bg-foreground/90 px-8"
     >
-      Close gently
+      Затвори тихо
     </Button>
   </div>
 );
@@ -136,7 +136,7 @@ export const DecompressionFlow: React.FC<DecompressionFlowProps> = ({
         className="max-w-md p-0 overflow-hidden border-0 bg-gradient-to-b from-lavender/30 via-background to-mint/20 sm:rounded-3xl"
       >
         <button
-          aria-label="Close gently"
+          aria-label="Затвори тихо"
           onClick={close}
           className="absolute right-3 top-3 z-10 rounded-full p-2 text-muted-foreground/70 hover:text-foreground hover:bg-background/40 transition-colors"
         >
@@ -153,21 +153,21 @@ export const DecompressionFlow: React.FC<DecompressionFlowProps> = ({
                 {openingLine(themes)}
               </h2>
               <p className="text-sm text-muted-foreground max-w-xs leading-relaxed">
-                You don't need to solve anything right now. Take a breath before moving on.
+                Не е нужно да решаваш нищо сега. Поеми дъх, преди да продължиш.
               </p>
               <div className="flex flex-col gap-2 w-full max-w-xs pt-2">
                 <Button
                   onClick={() => setStep('choose')}
                   className="h-12 rounded-full bg-foreground text-background hover:bg-foreground/90"
                 >
-                  Stay with me a minute
+                  Остани с мен за минута
                 </Button>
                 <Button
                   onClick={() => setStep('rest')}
                   variant="ghost"
                   className="h-11 rounded-full text-muted-foreground"
                 >
-                  I just want to rest
+                  Искам просто да си почина
                 </Button>
               </div>
             </div>
@@ -176,38 +176,38 @@ export const DecompressionFlow: React.FC<DecompressionFlowProps> = ({
           {step === 'choose' && (
             <div className="flex-1 flex flex-col gap-5 animate-fade-in">
               <div className="text-center space-y-1">
-                <h3 className="text-xl font-semibold text-foreground">What would feel kind right now?</h3>
-                <p className="text-sm text-muted-foreground">Pick one. Or none. There's no wrong move.</p>
+                <h3 className="text-xl font-semibold text-foreground">Какво ще ти бъде нежно сега?</h3>
+                <p className="text-sm text-muted-foreground">Избери едно. Или нищо. Няма грешен ход.</p>
               </div>
               <div className="grid gap-3 mt-2">
                 <ActionCard
                   icon={<Wind className="w-5 h-5" />}
-                  title="A slow breath"
-                  desc="A few soft breath cycles, no counting."
+                  title="Бавно дишане"
+                  desc="Няколко меки цикъла, без броене."
                   onClick={() => setStep('breathe')}
                 />
                 <ActionCard
                   icon={<Leaf className="w-5 h-5" />}
-                  title="Ground me"
-                  desc="Come back to your senses, gently."
+                  title="Заземи ме"
+                  desc="Върни се към сетивата си, нежно."
                   onClick={() => setStep('ground')}
                 />
                 <ActionCard
                   icon={<Sparkles className="w-5 h-5" />}
-                  title="One soft reframe"
-                  desc="A reminder that this moment isn't the whole story."
+                  title="Едно меко преосмисляне"
+                  desc="Напомняне, че този момент не е цялата история."
                   onClick={() => setStep('rest')}
                 />
                 <ActionCard
                   icon={<Moon className="w-5 h-5" />}
-                  title="Today was enough"
-                  desc="Save and rest. Nothing else required."
+                  title="Днес беше достатъчно"
+                  desc="Запази и почини. Нищо повече не се иска."
                   onClick={() => setStep('rest')}
                 />
               </div>
               {level === 'heavy' && (
                 <p className="text-xs text-center text-muted-foreground/80 pt-2 leading-relaxed">
-                  If you're carrying something bigger than skating tonight, please reach out to someone you trust. You don't have to hold it alone.
+                  Ако носиш нещо по-голямо от кънките тази вечер, моля те — потърси някой, на когото имаш доверие. Не трябва да го носиш сам/а.
                 </p>
               )}
             </div>
