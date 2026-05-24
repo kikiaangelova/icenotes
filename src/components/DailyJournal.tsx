@@ -38,6 +38,9 @@ export const DailyJournal: React.FC<DailyJournalProps> = ({ onComplete }) => {
 
   const [isSubmitted, setIsSubmitted] = useState(!!existingEntry);
   const [savedTone, setSavedTone] = useState<Tone>('neutral');
+  const [decomp, setDecomp] = useState<{ open: boolean; result: DetectionResult }>(
+    { open: false, result: { isDifficult: false, themes: [], level: 'none' } }
+  );
   const [savedText, setSavedText] = useState<string>(() => {
     if (!existingEntry) return '';
     return [
