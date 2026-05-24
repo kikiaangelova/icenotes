@@ -153,11 +153,11 @@ export function moodLabel(mood: DashboardMood, language: GreetingLanguage): stri
     },
     bg: {
       fresh: 'Ново начало',
-      energized: 'С енергия',
-      steady: 'Стабилно',
-      tender: 'Нежен ден',
-      recovering: 'Връщаш се полека',
-      competing: 'Състезателен режим',
+      energized: 'Със заряд',
+      steady: 'На вълна',
+      tender: 'Тих ден',
+      recovering: 'Връщаш се',
+      competing: 'Старт режим',
     },
   } as const;
   return map[language === 'bg' ? 'bg' : 'en'][mood];
