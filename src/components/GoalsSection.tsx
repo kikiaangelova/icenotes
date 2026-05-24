@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useSkater } from '@/context/SkaterContext';
 import { Goal } from '@/types/skater';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
