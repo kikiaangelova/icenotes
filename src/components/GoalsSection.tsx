@@ -184,14 +184,15 @@ export const GoalsSection: React.FC = () => {
 };
 
 const GoalProgressBar: React.FC<{ value: number; onChange: (v: number) => void }> = ({ value, onChange }) => {
+  const { t } = useLanguage();
   const [pulse, setPulse] = useState(false);
   const prev = useRef(value);
 
   useEffect(() => {
     if (value > prev.current) {
       setPulse(true);
-      const t = window.setTimeout(() => setPulse(false), 1400);
-      return () => window.clearTimeout(t);
+      const ti = window.setTimeout(() => setPulse(false), 1400);
+      return () => window.clearTimeout(ti);
     }
     prev.current = value;
   }, [value]);
@@ -199,7 +200,7 @@ const GoalProgressBar: React.FC<{ value: number; onChange: (v: number) => void }
   return (
     <div className={`space-y-2 rounded-xl ${pulse ? 'goal-pulse' : ''}`}>
       <div className="flex items-center justify-between text-sm">
-        <span className="text-muted-foreground">Progress</span>
+        <span className="text-muted-foreground">{t('goalsX.progress')}</span>
         <span className={`font-medium transition-colors ${pulse ? 'text-emerald-600' : ''}`}>{value}%</span>
       </div>
       <div className={`relative ${pulse ? 'goal-pulse-bar' : ''}`}>
