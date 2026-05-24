@@ -21,6 +21,7 @@ const categoryColors: Record<string, { bg: string; text: string }> = {
 };
 
 export const GoalsSection: React.FC = () => {
+  const { t } = useLanguage();
   const { goals, addGoal, updateGoal, deleteGoal } = useSkater();
   const [isOpen, setIsOpen] = useState(false);
   const [newGoal, setNewGoal] = useState({
