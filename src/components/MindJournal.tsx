@@ -12,6 +12,8 @@ import { Brain, Sparkles, HeartHandshake, Activity, Trophy, Plus, X } from 'luci
 import { useLanguage } from '@/context/LanguageContext';
 import { useAddMindJournalEntry } from '@/hooks/useMindJournal';
 import { CoachIrisReflection } from './CoachIrisReflection';
+import { DecompressionFlow } from './DecompressionFlow';
+import { detectDifficulty, type DetectionResult } from '@/lib/emotionalDetection';
 
 const BODY_PARTS = ['body.head', 'body.neck', 'body.chest', 'body.back', 'body.stomach', 'body.hips', 'body.legs', 'body.feet'];
 
