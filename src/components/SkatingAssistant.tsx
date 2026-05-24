@@ -191,7 +191,7 @@ export const SkatingAssistant: React.FC = () => {
           <input
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            placeholder="Tell Iris what's up…"
+            placeholder="Кажи на Ирис какво те вълнува…"
             className="flex-1 h-11 px-4 rounded-xl bg-muted/50 border border-border focus:outline-none focus:ring-2 focus:ring-primary text-sm"
             disabled={loading}
           />
