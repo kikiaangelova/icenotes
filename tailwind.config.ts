@@ -138,7 +138,12 @@ export default {
 				'slide-in': 'slide-in 0.4s ease-out',
 				'float-soft': 'float-soft 5s ease-in-out infinite',
 				'glow-pulse': 'glow-pulse 2.4s ease-out infinite',
-				'game-day-sparkle': 'game-day-sparkle 4s ease-in-out infinite'
+				'game-day-sparkle': 'game-day-sparkle 4s ease-in-out infinite',
+				'breathe': 'breathe 4.8s ease-in-out infinite',
+				'shimmer-soft': 'shimmer-soft 3.2s linear infinite',
+				'fade-up': 'fade-up 0.55s cubic-bezier(0.22, 1, 0.36, 1) both',
+				'drift': 'drift 7s ease-in-out infinite',
+				'glow-soft': 'glow-soft 3.6s ease-in-out infinite'
 			},
 			boxShadow: {
 				'2xs': 'var(--shadow-2xs)',
