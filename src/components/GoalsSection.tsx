@@ -133,8 +133,8 @@ export const GoalsSection: React.FC = () => {
         <Card className="glass-card">
           <CardContent className="py-12 text-center">
             <Target className="w-12 h-12 mx-auto mb-4 text-muted-foreground/50" />
-            <h3 className="font-semibold mb-1">No goals yet</h3>
-            <p className="text-sm text-muted-foreground">Create your first goal to start tracking progress</p>
+            <h3 className="font-semibold mb-1">{t('goalsX.empty.title')}</h3>
+            <p className="text-sm text-muted-foreground">{t('goalsX.empty.body')}</p>
           </CardContent>
         </Card>
       ) : (
