@@ -1,7 +1,8 @@
 import React from 'react';
-import { Feather, Snowflake, BookHeart, Target, Brain } from 'lucide-react';
+import { Feather, Snowflake, BookHeart, Target, Brain, ChevronRight } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
 import { QuickActionTile } from './QuickActionTile';
+import { cn } from '@/lib/utils';
 
 interface QuickActionsGridProps {
   onReflect: () => void;
@@ -12,9 +13,10 @@ interface QuickActionsGridProps {
 }
 
 /**
- * Five-tile primary action grid for the Today screen.
- * 2 columns on mobile, 5 on desktop. Each tile uses a distinct module color
- * (matches Module Color memory: rose/mint/sky/lavender/grape).
+ * Primary action board for the Today screen.
+ * Hierarchy: Reflection is the hero tile (emotional center),
+ * then Training, Journal, Goals, Mental prep as a 2x2 grid.
+ * Mobile-first, rink-glove tap targets.
  */
 export const QuickActionsGrid: React.FC<QuickActionsGridProps> = ({
   onReflect, onTrain, onJournal, onGoals, onMind,
@@ -22,23 +24,44 @@ export const QuickActionsGrid: React.FC<QuickActionsGridProps> = ({
   const { t } = useLanguage();
 
   return (
-    <section aria-label={t('home.section.now')} className="mb-5">
-      <div className="flex items-end justify-between mb-3 px-1">
-        <h2 className="text-base sm:text-lg font-black text-foreground font-serif tracking-tight">
+    <section aria-label={t('home.section.now')} className="mb-5 space-y-3">
+      <div className="flex items-end justify-between px-1">
+        <h2 className="text-lg sm:text-xl font-black text-foreground font-serif tracking-tight leading-none">
           {t('home.section.now')}
         </h2>
         <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-muted-foreground">
           {t('home.section.now.kicker')}
         </span>
       </div>
-      <div className="grid grid-cols-2 sm:grid-cols-5 gap-2.5">
-        <QuickActionTile
-          label={t('quick.reflection.label')}
-          micro={t('quick.reflection.micro')}
-          icon={Feather}
-          tone="bg-rose/55 text-rose-foreground"
-          onClick={onReflect}
-        />
+
+      {/* Hero primary — Reflection */}
+      <button
+        type="button"
+        onClick={onReflect}
+        className="group w-full min-h-[112px] rounded-3xl bg-gradient-to-br from-rose/70 via-peach/40 to-rose/30 border border-rose-foreground/15 p-5 text-left motion-press motion-lift hover:shadow-md transition-all flex items-center gap-4"
+      >
+        <span
+          aria-hidden
+          className="w-14 h-14 rounded-2xl bg-background/60 backdrop-blur flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform"
+        >
+          <Feather className="w-6 h-6 text-rose-foreground" />
+        </span>
+        <div className="flex-1 min-w-0">
+          <p className="text-[10px] font-bold tracking-[0.18em] uppercase text-rose-foreground/70 mb-0.5">
+            {t('quick.reflection.kicker') !== 'quick.reflection.kicker' ? t('quick.reflection.kicker') : '2 мин'}
+          </p>
+          <p className="text-lg font-black text-foreground leading-tight">
+            {t('quick.reflection.label')}
+          </p>
+          <p className="text-xs text-foreground/70 mt-1 line-clamp-2">
+            {t('quick.reflection.micro')}
+          </p>
+        </div>
+        <ChevronRight className="w-5 h-5 text-foreground/50 flex-shrink-0" />
+      </button>
+
+      {/* 2x2 grid — Training, Journal, Goals, Mental prep */}
+      <div className="grid grid-cols-2 gap-2.5">
         <QuickActionTile
           label={t('quick.training.label')}
           micro={t('quick.training.micro')}

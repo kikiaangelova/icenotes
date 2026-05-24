@@ -197,7 +197,12 @@ export const SimpleDashboard: React.FC = () => {
         {/* Header */}
         <header className="border-b border-border/30 bg-background/80 backdrop-blur-xl sticky top-0 z-10">
           <div className="container max-w-2xl mx-auto px-4 sm:px-5 py-3.5 sm:py-4 flex items-center justify-between">
-            <div className="flex items-center gap-3 min-w-0 flex-1">
+            <button
+              type="button"
+              onClick={() => setProfileOpen(true)}
+              className="flex items-center gap-3 min-w-0 flex-1 text-left rounded-2xl -ml-1 px-1 py-1 motion-press hover:bg-muted/40 transition-colors"
+              aria-label={t('bottomNav.profile')}
+            >
               <AvatarUpload
                 avatarUrl={profile.avatarUrl}
                 name={profile.name}
@@ -210,8 +215,7 @@ export const SimpleDashboard: React.FC = () => {
                 </h1>
                 <p className="text-xs sm:text-sm text-foreground/60 truncate">{levelLabel}</p>
               </div>
-
-            </div>
+            </button>
             <div className="flex items-center gap-1.5 flex-shrink-0">
               <ExportButton />
               <Button
@@ -288,15 +292,9 @@ export const SimpleDashboard: React.FC = () => {
               <TabsTrigger value="progress">{t('dash.tab.progress')}</TabsTrigger>
             </TabsList>
 
-            {/* TODAY — emotional center: hero, quick actions, coach signal, then secondary */}
+            {/* TODAY — primary actions first, then context */}
             <TabsContent value="today" className="space-y-5">
-              {/* PRIMARY 1 — adaptive hero */}
-              <TodayHero
-                onPrimaryAction={() => handleStartTraining('on-ice')}
-                onReflectAction={() => setCurrentView('reflect')}
-              />
-
-              {/* PRIMARY 2 — five calm quick actions */}
+              {/* PRIMARY — 5 clear actions, Reflection as hero */}
               <QuickActionsGrid
                 onReflect={() => setCurrentView('reflect')}
                 onTrain={() => handleStartTraining('on-ice')}
@@ -305,11 +303,18 @@ export const SimpleDashboard: React.FC = () => {
                 onMind={() => setActiveTab('mind')}
               />
 
-              {/* PRIMARY 3 — Game Day ritual (only renders if relevant date window) */}
+              {/* CONTEXT — adaptive hero (mood/streak/next step) */}
+              <TodayHero
+                onPrimaryAction={() => handleStartTraining('on-ice')}
+                onReflectAction={() => setCurrentView('reflect')}
+              />
+
+              {/* CONTEXT — Game Day ritual (only renders if relevant date window) */}
               <GameDayCard onClick={() => setGameDayOpen(true)} />
 
               {/* SUPPORT — Coach Iris noticed signal */}
               <CoachNoticed onOpenReflect={() => setCurrentView('reflect')} />
+
 
               {/* SECONDARY — collapsed by default */}
               <details className="group rounded-3xl border border-border/40 bg-card/40 backdrop-blur-sm overflow-hidden">
