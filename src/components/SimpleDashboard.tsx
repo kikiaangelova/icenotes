@@ -197,7 +197,12 @@ export const SimpleDashboard: React.FC = () => {
         {/* Header */}
         <header className="border-b border-border/30 bg-background/80 backdrop-blur-xl sticky top-0 z-10">
           <div className="container max-w-2xl mx-auto px-4 sm:px-5 py-3.5 sm:py-4 flex items-center justify-between">
-            <div className="flex items-center gap-3 min-w-0 flex-1">
+            <button
+              type="button"
+              onClick={() => setProfileOpen(true)}
+              className="flex items-center gap-3 min-w-0 flex-1 text-left rounded-2xl -ml-1 px-1 py-1 motion-press hover:bg-muted/40 transition-colors"
+              aria-label={t('bottomNav.profile')}
+            >
               <AvatarUpload
                 avatarUrl={profile.avatarUrl}
                 name={profile.name}
@@ -210,8 +215,7 @@ export const SimpleDashboard: React.FC = () => {
                 </h1>
                 <p className="text-xs sm:text-sm text-foreground/60 truncate">{levelLabel}</p>
               </div>
-
-            </div>
+            </button>
             <div className="flex items-center gap-1.5 flex-shrink-0">
               <ExportButton />
               <Button
