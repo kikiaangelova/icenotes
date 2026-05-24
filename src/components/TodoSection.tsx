@@ -137,28 +137,36 @@ export const TodoSection: React.FC = () => {
                 {pendingTodos.map((todo) => {
                   const IconComponent = categoryIcons[todo.category];
                   return (
-                    <Card key={todo.id} className={`glass-card ${priorityColors[todo.priority]}`}>
-                      <CardContent className="p-3 flex items-center gap-3">
-                        <Checkbox
-                          checked={todo.completed}
-                          onCheckedChange={() => toggleTodo(todo.id)}
-                          className="h-5 w-5"
-                        />
-                        <IconComponent className={`w-4 h-4 ${categoryColors[todo.category]}`} />
-                        <span className="flex-1 font-medium">{todo.title}</span>
-                        <span className={`text-xs px-2 py-0.5 rounded-full capitalize ${categoryColors[todo.category]} bg-background/50`}>
-                          {todo.category}
-                        </span>
-                        <Button
-                          variant="ghost"
-                          size="icon"
-                          className="h-8 w-8 text-muted-foreground hover:text-destructive"
-                          onClick={() => deleteTodo(todo.id)}
-                        >
-                          <Trash2 className="w-4 h-4" />
-                        </Button>
-                      </CardContent>
-                    </Card>
+                    <SwipeableCard
+                      key={todo.id}
+                      onComplete={() => toggleTodo(todo.id)}
+                      onSnooze={() => snooze(todo.id)}
+                      completeLabel="Done"
+                      snoozeLabel="Later"
+                    >
+                      <Card className={`glass-card ${priorityColors[todo.priority]}`}>
+                        <CardContent className="p-3 flex items-center gap-3">
+                          <Checkbox
+                            checked={todo.completed}
+                            onCheckedChange={() => toggleTodo(todo.id)}
+                            className="h-5 w-5"
+                          />
+                          <IconComponent className={`w-4 h-4 ${categoryColors[todo.category]}`} />
+                          <span className="flex-1 font-medium">{todo.title}</span>
+                          <span className={`text-xs px-2 py-0.5 rounded-full capitalize ${categoryColors[todo.category]} bg-background/50`}>
+                            {todo.category}
+                          </span>
+                          <Button
+                            variant="ghost"
+                            size="icon"
+                            className="h-8 w-8 text-muted-foreground hover:text-destructive"
+                            onClick={() => deleteTodo(todo.id)}
+                          >
+                            <Trash2 className="w-4 h-4" />
+                          </Button>
+                        </CardContent>
+                      </Card>
+                    </SwipeableCard>
                   );
                 })}
               </div>
