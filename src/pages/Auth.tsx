@@ -6,10 +6,20 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Loader2, Mail, Lock, User, ArrowLeft, CheckCircle2, Snowflake } from 'lucide-react';
+import { Loader2, Mail, Lock, User, ArrowLeft, CheckCircle2, Snowflake, ShieldCheck } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { Seo } from '@/components/Seo';
+import { lovable } from '@/integrations/lovable';
+
+const GoogleIcon = () => (
+  <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true">
+    <path fill="#4285F4" d="M17.64 9.2c0-.64-.06-1.25-.16-1.84H9v3.48h4.84a4.14 4.14 0 0 1-1.8 2.72v2.26h2.92c1.7-1.57 2.68-3.88 2.68-6.62z"/>
+    <path fill="#34A853" d="M9 18c2.43 0 4.47-.8 5.96-2.18l-2.92-2.26c-.8.54-1.84.86-3.04.86-2.34 0-4.32-1.58-5.03-3.7H.96v2.32A9 9 0 0 0 9 18z"/>
+    <path fill="#FBBC05" d="M3.97 10.72A5.41 5.41 0 0 1 3.68 9c0-.6.1-1.18.29-1.72V4.96H.96A9 9 0 0 0 0 9c0 1.45.35 2.82.96 4.04l3.01-2.32z"/>
+    <path fill="#EA4335" d="M9 3.58c1.32 0 2.5.45 3.44 1.35l2.58-2.58C13.46.89 11.43 0 9 0A9 9 0 0 0 .96 4.96l3.01 2.32C4.68 5.16 6.66 3.58 9 3.58z"/>
+  </svg>
+);
 
 type AuthView = 'auth' | 'forgot' | 'reset';
 
@@ -22,6 +32,7 @@ const Auth: React.FC = () => {
 
   const [view, setView] = useState<AuthView>('auth');
   const [isLoading, setIsLoading] = useState(false);
+  const [googleLoading, setGoogleLoading] = useState(false);
   const [emailSent, setEmailSent] = useState(false);
 
   // Login fields
@@ -48,6 +59,33 @@ const Auth: React.FC = () => {
       setView('reset');
     }
   }, [searchParams, session]);
+
+  const handleGoogle = async () => {
+    setGoogleLoading(true);
+    try {
+      const result = await lovable.auth.signInWithOAuth('google', {
+        redirect_uri: window.location.origin + (searchParams.get('next') || '/dashboard'),
+      });
+      if (result.error) {
+        toast({
+          title: t('auth.toast.loginFailed') || 'Sign-in failed',
+          description: result.error.message || 'Please try again.',
+          variant: 'destructive',
+        });
+        setGoogleLoading(false);
+        return;
+      }
+      if (result.redirected) return;
+      navigate(searchParams.get('next') || '/dashboard');
+    } catch (err) {
+      toast({
+        title: 'Sign-in failed',
+        description: (err as Error).message || 'Please try again.',
+        variant: 'destructive',
+      });
+      setGoogleLoading(false);
+    }
+  };
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -390,7 +428,29 @@ const Auth: React.FC = () => {
             <CardDescription className="text-center">{t('auth.welcomeSubtitle')}</CardDescription>
           </CardHeader>
           <CardContent>
+            <Button
+              type="button"
+              variant="outline"
+              onClick={handleGoogle}
+              disabled={googleLoading || isLoading}
+              className="w-full h-12 mb-4 gap-3 bg-background hover:bg-muted/60 font-semibold border-2"
+            >
+              {googleLoading ? (
+                <Loader2 className="w-4 h-4 animate-spin" />
+              ) : (
+                <GoogleIcon />
+              )}
+              {googleLoading ? 'Connecting…' : 'Continue with Google'}
+            </Button>
+
+            <div className="flex items-center gap-3 my-4">
+              <div className="flex-1 h-px bg-border" />
+              <span className="text-xs text-muted-foreground font-medium">or with email</span>
+              <div className="flex-1 h-px bg-border" />
+            </div>
+
             <Tabs defaultValue={searchParams.get('mode') === 'signup' ? 'signup' : 'login'} className="w-full">
+
               <TabsList className="grid w-full grid-cols-2 mb-6">
                 <TabsTrigger value="login">{t('auth.tab.login')}</TabsTrigger>
                 <TabsTrigger value="signup">{t('auth.tab.signup')}</TabsTrigger>
@@ -542,7 +602,12 @@ const Auth: React.FC = () => {
           {t('auth.backHome')}
         </button>
 
-        <p className="text-center text-sm text-muted-foreground mt-4">
+        <div className="flex items-center justify-center gap-2 mt-5 text-xs text-muted-foreground">
+          <ShieldCheck className="w-3.5 h-3.5 text-primary" />
+          <span>Your journal stays private. Always yours.</span>
+        </div>
+
+        <p className="text-center text-xs text-muted-foreground mt-3 px-4">
           {t('auth.terms')}
         </p>
       </div>
