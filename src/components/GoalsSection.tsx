@@ -61,43 +61,43 @@ export const GoalsSection: React.FC = () => {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h2 className="text-2xl font-bold">Goals</h2>
-          <p className="text-muted-foreground">Set and track your skating objectives</p>
+          <h2 className="text-2xl font-bold">{t('goalsX.heading')}</h2>
+          <p className="text-muted-foreground">{t('goalsX.subheading')}</p>
         </div>
         <Dialog open={isOpen} onOpenChange={setIsOpen}>
           <DialogTrigger asChild>
             <Button className="gap-2">
               <Plus className="w-4 h-4" />
-              New Goal
+              {t('goalsX.new')}
             </Button>
           </DialogTrigger>
           <DialogContent>
             <DialogHeader>
-              <DialogTitle>Create New Goal</DialogTitle>
-              <DialogDescription>Set a new objective to work towards</DialogDescription>
+              <DialogTitle>{t('goalsX.dialog.title')}</DialogTitle>
+              <DialogDescription>{t('goalsX.dialog.desc')}</DialogDescription>
             </DialogHeader>
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="space-y-2">
-                <Label htmlFor="goal-title">Goal Title</Label>
+                <Label htmlFor="goal-title">{t('goalsX.field.title')}</Label>
                 <Input
                   id="goal-title"
-                  placeholder="e.g., Land a double axel"
+                  placeholder={t('goalsX.field.titlePh')}
                   value={newGoal.title}
                   onChange={(e) => setNewGoal({ ...newGoal, title: e.target.value })}
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="goal-description">Description</Label>
+                <Label htmlFor="goal-description">{t('goalsX.field.desc')}</Label>
                 <Textarea
                   id="goal-description"
-                  placeholder="Describe what you want to achieve..."
+                  placeholder={t('goalsX.field.descPh')}
                   value={newGoal.description}
                   onChange={(e) => setNewGoal({ ...newGoal, description: e.target.value })}
                 />
               </div>
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
-                  <Label>Category</Label>
+                  <Label>{t('goalsX.field.category')}</Label>
                   <Select
                     value={newGoal.category}
                     onValueChange={(value) => setNewGoal({ ...newGoal, category: value as any })}
@@ -106,15 +106,15 @@ export const GoalsSection: React.FC = () => {
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="on-ice">On-Ice</SelectItem>
-                      <SelectItem value="off-ice">Off-Ice</SelectItem>
-                      <SelectItem value="mental">Mental</SelectItem>
-                      <SelectItem value="general">General</SelectItem>
+                      <SelectItem value="on-ice">{t('goalsX.cat.onIce')}</SelectItem>
+                      <SelectItem value="off-ice">{t('goalsX.cat.offIce')}</SelectItem>
+                      <SelectItem value="mental">{t('goalsX.cat.mental')}</SelectItem>
+                      <SelectItem value="general">{t('goalsX.cat.general')}</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="target-date">Target Date</Label>
+                  <Label htmlFor="target-date">{t('goalsX.field.target')}</Label>
                   <Input
                     id="target-date"
                     type="date"
@@ -123,7 +123,7 @@ export const GoalsSection: React.FC = () => {
                   />
                 </div>
               </div>
-              <Button type="submit" className="w-full">Create Goal</Button>
+              <Button type="submit" className="w-full">{t('goalsX.create')}</Button>
             </form>
           </DialogContent>
         </Dialog>
