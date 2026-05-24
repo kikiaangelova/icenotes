@@ -20,26 +20,26 @@ import {
 } from 'lucide-react';
 
 const PRE_SKATE_CHECKLIST = [
-  { id: 'hydrate', label: 'Hydrated and ready', icon: '💧' },
-  { id: 'warmup', label: 'Body feels warmed up', icon: '🔥' },
-  { id: 'equipment', label: 'Skates and gear checked', icon: '⛸️' },
-  { id: 'focus', label: 'Mind is clear and focused', icon: '🎯' },
-  { id: 'intention', label: 'Set an intention for this session', icon: '✨' },
+  { id: 'hydrate', label: 'Хидратиран/а и готов/а', icon: '💧' },
+  { id: 'warmup', label: 'Тялото е загрято', icon: '🔥' },
+  { id: 'equipment', label: 'Кънките и екипът са проверени', icon: '⛸️' },
+  { id: 'focus', label: 'Главата е ясна и фокусирана', icon: '🎯' },
+  { id: 'intention', label: 'Имам намерение за тази тренировка', icon: '✨' },
 ];
 
 const FOCUS_REMINDERS = [
-  { text: "Trust your training. You've prepared for this.", icon: Target },
-  { text: "Stay present. One element at a time.", icon: Brain },
-  { text: "Breathe deeply. Let tension release.", icon: Wind },
-  { text: "Embrace the ice. It's where you belong.", icon: Heart },
-  { text: "Focus on quality, not quantity.", icon: Sparkles },
-  { text: "Your body knows what to do.", icon: Zap },
+  { text: "Доверѝ се на тренировките. Подготвен/а си за това.", icon: Target },
+  { text: "Бъди тук и сега. Един елемент в един момент.", icon: Brain },
+  { text: "Дишай дълбоко. Остави напрежението да си тръгне.", icon: Wind },
+  { text: "Прегърни леда. Това е твоето място.", icon: Heart },
+  { text: "Качество, не количество.", icon: Sparkles },
+  { text: "Тялото ти знае какво да прави.", icon: Zap },
 ];
 
 const QUICK_BREATHING = {
-  name: 'Quick Centering Breath',
-  description: 'Center yourself before stepping on the ice',
-  steps: ['Inhale deeply', 'Hold', 'Exhale slowly'],
+  name: 'Бързо центриране с дъх',
+  description: 'Центрирай се, преди да стъпиш на леда',
+  steps: ['Поеми въздух', 'Задръж', 'Издишай бавно'],
   durations: [4, 2, 6],
   rounds: 3,
 };
