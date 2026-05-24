@@ -203,11 +203,12 @@ export const SimpleDashboard: React.FC = () => {
                 size="sm"
               />
               <div className="min-w-0">
-                <h1 className="text-base sm:text-lg font-bold text-foreground truncate font-serif">
+                <h1 className="text-xl sm:text-2xl font-black text-foreground truncate font-serif leading-tight">
                   {greeting}
                 </h1>
-                <p className="text-xs text-muted-foreground truncate">{levelLabel}</p>
+                <p className="text-xs sm:text-sm text-foreground/60 truncate">{levelLabel}</p>
               </div>
+
             </div>
             <div className="flex items-center gap-1.5 flex-shrink-0">
               <ExportButton />
