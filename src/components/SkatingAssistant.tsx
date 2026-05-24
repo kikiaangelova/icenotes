@@ -110,7 +110,7 @@ export const SkatingAssistant: React.FC = () => {
       }
     } catch (e) {
       console.error(e);
-      upsert("Something glitched. Try again in a sec.");
+      upsert('Нещо се закачи. Опитай след секунда.');
     } finally {
       setLoading(false);
     }
