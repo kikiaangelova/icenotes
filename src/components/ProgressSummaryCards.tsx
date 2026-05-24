@@ -3,6 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { useJournal } from '@/context/JournalContext';
 import { TrendingUp, TrendingDown, Minus, Target, Snowflake, Dumbbell, Feather } from 'lucide-react';
 import { format, subDays, startOfWeek, endOfWeek, startOfMonth, endOfMonth, isWithinInterval, subWeeks, subMonths } from 'date-fns';
+import { useLanguage } from '@/context/LanguageContext';
 
 interface TrendIndicatorProps {
   current: number;
