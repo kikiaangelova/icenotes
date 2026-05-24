@@ -38,30 +38,30 @@ export const QuickActionsGrid: React.FC<QuickActionsGridProps> = ({
       <button
         type="button"
         onClick={onReflect}
-        className="group w-full min-h-[112px] rounded-3xl bg-gradient-to-br from-rose/70 via-peach/40 to-rose/30 border border-rose-foreground/15 p-5 text-left motion-press motion-lift hover:shadow-md transition-all flex items-center gap-4"
+        className="group w-full min-h-[128px] rounded-3xl bg-gradient-to-br from-rose/70 via-peach/40 to-rose/30 border border-rose-foreground/15 p-5 sm:p-6 text-left motion-press motion-lift hover:shadow-md transition-all flex items-center gap-4 touch-manipulation"
       >
         <span
           aria-hidden
-          className="w-14 h-14 rounded-2xl bg-background/60 backdrop-blur flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform"
+          className="w-16 h-16 rounded-2xl bg-background/60 backdrop-blur flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform"
         >
-          <Feather className="w-6 h-6 text-rose-foreground" />
+          <Feather className="w-7 h-7 text-rose-foreground" />
         </span>
         <div className="flex-1 min-w-0">
-          <p className="text-[10px] font-bold tracking-[0.18em] uppercase text-rose-foreground/70 mb-0.5">
+          <p className="text-[11px] font-bold tracking-[0.18em] uppercase text-rose-foreground/70 mb-1">
             {t('quick.reflection.kicker') !== 'quick.reflection.kicker' ? t('quick.reflection.kicker') : '2 мин'}
           </p>
-          <p className="text-lg font-black text-foreground leading-tight">
+          <p className="text-xl font-black text-foreground leading-tight">
             {t('quick.reflection.label')}
           </p>
-          <p className="text-xs text-foreground/70 mt-1 line-clamp-2">
+          <p className="text-[13px] text-foreground/70 mt-1 line-clamp-2">
             {t('quick.reflection.micro')}
           </p>
         </div>
-        <ChevronRight className="w-5 h-5 text-foreground/50 flex-shrink-0" />
+        <ChevronRight className="w-6 h-6 text-foreground/50 flex-shrink-0" />
       </button>
 
       {/* 2x2 grid — Training, Journal, Goals, Mental prep */}
-      <div className="grid grid-cols-2 gap-2.5">
+      <div className="grid grid-cols-2 gap-3">
         <QuickActionTile
           label={t('quick.training.label')}
           micro={t('quick.training.micro')}
