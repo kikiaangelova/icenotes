@@ -52,10 +52,10 @@ const MODES: ModeConfig[] = [
     icon: Sparkles,
     tone: { ring: 'border-pink-200', soft: 'bg-pink-50/60', chip: 'bg-pink-100 text-pink-700', accent: 'text-pink-700' },
     label: { en: 'Before competition', bg: 'Преди състезание' },
-    intro: { en: 'Steady your mind before you step out.', bg: 'Стабилизирай ума си преди да излезеш.' },
+    intro: { en: 'Steady your mind before you step out.', bg: 'Подреди главата си преди да излезеш.' },
     prompts: [
       { en: 'My intention today (not a result).', bg: 'Моето намерение днес (не резултат).' },
-      { en: 'One thing I trust about my skating.', bg: 'Едно нещо, на което вярвам в пързалянето си.' },
+      { en: 'One thing I trust about my skating.', bg: 'Едно нещо, на което вярвам в карането си.' },
       { en: 'How I want to feel out there.', bg: 'Как искам да се чувствам там.' },
     ],
   },
