@@ -782,6 +782,63 @@ const dict: Dict = {
     bg: '{count} дни подред. Това е истинско постоянство.'
   },
 
+  // ───── Humanized Streak ─────
+  'streak.region.label': { en: 'Your consistency', bg: 'Твоето постоянство' },
+  'streak.active.dayOne': { en: 'day of showing up', bg: 'ден на присъствие' },
+  'streak.active.dayMany': { en: 'days of showing up', bg: 'дни на присъствие' },
+  'streak.active.subtitle': {
+    en: 'Rest is part of training too. Your worth isn’t measured by streaks.',
+    bg: 'Почивката също е част от тренировката. Стойността ти не се мери с поредици.',
+  },
+  'streak.resting.title': { en: 'You showed up today', bg: 'Днес беше тук' },
+  'streak.resting.subtitle': {
+    en: 'Small moments still count. One page is enough.',
+    bg: 'Малките моменти също имат значение. Една страница е достатъчна.',
+  },
+  'streak.returning.title': { en: 'Welcome back', bg: 'Радваме се, че се върна' },
+  'streak.returning.subtitle': {
+    en: 'One difficult stretch doesn’t erase your growth. We kept your seat warm.',
+    bg: 'Един труден период не изтрива растежа ти. Запазихме ти мястото.',
+  },
+  'streak.fresh.title': { en: 'Today is a fresh page', bg: 'Днес е нова страница' },
+  'streak.fresh.subtitle': {
+    en: 'No pressure to be consistent yet. Just begin where you are.',
+    bg: 'Няма натиск за постоянство. Просто започни оттам, където си.',
+  },
+  'streak.paused.title': { en: 'Your streak is resting', bg: 'Твоята поредица почива' },
+  'streak.paused.subtitle': {
+    en: 'Paused until {date}. We’ll be here when you come back.',
+    bg: 'На пауза до {date}. Ще сме тук, когато се върнеш.',
+  },
+  'streak.paused.subtitleOpen': {
+    en: 'Take the time you need. We’ll be here when you come back.',
+    bg: 'Вземи си времето, от което имаш нужда. Ще сме тук, когато се върнеш.',
+  },
+
+  'streak.action.pause':  { en: 'Pause my streak',  bg: 'Постави на пауза' },
+  'streak.action.resume': { en: 'I’m ready to return', bg: 'Готов/а съм да се върна' },
+
+  'streak.pause.title': { en: 'A gentle pause', bg: 'Нежна пауза' },
+  'streak.pause.intro': {
+    en: 'Rest, recovery, exams, travel — life happens. Pausing isn’t failing. Your progress stays safe.',
+    bg: 'Почивка, възстановяване, изпити, пътуване — животът се случва. Паузата не е провал. Твоят напредък остава.',
+  },
+  'streak.pause.reasonLabel': { en: 'What’s happening?', bg: 'Какво се случва?' },
+  'streak.pause.durationLabel': { en: 'For how long?', bg: 'За колко време?' },
+  'streak.pause.days': { en: 'days', bg: 'дни' },
+  'streak.pause.reassurance': {
+    en: 'You can come back anytime — even sooner. This is just for you.',
+    bg: 'Можеш да се върнеш по всяко време — дори по-рано. Това е само за теб.',
+  },
+  'streak.pause.cancel':  { en: 'Not now', bg: 'Не сега' },
+  'streak.pause.confirm': { en: 'Pause gently', bg: 'Постави на пауза' },
+
+  'streak.pause.reason.injury':  { en: 'Healing', bg: 'Възстановяване' },
+  'streak.pause.reason.exams':   { en: 'Exams', bg: 'Изпити' },
+  'streak.pause.reason.burnout': { en: 'Burned out', bg: 'Изтощение' },
+  'streak.pause.reason.travel':  { en: 'Travel / comp', bg: 'Път / състезание' },
+  'streak.pause.reason.other':   { en: 'Just need space', bg: 'Имам нужда от пространство' },
+
   // ───── Mindfulness Tools ─────
   'mt.heading': { en: 'Mindfulness tools', bg: 'Инструменти за осъзнатост' },
   'mt.intro': {
