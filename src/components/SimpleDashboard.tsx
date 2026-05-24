@@ -280,17 +280,8 @@ export const SimpleDashboard: React.FC = () => {
         {/* Main content */}
         <main className="container max-w-2xl mx-auto px-4 sm:px-5 py-5 sm:py-7">
           
-          {/* Streak badge */}
-          {streak > 0 && (
-            <div className="flex justify-center mb-4">
-              <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-gradient-to-r from-peach/60 to-rose/40 border border-peach-foreground/30 shadow-sm">
-                <span className="text-base leading-none">🔥</span>
-                <span className="text-xs sm:text-sm font-bold text-peach-foreground">
-                  {streak} {streak === 1 ? 'day' : 'days'} in a row
-                </span>
-              </div>
-            </div>
-          )}
+          {/* Humanized streak — supportive, pause-aware */}
+          <StreakCard />
 
           {/* Continue where you left off — primary action, always one tap away */}
           {activeTab !== 'today' && (
