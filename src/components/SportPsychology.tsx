@@ -166,9 +166,9 @@ export const SportPsychology: React.FC = () => {
       <div>
         <h2 className="text-lg font-medium flex items-center gap-2">
           <Brain className="w-5 h-5 text-mental" />
-          Sport Psychology
+          Спортна психология
         </h2>
-        <p className="text-sm text-muted-foreground">Strengthen your mind to elevate your skating</p>
+        <p className="text-sm text-muted-foreground">Силен ум — по-силно пързаляне</p>
       </div>
 
       {/* Daily Mental Exercise */}
@@ -176,7 +176,7 @@ export const SportPsychology: React.FC = () => {
         <CardContent className="p-4">
           <div className="flex items-center gap-2 mb-2">
             <Sparkles className="w-4 h-4 text-mental" />
-            <span className="text-xs font-medium text-mental uppercase tracking-wide">Today's Exercise</span>
+            <span className="text-xs font-medium text-mental uppercase tracking-wide">Упражнение за днес</span>
           </div>
           <h3 className="font-medium mb-1">{DAILY_EXERCISES[currentDailyExercise].title}</h3>
           <p className="text-sm text-muted-foreground mb-2">{DAILY_EXERCISES[currentDailyExercise].exercise}</p>
@@ -187,16 +187,16 @@ export const SportPsychology: React.FC = () => {
       <Tabs defaultValue="tips" className="space-y-4">
         <TabsList className="grid w-full grid-cols-4 h-10">
           <TabsTrigger value="tips" className="text-xs">
-            Tips
+            Съвети
           </TabsTrigger>
           <TabsTrigger value="confidence" className="text-xs">
-            Confidence
+            Увереност
           </TabsTrigger>
           <TabsTrigger value="focus" className="text-xs">
-            Focus
+            Фокус
           </TabsTrigger>
           <TabsTrigger value="competition" className="text-xs">
-            Compete
+            Старт
           </TabsTrigger>
         </TabsList>
 
@@ -212,7 +212,7 @@ export const SportPsychology: React.FC = () => {
                 </p>
                 <Button variant="outline" size="sm" onClick={nextTip}>
                   <RotateCcw className="w-4 h-4 mr-2" />
-                  Next Tip
+                  Следващ съвет
                 </Button>
               </div>
             </CardContent>
