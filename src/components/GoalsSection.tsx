@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useSkater } from '@/context/SkaterContext';
 import { Goal } from '@/types/skater';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -164,21 +164,10 @@ export const GoalsSection: React.FC = () => {
                 )}
               </CardHeader>
               <CardContent className="space-y-4">
-                <div className="space-y-2">
-                  <div className="flex items-center justify-between text-sm">
-                    <span className="text-muted-foreground">Progress</span>
-                    <span className="font-medium">{goal.progress}%</span>
-                  </div>
-                  <Progress value={goal.progress} className="h-2" />
-                  <input
-                    type="range"
-                    min="0"
-                    max="100"
-                    value={goal.progress}
-                    onChange={(e) => handleProgressChange(goal.id, parseInt(e.target.value))}
-                    className="w-full accent-primary"
-                  />
-                </div>
+                <GoalProgressBar
+                  value={goal.progress}
+                  onChange={(v) => handleProgressChange(goal.id, v)}
+                />
                 <div className="flex items-center gap-2 text-xs text-muted-foreground">
                   <Calendar className="w-3 h-3" />
                   Target: {format(new Date(goal.targetDate), 'MMM d, yyyy')}
@@ -188,6 +177,40 @@ export const GoalsSection: React.FC = () => {
           ))}
         </div>
       )}
+    </div>
+  );
+};
+
+const GoalProgressBar: React.FC<{ value: number; onChange: (v: number) => void }> = ({ value, onChange }) => {
+  const [pulse, setPulse] = useState(false);
+  const prev = useRef(value);
+
+  useEffect(() => {
+    if (value > prev.current) {
+      setPulse(true);
+      const t = window.setTimeout(() => setPulse(false), 1400);
+      return () => window.clearTimeout(t);
+    }
+    prev.current = value;
+  }, [value]);
+
+  return (
+    <div className={`space-y-2 rounded-xl ${pulse ? 'goal-pulse' : ''}`}>
+      <div className="flex items-center justify-between text-sm">
+        <span className="text-muted-foreground">Progress</span>
+        <span className={`font-medium transition-colors ${pulse ? 'text-emerald-600' : ''}`}>{value}%</span>
+      </div>
+      <div className={`relative ${pulse ? 'goal-pulse-bar' : ''}`}>
+        <Progress value={value} className="h-2" />
+      </div>
+      <input
+        type="range"
+        min="0"
+        max="100"
+        value={value}
+        onChange={(e) => onChange(parseInt(e.target.value))}
+        className="w-full accent-primary"
+      />
     </div>
   );
 };

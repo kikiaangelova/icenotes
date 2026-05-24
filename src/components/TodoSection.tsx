@@ -7,6 +7,8 @@ import { Input } from '@/components/ui/input';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Plus, Trash2, ListTodo, Dumbbell, Brain, Circle, Snowflake } from 'lucide-react';
+import { SwipeableCard } from '@/components/ui/SwipeableCard';
+import { toast } from 'sonner';
 
 const categoryIcons: Record<string, React.FC<{ className?: string }>> = {
   'on-ice': Snowflake,
@@ -33,6 +35,19 @@ export const TodoSection: React.FC = () => {
   const [newTodo, setNewTodo] = useState('');
   const [category, setCategory] = useState<TodoItem['category']>('general');
   const [priority, setPriority] = useState<TodoItem['priority']>('medium');
+  const [snoozedIds, setSnoozedIds] = useState<Set<string>>(new Set());
+
+  const snooze = (id: string) => {
+    setSnoozedIds(prev => new Set(prev).add(id));
+    toast('Resting this one. It’ll be back soon.', { description: 'Rest is part of training too.' });
+    window.setTimeout(() => {
+      setSnoozedIds(prev => {
+        const n = new Set(prev);
+        n.delete(id);
+        return n;
+      });
+    }, 1000 * 60 * 30); // 30 min soft snooze
+  };
 
   const handleAdd = () => {
     if (!newTodo.trim()) return;
@@ -55,7 +70,7 @@ export const TodoSection: React.FC = () => {
     }
   };
 
-  const pendingTodos = todos.filter(t => !t.completed);
+  const pendingTodos = todos.filter(t => !t.completed && !snoozedIds.has(t.id));
   const completedTodos = todos.filter(t => t.completed);
 
   return (
@@ -122,28 +137,36 @@ export const TodoSection: React.FC = () => {
                 {pendingTodos.map((todo) => {
                   const IconComponent = categoryIcons[todo.category];
                   return (
-                    <Card key={todo.id} className={`glass-card ${priorityColors[todo.priority]}`}>
-                      <CardContent className="p-3 flex items-center gap-3">
-                        <Checkbox
-                          checked={todo.completed}
-                          onCheckedChange={() => toggleTodo(todo.id)}
-                          className="h-5 w-5"
-                        />
-                        <IconComponent className={`w-4 h-4 ${categoryColors[todo.category]}`} />
-                        <span className="flex-1 font-medium">{todo.title}</span>
-                        <span className={`text-xs px-2 py-0.5 rounded-full capitalize ${categoryColors[todo.category]} bg-background/50`}>
-                          {todo.category}
-                        </span>
-                        <Button
-                          variant="ghost"
-                          size="icon"
-                          className="h-8 w-8 text-muted-foreground hover:text-destructive"
-                          onClick={() => deleteTodo(todo.id)}
-                        >
-                          <Trash2 className="w-4 h-4" />
-                        </Button>
-                      </CardContent>
-                    </Card>
+                    <SwipeableCard
+                      key={todo.id}
+                      onComplete={() => toggleTodo(todo.id)}
+                      onSnooze={() => snooze(todo.id)}
+                      completeLabel="Done"
+                      snoozeLabel="Later"
+                    >
+                      <Card className={`glass-card ${priorityColors[todo.priority]}`}>
+                        <CardContent className="p-3 flex items-center gap-3">
+                          <Checkbox
+                            checked={todo.completed}
+                            onCheckedChange={() => toggleTodo(todo.id)}
+                            className="h-5 w-5"
+                          />
+                          <IconComponent className={`w-4 h-4 ${categoryColors[todo.category]}`} />
+                          <span className="flex-1 font-medium">{todo.title}</span>
+                          <span className={`text-xs px-2 py-0.5 rounded-full capitalize ${categoryColors[todo.category]} bg-background/50`}>
+                            {todo.category}
+                          </span>
+                          <Button
+                            variant="ghost"
+                            size="icon"
+                            className="h-8 w-8 text-muted-foreground hover:text-destructive"
+                            onClick={() => deleteTodo(todo.id)}
+                          >
+                            <Trash2 className="w-4 h-4" />
+                          </Button>
+                        </CardContent>
+                      </Card>
+                    </SwipeableCard>
                   );
                 })}
               </div>

@@ -515,4 +515,31 @@
     }
     .motion-lift:hover { transform: none; }
   }
+
+  /* Goal progress pulse — soft mint halo when progress increases */
+  .goal-pulse {
+    animation: goal-progress-pulse 1.4s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  @keyframes goal-progress-pulse {
+    0%   { box-shadow: 0 0 0 0 hsl(155 50% 55% / 0.45); }
+    60%  { box-shadow: 0 0 0 14px hsl(155 50% 55% / 0); }
+    100% { box-shadow: 0 0 0 0 hsl(155 50% 55% / 0); }
+  }
+  .goal-pulse-bar::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 9999px;
+    box-shadow: 0 0 12px 2px hsl(155 60% 55% / 0.55);
+    animation: goal-bar-glow 1.4s ease-out forwards;
+    pointer-events: none;
+  }
+  @keyframes goal-bar-glow {
+    from { opacity: 1; }
+    to   { opacity: 0; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .goal-pulse, .goal-pulse-bar::after { animation: none !important; }
+  }
 }

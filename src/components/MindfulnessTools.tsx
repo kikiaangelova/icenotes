@@ -9,6 +9,7 @@ import { Wind, Eye, Heart, Sparkles, Play, Pause, RotateCcw, ChevronLeft, Chevro
 import { useMindfulnessTools } from '@/hooks/useMindfulnessTools';
 import { useLanguage } from '@/context/LanguageContext';
 import { toast } from 'sonner';
+import { SwipeableCard } from '@/components/ui/SwipeableCard';
 
 type ToolKey = 'breathing' | 'visualization' | 'gratitude' | 'affirmations' | null;
 
@@ -31,7 +32,20 @@ const interp = (s: string, vars: Record<string, string | number>) =>
 
 export const MindfulnessTools: React.FC = () => {
   const [open, setOpen] = useState<ToolKey>(null);
+  const [snoozed, setSnoozed] = useState<Set<string>>(new Set());
   const { t } = useLanguage();
+
+  const snoozeTool = (key: string) => {
+    setSnoozed(prev => new Set(prev).add(key));
+    toast('Resting this one for now.', { description: 'Your worth is not measured by today.' });
+    window.setTimeout(() => {
+      setSnoozed(prev => {
+        const n = new Set(prev);
+        n.delete(key);
+        return n;
+      });
+    }, 1000 * 60 * 60); // 1h
+  };
 
   const tools: Array<{ key: Exclude<ToolKey, null>; titleKey: string; descKey: string; icon: any; gradient: string }> = [
     { key: 'breathing', titleKey: 'mt.breathing.title', descKey: 'mt.breathing.desc', icon: Wind, gradient: 'from-purple-500/15 to-purple-300/5' },
@@ -50,22 +64,29 @@ export const MindfulnessTools: React.FC = () => {
           </div>
           <p className="text-xs text-muted-foreground">{t('mt.intro')}</p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
-            {tools.map((tool) => (
-              <button
+            {tools.filter(tool => !snoozed.has(tool.key)).map((tool) => (
+              <SwipeableCard
                 key={tool.key}
-                onClick={() => setOpen(tool.key)}
-                className={`text-left p-4 rounded-xl border border-purple-200/40 bg-gradient-to-br ${tool.gradient} hover:border-purple-400/60 transition-all min-h-[88px]`}
+                onComplete={() => setOpen(tool.key)}
+                onSnooze={() => snoozeTool(tool.key)}
+                completeLabel="Open"
+                snoozeLabel="Not now"
               >
-                <div className="flex items-start gap-3">
-                  <div className="w-10 h-10 rounded-lg bg-purple-500/15 flex items-center justify-center flex-shrink-0">
-                    <tool.icon className="w-5 h-5 text-purple-600" />
+                <button
+                  onClick={() => setOpen(tool.key)}
+                  className={`w-full text-left p-4 rounded-xl border border-purple-200/40 bg-gradient-to-br ${tool.gradient} hover:border-purple-400/60 transition-all min-h-[88px]`}
+                >
+                  <div className="flex items-start gap-3">
+                    <div className="w-10 h-10 rounded-lg bg-purple-500/15 flex items-center justify-center flex-shrink-0">
+                      <tool.icon className="w-5 h-5 text-purple-600" />
+                    </div>
+                    <div>
+                      <p className="font-medium text-sm">{t(tool.titleKey)}</p>
+                      <p className="text-xs text-muted-foreground mt-0.5">{t(tool.descKey)}</p>
+                    </div>
                   </div>
-                  <div>
-                    <p className="font-medium text-sm">{t(tool.titleKey)}</p>
-                    <p className="text-xs text-muted-foreground mt-0.5">{t(tool.descKey)}</p>
-                  </div>
-                </div>
-              </button>
+                </button>
+              </SwipeableCard>
             ))}
           </div>
         </CardContent>
