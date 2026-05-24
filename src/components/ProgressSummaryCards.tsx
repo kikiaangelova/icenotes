@@ -54,6 +54,7 @@ const TrendIndicator: React.FC<TrendIndicatorProps> = ({ current, previous, suff
 };
 
 export const ProgressSummaryCards: React.FC = () => {
+  const { t } = useLanguage();
   const { trainingSessions: sessions, jumpAttempts: jumps, entries } = useJournal();
   
   const today = new Date();
