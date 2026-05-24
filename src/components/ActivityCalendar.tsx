@@ -5,10 +5,13 @@ import { useJournal } from '@/context/JournalContext';
 import { format, isSameDay } from 'date-fns';
 import { Snowflake, Dumbbell, Feather, Target, CalendarDays } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { useLanguage } from '@/context/LanguageContext';
 
 export const ActivityCalendar: React.FC = () => {
+  const { t } = useLanguage();
   const { trainingSessions: sessions, jumpAttempts: jumps, entries } = useJournal();
   const [selectedDate, setSelectedDate] = useState<Date | undefined>(new Date());
+
   
   // Get activity for a specific date
   const getDateActivity = (date: Date) => {
