@@ -11,6 +11,8 @@ import { format } from 'date-fns';
 import { cn } from '@/lib/utils';
 import { useLanguage, getToneForRatings, type Tone } from '@/context/LanguageContext';
 import { CoachIrisReflection } from './CoachIrisReflection';
+import { DecompressionFlow } from './DecompressionFlow';
+import { detectDifficulty, type DetectionResult } from '@/lib/emotionalDetection';
 
 interface DailyJournalProps {
   onComplete?: () => void;
