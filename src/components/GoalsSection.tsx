@@ -11,6 +11,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Target, Plus, Calendar, Trash2, CheckCircle2 } from 'lucide-react';
 import { format } from 'date-fns';
+import { useLanguage } from '@/context/LanguageContext';
 
 const categoryColors: Record<string, { bg: string; text: string }> = {
   'on-ice': { bg: 'bg-on-ice/10', text: 'text-on-ice' },
