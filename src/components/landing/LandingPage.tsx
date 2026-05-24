@@ -88,22 +88,22 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted }) => {
                   <span className="absolute inline-flex h-full w-full rounded-full bg-peach opacity-75 animate-ping" />
                   <span className="relative inline-flex h-2 w-2 rounded-full bg-peach" />
                 </span>
-                <span className="text-[11px] md:text-xs font-bold tracking-[0.18em] text-background/95 uppercase">Made for skaters · By skaters</span>
+                <span className="text-[11px] md:text-xs font-bold tracking-[0.18em] text-background/95 uppercase">For skaters who feel everything</span>
               </div>
 
-              {/* Massive cinematic headline */}
-              <h1 className="text-[3rem] sm:text-7xl md:text-[8.5rem] lg:text-[10rem] font-black leading-[0.86] tracking-[-0.045em] text-background mb-6 md:mb-8 max-w-5xl animate-fade-in"
+              {/* Emotional cinematic headline */}
+              <h1 className="text-[2.6rem] sm:text-6xl md:text-[7.5rem] lg:text-[9rem] font-black leading-[0.9] tracking-[-0.04em] text-background mb-6 md:mb-8 max-w-5xl animate-fade-in"
                   style={{ textShadow: '0 4px 60px hsl(var(--foreground) / 0.65), 0 1px 2px hsl(var(--foreground) / 0.4)' }}>
-                Train smart.<br />
+                Some days you land it.<br />
                 <span className="italic font-light bg-gradient-to-r from-peach via-background to-lavender bg-clip-text text-transparent" style={{ textShadow: 'none' }}>
-                  Skate from within.
+                  Some days you just survive practice.
                 </span>
               </h1>
 
               {/* Subline */}
               <div className="max-w-xl mb-9 md:mb-12 animate-fade-in" style={{ animationDelay: '120ms', animationFillMode: 'backwards' }}>
                 <p className="text-base md:text-2xl text-background/90 leading-relaxed font-light">
-                  Your safe space to journal, reset your head, and grow as a skater — one session at a time.
+                  Both matter. IceNotes is the soft place to put it all down — your jumps, your fears, the season you're becoming.
                 </p>
               </div>
 
@@ -113,7 +113,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted }) => {
                   action="log-today"
                   size="lg"
                   className="h-16 px-10 text-base md:text-lg font-black rounded-2xl gap-2.5 w-full sm:w-auto bg-background text-foreground hover:bg-background shadow-[0_20px_60px_-15px_hsl(var(--background)/0.6)] hover:scale-[1.03] hover:-translate-y-0.5 transition-all duration-300"
-                  label="Start Training Smart"
+                  label="Open my journal"
                 />
                 <a href="#how-it-works" className="w-full sm:w-auto">
                   <Button
@@ -122,7 +122,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted }) => {
                     className="h-16 px-8 text-base font-semibold rounded-2xl gap-2.5 w-full bg-background/10 backdrop-blur-2xl border-background/40 text-background hover:bg-background/20 hover:text-background hover:border-background/60 hover:-translate-y-0.5 active:scale-[0.98] transition-all duration-200"
                   >
                     <Play className="w-4 h-4 fill-background" />
-                    See how it works
+                    Take a peek
                   </Button>
                 </a>
               </div>
@@ -131,7 +131,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted }) => {
                 <div className="mt-10 inline-flex items-center gap-2.5 px-4 py-2.5 rounded-full bg-background/10 backdrop-blur-2xl border border-background/25 shadow-lg animate-fade-in" style={{ animationDelay: '240ms', animationFillMode: 'backwards' }}>
                   <Users className="w-4 h-4 text-background" />
                   <span className="text-sm font-medium text-background/90">
-                    You're joining <span className="font-bold text-background">{userCount.toLocaleString()}</span> skaters already here
+                    <span className="font-bold text-background">{userCount.toLocaleString()}</span> skaters already breathing here
                   </span>
                 </div>
               )}
@@ -249,13 +249,13 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted }) => {
       <section className="relative z-10 px-5 md:px-12 py-16 md:py-28 overflow-hidden">
         <div className="max-w-6xl mx-auto">
           <div className="text-center max-w-2xl mx-auto mb-10 md:mb-14">
-            <p className="text-xs font-bold tracking-[0.3em] uppercase text-primary mb-3">Inside the app</p>
+            <p className="text-xs font-bold tracking-[0.3em] uppercase text-primary mb-3">A softer rink-side companion</p>
             <h2 className="text-3xl md:text-6xl font-black tracking-[-0.03em] leading-[1.02] text-foreground mb-4">
-              Calm tools.<br />
-              <span className="italic font-light text-warmth">Real progress.</span>
+              Not another tracker.<br />
+              <span className="italic font-light text-warmth">A place to come home to.</span>
             </h2>
             <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
-              Journal, log jumps, prep your mindset — all in one warm, distraction-free space that actually fits how you train.
+              Write what hurt. Notice what's growing. Breathe before the next session — without anyone watching.
             </p>
           </div>
 
@@ -274,10 +274,10 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted }) => {
               <div className="bg-background/15 backdrop-blur-2xl border border-background/20 rounded-2xl p-4 md:p-6 max-w-xs">
                 <div className="flex items-center gap-2 mb-2">
                   <Heart className="w-4 h-4 text-rose fill-rose" />
-                  <span className="text-xs font-semibold text-background/90 uppercase tracking-wider">Today's reflection</span>
+                  <span className="text-xs font-semibold text-background/90 uppercase tracking-wider">Tonight's note</span>
                 </div>
                 <p className="text-sm md:text-base text-background font-medium leading-relaxed">
-                  "Felt my edges click on the back outside spiral. Trusting the lean."
+                  "Fell on the Lutz again. Got back up faster this time. That's the win."
                 </p>
               </div>
               <div className="bg-background/15 backdrop-blur-2xl border border-background/20 rounded-2xl px-5 py-4 flex items-center gap-3">
@@ -285,8 +285,8 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted }) => {
                   <TrendingUp className="w-5 h-5 text-mint-foreground" />
                 </div>
                 <div>
-                  <div className="text-2xl md:text-3xl font-black text-background leading-none">+12%</div>
-                  <div className="text-[10px] uppercase tracking-wider text-background/70 mt-1">Confidence this month</div>
+                  <div className="text-2xl md:text-3xl font-black text-background leading-none">softer</div>
+                  <div className="text-[10px] uppercase tracking-wider text-background/70 mt-1">on yourself, this month</div>
                 </div>
               </div>
             </div>
@@ -296,13 +296,13 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted }) => {
       <section className="relative z-10 px-5 md:px-12 py-16 md:py-24">
         <div className="max-w-5xl mx-auto">
           <div className="text-center max-w-2xl mx-auto mb-10">
-            <p className="text-xs font-bold tracking-[0.25em] uppercase text-primary mb-3">A safe space, not a scoreboard</p>
+            <p className="text-xs font-bold tracking-[0.25em] uppercase text-primary mb-3">Skaters get skaters</p>
             <h2 className="text-3xl md:text-5xl font-black tracking-tight leading-[1.05] mb-4">
-              You're not skating alone.<br />
-              <span className="italic bg-gradient-to-r from-rose-foreground to-primary bg-clip-text text-transparent">We're in this together.</span>
+              The pressure isn't yours alone.<br />
+              <span className="italic bg-gradient-to-r from-rose-foreground to-primary bg-clip-text text-transparent">Neither is the joy.</span>
             </h2>
             <p className="text-base text-muted-foreground leading-relaxed">
-              Real skaters, real seasons. The wins, the falls, and the days you almost didn't lace up.
+              Real skaters. Real seasons. The shaky warm-ups, the breakthrough nights, the days that almost broke you.
             </p>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -312,7 +312,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted }) => {
           </div>
           <div className="mt-8 text-center">
             <Link to="/share-experience" className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:gap-3 transition-all duration-200">
-              Share your story
+              Share your season
               <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
@@ -338,7 +338,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted }) => {
               action="log-today"
               size="lg"
               className="h-14 px-10 text-base font-bold rounded-2xl gap-2.5 w-full sm:w-auto shadow-md bg-gradient-to-r from-primary to-primary/85"
-              label="Start Training Smart"
+              label="Start today"
             />
             <Link to="/auth" className="w-full sm:w-auto">
               <Button variant="outline" size="lg" className="h-14 px-10 text-base font-semibold rounded-2xl w-full">
