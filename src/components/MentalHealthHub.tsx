@@ -22,42 +22,42 @@ import {
 import { MindJournal } from './MindJournal';
 
 const AFFIRMATIONS = [
-  "I am strong, focused, and ready to perform my best.",
-  "Every practice makes me a better skater.",
-  "I trust my training and my abilities.",
-  "I embrace challenges as opportunities to grow.",
-  "My body knows how to land this jump perfectly.",
-  "I am calm, confident, and in control.",
-  "I skate with joy and passion.",
-  "Each fall teaches me something valuable.",
-  "I visualize success and achieve it.",
-  "I am grateful for my skating journey.",
-  "My hard work is paying off every day.",
-  "I believe in my potential to succeed.",
+  "Силна/силен съм и съм готов(а) за днешната тренировка.",
+  "Всяка тренировка ме прави малко по-добър(а).",
+  "Доверявам се на тялото си.",
+  "Трудното ме учи. Не ме чупи.",
+  "Знам как се прави този скок. Правил(а) съм го.",
+  "Спокоен/спокойна съм. Под контрол съм.",
+  "Карам, защото ми харесва.",
+  "Падането не отменя прогреса.",
+  "Виждам го наум, после го правя.",
+  "Радвам се, че имам лед днес.",
+  "Работата ми личи. Просто бавно.",
+  "Имам време да го науча.",
 ];
 
 const BREATHING_EXERCISES = [
   {
     id: 'box',
-    name: 'Box Breathing',
-    description: 'Perfect for calming pre-competition nerves',
-    steps: ['Inhale 4s', 'Hold 4s', 'Exhale 4s', 'Hold 4s'],
+    name: 'Дишане в каре',
+    description: 'Сваля нервите преди старт',
+    steps: ['Вдишай 4с', 'Задръж 4с', 'Издишай 4с', 'Задръж 4с'],
     durations: [4, 4, 4, 4],
     rounds: 4,
   },
   {
     id: '478',
-    name: '4-7-8 Relaxation',
-    description: 'Deep relaxation technique for better sleep',
-    steps: ['Inhale 4s', 'Hold 7s', 'Exhale 8s'],
+    name: 'Дишане 4-7-8',
+    description: 'Помага за заспиване и пълно отпускане',
+    steps: ['Вдишай 4с', 'Задръж 7с', 'Издишай 8с'],
     durations: [4, 7, 8],
     rounds: 3,
   },
   {
     id: 'energizing',
-    name: 'Energizing Breath',
-    description: 'Boost energy before practice',
-    steps: ['Quick inhale', 'Quick exhale'],
+    name: 'Зареждащо дишане',
+    description: 'Събужда тялото преди тренировка',
+    steps: ['Бързо вдишване', 'Бързо издишване'],
     durations: [1, 1],
     rounds: 10,
   },
@@ -66,62 +66,62 @@ const BREATHING_EXERCISES = [
 const VISUALIZATION_SCRIPTS = [
   {
     id: 'program',
-    title: 'Full Program Run-Through',
-    duration: '5-10 min',
+    title: 'Прекарай програмата наум',
+    duration: '5–10 мин',
     icon: Eye,
     steps: [
-      'Close your eyes and take three deep breaths.',
-      'Visualize yourself at the rink, stepping onto the ice.',
-      'Feel the cold air, hear the familiar sounds of the rink.',
-      'Take your starting position. Feel confident and ready.',
-      'Play your music in your mind and skate through each element.',
-      'See yourself landing every jump cleanly and beautifully.',
-      'Feel the emotion of a perfect performance.',
-      'Finish in your final pose, filled with pride.',
+      'Затвори очи. Поеми три бавни дишания.',
+      'Виж се на пътеката към леда.',
+      'Усети студа и звука на пързалката.',
+      'Влез в начална позиция. Готов(а) си.',
+      'Пусни музиката в главата си.',
+      'Виж как минаваш всеки елемент чисто.',
+      'Усети края — стабилен(а), доволен(а).',
+      'Задръж позата. Това си ти.',
     ],
   },
   {
     id: 'jump',
-    title: 'Perfect Jump Visualization',
-    duration: '3-5 min',
+    title: 'Чист скок наум',
+    duration: '3–5 мин',
     icon: Sparkles,
     steps: [
-      'Choose the jump you want to improve.',
-      'Close your eyes and breathe deeply.',
-      'See yourself approaching with perfect speed and edge.',
-      'Feel the takeoff - explosive and controlled.',
-      'Experience the rotation - tight and centered.',
-      'See the ice coming into view as you spot your landing.',
-      'Land with a strong, clean edge and beautiful flow.',
-      'Repeat this perfect jump 5 times in your mind.',
+      'Избери един скок.',
+      'Затвори очи и дишай бавно.',
+      'Виж засилката — стабилна, с добро ребро.',
+      'Усети отскока — кратък, контролиран.',
+      'Усети въртенето — събран(а), центриран(а).',
+      'Виж леда и пиши приземяването.',
+      'Излез с чисто ребро.',
+      'Пусни го наум 5 пъти.',
     ],
   },
   {
     id: 'confidence',
-    title: 'Confidence Building',
-    duration: '5 min',
+    title: 'Върни си увереността',
+    duration: '5 мин',
     icon: Flame,
     steps: [
-      'Sit comfortably and close your eyes.',
-      'Think of your proudest skating moment.',
-      'Relive that feeling of accomplishment.',
-      'Remember how capable and strong you felt.',
-      'Let that confidence fill your entire body.',
-      'Know that you can achieve that feeling again.',
-      'Carry this confidence with you to your next practice.',
+      'Седни и затвори очи.',
+      'Сети се за момент, в който се гордееше със себе си.',
+      'Върни усещането — къде беше, кой беше там.',
+      'Спомни си как се чувстваше тялото ти.',
+      'Остави това усещане да се разлее.',
+      'То ти принадлежи. Можеш да го викнеш пак.',
+      'Вземи го със себе си на следващата тренировка.',
     ],
   },
 ];
 
 const JOURNAL_PROMPTS = [
-  "What went well in today's practice?",
-  "What is one thing I want to improve tomorrow?",
-  "How am I feeling about my upcoming competition?",
-  "What am I grateful for in my skating journey?",
-  "Describe my ideal performance in detail.",
-  "What mental barriers am I facing and how can I overcome them?",
-  "Who inspires me in skating and why?",
-  "What does success look like to me this season?",
+  "Какво ми се получи днес?",
+  "Кое искам да оправя утре?",
+  "Как се чувствам за следващото състезание?",
+  "За какво съм благодарен/благодарна днес?",
+  "Опиши най-добрата си тренировка — как изглежда?",
+  "Какво ме спира в момента и какво мога да направя?",
+  "Кой ме вдъхновява и защо?",
+  "Какво означава добър сезон за мен?",
 ];
 
 export const MentalHealthHub: React.FC = () => {
@@ -188,9 +188,9 @@ export const MentalHealthHub: React.FC = () => {
               <Brain className="w-6 h-6 text-mental" />
             </div>
             <div>
-              <h2 className="text-xl font-bold">Mental Training Hub</h2>
+              <h2 className="text-xl font-bold">Главата също тренира</h2>
               <p className="text-sm text-muted-foreground">
-                Strengthen your mind to elevate your skating
+                Дишане, визуализация и кратки напомняния
               </p>
             </div>
           </div>
@@ -201,23 +201,23 @@ export const MentalHealthHub: React.FC = () => {
         <TabsList className="grid w-full grid-cols-5 h-12 p-1">
           <TabsTrigger value="breathing" className="flex items-center gap-2">
             <Wind className="w-4 h-4" />
-            <span className="hidden sm:inline">Breathe</span>
+            <span className="hidden sm:inline">Дишане</span>
           </TabsTrigger>
           <TabsTrigger value="visualization" className="flex items-center gap-2">
             <Eye className="w-4 h-4" />
-            <span className="hidden sm:inline">Visualize</span>
+            <span className="hidden sm:inline">Визуализация</span>
           </TabsTrigger>
           <TabsTrigger value="affirmations" className="flex items-center gap-2">
             <Heart className="w-4 h-4" />
-            <span className="hidden sm:inline">Affirm</span>
+            <span className="hidden sm:inline">Напомняне</span>
           </TabsTrigger>
           <TabsTrigger value="journal" className="flex items-center gap-2">
             <PenLine className="w-4 h-4" />
-            <span className="hidden sm:inline">Journal</span>
+            <span className="hidden sm:inline">Дневник</span>
           </TabsTrigger>
           <TabsTrigger value="mind" className="flex items-center gap-2">
             <Brain className="w-4 h-4" />
-            <span className="hidden sm:inline">Mind</span>
+            <span className="hidden sm:inline">Глава</span>
           </TabsTrigger>
         </TabsList>
 

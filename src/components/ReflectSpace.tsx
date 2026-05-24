@@ -8,13 +8,13 @@ import { Heart, Target, RefreshCw, Check, Sparkles } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { CoachIrisReflection } from './CoachIrisReflection';
 
-// Gentle reflection prompts
+// Тихи въпроси — без драма
 const REFLECTION_PROMPTS = [
-  "What's on your mind about skating right now?",
-  "How are you feeling about your progress?",
-  "What would help you feel more at ease on the ice?",
-  "What do you appreciate about your skating journey?",
-  "What's one thing you'd like to remind yourself?"
+  "Какво ти се върти в главата за карането в момента?",
+  "Как се чувстваш за прогреса си напоследък?",
+  "Какво би ти помогнало да си по-спокоен(а) на леда?",
+  "Кое нещо в карането ти харесва точно сега?",
+  "Какво искаш да си напомниш утре?"
 ];
 
 export const ReflectSpace: React.FC = () => {

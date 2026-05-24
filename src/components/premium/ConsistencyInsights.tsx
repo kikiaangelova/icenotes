@@ -14,9 +14,9 @@ export const ConsistencyInsights: React.FC = () => {
         <CardContent className="pt-6 text-center space-y-3">
           <Sunrise className="w-8 h-8 mx-auto text-premium/60" />
           <div>
-            <h3 className="font-medium text-foreground">Your journey begins</h3>
+            <h3 className="font-medium text-foreground">Тук започва</h3>
             <p className="text-sm text-muted-foreground mt-1">
-              Start with today's reflection. Every journey starts with one step.
+              Запиши си нещо за днес. Едно изречение стига.
             </p>
           </div>
         </CardContent>
@@ -29,10 +29,10 @@ export const ConsistencyInsights: React.FC = () => {
       <CardHeader className="pb-3">
         <div className="flex items-center gap-2 text-reflect">
           <Leaf className="w-4 h-4" />
-          <span className="text-xs font-medium uppercase tracking-wide">Your Journey</span>
+          <span className="text-xs font-medium uppercase tracking-wide">Твоят ритъм</span>
         </div>
         <CardTitle className="text-base font-medium text-foreground">
-          Gentle insights on your path
+          Кратък поглед назад
         </CardTitle>
       </CardHeader>
       
@@ -44,15 +44,14 @@ export const ConsistencyInsights: React.FC = () => {
           </div>
           <div>
             <p className="text-sm font-medium text-foreground">
-              Days of reflection
+              Дни, в които си писал(а)
             </p>
             <p className="text-xs text-muted-foreground">
-              You've shown up for yourself this many times.
+              Толкова пъти си отделил(а) минута за себе си.
             </p>
           </div>
         </div>
 
-        {/* Current connection - not "streak" */}
         {insight.currentStreak > 1 && (
           <div className="flex items-center gap-4 p-3 rounded-lg bg-warmth/40">
             <div className="w-12 h-12 rounded-full bg-gold/10 flex items-center justify-center">
@@ -60,16 +59,15 @@ export const ConsistencyInsights: React.FC = () => {
             </div>
             <div>
               <p className="text-sm font-medium text-foreground">
-                Days connected
+                Поредни дни
               </p>
               <p className="text-xs text-muted-foreground">
-                You stayed connected to your process.
+                Държиш ритъма.
               </p>
             </div>
           </div>
         )}
 
-        {/* Returns after breaks - celebrate resilience */}
         {insight.returnsAfterBreak > 0 && (
           <div className="flex items-center gap-4 p-3 rounded-lg bg-success/10">
             <div className="w-12 h-12 rounded-full bg-success/10 flex items-center justify-center">
@@ -77,10 +75,10 @@ export const ConsistencyInsights: React.FC = () => {
             </div>
             <div>
               <p className="text-sm font-medium text-foreground">
-                {insight.returnsAfterBreak} time{insight.returnsAfterBreak > 1 ? 's' : ''} you came back
+                {insight.returnsAfterBreak === 1 ? 'Веднъж се върна' : `${insight.returnsAfterBreak} пъти се върна`}
               </p>
               <p className="text-xs text-muted-foreground">
-                Returning is part of growth. You chose to continue.
+                Пауза стана. И ти се върна. Това е важното.
               </p>
             </div>
           </div>
@@ -89,7 +87,7 @@ export const ConsistencyInsights: React.FC = () => {
         {/* Gentle closing message */}
         <div className="pt-2 border-t border-premium/10">
           <p className="text-xs text-center text-muted-foreground italic">
-            Consistency grows quietly. You're doing more than you realize.
+            Малките повторения се събират. Просто продължавай.
           </p>
         </div>
       </CardContent>
