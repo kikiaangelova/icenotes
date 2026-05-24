@@ -9,6 +9,7 @@ import { Wind, Eye, Heart, Sparkles, Play, Pause, RotateCcw, ChevronLeft, Chevro
 import { useMindfulnessTools } from '@/hooks/useMindfulnessTools';
 import { useLanguage } from '@/context/LanguageContext';
 import { toast } from 'sonner';
+import { SwipeableCard } from '@/components/ui/SwipeableCard';
 
 type ToolKey = 'breathing' | 'visualization' | 'gratitude' | 'affirmations' | null;
 
