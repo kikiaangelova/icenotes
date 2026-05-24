@@ -12,6 +12,8 @@ import { Brain, Sparkles, HeartHandshake, Activity, Trophy, Plus, X } from 'luci
 import { useLanguage } from '@/context/LanguageContext';
 import { useAddMindJournalEntry } from '@/hooks/useMindJournal';
 import { CoachIrisReflection } from './CoachIrisReflection';
+import { DecompressionFlow } from './DecompressionFlow';
+import { detectDifficulty, type DetectionResult } from '@/lib/emotionalDetection';
 
 const BODY_PARTS = ['body.head', 'body.neck', 'body.chest', 'body.back', 'body.stomach', 'body.hips', 'body.legs', 'body.feet'];
 
@@ -30,12 +32,17 @@ const CbtTab: React.FC = () => {
     cbt_new_intensity: 5,
   });
   const [reflection, setReflection] = useState<{ text: string; key: number } | null>(null);
+  const [decomp, setDecomp] = useState<{ open: boolean; result: DetectionResult }>(
+    { open: false, result: { isDifficult: false, themes: [], level: 'none' } }
+  );
 
   const submit = async () => {
     const text = [form.cbt_situation, form.cbt_automatic_thought, form.cbt_emotion, form.cbt_balanced_thought]
       .map((s) => s.trim()).filter(Boolean).join('\n\n');
     await add.mutateAsync({ entry_type: 'cbt', ...form });
     if (text) setReflection({ text, key: Date.now() });
+    const result = detectDifficulty(text, { intensity: form.cbt_emotion_intensity });
+    if (result.isDifficult) setDecomp({ open: true, result });
     setForm({ cbt_situation: '', cbt_automatic_thought: '', cbt_emotion: '', cbt_emotion_intensity: 5, cbt_evidence_for: '', cbt_evidence_against: '', cbt_balanced_thought: '', cbt_new_intensity: 5 });
   };
 
@@ -59,6 +66,12 @@ const CbtTab: React.FC = () => {
         <Button onClick={submit} disabled={add.isPending} className="w-full h-12 bg-pink-foreground hover:bg-pink-foreground/90">{t('mind.save')}</Button>
       </CardContent>
       {reflection && <div className="px-6 pb-6"><CoachIrisReflection journalText={reflection.text} triggerKey={reflection.key} /></div>}
+      <DecompressionFlow
+        open={decomp.open}
+        onOpenChange={(o) => setDecomp((d) => ({ ...d, open: o }))}
+        themes={decomp.result.themes}
+        level={decomp.result.level === 'heavy' ? 'heavy' : 'soft'}
+      />
     </Card>
   );
 };

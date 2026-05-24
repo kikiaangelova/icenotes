@@ -11,6 +11,8 @@ import { format } from 'date-fns';
 import { cn } from '@/lib/utils';
 import { useLanguage, getToneForRatings, type Tone } from '@/context/LanguageContext';
 import { CoachIrisReflection } from './CoachIrisReflection';
+import { DecompressionFlow } from './DecompressionFlow';
+import { detectDifficulty, type DetectionResult } from '@/lib/emotionalDetection';
 
 interface DailyJournalProps {
   onComplete?: () => void;
@@ -36,6 +38,9 @@ export const DailyJournal: React.FC<DailyJournalProps> = ({ onComplete }) => {
 
   const [isSubmitted, setIsSubmitted] = useState(!!existingEntry);
   const [savedTone, setSavedTone] = useState<Tone>('neutral');
+  const [decomp, setDecomp] = useState<{ open: boolean; result: DetectionResult }>(
+    { open: false, result: { isDifficult: false, themes: [], level: 'none' } }
+  );
   const [savedText, setSavedText] = useState<string>(() => {
     if (!existingEntry) return '';
     return [
@@ -76,13 +81,27 @@ export const DailyJournal: React.FC<DailyJournalProps> = ({ onComplete }) => {
     });
 
     setSavedTone(previewTone);
-    setSavedText(
-      [formData.workedOn.trim(), formData.smallWin.trim(), formData.coachNotes.trim()]
-        .filter(Boolean)
-        .join('\n\n')
-    );
+    const combinedText = [
+      formData.workedOn.trim(),
+      formData.smallWin.trim(),
+      formData.coachNotes.trim(),
+    ].filter(Boolean).join('\n\n');
+    setSavedText(combinedText);
     setIsSubmitted(true);
-    if (onComplete) setTimeout(onComplete, 2000);
+
+    // Detect emotionally heavy entries — open the decompression flow instead
+    // of letting the user be dropped back into productivity tabs.
+    const result = detectDifficulty(combinedText, {
+      emotionalState: formData.emotionalState,
+      confidenceLevel: formData.confidenceLevel,
+      feeling: formData.feeling || undefined,
+    });
+    if (result.isDifficult) {
+      setDecomp({ open: true, result });
+      // Skip the auto-redirect — let the user close the flow themselves.
+    } else if (onComplete) {
+      setTimeout(onComplete, 2000);
+    }
   };
 
   if (isSubmitted || existingEntry) {
@@ -122,6 +141,12 @@ export const DailyJournal: React.FC<DailyJournalProps> = ({ onComplete }) => {
           </CardContent>
         </Card>
         {savedText && <CoachIrisReflection journalText={savedText} />}
+        <DecompressionFlow
+          open={decomp.open}
+          onOpenChange={(o) => setDecomp((d) => ({ ...d, open: o }))}
+          themes={decomp.result.themes}
+          level={decomp.result.level === 'heavy' ? 'heavy' : 'soft'}
+        />
       </>
     );
   }
