@@ -32,12 +32,17 @@ const CbtTab: React.FC = () => {
     cbt_new_intensity: 5,
   });
   const [reflection, setReflection] = useState<{ text: string; key: number } | null>(null);
+  const [decomp, setDecomp] = useState<{ open: boolean; result: DetectionResult }>(
+    { open: false, result: { isDifficult: false, themes: [], level: 'none' } }
+  );
 
   const submit = async () => {
     const text = [form.cbt_situation, form.cbt_automatic_thought, form.cbt_emotion, form.cbt_balanced_thought]
       .map((s) => s.trim()).filter(Boolean).join('\n\n');
     await add.mutateAsync({ entry_type: 'cbt', ...form });
     if (text) setReflection({ text, key: Date.now() });
+    const result = detectDifficulty(text, { intensity: form.cbt_emotion_intensity });
+    if (result.isDifficult) setDecomp({ open: true, result });
     setForm({ cbt_situation: '', cbt_automatic_thought: '', cbt_emotion: '', cbt_emotion_intensity: 5, cbt_evidence_for: '', cbt_evidence_against: '', cbt_balanced_thought: '', cbt_new_intensity: 5 });
   };
 
