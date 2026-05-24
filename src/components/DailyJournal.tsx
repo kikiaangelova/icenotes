@@ -81,13 +81,27 @@ export const DailyJournal: React.FC<DailyJournalProps> = ({ onComplete }) => {
     });
 
     setSavedTone(previewTone);
-    setSavedText(
-      [formData.workedOn.trim(), formData.smallWin.trim(), formData.coachNotes.trim()]
-        .filter(Boolean)
-        .join('\n\n')
-    );
+    const combinedText = [
+      formData.workedOn.trim(),
+      formData.smallWin.trim(),
+      formData.coachNotes.trim(),
+    ].filter(Boolean).join('\n\n');
+    setSavedText(combinedText);
     setIsSubmitted(true);
-    if (onComplete) setTimeout(onComplete, 2000);
+
+    // Detect emotionally heavy entries — open the decompression flow instead
+    // of letting the user be dropped back into productivity tabs.
+    const result = detectDifficulty(combinedText, {
+      emotionalState: formData.emotionalState,
+      confidenceLevel: formData.confidenceLevel,
+      feeling: formData.feeling || undefined,
+    });
+    if (result.isDifficult) {
+      setDecomp({ open: true, result });
+      // Skip the auto-redirect — let the user close the flow themselves.
+    } else if (onComplete) {
+      setTimeout(onComplete, 2000);
+    }
   };
 
   if (isSubmitted || existingEntry) {
