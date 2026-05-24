@@ -118,7 +118,7 @@ export const SimpleDashboard: React.FC = () => {
   const hasOffIce = todaysSessions.some(s => s.type === 'off-ice');
   const levelLabel = SELF_LEVELS.find(l => l.value === profile?.selfLevel)?.label || '';
   const greeting = getGreeting(profile?.name, language);
-  const streak = useStreak();
+  
   const [gameDayOpen, setGameDayOpen] = useState(false);
 
   // Map the persistent bottom-nav tab to the existing internal structure.
