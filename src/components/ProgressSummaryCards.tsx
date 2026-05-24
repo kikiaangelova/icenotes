@@ -12,38 +12,43 @@ interface TrendIndicatorProps {
 }
 
 const TrendIndicator: React.FC<TrendIndicatorProps> = ({ current, previous, suffix = '' }) => {
+  const { t } = useLanguage();
+  const suffixText = suffix.trim() === 'week' ? t('progressX.suffix.week')
+    : suffix.trim() === 'month' ? t('progressX.suffix.month')
+    : suffix;
+
   if (previous === 0 && current === 0) {
     return (
       <span className="flex items-center gap-1 text-xs text-muted-foreground">
         <Minus className="w-3 h-3" />
-        No change
+        {t('progressX.noChange')}
       </span>
     );
   }
-  
+
   const diff = current - previous;
   const percentChange = previous > 0 ? Math.round((diff / previous) * 100) : current > 0 ? 100 : 0;
-  
+
   if (diff > 0) {
     return (
       <span className="flex items-center gap-1 text-xs text-success">
         <TrendingUp className="w-3 h-3" />
-        +{percentChange}% vs last{suffix}
+        +{percentChange}% {t('progressX.up')} {suffixText}
       </span>
     );
   } else if (diff < 0) {
     return (
       <span className="flex items-center gap-1 text-xs text-destructive">
         <TrendingDown className="w-3 h-3" />
-        {percentChange}% vs last{suffix}
+        {percentChange}% {t('progressX.down')} {suffixText}
       </span>
     );
   }
-  
+
   return (
     <span className="flex items-center gap-1 text-xs text-muted-foreground">
       <Minus className="w-3 h-3" />
-      Same as last{suffix}
+      {t('progressX.same')} {suffixText}
     </span>
   );
 };
