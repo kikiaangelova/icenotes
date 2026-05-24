@@ -491,6 +491,14 @@ const dict: Dict = {
   'dash.tab.goals': { en: 'Goals', bg: 'Цели' },
   'dash.tab.progress': { en: 'Progress', bg: 'Прогрес' },
 
+  // ───── Bottom navigation (mobile shell) ─────
+  'bottomNav.home': { en: 'Home', bg: 'Начало' },
+  'bottomNav.goals': { en: 'Goals', bg: 'Цели' },
+  'bottomNav.training': { en: 'Training', bg: 'Тренировки' },
+  'bottomNav.mind': { en: 'Mind', bg: 'Подготовка' },
+  'bottomNav.journal': { en: 'Journal', bg: 'Дневник' },
+  'bottomNav.profile': { en: 'Profile', bg: 'Профил' },
+
   // Mind sub-pills
   'dash.mind.preskate': { en: 'Pre-Skate', bg: 'Преди лед' },
   'dash.mind.journal': { en: 'Mind Journal', bg: 'Дневник на ума' },
