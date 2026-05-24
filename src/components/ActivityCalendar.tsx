@@ -69,10 +69,10 @@ export const ActivityCalendar: React.FC = () => {
       <CardHeader className="pb-2">
         <CardTitle className="text-sm font-medium flex items-center gap-2">
           <CalendarDays className="w-4 h-4 text-primary" />
-          Activity Calendar
+          {t('calX.title')}
         </CardTitle>
         <p className="text-xs text-muted-foreground">
-          Today: {format(new Date(), 'EEEE, MMMM d, yyyy')}
+          {t('calX.today')}: {format(new Date(), 'EEEE, MMMM d, yyyy')}
         </p>
       </CardHeader>
       <CardContent className="space-y-4">
