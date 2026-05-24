@@ -602,7 +602,12 @@ const Auth: React.FC = () => {
           {t('auth.backHome')}
         </button>
 
-        <p className="text-center text-sm text-muted-foreground mt-4">
+        <div className="flex items-center justify-center gap-2 mt-5 text-xs text-muted-foreground">
+          <ShieldCheck className="w-3.5 h-3.5 text-primary" />
+          <span>Your journal stays private. Always yours.</span>
+        </div>
+
+        <p className="text-center text-xs text-muted-foreground mt-3 px-4">
           {t('auth.terms')}
         </p>
       </div>
