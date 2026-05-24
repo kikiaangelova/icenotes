@@ -75,12 +75,12 @@ const MODES: ModeConfig[] = [
     id: 'pressure_moment',
     icon: Wind,
     tone: { ring: 'border-orange-200', soft: 'bg-orange-50/60', chip: 'bg-orange-100 text-orange-700', accent: 'text-orange-700' },
-    label: { en: 'Pressure moment', bg: 'Момент под напрежение' },
+    label: { en: 'Pressure moment', bg: 'Под напрежение' },
     intro: { en: 'A 30-second pause when it gets heavy.', bg: 'Пауза от 30 секунди, когато стане тежко.' },
     prompts: [
-      { en: 'What am I feeling right now, in one word?', bg: 'Какво усещам сега, с една дума?' },
-      { en: 'What do I need in this moment?', bg: 'От какво имам нужда в този момент?' },
-      { en: 'What’s one breath I can take before the next move?', bg: 'Какъв дъх мога да поема преди следващата стъпка?' },
+      { en: 'What am I feeling right now, in one word?', bg: 'Какво усещам сега — с една дума?' },
+      { en: 'What do I need in this moment?', bg: 'От какво имам нужда сега?' },
+      { en: 'What’s one breath I can take before the next move?', bg: 'Какъв дъх мога да поема преди следващия елемент?' },
     ],
   },
 ];
