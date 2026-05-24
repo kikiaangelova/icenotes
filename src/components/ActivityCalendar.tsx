@@ -142,44 +142,44 @@ export const ActivityCalendar: React.FC = () => {
             
             {!selectedActivity?.hasOnIce && !selectedActivity?.hasOffIce && 
              !selectedActivity?.hasJumps && !selectedActivity?.hasJournal ? (
-              <p className="text-xs text-muted-foreground italic">No activity recorded</p>
+              <p className="text-xs text-muted-foreground italic">{t('calX.noActivity')}</p>
             ) : (
               <div className="grid grid-cols-2 gap-2">
                 {selectedActivity?.hasOnIce && (
                   <div className="flex items-center gap-2 p-2 rounded-lg bg-on-ice/10">
                     <Snowflake className="w-4 h-4 text-on-ice" />
                     <div>
-                      <p className="text-xs font-medium">{totalOnIceMinutes} min</p>
-                      <p className="text-xs text-muted-foreground">On-Ice</p>
+                      <p className="text-xs font-medium">{totalOnIceMinutes} {t('calX.min')}</p>
+                      <p className="text-xs text-muted-foreground">{t('progressX.onIce')}</p>
                     </div>
                   </div>
                 )}
-                
+
                 {selectedActivity?.hasOffIce && (
                   <div className="flex items-center gap-2 p-2 rounded-lg bg-off-ice/10">
                     <Dumbbell className="w-4 h-4 text-off-ice" />
                     <div>
-                      <p className="text-xs font-medium">{totalOffIceMinutes} min</p>
-                      <p className="text-xs text-muted-foreground">Off-Ice</p>
+                      <p className="text-xs font-medium">{totalOffIceMinutes} {t('calX.min')}</p>
+                      <p className="text-xs text-muted-foreground">{t('progressX.offIce')}</p>
                     </div>
                   </div>
                 )}
-                
+
                 {selectedActivity?.hasJumps && (
                   <div className="flex items-center gap-2 p-2 rounded-lg bg-primary/10">
                     <Target className="w-4 h-4 text-primary" />
                     <div>
-                      <p className="text-xs font-medium">{selectedDayJumps.length} jumps</p>
-                      <p className="text-xs text-muted-foreground">{jumpSuccessRate}% landed</p>
+                      <p className="text-xs font-medium">{selectedDayJumps.length} {t('calX.jumps')}</p>
+                      <p className="text-xs text-muted-foreground">{jumpSuccessRate}% {t('calX.landed')}</p>
                     </div>
                   </div>
                 )}
-                
+
                 {selectedActivity?.hasJournal && (
                   <div className="flex items-center gap-2 p-2 rounded-lg bg-accent/50">
                     <Feather className="w-4 h-4 text-accent-foreground" />
                     <div>
-                      <p className="text-xs font-medium">Journal</p>
+                      <p className="text-xs font-medium">{t('progressX.journal')}</p>
                       <p className="text-xs text-muted-foreground capitalize">{selectedDayEntry?.feeling}</p>
                     </div>
                   </div>
