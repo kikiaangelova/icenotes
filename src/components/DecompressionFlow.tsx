@@ -19,8 +19,8 @@ function openingLine(themes: DifficultTheme[] = []): string {
   if (themes.includes('injury'))      return 'Your body is asking for care. That counts as training too.';
   if (themes.includes('fear'))        return 'Fear shows up when something matters. You\'re not alone in it.';
   if (themes.includes('burnout'))     return 'You\'ve been carrying a lot. Let\'s slow down for a minute.';
-  if (themes.includes('overwhelm'))   return 'That sounds like a lot to hold. You don't have to figure it all out tonight.';
-  if (themes.includes('self_doubt'))  return 'The hard voice in your head isn't the whole story.';
+  if (themes.includes('overwhelm'))   return 'That sounds like a lot to hold. You don\'t have to figure it all out tonight.';
+  if (themes.includes('self_doubt'))  return 'The hard voice in your head isn\'t the whole story.';
   if (themes.includes('frustration')) return 'Frustration means you care. That\'s not nothing.';
   if (themes.includes('bad_practice'))return 'Some practices stay heavy for a while. That\'s allowed.';
   return 'That sounded like a hard day. You\'re here, and that\'s enough.';
