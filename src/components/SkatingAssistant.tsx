@@ -7,10 +7,10 @@ import { cn } from '@/lib/utils';
 type Msg = { role: 'user' | 'assistant'; content: string };
 
 const STARTERS = [
-  'I keep falling on my Lutz — help?',
-  "I'm nervous about competition this weekend",
-  'I hit a motivation dip. What now?',
-  'Hype me up before practice',
+  'Все падам на лутца — какво да правя?',
+  'Нервен/нервна съм за състезанието този уикенд',
+  'Изгубих мотивация. Какво сега?',
+  'Дай ми енергия преди тренировка',
 ];
 
 export const SkatingAssistant: React.FC = () => {
