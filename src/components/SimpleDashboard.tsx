@@ -296,8 +296,8 @@ export const SimpleDashboard: React.FC = () => {
                 <Play className="w-5 h-5 fill-current" />
               </div>
               <div className="flex-1 min-w-0">
-                <p className="text-[10px] font-bold tracking-[0.18em] uppercase opacity-80">Continue training</p>
-                <p className="text-sm font-bold truncate">Jump back into {tabLabels[activeTab]}</p>
+                <p className="text-[10px] font-bold tracking-[0.18em] uppercase opacity-80">{t('dash.continue.kicker')}</p>
+                <p className="text-sm font-bold truncate">{t('dash.continue.body')} {tabLabels[activeTab]}</p>
               </div>
               <ChevronLeft className="w-4 h-4 rotate-180 opacity-70" />
             </button>
