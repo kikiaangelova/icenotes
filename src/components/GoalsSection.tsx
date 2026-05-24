@@ -164,21 +164,10 @@ export const GoalsSection: React.FC = () => {
                 )}
               </CardHeader>
               <CardContent className="space-y-4">
-                <div className="space-y-2">
-                  <div className="flex items-center justify-between text-sm">
-                    <span className="text-muted-foreground">Progress</span>
-                    <span className="font-medium">{goal.progress}%</span>
-                  </div>
-                  <Progress value={goal.progress} className="h-2" />
-                  <input
-                    type="range"
-                    min="0"
-                    max="100"
-                    value={goal.progress}
-                    onChange={(e) => handleProgressChange(goal.id, parseInt(e.target.value))}
-                    className="w-full accent-primary"
-                  />
-                </div>
+                <GoalProgressBar
+                  value={goal.progress}
+                  onChange={(v) => handleProgressChange(goal.id, v)}
+                />
                 <div className="flex items-center gap-2 text-xs text-muted-foreground">
                   <Calendar className="w-3 h-3" />
                   Target: {format(new Date(goal.targetDate), 'MMM d, yyyy')}
