@@ -288,15 +288,9 @@ export const SimpleDashboard: React.FC = () => {
               <TabsTrigger value="progress">{t('dash.tab.progress')}</TabsTrigger>
             </TabsList>
 
-            {/* TODAY — emotional center: hero, quick actions, coach signal, then secondary */}
+            {/* TODAY — primary actions first, then context */}
             <TabsContent value="today" className="space-y-5">
-              {/* PRIMARY 1 — adaptive hero */}
-              <TodayHero
-                onPrimaryAction={() => handleStartTraining('on-ice')}
-                onReflectAction={() => setCurrentView('reflect')}
-              />
-
-              {/* PRIMARY 2 — five calm quick actions */}
+              {/* PRIMARY — 5 clear actions, Reflection as hero */}
               <QuickActionsGrid
                 onReflect={() => setCurrentView('reflect')}
                 onTrain={() => handleStartTraining('on-ice')}
@@ -305,11 +299,18 @@ export const SimpleDashboard: React.FC = () => {
                 onMind={() => setActiveTab('mind')}
               />
 
-              {/* PRIMARY 3 — Game Day ritual (only renders if relevant date window) */}
+              {/* CONTEXT — adaptive hero (mood/streak/next step) */}
+              <TodayHero
+                onPrimaryAction={() => handleStartTraining('on-ice')}
+                onReflectAction={() => setCurrentView('reflect')}
+              />
+
+              {/* CONTEXT — Game Day ritual (only renders if relevant date window) */}
               <GameDayCard onClick={() => setGameDayOpen(true)} />
 
               {/* SUPPORT — Coach Iris noticed signal */}
               <CoachNoticed onOpenReflect={() => setCurrentView('reflect')} />
+
 
               {/* SECONDARY — collapsed by default */}
               <details className="group rounded-3xl border border-border/40 bg-card/40 backdrop-blur-sm overflow-hidden">
