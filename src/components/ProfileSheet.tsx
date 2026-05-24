@@ -2,7 +2,7 @@ import React from 'react';
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from '@/components/ui/sheet';
 import { Button } from '@/components/ui/button';
 import { AvatarUpload } from '@/components/AvatarUpload';
-import { Home, ChevronLeft, LogOut, Bell, Shield, Mail } from 'lucide-react';
+import { Home, ChevronLeft, LogOut, Bell, Shield, Mail, ExternalLink, Users } from 'lucide-react';
 import { useJournal } from '@/context/JournalContext';
 import { useAuth } from '@/context/AuthContext';
 import { useIsAdmin } from '@/hooks/useIsAdmin';
