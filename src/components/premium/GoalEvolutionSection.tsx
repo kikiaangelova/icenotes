@@ -59,9 +59,9 @@ export const GoalEvolutionSection: React.FC = () => {
         <CardContent className="pt-6 text-center space-y-3">
           <Target className="w-8 h-8 mx-auto text-premium/60" />
           <div>
-            <h3 className="font-medium text-foreground">Set your main goal</h3>
+            <h3 className="font-medium text-foreground">Избери си основна цел</h3>
             <p className="text-sm text-muted-foreground mt-1">
-              What do you want to focus on in your skating journey?
+              Върху какво искаш да работиш в следващите седмици?
             </p>
           </div>
         </CardContent>

@@ -27,9 +27,9 @@ export const ReflectionHistory: React.FC = () => {
         <CardContent className="pt-8 pb-8 text-center space-y-4">
           <BookOpen className="w-10 h-10 mx-auto text-premium/40" />
           <div>
-            <h3 className="font-medium text-foreground">Your story begins here</h3>
+            <h3 className="font-medium text-foreground">Още нямаш записи</h3>
             <p className="text-sm text-muted-foreground mt-2 max-w-[280px] mx-auto">
-              Start with today's reflection. Each entry becomes part of your journey.
+              Започни с днешния ден. Едно изречение е достатъчно.
             </p>
           </div>
         </CardContent>

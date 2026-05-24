@@ -20,39 +20,34 @@ interface WelcomePageProps {
 const FEATURES = [
   {
     icon: Target,
-    title: 'Jump Tracking',
-    description: 'Log every attempt - from toe loops to triple axels. Track your success rates and watch your progress soar.',
+    title: 'Скокове',
+    description: 'Записвай всеки опит — от тулуп до аксел. Виж кое ти върви и кое не.',
     color: 'text-primary',
     bg: 'bg-primary/10',
   },
   {
     icon: TrendingUp,
-    title: 'Progress Analytics',
-    description: 'Beautiful charts show your mood, energy, and skating improvements over time.',
+    title: 'Прогрес',
+    description: 'Прости графики за настроение, енергия и тренировки във времето.',
     color: 'text-success',
     bg: 'bg-success/10',
   },
   {
     icon: Brain,
-    title: 'Mental Training',
-    description: 'Guided visualization, breathing exercises, and affirmations to strengthen your mental game.',
+    title: 'Глава',
+    description: 'Дишане, визуализация и кратки напомняния за преди и след лед.',
     color: 'text-mental',
     bg: 'bg-mental/10',
   },
   {
     icon: Heart,
-    title: 'Daily Wellness',
-    description: 'Track sleep, mood, and energy to optimize your training and recovery.',
+    title: 'Всеки ден',
+    description: 'Сън, настроение, енергия. Това, което влияе на тренировката.',
     color: 'text-off-ice',
     bg: 'bg-off-ice/10',
   },
 ];
 
-const TESTIMONIALS = [
-  { quote: "Finally an app that understands what skaters need!", name: "Competition Skater" },
-  { quote: "The mental training section transformed my performance.", name: "Advanced Skater" },
-  { quote: "I love seeing my jump progress visualized!", name: "Intermediate Skater" },
-];
 
 export const WelcomePage: React.FC<WelcomePageProps> = ({ onGetStarted }) => {
   return (
@@ -62,17 +57,17 @@ export const WelcomePage: React.FC<WelcomePageProps> = ({ onGetStarted }) => {
         <div className="text-center space-y-6 mb-16">
           <Badge variant="secondary" className="px-4 py-1.5 text-sm">
             <Sparkles className="w-4 h-4 mr-2 inline" />
-            Your Figure Skating Companion
+            За фигуристи, по фигуристи
           </Badge>
           
           <h1 className="text-4xl md:text-6xl font-bold tracking-tight">
-            Elevate Your
-            <span className="gradient-text block mt-2">Skating Journey</span>
+            Дневникът на
+            <span className="gradient-text block mt-2">твоето каране</span>
           </h1>
           
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Track your jumps, strengthen your mind, and achieve your skating goals with 
-            the most comprehensive training companion for figure skaters worldwide.
+            Записвай скокове, тренировки и как си се чувствал(а).
+            След месец ще виждаш разликата.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
@@ -81,13 +76,13 @@ export const WelcomePage: React.FC<WelcomePageProps> = ({ onGetStarted }) => {
               onClick={onGetStarted}
               className="text-lg px-8 h-14 bg-gradient-to-r from-primary to-accent hover:opacity-90 transition-opacity"
             >
-              Get Started Free
+              Влез
               <ChevronRight className="w-5 h-5 ml-2" />
             </Button>
           </div>
 
           <p className="text-sm text-muted-foreground">
-            Join skaters from around the world • No credit card required
+            Безплатно • Без карта
           </p>
         </div>
 
@@ -115,43 +110,23 @@ export const WelcomePage: React.FC<WelcomePageProps> = ({ onGetStarted }) => {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
               <div>
                 <div className="text-3xl md:text-4xl font-bold text-primary">100%</div>
-                <div className="text-sm text-muted-foreground">Free to Use</div>
+                <div className="text-sm text-muted-foreground">Безплатно</div>
               </div>
               <div>
                 <div className="text-3xl md:text-4xl font-bold text-success">6</div>
-                <div className="text-sm text-muted-foreground">Jump Types</div>
+                <div className="text-sm text-muted-foreground">вида скокове</div>
               </div>
               <div>
                 <div className="text-3xl md:text-4xl font-bold text-mental">12+</div>
-                <div className="text-sm text-muted-foreground">Mental Exercises</div>
+                <div className="text-sm text-muted-foreground">упражнения за глава</div>
               </div>
               <div>
                 <div className="text-3xl md:text-4xl font-bold text-gold">∞</div>
-                <div className="text-sm text-muted-foreground">Potential</div>
+                <div className="text-sm text-muted-foreground">тренировки напред</div>
               </div>
             </div>
           </CardContent>
         </Card>
-
-        {/* Testimonials */}
-        <div className="text-center mb-12">
-          <h2 className="text-2xl font-bold mb-8">Loved by Skaters</h2>
-          <div className="grid md:grid-cols-3 gap-6">
-            {TESTIMONIALS.map((testimonial, index) => (
-              <Card key={index} className="glass-card">
-                <CardContent className="p-6 space-y-4">
-                  <div className="flex justify-center gap-1">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="w-4 h-4 fill-gold text-gold" />
-                    ))}
-                  </div>
-                  <p className="italic text-muted-foreground">"{testimonial.quote}"</p>
-                  <p className="text-sm font-medium">{testimonial.name}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
 
         {/* Final CTA */}
         <Card className="bg-gradient-to-br from-primary to-accent text-white overflow-hidden">
@@ -163,10 +138,10 @@ export const WelcomePage: React.FC<WelcomePageProps> = ({ onGetStarted }) => {
             <div className="relative z-10 space-y-4">
               <Zap className="w-12 h-12 mx-auto opacity-90" />
               <h2 className="text-2xl md:text-3xl font-bold">
-                Ready to Transform Your Skating?
+                Готов(а) да започнеш?
               </h2>
               <p className="text-white/80 max-w-lg mx-auto">
-                Join the community of dedicated figure skaters who are taking their training to the next level.
+                Регистрирай се и запиши първата си тренировка. Две минути.
               </p>
               <Button 
                 size="lg" 
@@ -174,7 +149,7 @@ export const WelcomePage: React.FC<WelcomePageProps> = ({ onGetStarted }) => {
                 onClick={onGetStarted}
                 className="text-lg px-8 h-14 mt-4"
               >
-                Start Your Journey
+                Влез
                 <ChevronRight className="w-5 h-5 ml-2" />
               </Button>
             </div>

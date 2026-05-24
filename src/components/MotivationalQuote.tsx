@@ -37,9 +37,9 @@ export const MotivationalQuote: React.FC<MotivationalQuoteProps> = ({
         author: quote.author,
         category: quote.category
       });
-      toast.success('Quote saved!');
+      toast.success('Запазено');
     } catch (error) {
-      toast.error('Failed to save quote');
+      toast.error('Не успях да запазя');
     }
   };
 
@@ -129,7 +129,7 @@ export const MotivationalQuote: React.FC<MotivationalQuoteProps> = ({
               disabled={isRefreshing}
             >
               <RefreshCw className={cn("w-3 h-3 mr-1", isRefreshing && "animate-spin")} />
-              New quote
+              Друг
             </Button>
           </div>
         )}
