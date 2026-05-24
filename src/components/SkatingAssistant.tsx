@@ -73,11 +73,11 @@ export const SkatingAssistant: React.FC = () => {
       });
 
       if (resp.status === 429) {
-        upsert("Slow down a sec — too many requests. Try again in a moment.");
+        upsert('Малко по-бавно — твърде много заявки. Опитай след минута.');
         return;
       }
       if (resp.status === 402) {
-        upsert('AI credits ran out. Ask the team to top up.');
+        upsert('AI кредитите свършиха. Помоли екипа да зареди.');
         return;
       }
       if (!resp.ok || !resp.body) throw new Error('stream failed');
