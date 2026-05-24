@@ -117,19 +117,19 @@ export const ActivityCalendar: React.FC = () => {
         <div className="flex flex-wrap gap-3 text-xs text-muted-foreground justify-center border-t pt-3">
           <div className="flex items-center gap-1">
             <div className="w-2 h-2 rounded-full bg-on-ice" />
-            <span>On-Ice</span>
+            <span>{t('progressX.onIce')}</span>
           </div>
           <div className="flex items-center gap-1">
             <div className="w-2 h-2 rounded-full bg-off-ice" />
-            <span>Off-Ice</span>
+            <span>{t('progressX.offIce')}</span>
           </div>
           <div className="flex items-center gap-1">
             <div className="w-2 h-2 rounded-full bg-primary" />
-            <span>Jumps</span>
+            <span>{t('calX.jumps')}</span>
           </div>
           <div className="flex items-center gap-1">
             <div className="w-2 h-2 rounded-full bg-accent-foreground" />
-            <span>Journal</span>
+            <span>{t('progressX.journal')}</span>
           </div>
         </div>
         
