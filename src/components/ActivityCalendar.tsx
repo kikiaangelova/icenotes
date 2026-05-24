@@ -69,10 +69,10 @@ export const ActivityCalendar: React.FC = () => {
       <CardHeader className="pb-2">
         <CardTitle className="text-sm font-medium flex items-center gap-2">
           <CalendarDays className="w-4 h-4 text-primary" />
-          {t('calX.title')}
+          {t('calendarX.title')}
         </CardTitle>
         <p className="text-xs text-muted-foreground">
-          {t('calX.today')}: {format(new Date(), 'EEEE, MMMM d, yyyy')}
+          {t('calendarX.today')}: {format(new Date(), 'EEEE, MMMM d, yyyy')}
         </p>
       </CardHeader>
       <CardContent className="space-y-4">
@@ -125,7 +125,7 @@ export const ActivityCalendar: React.FC = () => {
           </div>
           <div className="flex items-center gap-1">
             <div className="w-2 h-2 rounded-full bg-primary" />
-            <span>{t('calX.jumps')}</span>
+            <span>{t('calendarX.legend.jumps')}</span>
           </div>
           <div className="flex items-center gap-1">
             <div className="w-2 h-2 rounded-full bg-accent-foreground" />
@@ -142,14 +142,14 @@ export const ActivityCalendar: React.FC = () => {
             
             {!selectedActivity?.hasOnIce && !selectedActivity?.hasOffIce && 
              !selectedActivity?.hasJumps && !selectedActivity?.hasJournal ? (
-              <p className="text-xs text-muted-foreground italic">{t('calX.noActivity')}</p>
+              <p className="text-xs text-muted-foreground italic">{t('calendarX.noActivity')}</p>
             ) : (
               <div className="grid grid-cols-2 gap-2">
                 {selectedActivity?.hasOnIce && (
                   <div className="flex items-center gap-2 p-2 rounded-lg bg-on-ice/10">
                     <Snowflake className="w-4 h-4 text-on-ice" />
                     <div>
-                      <p className="text-xs font-medium">{totalOnIceMinutes} {t('calX.min')}</p>
+                      <p className="text-xs font-medium">{totalOnIceMinutes} {t('calendarX.min')}</p>
                       <p className="text-xs text-muted-foreground">{t('progressX.onIce')}</p>
                     </div>
                   </div>
@@ -159,7 +159,7 @@ export const ActivityCalendar: React.FC = () => {
                   <div className="flex items-center gap-2 p-2 rounded-lg bg-off-ice/10">
                     <Dumbbell className="w-4 h-4 text-off-ice" />
                     <div>
-                      <p className="text-xs font-medium">{totalOffIceMinutes} {t('calX.min')}</p>
+                      <p className="text-xs font-medium">{totalOffIceMinutes} {t('calendarX.min')}</p>
                       <p className="text-xs text-muted-foreground">{t('progressX.offIce')}</p>
                     </div>
                   </div>
@@ -169,8 +169,8 @@ export const ActivityCalendar: React.FC = () => {
                   <div className="flex items-center gap-2 p-2 rounded-lg bg-primary/10">
                     <Target className="w-4 h-4 text-primary" />
                     <div>
-                      <p className="text-xs font-medium">{selectedDayJumps.length} {t('calX.jumps')}</p>
-                      <p className="text-xs text-muted-foreground">{jumpSuccessRate}% {t('calX.landed')}</p>
+                      <p className="text-xs font-medium">{selectedDayJumps.length} {t('calendarX.legend.jumps')}</p>
+                      <p className="text-xs text-muted-foreground">{jumpSuccessRate}% {t('calendarX.landed')}</p>
                     </div>
                   </div>
                 )}
