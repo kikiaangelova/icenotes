@@ -88,11 +88,11 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted }) => {
                   <span className="absolute inline-flex h-full w-full rounded-full bg-peach opacity-75 animate-ping" />
                   <span className="relative inline-flex h-2 w-2 rounded-full bg-peach" />
                 </span>
-                <span className="text-[11px] md:text-xs font-bold tracking-[0.18em] text-background/95 uppercase">Built for figure skaters · Gen Z</span>
+                <span className="text-[11px] md:text-xs font-bold tracking-[0.18em] text-background/95 uppercase">Made for skaters · By skaters</span>
               </div>
 
               {/* Massive cinematic headline */}
-              <h1 className="text-[3rem] sm:text-7xl md:text-[8.5rem] lg:text-[10rem] font-black leading-[0.86] tracking-[-0.045em] text-background mb-6 md:mb-8 max-w-5xl"
+              <h1 className="text-[3rem] sm:text-7xl md:text-[8.5rem] lg:text-[10rem] font-black leading-[0.86] tracking-[-0.045em] text-background mb-6 md:mb-8 max-w-5xl animate-fade-in"
                   style={{ textShadow: '0 4px 60px hsl(var(--foreground) / 0.65), 0 1px 2px hsl(var(--foreground) / 0.4)' }}>
                 Train smart.<br />
                 <span className="italic font-light bg-gradient-to-r from-peach via-background to-lavender bg-clip-text text-transparent" style={{ textShadow: 'none' }}>
@@ -100,10 +100,10 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted }) => {
                 </span>
               </h1>
 
-              {/* Subline with translucent glass plate */}
-              <div className="max-w-xl mb-9 md:mb-12">
+              {/* Subline */}
+              <div className="max-w-xl mb-9 md:mb-12 animate-fade-in" style={{ animationDelay: '120ms', animationFillMode: 'backwards' }}>
                 <p className="text-base md:text-2xl text-background/90 leading-relaxed font-light">
-                  The journaling, mindset & training space built for the next generation of figure skaters.
+                  Your safe space to journal, reset your head, and grow as a skater — one session at a time.
                 </p>
               </div>
 
@@ -119,7 +119,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted }) => {
                   <Button
                     size="lg"
                     variant="outline"
-                    className="h-16 px-8 text-base font-semibold rounded-2xl gap-2.5 w-full bg-background/10 backdrop-blur-2xl border-background/40 text-background hover:bg-background/20 hover:text-background hover:border-background/60"
+                    className="h-16 px-8 text-base font-semibold rounded-2xl gap-2.5 w-full bg-background/10 backdrop-blur-2xl border-background/40 text-background hover:bg-background/20 hover:text-background hover:border-background/60 hover:-translate-y-0.5 active:scale-[0.98] transition-all duration-200"
                   >
                     <Play className="w-4 h-4 fill-background" />
                     See how it works
@@ -128,10 +128,10 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted }) => {
               </div>
 
               {userCount !== null && userCount > 0 && (
-                <div className="mt-10 inline-flex items-center gap-2.5 px-4 py-2.5 rounded-full bg-background/10 backdrop-blur-2xl border border-background/25 shadow-lg">
+                <div className="mt-10 inline-flex items-center gap-2.5 px-4 py-2.5 rounded-full bg-background/10 backdrop-blur-2xl border border-background/25 shadow-lg animate-fade-in" style={{ animationDelay: '240ms', animationFillMode: 'backwards' }}>
                   <Users className="w-4 h-4 text-background" />
                   <span className="text-sm font-medium text-background/90">
-                    Joining <span className="font-bold text-background">{userCount.toLocaleString()}</span> skaters training smart
+                    You're joining <span className="font-bold text-background">{userCount.toLocaleString()}</span> skaters already here
                   </span>
                 </div>
               )}
@@ -249,13 +249,13 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted }) => {
       <section className="relative z-10 px-5 md:px-12 py-16 md:py-28 overflow-hidden">
         <div className="max-w-6xl mx-auto">
           <div className="text-center max-w-2xl mx-auto mb-10 md:mb-14">
-            <p className="text-xs font-bold tracking-[0.3em] uppercase text-primary mb-3">Inside the platform</p>
+            <p className="text-xs font-bold tracking-[0.3em] uppercase text-primary mb-3">Inside the app</p>
             <h2 className="text-3xl md:text-6xl font-black tracking-[-0.03em] leading-[1.02] text-foreground mb-4">
               Calm tools.<br />
-              <span className="italic font-light text-warmth">Cinematic feels.</span>
+              <span className="italic font-light text-warmth">Real progress.</span>
             </h2>
             <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
-              Journaling, jump tracking, mindset prep — all in one warm, distraction-free space designed for the way you actually train.
+              Journal, log jumps, prep your mindset — all in one warm, distraction-free space that actually fits how you train.
             </p>
           </div>
 
@@ -298,17 +298,23 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted }) => {
           <div className="text-center max-w-2xl mx-auto mb-10">
             <p className="text-xs font-bold tracking-[0.25em] uppercase text-primary mb-3">A safe space, not a scoreboard</p>
             <h2 className="text-3xl md:text-5xl font-black tracking-tight leading-[1.05] mb-4">
-              You're not stacking blocks.<br />
-              <span className="italic bg-gradient-to-r from-rose-foreground to-primary bg-clip-text text-transparent">You're sharing the journey.</span>
+              You're not skating alone.<br />
+              <span className="italic bg-gradient-to-r from-rose-foreground to-primary bg-clip-text text-transparent">We're in this together.</span>
             </h2>
             <p className="text-base text-muted-foreground leading-relaxed">
-              Follow skaters who get it. Share the wins, the falls, and the days you almost didn't lace up.
+              Real skaters, real seasons. The wins, the falls, and the days you almost didn't lace up.
             </p>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
             <ProfileCard name="Mira Chen" handle="mira.skates" level="Junior" bio="Working on my Lutz. Trusting the process 🩷" />
             <ProfileCard name="Sasha Ivanova" handle="sashaonice" level="Senior" bio="Ice is therapy. Comp prep mode." />
             <ProfileCard name="Theo Park" handle="theo.axel" level="Novice" bio="Falling, getting up, repeat. ⛸️" />
+          </div>
+          <div className="mt-8 text-center">
+            <Link to="/share-experience" className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:gap-3 transition-all duration-200">
+              Share your story
+              <ArrowRight className="w-4 h-4" />
+            </Link>
           </div>
         </div>
       </section>
