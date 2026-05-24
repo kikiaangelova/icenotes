@@ -32,6 +32,8 @@ import { Feather, Compass, Heart, Settings, LogOut, Dumbbell, Target, CalendarCh
 import { TodayHero } from './TodayHero';
 import { CoachNoticed } from './CoachNoticed';
 import { MobileBottomNav, type BottomTab } from './MobileBottomNav';
+import { QuickActionsGrid } from './QuickActionsGrid';
+
 import { ProfileSheet } from './ProfileSheet';
 import { useIsAdmin } from '@/hooks/useIsAdmin';
 import { useStreak } from '@/hooks/useStreak';
