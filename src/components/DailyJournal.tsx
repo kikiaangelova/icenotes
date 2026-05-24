@@ -141,6 +141,12 @@ export const DailyJournal: React.FC<DailyJournalProps> = ({ onComplete }) => {
           </CardContent>
         </Card>
         {savedText && <CoachIrisReflection journalText={savedText} />}
+        <DecompressionFlow
+          open={decomp.open}
+          onOpenChange={(o) => setDecomp((d) => ({ ...d, open: o }))}
+          themes={decomp.result.themes}
+          level={decomp.result.level === 'heavy' ? 'heavy' : 'soft'}
+        />
       </>
     );
   }
