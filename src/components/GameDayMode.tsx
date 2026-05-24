@@ -10,20 +10,20 @@ interface GameDayModeProps {
 }
 
 const AFFIRMATIONS = [
-  'I am calm, confident, and ready.',
-  'I trust my training. My body knows what to do.',
-  'Every edge, every breath, every beat — I belong here.',
-  'I skate with courage. I skate with joy.',
-  'I am stronger than my nerves. I am bigger than my doubts.',
-  'I have done the work. Today I get to show it.',
-  'I am present. I am powerful. I am prepared.',
+  'Аз съм спокоен/спокойна, уверен/уверена и готов/а.',
+  'Доверявам се на тренировките. Тялото ми знае какво да прави.',
+  'Всеки ръб, всяко дишане, всеки такт — мястото ми е тук.',
+  'Карам с кураж. Карам с радост.',
+  'По-силен/силна съм от нервите си. По-голям/голяма от съмненията си.',
+  'Свърших работата. Днес имам шанса да я покажа.',
+  'Тук съм. Силен/силна съм. Подготвен/а съм.',
 ];
 
-// 4-7-8 breathing: inhale 4s, hold 7s, exhale 8s (one full cycle)
+// 4-7-8 дишане: вдишване 4с, задържане 7с, издишване 8с (един пълен цикъл)
 const BREATH_PHASES = [
-  { label: 'Inhale', seconds: 4, scale: 1.4, opacity: 1.0 },
-  { label: 'Hold', seconds: 7, scale: 1.4, opacity: 1.0 },
-  { label: 'Exhale', seconds: 8, scale: 0.8, opacity: 0.6 },
+  { label: 'Вдишвай', seconds: 4, scale: 1.4, opacity: 1.0 },
+  { label: 'Задръж', seconds: 7, scale: 1.4, opacity: 1.0 },
+  { label: 'Издишвай', seconds: 8, scale: 0.8, opacity: 0.6 },
 ] as const;
 
 export const GameDayMode: React.FC<GameDayModeProps> = ({ open, onOpenChange }) => {
