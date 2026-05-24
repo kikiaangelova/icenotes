@@ -19,8 +19,8 @@ function openingLine(themes: DifficultTheme[] = []): string {
   if (themes.includes('injury'))      return 'Your body is asking for care. That counts as training too.';
   if (themes.includes('fear'))        return 'Fear shows up when something matters. You\'re not alone in it.';
   if (themes.includes('burnout'))     return 'You\'ve been carrying a lot. Let\'s slow down for a minute.';
-  if (themes.includes('overwhelm'))   return 'That sounds like a lot to hold. You don\'t have to figure it all out tonight.';
-  if (themes.includes('self_doubt'))  return 'The hard voice in your head isn\'t the whole story.';
+  if (themes.includes('overwhelm'))   return 'That sounds like a lot to hold. You don't have to figure it all out tonight.';
+  if (themes.includes('self_doubt'))  return 'The hard voice in your head isn't the whole story.';
   if (themes.includes('frustration')) return 'Frustration means you care. That\'s not nothing.';
   if (themes.includes('bad_practice'))return 'Some practices stay heavy for a while. That\'s allowed.';
   return 'That sounded like a hard day. You\'re here, and that\'s enough.';
@@ -92,7 +92,7 @@ const GroundStep: React.FC<{ onDone: () => void }> = ({ onDone }) => {
         ))}
       </ul>
       <Button onClick={onDone} variant="outline" className="h-12 rounded-full">
-        I\'m back in my body
+        I'm back in my body
       </Button>
     </div>
   );
@@ -153,7 +153,7 @@ export const DecompressionFlow: React.FC<DecompressionFlowProps> = ({
                 {openingLine(themes)}
               </h2>
               <p className="text-sm text-muted-foreground max-w-xs leading-relaxed">
-                You don\'t need to solve anything right now. Take a breath before moving on.
+                You don't need to solve anything right now. Take a breath before moving on.
               </p>
               <div className="flex flex-col gap-2 w-full max-w-xs pt-2">
                 <Button
@@ -195,7 +195,7 @@ export const DecompressionFlow: React.FC<DecompressionFlowProps> = ({
                 <ActionCard
                   icon={<Sparkles className="w-5 h-5" />}
                   title="One soft reframe"
-                  desc="A reminder that this moment isn\'t the whole story."
+                  desc="A reminder that this moment isn't the whole story."
                   onClick={() => setStep('rest')}
                 />
                 <ActionCard
@@ -207,7 +207,7 @@ export const DecompressionFlow: React.FC<DecompressionFlowProps> = ({
               </div>
               {level === 'heavy' && (
                 <p className="text-xs text-center text-muted-foreground/80 pt-2 leading-relaxed">
-                  If you\'re carrying something bigger than skating tonight, please reach out to someone you trust. You don\'t have to hold it alone.
+                  If you\'re carrying something bigger than skating tonight, please reach out to someone you trust. You don't have to hold it alone.
                 </p>
               )}
             </div>
