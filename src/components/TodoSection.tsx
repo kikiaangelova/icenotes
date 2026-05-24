@@ -70,7 +70,7 @@ export const TodoSection: React.FC = () => {
     }
   };
 
-  const pendingTodos = todos.filter(t => !t.completed);
+  const pendingTodos = todos.filter(t => !t.completed && !snoozedIds.has(t.id));
   const completedTodos = todos.filter(t => t.completed);
 
   return (
