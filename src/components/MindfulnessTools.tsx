@@ -31,7 +31,20 @@ const interp = (s: string, vars: Record<string, string | number>) =>
 
 export const MindfulnessTools: React.FC = () => {
   const [open, setOpen] = useState<ToolKey>(null);
+  const [snoozed, setSnoozed] = useState<Set<string>>(new Set());
   const { t } = useLanguage();
+
+  const snoozeTool = (key: string) => {
+    setSnoozed(prev => new Set(prev).add(key));
+    toast('Resting this one for now.', { description: 'Your worth is not measured by today.' });
+    window.setTimeout(() => {
+      setSnoozed(prev => {
+        const n = new Set(prev);
+        n.delete(key);
+        return n;
+      });
+    }, 1000 * 60 * 60); // 1h
+  };
 
   const tools: Array<{ key: Exclude<ToolKey, null>; titleKey: string; descKey: string; icon: any; gradient: string }> = [
     { key: 'breathing', titleKey: 'mt.breathing.title', descKey: 'mt.breathing.desc', icon: Wind, gradient: 'from-purple-500/15 to-purple-300/5' },
