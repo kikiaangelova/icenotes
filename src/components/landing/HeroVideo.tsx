@@ -100,7 +100,7 @@ export const HeroVideo: React.FC<HeroVideoProps> = ({
         muted
         loop
         playsInline
-        {...({ 'webkit-playsinline': 'true' } as Record<string, string>)}
+        {...({ 'webkit-playsinline': 'true', fetchpriority: 'high' } as Record<string, string>)}
         preload="auto"
         className={cn('w-full h-full object-cover', videoClassName)}
         style={filter ? { filter } : undefined}
