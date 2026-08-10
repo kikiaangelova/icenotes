@@ -185,7 +185,7 @@ export const ProgressionCard: React.FC = () => {
           }
           className="w-full mt-1 min-h-[52px] rounded-2xl bg-primary text-primary-foreground font-bold text-sm flex items-center justify-center gap-2 motion-press hover:brightness-105 transition"
         >
-          {bg ? 'Какво следва според Kiki?' : "What's next, Coach Kiki?"}
+          {bg ? 'Какво предлага Кики?' : "What's next, Coach Kiki?"}
           <ChevronRight className="w-4 h-4" />
         </button>
       </div>

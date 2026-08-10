@@ -31,7 +31,7 @@ const MODES: ModeConfig[] = [
     intro: { en: 'A short check-in before you step on the ice.', bg: 'Кратка настройка, преди да стъпиш на леда.' },
     prompts: [
       { en: 'How am I arriving today — body and mind?', bg: 'Как се чувствам днес — физически и психически?' },
-      { en: 'One thing I want to focus on.', bg: 'Едно нещо, върху което искам да съм фокусиран(а).' },
+      { en: 'One thing I want to focus on.', bg: 'Едно нещо, на което искам да обърна внимание.' },
       { en: 'A word for today’s session.', bg: 'Една дума за днешната тренировка.' },
     ],
   },

@@ -377,7 +377,7 @@ export const PreTrainingPrep: React.FC<PreTrainingPrepProps> = ({
               <div className="w-20 h-20 mx-auto rounded-full bg-mental/30 flex items-center justify-center">
                 <CheckCircle2 className="w-10 h-10 text-mental" />
               </div>
-              <h3 className="text-xl font-medium">{L("You're ready!", 'Готов/а си!')}</h3>
+              <h3 className="text-xl font-medium">{L("You're ready!", 'Подготовката приключи!')}</h3>
               <p className="text-muted-foreground">
                 {L('Go show the ice what you’ve got ✨', 'Покажи на леда какво можеш ✨')}
               </p>

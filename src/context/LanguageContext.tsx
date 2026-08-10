@@ -48,7 +48,7 @@ const dict: Dict = {
   'benefit.training.title': { en: 'Practice that means something', bg: 'Тренировки, които значат нещо' },
   'benefit.training.text': { en: 'Write down what mattered today. Even the falls.', bg: 'Запиши какво ти беше важно днес. И паданията се броят.' },
   'benefit.growth.title': { en: 'Proof you\'re growing', bg: 'Виждаш как растеш' },
-  'benefit.growth.text': { en: 'Look back in a month and feel how far you\'ve come.', bg: 'Върни се след месец и виж колко път си изминал(а).' },
+  'benefit.growth.text': { en: 'Look back in a month and feel how far you\'ve come.', bg: 'След месец се върни назад и виж изминатия път.' },
 
   // ───── Social proof + steps + final CTA ─────
   'social.text': { en: 'Skaters who feel everything — finally have somewhere to put it. ⛸️', bg: 'Фигуристи, които усещат всичко — най-после имат къде да го оставят. ⛸️' },
@@ -131,7 +131,7 @@ const dict: Dict = {
   'journal.saveReflection': { en: 'Save today', bg: 'Запази деня' },
   'journal.captured': { en: 'Today is saved.', bg: 'Денят е запазен.' },
   'journal.captured.gentle': { en: 'Saved 💙 Get some rest.', bg: 'Запазено 💙 Сега почивай.' },
-  'journal.captured.lowDay': { en: 'Hard days count too. Be easy on yourself — tomorrow is fresh ice. 💙', bg: 'И трудните дни се броят. Бъди мек(а) към себе си — утре е нов лед. 💙' },
+  'journal.captured.lowDay': { en: 'Hard days count too. Be easy on yourself — tomorrow is fresh ice. 💙', bg: 'И трудните дни имат значение. Отнеси се към себе си с разбиране — утре е нов ден на леда. 💙' },
   'journal.section.daily': { en: 'Daily journal', bg: 'Дневник' },
   'journal.dateFormat': { en: 'EEEE, MMMM d', bg: 'EEEE, d MMMM' },
   'journal.workedOn.label': { en: 'What did you work on today?', bg: 'Над какво работи днес?' },
@@ -203,7 +203,7 @@ const dict: Dict = {
   'mind.compassion.title': { en: 'Talk to yourself like a friend', bg: 'Говори си като на приятел' },
   'mind.compassion.desc': { en: 'When the inner critic gets loud, kindness opens space.', bg: 'Когато вътрешният критик завика, добротата отваря място.' },
   'mind.compassion.situation': { en: 'What’s hard right now?', bg: 'Какво ти е трудно сега?' },
-  'mind.compassion.friend': { en: 'What would you tell a friend in this spot?', bg: 'Какво би казал(а) на приятел на твое място?' },
+  'mind.compassion.friend': { en: 'What would you tell a friend in this spot?', bg: 'Какво би казал на близък човек в същата ситуация?' },
   'mind.compassion.kind': { en: 'Now say something kind to yourself', bg: 'А сега кажи нещо мило на себе си' },
 
   // Pre-competition
@@ -325,15 +325,15 @@ const dict: Dict = {
   'how.step4.title': { en: 'Develop Your Mental Game', bg: 'Изгради главата си' },
   'how.step4.desc': { en: 'Use pre-skate breathing exercises, guided visualizations, and daily affirmations. Build the emotional resilience that separates good skaters from great ones.', bg: 'Дихателни упражнения преди лед, водени визуализации и афирмации. Това е разликата между добрия и великия фигурист.' },
   'how.step5.title': { en: 'See Your Growth Over Time', bg: 'Виж как растеш' },
-  'how.step5.desc': { en: "Activity calendars, progress summaries, and consistency analytics help you identify patterns and celebrate how far you've come.", bg: 'Календар на активността, обобщения и анализ на постоянството. Виждаш моделите и колко път вече си изминал(а).' },
-  'how.cta.title': { en: 'Ready to start?', bg: 'Готов(а) да започнеш?' },
+  'how.step5.desc': { en: "Activity calendars, progress summaries, and consistency analytics help you identify patterns and celebrate how far you've come.", bg: 'Календарът, обобщенията и данните за постоянството ти помагат да разпознаваш модели и да виждаш изминатия път.' },
+  'how.cta.title': { en: 'Ready to start?', bg: 'Искаш ли да започнем?' },
   'how.cta.subtitle': { en: 'Create your free account and start journaling after your next session.', bg: 'Направи си безплатен профил и започни да записваш още след следващата тренировка.' },
   'how.cta.button': { en: 'Create Your Free Account', bg: 'Направи безплатен профил' },
 
   // ───── Features page ─────
   'features.eyebrow': { en: 'Features', bg: 'Функции' },
   'features.title': { en: 'Everything you need to train with intention.', bg: 'Всичко, което ти трябва, за да тренираш с цел.' },
-  'features.subtitle': { en: 'Purpose-built tools for structured reflection, tracking, and growth.', bg: 'Инструменти за рефлексия, проследяване и растеж — направени специално за фигуристи.' },
+  'features.subtitle': { en: 'Purpose-built tools for structured reflection, tracking, and growth.', bg: 'Инструменти за осмисляне, проследяване и развитие — създадени специално за фигуристи.' },
   'features.cat.reflection': { en: 'Reflection', bg: 'Рефлексия' },
   'features.cat.mindset': { en: 'Mindset', bg: 'Нагласа' },
   'features.cat.performance': { en: 'Performance', bg: 'Изпълнение' },
@@ -343,7 +343,7 @@ const dict: Dict = {
   'features.cat.tools': { en: 'Tools', bg: 'Инструменти' },
   'features.f1.title': { en: 'Daily Journal', bg: 'Дневен запис' },
   'features.f1.desc': { en: 'Capture what you worked on, how you felt, and your small wins after every session. Structured prompts make reflection easy and consistent.', bg: 'Записвай над какво работи, как ти беше и кои са малките победи след всяка тренировка. Подредените въпроси правят навика лесен.' },
-  'features.f2.title': { en: 'Reflection Space', bg: 'Място за рефлексия' },
+  'features.f2.title': { en: 'Reflection Space', bg: 'Място за равносметка' },
   'features.f2.desc': { en: 'A private, free-form space for deeper thoughts about your skating journey. Process emotions, set intentions, and grow through self-awareness.', bg: 'Лично свободно място за по-дълбоки мисли. Прехвърляй емоции, задавай си намерения, опознавай се.' },
   'features.f3.title': { en: 'Mental Preparation', bg: 'Подготовка за главата' },
   'features.f3.desc': { en: 'Pre-skate breathing exercises (Box, 4-7-8, Energizing), guided visualizations for programs and confidence, and daily affirmations.', bg: 'Дихателни упражнения преди лед (Box, 4-7-8, Energizing), водени визуализации за програми и увереност, ежедневни афирмации.' },
@@ -407,11 +407,11 @@ const dict: Dict = {
   'psy.t3.title': { en: 'Building Confidence', bg: 'Изграждане на увереност' },
   'psy.t3.desc': { en: 'Daily affirmations, small-win tracking, and structured reflection.', bg: 'Забелязвай малките победи и изграждай увереност с кратки, смислени упражнения.' },
   'psy.t4.title': { en: 'Competition Mindset', bg: 'Състезателна нагласа' },
-  'psy.t4.desc': { en: 'Manage nerves, stay focused, and turn anxiety into energy.', bg: 'Разпознавай напрежението, връщай фокуса си и излизай на леда по-събран(а).' },
+  'psy.t4.desc': { en: 'Manage nerves, stay focused, and turn anxiety into energy.', bg: 'Разпознавай напрежението, връщай вниманието си и излизай на леда с повече спокойствие.' },
   'psy.t5.title': { en: 'Emotional Resilience', bg: 'Емоционална устойчивост' },
   'psy.t5.desc': { en: 'Process frustration, bounce back from falls, and stay motivated.', bg: 'Преминавай през разочарованието, възстановявай се след грешка и продължавай без самокритика.' },
   'psy.t6.title': { en: 'Focus & Flow State', bg: 'Фокус и състояние на поток' },
-  'psy.t6.desc': { en: 'Eliminate distractions and maintain deep concentration.', bg: 'Намали разсейването и остани присъстващ(а) във всеки елемент.' },
+  'psy.t6.desc': { en: 'Eliminate distractions and maintain deep concentration.', bg: 'Намали разсейването и остани изцяло в изпълнението на всеки елемент.' },
   'psy.cta.title': { en: 'Start building your mental game.', bg: 'Започни да тренираш и психическата страна на спорта.' },
   'psy.cta.subtitle': { en: 'All mental training tools are included free.', bg: 'Всички упражнения за ментална подготовка са безплатни.' },
   'psy.cta.button': { en: 'Get Started Free', bg: 'Започни безплатно' },
@@ -432,7 +432,7 @@ const dict: Dict = {
   'today.stage.pre.desc': { en: 'Breathe, picture it, set one intention before you step on the ice.', bg: 'Дишай, представи си го, задай си едно намерение преди лед.' },
   'today.stage.training.label': { en: 'Training', bg: 'Тренировка' },
   'today.stage.training.title': { en: 'Train with focus', bg: 'Тренирай с фокус' },
-  'today.stage.training.desc': { en: 'Use the timer, log the session, note your jumps when you’re ready.', bg: 'Пусни таймера, запиши тренировката, отбележи скоковете, когато си готов(а).' },
+  'today.stage.training.desc': { en: 'Use the timer, log the session, note your jumps when you’re ready.', bg: 'Пусни таймера, запиши тренировката и отбележи скоковете, когато решиш.' },
   'today.stage.post.label': { en: 'After', bg: 'След' },
   'today.stage.post.title': { en: 'Reflect — gently', bg: 'Запиши — спокойно' },
   'today.stage.post.desc': { en: 'What worked, what was hard, what you took away. Be easy on yourself.', bg: 'Кое се получи, кое беше трудно, какво научи. Без да се натискаш.' },
@@ -480,7 +480,7 @@ const dict: Dict = {
   // ───── Today: post-save summary card ─────
   'today.summary.eyebrow': { en: 'Today', bg: 'Днес' },
   'today.summary.title': { en: 'Nicely done.', bg: 'Браво.' },
-  'today.summary.title.gentle': { en: 'Saved. Be easy on yourself today.', bg: 'Запазено. Бъди мек(а) към себе си днес.' },
+  'today.summary.title.gentle': { en: 'Saved. Be easy on yourself today.', bg: 'Запазено. Днес се отнеси към себе си с разбиране.' },
   'today.summary.title.celebratory': { en: 'What a day. Hold on to this. ✨', bg: 'Какъв ден. Запази усещането. ✨' },
   // Three rotating gentle messages for hard days (low confidence/mood/energy)
   'today.summary.gentle.0': {
@@ -522,7 +522,7 @@ const dict: Dict = {
   // ───── App-wide common ─────
   'app.tagline': { en: 'Reflect · Train · Perform', bg: 'Дишай · Тренирай · Излез на леда' },
   'app.loadingJourney': { en: 'Loading…', bg: 'Зареждаме…' },
-  'app.focusNow': { en: 'What you’re focused on right now', bg: 'Върху какво си фокусиран(а) сега' },
+  'app.focusNow': { en: 'What you’re focused on right now', bg: 'Какъв е фокусът ти сега' },
   'app.everySessionCounts': { en: 'Every session counts. You’re doing great. 💙', bg: 'Всяка тренировка се брои. Справяш се. 💙' },
 
   // ───── Header (in-app) ─────
@@ -594,7 +594,7 @@ const dict: Dict = {
   'dash.dailyJournal.title': { en: 'Daily journal', bg: 'Дневник' },
   'dash.dailyJournal.subtitle': { en: 'Today, in your own words.', bg: 'Днес — със собствените ти думи.' },
   'dash.progress.title': { en: 'Progress', bg: 'Прогрес' },
-  'dash.progress.subtitle': { en: 'See how far you’ve come.', bg: 'Виж колко път си изминал(а).' },
+  'dash.progress.subtitle': { en: 'See how far you’ve come.', bg: 'Виж изминатия път.' },
   'dash.journey.title': { en: 'Your progress', bg: 'Твоят път' },
   'dash.journey.subtitle': { en: 'The bigger picture.', bg: 'По-голямата картина.' },
 
@@ -721,7 +721,7 @@ const dict: Dict = {
   'auth.toast.passUpdated.desc': { en: 'Your password has been successfully changed', bg: 'Паролата ти е сменена успешно' },
 
   // ───── Dashboard misc (extra) ─────
-  'dash.focusNow': { en: '✨ What you’re focused on', bg: '✨ Върху какво си фокусиран(а)' },
+  'dash.focusNow': { en: '✨ What you’re focused on', bg: '✨ Фокусът ти в момента' },
   'dash.footer.encourage': { en: 'Every session counts. You’re doing great. 💙', bg: 'Всяка тренировка се брои. Справяш се. 💙' },
   'dash.signout.title': { en: 'Sign out?', bg: 'Излизаш ли?' },
   'dash.signout.desc': { en: 'Your data stays safe. Come back whenever. 💙', bg: 'Данните ти остават на сигурно. Върни се, когато решиш. 💙' },
@@ -741,7 +741,7 @@ const dict: Dict = {
   'ach.locked': { en: 'Coming up', bg: 'Предстои' },
   'ach.streak3.title': { en: 'Getting started', bg: 'Първи стъпки' },
   'ach.streak3.desc': { en: '3 days journaled this month', bg: '3 дни с дневник този месец' },
-  'ach.streak7.title': { en: 'A week of reflection', bg: 'Седмица рефлексия' },
+  'ach.streak7.title': { en: 'A week of reflection', bg: 'Седмица с равносметка' },
   'ach.streak7.desc': { en: '7 days journaled this month', bg: '7 дни с дневник този месец' },
   'ach.streak30.title': { en: 'Steady presence', bg: 'Постоянно присъствие' },
   'ach.streak30.desc': { en: '30 days journaled this month', bg: '30 дни с дневник този месец' },
@@ -756,7 +756,7 @@ const dict: Dict = {
   'ach.triple5.title': { en: 'Triple moments', bg: 'Тройни моменти' },
   'ach.triple5.desc': { en: '5 landed triple jumps', bg: '5 приземени тройни скока' },
   'ach.logs10.title': { en: 'Quiet consistency', bg: 'Тиха постоянност' },
-  'ach.logs10.desc': { en: '10 daily reflections', bg: '10 ежедневни рефлексии' },
+  'ach.logs10.desc': { en: '10 daily reflections', bg: '10 дневни равносметки' },
   'ach.goals1.title': { en: 'First goal reached', bg: 'Първа достигната цел' },
   'ach.goals1.desc': { en: 'Completed your first goal', bg: 'Завърши първата си цел' },
   'ach.goals5.title': { en: 'Goals in motion', bg: 'Цели в движение' },
@@ -767,7 +767,7 @@ const dict: Dict = {
   'ach.unit.jumps': { en: 'jumps', bg: 'скока' },
   'ach.unit.landings': { en: 'landings', bg: 'приземявания' },
   'ach.unit.triples': { en: 'triples', bg: 'тройни' },
-  'ach.unit.logs': { en: 'reflections', bg: 'рефлексии' },
+  'ach.unit.logs': { en: 'reflections', bg: 'равносметки' },
   'ach.unit.goal': { en: 'goal', bg: 'цел' },
   'ach.unit.goals': { en: 'goals', bg: 'цели' },
   'ach.unit.tasks': { en: 'tasks', bg: 'задачи' },
@@ -780,12 +780,12 @@ const dict: Dict = {
   'progress.section.frequency': { en: 'How often you trained', bg: 'Колко често тренира' },
   'progress.section.frequency.sub': { en: 'Sessions per day, last 14 days', bg: 'Тренировки на ден, последните 14 дни' },
   'progress.section.moodFocus': { en: 'Mood & focus', bg: 'Настроение и фокус' },
-  'progress.section.moodFocus.sub': { en: 'How you’ve felt across recent entries', bg: 'Как си се чувствал(а) в последните записи' },
+  'progress.section.moodFocus.sub': { en: 'How you’ve felt across recent entries', bg: 'Как си се чувствал през последните дни' },
   'progress.section.jumpConsistency': { en: 'Jumps over time', bg: 'Скоковете във времето' },
   'progress.section.jumpConsistency.sub': { en: 'Landing rate week by week', bg: 'Процент приземявания, седмица по седмица' },
   'progress.section.goals': { en: 'Goals', bg: 'Цели' },
   'progress.section.notes': { en: 'How much you wrote', bg: 'Колко пишеш' },
-  'progress.section.notes.sub': { en: 'Reflections per week', bg: 'Рефлексии на седмица' },
+  'progress.section.notes.sub': { en: 'Reflections per week', bg: 'Равносметки на седмица' },
 
   'progress.notes.thisWeek': { en: 'This week', bg: 'Тази седмица' },
   'progress.notes.lastWeek': { en: 'Last week', bg: 'Миналата седмица' },
@@ -836,7 +836,7 @@ const dict: Dict = {
   },
   'progress.insight.reflection.steady': {
     en: 'Steady reflection. Small notes add up.',
-    bg: 'Постоянни рефлексии. Малките бележки се натрупват.'
+    bg: 'Редовна равносметка. Малките бележки се натрупват.'
   },
   'progress.insight.bestDay': {
     en: 'Your sharpest day lately was {day}.',
@@ -881,7 +881,7 @@ const dict: Dict = {
   },
 
   'streak.action.pause':  { en: 'Pause my streak',  bg: 'Постави на пауза' },
-  'streak.action.resume': { en: 'I’m ready to return', bg: 'Готов(а) съм да се върна' },
+  'streak.action.resume': { en: 'I’m ready to return', bg: 'Връщам се' },
 
   'streak.pause.title': { en: 'A gentle pause', bg: 'Мека пауза' },
   'streak.pause.intro': {
@@ -939,10 +939,10 @@ const dict: Dict = {
   'mt.viz.eventPlaceholder': { en: 'e.g. Nationals', bg: 'напр. Държавно първенство' },
   'mt.viz.complete': { en: 'Done', bg: 'Готово' },
   'mt.viz.completeNote': { en: 'Visualization complete', bg: 'Завършена визуализация' },
-  'mt.viz.toast': { en: 'You’re ready — carry that feeling with you 🌟', bg: 'Готов(а) си — носи това усещане със себе си 🌟' },
+  'mt.viz.toast': { en: 'You’re ready — carry that feeling with you 🌟', bg: 'Запази това усещане и го вземи със себе си 🌟' },
   'mt.viz.s1': { en: 'Close your eyes and take 3 deep breaths.', bg: 'Затвори очи и направи 3 дълбоки вдишвания.' },
   'mt.viz.s2': { en: 'Picture yourself walking into the rink — feel the cold, hear the blades.', bg: 'Представи си, че влизаш в залата — усети студа, чуй кънките по леда.' },
-  'mt.viz.s3': { en: 'See yourself in starting position — calm, focused, ready.', bg: 'Виж се в стартова позиция — спокоен(йна), фокусиран(а), готов(а).' },
+  'mt.viz.s3': { en: 'See yourself in starting position — calm, focused, ready.', bg: 'Представи си стартовата позиция — спокойно дишане, ясен фокус, готовност.' },
   'mt.viz.s4': { en: 'You skate the program flawlessly — every element comes naturally.', bg: 'Изкарваш програмата безупречно — всеки елемент идва естествено.' },
   'mt.viz.s5': { en: 'You feel pride and joy as you finish. The crowd cheers.', bg: 'Усещаш гордост и радост, когато завършиш. Публиката аплодира.' },
   'mt.viz.s6': { en: 'Hold onto that feeling. It’s yours — bring it onto the ice.', bg: 'Запази това усещане. То е твое — носи го на леда.' },
@@ -959,7 +959,7 @@ const dict: Dict = {
   'mt.aff.subtitle': { en: 'Read it out loud. Feel the words.', bg: 'Прочети на глас. Усети думите.' },
   'mt.aff.save': { en: 'This one resonates with me', bg: 'Тази ми звучи' },
   'mt.aff.toast': { en: 'That affirmation resonates ✨', bg: 'Тази афирмация ти звучи ✨' },
-  'mt.aff.1': { en: 'I am strong, balanced, and confident on the ice.', bg: 'Силен(на) съм, в баланс, уверен(а) на леда.' },
+  'mt.aff.1': { en: 'I am strong, balanced, and confident on the ice.', bg: 'Имам сила, баланс и увереност на леда.' },
   'mt.aff.2': { en: 'Every jump is a chance to trust my body.', bg: 'Всеки скок е шанс да се доверя на тялото си.' },
   'mt.aff.3': { en: 'Falling is part of learning — I get up and keep going.', bg: 'Падането е част от ученето — ставам и продължавам.' },
   'mt.aff.4': { en: 'My ice, my moment, my pace.', bg: 'Моят лед, моят момент, моето темпо.' },
@@ -1019,9 +1019,9 @@ const dict: Dict = {
 
   // ───── Journey view ─────
   'journeyX.empty.title':   { en: 'This is day one', bg: 'Това е ден едно' },
-  'journeyX.empty.body':    { en: 'Start with today\'s reflection. Each entry becomes part of your story.', bg: 'Започни с днешната рефлексия. Всеки запис става част от историята ти.' },
+  'journeyX.empty.body':    { en: 'Start with today\'s reflection. Each entry becomes part of your story.', bg: 'Започни с днешната равносметка. Всеки запис става част от историята ти.' },
   'journeyX.heading':       { en: 'Your progress',           bg: 'Пътят ти' },
-  'journeyX.daysReflected': { en: 'Days reflected',           bg: 'Дни с рефлексия' },
+  'journeyX.daysReflected': { en: 'Days reflected',           bg: 'Дни с равносметка' },
   'journeyX.daysConnected': { en: 'Days connected',           bg: 'Дни наред' },
   'journeyX.returned.a':    { en: 'You returned',             bg: 'Върна се' },
   'journeyX.returned.time': { en: 'time',                     bg: 'път' },
