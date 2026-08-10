@@ -55,8 +55,8 @@ Deno.serve(async (req) => {
       : SYSTEM_PROMPT;
     // Always answer in the skater's chosen app language.
     const languageRule = language === "bg"
-      ? "\n\nLANGUAGE: Reply ONLY in natural, modern conversational Bulgarian (не буквален превод). Keep skating terms skaters actually use (аксел, салхов, тулуп, ритбергер, флип, лутц). Same warm Gen Z tone."
-      : "\n\nLANGUAGE: Reply only in natural, modern conversational English.";
+      ? "\n\nLANGUAGE: Отговаряй само на естествен, говорим български — както човек говори, не както се пише в приложение. Никакви буквални преводи от английски, никакви клишета от мотивационни постове. Използвай термините, които фигуристите наистина ползват (аксел, салхов, тулуп, ритбергер, флип, лутц, ребро, изход, прогон, старт). Кратко, просто, с един въпрос накрая."
+      : "\n\nLANGUAGE: Reply only in plain, spoken English. Short sentences, no filler, no poster lines.";
     const systemContent = baseSystem + languageRule;
 
     const response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
