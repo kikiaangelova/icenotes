@@ -166,12 +166,100 @@
     --shadow-md: 0 8px 30px -12px hsl(263 83% 58% / 0.45);
     --shadow-lg: 0 16px 50px -18px hsl(263 83% 58% / 0.5);
     --shadow-xl: 0 24px 70px -24px hsl(263 83% 58% / 0.55);
+    --shadow-soft: 0 10px 40px -18px hsl(263 83% 58% / 0.5);
+    --shadow-card: 0 6px 26px -14px hsl(263 83% 58% / 0.45);
+
+    /* In-app functional tokens, re-tuned for the dark violet surface */
+    --ice: 255 35% 14%;
+    --ice-deep: 263 83% 68%;
+    --frost: 255 40% 10%;
+    --on-ice: 263 83% 68%;
+    --off-ice: 78 80% 60%;
+    --mental: 285 70% 70%;
+    --success: 150 70% 55%;
+    --gold: 45 90% 62%;
+    --silver: 252 15% 65%;
+
+    --premium: 263 83% 58%;
+    --premium-soft: 255 38% 13%;
+    --premium-glow: 78 100% 62%;
+
+    --reflect: 285 70% 70%;
+    --journal: 263 83% 68%;
+    --calm: 190 70% 60%;
+    --warmth: 30 90% 65%;
+
+    /* Module colours as translucent neon tints */
+    --mint: 160 55% 16%;
+    --mint-foreground: 158 80% 70%;
+
+    --lavender: 263 45% 18%;
+    --lavender-foreground: 263 90% 80%;
+
+    --rose: 340 45% 18%;
+    --rose-foreground: 340 90% 78%;
+
+    --grape: 285 45% 18%;
+    --grape-foreground: 285 85% 80%;
+
+    --peach: 25 50% 18%;
+    --peach-foreground: 28 90% 72%;
+
+    --sky: 205 50% 16%;
+    --sky-foreground: 195 90% 74%;
+
+    --ink: 250 40% 97%;
+    --paper: 240 27% 6%;
+    --highlight: 78 100% 62%;
+
+    --sidebar: 255 40% 10%;
+    --sidebar-background: 255 40% 10%;
+    --sidebar-foreground: 250 40% 97%;
+    --sidebar-primary: 263 83% 58%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 255 35% 15%;
+    --sidebar-accent-foreground: 250 30% 92%;
+    --sidebar-border: 255 30% 19%;
+    --sidebar-ring: 263 83% 58%;
+
+    --chart-1: 263 83% 65%;
+    --chart-2: 78 100% 62%;
+    --chart-3: 285 75% 70%;
+    --chart-4: 195 85% 62%;
+    --chart-5: 330 80% 68%;
   }
 
   .theme-neon ::selection {
     background: hsl(78 100% 62%);
     color: hsl(240 27% 6%);
   }
+
+  /* Glassmorphism surfaces inside the app */
+  .theme-neon .soft-card,
+  .theme-neon .glass-card,
+  .theme-neon .frost-glass,
+  .theme-neon .feature-card {
+    background: linear-gradient(160deg, hsl(263 60% 22% / 0.42), hsl(255 45% 12% / 0.72));
+    backdrop-filter: blur(18px) saturate(150%);
+    -webkit-backdrop-filter: blur(18px) saturate(150%);
+    border: 1px solid hsl(263 83% 70% / 0.18);
+    box-shadow: 0 10px 40px -20px hsl(263 83% 58% / 0.6),
+                inset 0 1px 0 0 hsl(263 90% 80% / 0.08);
+  }
+  .theme-neon .soft-card:hover,
+  .theme-neon .feature-card:hover {
+    border-color: hsl(78 100% 62% / 0.35);
+    box-shadow: 0 18px 50px -22px hsl(263 83% 58% / 0.7),
+                inset 0 1px 0 0 hsl(78 100% 62% / 0.12);
+  }
+
+  .theme-neon .glass-nav {
+    background: hsl(255 45% 10% / 0.72);
+    border: 1px solid hsl(263 83% 70% / 0.18);
+    box-shadow: 0 12px 40px -14px hsl(263 83% 58% / 0.6);
+  }
+
+
 
 
 
