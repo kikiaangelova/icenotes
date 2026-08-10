@@ -63,19 +63,22 @@ const About: React.FC = () => {
       }
     : {
         eyebrow: 'About IceNotes',
-        title: 'Created by a 14-year-old figure skater, for figure skaters.',
+        title: 'Written on the bench by the rink, between two sessions.',
         intro:
-          'IceNotes is a private journaling and mental preparation space where skaters can reflect after training, track progress, and stay connected to their goals.',
+          'IceNotes is a quiet, private place to leave what happened on the ice today — what worked, what hurt, and what you want to try tomorrow.',
         storyEyebrow: 'Our story',
-        storyTitle: 'IceNotes started from a real need.',
+        storyTitle: 'It started with one bad practice.',
         storyBody: [
-          'A young figure skater wanted a simple way to write down what happened during training — what worked, what felt hard, what emotions came up, and what to focus on next.',
-          'Together with her mom, she turned that need into a small digital tool for other skaters who need the same thing.',
+          'Every skater knows the moment: skates off, hands still shaking, one jump replaying on a loop. You walk out of the rink and by evening you can’t remember what actually went wrong — only that it was hard.',
+          'My daughter is 14 and has been skating for years. One day she sat on the stairs with her skates in her hands and said, “I wish I could write this down somewhere so I don’t lose it by tomorrow.” We tried notebooks, notes apps, voice memos to herself. Nothing fit — too complicated, or nothing to do with skating.',
+          'So we built IceNotes. I’m a sport psychologist, she’s a competitor. She said what she needed; I added the questions I ask in session: not “Why didn’t it work?” but “What did you feel right before you took off?”',
+          'Today it’s for every skater who leaves the rink with a full head. No scores, no rankings, nobody telling you that you didn’t try hard enough. Just you, the ice, and what you learned today.',
         ],
-        whyEyebrow: 'Why mental preparation matters',
-        whyTitle: 'Figure skating is not only physical.',
+        whyEyebrow: 'Why the head is part of training',
+        whyTitle: 'Skating isn’t done with your legs alone.',
         whyBody:
-          'Skaters need to prepare mentally too — before practice, after hard sessions, before competitions, and during recovery.',
+          'The same jump lands in practice and misses at a competition. The difference is rarely technique — it’s the pressure, the fear of falling, the thoughts a second before the entry. That’s trainable too, but nobody shows you how.',
+
         whyPoints: ['Confidence', 'Focus', 'Emotions', 'Self-reflection', 'Learning from each session'],
         helpsEyebrow: 'What IceNotes helps with',
         helpsTitle: 'Small, clear tools for every day on the ice.',
