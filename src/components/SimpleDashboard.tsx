@@ -133,6 +133,24 @@ export const SimpleDashboard: React.FC = () => {
   
   const [gameDayOpen, setGameDayOpen] = useState(false);
 
+  // One-tap routing from the feature map into any tool (incl. nested sub-tabs).
+  const openFeature = (dest: FeatureDest) => {
+    if ('special' in dest) {
+      if (dest.special === 'reflect') setCurrentView('reflect');
+      if (dest.special === 'coach') window.dispatchEvent(new CustomEvent('coach-iris:open'));
+      if (dest.special === 'gameday') setGameDayOpen(true);
+      return;
+    }
+    setActiveTab(dest.tab);
+    if (dest.tab === 'train') setTrainTab(dest.sub);
+    if (dest.tab === 'mind') setMindTab(dest.sub);
+    if (dest.tab === 'goals') setGoalsTab(dest.sub);
+    if (dest.tab === 'progress') setProgressTab(dest.sub);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+
+
   // Map the persistent bottom-nav tab to the existing internal structure.
   // - home    → top-level "today" tab on the home view
   // - goals/training/mind → matching top tab on the home view
