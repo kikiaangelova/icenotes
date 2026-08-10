@@ -129,52 +129,52 @@
      Warm paper, terracotta ember, amber highlight.
      Applied app-wide via the theme-neon class on <html>. */
   .theme-neon {
-    --background: 40 42% 97%;
-    --foreground: 24 18% 12%;
+    --background: 34 20% 91%;
+    --foreground: 25 16% 18%;
 
-    --card: 40 48% 99%;
-    --card-foreground: 24 18% 14%;
+    --card: 36 28% 96%;
+    --card-foreground: 25 16% 20%;
 
-    --popover: 40 48% 99%;
-    --popover-foreground: 24 18% 14%;
+    --popover: 36 28% 97%;
+    --popover-foreground: 25 16% 20%;
 
-    --primary: 14 84% 55%;
-    --primary-foreground: 40 48% 99%;
+    --primary: 14 52% 55%;
+    --primary-foreground: 36 30% 97%;
 
-    --secondary: 36 24% 93%;
-    --secondary-foreground: 24 18% 18%;
+    --secondary: 32 16% 87%;
+    --secondary-foreground: 25 16% 24%;
 
-    --muted: 36 22% 92%;
-    --muted-foreground: 24 10% 38%;
+    --muted: 32 14% 86%;
+    --muted-foreground: 25 8% 42%;
 
-    --accent: 38 92% 58%;
-    --accent-foreground: 24 18% 14%;
+    --accent: 262 32% 66%;
+    --accent-foreground: 25 16% 20%;
 
-    --destructive: 0 72% 51%;
+    --destructive: 4 58% 52%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 30 18% 86%;
-    --input: 30 18% 86%;
-    --ring: 14 84% 55%;
+    --border: 30 14% 81%;
+    --input: 30 14% 81%;
+    --ring: 14 52% 55%;
 
     --radius: 1rem;
 
-    --lime: 38 92% 58%;
-    --violet: 14 84% 55%;
-    --violet-deep: 22 35% 14%;
+    --lime: 152 24% 52%;
+    --violet: 262 32% 62%;
+    --violet-deep: 25 20% 22%;
 
-    --brand: 14 84% 55%;
-    --brand-strong: 12 78% 46%;
-    --brand-soft: 18 92% 95%;
-    --highlight-soft: 42 92% 92%;
-    --xp-gold: 38 92% 55%;
-    --xp-gold-glow: 42 100% 68%;
+    --brand: 14 52% 55%;
+    --brand-strong: 12 48% 45%;
+    --brand-soft: 18 44% 92%;
+    --highlight-soft: 262 34% 92%;
+    --xp-gold: 36 58% 56%;
+    --xp-gold-glow: 40 70% 70%;
 
-    --shadow-md: 0 8px 24px -14px hsl(14 60% 30% / 0.28);
-    --shadow-lg: 0 16px 40px -20px hsl(14 60% 30% / 0.3);
-    --shadow-xl: 0 24px 60px -26px hsl(14 60% 30% / 0.32);
-    --shadow-soft: 0 10px 30px -18px hsl(14 60% 30% / 0.28);
-    --shadow-card: 0 6px 20px -14px hsl(14 60% 30% / 0.22);
+    --shadow-md: 0 8px 24px -14px hsl(25 30% 25% / 0.24);
+    --shadow-lg: 0 16px 40px -20px hsl(25 30% 25% / 0.26);
+    --shadow-xl: 0 24px 60px -26px hsl(25 30% 25% / 0.28);
+    --shadow-soft: 0 10px 30px -18px hsl(25 30% 25% / 0.24);
+    --shadow-card: 0 6px 20px -14px hsl(25 30% 25% / 0.2);
 
     /* In-app functional tokens on the warm surface */
     --ice: 36 30% 94%;
