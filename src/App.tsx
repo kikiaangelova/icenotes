@@ -1,4 +1,6 @@
+import { useEffect } from "react";
 import { Toaster } from "@/components/ui/toaster";
+
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -101,8 +103,16 @@ const AppRoutes = () => {
   );
 };
 
-const App = () => (
+const App = () => {
+  useEffect(() => {
+    // Neon Ice palette end-to-end: landing page and in-app surfaces
+    document.documentElement.classList.add("theme-neon");
+    return () => document.documentElement.classList.remove("theme-neon");
+  }, []);
+
+  return (
   <QueryClientProvider client={queryClient}>
+
     <LanguageProvider>
       <AuthProvider>
         <LanguageSync />
@@ -116,6 +126,8 @@ const App = () => (
       </AuthProvider>
     </LanguageProvider>
   </QueryClientProvider>
-);
+  );
+};
+
 
 export default App;
