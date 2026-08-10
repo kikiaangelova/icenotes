@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { supabase } from '@/integrations/supabase/client';
 import { useLanguage } from '@/context/LanguageContext';
 import { ProfileCard } from '@/components/ProfileCard';
-import { SkateBootIcon } from './SkateBootIcon';
+import { IceNotesMark } from './IceNotesMark';
 import heroVideo from '@/assets/hero-skater.mp4.asset.json';
 import { HeroVideo } from './HeroVideo';
 import { SmartStartCTA } from './SmartStartCTA';
