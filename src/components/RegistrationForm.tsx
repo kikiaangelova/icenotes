@@ -152,7 +152,7 @@ export const RegistrationForm: React.FC<RegistrationFormProps> = ({ onComplete }
             </div>
 
             <Button type="submit" className="w-full h-12 text-base font-medium mt-6">
-              Start Your Journey
+              Let’s go
             </Button>
           </form>
         </CardContent>

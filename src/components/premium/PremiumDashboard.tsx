@@ -76,9 +76,9 @@ export const PremiumDashboard: React.FC = () => {
 
         <TabsContent value="journey" className="space-y-6 animate-fade-in">
           <div className="text-center space-y-1 pb-2">
-            <h2 className="text-xl font-medium text-foreground">Your Journey</h2>
+            <h2 className="text-xl font-medium text-foreground">Your progress</h2>
             <p className="text-sm text-muted-foreground">
-              See how far you've come, without pressure.
+              Look how much has changed. No pressure.
             </p>
           </div>
           <PsychologicalProfile />
