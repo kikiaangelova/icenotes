@@ -62,6 +62,55 @@ const dict: Dict = {
   'finalCta.subtitle.after': { en: 'for skaters who feel deeply.', bg: 'за фигуристи, които усещат дълбоко.' },
   'finalCta.welcomeBack': { en: 'Back on the ice', bg: 'Отново на леда' },
 
+  // ───── Landing (rebuilt hero + sections) ─────
+  'land.chip': { en: 'Mental training for figure skaters', bg: 'Ментална подготовка за фигуристи' },
+  'land.h1.a': { en: 'Five minutes after practice', bg: 'Пет минути след тренировка' },
+  'land.h1.b': { en: 'change the whole season.', bg: 'променят целия сезон.' },
+  'land.sub': {
+    en: 'Figure skating is hours of the same element, plus everything you carry in your head. IceNotes is where you set goals, log the session, name the pressure — and get an AI sport psychologist that actually answers.',
+    bg: 'Фигурното пързаляне е стотици часове един и същ елемент плюс всичко, което носиш в главата си. В IceNotes си слагаш целите, записваш тренировката, назоваваш напрежението — и получаваш AI спортен психолог, който наистина отговаря.',
+  },
+  'land.cta.primary': { en: 'Start free', bg: 'Започни безплатно' },
+  'land.cta.secondary': { en: 'See how it works', bg: 'Виж как работи' },
+  'land.trust': { en: 'Free · Private · 2 minutes to set up', bg: 'Безплатно · Лично · 2 минути за старт' },
+  'land.stat.time': { en: 'min per session', bg: 'мин на тренировка' },
+  'land.stat.coach': { en: 'AI sport psychologist', bg: 'AI спортен психолог' },
+  'land.stat.private': { en: 'private, always', bg: 'лично, винаги' },
+  'land.why.kicker': { en: 'Why skaters use it', bg: 'Защо фигуристите го ползват' },
+  'land.why.title': { en: 'Head, body and ice — in one place.', bg: 'Глава, тяло и лед — на едно място.' },
+  'land.inside.kicker': { en: 'Inside IceNotes', bg: 'Вътре в IceNotes' },
+  'land.inside.title': { en: 'Not another tracker.', bg: 'Не е поредният тракер.' },
+  'land.inside.titleAccent': { en: 'A training log with a psychologist attached.', bg: 'Дневник за тренировки със спортен психолог.' },
+  'land.inside.sub': {
+    en: 'Goals, session notes, jumps, mood — then Coach Iris asks the questions a good psychologist would.',
+    bg: 'Цели, бележки от тренировката, скокове, настроение — а Coach Iris задава въпросите, които добрият психолог би задал.',
+  },
+  'land.note.label': { en: "Tonight's note", bg: 'Бележка за вечерта' },
+  'land.note.text': {
+    en: '"Fell on the Lutz again. Got back up faster this time. That counts."',
+    bg: '„Пак паднах на Лутц. Този път станах по-бързо. И това се брои.“',
+  },
+  'land.community.kicker': { en: 'Skaters get skaters', bg: 'Фигуристите се разбират' },
+  'land.community.title': { en: "The pressure isn't yours alone.", bg: 'Напрежението не е само твое.' },
+  'land.community.titleAccent': { en: 'Neither is the progress.', bg: 'Прогресът също.' },
+  'land.community.sub': {
+    en: 'Real skaters, real seasons — the shaky warm-ups and the breakthrough nights.',
+    bg: 'Истински фигуристи, истински сезони — треперещите загрявки и вечерите на пробива.',
+  },
+  'land.community.share': { en: 'Share your season', bg: 'Сподели своя сезон' },
+  'land.count.suffix': { en: 'skaters already here', bg: 'фигуристи вече са тук' },
+  'feature.goals.title': { en: 'Goals that hold', bg: 'Цели, които издържат' },
+  'feature.goals.text': { en: 'Weekly, monthly, season. Broken into the reps it actually takes.', bg: 'Седмични, месечни, сезонни. Разбити на повторенията, които реално отнемат.' },
+  'feature.sessions.title': { en: 'Session log', bg: 'Дневник на тренировките' },
+  'feature.sessions.text': { en: 'Jumps, quality, energy — logged in under two minutes.', bg: 'Скокове, качество, енергия — записани за под две минути.' },
+  'feature.reflect.title': { en: 'Reflection', bg: 'Рефлексия' },
+  'feature.reflect.text': { en: 'Name the fear, the frustration, the small win. Nobody else sees it.', bg: 'Назови страха, напрежението, малката победа. Никой друг не го вижда.' },
+  'feature.coach.title': { en: 'Coach Iris', bg: 'Coach Iris' },
+  'feature.coach.text': { en: 'An AI sport psychologist that reads your entries and asks the right question back.', bg: 'AI спортен психолог, който чете записките ти и връща правилния въпрос.' },
+
+
+
+
   // ───── Feeling chips (daily journal) ─────
   'feeling.calm': { en: 'Calm', bg: 'Спокойно' },
   'feeling.focused': { en: 'Focused', bg: 'Фокус' },
@@ -1052,10 +1101,18 @@ const isLanguage = (val: unknown): val is Language =>
   typeof val === 'string' && (SUPPORTED as ReadonlyArray<string>).includes(val);
 
 const detectInitialLanguage = (): Language => {
-  // Force Bulgarian as the primary language for now (full BG rollout).
-  // We intentionally ignore previously-saved values and browser locale so
-  // every user lands in the same, fully-translated experience.
-  return 'bg';
+  // English first, Bulgarian second: the landing page is the entry point for an
+  // international Gen Z audience. A saved choice always wins.
+  try {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (isLanguage(saved)) return saved;
+    if (typeof navigator !== 'undefined' && navigator.language?.toLowerCase().startsWith('bg')) {
+      return 'bg';
+    }
+  } catch {
+    /* storage unavailable */
+  }
+  return 'en';
 };
 
 // Dev-only: warn once per missing key so silent gaps are visible.
