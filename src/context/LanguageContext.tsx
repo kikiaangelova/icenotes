@@ -1092,10 +1092,18 @@ const isLanguage = (val: unknown): val is Language =>
   typeof val === 'string' && (SUPPORTED as ReadonlyArray<string>).includes(val);
 
 const detectInitialLanguage = (): Language => {
-  // Force Bulgarian as the primary language for now (full BG rollout).
-  // We intentionally ignore previously-saved values and browser locale so
-  // every user lands in the same, fully-translated experience.
-  return 'bg';
+  // English first, Bulgarian second: the landing page is the entry point for an
+  // international Gen Z audience. A saved choice always wins.
+  try {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (isLanguage(saved)) return saved;
+    if (typeof navigator !== 'undefined' && navigator.language?.toLowerCase().startsWith('bg')) {
+      return 'bg';
+    }
+  } catch {
+    /* storage unavailable */
+  }
+  return 'en';
 };
 
 // Dev-only: warn once per missing key so silent gaps are visible.
