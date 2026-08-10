@@ -30,8 +30,8 @@ export const Navbar: React.FC<NavbarProps> = ({ isDarkMode, onToggleDarkMode }) 
       <div className="max-w-5xl mx-auto glass-nav rounded-2xl px-4 md:px-6 h-14 md:h-16 flex items-center justify-between transition-shadow duration-300 hover:shadow-xl">
         {/* Logo */}
         <Link to="/" className="flex items-center gap-2.5 shrink-0 group">
-          <div className="relative w-9 h-9 rounded-xl bg-foreground flex items-center justify-center transition-transform duration-300 group-hover:scale-105">
-            <IceNotesMark className="w-5 h-5 text-background" />
+          <div className="relative w-9 h-9 rounded-xl bg-accent flex items-center justify-center transition-transform duration-300 group-hover:scale-105">
+            <IceNotesMark className="w-5 h-5 text-accent-foreground" />
           </div>
           <span className="text-[17px] font-extrabold tracking-[-0.03em] text-foreground">
             IceNotes

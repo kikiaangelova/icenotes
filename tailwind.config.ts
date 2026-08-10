@@ -63,6 +63,9 @@ export default {
 				journal: 'hsl(var(--journal))',
 				calm: 'hsl(var(--calm))',
 				warmth: 'hsl(var(--warmth))',
+				lime: 'hsl(var(--lime, 78 100% 62%))',
+				violet: 'hsl(var(--violet, 263 83% 58%))',
+				'violet-deep': 'hsl(var(--violet-deep, 255 55% 13%))',
 				mint: 'hsl(var(--mint))',
 				'mint-foreground': 'hsl(var(--mint-foreground))',
 				lavender: 'hsl(var(--lavender))',
@@ -155,8 +158,9 @@ export default {
 				'2xl': 'var(--shadow-2xl)'
 			},
 			fontFamily: {
-				sans: ['Inter', 'ui-sans-serif', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Helvetica Neue', 'Arial', 'sans-serif'],
-				serif: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+				sans: ['Plus Jakarta Sans', 'ui-sans-serif', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Helvetica Neue', 'Arial', 'sans-serif'],
+				display: ['Syne', 'Plus Jakarta Sans', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+				serif: ['Syne', 'Plus Jakarta Sans', 'ui-sans-serif', 'system-ui', 'sans-serif'],
 				mono: [
 					'JetBrains Mono',
 					'ui-monospace',
