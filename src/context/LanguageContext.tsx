@@ -13,6 +13,9 @@ type Dict = Record<string, Entry>;
 
 const dict: Dict = {
   // ───── Navbar (marketing) ─────
+  'quick.reflection.kicker': { en: '2 min', bg: '2 мин' },
+  'profile.language': { en: 'Language', bg: 'Език' },
+  'profile.languageSub': { en: 'Interface and Coach Iris', bg: 'Интерфейс и Coach Iris' },
   'nav.home': { en: 'Home', bg: 'Начало' },
   'nav.about': { en: 'About', bg: 'За нас' },
   'nav.features': { en: 'Features', bg: 'Функции' },
