@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, Brain, Shield, Eye, Flame, Heart, Zap, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { MindfulnessTools } from '@/components/MindfulnessTools';
-import { SkatingAssistant } from '@/components/SkatingAssistant';
 import { GameDayCard, GameDayMode } from '@/components/GameDayMode';
 import { useLanguage } from '@/context/LanguageContext';
 
@@ -100,7 +99,6 @@ const SportPsychology: React.FC = () => {
         </section>
 
       <Footer />
-      <SkatingAssistant />
       <GameDayMode open={gameDayOpen} onOpenChange={setGameDayOpen} />
     </div>
   );

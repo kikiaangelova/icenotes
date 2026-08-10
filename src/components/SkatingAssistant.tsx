@@ -28,10 +28,11 @@ export const SkatingAssistant: React.FC = () => {
 
   useEffect(() => {
     const handler = (e: Event) => {
-      const detail = (e as CustomEvent<{ message: string }>).detail;
-      if (!detail?.message) return;
+      const detail = (e as CustomEvent<{ message?: string }>).detail;
       setOpen(true);
-      setTimeout(() => send(detail.message, { reset: true }), 150);
+      if (detail?.message) {
+        setTimeout(() => send(detail.message, { reset: true }), 150);
+      }
     };
     window.addEventListener('coach-iris:open', handler as EventListener);
     return () => window.removeEventListener('coach-iris:open', handler as EventListener);
