@@ -248,48 +248,33 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted }) => {
       <section className="relative z-10 px-5 md:px-12 py-16 md:py-28 overflow-hidden">
         <div className="max-w-6xl mx-auto">
           <div className="text-center max-w-2xl mx-auto mb-10 md:mb-14">
-            <p className="text-xs font-bold tracking-[0.3em] uppercase text-primary mb-3">A softer rink-side companion</p>
-            <h2 className="text-3xl md:text-6xl font-black tracking-[-0.03em] leading-[1.02] text-foreground mb-4">
-              Not another tracker.<br />
-              <span className="italic font-light text-warmth">A place to come home to.</span>
+            <p className="text-[11px] font-bold tracking-[0.22em] uppercase text-primary mb-3">{t('land.inside.kicker')}</p>
+            <h2 className="text-2xl md:text-4xl font-extrabold tracking-[-0.03em] leading-[1.05] text-foreground mb-4">
+              {t('land.inside.title')}<br />
+              <span className="text-primary">{t('land.inside.titleAccent')}</span>
             </h2>
-            <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
-              Write what hurt. Notice what's growing. Breathe before the next session — without anyone watching.
+            <p className="text-base text-muted-foreground leading-relaxed">
+              {t('land.inside.sub')}
             </p>
           </div>
 
-          <div className="relative rounded-[2rem] md:rounded-[2.5rem] overflow-hidden shadow-2xl border border-border/40 group">
-            <HeroVideo
-              src={heroVideo.url}
-              className="block aspect-[16/10] md:aspect-[21/9]"
-              videoClassName=""
-              filter="saturate(0.95)"
-              withOverlay={false}
-            />
-            {/* Translucent UI panels overlay */}
-            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-foreground/70 via-foreground/10 to-transparent" />
-
-            <div className="pointer-events-none absolute inset-x-0 bottom-0 p-5 md:p-10 pr-20 md:pr-32 flex flex-col md:flex-row md:items-end md:justify-between gap-4">
-              <div className="bg-background/15 backdrop-blur-2xl border border-background/20 rounded-2xl p-4 md:p-6 max-w-xs">
-                <div className="flex items-center gap-2 mb-2">
-                  <Heart className="w-4 h-4 text-rose fill-rose" />
-                  <span className="text-xs font-semibold text-background/90 uppercase tracking-wider">Tonight's note</span>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {[
+              { icon: Target, title: t('feature.goals.title'), text: t('feature.goals.text') },
+              { icon: Dumbbell, title: t('feature.sessions.title'), text: t('feature.sessions.text') },
+              { icon: PenLine, title: t('feature.reflect.title'), text: t('feature.reflect.text') },
+              { icon: Brain, title: t('feature.coach.title'), text: t('feature.coach.text') },
+            ].map((f) => (
+              <div key={f.title} className="rounded-2xl border border-border bg-card p-5 hover:shadow-md transition-shadow">
+                <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center mb-3">
+                  <f.icon className="w-5 h-5 text-primary" />
                 </div>
-                <p className="text-sm md:text-base text-background font-medium leading-relaxed">
-                  "Fell on the Lutz again. Got back up faster this time. That's the win."
-                </p>
+                <h3 className="text-base font-bold text-foreground mb-1.5">{f.title}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">{f.text}</p>
               </div>
-              <div className="bg-background/15 backdrop-blur-2xl border border-background/20 rounded-2xl px-5 py-4 flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-mint/80 flex items-center justify-center">
-                  <TrendingUp className="w-5 h-5 text-mint-foreground" />
-                </div>
-                <div>
-                  <div className="text-2xl md:text-3xl font-black text-background leading-none">softer</div>
-                  <div className="text-[10px] uppercase tracking-wider text-background/70 mt-1">on yourself, this month</div>
-                </div>
-              </div>
-            </div>
+            ))}
           </div>
+
         </div>
       </section>
       <section className="relative z-10 px-5 md:px-12 py-16 md:py-24">
