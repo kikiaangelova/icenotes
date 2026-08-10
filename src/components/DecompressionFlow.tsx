@@ -18,11 +18,11 @@ interface DecompressionFlowProps {
 // Pick an opening line tailored to detected themes — never toxic positivity.
 function openingLine(themes: DifficultTheme[] = [], bg = false): string {
   if (themes.includes('injury'))      return bg ? 'Тялото ти иска грижа. Това също е тренировка.' : 'Your body wants care. That’s training too.';
-  if (themes.includes('fear'))        return bg ? 'Страхът се появява, когато нещо ти е важно. Не си сам/а в това.' : 'Fear shows up when something matters to you. You’re not alone in this.';
+  if (themes.includes('fear'))        return bg ? 'Страхът често се появява, когато нещо ти е важно. Не си сам(а) в това.' : 'Fear shows up when something matters to you. You’re not alone in this.';
   if (themes.includes('burnout'))     return bg ? 'Носиш много на гърба си. Хайде да забавим за минута.' : 'You’re carrying a lot right now. Let’s slow down for a minute.';
-  if (themes.includes('overwhelm'))   return bg ? 'Звучи като много за едно вечер. Не трябва да го решаваш цялото сега.' : 'That sounds like a lot for one evening. You don’t have to figure it all out now.';
+  if (themes.includes('overwhelm'))   return bg ? 'Това е много за една вечер. Не е нужно да решаваш всичко сега.' : 'That sounds like a lot for one evening. You don’t have to figure it all out now.';
   if (themes.includes('self_doubt'))  return bg ? 'Острият глас в главата ти не е цялата истина.' : 'That harsh voice in your head isn’t the whole truth.';
-  if (themes.includes('frustration')) return bg ? 'Фрустрацията означава, че ти пука. Това не е малко.' : 'Frustration means you care. That’s not nothing.';
+  if (themes.includes('frustration')) return bg ? 'Разочарованието показва, че това е важно за теб.' : 'Frustration means you care. That’s not nothing.';
   if (themes.includes('bad_practice'))return bg ? 'Някои тренировки тежат за известно време. Това е нормално.' : 'Some sessions sit heavy for a while. That’s normal.';
   return bg ? 'Беше тежък ден. Тук си — и това е достатъчно.' : 'That was a hard day. You’re here — and that’s enough.';
 }
@@ -60,7 +60,7 @@ const BreatheStep: React.FC<{ onDone: () => void; bg: boolean }> = ({ onDone, bg
       </p>
       <div className="flex flex-col gap-2 w-full max-w-xs">
         <Button onClick={onDone} variant="outline" className="h-12 rounded-full">
-          {bg ? 'Малко по-меко ми е' : 'I feel a bit softer'}
+          {bg ? 'Вече съм малко по-спокоен(на)' : 'I feel a bit softer'}
         </Button>
       </div>
       {cycle > 0 && <p className="text-xs text-muted-foreground/70">{bg ? `${cycle} спокоен ${cycle === 1 ? 'цикъл' : 'цикъла'}` : `${cycle} calm ${cycle === 1 ? 'cycle' : 'cycles'}`}</p>}
@@ -99,7 +99,7 @@ const GroundStep: React.FC<{ onDone: () => void; bg: boolean }> = ({ onDone, bg 
         ))}
       </ul>
       <Button onClick={onDone} variant="outline" className="h-12 rounded-full">
-        {bg ? 'Върнах се в тялото си' : 'I’m back in my body'}
+        {bg ? 'Отново съм в настоящето' : 'I’m back in my body'}
       </Button>
     </div>
   );
@@ -185,7 +185,7 @@ export const DecompressionFlow: React.FC<DecompressionFlowProps> = ({
           {step === 'choose' && (
             <div className="flex-1 flex flex-col gap-5 animate-fade-in">
               <div className="text-center space-y-1">
-                <h3 className="text-xl font-semibold text-foreground">{bg ? 'Какво ще ти бъде нежно сега?' : 'What would feel gentle right now?'}</h3>
+                <h3 className="text-xl font-semibold text-foreground">{bg ? 'Какво би ти помогнало сега?' : 'What would feel gentle right now?'}</h3>
                 <p className="text-sm text-muted-foreground">{bg ? 'Избери едно. Или нищо. Няма грешен ход.' : 'Pick one. Or none. There’s no wrong move.'}</p>
               </div>
               <div className="grid gap-3 mt-2">
@@ -197,13 +197,13 @@ export const DecompressionFlow: React.FC<DecompressionFlowProps> = ({
                 />
                 <ActionCard
                   icon={<Leaf className="w-5 h-5" />}
-                  title={bg ? 'Заземи ме' : 'Ground me'}
-                  desc={bg ? 'Върни се към сетивата си, нежно.' : 'Come back to your senses, gently.'}
+                  title={bg ? 'Върни ме в настоящето' : 'Ground me'}
+                  desc={bg ? 'Насочи вниманието си към сетивата.' : 'Come back to your senses, gently.'}
                   onClick={() => setStep('ground')}
                 />
                 <ActionCard
                   icon={<Sparkles className="w-5 h-5" />}
-                  title={bg ? 'Едно меко преосмисляне' : 'A gentle reframe'}
+                  title={bg ? 'Поглед от друг ъгъл' : 'A gentle reframe'}
                   desc={bg ? 'Напомняне, че този момент не е цялата история.' : 'A reminder that this moment isn’t the whole story.'}
                   onClick={() => setStep('rest')}
                 />
@@ -216,7 +216,7 @@ export const DecompressionFlow: React.FC<DecompressionFlowProps> = ({
               </div>
               {level === 'heavy' && (
                 <p className="text-xs text-center text-muted-foreground/80 pt-2 leading-relaxed">
-                  {bg ? 'Ако носиш нещо по-голямо от кънките тази вечер, моля те — потърси някой, на когото имаш доверие. Не трябва да го носиш сам/а.' : 'If you’re carrying something bigger than skating tonight, please reach out to someone you trust. You don’t have to carry it alone.'}
+                  {bg ? 'Ако тази вечер тежестта е по-голяма от случилото се на леда, потърси човек, на когото имаш доверие. Не е нужно да оставаш сам(а) с нея.' : 'If you’re carrying something bigger than skating tonight, please reach out to someone you trust. You don’t have to carry it alone.'}
                 </p>
               )}
             </div>

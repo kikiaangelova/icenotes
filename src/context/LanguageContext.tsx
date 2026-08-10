@@ -67,9 +67,9 @@ const dict: Dict = {
 
   // ───── Landing (rebuilt hero + sections) ─────
   'seo.home.title': { en: 'IceNotes – Reflect. Train. Perform.', bg: 'IceNotes – Рефлексия. Тренировка. Представяне.' },
-  'seo.home.desc': { en: 'A digital journaling and mental-training space for ambitious figure skaters. Track mindset, training and performance with Coach Kiki AI.', bg: 'Дигитален дневник и ментална подготовка за амбициозни фигуристи. Следи мисленето, тренировките и представянето си с Coach Kiki AI.' },
+  'seo.home.desc': { en: 'A digital journaling and mental-training space for ambitious figure skaters. Track mindset, training and performance with Coach Kiki AI.', bg: 'Дигитален дневник и ментална подготовка за амбициозни фигуристи. Следи мислите, тренировките и представянето си с Кики.' },
   'seo.dashboard.title': { en: 'Skater Dashboard – IceNotes', bg: 'Табло на фигуриста – IceNotes' },
-  'seo.dashboard.desc': { en: 'Your private IceNotes dashboard: log training sessions, track jumps, journal your mindset and chat with Coach Kiki.', bg: 'Личното ти табло в IceNotes: записвай тренировки, следи скоковете, води дневник и говори с Coach Kiki.' },
+  'seo.dashboard.desc': { en: 'Your private IceNotes dashboard: log training sessions, track jumps, journal your mindset and chat with Coach Kiki.', bg: 'Личното ти пространство в IceNotes: записвай тренировки, следи скоковете, води дневник и говори с Кики.' },
   'land.chip': { en: 'Mental training for figure skaters', bg: 'Ментална подготовка за фигуристи' },
   'land.h1.a': { en: 'A mental journal for skaters.', bg: 'Ментален дневник за фигуристи.' },
   'land.h1.b': { en: 'Made by a skater, for skaters.', bg: 'От състезател, за състезатели.' },
@@ -112,7 +112,7 @@ const dict: Dict = {
   'feature.sessions.text': { en: 'Jumps, quality, energy — logged in under two minutes.', bg: 'Скокове, качество, енергия — записани за под две минути.' },
   'feature.reflect.title': { en: 'Reflection', bg: 'Равносметка' },
   'feature.reflect.text': { en: 'Name the fear, the frustration, the small win. Nobody else sees it.', bg: 'Назови страха, напрежението, малката победа. Никой друг не го вижда.' },
-  'feature.coach.title': { en: 'Coach Kiki', bg: 'Coach Kiki' },
+  'feature.coach.title': { en: 'Coach Kiki', bg: 'Кики' },
   'feature.coach.text': { en: 'An AI sport psychologist that reads your entries and asks the right question back.', bg: 'Спортен психолог с AI, който прочита записките ти и задава точния въпрос.' },
 
 
@@ -761,7 +761,7 @@ const dict: Dict = {
   'ach.goals1.desc': { en: 'Completed your first goal', bg: 'Завърши първата си цел' },
   'ach.goals5.title': { en: 'Goals in motion', bg: 'Цели в движение' },
   'ach.goals5.desc': { en: '5 goals completed', bg: '5 завършени цели' },
-  'ach.tasks20.title': { en: 'Mindful doer', bg: 'Прави, после мисли — но осъзнато' },
+  'ach.tasks20.title': { en: 'Mindful doer', bg: 'Действай осъзнато' },
   'ach.tasks20.desc': { en: '20 tasks completed', bg: '20 завършени задачи' },
   'ach.unit.days': { en: 'days', bg: 'дни' },
   'ach.unit.jumps': { en: 'jumps', bg: 'скока' },
@@ -896,7 +896,7 @@ const dict: Dict = {
     bg: 'Можеш да се върнеш по всяко време — и по-рано. Това е само за теб.',
   },
   'streak.pause.cancel':  { en: 'Not now', bg: 'Не сега' },
-  'streak.pause.confirm': { en: 'Pause gently', bg: 'Постави на пауза' },
+  'streak.pause.confirm': { en: 'Pause gently', bg: 'Да, направи пауза' },
 
   'streak.pause.reason.injury':  { en: 'Healing', bg: 'Възстановяване' },
   'streak.pause.reason.exams':   { en: 'Exams', bg: 'Изпити' },
@@ -1086,7 +1086,7 @@ const dict: Dict = {
   'gameDay.breathe':     { en: 'Breathe',               bg: 'Дишай' },
   'gameDay.visualize':   { en: 'Visualize',             bg: 'Визуализирай' },
   'gameDay.affirm':      { en: 'Your cue',               bg: 'Твоята дума' },
-  'gameDay.centered':    { en: 'Centered ✨',           bg: 'Центриран/а ✨' },
+  'gameDay.centered':    { en: 'Centered ✨',           bg: 'Вече си тук ✨' },
 
   // ───── Coach Kiki ─────
   'coach.openLabel':     { en: 'Open AI skating coach', bg: 'Отвори Кики' },
@@ -1096,7 +1096,7 @@ const dict: Dict = {
   'coach.greeting':      { en: "Hey 👋 I'm Kiki. Jumps, nerves, motivation — tell me what's on your mind. Even if it's just \"today was hard\".", bg: 'Здрасти 👋 Аз съм Кики. Скокове, нерви, мотивация — кажи ми какво те вълнува. Дори да е „днес беше тежко“.' },
   'coach.tryOne':        { en: 'Try one',               bg: 'Опитай едно' },
   'coach.starter.1':     { en: 'I keep falling on my Lutz — what do I do?', bg: 'Все падам на лутца — какво да правя?' },
-  'coach.starter.2':     { en: "I'm nervous about the competition this weekend", bg: 'Нервен/нервна съм за състезанието този уикенд' },
+  'coach.starter.2':     { en: "I'm nervous about the competition this weekend", bg: 'Притеснявам се за състезанието този уикенд' },
   'coach.starter.3':     { en: 'I lost my motivation. What now?', bg: 'Изгубих мотивация. Какво сега?' },
   'coach.starter.4':     { en: 'Hype me up before practice', bg: 'Дай ми енергия преди тренировка' },
   'coach.err.rate':      { en: 'Slow down a little — too many requests. Try again in a minute.', bg: 'Малко по-бавно — твърде много заявки. Опитай след минута.' },
@@ -1111,7 +1111,7 @@ const dict: Dict = {
   'tour.today.tab':      { en: 'Today tab',             bg: 'Раздел Днес' },
   'tour.today.detail':   { en: 'Start every day with a 10-second mood tap, then add a quick log of how skating felt.', bg: 'Започни деня с 10-секундна отметка за настроение, после запиши как мина карането.' },
   'tour.focus.label':    { en: 'Your starting focus',   bg: 'Твоят начален фокус' },
-  'tour.ready':          { en: "You're ready. Trust the process — one log at a time.", bg: 'Готов/а си. Доверѝ се на процеса — по един запис.' },
+  'tour.ready':          { en: "You're ready. Trust the process — one log at a time.", bg: 'Всичко е готово. Довери се на процеса — запис по запис.' },
   'tour.done.title':     { en: "✨ You're all set",      bg: '✨ Всичко е готово' },
   'tour.done.body':      { en: "Your first focus is saved. Start with today's log.", bg: 'Първият ти фокус е записан. Започни със записа за днес.' },
   'tour.goal.consistency': { en: 'Show up consistently', bg: 'Да идвам постоянно' },
@@ -1131,14 +1131,14 @@ const dict: Dict = {
   'gameDay.exhale':      { en: 'Exhale',                bg: 'Издишвай' },
   'gameDay.sec':         { en: 's',                     bg: 'с' },
   'gameDay.visualizeText': { en: 'Eyes closed. Step on the ice in your head and run the program once. Where does it get shaky?', bg: 'Затвори очи. Стъпи на леда наум и изкарай програмата веднъж. Къде става несигурно?' },
-  'gameDay.coachName':   { en: 'Coach Kiki',            bg: 'Треньор Кики' },
+  'gameDay.coachName':   { en: 'Coach Kiki',            bg: 'Кики' },
   'gameDay.pepTalk':     { en: "One question before you go: what will you do first if something doesn't go to plan?", bg: 'Един въпрос преди да излезеш: какво ще направиш първо, ако нещо не тръгне по план?' },
-  'gameDay.letsGo':      { en: "I'm ready",              bg: 'Готов/а съм' },
+  'gameDay.letsGo':      { en: "I'm ready",              bg: 'Готово, излизам' },
   'gameDay.cardSteps':   { en: 'Breathe · Run it in your head · Pick a cue · One question', bg: 'Дишай · Изкарай я наум · Избери дума · Един въпрос' },
   'gameDay.cuePrompt':   { en: 'One word or short cue you want in your head during the program.', bg: 'Една дума или кратка команда, която искаш в главата си по време на програмата.' },
   'gameDay.cuePlaceholder': { en: 'e.g. long edges', bg: 'напр. дълги ръбове' },
   'gameDay.cueExamples': { en: 'Some skaters use:', bg: 'Някои състезатели ползват:' },
-  'gameDay.askKiki':     { en: 'Answer with Coach Kiki', bg: 'Отговори с Треньор Кики' },
+  'gameDay.askKiki':     { en: 'Answer with Coach Kiki', bg: 'Продължи разговора с Кики' },
 
   // ───── Profile sheet ─────
   'profile.back':        { en: 'Back',                  bg: 'Назад' },

@@ -28,9 +28,9 @@ const MODES: ModeConfig[] = [
     icon: Sunrise,
     tone: { ring: 'border-emerald-200', soft: 'bg-emerald-50/60', chip: 'bg-emerald-100 text-emerald-700', accent: 'text-emerald-700' },
     label: { en: 'Before training', bg: 'Преди тренировка' },
-    intro: { en: 'A short check-in before you step on the ice.', bg: 'Кратък check-in преди да стъпиш на леда.' },
+    intro: { en: 'A short check-in before you step on the ice.', bg: 'Кратка настройка, преди да стъпиш на леда.' },
     prompts: [
-      { en: 'How am I arriving today — body and mind?', bg: 'Как пристигам днес — тяло и глава?' },
+      { en: 'How am I arriving today — body and mind?', bg: 'Как се чувствам днес — физически и психически?' },
       { en: 'One thing I want to focus on.', bg: 'Едно нещо, върху което искам да съм фокусиран(а).' },
       { en: 'A word for today’s session.', bg: 'Една дума за днешната тренировка.' },
     ],
@@ -42,7 +42,7 @@ const MODES: ModeConfig[] = [
     label: { en: 'After training', bg: 'След тренировка' },
     intro: { en: 'Soft reflection while it’s still fresh.', bg: 'Спокоен запис, докато е още свежо.' },
     prompts: [
-      { en: 'What felt good today?', bg: 'Кое ми се усети добре днес?' },
+      { en: 'What felt good today?', bg: 'Кое ми донесе добро усещане днес?' },
       { en: 'What was harder than expected?', bg: 'Кое беше по-трудно от очакваното?' },
       { en: 'One small thing I learned.', bg: 'Едно малко нещо, което научих.' },
     ],
@@ -52,7 +52,7 @@ const MODES: ModeConfig[] = [
     icon: Sparkles,
     tone: { ring: 'border-pink-200', soft: 'bg-pink-50/60', chip: 'bg-pink-100 text-pink-700', accent: 'text-pink-700' },
     label: { en: 'Before competition', bg: 'Преди състезание' },
-    intro: { en: 'Steady your mind before you step out.', bg: 'Подреди главата си преди да излезеш.' },
+    intro: { en: 'Steady your mind before you step out.', bg: 'Успокой мислите си, преди да излезеш на леда.' },
     prompts: [
       { en: 'My intention today (not a result).', bg: 'Моето намерение днес (не резултат).' },
       { en: 'One thing I trust about my skating.', bg: 'Едно нещо, на което вярвам в карането си.' },
@@ -68,7 +68,7 @@ const MODES: ModeConfig[] = [
     prompts: [
       { en: 'One moment I’m proud of.', bg: 'Един момент, с който се гордея.' },
       { en: 'What surprised me?', bg: 'Кое ме изненада?' },
-      { en: 'What do I want to carry forward?', bg: 'Какво искам да отнеса напред?' },
+      { en: 'What do I want to carry forward?', bg: 'Какво искам да запазя за следващия старт?' },
     ],
   },
   {
@@ -80,7 +80,7 @@ const MODES: ModeConfig[] = [
     prompts: [
       { en: 'What am I feeling right now, in one word?', bg: 'Какво усещам сега — с една дума?' },
       { en: 'What do I need in this moment?', bg: 'От какво имам нужда сега?' },
-      { en: 'What’s one breath I can take before the next move?', bg: 'Какъв дъх мога да поема преди следващия елемент?' },
+      { en: 'What’s one breath I can take before the next move?', bg: 'Мога ли да си дам един бавен дъх преди следващия елемент?' },
     ],
   },
 ];
@@ -230,7 +230,7 @@ export const MindReflection: React.FC = () => {
             <CheckCircle2 className="w-4 h-4" />
             {saveMutation.isPending
               ? (isBG ? 'Запазване…' : 'Saving…')
-              : (isBG ? 'Запази рефлексията' : 'Save reflection')}
+               : (isBG ? 'Запази равносметката' : 'Save reflection')}
           </Button>
         </CardContent>
       </Card>
@@ -293,7 +293,7 @@ export const MindReflection: React.FC = () => {
                 onClick={() => setHistoryOpen(o => !o)}
                 className="w-full flex items-center justify-between text-xs font-medium text-muted-foreground px-1"
               >
-                <span>{isBG ? 'Скорошни рефлексии' : 'Recent reflections'}</span>
+                 <span>{isBG ? 'Последни равносметки' : 'Recent reflections'}</span>
                 {historyOpen ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
               </button>
               {historyOpen && (

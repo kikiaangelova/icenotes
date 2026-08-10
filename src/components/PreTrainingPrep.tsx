@@ -21,18 +21,18 @@ import {
 } from 'lucide-react';
 
 const PRE_SKATE_CHECKLIST = (bg: boolean) => [
-  { id: 'hydrate', label: bg ? 'Хидратиран/а и готов/а' : 'Hydrated and ready', icon: '💧' },
+  { id: 'hydrate', label: bg ? 'Пих достатъчно вода' : 'Hydrated and ready', icon: '💧' },
   { id: 'warmup', label: bg ? 'Тялото е загрято' : 'Body is warmed up', icon: '🔥' },
   { id: 'equipment', label: bg ? 'Кънките и екипът са проверени' : 'Skates and gear checked', icon: '⛸️' },
-  { id: 'focus', label: bg ? 'Главата е ясна и фокусирана' : 'Head is clear and focused', icon: '🎯' },
+  { id: 'focus', label: bg ? 'Знам върху какво искам да се фокусирам' : 'Head is clear and focused', icon: '🎯' },
   { id: 'intention', label: bg ? 'Имам намерение за тази тренировка' : 'I have an intention for this session', icon: '✨' },
 ];
 
 const FOCUS_REMINDERS = (bg: boolean) => [
-  { text: bg ? "Доверѝ се на тренировките. Подготвен/а си за това." : "Trust your training. You're prepared for this.", icon: Target },
+  { text: bg ? "Довери се на подготовката си. Тялото ти помни." : "Trust your training. You're prepared for this.", icon: Target },
   { text: bg ? "Бъди тук и сега. Един елемент в един момент." : "Be here now. One element at a time.", icon: Brain },
   { text: bg ? "Дишай дълбоко. Остави напрежението да си тръгне." : "Breathe deep. Let the tension go.", icon: Wind },
-  { text: bg ? "Прегърни леда. Това е твоето място." : "Embrace the ice. This is your place.", icon: Heart },
+  { text: bg ? "Усети леда под себе си. Бъди тук." : "Embrace the ice. This is your place.", icon: Heart },
   { text: bg ? "Качество, не количество." : "Quality, not quantity.", icon: Sparkles },
   { text: bg ? "Тялото ти знае какво да прави." : "Your body knows what to do.", icon: Zap },
 ];
@@ -167,7 +167,7 @@ export const PreTrainingPrep: React.FC<PreTrainingPrepProps> = ({
           <CardHeader className="pb-3">
             <CardTitle className="text-base flex items-center gap-2">
               <CheckCircle2 className="w-5 h-5 text-mental" />
-              {L('Pre-ice checklist', 'Чеклист преди леда')}
+              {L('Pre-ice checklist', 'Проверка преди леда')}
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
@@ -211,7 +211,7 @@ export const PreTrainingPrep: React.FC<PreTrainingPrepProps> = ({
 
             {!allChecked && (
               <p className="text-center text-xs text-muted-foreground">
-                {L('Check everything off when you’re ready', 'Отметни всичко, когато си готов/а')}
+                {L('Check everything off when you’re ready', 'Отметни всичко, преди да продължиш')}
               </p>
             )}
           </CardContent>
@@ -266,7 +266,7 @@ export const PreTrainingPrep: React.FC<PreTrainingPrepProps> = ({
                   <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
                     <div className="text-center">
                       <div className="text-xl font-bold text-white drop-shadow">
-                        {isBreathing ? BREATHING.steps[breathStep] : L('Ready', 'Готов/а')}
+                        {isBreathing ? BREATHING.steps[breathStep] : L('Ready', 'Можем да започнем')}
                       </div>
                       {isBreathing && (
                         <>
@@ -357,7 +357,7 @@ export const PreTrainingPrep: React.FC<PreTrainingPrepProps> = ({
                   className="bg-mental hover:bg-mental/90"
                 >
                   <Sparkles className="w-4 h-4 mr-2" />
-                  {L("I'm ready", 'Готов/а съм')}
+                  {L("I'm ready", 'Готово, към тренировката')}
                 </Button>
               </div>
 

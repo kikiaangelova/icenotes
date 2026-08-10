@@ -184,14 +184,14 @@ const DAILY_EXERCISES = (bg: boolean) => [
     title: bg ? "Сутрешна нагласа" : "Morning mindset",
     time: bg ? "1 мин" : "1 min",
     exercise: bg
-      ? "Кажи на глас: „Аз съм силен/силна и способен/способна скейтър. Днес ще дам най-доброто от себе си и това е достатъчно.“"
+      ? "Кажи на глас: „Вярвам на подготовката си. Днес давам най-доброто, което мога, и това е достатъчно.“"
       : "Say out loud: \"I'm a strong, capable skater. Today I'll give my best, and that's enough.\"",
   },
   {
     title: bg ? "Момент на благодарност" : "Gratitude moment",
     time: bg ? "1 мин" : "1 min",
     exercise: bg
-      ? "Назови едно нещо в кънките, за което си благодарен/благодарна днес. Може да е треньорът ти, пистата или просто това, че можеш да се плъзгаш."
+      ? "Назови едно нещо във фигурното пързаляне, за което изпитваш благодарност днес. Може да е треньорът ти, пързалката или просто усещането да се плъзгаш."
       : "Name one thing about skating you're grateful for today. Could be your coach, the rink, or just being able to glide.",
   },
   {
@@ -243,7 +243,7 @@ export const SportPsychology: React.FC = () => {
           <Brain className="w-5 h-5 text-mental" />
           {L('Sport Psychology', 'Спортна психология')}
         </h2>
-        <p className="text-sm text-muted-foreground">{L('Strong mind, stronger skating', 'Силен ум — по-силно пързаляне')}</p>
+          <p className="text-sm text-muted-foreground">{L('Strong mind, stronger skating', 'По-спокоен ум — по-уверено каране')}</p>
       </div>
 
       {/* Daily Mental Exercise */}
@@ -376,7 +376,7 @@ export const SportPsychology: React.FC = () => {
             <CardContent className="p-4">
               <div className="flex items-center gap-2 mb-2">
                 <Trophy className="w-4 h-4 text-gold" />
-                <span className="text-xs font-medium text-gold uppercase tracking-wide">{L('Ready to compete', 'Готов/а за старт')}</span>
+                <span className="text-xs font-medium text-gold uppercase tracking-wide">{L('Ready to compete', 'Подготовка за старт')}</span>
               </div>
               <p className="text-sm text-muted-foreground">
                 {L(
