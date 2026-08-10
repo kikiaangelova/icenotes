@@ -99,6 +99,15 @@ const dict: Dict = {
   },
   'land.community.share': { en: 'Share your season', bg: 'Сподели своя сезон' },
   'land.count.suffix': { en: 'skaters already here', bg: 'фигуристи вече са тук' },
+  'feature.goals.title': { en: 'Goals that hold', bg: 'Цели, които издържат' },
+  'feature.goals.text': { en: 'Weekly, monthly, season. Broken into the reps it actually takes.', bg: 'Седмични, месечни, сезонни. Разбити на повторенията, които реално отнемат.' },
+  'feature.sessions.title': { en: 'Session log', bg: 'Дневник на тренировките' },
+  'feature.sessions.text': { en: 'Jumps, quality, energy — logged in under two minutes.', bg: 'Скокове, качество, енергия — записани за под две минути.' },
+  'feature.reflect.title': { en: 'Reflection', bg: 'Рефлексия' },
+  'feature.reflect.text': { en: 'Name the fear, the frustration, the small win. Nobody else sees it.', bg: 'Назови страха, напрежението, малката победа. Никой друг не го вижда.' },
+  'feature.coach.title': { en: 'Coach Iris', bg: 'Coach Iris' },
+  'feature.coach.text': { en: 'An AI sport psychologist that reads your entries and asks the right question back.', bg: 'AI спортен психолог, който чете записките ти и връща правилния въпрос.' },
+
 
 
 
