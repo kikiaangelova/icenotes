@@ -8,6 +8,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { AuthProvider, useAuth } from "@/context/AuthContext";
 import { LanguageProvider, useLanguage } from "@/context/LanguageContext";
 import { LanguageSync } from "@/components/LanguageSync";
+import { SkatingAssistant } from "@/components/SkatingAssistant";
 import Index from "./pages/Index";
 import Auth from "./pages/Auth";
 import Home from "./pages/Home";
@@ -121,6 +122,7 @@ const App = () => {
           <Sonner />
           <BrowserRouter>
             <AppRoutes />
+            <SkatingAssistant />
           </BrowserRouter>
         </TooltipProvider>
       </AuthProvider>

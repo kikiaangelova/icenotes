@@ -4,7 +4,6 @@ import { Navbar } from '@/components/landing/Navbar';
 import { Footer } from '@/components/landing/Footer';
 import { LandingPage } from '@/components/landing/LandingPage';
 import { useNavigate } from 'react-router-dom';
-import { SkatingAssistant } from '@/components/SkatingAssistant';
 import { useLanguage } from '@/context/LanguageContext';
 
 const Home: React.FC = () => {
@@ -40,7 +39,6 @@ const Home: React.FC = () => {
           onToggleDarkMode={() => setIsDarkMode(!isDarkMode)} 
         />
         <Footer />
-        <SkatingAssistant />
       </div>
     </div>
   );
