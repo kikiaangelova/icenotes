@@ -1105,14 +1105,11 @@ const isLanguage = (val: unknown): val is Language =>
   typeof val === 'string' && (SUPPORTED as ReadonlyArray<string>).includes(val);
 
 const detectInitialLanguage = (): Language => {
-  // English first, Bulgarian second: the landing page is the entry point for an
-  // international Gen Z audience. A saved choice always wins.
+  // English is the default everywhere. Bulgarian only when the visitor picks it
+  // from the language switcher (their choice is remembered).
   try {
     const saved = localStorage.getItem(STORAGE_KEY);
     if (isLanguage(saved)) return saved;
-    if (typeof navigator !== 'undefined' && navigator.language?.toLowerCase().startsWith('bg')) {
-      return 'bg';
-    }
   } catch {
     /* storage unavailable */
   }
