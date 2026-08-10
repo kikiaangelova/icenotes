@@ -33,11 +33,14 @@ const interp = (s: string, vars: Record<string, string | number>) =>
 export const MindfulnessTools: React.FC = () => {
   const [open, setOpen] = useState<ToolKey>(null);
   const [snoozed, setSnoozed] = useState<Set<string>>(new Set());
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   const snoozeTool = (key: string) => {
     setSnoozed(prev => new Set(prev).add(key));
-    toast('Resting this one for now.', { description: 'Your worth is not measured by today.' });
+    toast(
+      language === 'bg' ? 'Оставяме го за по-късно.' : 'Resting this one for now.',
+      { description: language === 'bg' ? 'Един ден не определя стойността ти.' : 'Your worth is not measured by today.' }
+    );
     window.setTimeout(() => {
       setSnoozed(prev => {
         const n = new Set(prev);
@@ -69,8 +72,8 @@ export const MindfulnessTools: React.FC = () => {
                 key={tool.key}
                 onComplete={() => setOpen(tool.key)}
                 onSnooze={() => snoozeTool(tool.key)}
-                completeLabel="Open"
-                snoozeLabel="Not now"
+                completeLabel={language === 'bg' ? 'Отвори' : 'Open'}
+                snoozeLabel={language === 'bg' ? 'Не сега' : 'Not now'}
               >
                 <button
                   onClick={() => setOpen(tool.key)}
