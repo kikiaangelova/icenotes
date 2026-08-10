@@ -4,6 +4,8 @@ import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { cn } from '@/lib/utils';
 import { useLanguage } from '@/context/LanguageContext';
+import { IrisAvatar } from './IrisAvatar';
+
 
 type Msg = { role: 'user' | 'assistant'; content: string };
 
@@ -119,22 +121,23 @@ export const SkatingAssistant: React.FC = () => {
       <SheetTrigger asChild>
         <button
           aria-label={t('coach.openLabel')}
-          className="fixed bottom-24 right-5 sm:bottom-6 sm:right-6 z-50 group flex items-center gap-2 px-5 h-14 rounded-full bg-gradient-to-r from-primary via-grape-foreground to-rose-foreground text-primary-foreground motion-glow motion-shimmer motion-press hover:scale-[1.04] transition-transform duration-300 font-bold"
+          className="fixed bottom-24 right-5 sm:bottom-6 sm:right-6 z-50 group flex items-center gap-2 pl-2 pr-5 h-14 rounded-full bg-gradient-to-r from-primary to-accent text-primary-foreground shadow-[var(--shadow-lg)] motion-press hover:scale-[1.04] transition-transform duration-300 font-bold"
         >
-          <Sparkles className="w-5 h-5 motion-breathe" />
+          <IrisAvatar size={40} ring={false} className="ring-2 ring-primary-foreground/50" />
           <span className="hidden sm:inline">{t('coach.title')}</span>
         </button>
       </SheetTrigger>
       <SheetContent side="right" className="w-full sm:max-w-md flex flex-col p-0 gap-0">
         <SheetHeader className="px-5 py-4 border-b">
-          <SheetTitle className="flex items-center gap-2 text-xl font-extrabold tracking-tight">
-            <span className="w-9 h-9 rounded-full bg-gradient-to-br from-primary to-rose-foreground flex items-center justify-center text-primary-foreground">
-              <Sparkles className="w-4 h-4" />
+          <SheetTitle className="flex items-center gap-3 text-xl font-extrabold tracking-tight">
+            <IrisAvatar size={40} />
+            <span className="flex flex-col items-start leading-tight">
+              {t('coach.title')}
+              <span className="text-xs font-medium text-muted-foreground">{t('coach.subtitle')}</span>
             </span>
-            {t('coach.title')}
-            <span className="text-xs font-medium text-muted-foreground">{t('coach.subtitle')}</span>
           </SheetTitle>
         </SheetHeader>
+
 
         <div ref={scrollRef} className="flex-1 overflow-y-auto px-5 py-4 space-y-4">
           {messages.length === 0 && (

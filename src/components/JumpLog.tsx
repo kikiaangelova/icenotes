@@ -219,12 +219,20 @@ export const JumpLog: React.FC<JumpLogProps> = ({ onComplete }) => {
                 <div className="flex-1">
                   <div className="flex justify-between text-sm mb-1">
                     <span>{name}</span>
-                    <span className="text-muted-foreground">{stats.landed}/{stats.total}</span>
+                    <span className="text-muted-foreground tabular-nums">
+                      {stats.landed}/{stats.total} · {stats.successRate}%
+                    </span>
                   </div>
-                  <Progress value={stats.successRate} className="h-1.5" />
+                  <div className="h-2 rounded-full bg-muted overflow-hidden">
+                    <div
+                      className="h-full rounded-full bg-gradient-to-r from-primary to-accent transition-[width] duration-1000 ease-out"
+                      style={{ width: `${stats.successRate}%` }}
+                    />
+                  </div>
                 </div>
               </div>
             );
+
           })}
           
           {jumpAttempts.length === 0 && (

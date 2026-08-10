@@ -4,7 +4,7 @@
  * Respects prefers-reduced-motion — no motion for skaters who opted out.
  */
 
-const COLORS = ['#C6FF3D', '#7C3AED', '#A78BFA', '#FDE68A', '#F472B6', '#67E8F9'];
+const COLORS = ['#F2622E', '#F9A825', '#FFD166', '#2F6F5E', '#3D5AC9', '#C4552B'];
 
 const prefersReducedMotion = () =>
   typeof window !== 'undefined' &&

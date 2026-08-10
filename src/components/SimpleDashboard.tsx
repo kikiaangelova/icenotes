@@ -33,6 +33,8 @@ import { TodayHero } from './TodayHero';
 import { CoachNoticed } from './CoachNoticed';
 import { MobileBottomNav, type BottomTab } from './MobileBottomNav';
 import { QuickActionsGrid } from './QuickActionsGrid';
+import { ProgressionCard } from './ProgressionCard';
+
 
 import { ProfileSheet } from './ProfileSheet';
 import { useIsAdmin } from '@/hooks/useIsAdmin';
@@ -308,6 +310,11 @@ export const SimpleDashboard: React.FC = () => {
                 onPrimaryAction={() => handleStartTraining('on-ice')}
                 onReflectAction={() => setCurrentView('reflect')}
               />
+
+              {/* MOMENTUM — level, XP and weekly challenges */}
+              <ProgressionCard />
+
+
 
               {/* CONTEXT — Game Day ritual (only renders if relevant date window) */}
               <GameDayCard onClick={() => setGameDayOpen(true)} />
