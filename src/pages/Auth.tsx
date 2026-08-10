@@ -68,8 +68,8 @@ const Auth: React.FC = () => {
       });
       if (result.error) {
         toast({
-          title: t('auth.toast.loginFailed') || 'Sign-in failed',
-          description: result.error.message || 'Please try again.',
+          title: t('auth.toast.loginFailed'),
+          description: result.error.message || t('auth.toast.tryAgain'),
           variant: 'destructive',
         });
         setGoogleLoading(false);
@@ -79,8 +79,8 @@ const Auth: React.FC = () => {
       navigate(searchParams.get('next') || '/dashboard');
     } catch (err) {
       toast({
-        title: 'Sign-in failed',
-        description: (err as Error).message || 'Please try again.',
+        title: t('auth.toast.loginFailed'),
+        description: (err as Error).message || t('auth.toast.tryAgain'),
         variant: 'destructive',
       });
       setGoogleLoading(false);
