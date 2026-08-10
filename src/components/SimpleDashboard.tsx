@@ -33,6 +33,8 @@ import { TodayHero } from './TodayHero';
 import { CoachNoticed } from './CoachNoticed';
 import { MobileBottomNav, type BottomTab } from './MobileBottomNav';
 import { QuickActionsGrid } from './QuickActionsGrid';
+import { ProgressionCard } from './ProgressionCard';
+
 
 import { ProfileSheet } from './ProfileSheet';
 import { useIsAdmin } from '@/hooks/useIsAdmin';
