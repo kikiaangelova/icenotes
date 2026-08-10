@@ -20,8 +20,9 @@ import {
   Flame
 } from 'lucide-react';
 import { MindJournal } from './MindJournal';
+import { useLanguage } from '@/context/LanguageContext';
 
-const AFFIRMATIONS = [
+const AFFIRMATIONS = (bg: boolean) => bg ? [
   "Силна/силен съм и съм готов(а) за днешната тренировка.",
   "Всяка тренировка ме прави малко по-добър(а).",
   "Доверявам се на тялото си.",
@@ -34,42 +35,55 @@ const AFFIRMATIONS = [
   "Радвам се, че имам лед днес.",
   "Работата ми личи. Просто бавно.",
   "Имам време да го науча.",
+] : [
+  "I'm strong and I'm ready for today's session.",
+  "Every practice makes me a little bit better.",
+  "I trust my body.",
+  "Hard things teach me. They don't break me.",
+  "I know how to do this jump. I've done it before.",
+  "I'm calm. I'm in control.",
+  "I skate because I love it.",
+  "Falling doesn't erase progress.",
+  "I see it in my head first, then I do it.",
+  "I'm grateful I get ice time today.",
+  "My work shows. It just takes time.",
+  "I have time to learn this.",
 ];
 
-const BREATHING_EXERCISES = [
+const BREATHING_EXERCISES = (bg: boolean) => [
   {
     id: 'box',
-    name: 'Дишане в каре',
-    description: 'Сваля нервите преди старт',
-    steps: ['Вдишай 4с', 'Задръж 4с', 'Издишай 4с', 'Задръж 4с'],
+    name: bg ? 'Дишане в каре' : 'Box breathing',
+    description: bg ? 'Сваля нервите преди старт' : 'Calms your nerves before competing',
+    steps: bg ? ['Вдишай 4с', 'Задръж 4с', 'Издишай 4с', 'Задръж 4с'] : ['Inhale 4s', 'Hold 4s', 'Exhale 4s', 'Hold 4s'],
     durations: [4, 4, 4, 4],
     rounds: 4,
   },
   {
     id: '478',
-    name: 'Дишане 4-7-8',
-    description: 'Помага за заспиване и пълно отпускане',
-    steps: ['Вдишай 4с', 'Задръж 7с', 'Издишай 8с'],
+    name: bg ? 'Дишане 4-7-8' : '4-7-8 breathing',
+    description: bg ? 'Помага за заспиване и пълно отпускане' : 'Helps you fall asleep and fully unwind',
+    steps: bg ? ['Вдишай 4с', 'Задръж 7с', 'Издишай 8с'] : ['Inhale 4s', 'Hold 7s', 'Exhale 8s'],
     durations: [4, 7, 8],
     rounds: 3,
   },
   {
     id: 'energizing',
-    name: 'Зареждащо дишане',
-    description: 'Събужда тялото преди тренировка',
-    steps: ['Бързо вдишване', 'Бързо издишване'],
+    name: bg ? 'Зареждащо дишане' : 'Energizing breath',
+    description: bg ? 'Събужда тялото преди тренировка' : 'Wakes up your body before training',
+    steps: bg ? ['Бързо вдишване', 'Бързо издишване'] : ['Quick inhale', 'Quick exhale'],
     durations: [1, 1],
     rounds: 10,
   },
 ];
 
-const VISUALIZATION_SCRIPTS = [
+const VISUALIZATION_SCRIPTS = (bg: boolean) => [
   {
     id: 'program',
-    title: 'Прекарай програмата наум',
-    duration: '5–10 мин',
+    title: bg ? 'Прекарай програмата наум' : 'Run through your program',
+    duration: bg ? '5–10 мин' : '5–10 min',
     icon: Eye,
-    steps: [
+    steps: bg ? [
       'Затвори очи. Поеми три бавни дишания.',
       'Виж се на пътеката към леда.',
       'Усети студа и звука на пързалката.',
@@ -78,14 +92,23 @@ const VISUALIZATION_SCRIPTS = [
       'Виж как минаваш всеки елемент чисто.',
       'Усети края — стабилен(а), доволен(а).',
       'Задръж позата. Това си ти.',
+    ] : [
+      'Close your eyes. Take three slow breaths.',
+      'See yourself walking onto the ice.',
+      'Feel the cold and the sound of the rink.',
+      'Step into your opening position. You\'re ready.',
+      'Play the music in your head.',
+      'Watch yourself land every element clean.',
+      'Feel the ending — steady, satisfied.',
+      'Hold the pose. That\'s you.',
     ],
   },
   {
     id: 'jump',
-    title: 'Чист скок наум',
-    duration: '3–5 мин',
+    title: bg ? 'Чист скок наум' : 'A clean jump in your mind',
+    duration: bg ? '3–5 мин' : '3–5 min',
     icon: Sparkles,
-    steps: [
+    steps: bg ? [
       'Избери един скок.',
       'Затвори очи и дишай бавно.',
       'Виж засилката — стабилна, с добро ребро.',
@@ -94,14 +117,23 @@ const VISUALIZATION_SCRIPTS = [
       'Виж леда и пиши приземяването.',
       'Излез с чисто ребро.',
       'Пусни го наум 5 пъти.',
+    ] : [
+      'Pick one jump.',
+      'Close your eyes and breathe slowly.',
+      'See the entry — steady, on a good edge.',
+      'Feel the take-off — quick, controlled.',
+      'Feel the rotation — tight, centered.',
+      'See the ice and stick the landing.',
+      'Exit on a clean edge.',
+      'Replay it in your head 5 times.',
     ],
   },
   {
     id: 'confidence',
-    title: 'Върни си увереността',
-    duration: '5 мин',
+    title: bg ? 'Върни си увереността' : 'Get your confidence back',
+    duration: bg ? '5 мин' : '5 min',
     icon: Flame,
-    steps: [
+    steps: bg ? [
       'Седни и затвори очи.',
       'Сети се за момент, в който се гордееше със себе си.',
       'Върни усещането — къде беше, кой беше там.',
@@ -109,11 +141,19 @@ const VISUALIZATION_SCRIPTS = [
       'Остави това усещане да се разлее.',
       'То ти принадлежи. Можеш да го викнеш пак.',
       'Вземи го със себе си на следващата тренировка.',
+    ] : [
+      'Sit down and close your eyes.',
+      'Think of a moment you were proud of yourself.',
+      'Bring back the feeling — where you were, who was there.',
+      'Remember how your body felt.',
+      'Let that feeling spread through you.',
+      'It belongs to you. You can call on it again.',
+      'Carry it with you into your next session.',
     ],
   },
 ];
 
-const JOURNAL_PROMPTS = [
+const JOURNAL_PROMPTS = (bg: boolean) => bg ? [
   "Какво ми се получи днес?",
   "Кое искам да оправя утре?",
   "Как се чувствам за следващото състезание?",
@@ -122,15 +162,33 @@ const JOURNAL_PROMPTS = [
   "Какво ме спира в момента и какво мога да направя?",
   "Кой ме вдъхновява и защо?",
   "Какво означава добър сезон за мен?",
+] : [
+  "What went well for me today?",
+  "What do I want to fix tomorrow?",
+  "How do I feel about the next competition?",
+  "What am I grateful for today?",
+  "Describe your best-ever practice — what does it look like?",
+  "What's holding me back right now, and what can I do about it?",
+  "Who inspires me and why?",
+  "What does a good season mean to me?",
 ];
 
 export const MentalHealthHub: React.FC = () => {
+  const { language } = useLanguage();
+  const bg = language === 'bg';
+  const L = (en: string, bgs: string) => (bg ? bgs : en);
+
+  const affirmations = AFFIRMATIONS(bg);
+  const breathingExercises = BREATHING_EXERCISES(bg);
+  const visualizationScripts = VISUALIZATION_SCRIPTS(bg);
+  const journalPrompts = JOURNAL_PROMPTS(bg);
+
   const [currentAffirmation, setCurrentAffirmation] = useState(0);
   const [journalEntry, setJournalEntry] = useState('');
   const [currentPrompt, setCurrentPrompt] = useState(0);
   
   // Breathing exercise state
-  const [selectedExercise, setSelectedExercise] = useState(BREATHING_EXERCISES[0]);
+  const [selectedExercise, setSelectedExercise] = useState(breathingExercises[0]);
   const [isBreathing, setIsBreathing] = useState(false);
   const [breathStep, setBreathStep] = useState(0);
   const [breathProgress, setBreathProgress] = useState(0);
@@ -139,6 +197,11 @@ export const MentalHealthHub: React.FC = () => {
   // Visualization state
   const [activeVisualization, setActiveVisualization] = useState<string | null>(null);
   const [vizStep, setVizStep] = useState(0);
+
+  useEffect(() => {
+    setSelectedExercise((prev) => breathingExercises.find((ex) => ex.id === prev.id) ?? breathingExercises[0]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [bg]);
 
   useEffect(() => {
     let interval: ReturnType<typeof setInterval>;
@@ -170,11 +233,11 @@ export const MentalHealthHub: React.FC = () => {
   }, [isBreathing, breathStep, breathRound, selectedExercise]);
 
   const nextAffirmation = () => {
-    setCurrentAffirmation((prev) => (prev + 1) % AFFIRMATIONS.length);
+    setCurrentAffirmation((prev) => (prev + 1) % affirmations.length);
   };
 
   const nextPrompt = () => {
-    setCurrentPrompt((prev) => (prev + 1) % JOURNAL_PROMPTS.length);
+    setCurrentPrompt((prev) => (prev + 1) % journalPrompts.length);
     setJournalEntry('');
   };
 
@@ -188,9 +251,9 @@ export const MentalHealthHub: React.FC = () => {
               <Brain className="w-6 h-6 text-mental" />
             </div>
             <div>
-              <h2 className="text-xl font-bold">Главата също тренира</h2>
+              <h2 className="text-xl font-bold">{L('Your head trains too', 'Главата също тренира')}</h2>
               <p className="text-sm text-muted-foreground">
-                Дишане, визуализация и кратки напомняния
+                {L('Breathing, visualization, and quick reminders', 'Дишане, визуализация и кратки напомняния')}
               </p>
             </div>
           </div>
@@ -201,30 +264,30 @@ export const MentalHealthHub: React.FC = () => {
         <TabsList className="grid w-full grid-cols-5 h-12 p-1">
           <TabsTrigger value="breathing" className="flex items-center gap-2">
             <Wind className="w-4 h-4" />
-            <span className="hidden sm:inline">Дишане</span>
+            <span className="hidden sm:inline">{L('Breathing', 'Дишане')}</span>
           </TabsTrigger>
           <TabsTrigger value="visualization" className="flex items-center gap-2">
             <Eye className="w-4 h-4" />
-            <span className="hidden sm:inline">Визуализация</span>
+            <span className="hidden sm:inline">{L('Visualize', 'Визуализация')}</span>
           </TabsTrigger>
           <TabsTrigger value="affirmations" className="flex items-center gap-2">
             <Heart className="w-4 h-4" />
-            <span className="hidden sm:inline">Напомняне</span>
+            <span className="hidden sm:inline">{L('Reminder', 'Напомняне')}</span>
           </TabsTrigger>
           <TabsTrigger value="journal" className="flex items-center gap-2">
             <PenLine className="w-4 h-4" />
-            <span className="hidden sm:inline">Дневник</span>
+            <span className="hidden sm:inline">{L('Journal', 'Дневник')}</span>
           </TabsTrigger>
           <TabsTrigger value="mind" className="flex items-center gap-2">
             <Brain className="w-4 h-4" />
-            <span className="hidden sm:inline">Глава</span>
+            <span className="hidden sm:inline">{L('Mind', 'Глава')}</span>
           </TabsTrigger>
         </TabsList>
 
         {/* Breathing Exercises */}
         <TabsContent value="breathing" className="space-y-6">
           <div className="grid gap-3">
-            {BREATHING_EXERCISES.map((exercise) => (
+            {breathingExercises.map((exercise) => (
               <Card 
                 key={exercise.id}
                 className={`cursor-pointer transition-all ${
@@ -247,7 +310,7 @@ export const MentalHealthHub: React.FC = () => {
                       <h3 className="font-semibold">{exercise.name}</h3>
                       <p className="text-sm text-muted-foreground">{exercise.description}</p>
                     </div>
-                    <Badge variant="outline">{exercise.rounds} rounds</Badge>
+                    <Badge variant="outline">{exercise.rounds} {L('rounds', 'кръга')}</Badge>
                   </div>
                 </CardContent>
               </Card>
@@ -273,11 +336,11 @@ export const MentalHealthHub: React.FC = () => {
                   <div className="absolute inset-0 flex items-center justify-center">
                     <div className="text-center">
                       <div className="text-3xl font-bold text-mental">
-                        {isBreathing ? selectedExercise.steps[breathStep] : 'Ready'}
+                        {isBreathing ? selectedExercise.steps[breathStep] : L('Ready', 'Готов(а)')}
                       </div>
                       {isBreathing && (
                         <div className="text-sm text-muted-foreground mt-2">
-                          Round {breathRound} of {selectedExercise.rounds}
+                          {L('Round', 'Кръг')} {breathRound} {L('of', 'от')} {selectedExercise.rounds}
                         </div>
                       )}
                     </div>
@@ -296,11 +359,11 @@ export const MentalHealthHub: React.FC = () => {
                   >
                     {isBreathing ? (
                       <>
-                        <Pause className="w-5 h-5 mr-2" /> Pause
+                        <Pause className="w-5 h-5 mr-2" /> {L('Pause', 'Пауза')}
                       </>
                     ) : (
                       <>
-                        <Play className="w-5 h-5 mr-2" /> Start
+                        <Play className="w-5 h-5 mr-2" /> {L('Start', 'Старт')}
                       </>
                     )}
                   </Button>
@@ -326,7 +389,7 @@ export const MentalHealthHub: React.FC = () => {
 
         {/* Visualization */}
         <TabsContent value="visualization" className="space-y-4">
-          {VISUALIZATION_SCRIPTS.map((viz) => (
+          {visualizationScripts.map((viz) => (
             <Card 
               key={viz.id}
               className={activeVisualization === viz.id ? 'ring-2 ring-mental' : ''}
@@ -380,7 +443,7 @@ export const MentalHealthHub: React.FC = () => {
                         }}
                         disabled={vizStep === 0}
                       >
-                        Previous
+                        {L('Previous', 'Назад')}
                       </Button>
                       <Button
                         className="flex-1 bg-mental hover:bg-mental/90"
@@ -393,7 +456,7 @@ export const MentalHealthHub: React.FC = () => {
                           }
                         }}
                       >
-                        {vizStep < viz.steps.length - 1 ? 'Next Step' : 'Complete'}
+                        {vizStep < viz.steps.length - 1 ? L('Next Step', 'Следваща стъпка') : L('Complete', 'Готово')}
                       </Button>
                     </div>
                   </div>
@@ -407,7 +470,7 @@ export const MentalHealthHub: React.FC = () => {
                     }}
                   >
                     <Play className="w-4 h-4 mr-2" />
-                    Begin Visualization
+                    {L('Begin Visualization', 'Започни визуализацията')}
                   </Button>
                 )}
               </CardContent>
@@ -422,17 +485,17 @@ export const MentalHealthHub: React.FC = () => {
               <div className="text-center space-y-6">
                 <Quote className="w-12 h-12 mx-auto text-mental/50" />
                 <blockquote className="text-2xl font-medium leading-relaxed max-w-lg mx-auto">
-                  "{AFFIRMATIONS[currentAffirmation]}"
+                  "{affirmations[currentAffirmation]}"
                 </blockquote>
                 <Button 
                   onClick={nextAffirmation}
                   className="bg-mental hover:bg-mental/90"
                 >
                   <Sparkles className="w-4 h-4 mr-2" />
-                  Next Affirmation
+                  {L('Next Affirmation', 'Следващо напомняне')}
                 </Button>
                 <p className="text-sm text-muted-foreground">
-                  Repeat this affirmation 3 times, feeling its truth
+                  {L('Repeat this affirmation 3 times, feeling its truth', 'Повтори това напомняне 3 пъти, усещайки истинността му')}
                 </p>
               </div>
             </CardContent>
@@ -445,17 +508,17 @@ export const MentalHealthHub: React.FC = () => {
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <PenLine className="w-5 h-5" />
-                Today's Reflection
+                {L("Today's Reflection", 'Днешна рефлексия')}
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="p-4 rounded-lg bg-mental/10 border border-mental/20">
                 <p className="font-medium text-lg">
-                  {JOURNAL_PROMPTS[currentPrompt]}
+                  {journalPrompts[currentPrompt]}
                 </p>
               </div>
               <Textarea
-                placeholder="Write your thoughts here..."
+                placeholder={L('Write your thoughts here...', 'Напиши мислите си тук...')}
                 value={journalEntry}
                 onChange={(e) => setJournalEntry(e.target.value)}
                 className="min-h-[200px]"
@@ -463,11 +526,11 @@ export const MentalHealthHub: React.FC = () => {
               <div className="flex gap-2">
                 <Button variant="outline" onClick={nextPrompt}>
                   <RotateCcw className="w-4 h-4 mr-2" />
-                  New Prompt
+                  {L('New Prompt', 'Нова тема')}
                 </Button>
                 <Button className="flex-1 bg-mental hover:bg-mental/90">
                   <Check className="w-4 h-4 mr-2" />
-                  Save Entry
+                  {L('Save Entry', 'Запази записа')}
                 </Button>
               </div>
             </CardContent>

@@ -1,5 +1,6 @@
 import React from 'react';
 import { usePremium } from '@/context/PremiumContext';
+import { useLanguage } from '@/context/LanguageContext';
 import { Card, CardContent } from '@/components/ui/card';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Feather, Calendar, BookOpen } from 'lucide-react';
@@ -7,6 +8,9 @@ import { format, parseISO } from 'date-fns';
 
 export const ReflectionHistory: React.FC = () => {
   const { dailyReflections, weeklyReflections } = usePremium();
+  const { language } = useLanguage();
+  const bg = language === 'bg';
+  const L = (en: string, bgs: string) => (bg ? bgs : en);
 
   const allReflections = [
     ...dailyReflections.map(r => ({
@@ -27,9 +31,9 @@ export const ReflectionHistory: React.FC = () => {
         <CardContent className="pt-8 pb-8 text-center space-y-4">
           <BookOpen className="w-10 h-10 mx-auto text-premium/40" />
           <div>
-            <h3 className="font-medium text-foreground">Още нямаш записи</h3>
+            <h3 className="font-medium text-foreground">{L("No entries yet", 'Още нямаш записи')}</h3>
             <p className="text-sm text-muted-foreground mt-2 max-w-[280px] mx-auto">
-              Започни с днешния ден. Едно изречение е достатъчно.
+              {L('Start with today. One sentence is enough.', 'Започни с днешния ден. Едно изречение е достатъчно.')}
             </p>
           </div>
         </CardContent>
@@ -54,10 +58,12 @@ export const ReflectionHistory: React.FC = () => {
                     <Calendar className="w-4 h-4 text-reflect" />
                   )}
                   <span className="text-xs font-medium text-muted-foreground uppercase tracking-wide">
-                    {reflection.type === 'daily' ? 'Daily' : 'Weekly'} Reflection
+                    {reflection.type === 'daily'
+                      ? L('Daily Reflection', 'Дневна рефлексия')
+                      : L('Weekly Reflection', 'Седмична рефлексия')}
                   </span>
                   <span className="text-xs text-muted-foreground ml-auto">
-                    {format(reflection.sortDate, 'MMM d, yyyy')}
+                    {format(reflection.sortDate, bg ? 'd MMM yyyy' : 'MMM d, yyyy')}
                   </span>
                 </div>
 
@@ -74,25 +80,25 @@ export const ReflectionHistory: React.FC = () => {
                   <div className="space-y-3 text-sm">
                     {reflection.supportedBy && (
                       <div>
-                        <p className="text-xs font-medium text-muted-foreground mb-1">What supported you</p>
+                        <p className="text-xs font-medium text-muted-foreground mb-1">{L('What supported you', 'Какво те подкрепи')}</p>
                         <p className="text-foreground">{reflection.supportedBy}</p>
                       </div>
                     )}
                     {reflection.challenges && (
                       <div>
-                        <p className="text-xs font-medium text-muted-foreground mb-1">Challenges faced</p>
+                        <p className="text-xs font-medium text-muted-foreground mb-1">{L('Challenges faced', 'Предизвикателства')}</p>
                         <p className="text-foreground">{reflection.challenges}</p>
                       </div>
                     )}
                     {reflection.proudOf && (
                       <div>
-                        <p className="text-xs font-medium text-muted-foreground mb-1">Proud of</p>
+                        <p className="text-xs font-medium text-muted-foreground mb-1">{L('Proud of', 'Гордееш се с')}</p>
                         <p className="text-foreground">{reflection.proudOf}</p>
                       </div>
                     )}
                     {reflection.nextFocus && (
                       <div>
-                        <p className="text-xs font-medium text-muted-foreground mb-1">Next focus</p>
+                        <p className="text-xs font-medium text-muted-foreground mb-1">{L('Next focus', 'Следващ фокус')}</p>
                         <p className="text-foreground">{reflection.nextFocus}</p>
                       </div>
                     )}

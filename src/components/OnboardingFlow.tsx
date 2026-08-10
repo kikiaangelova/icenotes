@@ -20,7 +20,6 @@ export const OnboardingFlow: React.FC = () => {
   const { user } = useAuth();
   const updateProfile = useUpdateProfile();
   const { toast } = useToast();
-  const { t } = useLanguage();
 
   const [step, setStep] = useState<OnboardingStep>('welcome');
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -36,15 +35,18 @@ export const OnboardingFlow: React.FC = () => {
     weight: '',
   });
 
+  const { t, language } = useLanguage();
+  const isBG = language === 'bg';
+
   const stepQuotes = useMemo(
     () => ({
-      welcome: getQuoteByCategory('beginning'),
-      level: getQuoteByCategory('self-improvement'),
-      goals: getQuoteByCategory('dedication'),
-      details: getQuoteByCategory('journey'),
-      complete: getQuoteByCategory('progress'),
+      welcome: getQuoteByCategory('beginning', isBG),
+      level: getQuoteByCategory('self-improvement', isBG),
+      goals: getQuoteByCategory('dedication', isBG),
+      details: getQuoteByCategory('journey', isBG),
+      complete: getQuoteByCategory('progress', isBG),
     }),
-    []
+    [isBG]
   );
 
   const handleComplete = async () => {
