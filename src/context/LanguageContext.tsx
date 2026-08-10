@@ -63,6 +63,10 @@ const dict: Dict = {
   'finalCta.welcomeBack': { en: 'Back on the ice', bg: 'Отново на леда' },
 
   // ───── Landing (rebuilt hero + sections) ─────
+  'seo.home.title': { en: 'IceNotes – Reflect. Train. Perform.', bg: 'IceNotes – Рефлексия. Тренировка. Представяне.' },
+  'seo.home.desc': { en: 'A digital journaling and mental-training space for ambitious figure skaters. Track mindset, training and performance with Coach Iris AI.', bg: 'Дигитален дневник и ментална подготовка за амбициозни фигуристи. Следи мисленето, тренировките и представянето си с Coach Iris AI.' },
+  'seo.dashboard.title': { en: 'Skater Dashboard – IceNotes', bg: 'Табло на фигуриста – IceNotes' },
+  'seo.dashboard.desc': { en: 'Your private IceNotes dashboard: log training sessions, track jumps, journal your mindset and chat with Coach Iris.', bg: 'Личното ти табло в IceNotes: записвай тренировки, следи скоковете, води дневник и говори с Coach Iris.' },
   'land.chip': { en: 'Mental training for figure skaters', bg: 'Ментална подготовка за фигуристи' },
   'land.h1.a': { en: 'Five minutes after practice', bg: 'Пет минути след тренировка' },
   'land.h1.b': { en: 'change the whole season.', bg: 'променят целия сезон.' },
