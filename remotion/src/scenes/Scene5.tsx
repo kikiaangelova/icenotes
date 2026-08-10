@@ -25,22 +25,26 @@ export const Scene5: React.FC = () => {
         }}
       />
 
-      <div style={{ position: 'absolute', left: 90, top: 260, width: 900 }}>
-        <Line delay={4} size={150}>
+      <div style={{ position: 'absolute', left: 90, top: 240, width: 900 }}>
+        <Line delay={4} size={140}>
           Trust the
         </Line>
-        <Line delay={12} size={150} color={C.clay}>
+        <Line delay={12} size={140} color={C.clay}>
           process.
         </Line>
-        <div style={{ height: 26 }} />
-        <Line delay={22} size={44} font={body} weight={600} lh={1.35}>
-          <span style={{ color: `${C.ink}99` }}>
-            Reflect after practice. Train the mind like an edge.
-          </span>
-        </Line>
+        <div style={{ height: 20 }} />
+        <div style={{ width: 560 }}>
+          <Line delay={22} size={40} font={body} weight={600} lh={1.35}>
+            <span style={{ color: `${C.ink}99` }}>Reflect after practice.</span>
+          </Line>
+          <Line delay={28} size={40} font={body} weight={600} lh={1.35}>
+            <span style={{ color: `${C.ink}99` }}>Train the mind like an edge.</span>
+          </Line>
+        </div>
       </div>
 
-      <Sticker src={S.approved} delay={26} width={620} style={{ right: 40, top: 760 }} rotate={5} bounce={9} />
+      <Sticker src={S.approved} delay={26} width={560} style={{ right: 20, top: 880 }} rotate={5} bounce={9} />
+
 
       {/* wordmark */}
       <div
