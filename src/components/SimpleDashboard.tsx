@@ -340,7 +340,7 @@ export const SimpleDashboard: React.FC = () => {
                   {/* Ambient cinematic strip — kept available but not first thing you see */}
                   <div className="relative rounded-2xl overflow-hidden border border-border/40 shadow-md">
                     <video
-                      src={"/__l5e/assets-v1/3daacbd1-7cdb-4f6a-8b80-1829ab0b700d/hero-skater.mp4"}
+                      src={"/__l5e/assets-v1/64a99587-3f36-4e93-8979-ba15bd014697/hero-skater-neon.mp4"}
                       autoPlay
                       muted
                       loop
