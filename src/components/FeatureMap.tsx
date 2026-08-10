@@ -28,13 +28,13 @@ export const FeatureMap: React.FC<Props> = ({ onOpen }) => {
   const L = (en: string, b: string) => (bg ? b : en);
 
   const items: { icon: React.ElementType; label: string; hint: string; dest: FeatureDest; tone: string }[] = [
-    { icon: Feather, label: L('Reflect after practice', 'Рефлексия след лед'), hint: L('3 minutes, guided', '3 минути, с въпроси'), dest: { special: 'reflect' }, tone: 'text-rose-foreground bg-rose/25' },
-    { icon: MessageCircleHeart, label: L('Talk to Coach Kiki', 'Говори с Коуч Кики'), hint: L('Sport psychologist, anytime', 'Спортен психолог, по всяко време'), dest: { special: 'coach' }, tone: 'text-grape-foreground bg-grape/25' },
+    { icon: Feather, label: L('Reflect after practice', 'Равносметка след тренировка'), hint: L('3 minutes, guided', '3 минути с кратки въпроси'), dest: { special: 'reflect' }, tone: 'text-rose-foreground bg-rose/25' },
+    { icon: MessageCircleHeart, label: L('Talk to Coach Kiki', 'Говори с Кики'), hint: L('Sport psychologist, anytime', 'Подкрепа от спортен психолог'), dest: { special: 'coach' }, tone: 'text-grape-foreground bg-grape/25' },
     { icon: Brain, label: L('Before the ice', 'Преди леда'), hint: L('Breathing, focus, visualisation', 'Дишане, фокус, визуализация'), dest: { tab: 'mind', sub: 'preskate' }, tone: 'text-rose-foreground bg-rose/25' },
     { icon: Sparkles, label: L('Sport psychology', 'Спортна психология'), hint: L('Fear, pressure, confidence', 'Страх, напрежение, увереност'), dest: { tab: 'mind', sub: 'psych' }, tone: 'text-grape-foreground bg-grape/25' },
-    { icon: Heart, label: L('Mind check-in', 'Как е главата'), hint: L('Name what you feel', 'Наречи какво усещаш'), dest: { tab: 'mind', sub: 'reflect' }, tone: 'text-rose-foreground bg-rose/25' },
+    { icon: Heart, label: L('Mind check-in', 'Как си днес'), hint: L('Name what you feel', 'Назови какво усещаш'), dest: { tab: 'mind', sub: 'reflect' }, tone: 'text-rose-foreground bg-rose/25' },
     { icon: Flame, label: L('Competition day', 'Ден на състезание'), hint: L('4-step pre-skate ritual', 'Ритуал в 4 стъпки'), dest: { special: 'gameday' }, tone: 'text-peach-foreground bg-peach/40' },
-    { icon: Snowflake, label: L('On-ice & off-ice log', 'Лед и суха тренировка'), hint: L('What you did, how it felt', 'Какво кара и как беше'), dest: { tab: 'train', sub: 'sessions' }, tone: 'text-mint-foreground bg-mint/30' },
+    { icon: Snowflake, label: L('On-ice & off-ice log', 'Лед и суха тренировка'), hint: L('What you did, how it felt', 'Какво тренира и как се почувства'), dest: { tab: 'train', sub: 'sessions' }, tone: 'text-mint-foreground bg-mint/30' },
     { icon: Dumbbell, label: L('Jump tracker', 'Дневник на скоковете'), hint: L('Attempts, landings, quality', 'Опити, приземявания, качество'), dest: { tab: 'train', sub: 'jumps' }, tone: 'text-mint-foreground bg-mint/30' },
     { icon: Timer, label: L('Session timer', 'Таймер'), hint: L('Time your ice time', 'Засичай времето на леда'), dest: { tab: 'train', sub: 'timer' }, tone: 'text-mint-foreground bg-mint/30' },
     { icon: CalendarCheck, label: L('Weekly goals', 'Седмични цели'), hint: L('Hours, sessions, jumps', 'Часове, тренировки, скокове'), dest: { tab: 'goals', sub: 'weekly' }, tone: 'text-lavender-foreground bg-lavender/30' },
@@ -49,10 +49,10 @@ export const FeatureMap: React.FC<Props> = ({ onOpen }) => {
       <summary className="cursor-pointer list-none p-4 flex items-center justify-between min-h-[64px]">
         <div>
           <p className="text-[10px] font-bold tracking-[0.18em] uppercase text-muted-foreground">
-            {L('Everything inside', 'Всичко вътре')}
+            {L('Everything inside', 'Всички възможности')}
           </p>
           <p className="text-sm font-bold text-foreground">
-            {L('All 14 tools, one tap away', 'Всички 14 инструмента, на един допир')}
+            {L('All 14 tools, one tap away', '14 инструмента на едно място')}
           </p>
         </div>
         <span className="text-xs text-muted-foreground group-open:rotate-180 transition-transform">▾</span>

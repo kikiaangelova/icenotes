@@ -10,16 +10,16 @@ import { GameDayCard, GameDayMode } from '@/components/GameDayMode';
 import { useLanguage } from '@/context/LanguageContext';
 
 const SportPsychology: React.FC = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const [gameDayOpen, setGameDayOpen] = useState(false);
 
   const topics = [
-    { icon: Brain, title: t('psy.t1.title'), description: t('psy.t1.desc'), prompt: "I want to work on my mental resilience. Can you guide me through a short session?" },
-    { icon: Eye, title: t('psy.t2.title'), description: t('psy.t2.desc'), prompt: "I want to practice visualization for my skating. Let's do a guided session." },
-    { icon: Shield, title: t('psy.t3.title'), description: t('psy.t3.desc'), prompt: "I want to build more confidence on the ice. Can you help me?" },
-    { icon: Flame, title: t('psy.t4.title'), description: t('psy.t4.desc'), prompt: "I'm struggling with motivation lately. Can we talk about it?" },
-    { icon: Heart, title: t('psy.t5.title'), description: t('psy.t5.desc'), prompt: "I want to work on managing my emotions during competition." },
-    { icon: Zap, title: t('psy.t6.title'), description: t('psy.t6.desc'), prompt: "Help me improve my focus and concentration during practice." },
+    { icon: Brain, title: t('psy.t1.title'), description: t('psy.t1.desc'), prompt: language === 'bg' ? 'Искам да се подготвя психически за следващата тренировка. Задай ми един въпрос, от който да започнем.' : "I want to work on my mental resilience. Can you guide me through a short session?" },
+    { icon: Eye, title: t('psy.t2.title'), description: t('psy.t2.desc'), prompt: language === 'bg' ? 'Искам да упражня визуализация за програмата си. Помогни ми да започна.' : "I want to practice visualization for my skating. Let's do a guided session." },
+    { icon: Shield, title: t('psy.t3.title'), description: t('psy.t3.desc'), prompt: language === 'bg' ? 'На леда ми липсва увереност. Помогни ми да разбера какво стои зад това.' : "I want to build more confidence on the ice. Can you help me?" },
+    { icon: Flame, title: t('psy.t4.title'), description: t('psy.t4.desc'), prompt: language === 'bg' ? 'Напоследък ми е трудно да намеря мотивация за тренировка. Нека поговорим.' : "I'm struggling with motivation lately. Can we talk about it?" },
+    { icon: Heart, title: t('psy.t5.title'), description: t('psy.t5.desc'), prompt: language === 'bg' ? 'Искам да се справям по-добре с емоциите си по време на състезание.' : "I want to work on managing my emotions during competition." },
+    { icon: Zap, title: t('psy.t6.title'), description: t('psy.t6.desc'), prompt: language === 'bg' ? 'Лесно губя фокус по време на тренировка. Помогни ми да разбера кога се случва.' : "Help me improve my focus and concentration during practice." },
   ];
 
   const startSession = (prompt: string) => {
@@ -30,7 +30,11 @@ const SportPsychology: React.FC = () => {
   return (
     <div className="min-h-screen bg-background">
       <Navbar isDarkMode={false} onToggleDarkMode={() => {}} />
-        <Seo title="Sport Psychology for Figure Skaters – IceNotes" description="Mental-training hub for figure skaters: resilience, visualization, confidence, focus, and Game Day rituals with Coach Kiki AI." path="/sport-psychology" />
+        <Seo
+          title={language === 'bg' ? 'Спортна психология за фигуристи – IceNotes' : 'Sport Psychology for Figure Skaters – IceNotes'}
+          description={language === 'bg' ? 'Ментална подготовка за фигуристи: увереност, фокус, визуализация и ритуал преди състезание.' : 'Mental-training hub for figure skaters: resilience, visualization, confidence, focus, and Game Day rituals with Coach Kiki AI.'}
+          path="/sport-psychology"
+        />
 
         <section className="px-5 md:px-12 pt-14 pb-10 md:pt-28 md:pb-16">
           <div className="max-w-3xl mx-auto text-center">
@@ -69,7 +73,7 @@ const SportPsychology: React.FC = () => {
                   className="w-full gap-2 mt-auto border-primary/30 text-primary hover:bg-primary/10 hover:text-primary"
                 >
                   <Sparkles className="w-3.5 h-3.5" />
-                  Start Session with Coach Kiki
+                  {language === 'bg' ? 'Започни разговор с Кики' : 'Start Session with Coach Kiki'}
                 </Button>
               </div>
             ))}

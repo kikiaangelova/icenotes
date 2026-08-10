@@ -201,10 +201,10 @@ export function getWelcomeState(
       eyebrow: bg ? 'Денят е готов' : 'Today is wrapped',
       headline: bg ? 'Свали кънките. Дишай.' : 'Skates off. Breathe.',
       micro: bg
-        ? 'Записа тренировка и рефлексия. Толкова.'
+        ? 'Записа тренировката и направи равносметка. Това е достатъчно.'
         : 'You logged a session and a reflection. Nothing more is needed today.',
       primary: {
-        label: bg ? 'Говори с Kiki' : 'Talk to Coach Kiki',
+        label: bg ? 'Говори с Кики' : 'Talk to Coach Kiki',
         action: 'coach',
       },
     };
@@ -217,7 +217,7 @@ export function getWelcomeState(
       eyebrow: bg ? 'След леда' : 'After the ice',
       headline: bg ? 'Излезе на лед. Сега поеми дъх.' : 'You showed up. Now breathe.',
       micro: bg
-        ? 'Една кратка рефлексия и денят е твой.'
+        ? 'Остава само кратка равносметка за деня.'
         : 'A short reflection and the day is yours.',
       primary: {
         label: bg ? 'Запиши деня' : 'Reflect on today',
@@ -313,7 +313,7 @@ export function getWelcomeState(
       eyebrow: bg ? 'Тиха вечер' : 'Quiet evening',
       headline: bg ? 'Поеми дъх. Всичко е тук.' : 'Take a breath. Everything’s here.',
       micro: bg
-        ? 'Една кратка рефлексия преди да си починеш.'
+        ? 'Направи кратка равносметка, преди да си починеш.'
         : 'One soft reflection before you rest.',
       primary: { label: bg ? 'Запиши деня' : 'Reflect on today', action: 'reflect' },
     };

@@ -84,8 +84,8 @@ export const TodayHero: React.FC<TodayHeroProps> = ({
     : welcome.primary.action === 'rest' ? <Moon className="w-5 h-5" />
     : <Play className="w-5 h-5 fill-current" />;
 
-  const reflectCopy = language === 'bg' ? 'Днешна рефлексия' : 'Today reflection';
-  const coachCopy = language === 'bg' ? 'Говори с Kiki' : 'Talk to Coach Kiki';
+  const reflectCopy = language === 'bg' ? 'Равносметка за деня' : 'Today reflection';
+  const coachCopy = language === 'bg' ? 'Говори с Кики' : 'Talk to Coach Kiki';
   const trainCopy = language === 'bg' ? 'Започни тренировка' : 'Start training';
 
   return (
@@ -128,7 +128,7 @@ export const TodayHero: React.FC<TodayHeroProps> = ({
         <span>{language === 'bg' ? 'Сесия' : 'Session'}</span>
         <span className="opacity-30">·</span>
         <span className={`w-2 h-2 rounded-full ${signals.hasTodayEntry ? 'bg-rose-foreground' : 'bg-foreground/20'}`} />
-        <span>{language === 'bg' ? 'Рефлексия' : 'Reflection'}</span>
+        <span>{language === 'bg' ? 'Равносметка' : 'Reflection'}</span>
       </div>
 
       {/* Primary action cluster — adaptive */}
@@ -161,7 +161,7 @@ export const TodayHero: React.FC<TodayHeroProps> = ({
             </span>
             <span className="min-w-0">
               <span className="block text-[10px] font-bold tracking-[0.18em] uppercase text-muted-foreground">
-                {language === 'bg' ? 'Сърце' : 'Heart'}
+                {language === 'bg' ? 'След тренировка' : 'Heart'}
               </span>
               <span className="block text-xs sm:text-sm font-bold text-foreground truncate">{reflectCopy}</span>
             </span>
@@ -179,7 +179,7 @@ export const TodayHero: React.FC<TodayHeroProps> = ({
             </span>
             <span className="min-w-0">
               <span className="block text-[10px] font-bold tracking-[0.18em] uppercase text-muted-foreground">
-                {language === 'bg' ? 'Ментор' : 'Mentor'}
+                {language === 'bg' ? 'Подкрепа' : 'Mentor'}
               </span>
               <span className="block text-xs sm:text-sm font-bold text-foreground truncate">{coachCopy}</span>
             </span>
