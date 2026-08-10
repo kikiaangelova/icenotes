@@ -280,13 +280,13 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted }) => {
       <section className="relative z-10 px-5 md:px-12 py-16 md:py-24">
         <div className="max-w-5xl mx-auto">
           <div className="text-center max-w-2xl mx-auto mb-10">
-            <p className="text-xs font-bold tracking-[0.25em] uppercase text-primary mb-3">Skaters get skaters</p>
-            <h2 className="text-3xl md:text-5xl font-black tracking-tight leading-[1.05] mb-4">
-              The pressure isn't yours alone.<br />
-              <span className="italic bg-gradient-to-r from-rose-foreground to-primary bg-clip-text text-transparent">Neither is the joy.</span>
+            <p className="text-[11px] font-bold tracking-[0.22em] uppercase text-primary mb-3">{t('land.community.kicker')}</p>
+            <h2 className="text-2xl md:text-4xl font-extrabold tracking-[-0.03em] leading-[1.05] mb-4">
+              {t('land.community.title')}<br />
+              <span className="text-primary">{t('land.community.titleAccent')}</span>
             </h2>
             <p className="text-base text-muted-foreground leading-relaxed">
-              Real skaters. Real seasons. The shaky warm-ups, the breakthrough nights, the days that almost broke you.
+              {t('land.community.sub')}
             </p>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -296,10 +296,11 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted }) => {
           </div>
           <div className="mt-8 text-center">
             <Link to="/share-experience" className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:gap-3 transition-all duration-200">
-              Share your season
+              {t('land.community.share')}
               <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
+
         </div>
       </section>
 
