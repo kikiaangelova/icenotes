@@ -66,28 +66,32 @@ export const QuickActionsGrid: React.FC<QuickActionsGridProps> = ({
           label={t('quick.training.label')}
           micro={t('quick.training.micro')}
           icon={Snowflake}
-          tone="bg-mint/55 text-mint-foreground"
+          tone="bg-mint/80 text-mint-foreground"
+          surface="from-mint/55 via-card to-card"
           onClick={onTrain}
         />
         <QuickActionTile
           label={t('quick.journal.label')}
           micro={t('quick.journal.micro')}
           icon={BookHeart}
-          tone="bg-sky/55 text-sky-foreground"
+          tone="bg-sky/80 text-sky-foreground"
+          surface="from-sky/55 via-card to-card"
           onClick={onJournal}
         />
         <QuickActionTile
           label={t('quick.goals.label')}
           micro={t('quick.goals.micro')}
           icon={Target}
-          tone="bg-lavender/55 text-lavender-foreground"
+          tone="bg-lavender/80 text-lavender-foreground"
+          surface="from-lavender/55 via-card to-card"
           onClick={onGoals}
         />
         <QuickActionTile
           label={t('quick.mind.label')}
           micro={t('quick.mind.micro')}
           icon={Brain}
-          tone="bg-grape/55 text-grape-foreground"
+          tone="bg-grape/80 text-grape-foreground"
+          surface="from-grape/55 via-card to-card"
           onClick={onMind}
         />
       </div>

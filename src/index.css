@@ -749,3 +749,33 @@
     .goal-pulse, .goal-pulse-bar::after { animation: none !important; }
   }
 }
+
+/* ── Gamification & texture utilities ── */
+@layer utilities {
+  /* Animated XP fill: warm gradient with a travelling highlight */
+  .xp-shimmer {
+    background: linear-gradient(
+      90deg,
+      hsl(var(--primary)) 0%,
+      hsl(var(--xp-gold, var(--accent))) 55%,
+      hsl(var(--primary)) 100%
+    );
+    background-size: 220% 100%;
+    animation: xp-slide 3.5s linear infinite;
+  }
+  @keyframes xp-slide {
+    0%   { background-position: 0% 0; }
+    100% { background-position: -220% 0; }
+  }
+
+  /* Subtle paper grain so cards stop feeling flat */
+  .grain-overlay {
+    opacity: 0.35;
+    background-image: radial-gradient(hsl(var(--foreground) / 0.055) 0.6px, transparent 0.6px);
+    background-size: 4px 4px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .xp-shimmer { animation: none; }
+  }
+}

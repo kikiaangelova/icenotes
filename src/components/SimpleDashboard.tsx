@@ -294,8 +294,17 @@ export const SimpleDashboard: React.FC = () => {
               <TabsTrigger value="progress">{t('dash.tab.progress')}</TabsTrigger>
             </TabsList>
 
-            {/* TODAY — primary actions first, then context */}
+            {/* TODAY — mood first, momentum second, actions third */}
             <TabsContent value="today" className="space-y-5">
+              {/* CONTEXT — adaptive hero (mood/streak/next step) */}
+              <TodayHero
+                onPrimaryAction={() => handleStartTraining('on-ice')}
+                onReflectAction={() => setCurrentView('reflect')}
+              />
+
+              {/* MOMENTUM — level, XP, streak and weekly missions */}
+              <ProgressionCard />
+
               {/* PRIMARY — 5 clear actions, Reflection as hero */}
               <QuickActionsGrid
                 onReflect={() => setCurrentView('reflect')}
@@ -305,14 +314,6 @@ export const SimpleDashboard: React.FC = () => {
                 onMind={() => setActiveTab('mind')}
               />
 
-              {/* CONTEXT — adaptive hero (mood/streak/next step) */}
-              <TodayHero
-                onPrimaryAction={() => handleStartTraining('on-ice')}
-                onReflectAction={() => setCurrentView('reflect')}
-              />
-
-              {/* MOMENTUM — level, XP and weekly challenges */}
-              <ProgressionCard />
 
 
 
