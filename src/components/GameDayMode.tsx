@@ -49,6 +49,7 @@ export const GameDayMode: React.FC<GameDayModeProps> = ({ open, onOpenChange }) 
       setBreathPhase(0);
       setSecondsLeft(BREATH_PHASES[0].seconds);
       setBreathDone(false);
+      setCue('');
     }
   }, [open]);
 
