@@ -270,7 +270,7 @@ const dict: Dict = {
   'training.mental.competition': { en: 'Competition simulation', bg: 'Симулация на старт' },
   'training.mental.affirmations': { en: 'Positive affirmations', bg: 'Афирмации' },
   'training.onIceShort': { en: 'On-Ice', bg: 'На лед' },
-  'training.offIceShort': { en: 'Off-Ice', bg: 'Суха тренировка' },
+  'training.offIceShort': { en: 'Off-Ice', bg: 'Суха' },
 
   // ───── Footer ─────
   'footer.tagline': { en: 'A safe space for skaters to reflect, train, and grow — together.', bg: 'Безопасно място за фигуристи — да дишат, да тренират и да растат заедно.' },
@@ -457,7 +457,7 @@ const dict: Dict = {
   'today.quick.duration.unit': { en: 'minutes', bg: 'минути' },
   'today.quick.type.label': { en: 'What kind of session?', bg: 'Какъв тип тренировка?' },
   'today.quick.type.onIce': { en: 'On-ice', bg: 'На лед' },
-  'today.quick.type.offIce': { en: 'Off-ice', bg: 'Суха тренировка' },
+  'today.quick.type.offIce': { en: 'Off-ice', bg: 'Суха' },
   'today.quick.type.rest': { en: 'Rest day', bg: 'Почивен ден' },
   'today.quick.focus.label': { en: 'How was your focus?', bg: 'Как беше фокусът?' },
   'today.quick.focus.low': { en: 'Scattered', bg: 'Разпилян' },
