@@ -57,7 +57,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted }) => {
                   {t('land.chip')}
                 </span>
               </div>
-              <h1 className="font-display text-[2.4rem] sm:text-6xl md:text-[4.4rem] font-extrabold leading-[0.94] tracking-[-0.04em] text-foreground">
+              <h1 className="font-display text-[2.4rem] sm:text-6xl md:text-[3.5rem] font-extrabold leading-[0.94] tracking-[-0.04em] text-foreground">
                 {t('land.h1.a')}{' '}
                 <span className="text-lime">{t('land.h1.b')}</span>
               </h1>
@@ -93,7 +93,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted }) => {
           <div className="md:col-span-2 md:row-span-2 relative overflow-hidden rounded-[1.75rem] border border-border bg-card min-h-[20rem]">
             <HeroVideo
               src={heroVideo.url}
-              className="block h-full w-full aspect-[3/4] md:aspect-auto md:absolute md:inset-0"
+              className="absolute inset-0 h-full w-full"
               videoClassName=""
               filter="saturate(1.15) contrast(1.1)"
               withOverlay={false}
