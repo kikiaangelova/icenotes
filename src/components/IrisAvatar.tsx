@@ -1,6 +1,6 @@
 import React from 'react';
 import { cn } from '@/lib/utils';
-import irisPhoto from '@/assets/coach-iris.jpg';
+import irisPhoto from '@/assets/coach-kiki.jpg';
 
 interface IrisAvatarProps {
   size?: number;
