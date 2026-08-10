@@ -12,25 +12,8 @@ interface GameDayModeProps {
   onOpenChange: (open: boolean) => void;
 }
 
-const AFFIRMATIONS_EN = [
-  'I am calm, confident and ready.',
-  'I trust my training. My body knows what to do.',
-  'Every edge, every breath, every beat — I belong here.',
-  'I skate with courage. I skate with joy.',
-  'I am stronger than my nerves. Bigger than my doubts.',
-  'I did the work. Today I get to show it.',
-  "I'm here. I'm strong. I'm prepared.",
-];
-
-const AFFIRMATIONS_BG = [
-  'Аз съм спокоен/спокойна, уверен/уверена и готов/а.',
-  'Доверявам се на тренировките. Тялото ми знае какво да прави.',
-  'Всеки ръб, всяко дишане, всеки такт — мястото ми е тук.',
-  'Карам с кураж. Карам с радост.',
-  'По-силен/силна съм от нервите си. По-голям/голяма от съмненията си.',
-  'Свърших работата. Днес имам шанса да я покажа.',
-  'Тук съм. Силен/силна съм. Подготвен/а съм.',
-];
+const CUE_EXAMPLES_EN = ['long edges', 'soft knees', 'breathe out', 'chin up', 'my tempo'];
+const CUE_EXAMPLES_BG = ['дълги ръбове', 'меки колене', 'издишай', 'брадичка горе', 'моето темпо'];
 
 // 4-7-8 дишане: вдишване 4с, задържане 7с, издишване 8с (един пълен цикъл)
 const BREATH_PHASES = [
@@ -45,8 +28,19 @@ export const GameDayMode: React.FC<GameDayModeProps> = ({ open, onOpenChange }) 
   const [breathPhase, setBreathPhase] = useState(0);
   const [secondsLeft, setSecondsLeft] = useState<number>(BREATH_PHASES[0].seconds);
   const [breathDone, setBreathDone] = useState(false);
-  const [affirmationIndex] = useState(() => Math.floor(Math.random() * AFFIRMATIONS_EN.length));
-  const affirmation = (language === 'bg' ? AFFIRMATIONS_BG : AFFIRMATIONS_EN)[affirmationIndex];
+  const [cue, setCue] = useState('');
+  const CUE_EXAMPLES = language === 'bg' ? CUE_EXAMPLES_BG : CUE_EXAMPLES_EN;
+
+  const askKiki = () => {
+    const msg = language === 'bg'
+      ? `Днес имам състезание. Думата ми за програмата е „${cue.trim()}“. Малко съм нервен/на.`
+      : `I have a competition today. My cue for the program is "${cue.trim()}". I'm a bit nervous.`;
+    onOpenChange(false);
+    window.setTimeout(() => {
+      window.dispatchEvent(new CustomEvent('coach-iris:open', { detail: { message: msg } }));
+    }, 250);
+  };
+
 
   // Reset on open
   useEffect(() => {
