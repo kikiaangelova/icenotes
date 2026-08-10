@@ -48,26 +48,26 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted }) => {
 
         <div className="relative max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-6 gap-3 md:gap-4 auto-rows-auto">
           {/* Headline tile */}
-          <div className="md:col-span-4 relative overflow-hidden rounded-[1.75rem] border border-border bg-card p-7 md:p-11 flex flex-col gap-8 md:gap-10">
+          <div className="md:col-span-4 relative overflow-hidden rounded-[1.75rem] border border-border bg-card p-7 md:p-11 flex flex-col items-start gap-6 md:gap-8">
             <div className="pointer-events-none absolute -top-24 -right-16 w-72 h-72 rounded-full bg-violet/30 blur-[90px]" />
-            <div className="relative flex flex-col items-start">
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-lime/15 border border-lime/30 mb-6 md:mb-7">
-                <span className="w-1.5 h-1.5 rounded-full bg-lime" />
-                <span className="text-[10px] md:text-[11px] font-bold tracking-[0.18em] uppercase text-lime">
-                  {t('land.chip')}
-                </span>
-              </div>
-              <h1 className="font-display text-[1.9rem] sm:text-[2.75rem] md:text-[3.25rem] font-extrabold leading-[1.1] tracking-[-0.03em] text-foreground [text-wrap:balance]">
-                {t('land.h1.a')}{' '}
-                <span className="text-lime">{t('land.h1.b')}</span>
-              </h1>
+
+            <div className="relative inline-flex items-start gap-2 max-w-full px-3 py-2 rounded-2xl bg-lime/15 border border-lime/30">
+              <span className="w-1.5 h-1.5 mt-[0.45rem] shrink-0 rounded-full bg-lime" />
+              <span className="text-[10px] md:text-[11px] font-bold tracking-[0.16em] uppercase leading-[1.5] text-lime">
+                {t('land.chip')}
+              </span>
             </div>
 
-            <div className="relative">
+            <h1 className="relative font-display text-[1.9rem] sm:text-[2.75rem] md:text-[3.25rem] font-extrabold leading-[1.12] tracking-[-0.03em] text-foreground [text-wrap:balance] [overflow-wrap:break-word]">
+              {t('land.h1.a')}{' '}
+              <span className="text-lime">{t('land.h1.b')}</span>
+            </h1>
 
+            <div className="relative w-full">
               <p className="text-sm md:text-base text-muted-foreground leading-relaxed max-w-lg mb-7">
                 {t('land.sub')}
               </p>
+
               <div className="flex flex-col sm:flex-row gap-3">
                 <SmartStartCTA
                   action="log-today"
