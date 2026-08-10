@@ -13,6 +13,7 @@ import { useLanguage, getToneForRatings, type Tone } from '@/context/LanguageCon
 import { CoachIrisReflection } from './CoachIrisReflection';
 import { DecompressionFlow } from './DecompressionFlow';
 import { detectDifficulty, type DetectionResult } from '@/lib/emotionalDetection';
+import { celebrate } from '@/lib/celebrate';
 
 interface DailyJournalProps {
   onComplete?: () => void;
@@ -99,8 +100,11 @@ export const DailyJournal: React.FC<DailyJournalProps> = ({ onComplete }) => {
     if (result.isDifficult) {
       setDecomp({ open: true, result });
       // Skip the auto-redirect — let the user close the flow themselves.
-    } else if (onComplete) {
-      setTimeout(onComplete, 2000);
+    } else {
+      celebrate();
+      if (onComplete) {
+        setTimeout(onComplete, 2000);
+      }
     }
   };
 
