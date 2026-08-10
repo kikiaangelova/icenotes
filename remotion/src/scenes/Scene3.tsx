@@ -46,7 +46,7 @@ export const Scene3: React.FC = () => {
         <Kicker delay={30}>Meet your corner</Kicker>
         <div style={{ height: 16 }} />
         <Line delay={34} size={140}>
-          Coach Iris
+          Coach Kiki
         </Line>
         <Line delay={42} size={44} font="'Plus Jakarta Sans', sans-serif" weight={600} lh={1.3}>
           <span style={{ color: `${C.ink}AA` }}>Sport psychologist. Mentor. Always in your corner.</span>

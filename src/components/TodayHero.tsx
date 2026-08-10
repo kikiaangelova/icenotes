@@ -85,7 +85,7 @@ export const TodayHero: React.FC<TodayHeroProps> = ({
     : <Play className="w-5 h-5 fill-current" />;
 
   const reflectCopy = language === 'bg' ? 'Днешна рефлексия' : 'Today reflection';
-  const coachCopy = language === 'bg' ? 'Говори с Iris' : 'Talk to Coach Iris';
+  const coachCopy = language === 'bg' ? 'Говори с Kiki' : 'Talk to Coach Kiki';
   const trainCopy = language === 'bg' ? 'Започни тренировка' : 'Start training';
 
   return (
@@ -168,7 +168,7 @@ export const TodayHero: React.FC<TodayHeroProps> = ({
           </button>
         )}
 
-        {/* Secondary: Coach Iris (unless primary already does it) */}
+        {/* Secondary: Coach Kiki (unless primary already does it) */}
         {welcome.primary.action !== 'coach' && (
           <button
             onClick={openCoach}

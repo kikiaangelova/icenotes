@@ -3,7 +3,7 @@ import { Snowflake, Loader2 } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import { useLanguage } from '@/context/LanguageContext';
 
-const SYSTEM_PROMPT = `You are Coach Iris, a warm sport psychology coach for figure skaters. The skater just wrote a journal entry. Respond with exactly 2-3 sentences: one empathetic acknowledgement of what they shared, and one reflective question or gentle reframe using cognitive behavioral coaching techniques. Be warm, not clinical. Never give generic advice.`;
+const SYSTEM_PROMPT = `You are Coach Kiki, a warm sport psychology coach for figure skaters. The skater just wrote a journal entry. Respond with exactly 2-3 sentences: one empathetic acknowledgement of what they shared, and one reflective question or gentle reframe using cognitive behavioral coaching techniques. Be warm, not clinical. Never give generic advice.`;
 
 interface CoachIrisReflectionProps {
   journalText: string;
@@ -77,7 +77,7 @@ export const CoachIrisReflection: React.FC<CoachIrisReflectionProps> = ({
           <Snowflake className="w-4 h-4 text-lavender-foreground" />
         </div>
         <span className="text-sm font-bold text-lavender-foreground">
-          Coach Iris noticed:
+          Coach Kiki noticed:
         </span>
       </div>
       {loading ? (

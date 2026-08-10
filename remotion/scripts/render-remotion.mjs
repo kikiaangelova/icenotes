@@ -38,7 +38,7 @@ if (stillFrames.length) {
     serveUrl: bundled,
     codec: 'h264',
     crf: 18,
-    outputLocation: '/mnt/documents/icenotes-coach-iris.mp4',
+    outputLocation: '/mnt/documents/icenotes-coach-kiki.mp4',
     puppeteerInstance: browser,
     muted: true,
     concurrency: 1,

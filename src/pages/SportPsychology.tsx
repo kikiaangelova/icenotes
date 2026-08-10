@@ -30,7 +30,7 @@ const SportPsychology: React.FC = () => {
   return (
     <div className="min-h-screen bg-background">
       <Navbar isDarkMode={false} onToggleDarkMode={() => {}} />
-        <Seo title="Sport Psychology for Figure Skaters – IceNotes" description="Mental-training hub for figure skaters: resilience, visualization, confidence, focus, and Game Day rituals with Coach Iris AI." path="/sport-psychology" />
+        <Seo title="Sport Psychology for Figure Skaters – IceNotes" description="Mental-training hub for figure skaters: resilience, visualization, confidence, focus, and Game Day rituals with Coach Kiki AI." path="/sport-psychology" />
 
         <section className="px-5 md:px-12 pt-14 pb-10 md:pt-28 md:pb-16">
           <div className="max-w-3xl mx-auto text-center">
@@ -69,7 +69,7 @@ const SportPsychology: React.FC = () => {
                   className="w-full gap-2 mt-auto border-primary/30 text-primary hover:bg-primary/10 hover:text-primary"
                 >
                   <Sparkles className="w-3.5 h-3.5" />
-                  Start Session with Coach Iris
+                  Start Session with Coach Kiki
                 </Button>
               </div>
             ))}

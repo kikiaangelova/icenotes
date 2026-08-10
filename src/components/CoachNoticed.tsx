@@ -17,7 +17,7 @@ interface Insight {
 }
 
 /**
- * Personalized "Coach Iris noticed…" panel for the dashboard.
+ * Personalized "Coach Kiki noticed…" panel for the dashboard.
  * Surfaces 1-3 emotionally relevant cards based on recent journal signals.
  * Never preachy, never punitive — always supportive framing.
  */
@@ -72,13 +72,13 @@ export const CoachNoticed: React.FC<CoachNoticedProps> = ({ onOpenReflect }) => 
     });
   }
 
-  // Default Coach Iris noticed for steady weeks
+  // Default Coach Kiki noticed for steady weeks
   if (insights.length === 0 && signals.entriesLast7 >= 2) {
     insights.push({
       key: 'coach',
       icon: <Sparkles className="w-4 h-4" />,
       tone: 'coach',
-      title: bg ? 'Iris забеляза…' : 'Coach Iris noticed…',
+      title: bg ? 'Kiki забеляза…' : 'Coach Kiki noticed…',
       body: bg
         ? `${signals.entriesLast7} рефлексии тази седмица. Това е присъствие, не натиск.`
         : `${signals.entriesLast7} reflections this week. That’s presence, not pressure.`,
@@ -95,13 +95,13 @@ export const CoachNoticed: React.FC<CoachNoticedProps> = ({ onOpenReflect }) => 
 
   return (
     <section
-      aria-label={bg ? 'Iris забеляза' : 'Coach Iris noticed'}
+      aria-label={bg ? 'Kiki забеляза' : 'Coach Kiki noticed'}
       className="space-y-2.5 motion-fade-up-delay-1"
     >
       <div className="flex items-center gap-2 px-1">
         <Sparkles className="w-3.5 h-3.5 text-muted-foreground" />
         <h2 className="text-[11px] font-bold tracking-[0.18em] uppercase text-muted-foreground">
-          {bg ? 'Iris забеляза' : 'Coach Iris noticed'}
+          {bg ? 'Kiki забеляза' : 'Coach Kiki noticed'}
         </h2>
       </div>
 
