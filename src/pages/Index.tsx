@@ -29,17 +29,25 @@ const AppContent: React.FC = () => {
   return <SimpleDashboard />;
 };
 
+const IndexSeo: React.FC = () => {
+  const { t } = useLanguage();
+  return (
+    <Seo
+      title={t('seo.dashboard.title')}
+      description={t('seo.dashboard.desc')}
+      path="/dashboard"
+    />
+  );
+};
+
 const Index: React.FC = () => {
   return (
     <JournalProvider>
-      <Seo
-        title="Skater Dashboard – IceNotes"
-        description="Your private IceNotes dashboard: log training sessions, track jumps, journal your mindset and chat with Coach Iris."
-        path="/dashboard"
-      />
+      <IndexSeo />
       <AppContent />
     </JournalProvider>
   );
 };
+
 
 export default Index;
