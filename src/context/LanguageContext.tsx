@@ -55,7 +55,7 @@ const dict: Dict = {
   'social.cta': { en: 'Find your space', bg: 'Намери мястото си' },
   'steps.heading': { en: 'Three small things. Big shift.', bg: 'Три малки неща. Голяма промяна.' },
   'steps.train.title': { en: 'Skate', bg: 'Карай' },
-  'steps.train.text': { en: 'Do your session — on the ice or off it.', bg: 'Изкарай тренировката — на лед или извън него.' },
+  'steps.train.text': { en: 'Do your session — on the ice or off it.', bg: 'Изкарай тренировката — на лед или суха.' },
   'steps.reflect.title': { en: 'Write it down', bg: 'Запиши го' },
   'steps.reflect.text': { en: 'Five minutes after practice. Whatever is still in your head.', bg: 'Пет минути след тренировка. Каквото още ти се върти в главата.' },
   'steps.grow.title': { en: 'See the pattern', bg: 'Виж модела' },
