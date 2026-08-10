@@ -19,8 +19,9 @@ const Home: React.FC = () => {
   }, [isDarkMode]);
 
   return (
-    <div className={isDarkMode ? "dark" : ""}>
-      <div className="min-h-screen bg-background">
+    <div className={isDarkMode ? "dark theme-neon" : "theme-neon"}>
+      <div className="min-h-screen bg-background text-foreground">
+
         <Navbar isDarkMode={isDarkMode} onToggleDarkMode={() => setIsDarkMode(!isDarkMode)} />
         <Seo title="IceNotes – Reflect. Train. Perform." description="A digital journaling and mental-training platform for ambitious figure skaters. Track mindset, training, and performance with Coach Iris AI." path="/" jsonLd={[{"@context": "https://schema.org", "@type": "WebSite", "name": "IceNotes", "url": "https://skategoals.com/"}, {"@context": "https://schema.org", "@type": "Organization", "name": "IceNotes", "url": "https://skategoals.com/", "logo": "https://skategoals.com/og-image.png"}]} />
         <LandingPage 
