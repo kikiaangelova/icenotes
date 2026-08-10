@@ -89,7 +89,7 @@ export const CoachIrisReflection: React.FC<CoachIrisReflectionProps> = ({
       <div className="flex items-center gap-2 mb-2">
         <IrisAvatar size={28} ring={false} />
         <span className="text-sm font-bold text-lavender-foreground">
-          {language === 'bg' ? 'Треньор Кики забеляза:' : 'Coach Kiki noticed:'}
+          {language === 'bg' ? 'Кики забеляза:' : 'Coach Kiki noticed:'}
         </span>
       </div>
       {loading ? (
