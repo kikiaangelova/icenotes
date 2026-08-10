@@ -311,8 +311,8 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted }) => {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 w-64 h-32 bg-rose/10 rounded-full blur-3xl -z-10" />
         
         <div className="max-w-2xl mx-auto text-center">
-          <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-sky/50 via-lavender/40 to-rose/30 flex items-center justify-center mx-auto mb-5 shadow-sm">
-            <SkateBootIcon className="w-7 h-7 text-primary" />
+          <div className="w-14 h-14 rounded-2xl bg-foreground flex items-center justify-center mx-auto mb-5">
+            <IceNotesMark className="w-7 h-7 text-background" />
           </div>
           <h2 className="text-2xl md:text-4xl font-extrabold tracking-tight text-foreground font-serif mb-4 leading-snug">
             {t('finalCta.heading')}
