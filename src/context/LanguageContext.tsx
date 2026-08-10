@@ -15,7 +15,7 @@ const dict: Dict = {
   // ───── Navbar (marketing) ─────
   'quick.reflection.kicker': { en: '2 min', bg: '2 мин' },
   'profile.language': { en: 'Language', bg: 'Език' },
-  'profile.languageSub': { en: 'Interface and Coach Kiki', bg: 'Интерфейс и Coach Kiki' },
+  'profile.languageSub': { en: 'Interface and Coach Kiki', bg: 'Интерфейс и Кики' },
   'nav.home': { en: 'Home', bg: 'Начало' },
   'nav.about': { en: 'About', bg: 'За нас' },
   'nav.features': { en: 'Features', bg: 'Функции' },
@@ -1088,10 +1088,10 @@ const dict: Dict = {
   'gameDay.centered':    { en: 'Centered ✨',           bg: 'Центриран/а ✨' },
 
   // ───── Coach Kiki ─────
-  'coach.openLabel':     { en: 'Open AI skating coach', bg: 'Отвори AI треньор' },
-  'coach.title':         { en: 'Ask Coach Kiki',        bg: 'Питай Coach Кики' },
+  'coach.openLabel':     { en: 'Open AI skating coach', bg: 'Отвори Кики' },
+  'coach.title':         { en: 'Ask Coach Kiki',        bg: 'Питай Кики' },
   'coach.subtitle':      { en: 'tutor · mentor · hype', bg: 'наставник · ментор · подкрепа' },
-  'coach.placeholder':   { en: "Tell Kiki what's up…",  bg: 'Сподели с Kiki какво става…' },
+  'coach.placeholder':   { en: "Tell Kiki what's up…",  bg: 'Сподели с Кики какво става…' },
   'coach.greeting':      { en: "Hey 👋 I'm Kiki. Jumps, nerves, motivation — tell me what's on your mind. Even if it's just \"today was hard\".", bg: 'Здрасти 👋 Аз съм Кики. Скокове, нерви, мотивация — кажи ми какво те вълнува. Дори да е „днес беше тежко“.' },
   'coach.tryOne':        { en: 'Try one',               bg: 'Опитай едно' },
   'coach.starter.1':     { en: 'I keep falling on my Lutz — what do I do?', bg: 'Все падам на лутца — какво да правя?' },

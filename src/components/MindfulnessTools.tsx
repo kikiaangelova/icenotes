@@ -63,7 +63,7 @@ export const MindfulnessTools: React.FC = () => {
         <CardContent className="p-4 space-y-3">
           <div className="flex items-center gap-2">
             <Sparkles className="w-4 h-4 text-purple-500" />
-            <h3 className="font-medium">{t('mt.heading')}</h3>
+            <h3 className="font-medium">{language === 'bg' ? 'Практики за фокус и спокойствие' : t('mt.heading')}</h3>
           </div>
           <p className="text-xs text-muted-foreground">{t('mt.intro')}</p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
