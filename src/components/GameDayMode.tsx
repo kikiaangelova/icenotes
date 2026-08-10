@@ -1,35 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import { Dialog, DialogContent } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
-import { Sparkles, Wind, Eye, Heart, Trophy, ChevronRight, X } from 'lucide-react';
+import { Sparkles, Wind, Eye, Trophy, ChevronRight, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useLanguage } from '@/context/LanguageContext';
 import { celebrate } from '@/lib/celebrate';
+import { IrisAvatar } from '@/components/IrisAvatar';
 
 interface GameDayModeProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
 }
 
-const AFFIRMATIONS_EN = [
-  'I am calm, confident and ready.',
-  'I trust my training. My body knows what to do.',
-  'Every edge, every breath, every beat — I belong here.',
-  'I skate with courage. I skate with joy.',
-  'I am stronger than my nerves. Bigger than my doubts.',
-  'I did the work. Today I get to show it.',
-  "I'm here. I'm strong. I'm prepared.",
-];
-
-const AFFIRMATIONS_BG = [
-  'Аз съм спокоен/спокойна, уверен/уверена и готов/а.',
-  'Доверявам се на тренировките. Тялото ми знае какво да прави.',
-  'Всеки ръб, всяко дишане, всеки такт — мястото ми е тук.',
-  'Карам с кураж. Карам с радост.',
-  'По-силен/силна съм от нервите си. По-голям/голяма от съмненията си.',
-  'Свърших работата. Днес имам шанса да я покажа.',
-  'Тук съм. Силен/силна съм. Подготвен/а съм.',
-];
+const CUE_EXAMPLES_EN = ['long edges', 'soft knees', 'breathe out', 'chin up', 'my tempo'];
+const CUE_EXAMPLES_BG = ['дълги ръбове', 'меки колене', 'издишай', 'брадичка горе', 'моето темпо'];
 
 // 4-7-8 дишане: вдишване 4с, задържане 7с, издишване 8с (един пълен цикъл)
 const BREATH_PHASES = [
@@ -44,8 +28,19 @@ export const GameDayMode: React.FC<GameDayModeProps> = ({ open, onOpenChange }) 
   const [breathPhase, setBreathPhase] = useState(0);
   const [secondsLeft, setSecondsLeft] = useState<number>(BREATH_PHASES[0].seconds);
   const [breathDone, setBreathDone] = useState(false);
-  const [affirmationIndex] = useState(() => Math.floor(Math.random() * AFFIRMATIONS_EN.length));
-  const affirmation = (language === 'bg' ? AFFIRMATIONS_BG : AFFIRMATIONS_EN)[affirmationIndex];
+  const [cue, setCue] = useState('');
+  const CUE_EXAMPLES = language === 'bg' ? CUE_EXAMPLES_BG : CUE_EXAMPLES_EN;
+
+  const askKiki = () => {
+    const msg = language === 'bg'
+      ? `Днес имам състезание. Думата ми за програмата е „${cue.trim()}“. Малко съм нервен/на.`
+      : `I have a competition today. My cue for the program is "${cue.trim()}". I'm a bit nervous.`;
+    onOpenChange(false);
+    window.setTimeout(() => {
+      window.dispatchEvent(new CustomEvent('coach-iris:open', { detail: { message: msg } }));
+    }, 250);
+  };
+
 
   // Reset on open
   useEffect(() => {
@@ -54,6 +49,7 @@ export const GameDayMode: React.FC<GameDayModeProps> = ({ open, onOpenChange }) 
       setBreathPhase(0);
       setSecondsLeft(BREATH_PHASES[0].seconds);
       setBreathDone(false);
+      setCue('');
     }
   }, [open]);
 
@@ -227,24 +223,39 @@ export const GameDayMode: React.FC<GameDayModeProps> = ({ open, onOpenChange }) 
           )}
 
           {step === 2 && (
-            <div className="flex flex-col items-center gap-10 animate-fade-in max-w-2xl">
+            <div className="flex flex-col items-center gap-6 animate-fade-in max-w-xl w-full">
               <div className="flex items-center gap-2 text-white/80">
                 <Sparkles className="w-4 h-4" />
                 <span className="text-sm font-semibold uppercase tracking-widest">{t('gameDay.affirm')}</span>
               </div>
-              <p
-                className="text-3xl md:text-5xl font-black leading-tight text-white"
-                style={{
-                  textShadow:
-                    '0 0 24px hsl(270 90% 70% / 0.7), 0 0 48px hsl(240 90% 60% / 0.5)',
-                }}
-              >
-                "{affirmation}"
+              <p className="text-xl md:text-2xl font-bold leading-snug text-white drop-shadow">
+                {t('gameDay.cuePrompt')}
               </p>
+              <input
+                value={cue}
+                onChange={(e) => setCue(e.target.value)}
+                placeholder={t('gameDay.cuePlaceholder')}
+                className="w-full max-w-sm h-14 rounded-2xl bg-white/10 border border-white/25 px-5 text-center text-lg font-semibold text-white placeholder:text-white/40 outline-none focus:border-white/60"
+              />
+              <div className="text-xs text-white/60 space-y-2">
+                <p>{t('gameDay.cueExamples')}</p>
+                <div className="flex flex-wrap justify-center gap-2">
+                  {CUE_EXAMPLES.map((c) => (
+                    <button
+                      key={c}
+                      onClick={() => setCue(c)}
+                      className="rounded-full border border-white/25 bg-white/5 px-3 py-1.5 text-xs text-white/80 hover:bg-white/15 transition-colors"
+                    >
+                      {c}
+                    </button>
+                  ))}
+                </div>
+              </div>
               <Button
                 size="lg"
                 onClick={next}
-                className="h-14 px-10 rounded-full bg-white text-slate-900 hover:bg-white/90 font-bold motion-press active:scale-95 transition-transform"
+                disabled={!cue.trim()}
+                className="h-14 px-10 rounded-full bg-white text-slate-900 hover:bg-white/90 font-bold disabled:opacity-40 motion-press active:scale-95 transition-transform"
               >
                 {t('gameDay.next')} <ChevronRight className="w-5 h-5 ml-1" />
               </Button>
@@ -252,23 +263,36 @@ export const GameDayMode: React.FC<GameDayModeProps> = ({ open, onOpenChange }) 
           )}
 
           {step === 3 && (
-            <div className="flex flex-col items-center gap-8 animate-fade-in max-w-lg">
-              <div className="w-20 h-20 rounded-full bg-gradient-to-br from-violet-400 to-indigo-600 flex items-center justify-center shadow-lg shadow-violet-500/40">
-                <Heart className="w-10 h-10 text-white" />
-              </div>
+            <div className="flex flex-col items-center gap-6 animate-fade-in max-w-lg">
+              <IrisAvatar size={72} />
               <p className="text-xs font-bold uppercase tracking-[0.2em] text-white/70">
                 {t('gameDay.coachName')}
               </p>
-              <p className="text-2xl md:text-3xl font-bold leading-relaxed text-white drop-shadow">
+              <p className="text-xl md:text-2xl font-bold leading-relaxed text-white drop-shadow">
                 {t('gameDay.pepTalk')}
               </p>
-              <Button
-                size="lg"
-                onClick={finish}
-                className="h-14 px-10 rounded-full bg-gradient-to-r from-violet-500 to-indigo-600 text-white hover:opacity-95 font-bold motion-press active:scale-95 transition-transform"
-              >
-                {t('gameDay.letsGo')} <Sparkles className="w-5 h-5 ml-2" />
-              </Button>
+              {cue.trim() && (
+                <p className="text-sm text-white/70">
+                  “{cue.trim()}”
+                </p>
+              )}
+              <div className="flex flex-col items-center gap-3 w-full">
+                <Button
+                  size="lg"
+                  onClick={askKiki}
+                  variant="outline"
+                  className="h-12 px-8 rounded-full border-white/40 bg-white/10 text-white hover:bg-white/20 hover:text-white font-semibold"
+                >
+                  {t('gameDay.askKiki')}
+                </Button>
+                <Button
+                  size="lg"
+                  onClick={finish}
+                  className="h-14 px-10 rounded-full bg-gradient-to-r from-violet-500 to-indigo-600 text-white hover:opacity-95 font-bold motion-press active:scale-95 transition-transform"
+                >
+                  {t('gameDay.letsGo')} <Sparkles className="w-5 h-5 ml-2" />
+                </Button>
+              </div>
             </div>
           )}
         </div>

@@ -1084,7 +1084,7 @@ const dict: Dict = {
   'gameDay.subtitle':    { en: 'Pre-competition ritual', bg: 'Ритуал преди състезание' },
   'gameDay.breathe':     { en: 'Breathe',               bg: 'Дишай' },
   'gameDay.visualize':   { en: 'Visualize',             bg: 'Визуализирай' },
-  'gameDay.affirm':      { en: 'Affirmation',           bg: 'Утвърждение' },
+  'gameDay.affirm':      { en: 'Your cue',               bg: 'Твоята дума' },
   'gameDay.centered':    { en: 'Centered ✨',           bg: 'Центриран/а ✨' },
 
   // ───── Coach Kiki ─────
@@ -1129,11 +1129,15 @@ const dict: Dict = {
   'gameDay.hold':        { en: 'Hold',                  bg: 'Задръж' },
   'gameDay.exhale':      { en: 'Exhale',                bg: 'Издишвай' },
   'gameDay.sec':         { en: 's',                     bg: 'с' },
-  'gameDay.visualizeText': { en: 'Close your eyes. See yourself stepping on the ice. The music starts. Watch every element land. Feel the crowd. Finish strong.', bg: 'Затвори очи. Представи си как стъпваш на леда. Музиката започва. Виж как кацаш всеки елемент. Усети публиката. Завърши силно.' },
+  'gameDay.visualizeText': { en: 'Eyes closed. Step on the ice in your head and run the program once. Where does it get shaky?', bg: 'Затвори очи. Стъпи на леда наум и изкарай програмата веднъж. Къде става несигурно?' },
   'gameDay.coachName':   { en: 'Coach Kiki',            bg: 'Треньор Кики' },
-  'gameDay.pepTalk':     { en: "You're ready for this. Trust your training. Go out and skate from the heart. I believe in you.", bg: 'Подготвен/а си за това. Доверѝ се на тренировките. Излез и карай от сърце. Вярвам в теб.' },
-  'gameDay.letsGo':      { en: "Let's go",              bg: 'Да тръгваме' },
-  'gameDay.cardSteps':   { en: 'Breathe · Visualize · Affirm · Hear Coach Kiki', bg: 'Дишай · Визуализирай · Афирмирай · Чуй Треньор Кики' },
+  'gameDay.pepTalk':     { en: "One question before you go: what will you do first if something doesn't go to plan?", bg: 'Един въпрос преди да излезеш: какво ще направиш първо, ако нещо не тръгне по план?' },
+  'gameDay.letsGo':      { en: "I'm ready",              bg: 'Готов/а съм' },
+  'gameDay.cardSteps':   { en: 'Breathe · Run it in your head · Pick a cue · One question', bg: 'Дишай · Изкарай я наум · Избери дума · Един въпрос' },
+  'gameDay.cuePrompt':   { en: 'One word or short cue you want in your head during the program.', bg: 'Една дума или кратка команда, която искаш в главата си по време на програмата.' },
+  'gameDay.cuePlaceholder': { en: 'e.g. long edges', bg: 'напр. дълги ръбове' },
+  'gameDay.cueExamples': { en: 'Some skaters use:', bg: 'Някои състезатели ползват:' },
+  'gameDay.askKiki':     { en: 'Answer with Coach Kiki', bg: 'Отговори с Треньор Кики' },
 
   // ───── Profile sheet ─────
   'profile.back':        { en: 'Back',                  bg: 'Назад' },

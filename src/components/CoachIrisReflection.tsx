@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { Snowflake, Loader2 } from 'lucide-react';
+import { Loader2, MessageCircle } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import { useLanguage } from '@/context/LanguageContext';
+import { IrisAvatar } from '@/components/IrisAvatar';
 
 const SYSTEM_PROMPT = `You are Coach Kiki, a sport psychologist reading a skater's journal entry. Reply with at most 3 short spoken sentences: name one concrete thing you actually noticed in what they wrote (quote their own words if useful), then ask ONE open question that helps them find their own answer. No empathy boilerplate, no advice unless they asked, no encouragement lines, no emoji, no poster phrases like "be kind to yourself", "that's valid", "you've got this", "trust the process". Plain, human, short.`;
 
@@ -70,25 +71,40 @@ export const CoachIrisReflection: React.FC<CoachIrisReflectionProps> = ({
   // Silently fail
   if (failed) return null;
 
+  const continueWithKiki = () => {
+    const msg =
+      language === 'bg'
+        ? `Ето какво записах днес:\n\n"""${journalText.trim()}"""\n\nПопита ме: ${reply}`
+        : `Here's what I wrote today:\n\n"""${journalText.trim()}"""\n\nYou asked me: ${reply}`;
+    window.dispatchEvent(new CustomEvent('coach-iris:open', { detail: { message: msg } }));
+  };
+
   return (
     <div className="animate-fade-in mt-4 rounded-2xl border border-lavender-foreground/25 bg-gradient-to-br from-lavender/40 via-grape/15 to-lavender/20 p-4 shadow-sm">
       <div className="flex items-center gap-2 mb-2">
-        <div className="w-7 h-7 rounded-full bg-lavender-foreground/15 flex items-center justify-center">
-          <Snowflake className="w-4 h-4 text-lavender-foreground" />
-        </div>
+        <IrisAvatar size={28} ring={false} />
         <span className="text-sm font-bold text-lavender-foreground">
-          Coach Kiki noticed:
+          {language === 'bg' ? 'Треньор Кики забеляза:' : 'Coach Kiki noticed:'}
         </span>
       </div>
       {loading ? (
         <div className="flex items-center gap-2 text-sm text-lavender-foreground/80 italic">
           <Loader2 className="w-3.5 h-3.5 animate-spin" />
-          Reading your reflection…
+          {language === 'bg' ? 'Чете записа ти…' : 'Reading your reflection…'}
         </div>
       ) : (
-        <p className="text-sm sm:text-base leading-relaxed text-foreground whitespace-pre-wrap">
-          {reply}
-        </p>
+        <>
+          <p className="text-sm sm:text-base leading-relaxed text-foreground whitespace-pre-wrap">
+            {reply}
+          </p>
+          <button
+            onClick={continueWithKiki}
+            className="mt-3 inline-flex items-center gap-2 rounded-full border border-lavender-foreground/30 bg-background/50 px-4 py-2 text-xs font-semibold text-lavender-foreground hover:bg-background/80 transition-colors"
+          >
+            <MessageCircle className="w-3.5 h-3.5" />
+            {language === 'bg' ? 'Отговори на Кики' : 'Answer Kiki'}
+          </button>
+        </>
       )}
     </div>
   );
