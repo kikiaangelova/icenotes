@@ -259,8 +259,55 @@
     box-shadow: 0 12px 40px -14px hsl(263 83% 58% / 0.6);
   }
 
+  /* shadcn Card + any bg-card surface inside the app → dark glass */
+  .theme-neon .bg-card,
+  .theme-neon .bg-card\/85,
+  .theme-neon .bg-card\/90,
+  .theme-neon .bg-card\/80,
+  .theme-neon .bg-white {
+    background: linear-gradient(160deg, hsl(263 60% 22% / 0.40), hsl(255 45% 12% / 0.75)) !important;
+    backdrop-filter: blur(18px) saturate(150%);
+    -webkit-backdrop-filter: blur(18px) saturate(150%);
+    border-color: hsl(263 83% 70% / 0.18);
+    color: hsl(var(--card-foreground));
+  }
 
+  .theme-neon .bg-card:hover {
+    border-color: hsl(78 100% 62% / 0.32);
+  }
 
+  /* Elevated glass (bottom nav, sheets) on the dark surface */
+  .theme-neon .glass-elevated {
+    background: hsl(255 45% 9% / 0.82);
+    border-color: hsl(263 83% 70% / 0.18);
+    box-shadow:
+      0 1px 0 hsl(263 90% 80% / 0.08) inset,
+      0 -10px 40px -18px hsl(263 83% 58% / 0.7);
+  }
+
+  /* Muted chrome (tab lists, secondary chips) stays violet, never grey */
+  .theme-neon .bg-muted,
+  .theme-neon .bg-muted\/50,
+  .theme-neon .bg-muted\/60 {
+    background-color: hsl(255 35% 15% / 0.75) !important;
+  }
+
+  /* Headings inside the app use Syne, body copy Plus Jakarta Sans */
+  .theme-neon h1,
+  .theme-neon h2,
+  .theme-neon h3,
+  .theme-neon h4,
+  .theme-neon h5,
+  .theme-neon h6 {
+    font-family: 'Syne', 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
+  }
+
+  .theme-neon body,
+  .theme-neon input,
+  .theme-neon textarea,
+  .theme-neon button {
+    font-family: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
+  }
 
 
   .dark {
