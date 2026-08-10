@@ -2,6 +2,7 @@ import React from 'react';
 import { Home, Target, Snowflake, Brain, Feather, User } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useLanguage } from '@/context/LanguageContext';
+import { IrisAvatar } from '@/components/IrisAvatar';
 
 export type BottomTab = 'home' | 'goals' | 'training' | 'mind' | 'journal' | 'profile';
 
