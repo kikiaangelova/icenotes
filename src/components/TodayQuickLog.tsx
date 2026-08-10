@@ -348,12 +348,12 @@ export const TodayQuickLog: React.FC = () => {
       <CardContent className="space-y-6">
         {/* 0. Pre-session mood check-in */}
         <div className="space-y-2">
-          <Label className="text-sm font-semibold">{t('today.quick.moodCheckin.label') || 'How are you feeling right now?'}</Label>
+          <Label className="text-sm font-semibold">{language === 'bg' ? 'Как се чувстваш точно сега?' : 'How are you feeling right now?'}</Label>
           <div className="grid grid-cols-3 gap-2">
             {[
-              { value: 'heavy' as const, emoji: '😤', label: 'Tough day', glow: 'shadow-[0_0_0_3px_hsl(var(--rose-foreground)/0.35)]', active: 'border-rose-foreground bg-rose/30' },
-              { value: 'calm' as const, emoji: '😊', label: 'Feeling good', glow: 'shadow-[0_0_0_3px_hsl(var(--mint-foreground)/0.35)]', active: 'border-mint-foreground bg-mint/30' },
-              { value: 'energizing' as const, emoji: '🔥', label: "Let's go", glow: 'shadow-[0_0_0_3px_hsl(var(--peach-foreground)/0.4)]', active: 'border-peach-foreground bg-peach/40' },
+              { value: 'heavy' as const, emoji: '😤', label: language === 'bg' ? 'Труден ден' : 'Tough day', glow: 'shadow-[0_0_0_3px_hsl(var(--rose-foreground)/0.35)]', active: 'border-rose-foreground bg-rose/30' },
+              { value: 'calm' as const, emoji: '😊', label: language === 'bg' ? 'Чувствам се добре' : 'Feeling good', glow: 'shadow-[0_0_0_3px_hsl(var(--mint-foreground)/0.35)]', active: 'border-mint-foreground bg-mint/30' },
+              { value: 'energizing' as const, emoji: '🔥', label: language === 'bg' ? 'Хайде да действаме' : "Let's go", glow: 'shadow-[0_0_0_3px_hsl(var(--peach-foreground)/0.4)]', active: 'border-peach-foreground bg-peach/40' },
             ].map((m) => {
               const isActive = form.mood === m.value;
               return (
