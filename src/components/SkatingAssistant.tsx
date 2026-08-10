@@ -10,7 +10,7 @@ type Msg = { role: 'user' | 'assistant'; content: string };
 const STARTER_KEYS = ['coach.starter.1', 'coach.starter.2', 'coach.starter.3', 'coach.starter.4'];
 
 export const SkatingAssistant: React.FC = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const [open, setOpen] = useState(false);
   const [messages, setMessages] = useState<Msg[]>([]);
   const [input, setInput] = useState('');
@@ -66,7 +66,7 @@ export const SkatingAssistant: React.FC = () => {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}`,
         },
-        body: JSON.stringify({ messages: next }),
+        body: JSON.stringify({ messages: next, language }),
       });
 
       if (resp.status === 429) {
@@ -149,7 +149,7 @@ export const SkatingAssistant: React.FC = () => {
                   <button
                     key={k}
                     onClick={() => send(t(k))}
-                    className="text-left px-4 py-3 rounded-xl bg-muted/50 hover:bg-muted transition-colors text-sm font-medium"
+                    className="text-left px-4 py-3 rounded-xl bg-muted/50 hover:bg-muted active:scale-[0.97] transition-all text-sm font-medium motion-press"
                   >
                     {t(k)}
                   </button>
@@ -191,7 +191,7 @@ export const SkatingAssistant: React.FC = () => {
             className="flex-1 h-11 px-4 rounded-xl bg-muted/50 border border-border focus:outline-none focus:ring-2 focus:ring-primary text-sm"
             disabled={loading}
           />
-          <Button type="submit" size="icon" className="h-11 w-11 rounded-xl shrink-0" disabled={loading || !input.trim()}>
+          <Button type="submit" size="icon" className="h-11 w-11 rounded-xl shrink-0 motion-press active:scale-90 transition-transform" disabled={loading || !input.trim()}>
             <Send className="w-4 h-4" />
           </Button>
         </form>

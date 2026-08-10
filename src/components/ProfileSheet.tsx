@@ -2,12 +2,12 @@ import React from 'react';
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from '@/components/ui/sheet';
 import { Button } from '@/components/ui/button';
 import { AvatarUpload } from '@/components/AvatarUpload';
-import { Home, ChevronLeft, LogOut, Bell, Shield, Mail, ExternalLink, Users } from 'lucide-react';
+import { Home, ChevronLeft, LogOut, Bell, Shield, Mail, ExternalLink, Users, Globe } from 'lucide-react';
 import { useJournal } from '@/context/JournalContext';
 import { useAuth } from '@/context/AuthContext';
 import { useIsAdmin } from '@/hooks/useIsAdmin';
 import { useNavigate } from 'react-router-dom';
-import { useLanguage } from '@/context/LanguageContext';
+import { useLanguage, LANGUAGES, type Language } from '@/context/LanguageContext';
 
 interface ProfileSheetProps {
   open: boolean;
@@ -35,7 +35,7 @@ export const ProfileSheet: React.FC<ProfileSheetProps> = ({
   const { user } = useAuth();
   const { isAdmin } = useIsAdmin();
   const navigate = useNavigate();
-  const { t } = useLanguage();
+  const { t, language, setLanguage } = useLanguage();
 
   if (!profile) return null;
 
@@ -104,6 +104,34 @@ export const ProfileSheet: React.FC<ProfileSheetProps> = ({
           {/* Quick actions */}
           <div className="space-y-2">
             <p className="text-[10px] font-bold tracking-[0.2em] uppercase text-muted-foreground px-1">{t('profile.settings')}</p>
+
+            {/* Language — switch the whole app + Coach Iris */}
+            <div className="w-full px-4 py-3 rounded-2xl bg-card border border-border/50 flex items-center gap-3">
+              <div className="w-9 h-9 rounded-xl bg-mint/50 flex items-center justify-center flex-shrink-0">
+                <Globe className="w-4 h-4 text-mint-foreground" />
+              </div>
+              <div className="flex-1 min-w-0">
+                <p className="text-sm font-semibold text-foreground">{t('profile.language')}</p>
+                <p className="text-xs text-muted-foreground">{t('profile.languageSub')}</p>
+              </div>
+              <div className="flex gap-1 p-1 rounded-xl bg-muted/60 flex-shrink-0">
+                {LANGUAGES.map((l) => (
+                  <button
+                    key={l.code}
+                    onClick={() => setLanguage(l.code as Language)}
+                    aria-pressed={language === l.code}
+                    className={
+                      'px-3 h-9 rounded-lg text-xs font-bold uppercase tracking-wide transition-all active:scale-95 ' +
+                      (language === l.code
+                        ? 'bg-primary text-primary-foreground shadow-sm'
+                        : 'text-muted-foreground hover:text-foreground')
+                    }
+                  >
+                    {l.code}
+                  </button>
+                ))}
+              </div>
+            </div>
 
             <button
               onClick={() => { onOpenReminders(); onOpenChange(false); }}

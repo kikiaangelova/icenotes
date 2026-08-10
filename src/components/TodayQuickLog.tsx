@@ -11,6 +11,7 @@ import { Sun, Sparkles, Check, Snowflake, Dumbbell, Wind, Clock, Target, Heart, 
 import { cn } from '@/lib/utils';
 import { format } from 'date-fns';
 import { FEELING_OPTIONS, type JumpType } from '@/types/journal';
+import { celebrate } from '@/lib/celebrate';
 
 type TrainingType = 'on-ice' | 'off-ice' | 'rest';
 
@@ -100,6 +101,7 @@ export const TodayQuickLog: React.FC = () => {
     });
 
     setSaved(true);
+    celebrate();
   };
 
   if (saved) {
@@ -173,6 +175,7 @@ export const TodayQuickLog: React.FC = () => {
         smallWin: '',
       });
       setReflectionSaved(true);
+      celebrate({ count: 18 });
     };
 
     // Tone-aware response: gentle on hard days, celebratory on great ones.

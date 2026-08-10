@@ -48,7 +48,7 @@ export const QuickActionsGrid: React.FC<QuickActionsGridProps> = ({
         </span>
         <div className="flex-1 min-w-0">
           <p className="text-[11px] font-bold tracking-[0.18em] uppercase text-rose-foreground/70 mb-1">
-            {t('quick.reflection.kicker') !== 'quick.reflection.kicker' ? t('quick.reflection.kicker') : '2 мин'}
+            {t('quick.reflection.kicker')}
           </p>
           <p className="text-xl font-black text-foreground leading-tight">
             {t('quick.reflection.label')}

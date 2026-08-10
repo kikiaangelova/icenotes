@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Snowflake, Loader2 } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
+import { useLanguage } from '@/context/LanguageContext';
 
 const SYSTEM_PROMPT = `You are Coach Iris, a warm sport psychology coach for figure skaters. The skater just wrote a journal entry. Respond with exactly 2-3 sentences: one empathetic acknowledgement of what they shared, and one reflective question or gentle reframe using cognitive behavioral coaching techniques. Be warm, not clinical. Never give generic advice.`;
 
@@ -14,6 +15,7 @@ export const CoachIrisReflection: React.FC<CoachIrisReflectionProps> = ({
   journalText,
   triggerKey,
 }) => {
+  const { language } = useLanguage();
   const [reply, setReply] = useState<string>('');
   const [loading, setLoading] = useState(true);
   const [failed, setFailed] = useState(false);
@@ -36,6 +38,7 @@ export const CoachIrisReflection: React.FC<CoachIrisReflectionProps> = ({
           body: {
             systemOverride: SYSTEM_PROMPT,
             stream: false,
+            language,
             messages: [
               {
                 role: 'user',
@@ -62,7 +65,7 @@ export const CoachIrisReflection: React.FC<CoachIrisReflectionProps> = ({
     return () => {
       cancelled = true;
     };
-  }, [journalText, triggerKey]);
+  }, [journalText, triggerKey, language]);
 
   // Silently fail
   if (failed) return null;
