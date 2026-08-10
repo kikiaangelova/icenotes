@@ -22,10 +22,10 @@ export const IrisAvatar: React.FC<IrisAvatarProps> = ({ size = 40, className, ri
       src={irisPhoto}
       alt="Coach Kiki"
       loading="lazy"
-      width={816}
-      height={816}
+      width={400}
+      height={400}
       className="w-full h-full object-cover"
-      style={{ objectPosition: '42% 28%', transform: 'scale(1.55)' }}
+      style={{ objectPosition: '50% 40%' }}
     />
   </span>
 );
