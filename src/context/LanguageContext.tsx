@@ -1055,7 +1055,42 @@ const dict: Dict = {
   'calendarX.jumps':        { en: 'jumps',             bg: 'скокa' },
   'calendarX.landed':       { en: 'landed',            bg: 'чисти' },
   'calendarX.journalLabel': { en: 'Journal',           bg: 'Дневник' },
+
+  // ───── Guided tour (new user) ─────
+  'tour.welcome.title':  { en: 'Welcome 👋',            bg: 'Здравей 👋' },
+  'tour.welcome.body':   { en: "Let's take 30 seconds to set your focus.", bg: 'Нека отделим 30 секунди, за да зададем твоя фокус.' },
+  'tour.goals.title':    { en: 'What are you here for?', bg: 'За какво си тук?' },
+  'tour.goals.hint':     { en: 'Pick up to 3. You can change them anytime.', bg: 'Избери до 3. Можеш да ги смениш по всяко време.' },
+  'tour.goals.custom':   { en: 'Or write your own focus…', bg: 'Или напиши свой фокус…' },
+  'tour.today.title':    { en: 'Your daily to-do lives here', bg: 'Дневните ти задачи са тук' },
+  'tour.today.body':     { en: "Mood check-in, quick notes, and today's focus — one tap away.", bg: 'Настроение, бързи бележки и днешен фокус — на един допир.' },
+  'tour.today.cta':      { en: 'Show me Today',         bg: 'Покажи ми Днес' },
+  'tour.train.title':    { en: 'Track your training',   bg: 'Проследи тренировките си' },
+  'tour.train.body':     { en: 'Log sessions, jumps, and timed practices in the Train tab.', bg: 'Записвай тренировки, скокове и засечени упражнения в раздел Тренировка.' },
+  'tour.cta.finish':     { en: 'Start training smart',  bg: 'Започни да тренираш умно' },
+  'tour.cta.skip':       { en: 'Skip',                  bg: 'Пропусни' },
+
+  // ───── Landing extras ─────
+  'landing.hero.badge':  { en: 'Built for figure skaters · Gen Z', bg: 'Създадено за фигуристи · Gen Z' },
+  'landing.hero.title1': { en: 'Train smart.',          bg: 'Тренирай умно.' },
+  'landing.hero.title2': { en: 'Skate from within.',    bg: 'Карай отвътре.' },
+  'landing.hero.scroll': { en: 'Scroll',                bg: 'Превърти' },
+
+  // ───── Game Day ─────
+  'gameDay.title':       { en: 'Game Day',              bg: 'Ден на състезанието' },
+  'gameDay.subtitle':    { en: 'Pre-competition ritual', bg: 'Ритуал преди състезание' },
+  'gameDay.breathe':     { en: 'Breathe',               bg: 'Дишай' },
+  'gameDay.visualize':   { en: 'Visualize',             bg: 'Визуализирай' },
+  'gameDay.affirm':      { en: 'Affirmation',           bg: 'Утвърждение' },
+  'gameDay.centered':    { en: 'Centered ✨',           bg: 'Центриран/а ✨' },
+
+  // ───── Coach Iris ─────
+  'coach.openLabel':     { en: 'Open AI skating coach', bg: 'Отвори AI треньор' },
+  'coach.title':         { en: 'Ask Coach Iris',        bg: 'Питай Coach Ирис' },
+  'coach.subtitle':      { en: 'tutor · mentor · hype', bg: 'наставник · ментор · подкрепа' },
+  'coach.placeholder':   { en: "Tell Iris what's up…",  bg: 'Сподели с Iris какво става…' },
 };
+
 
 // ───── Tone helper (B1) ─────
 /** Adaptive tone classification for journal feedback. */
