@@ -15,26 +15,27 @@ export const Scene1: React.FC = () => {
         style={{
           position: 'absolute',
           left: 0,
-          top: 300,
-          height: 420,
-          width: `${bar * 78}%`,
+          top: 290,
+          height: 500,
+          width: `${bar * 94}%`,
           background: `linear-gradient(90deg, ${C.terracotta}, ${C.amber})`,
           borderTopRightRadius: 60,
           borderBottomRightRadius: 60,
         }}
       />
-      <div style={{ position: 'absolute', left: 90, top: 336 }}>
+      <div style={{ position: 'absolute', left: 80, top: 330 }}>
         <Kicker delay={14} color={C.paper}>
           Sport psychology
         </Kicker>
-        <div style={{ height: 18 }} />
-        <Line delay={20} size={128} color={C.paper}>
+        <div style={{ height: 14 }} />
+        <Line delay={20} size={104} color={C.paper}>
           You showed
         </Line>
-        <Line delay={28} size={128} color={C.paper}>
+        <Line delay={28} size={104} color={C.paper}>
           up today.
         </Line>
       </div>
+
 
       <Sticker src={S.hey} delay={34} width={760} style={{ left: 180, top: 880 }} rotate={-3} bounce={9} />
 
