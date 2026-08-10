@@ -6,7 +6,7 @@ import { supabase } from '@/integrations/supabase/client';
 import { useLanguage } from '@/context/LanguageContext';
 import { ProfileCard } from '@/components/ProfileCard';
 import { IceNotesMark } from './IceNotesMark';
-import heroVideo from '@/assets/hero-skater-neon.mp4.asset.json';
+import heroVideo from '@/assets/hero-skater-girl.mp4.asset.json';
 import { HeroVideo } from './HeroVideo';
 import { SmartStartCTA } from './SmartStartCTA';
 

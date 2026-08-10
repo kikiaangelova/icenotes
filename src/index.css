@@ -129,116 +129,116 @@
      Warm paper, terracotta ember, amber highlight.
      Applied app-wide via the theme-neon class on <html>. */
   .theme-neon {
-    --background: 40 42% 97%;
-    --foreground: 24 18% 12%;
+    --background: 34 20% 91%;
+    --foreground: 25 16% 18%;
 
-    --card: 40 48% 99%;
-    --card-foreground: 24 18% 14%;
+    --card: 36 28% 96%;
+    --card-foreground: 25 16% 20%;
 
-    --popover: 40 48% 99%;
-    --popover-foreground: 24 18% 14%;
+    --popover: 36 28% 97%;
+    --popover-foreground: 25 16% 20%;
 
-    --primary: 14 84% 55%;
-    --primary-foreground: 40 48% 99%;
+    --primary: 14 52% 55%;
+    --primary-foreground: 36 30% 97%;
 
-    --secondary: 36 24% 93%;
-    --secondary-foreground: 24 18% 18%;
+    --secondary: 32 16% 87%;
+    --secondary-foreground: 25 16% 24%;
 
-    --muted: 36 22% 92%;
-    --muted-foreground: 24 10% 38%;
+    --muted: 32 14% 86%;
+    --muted-foreground: 25 8% 42%;
 
-    --accent: 38 92% 58%;
-    --accent-foreground: 24 18% 14%;
+    --accent: 262 32% 66%;
+    --accent-foreground: 25 16% 20%;
 
-    --destructive: 0 72% 51%;
+    --destructive: 4 58% 52%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 30 18% 86%;
-    --input: 30 18% 86%;
-    --ring: 14 84% 55%;
+    --border: 30 14% 81%;
+    --input: 30 14% 81%;
+    --ring: 14 52% 55%;
 
     --radius: 1rem;
 
-    --lime: 38 92% 58%;
-    --violet: 14 84% 55%;
-    --violet-deep: 22 35% 14%;
+    --lime: 262 30% 60%;
+    --violet: 262 32% 62%;
+    --violet-deep: 25 20% 22%;
 
-    --brand: 14 84% 55%;
-    --brand-strong: 12 78% 46%;
-    --brand-soft: 18 92% 95%;
-    --highlight-soft: 42 92% 92%;
-    --xp-gold: 38 92% 55%;
-    --xp-gold-glow: 42 100% 68%;
+    --brand: 14 52% 55%;
+    --brand-strong: 12 48% 45%;
+    --brand-soft: 18 44% 92%;
+    --highlight-soft: 262 34% 92%;
+    --xp-gold: 36 58% 56%;
+    --xp-gold-glow: 40 70% 70%;
 
-    --shadow-md: 0 8px 24px -14px hsl(14 60% 30% / 0.28);
-    --shadow-lg: 0 16px 40px -20px hsl(14 60% 30% / 0.3);
-    --shadow-xl: 0 24px 60px -26px hsl(14 60% 30% / 0.32);
-    --shadow-soft: 0 10px 30px -18px hsl(14 60% 30% / 0.28);
-    --shadow-card: 0 6px 20px -14px hsl(14 60% 30% / 0.22);
+    --shadow-md: 0 8px 24px -14px hsl(25 30% 25% / 0.24);
+    --shadow-lg: 0 16px 40px -20px hsl(25 30% 25% / 0.26);
+    --shadow-xl: 0 24px 60px -26px hsl(25 30% 25% / 0.28);
+    --shadow-soft: 0 10px 30px -18px hsl(25 30% 25% / 0.24);
+    --shadow-card: 0 6px 20px -14px hsl(25 30% 25% / 0.2);
 
     /* In-app functional tokens on the warm surface */
-    --ice: 36 30% 94%;
-    --ice-deep: 14 84% 48%;
-    --frost: 40 48% 99%;
-    --on-ice: 14 84% 50%;
-    --off-ice: 38 92% 45%;
-    --mental: 232 62% 52%;
-    --success: 152 55% 38%;
-    --gold: 38 92% 52%;
+    --ice: 34 20% 92%;
+    --ice-deep: 14 52% 48%;
+    --frost: 36 28% 97%;
+    --on-ice: 14 52% 50%;
+    --off-ice: 262 30% 58%;
+    --mental: 232 34% 56%;
+    --success: 152 34% 40%;
+    --gold: 36 58% 54%;
     --silver: 30 8% 62%;
 
-    --premium: 14 84% 55%;
-    --premium-soft: 18 92% 95%;
-    --premium-glow: 38 92% 58%;
+    --premium: 262 32% 62%;
+    --premium-soft: 262 34% 93%;
+    --premium-glow: 36 58% 62%;
 
-    --reflect: 232 62% 52%;
-    --journal: 14 84% 50%;
-    --calm: 168 45% 38%;
-    --warmth: 24 80% 50%;
+    --reflect: 232 34% 56%;
+    --journal: 14 52% 50%;
+    --calm: 168 28% 42%;
+    --warmth: 24 52% 52%;
 
-    /* Module colours as warm tints */
-    --mint: 150 45% 94%;
-    --mint-foreground: 152 55% 30%;
+    /* Module colours as calm mid tints */
+    --mint: 152 24% 88%;
+    --mint-foreground: 152 34% 28%;
 
-    --lavender: 230 70% 96%;
-    --lavender-foreground: 232 62% 45%;
+    --lavender: 262 30% 90%;
+    --lavender-foreground: 262 34% 38%;
 
-    --rose: 8 80% 95%;
-    --rose-foreground: 8 70% 42%;
+    --rose: 8 42% 90%;
+    --rose-foreground: 8 44% 40%;
 
-    --grape: 275 45% 95%;
-    --grape-foreground: 275 45% 40%;
+    --grape: 275 26% 89%;
+    --grape-foreground: 275 30% 38%;
 
-    --peach: 30 92% 94%;
-    --peach-foreground: 22 78% 40%;
+    --peach: 26 46% 90%;
+    --peach-foreground: 22 48% 38%;
 
-    --sky: 200 70% 95%;
-    --sky-foreground: 205 65% 34%;
+    --sky: 205 32% 89%;
+    --sky-foreground: 205 38% 32%;
 
-    --ink: 22 35% 14%;
-    --paper: 40 42% 97%;
-    --highlight: 38 92% 58%;
+    --ink: 25 20% 20%;
+    --paper: 36 28% 96%;
+    --highlight: 262 32% 66%;
 
-    --sidebar: 40 48% 99%;
-    --sidebar-background: 40 48% 99%;
-    --sidebar-foreground: 24 18% 14%;
-    --sidebar-primary: 14 84% 55%;
-    --sidebar-primary-foreground: 40 48% 99%;
-    --sidebar-accent: 36 22% 92%;
-    --sidebar-accent-foreground: 24 18% 14%;
-    --sidebar-border: 30 18% 86%;
-    --sidebar-ring: 14 84% 55%;
+    --sidebar: 36 28% 96%;
+    --sidebar-background: 36 28% 96%;
+    --sidebar-foreground: 25 16% 20%;
+    --sidebar-primary: 14 52% 55%;
+    --sidebar-primary-foreground: 36 30% 97%;
+    --sidebar-accent: 32 16% 88%;
+    --sidebar-accent-foreground: 25 16% 20%;
+    --sidebar-border: 30 14% 82%;
+    --sidebar-ring: 14 52% 55%;
 
-    --chart-1: 14 84% 55%;
-    --chart-2: 38 92% 55%;
-    --chart-3: 232 62% 52%;
-    --chart-4: 152 55% 38%;
-    --chart-5: 22 68% 40%;
+    --chart-1: 14 52% 55%;
+    --chart-2: 262 32% 62%;
+    --chart-3: 232 34% 56%;
+    --chart-4: 152 34% 42%;
+    --chart-5: 36 48% 48%;
   }
 
   .theme-neon ::selection {
-    background: hsl(38 92% 62%);
-    color: hsl(24 18% 12%);
+    background: hsl(262 32% 78%);
+    color: hsl(25 16% 18%);
   }
 
   /* Warm paper surfaces inside the app */
@@ -246,22 +246,22 @@
   .theme-neon .glass-card,
   .theme-neon .frost-glass,
   .theme-neon .feature-card {
-    background: linear-gradient(160deg, hsl(40 60% 99%), hsl(36 40% 96%));
-    border: 1px solid hsl(30 22% 88%);
-    box-shadow: 0 8px 26px -20px hsl(14 60% 30% / 0.4);
+    background: linear-gradient(160deg, hsl(36 30% 97%), hsl(33 22% 93%));
+    border: 1px solid hsl(30 16% 84%);
+    box-shadow: 0 8px 26px -20px hsl(25 30% 25% / 0.35);
   }
   .theme-neon .soft-card:hover,
   .theme-neon .feature-card:hover {
-    border-color: hsl(14 84% 60% / 0.45);
-    box-shadow: 0 14px 34px -22px hsl(14 70% 40% / 0.5);
+    border-color: hsl(14 52% 58% / 0.4);
+    box-shadow: 0 14px 34px -22px hsl(25 34% 30% / 0.42);
   }
 
   .theme-neon .glass-nav {
-    background: hsl(40 50% 99% / 0.82);
+    background: hsl(36 30% 97% / 0.8);
     backdrop-filter: blur(16px) saturate(140%);
     -webkit-backdrop-filter: blur(16px) saturate(140%);
-    border: 1px solid hsl(30 22% 88%);
-    box-shadow: 0 10px 30px -18px hsl(14 60% 30% / 0.35);
+    border: 1px solid hsl(30 16% 84%);
+    box-shadow: 0 10px 30px -18px hsl(25 30% 25% / 0.3);
   }
 
   /* shadcn Card + any bg-card surface inside the app */
@@ -270,24 +270,24 @@
   .theme-neon .bg-card\/90,
   .theme-neon .bg-card\/80,
   .theme-neon .bg-white {
-    background: linear-gradient(160deg, hsl(40 60% 99%), hsl(36 40% 96.5%)) !important;
+    background: linear-gradient(160deg, hsl(36 30% 97%), hsl(33 22% 93%)) !important;
     border-color: hsl(30 22% 88%);
     color: hsl(var(--card-foreground));
   }
 
   .theme-neon .bg-card:hover {
-    border-color: hsl(14 84% 60% / 0.4);
+    border-color: hsl(14 52% 58% / 0.4);
   }
 
   /* Elevated surfaces (bottom nav, sheets) */
   .theme-neon .glass-elevated {
-    background: hsl(40 50% 99% / 0.9);
+    background: hsl(36 30% 97% / 0.9);
     backdrop-filter: blur(18px) saturate(140%);
     -webkit-backdrop-filter: blur(18px) saturate(140%);
     border-color: hsl(30 22% 88%);
     box-shadow:
       0 1px 0 hsl(0 0% 100% / 0.7) inset,
-      0 -8px 30px -18px hsl(14 60% 30% / 0.35);
+      0 -8px 30px -18px hsl(25 30% 25% / 0.3);
   }
 
   /* Muted chrome (tab lists, secondary chips) stays warm, never grey */
