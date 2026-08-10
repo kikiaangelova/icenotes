@@ -364,7 +364,7 @@ const dict: Dict = {
   'features.f11.title': { en: 'Motivational Quotes', bg: 'Цитати, които зареждат' },
   'features.f11.desc': { en: 'A curated collection of quotes for athletes. Save your favorites and get daily inspiration before you step on the ice.', bg: 'Подбрани цитати за спортисти. Запазвай любимите и взимай ежедневно вдъхновение преди лед.' },
   'features.f12.title': { en: 'PDF Export', bg: 'Експорт в PDF' },
-  'features.f12.desc': { en: 'Export your training data and journal entries as a PDF. Share progress with coaches or keep a personal archive of your journey.', bg: 'Изнеси тренировките и записите в PDF. Сподели с треньора или си пази личен архив.' },
+  'features.f12.desc': { en: 'Export your training data and journal entries as a PDF. Share progress with coaches or keep it just for you.', bg: 'Изнеси тренировките и записите в PDF. Сподели с треньора или си пази личен архив.' },
   'features.cta.title': { en: 'Start using these tools today.', bg: 'Започни още днес.' },
   'features.cta.subtitle': { en: 'All features are free. No credit card needed.', bg: 'Всичко е безплатно. Без карта.' },
   'features.cta.button': { en: 'Create Your Free Account', bg: 'Направи безплатен профил' },
@@ -595,7 +595,7 @@ const dict: Dict = {
   'dash.dailyJournal.subtitle': { en: 'Today, in your own words.', bg: 'Днес — със собствените ти думи.' },
   'dash.progress.title': { en: 'Progress', bg: 'Прогрес' },
   'dash.progress.subtitle': { en: 'See how far you’ve come.', bg: 'Виж колко път си изминал(а).' },
-  'dash.journey.title': { en: 'Your journey', bg: 'Твоят път' },
+  'dash.journey.title': { en: 'Your progress', bg: 'Твоят път' },
   'dash.journey.subtitle': { en: 'The bigger picture.', bg: 'По-голямата картина.' },
 
   // Today summary
@@ -1017,9 +1017,9 @@ const dict: Dict = {
   'goalsX.target':          { en: 'Target',                                 bg: 'Срок' },
 
   // ───── Journey view ─────
-  'journeyX.empty.title':   { en: 'Your journey begins here', bg: 'Пътят ти започва тук' },
+  'journeyX.empty.title':   { en: 'This is day one', bg: 'Това е ден едно' },
   'journeyX.empty.body':    { en: 'Start with today\'s reflection. Each entry becomes part of your story.', bg: 'Започни с днешната рефлексия. Всеки запис става част от историята ти.' },
-  'journeyX.heading':       { en: 'Your Journey',             bg: 'Пътят ти' },
+  'journeyX.heading':       { en: 'Your progress',           bg: 'Пътят ти' },
   'journeyX.daysReflected': { en: 'Days reflected',           bg: 'Дни с рефлексия' },
   'journeyX.daysConnected': { en: 'Days connected',           bg: 'Дни наред' },
   'journeyX.returned.a':    { en: 'You returned',             bg: 'Върна се' },
@@ -1151,7 +1151,7 @@ const dict: Dict = {
   'profile.adminSub':    { en: 'Manage users & content', bg: 'Управление на потребители и съдържание' },
   'profile.explore':     { en: 'Explore',               bg: 'Разгледай' },
   'profile.community':   { en: 'Skater Community',      bg: 'Общност на фигуристите' },
-  'profile.communitySub': { en: "Share your journey, read others'", bg: 'Сподели своя път, прочети чуждия' },
+  'profile.communitySub': { en: "Share your side, read theirs", bg: 'Сподели своя път, прочети чуждия' },
   'profile.landing':     { en: 'Back to landing page',  bg: 'Към началната страница' },
   'profile.landingSub':  { en: 'Exit the app view',     bg: 'Излез от приложението' },
   'profile.logout':      { en: 'Log out',               bg: 'Изход' },
