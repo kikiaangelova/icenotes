@@ -33,6 +33,7 @@ import { TodayHero } from './TodayHero';
 import { CoachNoticed } from './CoachNoticed';
 import { MobileBottomNav, type BottomTab } from './MobileBottomNav';
 import { QuickActionsGrid } from './QuickActionsGrid';
+import { FeatureMap, type FeatureDest } from './FeatureMap';
 import { ProgressionCard } from './ProgressionCard';
 
 
@@ -341,6 +342,9 @@ export const SimpleDashboard: React.FC = () => {
 
 
 
+              {/* DIRECTORY — everything the site promises, one tap away */}
+              <FeatureMap onOpen={openFeature} />
+
               {/* CONTEXT — Game Day ritual (only renders if relevant date window) */}
               <GameDayCard onClick={() => setGameDayOpen(true)} />
 
@@ -417,7 +421,7 @@ export const SimpleDashboard: React.FC = () => {
 
             {/* TRAIN: training + jumps + timer */}
             <TabsContent value="train" className="space-y-4">
-              <Tabs defaultValue="sessions" className="w-full">
+              <Tabs value={trainTab} onValueChange={(v) => setTrainTab(v as any)} className="w-full">
                 <TabsList className="grid w-full grid-cols-3 h-10 rounded-xl bg-muted/40 p-0.5">
                   <TabsTrigger value="sessions" className="text-xs rounded-lg">{t('dash.todayTraining.title')}</TabsTrigger>
                   <TabsTrigger value="jumps" className="text-xs rounded-lg">{t('dash.jumpTracker.title')}</TabsTrigger>
@@ -506,7 +510,7 @@ export const SimpleDashboard: React.FC = () => {
 
             {/* MIND: pre-skate + sport psychology + inspiration */}
             <TabsContent value="mind" className="space-y-4">
-              <Tabs defaultValue="reflect" className="w-full">
+              <Tabs value={mindTab} onValueChange={(v) => setMindTab(v as any)} className="w-full">
                 <TabsList className="grid w-full grid-cols-4 h-10 rounded-xl bg-muted/40 p-0.5">
                   <TabsTrigger value="reflect" className="text-xs rounded-lg">{t('dash.mind.reflect')}</TabsTrigger>
                   <TabsTrigger value="preskate" className="text-xs rounded-lg">{t('dash.mind.preskate')}</TabsTrigger>
@@ -566,7 +570,7 @@ export const SimpleDashboard: React.FC = () => {
 
             {/* GOALS: weekly + skating plan */}
             <TabsContent value="goals" className="space-y-4">
-              <Tabs defaultValue="weekly" className="w-full">
+              <Tabs value={goalsTab} onValueChange={(v) => setGoalsTab(v as any)} className="w-full">
                 <TabsList className="grid w-full grid-cols-2 h-10 rounded-xl bg-muted/40 p-0.5">
                   <TabsTrigger value="weekly" className="text-xs rounded-lg">{t('dash.weeklyGoals.title')}</TabsTrigger>
                   <TabsTrigger value="plan" className="text-xs rounded-lg">{t('dash.skatingPlan.title')}</TabsTrigger>
@@ -598,7 +602,7 @@ export const SimpleDashboard: React.FC = () => {
 
             {/* PROGRESS: progress + journey */}
             <TabsContent value="progress" className="space-y-4">
-              <Tabs defaultValue="progress" className="w-full">
+              <Tabs value={progressTab} onValueChange={(v) => setProgressTab(v as any)} className="w-full">
                 <TabsList className="grid w-full grid-cols-2 h-10 rounded-xl bg-muted/40 p-0.5">
                   <TabsTrigger value="progress" className="text-xs rounded-lg">{t('dash.progress.title')}</TabsTrigger>
                   <TabsTrigger value="journey" className="text-xs rounded-lg">{t('dash.journey.title')}</TabsTrigger>
