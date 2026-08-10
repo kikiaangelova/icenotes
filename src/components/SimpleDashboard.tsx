@@ -86,6 +86,12 @@ export const SimpleDashboard: React.FC = () => {
   const [showResetDialog, setShowResetDialog] = useState(false);
   const [showReminderSettings, setShowReminderSettings] = useState(false);
   const [pendingTrainingType, setPendingTrainingType] = useState<'on-ice' | 'off-ice' | null>(null);
+  // Controlled sub-tabs so the feature map can deep-link into any tool.
+  const [trainTab, setTrainTab] = useState<'sessions' | 'jumps' | 'timer'>('sessions');
+  const [mindTab, setMindTab] = useState<'reflect' | 'preskate' | 'psych' | 'inspire'>('reflect');
+  const [goalsTab, setGoalsTab] = useState<'weekly' | 'plan'>('weekly');
+  const [progressTab, setProgressTab] = useState<'progress' | 'journey'>('progress');
+
 
   // Persist last viewed tab so "Continue where you left off" works
   useEffect(() => {
