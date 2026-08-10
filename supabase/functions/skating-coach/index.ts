@@ -45,14 +45,19 @@ Deno.serve(async (req) => {
   if (req.method === "OPTIONS") return new Response(null, { headers: corsHeaders });
 
   try {
-    const { messages, systemOverride, stream: streamRequested } = await req.json();
+    const { messages, systemOverride, stream: streamRequested, language } = await req.json();
     const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
     if (!LOVABLE_API_KEY) throw new Error("LOVABLE_API_KEY not configured");
 
     const useStream = streamRequested !== false;
-    const systemContent = typeof systemOverride === "string" && systemOverride.trim()
+    const baseSystem = typeof systemOverride === "string" && systemOverride.trim()
       ? systemOverride
       : SYSTEM_PROMPT;
+    // Always answer in the skater's chosen app language.
+    const languageRule = language === "bg"
+      ? "\n\nLANGUAGE: Reply ONLY in natural, modern conversational Bulgarian (не буквален превод). Keep skating terms skaters actually use (аксел, салхов, тулуп, ритбергер, флип, лутц). Same warm Gen Z tone."
+      : "\n\nLANGUAGE: Reply only in natural, modern conversational English.";
+    const systemContent = baseSystem + languageRule;
 
     const response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
       method: "POST",
@@ -61,7 +66,7 @@ Deno.serve(async (req) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        model: "google/gemini-3-flash-preview",
+        model: "google/gemini-3.6-flash",
         messages: [{ role: "system", content: systemContent }, ...messages],
         stream: useStream,
       }),

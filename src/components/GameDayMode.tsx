@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Sparkles, Wind, Eye, Heart, Trophy, ChevronRight, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useLanguage } from '@/context/LanguageContext';
+import { celebrate } from '@/lib/celebrate';
 
 interface GameDayModeProps {
   open: boolean;
@@ -84,6 +85,10 @@ export const GameDayMode: React.FC<GameDayModeProps> = ({ open, onOpenChange }) 
 
   const next = () => setStep((s) => Math.min(s + 1, totalSteps - 1));
   const close = () => onOpenChange(false);
+  const finish = () => {
+    celebrate({ count: 40, y: window.innerHeight * 0.45 });
+    window.setTimeout(close, 450);
+  };
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
@@ -214,7 +219,7 @@ export const GameDayMode: React.FC<GameDayModeProps> = ({ open, onOpenChange }) 
               <Button
                 size="lg"
                 onClick={next}
-                className="h-14 px-10 rounded-full bg-white text-slate-900 hover:bg-white/90 font-bold"
+                className="h-14 px-10 rounded-full bg-white text-slate-900 hover:bg-white/90 font-bold motion-press active:scale-95 transition-transform"
               >
                 {t('gameDay.next')} <ChevronRight className="w-5 h-5 ml-1" />
               </Button>
@@ -239,7 +244,7 @@ export const GameDayMode: React.FC<GameDayModeProps> = ({ open, onOpenChange }) 
               <Button
                 size="lg"
                 onClick={next}
-                className="h-14 px-10 rounded-full bg-white text-slate-900 hover:bg-white/90 font-bold"
+                className="h-14 px-10 rounded-full bg-white text-slate-900 hover:bg-white/90 font-bold motion-press active:scale-95 transition-transform"
               >
                 {t('gameDay.next')} <ChevronRight className="w-5 h-5 ml-1" />
               </Button>
@@ -259,8 +264,8 @@ export const GameDayMode: React.FC<GameDayModeProps> = ({ open, onOpenChange }) 
               </p>
               <Button
                 size="lg"
-                onClick={close}
-                className="h-14 px-10 rounded-full bg-gradient-to-r from-violet-500 to-indigo-600 text-white hover:opacity-95 font-bold"
+                onClick={finish}
+                className="h-14 px-10 rounded-full bg-gradient-to-r from-violet-500 to-indigo-600 text-white hover:opacity-95 font-bold motion-press active:scale-95 transition-transform"
               >
                 {t('gameDay.letsGo')} <Sparkles className="w-5 h-5 ml-2" />
               </Button>
