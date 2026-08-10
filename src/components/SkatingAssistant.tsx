@@ -4,6 +4,8 @@ import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { cn } from '@/lib/utils';
 import { useLanguage } from '@/context/LanguageContext';
+import { IrisAvatar } from './IrisAvatar';
+
 
 type Msg = { role: 'user' | 'assistant'; content: string };
 
