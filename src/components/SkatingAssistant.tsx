@@ -3,17 +3,14 @@ import { Sparkles, Send, X, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { cn } from '@/lib/utils';
+import { useLanguage } from '@/context/LanguageContext';
 
 type Msg = { role: 'user' | 'assistant'; content: string };
 
-const STARTERS = [
-  'Все падам на лутца — какво да правя?',
-  'Нервен/нервна съм за състезанието този уикенд',
-  'Изгубих мотивация. Какво сега?',
-  'Дай ми енергия преди тренировка',
-];
+const STARTER_KEYS = ['coach.starter.1', 'coach.starter.2', 'coach.starter.3', 'coach.starter.4'];
 
 export const SkatingAssistant: React.FC = () => {
+  const { t } = useLanguage();
   const [open, setOpen] = useState(false);
   const [messages, setMessages] = useState<Msg[]>([]);
   const [input, setInput] = useState('');
@@ -73,11 +70,11 @@ export const SkatingAssistant: React.FC = () => {
       });
 
       if (resp.status === 429) {
-        upsert('Малко по-бавно — твърде много заявки. Опитай след минута.');
+        upsert(t('coach.err.rate'));
         return;
       }
       if (resp.status === 402) {
-        upsert('AI кредитите свършиха. Помоли екипа да зареди.');
+        upsert(t('coach.err.credits'));
         return;
       }
       if (!resp.ok || !resp.body) throw new Error('stream failed');
@@ -110,7 +107,7 @@ export const SkatingAssistant: React.FC = () => {
       }
     } catch (e) {
       console.error(e);
-      upsert('Нещо се закачи. Опитай след секунда.');
+      upsert(t('coach.err.generic'));
     } finally {
       setLoading(false);
     }
@@ -120,11 +117,11 @@ export const SkatingAssistant: React.FC = () => {
     <Sheet open={open} onOpenChange={setOpen}>
       <SheetTrigger asChild>
         <button
-          aria-label="Отвори AI треньора"
+          aria-label={t('coach.openLabel')}
           className="fixed bottom-24 right-5 sm:bottom-6 sm:right-6 z-50 group flex items-center gap-2 px-5 h-14 rounded-full bg-gradient-to-r from-primary via-grape-foreground to-rose-foreground text-primary-foreground motion-glow motion-shimmer motion-press hover:scale-[1.04] transition-transform duration-300 font-bold"
         >
           <Sparkles className="w-5 h-5 motion-breathe" />
-          <span className="hidden sm:inline">Питай Треньор Ирис</span>
+          <span className="hidden sm:inline">{t('coach.title')}</span>
         </button>
       </SheetTrigger>
       <SheetContent side="right" className="w-full sm:max-w-md flex flex-col p-0 gap-0">
@@ -133,8 +130,8 @@ export const SkatingAssistant: React.FC = () => {
             <span className="w-9 h-9 rounded-full bg-gradient-to-br from-primary to-rose-foreground flex items-center justify-center text-primary-foreground">
               <Sparkles className="w-4 h-4" />
             </span>
-            Треньор Ирис
-            <span className="text-xs font-medium text-muted-foreground">учи · подкрепя · вдъхновява</span>
+            {t('coach.title')}
+            <span className="text-xs font-medium text-muted-foreground">{t('coach.subtitle')}</span>
           </SheetTitle>
         </SheetHeader>
 
@@ -143,19 +140,18 @@ export const SkatingAssistant: React.FC = () => {
             <div className="space-y-4">
               <div className="rounded-2xl bg-gradient-to-br from-lavender to-rose/60 p-5 border border-border/40">
                 <p className="text-sm leading-relaxed text-foreground">
-                  Здрасти 👋 Аз съм Ирис. Помагам ти със скоковете, говорим за нервите и ти давам енергия.
-                  Кажи ми какво те вълнува — дори да е „днес беше тежко“.
+                  {t('coach.greeting')}
                 </p>
               </div>
-              <p className="text-xs font-bold uppercase tracking-wider text-muted-foreground">Опитай едно</p>
+              <p className="text-xs font-bold uppercase tracking-wider text-muted-foreground">{t('coach.tryOne')}</p>
               <div className="grid gap-2">
-                {STARTERS.map((s) => (
+                {STARTER_KEYS.map((k) => (
                   <button
-                    key={s}
-                    onClick={() => send(s)}
+                    key={k}
+                    onClick={() => send(t(k))}
                     className="text-left px-4 py-3 rounded-xl bg-muted/50 hover:bg-muted transition-colors text-sm font-medium"
                   >
-                    {s}
+                    {t(k)}
                   </button>
                 ))}
               </div>
@@ -191,7 +187,7 @@ export const SkatingAssistant: React.FC = () => {
           <input
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            placeholder="Кажи на Ирис какво те вълнува…"
+            placeholder={t('coach.placeholder')}
             className="flex-1 h-11 px-4 rounded-xl bg-muted/50 border border-border focus:outline-none focus:ring-2 focus:ring-primary text-sm"
             disabled={loading}
           />

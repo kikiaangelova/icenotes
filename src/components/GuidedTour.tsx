@@ -5,6 +5,7 @@ import { Input } from '@/components/ui/input';
 import { Progress } from '@/components/ui/progress';
 import { useJournal } from '@/context/JournalContext';
 import { useToast } from '@/hooks/use-toast';
+import { useLanguage } from '@/context/LanguageContext';
 import { cn } from '@/lib/utils';
 import {
   Sparkles,
@@ -21,12 +22,12 @@ const TOUR_KEY = 'icenotes:tourV1';
 const GOALS_KEY = 'icenotes:firstGoals';
 
 const PRESET_GOALS = [
-  { id: 'consistency', label: 'Show up consistently', emoji: '🗓️' },
-  { id: 'jumps', label: 'Land cleaner jumps', emoji: '⛸️' },
-  { id: 'confidence', label: 'Build confidence', emoji: '💪' },
-  { id: 'nerves', label: 'Manage competition nerves', emoji: '🧘' },
-  { id: 'spins', label: 'Improve spins & edges', emoji: '🌀' },
-  { id: 'recovery', label: 'Rest & recover better', emoji: '🌙' },
+  { id: 'consistency', key: 'tour.goal.consistency', emoji: '🗓️' },
+  { id: 'jumps', key: 'tour.goal.jumps', emoji: '⛸️' },
+  { id: 'confidence', key: 'tour.goal.confidence', emoji: '💪' },
+  { id: 'nerves', key: 'tour.goal.nerves', emoji: '🧘' },
+  { id: 'spins', key: 'tour.goal.spins', emoji: '🌀' },
+  { id: 'recovery', key: 'tour.goal.recovery', emoji: '🌙' },
 ];
 
 interface GuidedTourProps {
@@ -36,6 +37,7 @@ interface GuidedTourProps {
 export const GuidedTour: React.FC<GuidedTourProps> = ({ setActiveTab }) => {
   const { profile } = useJournal();
   const { toast } = useToast();
+  const { t } = useLanguage();
   const [open, setOpen] = useState(false);
   const [step, setStep] = useState(0);
   const [selected, setSelected] = useState<string[]>([]);
@@ -63,7 +65,10 @@ export const GuidedTour: React.FC<GuidedTourProps> = ({ setActiveTab }) => {
 
   const finish = () => {
     const goals = [
-      ...selected.map((id) => PRESET_GOALS.find((g) => g.id === id)?.label).filter(Boolean),
+      ...selected.map((id) => {
+        const g = PRESET_GOALS.find((x) => x.id === id);
+        return g ? t(g.key) : null;
+      }).filter(Boolean),
       ...(customGoal.trim() ? [customGoal.trim()] : []),
     ];
     try {
@@ -75,8 +80,8 @@ export const GuidedTour: React.FC<GuidedTourProps> = ({ setActiveTab }) => {
     setActiveTab('today');
     setOpen(false);
     toast({
-      title: '✨ You\'re all set',
-      description: 'Your first focus is saved. Start with today\'s log.',
+      title: t('tour.done.title'),
+      description: t('tour.done.body'),
     });
   };
 
@@ -99,13 +104,13 @@ export const GuidedTour: React.FC<GuidedTourProps> = ({ setActiveTab }) => {
         <div className="bg-gradient-to-br from-grape via-lavender to-sky p-5 pb-4 text-grape-foreground">
           <div className="flex items-center justify-between mb-3">
             <span className="text-[10px] font-bold tracking-[0.2em] uppercase opacity-80">
-              Quick start · {step + 1} of {totalSteps}
+              {t('tour.quickStart')} · {step + 1} {t('tour.of')} {totalSteps}
             </span>
             <button
               onClick={skip}
               className="text-xs opacity-70 hover:opacity-100 underline-offset-2 hover:underline"
             >
-              Skip
+              {t('tour.cta.skip')}
             </button>
           </div>
           <Progress value={progress} className="h-1.5 bg-background/30" />
@@ -119,14 +124,13 @@ export const GuidedTour: React.FC<GuidedTourProps> = ({ setActiveTab }) => {
                 <Sparkles className="w-7 h-7 text-grape-foreground" />
               </div>
               <h2 className="text-2xl font-black text-foreground leading-tight">
-                Welcome{profile?.name ? `, ${profile.name}` : ''} 👋
+                {t('tour.welcome.title')}{profile?.name ? ` · ${profile.name}` : ''}
               </h2>
               <p className="text-sm text-muted-foreground leading-relaxed">
-                Let's take 30 seconds to set your focus and show you where the magic happens.
-                No pressure — this is your safe space.
+                {t('tour.welcome.body')}
               </p>
               <Button onClick={next} className="w-full h-12 text-base rounded-2xl">
-                Let's go
+                {t('tour.welcome.cta')}
                 <ArrowRight className="w-4 h-4 ml-2" />
               </Button>
             </div>
@@ -140,8 +144,8 @@ export const GuidedTour: React.FC<GuidedTourProps> = ({ setActiveTab }) => {
                   <Target className="w-5 h-5 text-lavender-foreground" />
                 </div>
                 <div>
-                  <h2 className="text-lg font-bold text-foreground">What are you here for?</h2>
-                  <p className="text-xs text-muted-foreground">Pick up to 3. You can change them anytime.</p>
+                  <h2 className="text-lg font-bold text-foreground">{t('tour.goals.title')}</h2>
+                  <p className="text-xs text-muted-foreground">{t('tour.goals.hint')}</p>
                 </div>
               </div>
 
@@ -160,7 +164,7 @@ export const GuidedTour: React.FC<GuidedTourProps> = ({ setActiveTab }) => {
                       )}
                     >
                       <div className="text-lg leading-none mb-1">{g.emoji}</div>
-                      <div className="text-xs font-semibold text-foreground leading-snug">{g.label}</div>
+                      <div className="text-xs font-semibold text-foreground leading-snug">{t(g.key)}</div>
                     </button>
                   );
                 })}
@@ -168,7 +172,7 @@ export const GuidedTour: React.FC<GuidedTourProps> = ({ setActiveTab }) => {
 
               <div>
                 <Input
-                  placeholder="Or write your own focus…"
+                  placeholder={t('tour.goals.custom')}
                   value={customGoal}
                   onChange={(e) => setCustomGoal(e.target.value)}
                   className="h-11 rounded-xl"
@@ -184,7 +188,7 @@ export const GuidedTour: React.FC<GuidedTourProps> = ({ setActiveTab }) => {
                   disabled={selected.length === 0 && !customGoal.trim()}
                   className="flex-1 h-11 rounded-xl"
                 >
-                  Continue
+                  {t('tour.continue')}
                   <ArrowRight className="w-4 h-4 ml-2" />
                 </Button>
               </div>
@@ -199,17 +203,17 @@ export const GuidedTour: React.FC<GuidedTourProps> = ({ setActiveTab }) => {
                   <CalendarCheck className="w-5 h-5 text-grape-foreground" />
                 </div>
                 <div>
-                  <h2 className="text-lg font-bold text-foreground">Your daily to-do lives here</h2>
-                  <p className="text-xs text-muted-foreground">Mood check-in, quick notes, and today's focus — one tap away.</p>
+                  <h2 className="text-lg font-bold text-foreground">{t('tour.today.title')}</h2>
+                  <p className="text-xs text-muted-foreground">{t('tour.today.body')}</p>
                 </div>
               </div>
 
               <div className="rounded-2xl border border-grape/30 bg-gradient-to-br from-grape/8 to-transparent p-4 space-y-2">
                 <div className="flex items-center gap-2 text-sm font-semibold text-foreground">
-                  <span className="text-base">🌤️</span> Today tab
+                  <span className="text-base">🌤️</span> {t('tour.today.tab')}
                 </div>
                 <p className="text-xs text-muted-foreground leading-relaxed">
-                  Start every day with a 10-second mood tap, then add a quick log of how skating felt.
+                  {t('tour.today.detail')}
                 </p>
               </div>
 
@@ -224,7 +228,7 @@ export const GuidedTour: React.FC<GuidedTourProps> = ({ setActiveTab }) => {
                   }}
                   className="flex-1 h-11 rounded-xl bg-grape text-grape-foreground hover:bg-grape/90"
                 >
-                  Show me Today
+                  {t('tour.today.cta')}
                   <ArrowRight className="w-4 h-4 ml-2" />
                 </Button>
               </div>
@@ -239,15 +243,15 @@ export const GuidedTour: React.FC<GuidedTourProps> = ({ setActiveTab }) => {
                   <Snowflake className="w-5 h-5 text-mint-foreground" />
                 </div>
                 <div>
-                  <h2 className="text-lg font-bold text-foreground">Track your training</h2>
-                  <p className="text-xs text-muted-foreground">Log sessions, jumps, and timed practices in the Train tab.</p>
+                  <h2 className="text-lg font-bold text-foreground">{t('tour.train.title')}</h2>
+                  <p className="text-xs text-muted-foreground">{t('tour.train.body')}</p>
                 </div>
               </div>
 
               {selected.length > 0 || customGoal.trim() ? (
                 <div className="rounded-2xl border border-lavender/40 bg-lavender/10 p-4">
                   <p className="text-[10px] font-bold tracking-[0.2em] uppercase text-muted-foreground mb-2">
-                    Your starting focus
+                    {t('tour.focus.label')}
                   </p>
                   <div className="flex flex-wrap gap-1.5">
                     {selected.map((id) => {
@@ -257,7 +261,7 @@ export const GuidedTour: React.FC<GuidedTourProps> = ({ setActiveTab }) => {
                           key={id}
                           className="inline-flex items-center gap-1 text-xs font-semibold bg-background px-2.5 py-1 rounded-full border border-border"
                         >
-                          {g?.emoji} {g?.label}
+                          {g?.emoji} {g ? t(g.key) : ''}
                         </span>
                       );
                     })}
@@ -273,7 +277,7 @@ export const GuidedTour: React.FC<GuidedTourProps> = ({ setActiveTab }) => {
               <div className="rounded-2xl bg-gradient-to-br from-mint/15 to-sky/10 p-4 flex items-center gap-3">
                 <PartyPopper className="w-5 h-5 text-mint-foreground flex-shrink-0" />
                 <p className="text-xs text-foreground/80">
-                  You're ready. Trust the process — one log at a time.
+                  {t('tour.ready')}
                 </p>
               </div>
 
@@ -286,7 +290,7 @@ export const GuidedTour: React.FC<GuidedTourProps> = ({ setActiveTab }) => {
                   className="flex-1 h-12 rounded-xl bg-gradient-to-r from-grape to-lavender text-grape-foreground font-bold"
                 >
                   <Check className="w-4 h-4 mr-2" />
-                  Start training smart
+                  {t('tour.cta.finish')}
                 </Button>
               </div>
             </div>

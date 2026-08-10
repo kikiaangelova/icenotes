@@ -7,6 +7,7 @@ import { useJournal } from '@/context/JournalContext';
 import { useAuth } from '@/context/AuthContext';
 import { useIsAdmin } from '@/hooks/useIsAdmin';
 import { useNavigate } from 'react-router-dom';
+import { useLanguage } from '@/context/LanguageContext';
 
 interface ProfileSheetProps {
   open: boolean;
@@ -34,6 +35,7 @@ export const ProfileSheet: React.FC<ProfileSheetProps> = ({
   const { user } = useAuth();
   const { isAdmin } = useIsAdmin();
   const navigate = useNavigate();
+  const { t } = useLanguage();
 
   if (!profile) return null;
 
@@ -57,10 +59,10 @@ export const ProfileSheet: React.FC<ProfileSheetProps> = ({
             className="gap-1.5 -ml-2 rounded-xl font-semibold text-sm h-10"
           >
             <ChevronLeft className="w-4 h-4" />
-            Back
+            {t('profile.back')}
           </Button>
           <SheetHeader className="flex-1 text-center">
-            <SheetTitle className="text-sm font-bold font-serif">Profile</SheetTitle>
+            <SheetTitle className="text-sm font-bold font-serif">{t('profile.title')}</SheetTitle>
           </SheetHeader>
           <Button
             variant="ghost"
@@ -69,7 +71,7 @@ export const ProfileSheet: React.FC<ProfileSheetProps> = ({
             className="gap-1.5 -mr-2 rounded-xl font-semibold text-sm h-10"
           >
             <Home className="w-4 h-4" />
-            Home
+            {t('profile.home')}
           </Button>
         </div>
 
@@ -93,7 +95,7 @@ export const ProfileSheet: React.FC<ProfileSheetProps> = ({
               )}
               {profile.mainFocus && (
                 <p className="text-xs text-muted-foreground mt-2 italic max-w-xs">
-                  Focus: {profile.mainFocus}
+                  {t('profile.focus')}: {profile.mainFocus}
                 </p>
               )}
             </div>
@@ -101,7 +103,7 @@ export const ProfileSheet: React.FC<ProfileSheetProps> = ({
 
           {/* Quick actions */}
           <div className="space-y-2">
-            <p className="text-[10px] font-bold tracking-[0.2em] uppercase text-muted-foreground px-1">Settings</p>
+            <p className="text-[10px] font-bold tracking-[0.2em] uppercase text-muted-foreground px-1">{t('profile.settings')}</p>
 
             <button
               onClick={() => { onOpenReminders(); onOpenChange(false); }}
@@ -111,8 +113,8 @@ export const ProfileSheet: React.FC<ProfileSheetProps> = ({
                 <Bell className="w-4 h-4 text-lavender-foreground" />
               </div>
               <div className="flex-1">
-                <p className="text-sm font-semibold text-foreground">Reminders</p>
-                <p className="text-xs text-muted-foreground">Daily journaling & training prompts</p>
+                <p className="text-sm font-semibold text-foreground">{t('profile.reminders')}</p>
+                <p className="text-xs text-muted-foreground">{t('profile.remindersSub')}</p>
               </div>
             </button>
 
@@ -125,8 +127,8 @@ export const ProfileSheet: React.FC<ProfileSheetProps> = ({
                   <Shield className="w-4 h-4 text-grape-foreground" />
                 </div>
                 <div className="flex-1">
-                  <p className="text-sm font-semibold text-foreground">Admin Dashboard</p>
-                  <p className="text-xs text-muted-foreground">Manage users & content</p>
+                  <p className="text-sm font-semibold text-foreground">{t('profile.admin')}</p>
+                  <p className="text-xs text-muted-foreground">{t('profile.adminSub')}</p>
                 </div>
               </button>
             )}
@@ -134,7 +136,7 @@ export const ProfileSheet: React.FC<ProfileSheetProps> = ({
 
           {/* Community + Exit */}
           <div className="space-y-2">
-            <p className="text-[10px] font-bold tracking-[0.2em] uppercase text-muted-foreground px-1">Explore</p>
+            <p className="text-[10px] font-bold tracking-[0.2em] uppercase text-muted-foreground px-1">{t('profile.explore')}</p>
 
             <button
               onClick={() => { navigate('/share-experience'); onOpenChange(false); }}
@@ -144,8 +146,8 @@ export const ProfileSheet: React.FC<ProfileSheetProps> = ({
                 <Users className="w-4 h-4 text-mint-foreground" />
               </div>
               <div className="flex-1">
-                <p className="text-sm font-semibold text-foreground">Skater Community</p>
-                <p className="text-xs text-muted-foreground">Share your journey, read others'</p>
+                <p className="text-sm font-semibold text-foreground">{t('profile.community')}</p>
+                <p className="text-xs text-muted-foreground">{t('profile.communitySub')}</p>
               </div>
             </button>
 
@@ -157,8 +159,8 @@ export const ProfileSheet: React.FC<ProfileSheetProps> = ({
                 <ExternalLink className="w-4 h-4 text-peach-foreground" />
               </div>
               <div className="flex-1">
-                <p className="text-sm font-semibold text-foreground">Back to landing page</p>
-                <p className="text-xs text-muted-foreground">Exit the app view</p>
+                <p className="text-sm font-semibold text-foreground">{t('profile.landing')}</p>
+                <p className="text-xs text-muted-foreground">{t('profile.landingSub')}</p>
               </div>
             </button>
           </div>
@@ -172,7 +174,7 @@ export const ProfileSheet: React.FC<ProfileSheetProps> = ({
             className="w-full h-12 rounded-2xl font-semibold text-sm gap-2"
           >
             <ExternalLink className="w-4 h-4" />
-            Back to landing page
+            {t('profile.landing')}
           </Button>
           <Button
             onClick={onLogout}
@@ -180,7 +182,7 @@ export const ProfileSheet: React.FC<ProfileSheetProps> = ({
             className="w-full h-14 rounded-2xl font-bold text-base border-destructive/40 text-destructive hover:bg-destructive hover:text-destructive-foreground gap-2"
           >
             <LogOut className="w-5 h-5" />
-            Log out
+            {t('profile.logout')}
           </Button>
         </div>
       </SheetContent>
