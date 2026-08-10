@@ -8,6 +8,7 @@ import { useAuth } from '@/context/AuthContext';
 import { useIsAdmin } from '@/hooks/useIsAdmin';
 import { useNavigate } from 'react-router-dom';
 import { useLanguage, LANGUAGES, type Language } from '@/context/LanguageContext';
+import { IrisAvatar } from '@/components/IrisAvatar';
 
 interface ProfileSheetProps {
   open: boolean;
