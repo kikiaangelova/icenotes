@@ -204,7 +204,7 @@ export function getWelcomeState(
         ? 'Записа тренировка и рефлексия. Толкова.'
         : 'You logged a session and a reflection. Nothing more is needed today.',
       primary: {
-        label: bg ? 'Говори с Iris' : 'Talk to Coach Iris',
+        label: bg ? 'Говори с Kiki' : 'Talk to Coach Kiki',
         action: 'coach',
       },
     };

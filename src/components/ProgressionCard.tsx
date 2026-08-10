@@ -84,7 +84,7 @@ export const ProgressionCard: React.FC = () => {
         })}
       </div>
 
-      {/* Proactive Iris */}
+      {/* Proactive Kiki */}
       <button
         onClick={() =>
           openIris(

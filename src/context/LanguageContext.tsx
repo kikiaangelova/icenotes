@@ -15,7 +15,7 @@ const dict: Dict = {
   // ───── Navbar (marketing) ─────
   'quick.reflection.kicker': { en: '2 min', bg: '2 мин' },
   'profile.language': { en: 'Language', bg: 'Език' },
-  'profile.languageSub': { en: 'Interface and Coach Iris', bg: 'Интерфейс и Coach Iris' },
+  'profile.languageSub': { en: 'Interface and Coach Kiki', bg: 'Интерфейс и Coach Kiki' },
   'nav.home': { en: 'Home', bg: 'Начало' },
   'nav.about': { en: 'About', bg: 'За нас' },
   'nav.features': { en: 'Features', bg: 'Функции' },
@@ -67,9 +67,9 @@ const dict: Dict = {
 
   // ───── Landing (rebuilt hero + sections) ─────
   'seo.home.title': { en: 'IceNotes – Reflect. Train. Perform.', bg: 'IceNotes – Рефлексия. Тренировка. Представяне.' },
-  'seo.home.desc': { en: 'A digital journaling and mental-training space for ambitious figure skaters. Track mindset, training and performance with Coach Iris AI.', bg: 'Дигитален дневник и ментална подготовка за амбициозни фигуристи. Следи мисленето, тренировките и представянето си с Coach Iris AI.' },
+  'seo.home.desc': { en: 'A digital journaling and mental-training space for ambitious figure skaters. Track mindset, training and performance with Coach Kiki AI.', bg: 'Дигитален дневник и ментална подготовка за амбициозни фигуристи. Следи мисленето, тренировките и представянето си с Coach Kiki AI.' },
   'seo.dashboard.title': { en: 'Skater Dashboard – IceNotes', bg: 'Табло на фигуриста – IceNotes' },
-  'seo.dashboard.desc': { en: 'Your private IceNotes dashboard: log training sessions, track jumps, journal your mindset and chat with Coach Iris.', bg: 'Личното ти табло в IceNotes: записвай тренировки, следи скоковете, води дневник и говори с Coach Iris.' },
+  'seo.dashboard.desc': { en: 'Your private IceNotes dashboard: log training sessions, track jumps, journal your mindset and chat with Coach Kiki.', bg: 'Личното ти табло в IceNotes: записвай тренировки, следи скоковете, води дневник и говори с Coach Kiki.' },
   'land.chip': { en: 'Mental training for figure skaters', bg: 'Ментална подготовка за фигуристи' },
   'land.h1.a': { en: 'Five minutes after practice', bg: 'Пет минути след тренировка' },
   'land.h1.b': { en: 'change the whole season.', bg: 'променят целия сезон.' },
@@ -89,8 +89,8 @@ const dict: Dict = {
   'land.inside.title': { en: 'Not another tracker.', bg: 'Не е поредният тракер.' },
   'land.inside.titleAccent': { en: 'A training log with a psychologist attached.', bg: 'Дневник за тренировки със спортен психолог.' },
   'land.inside.sub': {
-    en: 'Goals, session notes, jumps, mood — then Coach Iris asks the questions a good psychologist would.',
-    bg: 'Цели, бележки от тренировката, скокове, настроение — а Coach Iris задава въпросите, които добрият психолог би задал.',
+    en: 'Goals, session notes, jumps, mood — then Coach Kiki asks the questions a good psychologist would.',
+    bg: 'Цели, бележки от тренировката, скокове, настроение — а Coach Kiki задава въпросите, които добрият психолог би задал.',
   },
   'land.note.label': { en: "Tonight's note", bg: 'Бележка за вечерта' },
   'land.note.text': {
@@ -112,7 +112,7 @@ const dict: Dict = {
   'feature.sessions.text': { en: 'Jumps, quality, energy — logged in under two minutes.', bg: 'Скокове, качество, енергия — записани за под две минути.' },
   'feature.reflect.title': { en: 'Reflection', bg: 'Рефлексия' },
   'feature.reflect.text': { en: 'Name the fear, the frustration, the small win. Nobody else sees it.', bg: 'Назови страха, напрежението, малката победа. Никой друг не го вижда.' },
-  'feature.coach.title': { en: 'Coach Iris', bg: 'Coach Iris' },
+  'feature.coach.title': { en: 'Coach Kiki', bg: 'Coach Kiki' },
   'feature.coach.text': { en: 'An AI sport psychologist that reads your entries and asks the right question back.', bg: 'AI спортен психолог, който чете записките ти и връща правилния въпрос.' },
 
 
@@ -1087,12 +1087,12 @@ const dict: Dict = {
   'gameDay.affirm':      { en: 'Affirmation',           bg: 'Утвърждение' },
   'gameDay.centered':    { en: 'Centered ✨',           bg: 'Центриран/а ✨' },
 
-  // ───── Coach Iris ─────
+  // ───── Coach Kiki ─────
   'coach.openLabel':     { en: 'Open AI skating coach', bg: 'Отвори AI треньор' },
-  'coach.title':         { en: 'Ask Coach Iris',        bg: 'Питай Coach Ирис' },
+  'coach.title':         { en: 'Ask Coach Kiki',        bg: 'Питай Coach Кики' },
   'coach.subtitle':      { en: 'tutor · mentor · hype', bg: 'наставник · ментор · подкрепа' },
-  'coach.placeholder':   { en: "Tell Iris what's up…",  bg: 'Сподели с Iris какво става…' },
-  'coach.greeting':      { en: "Hey 👋 I'm Iris. Jumps, nerves, motivation — tell me what's on your mind. Even if it's just \"today was hard\".", bg: 'Здрасти 👋 Аз съм Ирис. Скокове, нерви, мотивация — кажи ми какво те вълнува. Дори да е „днес беше тежко“.' },
+  'coach.placeholder':   { en: "Tell Kiki what's up…",  bg: 'Сподели с Kiki какво става…' },
+  'coach.greeting':      { en: "Hey 👋 I'm Kiki. Jumps, nerves, motivation — tell me what's on your mind. Even if it's just \"today was hard\".", bg: 'Здрасти 👋 Аз съм Кики. Скокове, нерви, мотивация — кажи ми какво те вълнува. Дори да е „днес беше тежко“.' },
   'coach.tryOne':        { en: 'Try one',               bg: 'Опитай едно' },
   'coach.starter.1':     { en: 'I keep falling on my Lutz — what do I do?', bg: 'Все падам на лутца — какво да правя?' },
   'coach.starter.2':     { en: "I'm nervous about the competition this weekend", bg: 'Нервен/нервна съм за състезанието този уикенд' },
@@ -1130,10 +1130,10 @@ const dict: Dict = {
   'gameDay.exhale':      { en: 'Exhale',                bg: 'Издишвай' },
   'gameDay.sec':         { en: 's',                     bg: 'с' },
   'gameDay.visualizeText': { en: 'Close your eyes. See yourself stepping on the ice. The music starts. Watch every element land. Feel the crowd. Finish strong.', bg: 'Затвори очи. Представи си как стъпваш на леда. Музиката започва. Виж как кацаш всеки елемент. Усети публиката. Завърши силно.' },
-  'gameDay.coachName':   { en: 'Coach Iris',            bg: 'Треньор Ирис' },
+  'gameDay.coachName':   { en: 'Coach Kiki',            bg: 'Треньор Кики' },
   'gameDay.pepTalk':     { en: "You're ready for this. Trust your training. Go out and skate from the heart. I believe in you.", bg: 'Подготвен/а си за това. Доверѝ се на тренировките. Излез и карай от сърце. Вярвам в теб.' },
   'gameDay.letsGo':      { en: "Let's go",              bg: 'Да тръгваме' },
-  'gameDay.cardSteps':   { en: 'Breathe · Visualize · Affirm · Hear Coach Iris', bg: 'Дишай · Визуализирай · Афирмирай · Чуй Треньор Ирис' },
+  'gameDay.cardSteps':   { en: 'Breathe · Visualize · Affirm · Hear Coach Kiki', bg: 'Дишай · Визуализирай · Афирмирай · Чуй Треньор Кики' },
 
   // ───── Profile sheet ─────
   'profile.back':        { en: 'Back',                  bg: 'Назад' },

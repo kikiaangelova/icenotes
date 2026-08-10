@@ -40,7 +40,7 @@ const Features: React.FC = () => {
     <div className={isDarkMode ? "dark" : ""}>
       <div className="min-h-screen bg-background">
         <Navbar isDarkMode={isDarkMode} onToggleDarkMode={() => setIsDarkMode(!isDarkMode)} />
-        <Seo title="Features – Journaling, Jump Tracker & Coach Iris AI" description="Explore IceNotes features: daily journaling, jump tracker, weekly goals, Coach Iris AI mentor, Game Day mode, and progress analytics." path="/features" jsonLd={{"@context": "https://schema.org", "@type": "Service", "name": "IceNotes", "serviceType": "Figure skating journaling and mental training platform", "provider": {"@type": "Organization", "name": "IceNotes", "url": "https://skategoals.com/"}, "areaServed": "Worldwide", "description": "Digital journaling, jump tracking, and AI sport-psychology coaching for figure skaters."}} />
+        <Seo title="Features – Journaling, Jump Tracker & Coach Kiki AI" description="Explore IceNotes features: daily journaling, jump tracker, weekly goals, Coach Kiki AI mentor, Game Day mode, and progress analytics." path="/features" jsonLd={{"@context": "https://schema.org", "@type": "Service", "name": "IceNotes", "serviceType": "Figure skating journaling and mental training platform", "provider": {"@type": "Organization", "name": "IceNotes", "url": "https://skategoals.com/"}, "areaServed": "Worldwide", "description": "Digital journaling, jump tracking, and AI sport-psychology coaching for figure skaters."}} />
 
         <section className="px-5 md:px-12 pt-14 pb-10 md:pt-28 md:pb-16">
           <div className="max-w-3xl mx-auto text-center">

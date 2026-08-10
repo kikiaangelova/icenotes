@@ -8,7 +8,7 @@ interface IrisAvatarProps {
   ring?: boolean;
 }
 
-/** Coach Iris — a warm, human face instead of a generic AI icon. */
+/** Coach Kiki — a warm, human face instead of a generic AI icon. */
 export const IrisAvatar: React.FC<IrisAvatarProps> = ({ size = 40, className, ring = true }) => (
   <span
     className={cn(
@@ -20,7 +20,7 @@ export const IrisAvatar: React.FC<IrisAvatarProps> = ({ size = 40, className, ri
   >
     <img
       src={irisPhoto}
-      alt="Coach Iris"
+      alt="Coach Kiki"
       loading="lazy"
       width={816}
       height={816}

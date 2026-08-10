@@ -319,7 +319,7 @@ export const SimpleDashboard: React.FC = () => {
               {/* CONTEXT — Game Day ritual (only renders if relevant date window) */}
               <GameDayCard onClick={() => setGameDayOpen(true)} />
 
-              {/* SUPPORT — Coach Iris noticed signal */}
+              {/* SUPPORT — Coach Kiki noticed signal */}
               <CoachNoticed onOpenReflect={() => setCurrentView('reflect')} />
 
 
