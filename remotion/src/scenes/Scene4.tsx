@@ -93,7 +93,7 @@ export const Scene4: React.FC = () => {
           maxWidth: 460,
         }}
       >
-        Iris reads it back and reminds you what you are building.
+        Kiki reads it back and reminds you what you are building.
       </div>
     </AbsoluteFill>
   );
