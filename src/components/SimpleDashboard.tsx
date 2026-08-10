@@ -309,6 +309,11 @@ export const SimpleDashboard: React.FC = () => {
                 onReflectAction={() => setCurrentView('reflect')}
               />
 
+              {/* MOMENTUM — level, XP and weekly challenges */}
+              <ProgressionCard />
+
+
+
               {/* CONTEXT — Game Day ritual (only renders if relevant date window) */}
               <GameDayCard onClick={() => setGameDayOpen(true)} />
 
