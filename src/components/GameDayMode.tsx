@@ -33,8 +33,8 @@ export const GameDayMode: React.FC<GameDayModeProps> = ({ open, onOpenChange }) 
 
   const askKiki = () => {
     const msg = language === 'bg'
-      ? `Днес имам състезание. Думата ми за програмата е „${cue.trim()}“. Малко съм нервен/на.`
-      : `I have a competition today. My cue for the program is "${cue.trim()}". I'm a bit nervous.`;
+      ? `На пързалката съм, скоро излизам на лед. Думата ми за програмата е „${cue.trim()}“. Малко съм нервен/на.`
+      : `I'm at the rink and I skate soon. My cue for the program is "${cue.trim()}". I'm a bit nervous.`;
     onOpenChange(false);
     window.setTimeout(() => {
       window.dispatchEvent(new CustomEvent('coach-iris:open', { detail: { message: msg } }));
