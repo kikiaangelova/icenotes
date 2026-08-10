@@ -323,7 +323,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted }) => {
               action="log-today"
               size="lg"
               className="h-14 px-10 text-base font-bold rounded-2xl gap-2.5 w-full sm:w-auto shadow-md bg-gradient-to-r from-primary to-primary/85"
-              label="Start today"
+              label={t('land.cta.primary')}
             />
             <Link to="/auth" className="w-full sm:w-auto">
               <Button variant="outline" size="lg" className="h-14 px-10 text-base font-semibold rounded-2xl w-full">
