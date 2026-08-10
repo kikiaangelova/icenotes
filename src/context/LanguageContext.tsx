@@ -252,7 +252,7 @@ const dict: Dict = {
   'training.mental.title': { en: 'Mental Preparation', bg: 'В главата' },
   'training.mental.desc': { en: 'Visualization, focus, and mindset', bg: 'Визуализация, фокус, нагласа' },
   'training.onIce.edges': { en: 'Edge work & stroking', bg: 'Ръбове и базово каране' },
-  'training.onIce.spins': { en: 'Spins practice', bg: 'Пирети' },
+  'training.onIce.spins': { en: 'Spins practice', bg: 'Пируети' },
   'training.onIce.jumps': { en: 'Jump technique', bg: 'Техника на скоковете' },
   'training.onIce.program': { en: 'Program run-through', bg: 'Прогон на програма' },
   'training.onIce.choreo': { en: 'Choreography', bg: 'Хореография' },
