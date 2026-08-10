@@ -121,7 +121,7 @@ export const SkatingAssistant: React.FC = () => {
       <SheetTrigger asChild>
         <button
           aria-label={t('coach.openLabel')}
-          className="fixed bottom-24 right-5 sm:bottom-6 sm:right-6 z-50 group flex items-center gap-2 pl-2 pr-5 h-14 rounded-full bg-gradient-to-r from-primary to-accent text-primary-foreground shadow-[var(--shadow-lg)] motion-press hover:scale-[1.04] transition-transform duration-300 font-bold"
+          className="fixed bottom-24 right-5 sm:bottom-6 sm:right-6 z-50 group hidden sm:flex items-center gap-2 pl-2 pr-5 h-14 rounded-full bg-gradient-to-r from-primary to-accent text-primary-foreground shadow-[var(--shadow-lg)] motion-press hover:scale-[1.04] transition-transform duration-300 font-bold"
         >
           <IrisAvatar size={40} ring={false} className="ring-2 ring-primary-foreground/50" />
           <span className="hidden sm:inline">{t('coach.title')}</span>

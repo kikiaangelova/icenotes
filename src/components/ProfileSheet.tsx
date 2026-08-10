@@ -8,6 +8,7 @@ import { useAuth } from '@/context/AuthContext';
 import { useIsAdmin } from '@/hooks/useIsAdmin';
 import { useNavigate } from 'react-router-dom';
 import { useLanguage, LANGUAGES, type Language } from '@/context/LanguageContext';
+import { IrisAvatar } from '@/components/IrisAvatar';
 
 interface ProfileSheetProps {
   open: boolean;
@@ -132,6 +133,20 @@ export const ProfileSheet: React.FC<ProfileSheetProps> = ({
                 ))}
               </div>
             </div>
+
+            <button
+              onClick={() => {
+                onOpenChange(false);
+                setTimeout(() => window.dispatchEvent(new CustomEvent('coach-iris:open')), 220);
+              }}
+              className="w-full h-16 px-4 rounded-2xl bg-gradient-to-r from-peach/50 to-lavender/40 border border-border/50 flex items-center gap-3 hover:brightness-[1.03] active:scale-[0.99] transition-all text-left"
+            >
+              <IrisAvatar size={40} />
+              <div className="flex-1">
+                <p className="text-sm font-bold text-foreground">{t('coach.title')}</p>
+                <p className="text-xs text-muted-foreground">{t('coach.subtitle')}</p>
+              </div>
+            </button>
 
             <button
               onClick={() => { onOpenReminders(); onOpenChange(false); }}
