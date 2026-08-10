@@ -6,7 +6,7 @@ import { supabase } from '@/integrations/supabase/client';
 import { useLanguage } from '@/context/LanguageContext';
 import { ProfileCard } from '@/components/ProfileCard';
 import { IceNotesMark } from './IceNotesMark';
-import heroVideo from '@/assets/hero-skater.mp4.asset.json';
+import heroVideo from '@/assets/hero-skater-neon.mp4.asset.json';
 import { HeroVideo } from './HeroVideo';
 import { SmartStartCTA } from './SmartStartCTA';
 
@@ -57,7 +57,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted }) => {
                   {t('land.chip')}
                 </span>
               </div>
-              <h1 className="font-display text-[2.15rem] sm:text-5xl md:text-[3.25rem] font-extrabold leading-[1.08] tracking-[-0.03em] text-foreground [text-wrap:balance]">
+              <h1 className="font-display text-[1.9rem] sm:text-[2.75rem] md:text-[3.25rem] font-extrabold leading-[1.1] tracking-[-0.03em] text-foreground [text-wrap:balance]">
                 {t('land.h1.a')}{' '}
                 <span className="text-lime">{t('land.h1.b')}</span>
               </h1>
@@ -96,11 +96,11 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted }) => {
               src={heroVideo.url}
               className="absolute inset-0 h-full w-full"
               videoClassName=""
-              filter="saturate(1.15) contrast(1.1)"
+              filter="saturate(0.9) contrast(1.15) brightness(0.85)"
               withOverlay={false}
             />
-            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background via-background/25 to-transparent" />
-            <div className="pointer-events-none absolute inset-0 bg-violet/20 mix-blend-color" />
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background via-background/35 to-background/10" />
+            <div className="pointer-events-none absolute inset-0 bg-violet/35 mix-blend-color" />
             <div className="pointer-events-none absolute inset-x-0 bottom-0 p-5 pr-20">
               <div className="rounded-2xl bg-background/40 backdrop-blur-xl border border-border p-4">
                 <div className="flex items-center gap-2 mb-1.5">
