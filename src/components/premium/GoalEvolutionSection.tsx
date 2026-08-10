@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { usePremium } from '@/context/PremiumContext';
 import { useSkater } from '@/context/SkaterContext';
+import { useLanguage } from '@/context/LanguageContext';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
@@ -12,6 +13,9 @@ import { GoalEvolution, GoalReflectionEntry } from '@/types/premium';
 export const GoalEvolutionSection: React.FC = () => {
   const { goalEvolution, setGoalEvolution, updateGoalEvolution } = usePremium();
   const { profile } = useSkater();
+  const { language } = useLanguage();
+  const bg = language === 'bg';
+  const L = (en: string, bgs: string) => (bg ? bgs : en);
   const [isEditing, setIsEditing] = useState(false);
   const [newGoal, setNewGoal] = useState('');
   const [reflectionNote, setReflectionNote] = useState('');
@@ -59,9 +63,9 @@ export const GoalEvolutionSection: React.FC = () => {
         <CardContent className="pt-6 text-center space-y-3">
           <Target className="w-8 h-8 mx-auto text-premium/60" />
           <div>
-            <h3 className="font-medium text-foreground">Избери си основна цел</h3>
+            <h3 className="font-medium text-foreground">{L('Pick a main goal', 'Избери си основна цел')}</h3>
             <p className="text-sm text-muted-foreground mt-1">
-              Върху какво искаш да работиш в следващите седмици?
+              {L('What do you want to work on over the next few weeks?', 'Върху какво искаш да работиш в следващите седмици?')}
             </p>
           </div>
         </CardContent>
@@ -75,12 +79,12 @@ export const GoalEvolutionSection: React.FC = () => {
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2 text-premium">
             <Target className="w-4 h-4" />
-            <span className="text-xs font-medium uppercase tracking-wide">Your Goal</span>
+            <span className="text-xs font-medium uppercase tracking-wide">{L('Your Goal', 'Твоята цел')}</span>
           </div>
           {goalEvolution.originalGoal !== goalEvolution.currentGoal && (
             <span className="text-xs text-muted-foreground flex items-center gap-1">
               <RefreshCw className="w-3 h-3" />
-              Evolved
+              {L('Evolved', 'Развита')}
             </span>
           )}
         </div>
@@ -89,7 +93,7 @@ export const GoalEvolutionSection: React.FC = () => {
         </CardTitle>
         {goalEvolution.originalGoal !== goalEvolution.currentGoal && (
           <p className="text-xs text-muted-foreground">
-            Originally: "{goalEvolution.originalGoal}"
+            {L('Originally', 'Първоначално')}: "{goalEvolution.originalGoal}"
           </p>
         )}
       </CardHeader>
@@ -98,7 +102,7 @@ export const GoalEvolutionSection: React.FC = () => {
         {/* Previous reflections */}
         {goalEvolution.reflections.length > 0 && (
           <div className="space-y-2">
-            <p className="text-xs font-medium text-muted-foreground">Recent reflections</p>
+            <p className="text-xs font-medium text-muted-foreground">{L('Recent reflections', 'Скорошни рефлексии')}</p>
             <div className="space-y-2 max-h-[150px] overflow-y-auto">
               {goalEvolution.reflections.slice(-3).map((entry) => (
                 <div 
@@ -111,7 +115,7 @@ export const GoalEvolutionSection: React.FC = () => {
                     ) : (
                       <Edit3 className="w-3 h-3 text-premium" />
                     )}
-                    <span>{format(new Date(entry.date), 'MMM d, yyyy')}</span>
+                    <span>{format(new Date(entry.date), bg ? 'd MMM yyyy' : 'MMM d, yyyy')}</span>
                   </div>
                   {entry.note && <p className="text-foreground/80">{entry.note}</p>}
                 </div>
@@ -127,16 +131,16 @@ export const GoalEvolutionSection: React.FC = () => {
               variant="outline" 
               className="w-full border-premium/30 hover:bg-premium-soft/50 hover:border-premium/50"
             >
-              Does this goal still feel right?
+              {L('Does this goal still feel right?', 'Все още ли ти се струва правилна тази цел?')}
             </Button>
           </DialogTrigger>
           <DialogContent className="sm:max-w-[425px]">
             <DialogHeader>
               <DialogTitle className="text-lg font-medium">
-                Reflect on your goal
+                {L('Reflect on your goal', 'Помисли за целта си')}
               </DialogTitle>
               <p className="text-sm text-muted-foreground">
-                Goals can change as you grow. That's natural.
+                {L("Goals can change as you grow. That's natural.", 'Целите могат да се променят докато растеш. Това е нормално.')}
               </p>
             </DialogHeader>
             
@@ -148,21 +152,21 @@ export const GoalEvolutionSection: React.FC = () => {
               </div>
 
               <div className="space-y-2">
-                <p className="text-sm font-medium">Does this goal still feel right for you?</p>
+                <p className="text-sm font-medium">{L('Does this goal still feel right for you?', 'Все още ли се чувстваш добре с тази цел?')}</p>
                 <div className="flex gap-2">
                   <Button
                     variant={stillFeelsRight === true ? "default" : "outline"}
                     onClick={() => setStillFeelsRight(true)}
                     className={stillFeelsRight === true ? "bg-success hover:bg-success/90" : ""}
                   >
-                    Yes, it does
+                    {L('Yes, it does', 'Да, така е')}
                   </Button>
                   <Button
                     variant={stillFeelsRight === false ? "default" : "outline"}
                     onClick={() => setStillFeelsRight(false)}
                     className={stillFeelsRight === false ? "bg-premium hover:bg-premium/90" : ""}
                   >
-                    I'd like to adjust it
+                    {L("I'd like to adjust it", 'Искам да я коригирам')}
                   </Button>
                 </div>
               </div>
@@ -170,10 +174,10 @@ export const GoalEvolutionSection: React.FC = () => {
               {stillFeelsRight === false && (
                 <div className="space-y-2">
                   <label className="text-sm font-medium">
-                    What feels more true now?
+                    {L('What feels more true now?', 'Кое ти се струва по-вярно сега?')}
                   </label>
                   <Textarea
-                    placeholder="Write your adjusted goal..."
+                    placeholder={L('Write your adjusted goal...', 'Напиши коригираната си цел...')}
                     value={newGoal}
                     onChange={(e) => setNewGoal(e.target.value)}
                     className="min-h-[80px] resize-none"
@@ -183,10 +187,10 @@ export const GoalEvolutionSection: React.FC = () => {
 
               <div className="space-y-2">
                 <label className="text-sm font-medium">
-                  Any thoughts to capture? (optional)
+                  {L('Any thoughts to capture? (optional)', 'Има ли нещо, което искаш да запишеш? (по избор)')}
                 </label>
                 <Textarea
-                  placeholder="What led to this reflection..."
+                  placeholder={L('What led to this reflection...', 'Какво те доведе до тази рефлексия...')}
                   value={reflectionNote}
                   onChange={(e) => setReflectionNote(e.target.value)}
                   className="min-h-[60px] resize-none"
@@ -195,14 +199,14 @@ export const GoalEvolutionSection: React.FC = () => {
 
               <div className="flex justify-end gap-2 pt-2">
                 <Button variant="outline" onClick={() => setIsEditing(false)}>
-                  Cancel
+                  {L('Cancel', 'Отказ')}
                 </Button>
                 <Button 
                   onClick={handleReflection}
                   disabled={stillFeelsRight === null || (stillFeelsRight === false && !newGoal.trim())}
                   className="bg-premium hover:bg-premium/90"
                 >
-                  Save Reflection
+                  {L('Save Reflection', 'Запази рефлексията')}
                 </Button>
               </div>
             </div>
@@ -210,7 +214,7 @@ export const GoalEvolutionSection: React.FC = () => {
         </Dialog>
 
         <p className="text-xs text-center text-muted-foreground italic">
-          Growth isn't linear. Your goals can evolve with you.
+          {L("Growth isn't linear. Your goals can evolve with you.", 'Развитието не е линейно. Целите ти могат да се променят с теб.')}
         </p>
       </CardContent>
     </Card>

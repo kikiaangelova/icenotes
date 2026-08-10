@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Quote, RefreshCw, Sparkles, Heart } from 'lucide-react';
-import { getRandomQuote, getDailyQuote, SKATING_QUOTES } from '@/data/quotes';
+import { getRandomQuote, getDailyQuote } from '@/data/quotes';
 import { useSavedQuotes, useSaveQuote } from '@/hooks/useSavedQuotes';
+import { useLanguage } from '@/context/LanguageContext';
 import { cn } from '@/lib/utils';
 import { toast } from 'sonner';
 
@@ -22,10 +23,19 @@ export const MotivationalQuote: React.FC<MotivationalQuoteProps> = ({
   useDaily = false,
   className
 }) => {
-  const [quote, setQuote] = useState(() => useDaily ? getDailyQuote() : getRandomQuote());
+  const { language } = useLanguage();
+  const bg = language === 'bg';
+  const L = (en: string, bgs: string) => (bg ? bgs : en);
+
+  const [quote, setQuote] = useState(() => useDaily ? getDailyQuote(bg) : getRandomQuote(bg));
   const [isRefreshing, setIsRefreshing] = useState(false);
   const { data: savedQuotes = [] } = useSavedQuotes();
   const saveQuote = useSaveQuote();
+
+  useEffect(() => {
+    setQuote(useDaily ? getDailyQuote(bg) : getRandomQuote(bg));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [bg]);
 
   const isQuoteSaved = savedQuotes.some(q => q.quote === quote.quote);
 
@@ -37,16 +47,16 @@ export const MotivationalQuote: React.FC<MotivationalQuoteProps> = ({
         author: quote.author,
         category: quote.category
       });
-      toast.success('Запазено');
+      toast.success(L('Saved', 'Запазено'));
     } catch (error) {
-      toast.error('Не успях да запазя');
+      toast.error(L("Couldn't save it", 'Не успях да запазя'));
     }
   };
 
   const refreshQuote = () => {
     setIsRefreshing(true);
     setTimeout(() => {
-      setQuote(getRandomQuote());
+      setQuote(getRandomQuote(bg));
       setIsRefreshing(false);
     }, 300);
   };
@@ -129,7 +139,7 @@ export const MotivationalQuote: React.FC<MotivationalQuoteProps> = ({
               disabled={isRefreshing}
             >
               <RefreshCw className={cn("w-3 h-3 mr-1", isRefreshing && "animate-spin")} />
-              Друг
+              {L('Another', 'Друг')}
             </Button>
           </div>
         )}

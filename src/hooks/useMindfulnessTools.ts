@@ -13,7 +13,7 @@ export interface MindfulnessUsagePayload {
   notes?: string;
 }
 
-export const useMindfulnessTools = () => {
+export const useMindfulnessTools = (bg: boolean = true) => {
   const [saving, setSaving] = useState(false);
 
   const logUsage = async (payload: MindfulnessUsagePayload) => {
@@ -21,7 +21,7 @@ export const useMindfulnessTools = () => {
     try {
       const { data: userData } = await supabase.auth.getUser();
       if (!userData.user) {
-        toast.error('Моля, влезте в профила си');
+        toast.error(bg ? 'Моля, влезте в профила си' : 'Please sign in to your account');
         return null;
       }
       const { data, error } = await (supabase as any)
@@ -38,7 +38,7 @@ export const useMindfulnessTools = () => {
       return data;
     } catch (e: any) {
       console.error('Failed to log mindfulness usage', e);
-      toast.error('Неуспешно запазване');
+      toast.error(bg ? 'Неуспешно запазване' : 'Failed to save');
       return null;
     } finally {
       setSaving(false);
