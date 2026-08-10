@@ -237,8 +237,8 @@
   }
 
   .theme-neon ::selection {
-    background: hsl(38 92% 62%);
-    color: hsl(24 18% 12%);
+    background: hsl(262 32% 78%);
+    color: hsl(25 16% 18%);
   }
 
   /* Warm paper surfaces inside the app */
@@ -246,22 +246,22 @@
   .theme-neon .glass-card,
   .theme-neon .frost-glass,
   .theme-neon .feature-card {
-    background: linear-gradient(160deg, hsl(40 60% 99%), hsl(36 40% 96%));
-    border: 1px solid hsl(30 22% 88%);
-    box-shadow: 0 8px 26px -20px hsl(14 60% 30% / 0.4);
+    background: linear-gradient(160deg, hsl(36 30% 97%), hsl(33 22% 93%));
+    border: 1px solid hsl(30 16% 84%);
+    box-shadow: 0 8px 26px -20px hsl(25 30% 25% / 0.35);
   }
   .theme-neon .soft-card:hover,
   .theme-neon .feature-card:hover {
-    border-color: hsl(14 84% 60% / 0.45);
-    box-shadow: 0 14px 34px -22px hsl(14 70% 40% / 0.5);
+    border-color: hsl(14 52% 58% / 0.4);
+    box-shadow: 0 14px 34px -22px hsl(25 34% 30% / 0.42);
   }
 
   .theme-neon .glass-nav {
-    background: hsl(40 50% 99% / 0.82);
+    background: hsl(36 30% 97% / 0.8);
     backdrop-filter: blur(16px) saturate(140%);
     -webkit-backdrop-filter: blur(16px) saturate(140%);
-    border: 1px solid hsl(30 22% 88%);
-    box-shadow: 0 10px 30px -18px hsl(14 60% 30% / 0.35);
+    border: 1px solid hsl(30 16% 84%);
+    box-shadow: 0 10px 30px -18px hsl(25 30% 25% / 0.3);
   }
 
   /* shadcn Card + any bg-card surface inside the app */
