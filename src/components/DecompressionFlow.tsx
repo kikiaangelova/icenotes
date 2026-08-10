@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useLanguage } from '@/context/LanguageContext';
 import { Dialog, DialogContent } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 import { Heart, Wind, Sparkles, Moon, Leaf, X } from 'lucide-react';
@@ -15,19 +16,19 @@ interface DecompressionFlowProps {
 }
 
 // Pick an opening line tailored to detected themes — never toxic positivity.
-function openingLine(themes: DifficultTheme[] = []): string {
-  if (themes.includes('injury'))      return 'Тялото ти иска грижа. Това също е тренировка.';
-  if (themes.includes('fear'))        return 'Страхът се появява, когато нещо ти е важно. Не си сам/а в това.';
-  if (themes.includes('burnout'))     return 'Носиш много на гърба си. Хайде да забавим за минута.';
-  if (themes.includes('overwhelm'))   return 'Звучи като много за едно вечер. Не трябва да го решаваш цялото сега.';
-  if (themes.includes('self_doubt'))  return 'Острият глас в главата ти не е цялата истина.';
-  if (themes.includes('frustration')) return 'Фрустрацията означава, че ти пука. Това не е малко.';
-  if (themes.includes('bad_practice'))return 'Някои тренировки тежат за известно време. Това е нормално.';
-  return 'Беше тежък ден. Тук си — и това е достатъчно.';
+function openingLine(themes: DifficultTheme[] = [], bg = false): string {
+  if (themes.includes('injury'))      return bg ? 'Тялото ти иска грижа. Това също е тренировка.' : 'Your body wants care. That’s training too.';
+  if (themes.includes('fear'))        return bg ? 'Страхът се появява, когато нещо ти е важно. Не си сам/а в това.' : 'Fear shows up when something matters to you. You’re not alone in this.';
+  if (themes.includes('burnout'))     return bg ? 'Носиш много на гърба си. Хайде да забавим за минута.' : 'You’re carrying a lot right now. Let’s slow down for a minute.';
+  if (themes.includes('overwhelm'))   return bg ? 'Звучи като много за едно вечер. Не трябва да го решаваш цялото сега.' : 'That sounds like a lot for one evening. You don’t have to figure it all out now.';
+  if (themes.includes('self_doubt'))  return bg ? 'Острият глас в главата ти не е цялата истина.' : 'That harsh voice in your head isn’t the whole truth.';
+  if (themes.includes('frustration')) return bg ? 'Фрустрацията означава, че ти пука. Това не е малко.' : 'Frustration means you care. That’s not nothing.';
+  if (themes.includes('bad_practice'))return bg ? 'Някои тренировки тежат за известно време. Това е нормално.' : 'Some sessions sit heavy for a while. That’s normal.';
+  return bg ? 'Беше тежък ден. Тук си — и това е достатъчно.' : 'That was a hard day. You’re here — and that’s enough.';
 }
 
-// 4-7-8 дишане — меко, без натиск от обратно броене
-const BreatheStep: React.FC<{ onDone: () => void }> = ({ onDone }) => {
+// 4-7-8 breathing — soft, no countdown pressure
+const BreatheStep: React.FC<{ onDone: () => void; bg: boolean }> = ({ onDone, bg }) => {
   const [phase, setPhase] = useState<'in' | 'hold' | 'out'>('in');
   const [cycle, setCycle] = useState(0);
 
@@ -40,7 +41,7 @@ const BreatheStep: React.FC<{ onDone: () => void }> = ({ onDone }) => {
     return () => clearTimeout(id);
   }, [phase]);
 
-  const label = phase === 'in' ? 'Вдишвай…' : phase === 'hold' ? 'Задръж…' : 'Меко издишване…';
+  const label = phase === 'in' ? (bg ? 'Вдишвай…' : 'Breathe in…') : phase === 'hold' ? (bg ? 'Задръж…' : 'Hold…') : (bg ? 'Меко издишване…' : 'Soft exhale…');
   const scale = phase === 'in' ? 'scale-110' : phase === 'hold' ? 'scale-110' : 'scale-90';
   const dur   = phase === 'in' ? 'duration-[4000ms]' : phase === 'hold' ? 'duration-[4000ms]' : 'duration-[6000ms]';
 
@@ -55,30 +56,36 @@ const BreatheStep: React.FC<{ onDone: () => void }> = ({ onDone }) => {
         <span className="text-base font-medium text-foreground/85">{label}</span>
       </div>
       <p className="text-sm text-muted-foreground max-w-xs">
-        Без бързане. Без броене. Остани колкото ти е добре.
+        {bg ? 'Без бързане. Без броене. Остани колкото ти е добре.' : 'No rush. No counting. Stay as long as feels good.'}
       </p>
       <div className="flex flex-col gap-2 w-full max-w-xs">
         <Button onClick={onDone} variant="outline" className="h-12 rounded-full">
-          Малко по-меко ми е
+          {bg ? 'Малко по-меко ми е' : 'I feel a bit softer'}
         </Button>
       </div>
-      {cycle > 0 && <p className="text-xs text-muted-foreground/70">{cycle} спокоен {cycle === 1 ? 'цикъл' : 'цикъла'}</p>}
+      {cycle > 0 && <p className="text-xs text-muted-foreground/70">{bg ? `${cycle} спокоен ${cycle === 1 ? 'цикъл' : 'цикъла'}` : `${cycle} calm ${cycle === 1 ? 'cycle' : 'cycles'}`}</p>}
     </div>
   );
 };
 
-const GroundStep: React.FC<{ onDone: () => void }> = ({ onDone }) => {
-  const prompts = [
+const GroundStep: React.FC<{ onDone: () => void; bg: boolean }> = ({ onDone, bg }) => {
+  const prompts = bg ? [
     '5 неща, които виждаш около себе си',
     '4 неща, които можеш да усетиш — пода, дрехите, въздуха',
     '3 звука, дори малки',
     '2 неща, които можеш да помиришеш',
     '1 нещо, което можеш да вкусиш, или едно бавно вдишване',
+  ] : [
+    '5 things you can see around you',
+    '4 things you can feel — the floor, your clothes, the air',
+    '3 sounds, even small ones',
+    '2 things you can smell',
+    '1 thing you can taste, or one slow breath',
   ];
   return (
     <div className="flex flex-col gap-6 py-2">
       <p className="text-center text-foreground/80 text-base leading-relaxed">
-        Върни се в тялото си за момент. Не е нужно да отговаряш на глас.
+        {bg ? 'Върни се в тялото си за момент. Не е нужно да отговаряш на глас.' : 'Come back into your body for a moment. You don’t need to answer out loud.'}
       </p>
       <ul className="space-y-3">
         {prompts.map((p, i) => (
@@ -92,28 +99,28 @@ const GroundStep: React.FC<{ onDone: () => void }> = ({ onDone }) => {
         ))}
       </ul>
       <Button onClick={onDone} variant="outline" className="h-12 rounded-full">
-        Върнах се в тялото си
+        {bg ? 'Върнах се в тялото си' : 'I’m back in my body'}
       </Button>
     </div>
   );
 };
 
-const RestStep: React.FC<{ onClose: () => void }> = ({ onClose }) => (
+const RestStep: React.FC<{ onClose: () => void; bg: boolean }> = ({ onClose, bg }) => (
   <div className="flex flex-col items-center text-center gap-6 py-4">
     <div className="w-20 h-20 rounded-full bg-gradient-to-br from-lavender/60 to-mint/40 flex items-center justify-center">
       <Moon className="w-9 h-9 text-foreground/70" />
     </div>
     <div className="space-y-2 max-w-sm">
-      <h3 className="text-2xl font-semibold text-foreground">Днес беше достатъчно.</h3>
+      <h3 className="text-2xl font-semibold text-foreground">{bg ? 'Днес беше достатъчно.' : 'Today was enough.'}</h3>
       <p className="text-muted-foreground leading-relaxed">
-        Беше тук. Записа го. Нищо повече не се иска от теб тази вечер.
+        {bg ? 'Беше тук. Записа го. Нищо повече не се иска от теб тази вечер.' : 'You showed up. You logged it. Nothing more is asked of you tonight.'}
       </p>
     </div>
     <Button
       onClick={onClose}
       className="h-12 rounded-full bg-foreground text-background hover:bg-foreground/90 px-8"
     >
-      Затвори тихо
+      {bg ? 'Затвори тихо' : 'Close quietly'}
     </Button>
   </div>
 );
@@ -124,6 +131,8 @@ export const DecompressionFlow: React.FC<DecompressionFlowProps> = ({
   themes = [],
   level = 'soft',
 }) => {
+  const { language } = useLanguage();
+  const bg = language === 'bg';
   const [step, setStep] = useState<Step>('land');
 
   useEffect(() => { if (open) setStep('land'); }, [open]);
@@ -136,7 +145,7 @@ export const DecompressionFlow: React.FC<DecompressionFlowProps> = ({
         className="max-w-md p-0 overflow-hidden border-0 bg-gradient-to-b from-lavender/30 via-background to-mint/20 sm:rounded-3xl"
       >
         <button
-          aria-label="Затвори тихо"
+          aria-label={bg ? 'Затвори тихо' : 'Close quietly'}
           onClick={close}
           className="absolute right-3 top-3 z-10 rounded-full p-2 text-muted-foreground/70 hover:text-foreground hover:bg-background/40 transition-colors"
         >
@@ -150,24 +159,24 @@ export const DecompressionFlow: React.FC<DecompressionFlowProps> = ({
                 <Heart className="w-7 h-7 text-rose-foreground" />
               </div>
               <h2 className="text-2xl sm:text-3xl font-semibold text-foreground leading-tight max-w-sm">
-                {openingLine(themes)}
+                {openingLine(themes, bg)}
               </h2>
               <p className="text-sm text-muted-foreground max-w-xs leading-relaxed">
-                Не е нужно да решаваш нищо сега. Поеми дъх, преди да продължиш.
+                {bg ? 'Не е нужно да решаваш нищо сега. Поеми дъх, преди да продължиш.' : 'You don’t need to figure anything out right now. Take a breath before you continue.'}
               </p>
               <div className="flex flex-col gap-2 w-full max-w-xs pt-2">
                 <Button
                   onClick={() => setStep('choose')}
                   className="h-12 rounded-full bg-foreground text-background hover:bg-foreground/90"
                 >
-                  Остани с мен за минута
+                  {bg ? 'Остани с мен за минута' : 'Stay with me a minute'}
                 </Button>
                 <Button
                   onClick={() => setStep('rest')}
                   variant="ghost"
                   className="h-11 rounded-full text-muted-foreground"
                 >
-                  Искам просто да си почина
+                  {bg ? 'Искам просто да си почина' : 'I just want to rest'}
                 </Button>
               </div>
             </div>
@@ -176,46 +185,46 @@ export const DecompressionFlow: React.FC<DecompressionFlowProps> = ({
           {step === 'choose' && (
             <div className="flex-1 flex flex-col gap-5 animate-fade-in">
               <div className="text-center space-y-1">
-                <h3 className="text-xl font-semibold text-foreground">Какво ще ти бъде нежно сега?</h3>
-                <p className="text-sm text-muted-foreground">Избери едно. Или нищо. Няма грешен ход.</p>
+                <h3 className="text-xl font-semibold text-foreground">{bg ? 'Какво ще ти бъде нежно сега?' : 'What would feel gentle right now?'}</h3>
+                <p className="text-sm text-muted-foreground">{bg ? 'Избери едно. Или нищо. Няма грешен ход.' : 'Pick one. Or none. There’s no wrong move.'}</p>
               </div>
               <div className="grid gap-3 mt-2">
                 <ActionCard
                   icon={<Wind className="w-5 h-5" />}
-                  title="Бавно дишане"
-                  desc="Няколко меки цикъла, без броене."
+                  title={bg ? 'Бавно дишане' : 'Slow breathing'}
+                  desc={bg ? 'Няколко меки цикъла, без броене.' : 'A few soft cycles, no counting.'}
                   onClick={() => setStep('breathe')}
                 />
                 <ActionCard
                   icon={<Leaf className="w-5 h-5" />}
-                  title="Заземи ме"
-                  desc="Върни се към сетивата си, нежно."
+                  title={bg ? 'Заземи ме' : 'Ground me'}
+                  desc={bg ? 'Върни се към сетивата си, нежно.' : 'Come back to your senses, gently.'}
                   onClick={() => setStep('ground')}
                 />
                 <ActionCard
                   icon={<Sparkles className="w-5 h-5" />}
-                  title="Едно меко преосмисляне"
-                  desc="Напомняне, че този момент не е цялата история."
+                  title={bg ? 'Едно меко преосмисляне' : 'A gentle reframe'}
+                  desc={bg ? 'Напомняне, че този момент не е цялата история.' : 'A reminder that this moment isn’t the whole story.'}
                   onClick={() => setStep('rest')}
                 />
                 <ActionCard
                   icon={<Moon className="w-5 h-5" />}
-                  title="Днес беше достатъчно"
-                  desc="Запази и почини. Нищо повече не се иска."
+                  title={bg ? 'Днес беше достатъчно' : 'Today was enough'}
+                  desc={bg ? 'Запази и почини. Нищо повече не се иска.' : 'Save it and rest. Nothing more is asked.'}
                   onClick={() => setStep('rest')}
                 />
               </div>
               {level === 'heavy' && (
                 <p className="text-xs text-center text-muted-foreground/80 pt-2 leading-relaxed">
-                  Ако носиш нещо по-голямо от кънките тази вечер, моля те — потърси някой, на когото имаш доверие. Не трябва да го носиш сам/а.
+                  {bg ? 'Ако носиш нещо по-голямо от кънките тази вечер, моля те — потърси някой, на когото имаш доверие. Не трябва да го носиш сам/а.' : 'If you’re carrying something bigger than skating tonight, please reach out to someone you trust. You don’t have to carry it alone.'}
                 </p>
               )}
             </div>
           )}
 
-          {step === 'breathe' && <BreatheStep onDone={() => setStep('rest')} />}
-          {step === 'ground' && <GroundStep onDone={() => setStep('rest')} />}
-          {step === 'rest' && <RestStep onClose={close} />}
+          {step === 'breathe' && <BreatheStep onDone={() => setStep('rest')} bg={bg} />}
+          {step === 'ground' && <GroundStep onDone={() => setStep('rest')} bg={bg} />}
+          {step === 'rest' && <RestStep onClose={close} bg={bg} />}
         </div>
       </DialogContent>
     </Dialog>

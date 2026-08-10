@@ -2,6 +2,7 @@ import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import { useLanguage } from '@/context/LanguageContext';
 import { 
   Sparkles, 
   Target, 
@@ -17,39 +18,51 @@ interface WelcomePageProps {
   onGetStarted: () => void;
 }
 
-const FEATURES = [
+const FEATURES = (bg: boolean) => [
   {
     icon: Target,
-    title: 'Скокове',
-    description: 'Записвай всеки опит — от тулуп до аксел. Виж кое ти върви и кое не.',
+    title: bg ? 'Скокове' : 'Jumps',
+    description: bg
+      ? 'Записвай всеки опит — от тулуп до аксел. Виж кое ти върви и кое не.'
+      : "Log every attempt — from toe loop to axel. See what's clicking and what's not.",
     color: 'text-primary',
     bg: 'bg-primary/10',
   },
   {
     icon: TrendingUp,
-    title: 'Прогрес',
-    description: 'Прости графики за настроение, енергия и тренировки във времето.',
+    title: bg ? 'Прогрес' : 'Progress',
+    description: bg
+      ? 'Прости графики за настроение, енергия и тренировки във времето.'
+      : 'Simple charts for mood, energy, and training over time.',
     color: 'text-success',
     bg: 'bg-success/10',
   },
   {
     icon: Brain,
-    title: 'Глава',
-    description: 'Дишане, визуализация и кратки напомняния за преди и след лед.',
+    title: bg ? 'Глава' : 'Mindset',
+    description: bg
+      ? 'Дишане, визуализация и кратки напомняния за преди и след лед.'
+      : 'Breathing, visualization, and quick reminders for before and after the ice.',
     color: 'text-mental',
     bg: 'bg-mental/10',
   },
   {
     icon: Heart,
-    title: 'Всеки ден',
-    description: 'Сън, настроение, енергия. Това, което влияе на тренировката.',
+    title: bg ? 'Всеки ден' : 'Everyday',
+    description: bg
+      ? 'Сън, настроение, енергия. Това, което влияе на тренировката.'
+      : 'Sleep, mood, energy. The stuff that shapes your session.',
     color: 'text-off-ice',
     bg: 'bg-off-ice/10',
   },
 ];
 
-
 export const WelcomePage: React.FC<WelcomePageProps> = ({ onGetStarted }) => {
+  const { language } = useLanguage();
+  const bg = language === 'bg';
+  const L = (en: string, bgs: string) => (bg ? bgs : en);
+  const features = FEATURES(bg);
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-ice via-background to-background">
       {/* Hero Section */}
@@ -57,17 +70,21 @@ export const WelcomePage: React.FC<WelcomePageProps> = ({ onGetStarted }) => {
         <div className="text-center space-y-6 mb-16">
           <Badge variant="secondary" className="px-4 py-1.5 text-sm">
             <Sparkles className="w-4 h-4 mr-2 inline" />
-            За фигуристи, по фигуристи
+            {L('For figure skaters, by a figure skater', 'За фигуристи, по фигуристи')}
           </Badge>
           
           <h1 className="text-4xl md:text-6xl font-bold tracking-tight">
-            Дневникът на
-            <span className="gradient-text block mt-2">твоето каране</span>
+            {L('The journal for', 'Дневникът на')}
+            <span className="gradient-text block mt-2">{L('your skating', 'твоето каране')}</span>
           </h1>
           
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Записвай скокове, тренировки и как си се чувствал(а).
-            След месец ще виждаш разликата.
+            {L(
+              'Log jumps, sessions, and how you felt.',
+              'Записвай скокове, тренировки и как си се чувствал(а).'
+            )}
+            <br />
+            {L("In a month you'll see the difference.", 'След месец ще виждаш разликата.')}
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
@@ -76,19 +93,19 @@ export const WelcomePage: React.FC<WelcomePageProps> = ({ onGetStarted }) => {
               onClick={onGetStarted}
               className="text-lg px-8 h-14 bg-gradient-to-r from-primary to-accent hover:opacity-90 transition-opacity"
             >
-              Влез
+              {L('Get in', 'Влез')}
               <ChevronRight className="w-5 h-5 ml-2" />
             </Button>
           </div>
 
           <p className="text-sm text-muted-foreground">
-            Безплатно • Без карта
+            {L('Free • No card needed', 'Безплатно • Без карта')}
           </p>
         </div>
 
         {/* Features Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
-          {FEATURES.map((feature, index) => (
+          {features.map((feature, index) => (
             <Card 
               key={index} 
               className="group hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border-2 hover:border-primary/30"
@@ -110,19 +127,19 @@ export const WelcomePage: React.FC<WelcomePageProps> = ({ onGetStarted }) => {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
               <div>
                 <div className="text-3xl md:text-4xl font-bold text-primary">100%</div>
-                <div className="text-sm text-muted-foreground">Безплатно</div>
+                <div className="text-sm text-muted-foreground">{L('Free', 'Безплатно')}</div>
               </div>
               <div>
                 <div className="text-3xl md:text-4xl font-bold text-success">6</div>
-                <div className="text-sm text-muted-foreground">вида скокове</div>
+                <div className="text-sm text-muted-foreground">{L('jump types', 'вида скокове')}</div>
               </div>
               <div>
                 <div className="text-3xl md:text-4xl font-bold text-mental">12+</div>
-                <div className="text-sm text-muted-foreground">упражнения за глава</div>
+                <div className="text-sm text-muted-foreground">{L('mindset exercises', 'упражнения за глава')}</div>
               </div>
               <div>
                 <div className="text-3xl md:text-4xl font-bold text-gold">∞</div>
-                <div className="text-sm text-muted-foreground">тренировки напред</div>
+                <div className="text-sm text-muted-foreground">{L('sessions ahead', 'тренировки напред')}</div>
               </div>
             </div>
           </CardContent>
@@ -138,10 +155,10 @@ export const WelcomePage: React.FC<WelcomePageProps> = ({ onGetStarted }) => {
             <div className="relative z-10 space-y-4">
               <Zap className="w-12 h-12 mx-auto opacity-90" />
               <h2 className="text-2xl md:text-3xl font-bold">
-                Готов(а) да започнеш?
+                {L('Ready to start?', 'Готов(а) да започнеш?')}
               </h2>
               <p className="text-white/80 max-w-lg mx-auto">
-                Регистрирай се и запиши първата си тренировка. Две минути.
+                {L('Sign up and log your first session. Two minutes.', 'Регистрирай се и запиши първата си тренировка. Две минути.')}
               </p>
               <Button 
                 size="lg" 
@@ -149,7 +166,7 @@ export const WelcomePage: React.FC<WelcomePageProps> = ({ onGetStarted }) => {
                 onClick={onGetStarted}
                 className="text-lg px-8 h-14 mt-4"
               >
-                Влез
+                {L('Get in', 'Влез')}
                 <ChevronRight className="w-5 h-5 ml-2" />
               </Button>
             </div>

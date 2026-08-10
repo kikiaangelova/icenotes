@@ -39,7 +39,7 @@ const COACH_NOTES = (bg: boolean) => bg
       {
         date: 'Apr 22, 2026',
         student: 'Mihail K.',
-        note: 'Your program is looking more confident. Work on your breathing between elements — it'.concat("ll help you save energy for the finish."),
+        note: "Your program is looking more confident. Work on your breathing between elements — it'll help you save energy for the finish.",
       },
       {
         date: 'Apr 20, 2026',
