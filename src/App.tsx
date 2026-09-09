@@ -19,7 +19,6 @@ import SportPsychology from "./pages/SportPsychology";
 import AiSupport from "./pages/AiSupport";
 import Contact from "./pages/Contact";
 import JournalPage from "./pages/Journal";
-import ShareExperience from "./pages/ShareExperience";
 import AdminPage from "./pages/Admin";
 import Privacy from "./pages/Privacy";
 import NotFound from "./pages/NotFound";
@@ -69,7 +68,7 @@ const AppRoutes = () => {
       <Route path="/coach-profile" element={<Navigate to="/ai-support" replace />} />
       <Route path="/contact" element={<Contact />} />
       <Route path="/journal" element={<JournalPage />} />
-      <Route path="/share-experience" element={<ShareExperience />} />
+      <Route path="/share-experience" element={<Navigate to="/about" replace />} />
       <Route path="/privacy" element={<Privacy />} />
       <Route 
         path="/auth" 
@@ -107,7 +106,7 @@ const AppRoutes = () => {
 
 const App = () => {
   useEffect(() => {
-    // Neon Ice palette end-to-end: landing page and in-app surfaces
+    // Compatibility class for the Ice Performance palette across public and app surfaces.
     document.documentElement.classList.add("theme-neon");
     return () => document.documentElement.classList.remove("theme-neon");
   }, []);

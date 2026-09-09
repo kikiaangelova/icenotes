@@ -367,7 +367,7 @@ const JournalForm: React.FC = () => {
 
           <div className="space-y-2">
             <Label className="text-sm font-medium">Personal reflections</Label>
-            <p className="text-xs text-muted-foreground -mt-1">Private thoughts — only you can see this.</p>
+            <p className="text-xs text-muted-foreground -mt-1">Personal reflections are private by default.</p>
             <Textarea
               placeholder="How are you feeling about your skating journey right now?"
               value={formData.personalReflections}

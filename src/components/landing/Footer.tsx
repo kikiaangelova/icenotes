@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Snowflake, Heart, ChevronDown, Instagram, Mail } from 'lucide-react';
+import { Snowflake, ChevronDown } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
 import { cn } from '@/lib/utils';
 
@@ -23,12 +23,12 @@ export const Footer: React.FC = () => {
       ],
     },
     {
-      id: 'community',
+      id: 'product',
       title: t('footer.product'),
       links: [
-        { label: t('footer.goals'), href: '/share-experience' },
-        { label: t('footer.progress'), href: '/share-experience' },
+        { label: t('nav.features'), href: '/features' },
         { label: t('nav.psychology'), href: '/sport-psychology' },
+        { label: t('aisup.title'), href: '/ai-support' },
       ],
     },
     {
@@ -62,30 +62,6 @@ export const Footer: React.FC = () => {
               {t('footer.tagline')}
             </p>
 
-            {/* Social */}
-            <div className="pt-2">
-              <p className="text-[10px] font-bold tracking-[0.2em] uppercase text-muted-foreground mb-2.5">
-                {t('footer.followUs')}
-              </p>
-              <div className="flex items-center gap-2">
-                {[
-                  { Icon: Instagram, href: 'https://instagram.com/martina_d_ivanova', label: 'Instagram' },
-                  { Icon: Mail, href: '/contact', label: 'Email', internal: true },
-                ].map(({ Icon, href, label, internal }) => {
-                  const className =
-                    'w-9 h-9 rounded-xl bg-background border border-border/40 flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/40 hover:-translate-y-0.5 transition-all duration-200';
-                  return internal ? (
-                    <Link key={label} to={href} aria-label={label} className={className}>
-                      <Icon className="w-4 h-4" />
-                    </Link>
-                  ) : (
-                    <a key={label} href={href} target="_blank" rel="noreferrer" aria-label={label} className={className}>
-                      <Icon className="w-4 h-4" />
-                    </a>
-                  );
-                })}
-              </div>
-            </div>
           </div>
 
           {/* Columns — collapsible on mobile, open on md+ */}
@@ -137,12 +113,9 @@ export const Footer: React.FC = () => {
         </div>
 
         {/* Bottom bar */}
-        <div className="border-t border-border/30 pt-5 flex flex-col sm:flex-row items-center justify-between gap-2 text-center sm:text-left">
+        <div className="border-t border-border/30 pt-5 text-center sm:text-left">
           <p className="text-xs text-muted-foreground">
             © {new Date().getFullYear()} SkateGoals · {t('footer.rights')}
-          </p>
-          <p className="text-xs text-muted-foreground flex items-center gap-1.5">
-            {t('footer.builtWith')} <Heart className="w-3 h-3 text-rose-foreground fill-rose-foreground inline" /> {t('footer.forSkaters')}
           </p>
         </div>
       </div>
