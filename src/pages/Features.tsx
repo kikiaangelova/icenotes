@@ -41,8 +41,8 @@ const Features: React.FC = () => {
       <div className="min-h-screen bg-background">
         <Navbar isDarkMode={isDarkMode} onToggleDarkMode={() => setIsDarkMode(!isDarkMode)} />
         <Seo
-          title={language === 'bg' ? 'Функции – дневник, скокове и Кики' : 'Features – Journaling, Jump Tracker & Coach Kiki AI'}
-          description={language === 'bg' ? 'Разгледай дневника, проследяването на скокове, седмичните цели, менталната подготовка и анализа на напредъка в SkateGoals.' : 'Explore SkateGoals features: daily journaling, jump tracker, weekly goals, Coach Kiki AI mentor, Game Day mode, and progress analytics.'}
+          title={language === 'bg' ? 'Функции – дневник, скокове и AI подкрепа' : 'Features – Journaling, Jump Tracker & AI support'}
+          description={language === 'bg' ? 'Разгледай дневника, проследяването на скокове, седмичните цели, менталната подготовка и анализа на напредъка в SkateGoals.' : 'Explore SkateGoals features: daily journaling, jump tracker, weekly goals, AI Coach and Sport Psychology support, Game Day mode, and progress analytics.'}
           path="/features"
           jsonLd={{"@context": "https://schema.org", "@type": "Service", "name": "SkateGoals", "serviceType": "Figure skating journaling and mental training platform", "provider": {"@type": "Organization", "name": "SkateGoals", "url": "https://skategoals.com/"}, "areaServed": "Worldwide", "description": "Digital journaling, jump tracking, and AI sport-psychology coaching for figure skaters."}}
         />

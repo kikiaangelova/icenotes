@@ -16,7 +16,7 @@ const dict: Dict = {
   // ───── Navbar (marketing) ─────
   'quick.reflection.kicker': { en: '2 min', bg: '2 мин' },
   'profile.language': { en: 'Language', bg: 'Език' },
-  'profile.languageSub': { en: 'Interface and Coach Kiki', bg: 'Интерфейс и Кики' },
+  'profile.languageSub': { en: 'Interface and your AI Coach', bg: 'Интерфейс и AI подкрепа' },
   'nav.home': { en: 'Home', bg: 'Начало' },
   'nav.about': { en: 'About', bg: 'За нас' },
   'nav.features': { en: 'Features', bg: 'Функции' },
@@ -68,15 +68,15 @@ const dict: Dict = {
 
   // ───── Landing (rebuilt hero + sections) ─────
   'seo.home.title': { en: 'SkateGoals – Reflect. Train. Perform.', bg: 'SkateGoals – Рефлексия. Тренировка. Представяне.' },
-  'seo.home.desc': { en: 'A digital journaling and mental-training space for ambitious figure skaters. Track mindset, training and performance with Coach Kiki AI.', bg: 'Дигитален дневник и ментална подготовка за амбициозни фигуристи. Следи мислите, тренировките и представянето си с Кики.' },
+  'seo.home.desc': { en: 'A digital journaling and mental-training space for ambitious figure skaters. Track mindset, training and performance with AI support.', bg: 'Дигитален дневник и ментална подготовка за амбициозни фигуристи. Следи мислите, тренировките и представянето си с AI подкрепа.' },
   'seo.dashboard.title': { en: 'Skater Dashboard – SkateGoals', bg: 'Табло на фигуриста – SkateGoals' },
-  'seo.dashboard.desc': { en: 'Your private SkateGoals dashboard: log training sessions, track jumps, journal your mindset and chat with Coach Kiki.', bg: 'Личното ти пространство в SkateGoals: записвай тренировки, следи скоковете, води дневник и говори с Кики.' },
+  'seo.dashboard.desc': { en: 'Your private SkateGoals dashboard: log training sessions, track jumps, journal your mindset and chat with your AI Coach.', bg: 'Личното ти пространство в SkateGoals: записвай тренировки, следи скоковете, води дневник и говори с AI подкрепа.' },
   'land.chip': { en: 'Mental training for figure skaters', bg: 'Ментална подготовка за фигуристи' },
   'land.h1.a': { en: 'A mental journal for skaters.', bg: 'Ментален дневник за фигуристи.' },
   'land.h1.b': { en: 'Made by a skater, for skaters.', bg: 'От състезател, за състезатели.' },
   'land.sub': {
-    en: 'Write down how practice actually went — the jumps, the nerves, the good run-throughs. Coach Kiki reads it and asks one question back.',
-    bg: 'Запиши как наистина мина тренировката — скоковете, напрежението, чистите изпълнения. Кики прочита записката ти и ти задава един точен въпрос.',
+    en: 'Write down how practice actually went — the jumps, the nerves, the good run-throughs. your AI Coach reads it and asks one question back.',
+    bg: 'Запиши как наистина мина тренировката — скоковете, напрежението, чистите изпълнения. AI подкрепа прочита записката ти и ти задава един точен въпрос.',
   },
   'land.cta.primary': { en: 'Start free', bg: 'Започни безплатно' },
   'land.cta.secondary': { en: 'See how it works', bg: 'Виж как работи' },
@@ -90,7 +90,7 @@ const dict: Dict = {
   'land.inside.title': { en: 'Not another tracker.', bg: 'Повече от дневник на тренировките.' },
   'land.inside.titleAccent': { en: 'A training log with a sport psychologist in it.', bg: 'Място, в което спортната психология е част от подготовката.' },
   'land.inside.sub': {
-    en: 'Goals, session notes, jumps, mood — and Coach Kiki asking what a good psychologist would ask.',
+    en: 'Goals, session notes, jumps, mood — and your AI Coach asking what a good psychologist would ask.',
     bg: 'Цели, тренировки, скокове и настроение — плюс въпросите, които един добър спортен психолог би ти задал.',
   },
   'land.note.label': { en: "Tonight's note", bg: 'Бележка за вечерта' },
@@ -113,7 +113,7 @@ const dict: Dict = {
   'feature.sessions.text': { en: 'Jumps, quality, energy — logged in under two minutes.', bg: 'Скокове, качество, енергия — записани за под две минути.' },
   'feature.reflect.title': { en: 'Reflection', bg: 'Равносметка' },
   'feature.reflect.text': { en: 'Name the fear, the frustration, the small win. Nobody else sees it.', bg: 'Назови страха, напрежението, малката победа. Никой друг не го вижда.' },
-  'feature.coach.title': { en: 'Coach Kiki', bg: 'Кики' },
+  'feature.coach.title': { en: 'your AI Coach', bg: 'AI подкрепа' },
   'feature.coach.text': { en: 'An AI sport psychologist that reads your entries and asks the right question back.', bg: 'Спортен психолог с AI, който прочита записките ти и задава точния въпрос.' },
 
 
@@ -1089,12 +1089,12 @@ const dict: Dict = {
   'gameDay.affirm':      { en: 'Your cue',               bg: 'Твоята дума' },
   'gameDay.centered':    { en: 'Centered ✨',           bg: 'Вече си тук ✨' },
 
-  // ───── Coach Kiki ─────
-  'coach.openLabel':     { en: 'Open AI skating coach', bg: 'Отвори Кики' },
-  'coach.title':         { en: 'Ask Coach Kiki',        bg: 'Питай Кики' },
+  // ───── your AI Coach ─────
+  'coach.openLabel':     { en: 'Open AI skating coach', bg: 'Отвори AI подкрепа' },
+  'coach.title':         { en: 'Ask your AI Coach',        bg: 'Питай AI подкрепа' },
   'coach.subtitle':      { en: 'tutor · mentor · hype', bg: 'наставник · ментор · подкрепа' },
-  'coach.placeholder':   { en: "Tell Kiki what's up…",  bg: 'Сподели с Кики какво става…' },
-  'coach.greeting':      { en: "Hey 👋 I'm Kiki. Jumps, nerves, motivation — tell me what's on your mind. Even if it's just \"today was hard\".", bg: 'Здрасти 👋 Аз съм Кики. Скокове, нерви, мотивация — кажи ми какво те вълнува. Дори да е „днес беше тежко“.' },
+  'coach.placeholder':   { en: "Tell Kiki what's up…",  bg: 'Сподели с AI подкрепа какво става…' },
+  'coach.greeting':      { en: "Hey 👋 I'm Kiki. Jumps, nerves, motivation — tell me what's on your mind. Even if it's just \"today was hard\".", bg: 'Здрасти 👋 Аз съм AI подкрепа. Скокове, нерви, мотивация — кажи ми какво те вълнува. Дори да е „днес беше тежко“.' },
   'coach.tryOne':        { en: 'Try one',               bg: 'Опитай едно' },
   'coach.starter.1':     { en: 'I keep falling on my Lutz — what do I do?', bg: 'Все падам на лутца — какво да правя?' },
   'coach.starter.2':     { en: "I'm nervous about the competition this weekend", bg: 'Притеснявам се за състезанието този уикенд' },

@@ -411,7 +411,7 @@ const Auth: React.FC = () => {
   // Main auth view
   return (
     <div className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-b from-ice/30 to-background">
-      <Seo title="Sign In or Sign Up – SkateGoals" description="Log in to SkateGoals or create a free account to journal your skating, track jumps and train your mindset with Coach Kiki." path="/auth" />
+      <Seo title="Sign In or Sign Up – SkateGoals" description="Log in to SkateGoals or create a free account to journal your skating, track jumps and train your mindset with your AI Coach." path="/auth" />
       <div className="w-full max-w-md">
         {/* Logo */}
         <div className="text-center mb-8">

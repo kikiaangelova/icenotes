@@ -32,7 +32,7 @@ const SportPsychology: React.FC = () => {
       <Navbar isDarkMode={false} onToggleDarkMode={() => {}} />
         <Seo
           title={language === 'bg' ? 'Спортна психология за фигуристи – SkateGoals' : 'Sport Psychology for Figure Skaters – SkateGoals'}
-          description={language === 'bg' ? 'Ментална подготовка за фигуристи: увереност, фокус, визуализация и ритуал преди състезание.' : 'Mental-training hub for figure skaters: resilience, visualization, confidence, focus, and Game Day rituals with Coach Kiki AI.'}
+          description={language === 'bg' ? 'Ментална подготовка за фигуристи: увереност, фокус, визуализация и ритуал преди състезание.' : 'Mental-training hub for figure skaters: resilience, visualization, confidence, focus, and Game Day rituals with AI support.'}
           path="/sport-psychology"
         />
 
@@ -73,7 +73,7 @@ const SportPsychology: React.FC = () => {
                   className="w-full gap-2 mt-auto border-primary/30 text-primary hover:bg-primary/10 hover:text-primary"
                 >
                   <Sparkles className="w-3.5 h-3.5" />
-                  {language === 'bg' ? 'Започни разговор с Кики' : 'Start Session with Coach Kiki'}
+                  {language === 'bg' ? 'Започни разговор с AI подкрепа' : 'Start Session with your AI Coach'}
                 </Button>
               </div>
             ))}
