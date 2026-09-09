@@ -82,7 +82,7 @@ const dict: Dict = {
   'land.cta.secondary': { en: 'See how it works', bg: 'Виж как работи' },
   'land.trust': { en: 'Free · Private · 2 minutes to set up', bg: 'Безплатно · Лично · 2 минути за старт' },
   'land.stat.time': { en: 'min per session', bg: 'мин на тренировка' },
-  'land.stat.coach': { en: 'AI sport psychologist', bg: 'Спортен психолог с AI' },
+  'land.stat.coach': { en: 'Two AI roles: coaching for goals and planning, sport psychology for nerves and focus.', bg: 'Две AI роли: треньор за целите и плана, спортна психология за нервите и фокуса.' },
   'land.stat.private': { en: 'private, always', bg: 'лично, винаги' },
   'land.why.kicker': { en: 'Why skaters use it', bg: 'Защо фигуристите го ползват' },
   'land.why.title': { en: 'Head, body and ice — in one place.', bg: 'Глава, тяло и лед — на едно място.' },

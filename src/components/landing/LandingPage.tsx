@@ -120,7 +120,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted }) => {
               <Brain className="w-5 h-5 text-foreground" />
             </div>
             <div>
-              <div className="font-display text-2xl font-extrabold tracking-tight text-foreground leading-none mb-1.5">Coach Kiki</div>
+              <div className="font-display text-2xl font-extrabold tracking-tight text-foreground leading-none mb-1.5">{t('today.support.label')}</div>
               <p className="text-xs text-foreground/70 leading-relaxed">{t('land.stat.coach')}</p>
             </div>
           </div>
