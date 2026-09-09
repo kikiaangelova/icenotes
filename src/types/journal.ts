@@ -28,8 +28,20 @@ export interface SkaterProfile {
   mainFocus: string;
   progressFeeling?: string;
   age?: number;
+  /** @deprecated legacy columns — no longer collected or used anywhere in the product */
   height?: number;
+  /** @deprecated legacy columns — no longer collected or used anywhere in the product */
   weight?: number;
+  // Athlete context (Phase 2)
+  skatingCategory?: string;
+  yearsSkating?: number;
+  currentElements?: string;
+  biggestChallenge?: string;
+  nextCompetition?: string;
+  nextCompetitionDate?: string;
+  supportAreas?: string[];
+  supportStyle?: string;
+  usefulNote?: string;
   avatarUrl?: string;
   language?: AppLanguage;
   trialEndsAt?: Date;

@@ -16,7 +16,7 @@ import About from "./pages/About";
 import HowItWorks from "./pages/HowItWorks";
 import Features from "./pages/Features";
 import SportPsychology from "./pages/SportPsychology";
-import CoachProfile from "./pages/CoachProfile";
+import AiSupport from "./pages/AiSupport";
 import Contact from "./pages/Contact";
 import JournalPage from "./pages/Journal";
 import ShareExperience from "./pages/ShareExperience";
@@ -65,7 +65,8 @@ const AppRoutes = () => {
       <Route path="/how-it-works" element={<HowItWorks />} />
       <Route path="/features" element={<Features />} />
       <Route path="/sport-psychology" element={<SportPsychology />} />
-      <Route path="/coach-profile" element={<CoachProfile />} />
+      <Route path="/ai-support" element={<AiSupport />} />
+      <Route path="/coach-profile" element={<Navigate to="/ai-support" replace />} />
       <Route path="/contact" element={<Contact />} />
       <Route path="/journal" element={<JournalPage />} />
       <Route path="/share-experience" element={<ShareExperience />} />

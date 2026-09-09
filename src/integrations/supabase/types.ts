@@ -437,53 +437,80 @@ export type Database = {
         Row: {
           age: number | null
           avatar_url: string | null
+          biggest_challenge: string | null
           created_at: string
+          current_elements: string | null
           dismissed_weight_prompt: boolean
           height: number | null
           id: string
           language: string
           main_focus: string | null
           name: string
+          next_competition: string | null
+          next_competition_date: string | null
           progress_feeling: string | null
           self_level: string | null
+          skating_category: string | null
+          support_areas: string[]
+          support_style: string | null
           trial_ends_at: string | null
           updated_at: string
+          useful_note: string | null
           user_id: string
           weight: number | null
+          years_skating: number | null
         }
         Insert: {
           age?: number | null
           avatar_url?: string | null
+          biggest_challenge?: string | null
           created_at?: string
+          current_elements?: string | null
           dismissed_weight_prompt?: boolean
           height?: number | null
           id?: string
           language?: string
           main_focus?: string | null
           name: string
+          next_competition?: string | null
+          next_competition_date?: string | null
           progress_feeling?: string | null
           self_level?: string | null
+          skating_category?: string | null
+          support_areas?: string[]
+          support_style?: string | null
           trial_ends_at?: string | null
           updated_at?: string
+          useful_note?: string | null
           user_id: string
           weight?: number | null
+          years_skating?: number | null
         }
         Update: {
           age?: number | null
           avatar_url?: string | null
+          biggest_challenge?: string | null
           created_at?: string
+          current_elements?: string | null
           dismissed_weight_prompt?: boolean
           height?: number | null
           id?: string
           language?: string
           main_focus?: string | null
           name?: string
+          next_competition?: string | null
+          next_competition_date?: string | null
           progress_feeling?: string | null
           self_level?: string | null
+          skating_category?: string | null
+          support_areas?: string[]
+          support_style?: string | null
           trial_ends_at?: string | null
           updated_at?: string
+          useful_note?: string | null
           user_id?: string
           weight?: number | null
+          years_skating?: number | null
         }
         Relationships: []
       }

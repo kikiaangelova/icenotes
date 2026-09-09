@@ -11,8 +11,8 @@ const MENTAL_TIPS = (bg: boolean) => [
   {
     title: bg ? "Процесът преди резултата" : "Process over outcome",
     tip: bg
-      ? "Фокусирай се върху това, което контролираш — усилие, техника, нагласа. Резултатите идват, когато се довериш на процеса."
-      : "Focus on what you control — effort, technique, mindset. Results show up when you trust the process.",
+      ? "Раздели нещата на две: кои зависят от теб (подготовка, загрявка, фокус, усилие) и кои не (жури, ред на старта, конкуренция). Работи само по първите."
+      : "Split it in two: what depends on you (preparation, warm-up, focus, effort) and what does not (judges, start order, the field). Work only on the first list.",
     category: bg ? "нагласа" : "mindset"
   },
   {

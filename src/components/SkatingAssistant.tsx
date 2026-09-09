@@ -3,6 +3,7 @@ import { Send, Loader2, ClipboardList, Brain } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from '@/components/ui/sheet';
 import { cn } from '@/lib/utils';
+import { supabase } from '@/integrations/supabase/client';
 import { useLanguage } from '@/context/LanguageContext';
 
 export type AIRole = 'coach' | 'psych';
@@ -77,15 +78,21 @@ export const SkatingAssistant: React.FC = () => {
     };
 
     try {
+      // AI support requires a signed-in athlete: the edge function validates this token
+      // and loads only that athlete's profile context server-side.
+      const { data: { session } } = await supabase.auth.getSession();
+      if (!session?.access_token) { upsert(t('ai.err.signin')); return; }
+
       const resp = await fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/skating-coach`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}`,
+          Authorization: `Bearer ${session.access_token}`,
         },
         body: JSON.stringify({ messages: next, language, role: targetRole }),
       });
 
+      if (resp.status === 401) { upsert(t('ai.err.session')); return; }
       if (resp.status === 429) { upsert(t('coach.err.rate')); return; }
       if (resp.status === 402) { upsert(t('coach.err.credits')); return; }
       if (!resp.ok || !resp.body) throw new Error('stream failed');
