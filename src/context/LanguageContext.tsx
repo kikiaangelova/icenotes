@@ -275,7 +275,7 @@ const dict: Dict = {
   'training.offIceShort': { en: 'Off-Ice', bg: 'Суха' },
 
   // ───── Footer ─────
-  'footer.tagline': { en: 'A safe space for skaters to reflect, train, and grow — together.', bg: 'Безопасно място за фигуристи — да дишат, да тренират и да растат заедно.' },
+  'footer.tagline': { en: 'Training, goals, competition prep and mental performance — in one place that belongs to the athlete.', bg: 'Тренировки, цели, подготовка за състезание и психическа подготовка — на едно място, което е само на състезателя.' },
   'footer.navigate': { en: 'Explore', bg: 'Разгледай' },
   'footer.product': { en: 'Community', bg: 'Общност' },
   'footer.account': { en: 'Support', bg: 'Помощ' },
