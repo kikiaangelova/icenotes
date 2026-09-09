@@ -204,7 +204,7 @@ export function getWelcomeState(
         ? 'Записа тренировката и направи равносметка. Това е достатъчно.'
         : 'You logged a session and a reflection. Nothing more is needed today.',
       primary: {
-        label: bg ? 'Говори с Кики' : 'Talk to Coach Kiki',
+        label: bg ? 'Говори с AI подкрепа' : 'Talk to your AI Coach',
         action: 'coach',
       },
     };

@@ -1,13 +1,13 @@
 export type GreetingLanguage = 'en' | 'bg';
 
 const NAMED: Record<GreetingLanguage, (n: string) => string> = {
-  en: (n) => `Hi, ${n} 👋`,
-  bg: (n) => `Здравей, ${n} 👋`,
+  en: (n) => `Hi, ${n}`,
+  bg: (n) => `Здравей, ${n}`,
 };
 
 const FALLBACK: Record<GreetingLanguage, string> = {
-  en: 'Hi there 👋',
-  bg: 'Здравей 👋',
+  en: 'Hi there',
+  bg: 'Здравей',
 };
 
 /**

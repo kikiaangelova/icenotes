@@ -12,21 +12,21 @@ interface RawQuote {
 }
 
 const RAW_QUOTES: RawQuote[] = [
-  { quote: { en: "Falling is part of learning. Get up and try again.", bg: "Падането е част от ученето. Стани и пробвай пак." }, author: "IceNotes", category: "perseverance" },
-  { quote: { en: "One session at a time. That's enough.", bg: "Една тренировка наведнъж. Това е достатъчно." }, author: "IceNotes", category: "patience" },
-  { quote: { en: "Don't compare your today to someone else's whole year.", bg: "Не сравнявай днешния си ден с нечия друга година." }, author: "IceNotes", category: "self-improvement" },
-  { quote: { en: "Bad days count too. They make you stronger.", bg: "Лошите дни също се броят. И те те правят по-силен." }, author: "IceNotes", category: "growth" },
-  { quote: { en: "Breathe. Your feet know what to do.", bg: "Дишай. Краката ти знаят какво да правят." }, author: "IceNotes", category: "calm" },
-  { quote: { en: "Small progress is still progress.", bg: "Малък прогрес пак е прогрес." }, author: "IceNotes", category: "progress" },
-  { quote: { en: "Step on the ice for yourself, not for the score.", bg: "Влез на леда заради себе си, не заради точките." }, author: "IceNotes", category: "mindset" },
-  { quote: { en: "Being scared before the jump means you care.", bg: "Страхът преди скока означава, че ти пука." }, author: "IceNotes", category: "courage" },
-  { quote: { en: "The day you don't feel like it is still a training day.", bg: "Денят, в който нямаш желание, също е тренировка." }, author: "IceNotes", category: "dedication" },
-  { quote: { en: "Nobody lands an axel in one day. Neither will you, yet.", bg: "Никой не учи аксел за един ден. И ти няма." }, author: "IceNotes", category: "patience" },
-  { quote: { en: "Write it down. You'll see the difference in a month.", bg: "Записвай. След месец ще видиш разликата." }, author: "IceNotes", category: "progress" },
-  { quote: { en: "Train smart, not just more.", bg: "Тренирай умното — не само повече." }, author: "IceNotes", category: "mindset" },
-  { quote: { en: "You don't have to love every practice. Just the next one.", bg: "Не си длъжен да обичаш всяка тренировка. Само следващата." }, author: "IceNotes", category: "honest" },
-  { quote: { en: "Your body remembers. Trust it.", bg: "Тялото ти помни. Доверяй му се." }, author: "IceNotes", category: "trust" },
-  { quote: { en: "One clean run-through beats ten tired ones.", bg: "Една чиста серия е по-важна от десет уморени." }, author: "IceNotes", category: "focus" },
+  { quote: { en: "Falling is part of learning. Get up and try again.", bg: "Падането е част от ученето. Стани и пробвай пак." }, author: "SkateGoals", category: "perseverance" },
+  { quote: { en: "One session at a time. That's enough.", bg: "Една тренировка наведнъж. Това е достатъчно." }, author: "SkateGoals", category: "patience" },
+  { quote: { en: "Don't compare your today to someone else's whole year.", bg: "Не сравнявай днешния си ден с нечия друга година." }, author: "SkateGoals", category: "self-improvement" },
+  { quote: { en: "Bad days count too. They make you stronger.", bg: "Лошите дни също се броят. И те те правят по-силен." }, author: "SkateGoals", category: "growth" },
+  { quote: { en: "Breathe. Your feet know what to do.", bg: "Дишай. Краката ти знаят какво да правят." }, author: "SkateGoals", category: "calm" },
+  { quote: { en: "Small progress is still progress.", bg: "Малък прогрес пак е прогрес." }, author: "SkateGoals", category: "progress" },
+  { quote: { en: "Step on the ice for yourself, not for the score.", bg: "Влез на леда заради себе си, не заради точките." }, author: "SkateGoals", category: "mindset" },
+  { quote: { en: "Being scared before the jump means you care.", bg: "Страхът преди скока означава, че ти пука." }, author: "SkateGoals", category: "courage" },
+  { quote: { en: "The day you don't feel like it is still a training day.", bg: "Денят, в който нямаш желание, също е тренировка." }, author: "SkateGoals", category: "dedication" },
+  { quote: { en: "Nobody lands an axel in one day. Neither will you, yet.", bg: "Никой не учи аксел за един ден. И ти няма." }, author: "SkateGoals", category: "patience" },
+  { quote: { en: "Write it down. You'll see the difference in a month.", bg: "Записвай. След месец ще видиш разликата." }, author: "SkateGoals", category: "progress" },
+  { quote: { en: "Train smart, not just more.", bg: "Тренирай умното — не само повече." }, author: "SkateGoals", category: "mindset" },
+  { quote: { en: "You don't have to love every practice. Just the next one.", bg: "Не си длъжен да обичаш всяка тренировка. Само следващата." }, author: "SkateGoals", category: "honest" },
+  { quote: { en: "Your body remembers. Trust it.", bg: "Тялото ти помни. Доверяй му се." }, author: "SkateGoals", category: "trust" },
+  { quote: { en: "One clean run-through beats ten tired ones.", bg: "Една чиста серия е по-важна от десет уморени." }, author: "SkateGoals", category: "focus" },
 ];
 
 // Backwards-compatible export used by components that browse quotes in one language.

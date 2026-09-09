@@ -29,8 +29,8 @@ const Home: React.FC = () => {
           description={t('seo.home.desc')}
           path="/"
           jsonLd={[
-            { "@context": "https://schema.org", "@type": "WebSite", name: "IceNotes", url: "https://skategoals.com/" },
-            { "@context": "https://schema.org", "@type": "Organization", name: "IceNotes", url: "https://skategoals.com/", logo: "https://skategoals.com/og-image.png" },
+            { "@context": "https://schema.org", "@type": "WebSite", name: "SkateGoals", url: "https://skategoals.com/" },
+            { "@context": "https://schema.org", "@type": "Organization", name: "SkateGoals", url: "https://skategoals.com/", logo: "https://skategoals.com/og-image.png" },
           ]}
         />
         <LandingPage 

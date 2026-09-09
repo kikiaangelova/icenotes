@@ -68,7 +68,7 @@ const ShareExperience: React.FC = () => {
     <div className={isDarkMode ? 'dark' : ''}>
       <div className="min-h-screen bg-background">
         <Navbar isDarkMode={isDarkMode} onToggleDarkMode={toggleDarkMode} />
-        <Seo title="Share Your Skating Story – IceNotes Community" description="Read and share real stories from the IceNotes skating community. A safe space for figure skaters to be heard." path="/share-experience" />
+        <Seo title="Share Your Skating Story – SkateGoals Community" description="Read and share real stories from the SkateGoals skating community. A safe space for figure skaters to be heard." path="/share-experience" />
 
         <main className="px-6 md:px-12 py-16 md:py-24">
           <div className="max-w-lg mx-auto">
@@ -80,7 +80,7 @@ const ShareExperience: React.FC = () => {
                   </div>
                   <h2 className="text-xl font-bold text-foreground font-serif">Thank you! 💙</h2>
                   <p className="text-muted-foreground leading-relaxed max-w-sm mx-auto">
-                    Your story means the world to us. It helps us build a better IceNotes and inspires other skaters to start reflecting too.
+                    Your story means the world to us. It helps us build a better SkateGoals and inspires other skaters to start reflecting too.
                   </p>
                 </CardContent>
               </Card>
@@ -94,7 +94,7 @@ const ShareExperience: React.FC = () => {
                     Share Your Experience
                   </h1>
                   <p className="text-muted-foreground leading-relaxed max-w-md mx-auto">
-                    Tell us how IceNotes has helped your skating journey. Your words can inspire other skaters to start reflecting too.
+                    Tell us how SkateGoals has helped your skating journey. Your words can inspire other skaters to start reflecting too.
                   </p>
                 </div>
 
@@ -155,7 +155,7 @@ const ShareExperience: React.FC = () => {
                       </div>
 
                       <div className="space-y-2">
-                        <Label className="text-sm font-medium">How has IceNotes helped you? *</Label>
+                        <Label className="text-sm font-medium">How has SkateGoals helped you? *</Label>
                         <p className="text-xs text-muted-foreground -mt-1">
                           A few sentences is perfect — just tell us what's been meaningful.
                         </p>

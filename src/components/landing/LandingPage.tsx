@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { supabase } from '@/integrations/supabase/client';
 import { useLanguage } from '@/context/LanguageContext';
 import { ProfileCard } from '@/components/ProfileCard';
-import { IceNotesMark } from './IceNotesMark';
+import { SkateGoalsMark } from './SkateGoalsMark';
 import heroVideo from '@/assets/hero-skater-girl.mp4.asset.json';
 import { HeroVideo } from './HeroVideo';
 import { SmartStartCTA } from './SmartStartCTA';
@@ -120,7 +120,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted }) => {
               <Brain className="w-5 h-5 text-foreground" />
             </div>
             <div>
-              <div className="font-display text-2xl font-extrabold tracking-tight text-foreground leading-none mb-1.5">Coach Kiki</div>
+              <div className="font-display text-2xl font-extrabold tracking-tight text-foreground leading-none mb-1.5">{t('today.support.label')}</div>
               <p className="text-xs text-foreground/70 leading-relaxed">{t('land.stat.coach')}</p>
             </div>
           </div>
@@ -216,7 +216,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted }) => {
         </div>
       </section>
 
-      {/* ─── Inside IceNotes ─── */}
+      {/* ─── Inside SkateGoals ─── */}
       <section className="relative z-10 px-4 md:px-8 py-14 md:py-20">
         <div className="max-w-6xl mx-auto">
           <div className="mb-8 md:mb-10 max-w-2xl">
@@ -278,7 +278,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted }) => {
           <div className="pointer-events-none absolute -bottom-24 left-1/2 -translate-x-1/2 w-[30rem] h-[30rem] rounded-full bg-lime/12 blur-[120px]" />
           <div className="relative">
             <div className="w-14 h-14 rounded-2xl bg-lime flex items-center justify-center mx-auto mb-6">
-              <IceNotesMark className="w-7 h-7 text-accent-foreground" />
+              <SkateGoalsMark className="w-7 h-7 text-accent-foreground" />
             </div>
             <h2 className="font-display text-3xl md:text-5xl font-extrabold tracking-[-0.035em] text-foreground mb-8 leading-[1.05] max-w-2xl mx-auto">
               {t('finalCta.heading')}

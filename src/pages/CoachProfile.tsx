@@ -55,13 +55,13 @@ const CoachProfile: React.FC = () => {
   const L = (en: string, bgs: string) => (bg ? bgs : en);
 
   React.useEffect(() => {
-    document.title = L('Coach Maria Ivanova | IceNotes', 'Треньор Мария Иванова | IceNotes');
+    document.title = L('Coach Maria Ivanova | SkateGoals', 'Треньор Мария Иванова | SkateGoals');
   }, [bg]);
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
       <Navbar isDarkMode={isDarkMode} onToggleDarkMode={() => setIsDarkMode(!isDarkMode)} />
-        <Seo title="Coach Kiki – AI Sport-Psychology Mentor for Skaters" description="Meet Coach Kiki, the warm AI mentor inside IceNotes that guides figure skaters through reflection, technique cues, and pre-competition prep." path="/coach-profile" jsonLd={{"@context": "https://schema.org", "@type": "Person", "name": "Coach Kiki", "jobTitle": "AI Sport-Psychology Coach for Figure Skaters", "description": "Warm mentor and hype coach inside IceNotes, guiding skaters through reflection, mental resilience, visualization, and competition prep.", "url": "https://skategoals.com/coach-profile"}} />
+        <Seo title="AI support – AI Sport-Psychology Mentor for Skaters" description="Meet AI support, the warm AI mentor inside SkateGoals that guides figure skaters through reflection, technique cues, and pre-competition prep." path="/coach-profile" jsonLd={{"@context": "https://schema.org", "@type": "Person", "name": "AI support", "jobTitle": "AI Sport-Psychology Coach for Figure Skaters", "description": "Warm mentor and hype coach inside SkateGoals, guiding skaters through reflection, mental resilience, visualization, and competition prep.", "url": "https://skategoals.com/coach-profile"}} />
 
       <main className="flex-1 max-w-4xl mx-auto w-full px-5 md:px-10 py-10 space-y-8">
         {/* Profile header */}

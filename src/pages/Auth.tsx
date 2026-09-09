@@ -250,13 +250,13 @@ const Auth: React.FC = () => {
   if (view === 'reset') {
     return (
       <div className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-b from-ice/30 to-background">
-        <Seo title="Reset Password – IceNotes" description="Set a new password for your IceNotes skater account and get back to training, journaling and tracking your progress." path="/auth?mode=reset" />
+        <Seo title="Reset Password – SkateGoals" description="Set a new password for your SkateGoals skater account and get back to training, journaling and tracking your progress." path="/auth?mode=reset" />
         <div className="w-full max-w-md">
           <div className="text-center mb-8">
             <div className="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-br from-primary to-ice-deep flex items-center justify-center mb-4">
               <Snowflake className="w-8 h-8 text-primary-foreground" />
             </div>
-            <h1 className="text-2xl font-bold text-foreground font-serif">IceNotes</h1>
+            <h1 className="text-2xl font-bold text-foreground font-serif">SkateGoals</h1>
             <p className="text-muted-foreground">{t('auth.reset.heading')}</p>
           </div>
 
@@ -321,13 +321,13 @@ const Auth: React.FC = () => {
   if (view === 'forgot') {
     return (
       <div className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-b from-ice/30 to-background">
-        <Seo title="Forgot Password – IceNotes" description="Recover access to your IceNotes account. We'll email you a secure link to reset your password." path="/auth?mode=forgot" />
+        <Seo title="Forgot Password – SkateGoals" description="Recover access to your SkateGoals account. We'll email you a secure link to reset your password." path="/auth?mode=forgot" />
         <div className="w-full max-w-md">
           <div className="text-center mb-8">
             <div className="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-br from-primary to-ice-deep flex items-center justify-center mb-4">
               <Snowflake className="w-8 h-8 text-primary-foreground" />
             </div>
-            <h1 className="text-2xl font-bold text-foreground font-serif">IceNotes</h1>
+            <h1 className="text-2xl font-bold text-foreground font-serif">SkateGoals</h1>
             <p className="text-muted-foreground">{t('auth.forgot.heading')}</p>
           </div>
 
@@ -411,14 +411,14 @@ const Auth: React.FC = () => {
   // Main auth view
   return (
     <div className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-b from-ice/30 to-background">
-      <Seo title="Sign In or Sign Up – IceNotes" description="Log in to IceNotes or create a free account to journal your skating, track jumps and train your mindset with Coach Kiki." path="/auth" />
+      <Seo title="Sign In or Sign Up – SkateGoals" description="Log in to SkateGoals or create a free account to journal your skating, track jumps and train your mindset with your AI Coach." path="/auth" />
       <div className="w-full max-w-md">
         {/* Logo */}
         <div className="text-center mb-8">
           <div className="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-br from-primary to-ice-deep flex items-center justify-center mb-4">
             <Snowflake className="w-8 h-8 text-primary-foreground" />
           </div>
-          <h1 className="text-2xl font-bold text-foreground font-serif">IceNotes</h1>
+          <h1 className="text-2xl font-bold text-foreground font-serif">SkateGoals</h1>
           <p className="text-muted-foreground">{t('auth.tagline')}</p>
         </div>
 

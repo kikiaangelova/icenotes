@@ -29,10 +29,9 @@ import { TodayQuickLog } from './TodayQuickLog';
 import { Button } from '@/components/ui/button';
 import { SELF_LEVELS } from '@/types/journal';
 import { Feather, Compass, Heart, Settings, LogOut, Dumbbell, Target, CalendarCheck, Brain, Timer, Bell, Snowflake, BookHeart, TrendingUp, Sparkles, Sun, Shield, Sparkle, Play, ChevronLeft, Home as HomeIcon } from 'lucide-react';
-import { TodayHero } from './TodayHero';
+import { TodayCommandCenter } from './TodayCommandCenter';
 import { CoachNoticed } from './CoachNoticed';
 import { MobileBottomNav, type BottomTab } from './MobileBottomNav';
-import { QuickActionsGrid } from './QuickActionsGrid';
 import { FeatureMap, type FeatureDest } from './FeatureMap';
 import { ProgressionCard } from './ProgressionCard';
 
@@ -152,36 +151,24 @@ export const SimpleDashboard: React.FC = () => {
 
 
 
-  // Map the persistent bottom-nav tab to the existing internal structure.
-  // - home    → top-level "today" tab on the home view
-  // - goals/training/mind → matching top tab on the home view
-  // - journal → opens the dedicated Reflect sub-view
-  // - profile → opens the Profile drawer
+  // Five destinations only. Profile lives in the header avatar; journaling is
+  // reached from Today and Training rather than owning a nav slot.
   const handleBottomNav = (tab: BottomTab) => {
-    if (tab === 'profile') {
-      setProfileOpen(true);
-      return;
-    }
-    if (tab === 'journal') {
-      setCurrentView('reflect');
-      return;
-    }
     // Any tab change exits sub-views back to home
     setCurrentView('home');
     if (tab === 'home') setActiveTab('today');
     else if (tab === 'training') setActiveTab('train');
-    else setActiveTab(tab as 'goals' | 'mind');
+    else setActiveTab(tab);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   // Derive which bottom-nav item should be highlighted
   const bottomActive: BottomTab = (() => {
-    if (profileOpen) return 'profile';
-    if (currentView === 'reflect') return 'journal';
     if (currentView !== 'home') return 'training';
-    if (activeTab === 'today' || activeTab === 'progress') return 'home';
     if (activeTab === 'train') return 'training';
     if (activeTab === 'mind') return 'mind';
     if (activeTab === 'goals') return 'goals';
+    if (activeTab === 'progress') return 'progress';
     return 'home';
   })();
 
@@ -215,11 +202,7 @@ export const SimpleDashboard: React.FC = () => {
   // Home view
   if (currentView === 'home') {
     return (
-      <div className="min-h-screen bg-gradient-to-b from-sky/30 via-background to-lavender/15">
-        {/* Decorative floating blobs */}
-        <div className="fixed top-20 right-0 w-48 h-48 bg-rose/20 rounded-full blur-3xl pointer-events-none -z-10" />
-        <div className="fixed bottom-20 left-0 w-56 h-56 bg-mint/25 rounded-full blur-3xl pointer-events-none -z-10" />
-        <div className="fixed top-1/2 right-10 w-32 h-32 bg-lavender/20 rounded-full blur-3xl pointer-events-none -z-10" />
+      <div className="min-h-screen bg-background">
 
         {/* Header */}
         <header className="border-b border-border/30 bg-background/80 backdrop-blur-xl sticky top-0 z-10">
@@ -237,10 +220,10 @@ export const SimpleDashboard: React.FC = () => {
                 size="sm"
               />
               <div className="min-w-0">
-                <h1 className="text-xl sm:text-2xl font-black text-foreground truncate font-serif leading-tight">
-                  {greeting}
-                </h1>
-                <p className="text-xs sm:text-sm text-foreground/60 truncate">{levelLabel}</p>
+                <p className="text-sm font-bold tracking-tight text-foreground truncate leading-tight">
+                  {profile.name || 'SkateGoals'}
+                </p>
+                <p className="text-xs text-muted-foreground truncate">{levelLabel}</p>
               </div>
             </button>
             <div className="flex items-center gap-1.5 flex-shrink-0">
@@ -319,37 +302,21 @@ export const SimpleDashboard: React.FC = () => {
               <TabsTrigger value="progress">{t('dash.tab.progress')}</TabsTrigger>
             </TabsList>
 
-            {/* TODAY — mood first, momentum second, actions third */}
-            <TabsContent value="today" className="space-y-5">
-              {/* CONTEXT — adaptive hero (mood/streak/next step) */}
-              <TodayHero
-                onPrimaryAction={() => handleStartTraining('on-ice')}
-                onReflectAction={() => setCurrentView('reflect')}
-              />
-
-              {/* MOMENTUM — level, XP, streak and weekly missions */}
-              <ProgressionCard />
-
-              {/* PRIMARY — 5 clear actions, Reflection as hero */}
-              <QuickActionsGrid
-                onReflect={() => setCurrentView('reflect')}
-                onTrain={() => handleStartTraining('on-ice')}
-                onJournal={() => setActiveTab('today')}
-                onGoals={() => setActiveTab('goals')}
-                onMind={() => setActiveTab('mind')}
+            {/* TODAY — performance center: focus, one primary action, core tools, AI support */}
+            <TabsContent value="today" className="space-y-6">
+              <TodayCommandCenter
+                greeting={greeting}
+                focus={profile.mainFocus}
+                loggedToday={todaysSessions.length > 0}
+                onLogTraining={() => handleStartTraining('on-ice')}
+                onContinue={() => setCurrentView('reflect')}
+                onTrainingLog={() => { setActiveTab('train'); setTrainTab('sessions'); }}
+                onGoals={() => { setActiveTab('goals'); setGoalsTab('weekly'); }}
+                onWeeklyReview={() => { setActiveTab('progress'); setProgressTab('progress'); }}
+                onCompetitionPrep={() => setGameDayOpen(true)}
               />
 
 
-
-
-              {/* DIRECTORY — everything the site promises, one tap away */}
-              <FeatureMap onOpen={openFeature} />
-
-              {/* CONTEXT — Game Day ritual (only renders if relevant date window) */}
-              <GameDayCard onClick={() => setGameDayOpen(true)} />
-
-              {/* SUPPORT — Coach Kiki noticed signal */}
-              <CoachNoticed onOpenReflect={() => setCurrentView('reflect')} />
 
 
               {/* SECONDARY — collapsed by default */}
@@ -395,6 +362,10 @@ export const SimpleDashboard: React.FC = () => {
                     </div>
                   </div>
 
+                  <ProgressionCard />
+                  <GameDayCard onClick={() => setGameDayOpen(true)} />
+                  <CoachNoticed onOpenReflect={() => setCurrentView('reflect')} />
+                  <FeatureMap onOpen={openFeature} />
                   <StreakCard />
                   <MotivationalQuote variant="banner" useDaily showRefresh showSave />
 

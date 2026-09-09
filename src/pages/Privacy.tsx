@@ -18,14 +18,14 @@ const Privacy: React.FC = () => {
   const copy = bg ? {
     eyebrow: 'Поверителност',
     title: 'Това, което преживяваш, принадлежи на теб.',
-    intro: 'IceNotes е лично пространство. Ето ясно и без сложни термини как пазим данните ти.',
+    intro: 'SkateGoals е лично пространство. Ето ясно и без сложни термини как пазим данните ти.',
     questions: 'Имаш въпрос? Четем всяко съобщение.',
     contact: 'Пиши ни',
     updated: 'Последна актуализация',
   } : {
     eyebrow: 'Privacy',
     title: 'Your inner world is yours.',
-    intro: "IceNotes is a safe space first. Here's the short, human version of how we handle your data.",
+    intro: "SkateGoals is a safe space first. Here's the short, human version of how we handle your data.",
     questions: 'Questions? We read every message.',
     contact: 'Talk to us',
     updated: 'Last updated',
@@ -80,8 +80,8 @@ const Privacy: React.FC = () => {
       <div className="min-h-screen bg-background">
         <Navbar isDarkMode={isDarkMode} onToggleDarkMode={() => setIsDarkMode(!isDarkMode)} />
         <Seo
-          title={bg ? 'Поверителност — IceNotes' : 'Privacy — IceNotes'}
-          description={bg ? 'Дневникът ти в IceNotes е личен. Виж какво съхраняваме, как пазим данните ти и как можеш да ги изтриеш.' : "Your IceNotes journal is private by default. Here's exactly what we store, what we don't, and how to delete everything anytime."}
+          title={bg ? 'Поверителност — SkateGoals' : 'Privacy — SkateGoals'}
+          description={bg ? 'Дневникът ти в SkateGoals е личен. Виж какво съхраняваме, как пазим данните ти и как можеш да ги изтриеш.' : "Your SkateGoals journal is private by default. Here's exactly what we store, what we don't, and how to delete everything anytime."}
           path="/privacy"
         />
 

@@ -16,10 +16,10 @@ const MENTAL_TIPS = (bg: boolean) => [
     category: bg ? "нагласа" : "mindset"
   },
   {
-    title: bg ? "Правилото на 3-те секунди" : "The 3-second rule",
+    title: bg ? "Рестарт след грешка" : "Reset after a mistake",
     tip: bg
-      ? "След падане или грешка си дай 3 секунди да го усетиш. После — вдишване, рестарт и продължаваш. Не го носи в следващия елемент."
-      : "After a fall or mistake, give yourself 3 seconds to feel it. Then breathe, reset, and move on. Don't carry it into the next element.",
+      ? "Признай грешката, издишай по-дълго, отколкото вдишваш, и се върни към една дума за следващия елемент. Рестартът е навик — упражнява се на тренировка, за да работи на старт."
+      : "Acknowledge the mistake, exhale longer than you inhale, then go back to one cue word for the next element. A reset is a habit — rehearse it in training so it works at a competition.",
     category: bg ? "устойчивост" : "resilience"
   },
   {
@@ -30,10 +30,10 @@ const MENTAL_TIPS = (bg: boolean) => [
     category: bg ? "увереност" : "confidence"
   },
   {
-    title: bg ? "Визуализирай, преди да изпълниш" : "Visualize before you go",
+    title: bg ? "Изкарай елемента наум" : "Run the element in your head",
     tip: bg
-      ? "Преди скок или пирует затвори очи за 5 секунди и се виж как го правиш безупречно. Мозъкът ти не различава напълно въображението от реалността."
-      : "Before a jump or spin, close your eyes for 5 seconds and see yourself landing it clean. Your brain doesn't fully distinguish imagination from reality.",
+      ? "Преди скок изкарай наум входа, тайминга и изхода — с усещането в тялото, не само с картина. Това е репетиция на модела, не замяна на самото изпълнение."
+      : "Before a jump, run the entry, timing and exit in your head — with the feeling in your body, not just a picture. It rehearses the pattern; it does not replace doing it.",
     category: bg ? "техника" : "technique"
   },
   {
@@ -74,11 +74,11 @@ const CONFIDENCE_EXERCISES = (bg: boolean) => [
     ]
   },
   {
-    title: bg ? "Поза на силата" : "Power pose",
+    title: bg ? "Стойка и дишане преди леда" : "Posture and breath before the ice",
     duration: bg ? "2 мин" : "2 min",
     description: bg
-      ? "Изправи се с вдигнати ръце за 2 минути преди тренировка. Изследванията показват, че повишава хормоните на увереността."
-      : "Stand tall with arms raised for 2 minutes before training. Studies show it bumps up confidence hormones.",
+      ? "Две минути изправена стойка и спокойно дишане, преди да излезеш. Няма да промени хормоните ти — сваля напрежението в тялото и ти дава нещо познато, което правиш всеки път."
+      : "Two minutes of tall posture and slow breathing before you step on. It won't change your hormones — it lowers physical tension and gives you something familiar you do every time.",
     steps: bg ? [
       "Намери си тихо място преди излизане на леда.",
       "Стъпи с крака на ширината на раменете.",
@@ -148,10 +148,10 @@ const FOCUS_TECHNIQUES = (bg: boolean) => [
 
 const COMPETITION_TIPS = (bg: boolean) => [
   {
-    title: bg ? "Състезанието е просто тренировка с публика" : "A competition is just a session with an audience",
+    title: bg ? "Старт ≠ тренировка" : "A competition is not a training session",
     advice: bg
-      ? "Тялото ти знае какво да прави. Правил/а си тези елементи стотици пъти. Доверѝ се на тренировките."
-      : "Your body knows what to do. You've done these elements hundreds of times. Trust the training.",
+      ? "Един опит, съдии, публика, друга загрявка. Подготви се точно за тази разлика: премини мислено през деня и реши какво правиш в момента, в който нещо не тръгне по план."
+      : "One attempt, judges, an audience, a different warm-up. Prepare for that difference: walk through the day in your head and decide what you do the moment something goes off plan.",
   },
   {
     title: bg ? "Контролирай това, което можеш" : "Control what you can",
@@ -160,10 +160,10 @@ const COMPETITION_TIPS = (bg: boolean) => [
       : "You can't control the judges, the other skaters, or the ice. You can control your prep, mindset, and effort.",
   },
   {
-    title: bg ? "Превърни нервите във вълнение" : "Turn nerves into excitement",
+    title: bg ? "Нервите са гориво, не проблем" : "Nerves are fuel, not a fault",
     advice: bg
-      ? "Тревожността и вълнението се усещат еднакво в тялото. Вместо „нервен/нервна съм“, опитай „развълнуван/а съм да изляза“."
-      : "Anxiety and excitement feel the same in the body. Instead of \"I'm nervous,\" try \"I'm pumped to skate.\"",
+      ? "Ускореният пулс означава, че тялото се готви. Не се опитвай да го изключиш — свали го с по-дълго издишване и насочи вниманието към първото нещо, което ще направиш на леда."
+      : "A fast heart rate means your body is getting ready. Don't try to switch it off — bring it down with a longer exhale and point your attention at the first thing you'll do on the ice.",
   },
   {
     title: bg ? "Имай ритуал преди състезание" : "Have a pre-competition ritual",

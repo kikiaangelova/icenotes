@@ -426,7 +426,7 @@ const JournalPage: React.FC = () => {
     <JournalProvider>
       <div className={cn("min-h-screen bg-background", isDarkMode && "dark")}>
         <Navbar isDarkMode={isDarkMode} onToggleDarkMode={toggleDarkMode} />
-        <Seo title="Skater Journal – Reflect After Every Session" description="Capture jumps, feelings, focus, and coach notes after every practice. The IceNotes journal turns reflection into progress." path="/journal" />
+        <Seo title="Skater Journal – Reflect After Every Session" description="Capture jumps, feelings, focus, and coach notes after every practice. The SkateGoals journal turns reflection into progress." path="/journal" />
         <main className="px-6 md:px-12 py-10 md:py-16">
           <JournalForm />
         </main>

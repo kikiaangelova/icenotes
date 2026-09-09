@@ -1,64 +1,78 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { Sparkles, Send, X, Loader2 } from 'lucide-react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
+import { Send, Loader2, ClipboardList, Brain } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
+import { Sheet, SheetContent, SheetHeader, SheetTitle } from '@/components/ui/sheet';
 import { cn } from '@/lib/utils';
 import { useLanguage } from '@/context/LanguageContext';
-import { IrisAvatar } from './IrisAvatar';
 
-
+export type AIRole = 'coach' | 'psych';
 type Msg = { role: 'user' | 'assistant'; content: string };
 
-const STARTER_KEYS = ['coach.starter.1', 'coach.starter.2', 'coach.starter.3', 'coach.starter.4'];
+const ROLE_META: Record<AIRole, {
+  nameKey: string; tagKey: string; disclaimerKey: string; greetingKey: string; placeholderKey: string;
+  starters: string[]; icon: React.ComponentType<{ className?: string }>;
+}> = {
+  coach: {
+    nameKey: 'ai.coach.name',
+    tagKey: 'ai.coach.tag',
+    disclaimerKey: 'ai.disclaimer.coach',
+    greetingKey: 'ai.coach.greeting',
+    placeholderKey: 'ai.coach.placeholder',
+    starters: ['ai.coach.s1', 'ai.coach.s2', 'ai.coach.s3', 'ai.coach.s4'],
+    icon: ClipboardList,
+  },
+  psych: {
+    nameKey: 'ai.psych.name',
+    tagKey: 'ai.psych.tag',
+    disclaimerKey: 'ai.disclaimer',
+    greetingKey: 'ai.psych.greeting',
+    placeholderKey: 'ai.psych.placeholder',
+    starters: ['ai.psych.s1', 'ai.psych.s2', 'ai.psych.s3', 'ai.psych.s4'],
+    icon: Brain,
+  },
+};
 
+/**
+ * One drawer, two functionally distinct AI roles.
+ * Conversation state is kept per role so switching never mixes history.
+ * Opened from anywhere via:
+ *   window.dispatchEvent(new CustomEvent('ai-assistant:open', { detail: { role, message } }))
+ */
 export const SkatingAssistant: React.FC = () => {
   const { t, language } = useLanguage();
   const [open, setOpen] = useState(false);
-  const [messages, setMessages] = useState<Msg[]>([]);
+  const [role, setRole] = useState<AIRole>('coach');
+  const [threads, setThreads] = useState<Record<AIRole, Msg[]>>({ coach: [], psych: [] });
   const [input, setInput] = useState('');
-  const [loading, setLoading] = useState(false);
+  const [loadingRole, setLoadingRole] = useState<AIRole | null>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
-  const messagesRef = useRef<Msg[]>([]);
-  const loadingRef = useRef(false);
+  const threadsRef = useRef(threads);
+  const loadingRef = useRef<AIRole | null>(null);
 
-  useEffect(() => { messagesRef.current = messages; }, [messages]);
-  useEffect(() => { loadingRef.current = loading; }, [loading]);
-
+  useEffect(() => { threadsRef.current = threads; }, [threads]);
+  useEffect(() => { loadingRef.current = loadingRole; }, [loadingRole]);
   useEffect(() => {
     scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight, behavior: 'smooth' });
-  }, [messages, loading]);
+  }, [threads, role, loadingRole]);
 
-  useEffect(() => {
-    const handler = (e: Event) => {
-      const detail = (e as CustomEvent<{ message?: string }>).detail;
-      setOpen(true);
-      if (detail?.message) {
-        setTimeout(() => send(detail.message, { reset: true }), 150);
-      }
-    };
-    window.addEventListener('coach-iris:open', handler as EventListener);
-    return () => window.removeEventListener('coach-iris:open', handler as EventListener);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  const send = async (text: string, opts?: { reset?: boolean }) => {
+  const send = useCallback(async (targetRole: AIRole, text: string, opts?: { reset?: boolean }) => {
     if (!text.trim() || loadingRef.current) return;
-    const base = opts?.reset ? [] : messagesRef.current;
-    const userMsg: Msg = { role: 'user', content: text };
-    const next = [...base, userMsg];
-    setMessages(next);
+    const base = opts?.reset ? [] : threadsRef.current[targetRole];
+    const next: Msg[] = [...base, { role: 'user', content: text }];
+    setThreads((prev) => ({ ...prev, [targetRole]: next }));
     setInput('');
-    setLoading(true);
+    setLoadingRole(targetRole);
 
-    let assistantSoFar = '';
+    let soFar = '';
     const upsert = (chunk: string) => {
-      assistantSoFar += chunk;
-      setMessages((prev) => {
-        const last = prev[prev.length - 1];
-        if (last?.role === 'assistant') {
-          return prev.map((m, i) => (i === prev.length - 1 ? { ...m, content: assistantSoFar } : m));
-        }
-        return [...prev, { role: 'assistant', content: assistantSoFar }];
+      soFar += chunk;
+      setThreads((prev) => {
+        const cur = prev[targetRole];
+        const last = cur[cur.length - 1];
+        const updated = last?.role === 'assistant'
+          ? cur.map((m, i) => (i === cur.length - 1 ? { ...m, content: soFar } : m))
+          : [...cur, { role: 'assistant' as const, content: soFar }];
+        return { ...prev, [targetRole]: updated };
       });
     };
 
@@ -69,17 +83,11 @@ export const SkatingAssistant: React.FC = () => {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}`,
         },
-        body: JSON.stringify({ messages: next, language }),
+        body: JSON.stringify({ messages: next, language, role: targetRole }),
       });
 
-      if (resp.status === 429) {
-        upsert(t('coach.err.rate'));
-        return;
-      }
-      if (resp.status === 402) {
-        upsert(t('coach.err.credits'));
-        return;
-      }
+      if (resp.status === 429) { upsert(t('coach.err.rate')); return; }
+      if (resp.status === 402) { upsert(t('coach.err.credits')); return; }
       if (!resp.ok || !resp.body) throw new Error('stream failed');
 
       const reader = resp.body.getReader();
@@ -112,48 +120,77 @@ export const SkatingAssistant: React.FC = () => {
       console.error(e);
       upsert(t('coach.err.generic'));
     } finally {
-      setLoading(false);
+      setLoadingRole(null);
     }
-  };
+  }, [language, t]);
+
+  useEffect(() => {
+    const handler = (e: Event) => {
+      const detail = (e as CustomEvent<{ role?: AIRole; message?: string }>).detail;
+      const target: AIRole = detail?.role === 'coach' ? 'coach' : detail?.role === 'psych' ? 'psych' : 'psych';
+      setRole(target);
+      setOpen(true);
+      if (detail?.message) setTimeout(() => send(target, detail.message!, { reset: true }), 150);
+    };
+    window.addEventListener('ai-assistant:open', handler as EventListener);
+    // Legacy event name kept so existing entry points keep working.
+    window.addEventListener('coach-iris:open', handler as EventListener);
+    return () => {
+      window.removeEventListener('ai-assistant:open', handler as EventListener);
+      window.removeEventListener('coach-iris:open', handler as EventListener);
+    };
+  }, [send]);
+
+  const meta = ROLE_META[role];
+  const messages = threads[role];
+  const busy = loadingRole === role;
 
   return (
     <Sheet open={open} onOpenChange={setOpen}>
-      <SheetTrigger asChild>
-        <button
-          aria-label={t('coach.openLabel')}
-          className="fixed bottom-24 right-5 sm:bottom-6 sm:right-6 z-50 group hidden sm:flex items-center gap-2 pl-2 pr-5 h-14 rounded-full bg-gradient-to-r from-primary to-accent text-primary-foreground shadow-[var(--shadow-lg)] motion-press hover:scale-[1.04] transition-transform duration-300 font-bold"
-        >
-          <IrisAvatar size={40} ring={false} className="ring-2 ring-primary-foreground/50" />
-          <span className="hidden sm:inline">{t('coach.title')}</span>
-        </button>
-      </SheetTrigger>
       <SheetContent side="right" className="w-full sm:max-w-md flex flex-col p-0 gap-0">
-        <SheetHeader className="px-5 py-4 border-b">
-          <SheetTitle className="flex items-center gap-3 text-xl font-extrabold tracking-tight">
-            <IrisAvatar size={40} />
+        <SheetHeader className="px-5 pt-5 pb-3 border-b space-y-3">
+          <SheetTitle className="flex items-center gap-3 text-lg font-bold tracking-tight">
+            <span className="w-10 h-10 rounded-xl bg-primary/12 flex items-center justify-center">
+              <meta.icon className="w-5 h-5 text-primary" />
+            </span>
             <span className="flex flex-col items-start leading-tight">
-              {t('coach.title')}
-              <span className="text-xs font-medium text-muted-foreground">{t('coach.subtitle')}</span>
+              {t(meta.nameKey)}
+              <span className="text-[11px] font-medium text-muted-foreground">{t(meta.tagKey)}</span>
             </span>
           </SheetTitle>
-        </SheetHeader>
 
+          {/* Role switcher — two separate services, two separate conversations */}
+          <div className="grid grid-cols-2 gap-1 p-1 rounded-xl bg-muted/50" role="tablist" aria-label={t('ai.switch')}>
+            {(['coach', 'psych'] as AIRole[]).map((r) => (
+              <button
+                key={r}
+                role="tab"
+                aria-selected={role === r}
+                onClick={() => setRole(r)}
+                className={cn(
+                  'h-9 rounded-lg text-xs font-semibold transition-colors',
+                  role === r ? 'bg-background text-foreground shadow-sm' : 'text-muted-foreground hover:text-foreground'
+                )}
+              >
+                {t(ROLE_META[r].nameKey)}
+              </button>
+            ))}
+          </div>
+        </SheetHeader>
 
         <div ref={scrollRef} className="flex-1 overflow-y-auto px-5 py-4 space-y-4">
           {messages.length === 0 && (
             <div className="space-y-4">
-              <div className="rounded-2xl bg-gradient-to-br from-lavender to-rose/60 p-5 border border-border/40">
-                <p className="text-sm leading-relaxed text-foreground">
-                  {t('coach.greeting')}
-                </p>
+              <div className="rounded-xl border border-border/60 bg-muted/40 p-4">
+                <p className="text-sm leading-relaxed text-foreground">{t(meta.greetingKey)}</p>
               </div>
-              <p className="text-xs font-bold uppercase tracking-wider text-muted-foreground">{t('coach.tryOne')}</p>
+              <p className="text-[11px] font-bold uppercase tracking-wider text-muted-foreground">{t('ai.tryOne')}</p>
               <div className="grid gap-2">
-                {STARTER_KEYS.map((k) => (
+                {meta.starters.map((k) => (
                   <button
                     key={k}
-                    onClick={() => send(t(k))}
-                    className="text-left px-4 py-3 rounded-xl bg-muted/50 hover:bg-muted active:scale-[0.97] transition-all text-sm font-medium motion-press"
+                    onClick={() => send(role, t(k))}
+                    className="text-left px-4 py-3 rounded-xl border border-border/60 hover:bg-muted/60 active:scale-[0.99] transition-all text-sm font-medium min-h-[48px]"
                   >
                     {t(k)}
                   </button>
@@ -161,6 +198,7 @@ export const SkatingAssistant: React.FC = () => {
               </div>
             </div>
           )}
+
           {messages.map((m, i) => (
             <div key={i} className={cn('flex', m.role === 'user' ? 'justify-end' : 'justify-start')}>
               <div
@@ -175,7 +213,8 @@ export const SkatingAssistant: React.FC = () => {
               </div>
             </div>
           ))}
-          {loading && messages[messages.length - 1]?.role === 'user' && (
+
+          {busy && messages[messages.length - 1]?.role === 'user' && (
             <div className="flex justify-start">
               <div className="bg-muted rounded-2xl rounded-bl-sm px-4 py-3">
                 <Loader2 className="w-4 h-4 animate-spin" />
@@ -184,18 +223,22 @@ export const SkatingAssistant: React.FC = () => {
           )}
         </div>
 
+        <div className="border-t px-5 py-2">
+          <p className="text-[10px] leading-snug text-muted-foreground">{t(meta.disclaimerKey)}</p>
+        </div>
+
         <form
-          onSubmit={(e) => { e.preventDefault(); send(input); }}
+          onSubmit={(e) => { e.preventDefault(); send(role, input); }}
           className="border-t p-3 flex gap-2"
         >
           <input
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            placeholder={t('coach.placeholder')}
-            className="flex-1 h-11 px-4 rounded-xl bg-muted/50 border border-border focus:outline-none focus:ring-2 focus:ring-primary text-sm"
-            disabled={loading}
+            placeholder={t(meta.placeholderKey)}
+            className="flex-1 h-12 px-4 rounded-xl bg-muted/50 border border-border focus:outline-none focus:ring-2 focus:ring-primary text-sm"
+            disabled={busy}
           />
-          <Button type="submit" size="icon" className="h-11 w-11 rounded-xl shrink-0 motion-press active:scale-90 transition-transform" disabled={loading || !input.trim()}>
+          <Button type="submit" size="icon" className="h-12 w-12 rounded-xl shrink-0" disabled={busy || !input.trim()}>
             <Send className="w-4 h-4" />
           </Button>
         </form>

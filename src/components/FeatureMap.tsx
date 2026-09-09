@@ -18,7 +18,7 @@ interface Props {
 }
 
 /**
- * A plain directory of everything inside IceNotes.
+ * A plain directory of everything inside SkateGoals.
  * Exists because the real tools live two tab levels deep — this makes them
  * findable in one tap, so nothing we promise on the site feels missing inside.
  */
@@ -29,7 +29,7 @@ export const FeatureMap: React.FC<Props> = ({ onOpen }) => {
 
   const items: { icon: React.ElementType; label: string; hint: string; dest: FeatureDest; tone: string }[] = [
     { icon: Feather, label: L('Reflect after practice', 'Равносметка след тренировка'), hint: L('3 minutes, guided', '3 минути с кратки въпроси'), dest: { special: 'reflect' }, tone: 'text-rose-foreground bg-rose/25' },
-    { icon: MessageCircleHeart, label: L('Talk to Coach Kiki', 'Говори с Кики'), hint: L('Sport psychologist, anytime', 'Подкрепа от спортен психолог'), dest: { special: 'coach' }, tone: 'text-grape-foreground bg-grape/25' },
+    { icon: MessageCircleHeart, label: L('Sport Psychology', 'Спортна психология'), hint: L('Confidence, nerves, reset', 'Увереност, нерви, рестарт'), dest: { special: 'coach' }, tone: 'text-grape-foreground bg-grape/25' },
     { icon: Brain, label: L('Before the ice', 'Преди леда'), hint: L('Breathing, focus, visualisation', 'Дишане, фокус, визуализация'), dest: { tab: 'mind', sub: 'preskate' }, tone: 'text-rose-foreground bg-rose/25' },
     { icon: Sparkles, label: L('Sport psychology', 'Спортна психология'), hint: L('Fear, pressure, confidence', 'Страх, напрежение, увереност'), dest: { tab: 'mind', sub: 'psych' }, tone: 'text-grape-foreground bg-grape/25' },
     { icon: Heart, label: L('Mind check-in', 'Как си днес'), hint: L('Name what you feel', 'Назови какво усещаш'), dest: { tab: 'mind', sub: 'reflect' }, tone: 'text-rose-foreground bg-rose/25' },
