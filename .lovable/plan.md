@@ -1,105 +1,43 @@
+# Phase 2.1 QA Fix Pass
 
-# Dashboard Redesign — "Today" as Emotional Center
+## Goal
+Apply only the requested QA corrections while preserving authentication, athlete data, existing migrations, training, journals, goals, jumps, progress, and both secured AI roles.
 
-Goal: a 12–16 y/o skater opens IceNotes and instantly knows **where they are**, **what to do next**, and **why this app exists**. Calm, premium, mobile-first. Inspired by Headspace + Nike Run Club.
+## Changes
 
----
+### 1. Correct privacy and AI-history copy
+- Replace onboarding’s absolute sharing promise with “private by default” wording and a Privacy reference in English and Bulgarian.
+- Correct the AI Support limits text: chats are not a professional record, current chat history may not be available later, and important actions should be saved to Goals or Journal.
+- Replace remaining public-facing absolutes such as “always private,” “only you can see,” and “nobody else sees it” with accurate private-by-default language.
 
-## 1. Information architecture (what changes)
+### 2. Tighten onboarding requirements
+- Require a preferred name and valid numeric age before leaving Step 1.
+- Require a category and valid years-in-skating value before leaving Step 2.
+- Remove “Optional” from those two fields without applying new restrictions to saved legacy profiles.
+- Limit category choices to Advanced Novice, Junior, Senior, and Other, with the agreed Bulgarian labels.
+- Preserve the existing internal `selfLevel` compatibility mapping and all existing profile rows.
 
-Today the home screen mixes equal-weight cards: hero video, StreakCard, GameDayCard, MotivationalQuote, focus reminder, breadcrumb, 5-tab block. Everything competes. We collapse it into **three clear layers**.
+### 3. Correct pilot positioning
+- Update Landing and About in both languages to say SkateGoals is being prepared for pilot testing, without claiming current skaters or coaches are already participating.
 
-```text
-┌──────────────────────────────────────────┐
-│  HEADER  avatar · greeting · settings    │  (slimmer, calmer)
-├──────────────────────────────────────────┤
-│  TODAY HERO                              │  PRIMARY — emotional center
-│  · mood-aware greeting + micro-line      │
-│  · ONE big primary CTA (adaptive):       │
-│      Reflect · Train · Coach · Rest      │
-│  · 2 soft secondaries below              │
-├──────────────────────────────────────────┤
-│  CONTINUE / GAME DAY (conditional)       │  PRIMARY — only if relevant
-├──────────────────────────────────────────┤
-│  QUICK ACTIONS — 4 calm tiles            │  PRIMARY shortcuts
-│  Reflection · Training · Journal · Goals │
-│  + Mental prep tile                      │
-├──────────────────────────────────────────┤
-│  COACH IRIS NOTICED (if signal)          │  SUPPORT
-├──────────────────────────────────────────┤
-│  ── soft divider ──                      │
-│  SECONDARY (collapsed by default)        │
-│  · Today's stats (streak, sessions)      │
-│  · Daily quote                           │
-│  · History / Activity calendar           │
-│  · Progress summary                      │
-└──────────────────────────────────────────┘
-            BottomNav (already redone)
-```
+### 4. Remove legacy community/footer content
+- Remove the personal Instagram link, social heading, community links, and “made with love” footer line.
+- Replace the old community column with real Product links: Features, Sport Psychology, and AI Support.
+- Redirect `/share-experience` to `/about`, remove its public navigation entry, and delete the unused page/import when confirmed safe.
+- Remove the remaining profile-menu link to the old community page.
 
-The 5 top tabs (`Today / Train / Mind / Goals / Progress`) are **removed from the Today view**. Navigation lives only in the bottom nav now → one nav system, no duplication. The legacy `activeTab` state still drives non-Today tabs but is hidden behind the bottom nav and the quick-action tiles.
+### 5. Apply the Ice Performance palette
+- Replace the active `theme-neon` warm beige/terracotta tokens and forced paper gradients with cool ice-white, white/cool-neutral surfaces, graphite/deep navy text, deep navy primary, restrained steel blue, and cool grey borders.
+- Update dark tokens to graphite/deep navy and keep existing typography, structure, and component behavior.
+- Limit this to global tokens and surface overrides; no component redesign.
 
----
+### 6. Focused cleanup and verification
+- Remove misleading user-facing Coach Kiki references while retaining compatibility event names and saved-data keys.
+- Confirm height/weight inputs remain absent and AI request/auth code is unchanged.
+- Run typecheck/build and focused searches for privacy absolutes, persisted-chat claims, pilot claims, personal Instagram, `/share-experience`, warm-theme terms, and legacy persona copy.
+- Test Landing, About, AI Support, redirect behavior, and onboarding at 390px and desktop; verify English/Bulgarian category labels, required-step behavior, no horizontal overflow, and capture screenshots.
 
-## 2. Visual hierarchy + typography
-
-- **H1 greeting**: `text-3xl sm:text-4xl font-black font-serif` (currently `text-base`)
-- **Hero headline**: `text-2xl sm:text-3xl` already in `TodayHero` — keep, but increase line-height + breathing room
-- **Body**: bump from `text-xs/sm` to `text-sm/base` minimum on all primary content
-- **Tap targets**: every actionable card ≥ 64px tall (rink-glove friendly, matches the Core memory rule)
-- **Contrast**: replace `text-muted-foreground` on critical labels with `text-foreground/75`
-- **Spacing**: vertical rhythm of `space-y-5` between primary blocks, `space-y-3` inside blocks
-- **Cards**: rounded-3xl, soft shadow, no harsh borders; one accent color per module (lavender/mint/rose/sky/grape — matches Module Colors memory)
-
----
-
-## 3. Quick Actions tile grid (new component)
-
-Replaces the dense tab strip on Home. Five tiles, 2-column mobile / 5-column desktop:
-
-| Tile         | Color    | Icon       | Action                              |
-|--------------|----------|------------|-------------------------------------|
-| Reflection   | rose     | Feather    | open Reflect view                   |
-| Training     | mint     | Snowflake  | start pre-training prep             |
-| Journal      | sky      | BookHeart  | open Daily Journal                  |
-| Goals        | lavender | Target     | jump to Goals tab                   |
-| Mental prep  | grape    | Brain      | open Mind / Coach Iris drawer       |
-
-Each tile = large icon + bold label + one-line micro-copy ("Кратко · 2 мин"). Full localization via `LanguageContext` (new keys `quick.reflection.label`, `.micro`, etc.).
-
----
-
-## 4. Secondary section ("More for today")
-
-Stats, calendar, quote, progress cards get demoted into a `<details>` block with a calm "Виж повече за днес / See more for today" trigger. Reduces cognitive load on first paint; power users still one tap away.
-
-`StreakCard`, `MotivationalQuote`, `ActivityCalendar`, `ProgressSummaryCards` move here.
-
----
-
-## 5. Files touched
-
-- `src/components/SimpleDashboard.tsx` — restructure Home view (remove top Tabs from Today, add QuickActions, move secondary into collapsible)
-- `src/components/QuickActionTile.tsx` *(new)* — single reusable tile
-- `src/components/QuickActionsGrid.tsx` *(new)* — the 5-tile grid
-- `src/components/TodayHero.tsx` — typography pass (h1 bigger, more spacing); no logic changes
-- `src/context/LanguageContext.tsx` — add `quick.*`, `secondary.title`, `home.section.now`, `home.section.more` keys (BG + EN)
-
-No backend, no schema, no auth changes.
-
----
-
-## 6. Out of scope for this pass
-
-- Train / Mind / Goals / Progress internal tabs (already redesigned in prior passes)
-- Animation overhaul beyond existing `motion-*` utilities
-- New illustrations / video assets
-
----
-
-## 7. Success check (post-build)
-
-1. Mobile preview (390×844): hero + quick actions visible above the fold, no horizontal scroll
-2. BG language switch — zero English strings on Home
-3. Tap targets ≥ 60px on all tiles + bottom nav (already done)
-4. Lighthouse contrast: no AA failures on primary text
+## Technical notes
+- No database migration or backend function change is planned.
+- “Valid age” will mean a filled numeric value within the existing input bounds; this does not retroactively block legacy ages outside 14–18.
+- Years in skating will accept zero as valid for a new skater and retain the existing upper input bound.
