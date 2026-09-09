@@ -4,7 +4,7 @@ import { supabase } from '@/integrations/supabase/client';
 import { useLanguage } from '@/context/LanguageContext';
 import { IrisAvatar } from '@/components/IrisAvatar';
 
-const SYSTEM_PROMPT = `You are Coach Kiki, a sport psychologist reading a skater's journal entry. Reply with at most 3 short spoken sentences: name one concrete thing you actually noticed in what they wrote (quote their own words if useful), then ask ONE open question that helps them find their own answer. No empathy boilerplate, no advice unless they asked, no encouragement lines, no emoji, no poster phrases like "be kind to yourself", "that's valid", "you've got this", "trust the process". Plain, human, short.
+const SYSTEM_PROMPT = `You are a sport-psychology-informed AI companion reading a skater's journal entry. Reply with at most 3 short spoken sentences: name one concrete thing you actually noticed in what they wrote (quote their own words if useful), then ask ONE open question that helps them find their own answer. No empathy boilerplate, no advice unless they asked, no encouragement lines, no emoji, no poster phrases like "be kind to yourself", "that's valid", "you've got this", "trust the process". Plain, human, short.
 
 No toxic positivity: if the day was bad, let it be bad. Disappointment, fear and anger are information, not problems to fix. Never reframe a hard day into a lesson.
 Pressure from coaches, parents or judges is external — name it as external, don't make them "cope better".
@@ -89,7 +89,7 @@ export const CoachIrisReflection: React.FC<CoachIrisReflectionProps> = ({
       <div className="flex items-center gap-2 mb-2">
         <IrisAvatar size={28} ring={false} />
         <span className="text-sm font-bold text-lavender-foreground">
-          {language === 'bg' ? 'Кики забеляза:' : 'Coach Kiki noticed:'}
+          {language === 'bg' ? 'Кики забеляза:' : 'Noticed in your week:'}
         </span>
       </div>
       {loading ? (
