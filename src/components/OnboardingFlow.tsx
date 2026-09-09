@@ -77,7 +77,7 @@ export const OnboardingFlow: React.FC = () => {
       return form.name.trim().length >= 2 && Number.isInteger(age) && age >= 14 && age <= 18;
     }
     if (step === 2) {
-      return form.category !== '' && Number.isInteger(yearsSkating) && yearsSkating >= 0 && yearsSkating <= 40;
+      return form.category !== '' && form.yearsSkating !== '' && Number.isInteger(yearsSkating) && yearsSkating >= 0 && yearsSkating <= 40;
     }
     if (step === 3) return form.mainFocus.trim().length > 0;
     return true;
