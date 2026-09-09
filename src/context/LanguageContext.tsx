@@ -1082,8 +1082,8 @@ const dict: Dict = {
   'landing.hero.scroll': { en: 'Scroll',                bg: 'Превърти' },
 
   // ───── Game Day ─────
-  'gameDay.title':       { en: 'Game Day',              bg: 'Ден на състезанието' },
-  'gameDay.subtitle':    { en: 'Pre-competition ritual', bg: 'Ритуал преди състезание' },
+  'gameDay.title':       { en: 'Competition prep',      bg: 'Подготовка за старт' },
+  'gameDay.subtitle':    { en: 'Competition is not training with an audience. Prepare for the difference.', bg: 'Състезанието не е тренировка с публика. Подготви се за разликата.' },
   'gameDay.breathe':     { en: 'Breathe',               bg: 'Дишай' },
   'gameDay.visualize':   { en: 'Visualize',             bg: 'Визуализирай' },
   'gameDay.affirm':      { en: 'Your cue',               bg: 'Твоята дума' },
@@ -1132,14 +1132,14 @@ const dict: Dict = {
   'gameDay.exhale':      { en: 'Exhale',                bg: 'Издишвай' },
   'gameDay.sec':         { en: 's',                     bg: 'с' },
   'gameDay.visualizeText': { en: 'Eyes closed. Step on the ice in your head and run the program once. Where does it get shaky?', bg: 'Затвори очи. Стъпи на леда наум и изкарай програмата веднъж. Къде става несигурно?' },
-  'gameDay.coachName':   { en: 'Coach Kiki',            bg: 'Кики' },
+  'gameDay.coachName':   { en: 'Sport Psychology',      bg: 'Спортна психология' },
   'gameDay.pepTalk':     { en: "One question before you go: what will you do first if something doesn't go to plan?", bg: 'Един въпрос преди да излезеш: какво ще направиш първо, ако нещо не тръгне по план?' },
   'gameDay.letsGo':      { en: "I'm ready",              bg: 'Готово, излизам' },
   'gameDay.cardSteps':   { en: 'Breathe · Run it in your head · Pick a cue · One question', bg: 'Дишай · Изкарай я наум · Избери дума · Един въпрос' },
   'gameDay.cuePrompt':   { en: 'One word or short cue you want in your head during the program.', bg: 'Една дума или кратка команда, която искаш в главата си по време на програмата.' },
   'gameDay.cuePlaceholder': { en: 'e.g. long edges', bg: 'напр. дълги ръбове' },
   'gameDay.cueExamples': { en: 'Some skaters use:', bg: 'Някои състезатели ползват:' },
-  'gameDay.askKiki':     { en: 'Answer with Coach Kiki', bg: 'Продължи разговора с Кики' },
+  'gameDay.askKiki':     { en: 'Continue with Sport Psychology', bg: 'Продължи със спортна психология' },
 
   // ───── Profile sheet ─────
   'profile.back':        { en: 'Back',                  bg: 'Назад' },
