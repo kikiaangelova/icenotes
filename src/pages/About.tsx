@@ -8,8 +8,8 @@ import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/context/LanguageContext';
 
 /**
- * About SkateGoals — honest, simple, skater-first.
- * No drama, no invented scenes. Just the real story.
+ * About SkateGoals — product rationale, not a personal story.
+ * No professional claims, no invented biography.
  */
 const About: React.FC = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -23,171 +23,113 @@ const About: React.FC = () => {
   const copy = bg
     ? {
         eyebrow: 'За SkateGoals',
-        title: 'Родено край леда, между тренировки, съмнения и малки победи.',
+        title: 'Продукт за това, което се случва между тренировката и изявата.',
         intro:
-          'SkateGoals е твоето лично място за всичко, което остава в теб след тренировка — какво се получи, кое те разклати и с какво искаш да се върнеш на леда утре.',
-        storyEyebrow: 'Нашата история',
-        storyTitle: 'Всичко започна с един лош ден на тренировка.',
-        storyBody: [
-          'Всеки фигурист познава този момент: сваляш кънките, ръцете ти още треперят, а в главата ти се върти един и същи скок. Излизаш от пързалката и до вечерта вече не помниш какво точно се обърка — останало е само усещането, че денят е бил тежък.',
-          'Дъщеря ми е на 14 и фигурното пързаляне е част от живота ѝ от години. След една трудна тренировка седна на стълбите с кънките в ръце и каза: „Иска ми се да можех да запиша всичко това някъде, преди да го забравя.“ Опитахме с тетрадки, приложения за бележки и гласови съобщения. Нищо не беше създадено за истинския ритъм на един фигурист.',
-          'Тогава направихме SkateGoals. Аз съм спортен психолог, тя е състезателка. Тя каза какво ѝ трябва, аз добавих въпросите, които задавам в кабинета: не „Защо не стана?“, а „Какво усети точно преди да скочиш?“.',
-          'Днес SkateGoals е за всеки фигурист, който излиза от пързалката с твърде много мисли. Тук няма оценки и класации. Има място да чуеш себе си, да разбереш какво се случва вътре в теб и да вземеш наученото в следващата тренировка.',
+          'SkateGoals е лично работно място за състезаващи се фигуристи: цели, записи от тренировки, рефлексия, подготовка за старт и работа върху психиката — в една система, която принадлежи на спортиста.',
+        whyEyebrow: 'Защо съществува',
+        whyTitle: 'Техниката се тренира. Останалото обикновено се губи.',
+        whyBody: [
+          'Фигуристите имат треньор за техниката, хореограф за програмата и понякога кондиционен треньор. Това, което рядко има собствено място, е всичко останало: какво научи днес, защо скокът изчезна на състезание, какво ще правиш различно другата седмица.',
+          'Тетрадките се губят. Приложенията за бележки не задават въпроси. Приложенията за трекинг броят скокове, но не помагат да решиш какво следва. Приложенията за уелнес говорят за спокойствие, но не разбират какво е предстартова група.',
+          'SkateGoals стои точно в тази празнина. Не заменя треньора и не се състезава с видео анализа. Свързва планирането, осмислянето, целите, подготовката за старт и психическата подготовка в един цикъл, който се повтаря всяка седмица.',
         ],
-        whyEyebrow: 'Защо главата е част от тренировката',
-        whyTitle: 'На леда участва и умът — не само тялото.',
-        whyBody:
-          'Един и същи скок може да се получи на тренировка и да изчезне на състезание. Понякога причината не е в техниката, а в напрежението, страха от падане или мисълта точно преди захода. И тази част от подготовката може да се тренира.',
-        whyPoints: ['Увереност', 'Фокус', 'Емоции', 'Себепознание', 'Поука от всяка тренировка'],
-        helpsEyebrow: 'С какво помага',
-        helpsTitle: 'Малки неща, които правиш всеки ден.',
-        helps: [
-          { h: 'Равносметка след тренировка', p: 'Три минути, в които подреждаш какво се случи на леда.' },
-          { h: 'Дневник на тренировките', p: 'Какво тренира, колко време и как се почувства.' },
-          { h: 'Цели и прогрес', p: 'Виждаш как малките стъпки се събират.' },
-          { h: 'Подготовка преди лед', p: 'Дишане и фокус, преди да стъпиш на пързалката.' },
-          { h: 'Име на емоцията', p: 'Наричаш нещата с истинските им имена, без присъда.' },
-          { h: 'Увереност с времето', p: 'Връщаш се назад и виждаш какво вече си преодолял(а).' },
+        principlesEyebrow: 'Принципи',
+        principlesTitle: 'Как строим продукта.',
+        principles: [
+          { h: 'Спортистът е собственик на данните', p: 'Без табла за родители и треньори. Ти решаваш какво излиза навън.' },
+          { h: 'Инструмент, не дневниче', p: 'Кратко, ясно, използваемо между два прогона на пързалката.' },
+          { h: 'Психиката е част от подготовката', p: 'Увереност, фокус и нерви се тренират — без псевдонаука и без празни мотивационни фрази.' },
+          { h: 'Честни граници', p: 'AI подкрепата е AI. Не е психолог, не е лекар, не е твоят треньор — и го казваме ясно.' },
+          { h: 'Без класации', p: 'Няма фийд, точки и сравнение с други хора. Сравняваш се със себе си отпреди месец.' },
+          { h: 'Два езика, написани отделно', p: 'Английски и български, писани нативно, не преведени машинно.' },
         ],
         forEyebrow: 'За кого е',
-        forTitle: 'За всички на леда — и за хората до него.',
-        forItems: [
-          'Млади фигуристи',
-          'Състезатели',
-          'Начинаещи',
-          'Родители',
-          'Треньори',
-        ],
-        cta: 'Влез в SkateGoals',
-
+        forTitle: 'Фигуристи на 14–18, които влизат в сериозния спорт.',
+        forBody:
+          'Ако тренираш редовно, състезаваш се и искаш да разбираш собствения си прогрес, това е за теб. Ако само започваш, пак може да го ползваш — просто е построено около състезателен ритъм.',
+        pilotEyebrow: 'Пилотна фаза',
+        pilotBody:
+          'SkateGoals е в пилотна фаза с фигуристи и треньори. Функциите се променят според това, което наистина се ползва. Ако нещо липсва или пречи — пиши ни.',
+        cta: 'Създай профил',
       }
     : {
         eyebrow: 'About SkateGoals',
-        title: 'Written on the bench by the rink, between two sessions.',
+        title: 'Built for the space between training and performance.',
         intro:
-          'SkateGoals is a quiet, private place to leave what happened on the ice today — what worked, what hurt, and what you want to try tomorrow.',
-        storyEyebrow: 'Our story',
-        storyTitle: 'It started with one bad practice.',
-        storyBody: [
-          'Every skater knows the moment: skates off, hands still shaking, one jump replaying on a loop. You walk out of the rink and by evening you can’t remember what actually went wrong — only that it was hard.',
-          'My daughter is 14 and has been skating for years. One day she sat on the stairs with her skates in her hands and said, “I wish I could write this down somewhere so I don’t lose it by tomorrow.” We tried notebooks, notes apps, voice memos to herself. Nothing fit — too complicated, or nothing to do with skating.',
-          'So we built SkateGoals. I’m a sport psychologist, she’s a competitor. She said what she needed; I added the questions I ask in session: not “Why didn’t it work?” but “What did you feel right before you took off?”',
-          'Today it’s for every skater who leaves the rink with a full head. No scores, no rankings, nobody telling you that you didn’t try hard enough. Just you, the ice, and what you learned today.',
+          'SkateGoals is a private workspace for competitive figure skaters: goals, training records, reflection, competition preparation and mental performance — in one system the athlete owns.',
+        whyEyebrow: 'Why it exists',
+        whyTitle: 'Technique gets coached. Everything around it gets lost.',
+        whyBody: [
+          'Skaters have a coach for technique, a choreographer for the program, sometimes a strength coach. What rarely has a home is everything else: what you learned today, why the jump disappeared at the competition, what you will do differently next week.',
+          'Notebooks get lost. Notes apps don’t ask questions. Tracking apps count jumps but don’t help you decide what comes next. Wellness apps talk about calm without knowing what a warm-up group feels like.',
+          'SkateGoals sits in that gap. It does not replace your coach and it does not compete with video analysis. It connects planning, reflection, goals, competition prep and mental preparation into one loop you repeat every week.',
         ],
-        whyEyebrow: 'Why the head is part of training',
-        whyTitle: 'Skating isn’t done with your legs alone.',
-        whyBody:
-          'The same jump lands in practice and misses at a competition. The difference is rarely technique — it’s the pressure, the fear of falling, the thoughts a second before the entry. That’s trainable too, but nobody shows you how.',
-
-        whyPoints: ['Confidence', 'Focus', 'Emotions', 'Self-reflection', 'Learning from each session'],
-        helpsEyebrow: 'What SkateGoals helps with',
-        helpsTitle: 'Small, clear tools for every day on the ice.',
-        helps: [
-          { h: 'Reflect after practice', p: 'A short moment to process what happened.' },
-          { h: 'Summarize the training day', p: 'Capture what you did and how it felt.' },
-          { h: 'Track goals and progress', p: 'See how small steps add up over time.' },
-          { h: 'Prepare mentally', p: 'Get your mind ready before practice or competition.' },
-          { h: 'Notice emotions', p: 'Give them a name, without judging them.' },
-          { h: 'Build confidence over time', p: 'Look back at the moments you showed up.' },
+        principlesEyebrow: 'Principles',
+        principlesTitle: 'How we build it.',
+        principles: [
+          { h: 'The athlete owns the data', p: 'No parent or coach dashboards. You decide what leaves the app.' },
+          { h: 'A tool, not a diary', p: 'Short, clear, usable between two run-throughs at the rink.' },
+          { h: 'Mental work is training', p: 'Confidence, focus and nerves are trainable — without pseudo-science or empty motivation.' },
+          { h: 'Honest limits', p: 'AI support is AI. Not a psychologist, not a doctor, not your coach — and we say so.' },
+          { h: 'No leaderboards', p: 'No feed, no points, no comparing yourself to strangers. You compare to you, a month ago.' },
+          { h: 'Two languages, written separately', p: 'English and Bulgarian written natively, not machine-translated.' },
         ],
         forEyebrow: 'Who it’s for',
-        forTitle: 'For anyone on the ice — or beside it.',
-        forItems: [
-          'Young skaters',
-          'Competitive skaters',
-          'Beginners',
-          'Parents',
-          'Coaches',
-        ],
-        cta: 'Come inside',
+        forTitle: 'Skaters aged 14–18 moving into serious competition.',
+        forBody:
+          'If you train regularly, compete, and want to understand your own progress, this is for you. If you’re earlier in skating you can still use it — it is simply built around a competitive rhythm.',
+        pilotEyebrow: 'In pilot',
+        pilotBody:
+          'SkateGoals is in pilot with skaters and coaches. Features change based on what actually gets used. If something is missing or in your way, tell us.',
+        cta: 'Create your account',
       };
+
+  const kicker = 'text-[11px] font-semibold tracking-[0.24em] uppercase text-muted-foreground mb-4';
 
   return (
     <div className={isDarkMode ? 'dark' : ''}>
       <div className="min-h-screen bg-background">
         <Navbar isDarkMode={isDarkMode} onToggleDarkMode={() => setIsDarkMode(!isDarkMode)} />
         <Seo
-          title="About SkateGoals — Created by a young figure skater, for skaters"
-          description="SkateGoals is a private journaling and mental preparation space for figure skaters. Created by a 14-year-old skater, with her mom, for other skaters who need the same thing."
+          title="About SkateGoals — a performance companion for competitive skaters"
+          description="Why SkateGoals exists: one athlete-owned system connecting training, goals, reflection, competition preparation and mental performance for figure skaters aged 14-18."
           path="/about"
         />
 
-        {/* ── Intro ─────────────────────────────────────────────── */}
-        <section className="relative overflow-hidden">
-          <div className="absolute inset-0 ambient-gradient opacity-80 -z-10" />
+        <section className="border-b border-border/50">
           <div className="max-w-3xl mx-auto px-5 md:px-12 pt-20 md:pt-28 pb-14 md:pb-20">
-            <p className="motion-fade-up text-[11px] font-bold tracking-[0.28em] uppercase text-foreground/60 mb-5">
-              {copy.eyebrow}
-            </p>
-            <h1 className="motion-fade-up-delay-1 text-3xl md:text-5xl font-black text-foreground leading-[1.1] tracking-tight font-serif">
+            <p className={kicker}>{copy.eyebrow}</p>
+            <h1 className="text-3xl md:text-5xl font-bold text-foreground leading-[1.08] tracking-tight">
               {copy.title}
             </h1>
-            <p className="motion-fade-up-delay-2 mt-6 md:mt-8 text-base md:text-lg text-foreground/75 leading-relaxed max-w-2xl">
+            <p className="mt-6 text-base md:text-lg text-muted-foreground leading-relaxed max-w-2xl">
               {copy.intro}
             </p>
           </div>
         </section>
 
-        {/* ── Our story ─────────────────────────────────────────── */}
         <section className="px-5 md:px-12 py-14 md:py-20">
-          <div className="max-w-2xl mx-auto motion-fade-up">
-            <p className="text-[11px] font-bold tracking-[0.28em] uppercase text-rose-foreground/80 mb-4">
-              {copy.storyEyebrow}
-            </p>
-            <h2 className="text-2xl md:text-3xl font-bold text-foreground font-serif leading-tight mb-6">
-              {copy.storyTitle}
-            </h2>
-            <div className="space-y-5 text-base md:text-lg text-foreground/80 leading-[1.75]">
-              {copy.storyBody.map((p, i) => <p key={i}>{p}</p>)}
-            </div>
-          </div>
-        </section>
-
-        {/* ── Why mental prep ───────────────────────────────────── */}
-        <section className="relative px-5 md:px-12 py-14 md:py-20 overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-b from-mint/15 via-background to-sky/15 -z-10" />
-          <div className="max-w-2xl mx-auto motion-fade-up">
-            <p className="text-[11px] font-bold tracking-[0.28em] uppercase text-mint-foreground/80 mb-4">
-              {copy.whyEyebrow}
-            </p>
-            <h2 className="text-2xl md:text-3xl font-bold text-foreground font-serif leading-tight mb-5">
+          <div className="max-w-2xl mx-auto">
+            <p className={kicker}>{copy.whyEyebrow}</p>
+            <h2 className="text-2xl md:text-3xl font-bold text-foreground leading-tight mb-6">
               {copy.whyTitle}
             </h2>
-            <p className="text-base md:text-lg text-foreground/80 leading-relaxed mb-7">
-              {copy.whyBody}
-            </p>
-            <ul className="flex flex-wrap gap-2">
-              {copy.whyPoints.map((w, i) => (
-                <li
-                  key={i}
-                  className="rounded-full border border-border/50 bg-card/70 backdrop-blur px-4 py-2 text-sm text-foreground/80"
-                >
-                  {w}
-                </li>
-              ))}
-            </ul>
+            <div className="space-y-5 text-base md:text-lg text-foreground/80 leading-[1.75]">
+              {copy.whyBody.map((p, i) => <p key={i}>{p}</p>)}
+            </div>
           </div>
         </section>
 
-        {/* ── What it helps with ────────────────────────────────── */}
-        <section className="px-5 md:px-12 py-14 md:py-20">
+        <section className="px-5 md:px-12 py-14 md:py-20 border-y border-border/50 bg-muted/30">
           <div className="max-w-3xl mx-auto">
-            <div className="max-w-2xl motion-fade-up mb-10">
-              <p className="text-[11px] font-bold tracking-[0.28em] uppercase text-lavender-foreground/80 mb-4">
-                {copy.helpsEyebrow}
-              </p>
-              <h2 className="text-2xl md:text-3xl font-bold text-foreground font-serif leading-tight">
-                {copy.helpsTitle}
-              </h2>
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {copy.helps.map((b, i) => (
-                <div
-                  key={i}
-                  className="motion-fade-up rounded-2xl border border-border/40 bg-card/70 backdrop-blur p-6 motion-lift"
-                  style={{ animationDelay: `${i * 60}ms` }}
-                >
-                  <h3 className="text-base font-bold text-foreground font-serif mb-1.5">{b.h}</h3>
+            <p className={kicker}>{copy.principlesEyebrow}</p>
+            <h2 className="text-2xl md:text-3xl font-bold text-foreground leading-tight mb-10">
+              {copy.principlesTitle}
+            </h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-8">
+              {copy.principles.map((b, i) => (
+                <div key={i}>
+                  <h3 className="text-base font-semibold text-foreground mb-1.5">{b.h}</h3>
                   <p className="text-sm text-muted-foreground leading-relaxed">{b.p}</p>
                 </div>
               ))}
@@ -195,39 +137,26 @@ const About: React.FC = () => {
           </div>
         </section>
 
-        {/* ── Who it's for ──────────────────────────────────────── */}
-        <section className="relative px-5 md:px-12 py-14 md:py-20 overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-peach/20 via-background to-lavender/20 -z-10" />
-          <div className="max-w-2xl mx-auto motion-fade-up">
-            <p className="text-[11px] font-bold tracking-[0.28em] uppercase text-peach-foreground/80 mb-4">
-              {copy.forEyebrow}
-            </p>
-            <h2 className="text-2xl md:text-3xl font-bold text-foreground font-serif leading-tight mb-8">
-              {copy.forTitle}
-            </h2>
-            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              {copy.forItems.map((it, i) => (
-                <li
-                  key={i}
-                  className="rounded-2xl border border-border/40 bg-card/80 backdrop-blur p-4 flex items-center gap-3 motion-lift"
-                >
-                  <div className="w-1.5 h-1.5 rounded-full bg-rose-foreground/60" />
-                  <span className="text-base text-foreground/85">{it}</span>
-                </li>
-              ))}
-            </ul>
+        <section className="px-5 md:px-12 py-14 md:py-20">
+          <div className="max-w-2xl mx-auto space-y-10">
+            <div>
+              <p className={kicker}>{copy.forEyebrow}</p>
+              <h2 className="text-2xl md:text-3xl font-bold text-foreground leading-tight mb-4">
+                {copy.forTitle}
+              </h2>
+              <p className="text-base text-muted-foreground leading-relaxed">{copy.forBody}</p>
+            </div>
+            <div className="rounded-2xl border border-border p-6">
+              <p className={kicker}>{copy.pilotEyebrow}</p>
+              <p className="text-base text-foreground/85 leading-relaxed">{copy.pilotBody}</p>
+            </div>
           </div>
         </section>
 
-        {/* ── CTA ──────────────────────────────────────────────── */}
-        <section className="relative px-5 md:px-12 py-16 md:py-24 overflow-hidden border-t border-border/40">
-          <div className="absolute inset-0 ambient-gradient opacity-70 -z-10" />
-          <div className="max-w-xl mx-auto text-center motion-fade-up">
+        <section className="px-5 md:px-12 py-16 md:py-24 border-t border-border/50">
+          <div className="max-w-xl mx-auto text-center">
             <Link to="/auth" className="inline-block w-full sm:w-auto">
-              <Button
-                size="lg"
-                className="h-14 px-10 text-base font-semibold rounded-2xl gap-2 w-full sm:w-auto motion-glow motion-press"
-              >
+              <Button size="lg" className="h-14 px-10 text-base font-semibold rounded-xl gap-2 w-full sm:w-auto">
                 {copy.cta} <ArrowRight className="w-4 h-4" />
               </Button>
             </Link>

@@ -1,20 +1,20 @@
 # SkateGoals
 
-> A digital journaling, reflection, and mental-training platform for ambitious figure skaters. Track your mindset, training, and performance growth with Coach Kiki — an AI sport-psychology mentor built for Gen Z athletes.
+> A private performance companion for competitive figure skaters aged 14-18. SkateGoals connects training logs, goals, reflection, competition preparation and mental performance in one athlete-owned system, with two distinct AI roles: an AI Coach for planning and next steps, and a sport-psychology-informed companion for confidence, focus and competition nerves.
 
-SkateGoals helps skaters reflect after every session, set weekly and seasonal goals, log jumps and training, and prepare mentally for competition with Game Day rituals and a warm AI coach.
+SkateGoals is not a diary, a social network or a jump-analytics product. It supports the space between training and performance: what the athlete learns, plans, processes and carries into the next session. AI support inside the product is AI — it does not replace a coach, a psychologist or a doctor.
 
 ## Pages
 
-- [Home](/): Overview of SkateGoals, the cinematic hero, and the "Start Training Smart" call-to-action.
-- [About](/about): The story behind SkateGoals — founded by a skater and her mother to bring sport psychology to young athletes.
-- [How It Works](/how-it-works): Walkthrough of the daily flow: reflect, log training, set goals, grow.
-- [Features](/features): Full feature list — journaling, jump tracker, goals, Coach Kiki AI, Game Day mode, progress analytics.
-- [Sport Psychology](/sport-psychology): Mental-training hub with topic sessions (resilience, visualization, focus, confidence) and Game Day prep.
-- [Coach Profile](/coach-profile): Meet Coach Kiki, the in-app warm-mentor AI for figure skaters.
+- [Home](/): What SkateGoals connects, the two AI roles, the training loop and privacy.
+- [About](/about): Why SkateGoals exists, the product principles and who it is for.
+- [How It Works](/how-it-works): The loop — train, track, reflect, set goals, prepare, reset.
+- [Features](/features): Training journal, goals, weekly review, competition prep, mindset tools, jump and element tracking, progress.
+- [Sport Psychology](/sport-psychology): Practical performance exercises — cue words, breathing, grounding, controllables, process goals, reset routines.
+- [AI Support](/ai-support): The two AI roles, what each one does, and their explicit limits.
 - [Contact](/contact): Reach the SkateGoals team.
-- [Share Experience](/share-experience): Read and share stories from the skating community.
+- [Privacy](/privacy): How athlete data is handled.
 
 ## Optional
 
-- [Journal](/journal): Public preview of the journaling experience.
+- [Journal](/journal): Public preview of the reflection experience.

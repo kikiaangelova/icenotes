@@ -1,4 +1,5 @@
 import { PHASE1_DICT } from './dictPhase1';
+import { PHASE2_DICT } from './dictPhase2';
 import React, { createContext, useContext, useEffect, useState, useCallback } from 'react';
 
 export type Language = 'en' | 'bg';
@@ -1112,7 +1113,7 @@ const dict: Dict = {
   'tour.today.tab':      { en: 'Today tab',             bg: 'Раздел Днес' },
   'tour.today.detail':   { en: 'Start every day with a 10-second mood tap, then add a quick log of how skating felt.', bg: 'Започни деня с 10-секундна отметка за настроение, после запиши как мина карането.' },
   'tour.focus.label':    { en: 'Your starting focus',   bg: 'Твоят начален фокус' },
-  'tour.ready':          { en: "You're ready. Trust the process — one log at a time.", bg: 'Всичко е готово. Довери се на процеса — запис по запис.' },
+  'tour.ready':          { en: 'Set. One log at a time is enough to start.', bg: 'Готово. Един запис наведнъж е достатъчен за начало.' },
   'tour.done.title':     { en: "✨ You're all set",      bg: '✨ Всичко е готово' },
   'tour.done.body':      { en: "Your first focus is saved. Start with today's log.", bg: 'Първият ти фокус е записан. Започни със записа за днес.' },
   'tour.goal.consistency': { en: 'Show up consistently', bg: 'Да идвам постоянно' },
@@ -1158,6 +1159,7 @@ const dict: Dict = {
   'profile.landingSub':  { en: 'Exit the app view',     bg: 'Излез от приложението' },
   'profile.logout':      { en: 'Log out',               bg: 'Изход' },
   ...PHASE1_DICT,
+  ...PHASE2_DICT,
 };
 
 

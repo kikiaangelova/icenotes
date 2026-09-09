@@ -112,7 +112,7 @@ const Contact: React.FC = () => {
                   <p className="text-sm text-muted-foreground">
                     {t('contact.email.desc')}
                   </p>
-                  <p className="text-sm font-medium text-foreground">hello@icenotes.app</p>
+                  <p className="text-sm font-medium text-foreground">hello@skategoals.com</p>
                 </div>
 
                 <div className="p-6 rounded-xl border border-border/60 bg-card space-y-4">

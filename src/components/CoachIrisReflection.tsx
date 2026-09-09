@@ -2,14 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { Loader2, MessageCircle } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import { useLanguage } from '@/context/LanguageContext';
-import { IrisAvatar } from '@/components/IrisAvatar';
+import { Brain } from 'lucide-react';
 
-const SYSTEM_PROMPT = `You are a sport-psychology-informed AI companion reading a skater's journal entry. Reply with at most 3 short spoken sentences: name one concrete thing you actually noticed in what they wrote (quote their own words if useful), then ask ONE open question that helps them find their own answer. No empathy boilerplate, no advice unless they asked, no encouragement lines, no emoji, no poster phrases like "be kind to yourself", "that's valid", "you've got this", "trust the process". Plain, human, short.
-
-No toxic positivity: if the day was bad, let it be bad. Disappointment, fear and anger are information, not problems to fix. Never reframe a hard day into a lesson.
-Pressure from coaches, parents or judges is external — name it as external, don't make them "cope better".
-This is their private space; nothing here goes to anyone else.
-If the entry points to self-harm, ongoing hopelessness, food/weight control, panic or training through injury: drop the question, say it plainly in one sentence and name a real person to go to today (parent, doctor, school counsellor, coach if safe).`;
+// The system prompt lives server-side (role: "psych"). The client only frames the task.
+const TASK = {
+  en: 'Read my journal entry below. Name one concrete thing you noticed in what I wrote, in at most three short sentences, then ask me one open question. Nothing else.',
+  bg: 'Прочети записа ми по-долу. Кажи едно конкретно нещо, което забеляза в написаното, най-много в три кратки изречения, и после ми задай един отворен въпрос. Нищо друго.',
+};
 
 interface CoachIrisReflectionProps {
   journalText: string;
@@ -42,13 +41,13 @@ export const CoachIrisReflection: React.FC<CoachIrisReflectionProps> = ({
       try {
         const { data, error } = await supabase.functions.invoke('skating-coach', {
           body: {
-            systemOverride: SYSTEM_PROMPT,
+            role: 'psych',
             stream: false,
             language,
             messages: [
               {
                 role: 'user',
-                content: `Here is my journal entry:\n\n"""${text}"""`,
+                content: `${language === 'bg' ? TASK.bg : TASK.en}\n\n"""${text}"""`,
               },
             ],
           },
@@ -76,24 +75,26 @@ export const CoachIrisReflection: React.FC<CoachIrisReflectionProps> = ({
   // Silently fail
   if (failed) return null;
 
-  const continueWithKiki = () => {
+  const continueInChat = () => {
     const msg =
       language === 'bg'
         ? `Ето какво записах днес:\n\n"""${journalText.trim()}"""\n\nПопита ме: ${reply}`
         : `Here's what I wrote today:\n\n"""${journalText.trim()}"""\n\nYou asked me: ${reply}`;
-    window.dispatchEvent(new CustomEvent('coach-iris:open', { detail: { message: msg } }));
+    window.dispatchEvent(
+      new CustomEvent('coach-iris:open', { detail: { message: msg, role: 'psych' } }),
+    );
   };
 
   return (
-    <div className="animate-fade-in mt-4 rounded-2xl border border-lavender-foreground/25 bg-gradient-to-br from-lavender/40 via-grape/15 to-lavender/20 p-4 shadow-sm">
+    <div className="animate-fade-in mt-4 rounded-2xl border border-border bg-muted/40 p-4">
       <div className="flex items-center gap-2 mb-2">
-        <IrisAvatar size={28} ring={false} />
-        <span className="text-sm font-bold text-lavender-foreground">
-          {language === 'bg' ? 'Кики забеляза:' : 'Noticed in your week:'}
+        <Brain className="w-4 h-4 text-primary" aria-hidden />
+        <span className="text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">
+          {language === 'bg' ? 'Забелязано в записа ти' : 'Noticed in your reflection'}
         </span>
       </div>
       {loading ? (
-        <div className="flex items-center gap-2 text-sm text-lavender-foreground/80 italic">
+        <div className="flex items-center gap-2 text-sm text-muted-foreground">
           <Loader2 className="w-3.5 h-3.5 animate-spin" />
           {language === 'bg' ? 'Чете записа ти…' : 'Reading your reflection…'}
         </div>
@@ -103,11 +104,11 @@ export const CoachIrisReflection: React.FC<CoachIrisReflectionProps> = ({
             {reply}
           </p>
           <button
-            onClick={continueWithKiki}
-            className="mt-3 inline-flex items-center gap-2 rounded-full border border-lavender-foreground/30 bg-background/50 px-4 py-2 text-xs font-semibold text-lavender-foreground hover:bg-background/80 transition-colors"
+            onClick={continueInChat}
+            className="mt-3 inline-flex items-center gap-2 rounded-full border border-border bg-background px-4 py-2 text-xs font-semibold text-foreground hover:bg-muted transition-colors"
           >
             <MessageCircle className="w-3.5 h-3.5" />
-            {language === 'bg' ? 'Отговори на Кики' : 'Answer Kiki'}
+            {language === 'bg' ? 'Продължи разговора' : 'Continue the conversation'}
           </button>
         </>
       )}
