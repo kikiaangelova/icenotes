@@ -125,76 +125,74 @@
     --spacing: 0.25rem;
   }
 
-  /* ─── Warm Studio — app + marketing surface theme ───
-     Warm paper, terracotta ember, amber highlight.
-     Applied app-wide via the theme-neon class on <html>. */
+  /* Ice Performance — cool, restrained surfaces for app and marketing.
+     The class name remains for compatibility with saved application code. */
   .theme-neon {
-    --background: 34 20% 91%;
-    --foreground: 25 16% 18%;
+    --background: 210 29% 97%;
+    --foreground: 221 39% 11%;
 
-    --card: 36 28% 96%;
-    --card-foreground: 25 16% 20%;
+    --card: 0 0% 100%;
+    --card-foreground: 221 39% 11%;
 
-    --popover: 36 28% 97%;
-    --popover-foreground: 25 16% 20%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 221 39% 11%;
 
-    --primary: 14 52% 55%;
-    --primary-foreground: 36 30% 97%;
+    --primary: 211 51% 20%;
+    --primary-foreground: 210 29% 98%;
 
-    --secondary: 32 16% 87%;
-    --secondary-foreground: 25 16% 24%;
+    --secondary: 210 29% 94%;
+    --secondary-foreground: 212 38% 23%;
 
-    --muted: 32 14% 86%;
-    --muted-foreground: 25 8% 42%;
+    --muted: 207 27% 95%;
+    --muted-foreground: 215 16% 42%;
 
-    --accent: 262 32% 66%;
-    --accent-foreground: 25 16% 20%;
+    --accent: 207 31% 52%;
+    --accent-foreground: 210 29% 98%;
 
     --destructive: 4 58% 52%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 30 14% 81%;
-    --input: 30 14% 81%;
-    --ring: 14 52% 55%;
+    --border: 210 23% 88%;
+    --input: 210 23% 84%;
+    --ring: 207 31% 52%;
 
     --radius: 1rem;
 
-    --lime: 262 30% 60%;
-    --violet: 262 32% 62%;
-    --violet-deep: 25 20% 22%;
+    --lime: 194 30% 46%;
+    --violet: 216 24% 48%;
+    --violet-deep: 214 46% 16%;
 
-    --brand: 14 52% 55%;
-    --brand-strong: 12 48% 45%;
-    --brand-soft: 18 44% 92%;
-    --highlight-soft: 262 34% 92%;
-    --xp-gold: 36 58% 56%;
-    --xp-gold-glow: 40 70% 70%;
+    --brand: 211 51% 20%;
+    --brand-strong: 212 56% 15%;
+    --brand-soft: 207 32% 92%;
+    --highlight-soft: 205 35% 91%;
+    --xp-gold: 207 31% 52%;
+    --xp-gold-glow: 201 38% 72%;
 
-    --shadow-md: 0 8px 24px -14px hsl(25 30% 25% / 0.24);
-    --shadow-lg: 0 16px 40px -20px hsl(25 30% 25% / 0.26);
-    --shadow-xl: 0 24px 60px -26px hsl(25 30% 25% / 0.28);
-    --shadow-soft: 0 10px 30px -18px hsl(25 30% 25% / 0.24);
-    --shadow-card: 0 6px 20px -14px hsl(25 30% 25% / 0.2);
+    --shadow-md: 0 8px 24px -16px hsl(214 40% 18% / 0.18);
+    --shadow-lg: 0 16px 40px -22px hsl(214 40% 18% / 0.2);
+    --shadow-xl: 0 24px 60px -28px hsl(214 40% 18% / 0.22);
+    --shadow-soft: 0 10px 30px -20px hsl(214 40% 18% / 0.18);
+    --shadow-card: 0 6px 20px -16px hsl(214 40% 18% / 0.16);
 
-    /* In-app functional tokens on the warm surface */
-    --ice: 34 20% 92%;
-    --ice-deep: 14 52% 48%;
-    --frost: 36 28% 97%;
-    --on-ice: 14 52% 50%;
-    --off-ice: 262 30% 58%;
-    --mental: 232 34% 56%;
+    --ice: 207 35% 94%;
+    --ice-deep: 207 38% 44%;
+    --frost: 210 33% 98%;
+    --on-ice: 207 38% 44%;
+    --off-ice: 216 24% 48%;
+    --mental: 216 32% 46%;
     --success: 152 34% 40%;
-    --gold: 36 58% 54%;
-    --silver: 30 8% 62%;
+    --gold: 205 24% 50%;
+    --silver: 210 10% 58%;
 
-    --premium: 262 32% 62%;
-    --premium-soft: 262 34% 93%;
-    --premium-glow: 36 58% 62%;
+    --premium: 211 42% 35%;
+    --premium-soft: 207 32% 93%;
+    --premium-glow: 201 34% 66%;
 
-    --reflect: 232 34% 56%;
-    --journal: 14 52% 50%;
-    --calm: 168 28% 42%;
-    --warmth: 24 52% 52%;
+    --reflect: 216 32% 46%;
+    --journal: 207 38% 44%;
+    --calm: 186 28% 38%;
+    --warmth: 205 28% 50%;
 
     /* Module colours as calm mid tints */
     --mint: 152 24% 88%;
@@ -215,53 +213,53 @@
     --sky: 205 32% 89%;
     --sky-foreground: 205 38% 32%;
 
-    --ink: 25 20% 20%;
-    --paper: 36 28% 96%;
-    --highlight: 262 32% 66%;
+    --ink: 221 39% 11%;
+    --paper: 0 0% 100%;
+    --highlight: 207 31% 52%;
 
-    --sidebar: 36 28% 96%;
-    --sidebar-background: 36 28% 96%;
-    --sidebar-foreground: 25 16% 20%;
-    --sidebar-primary: 14 52% 55%;
-    --sidebar-primary-foreground: 36 30% 97%;
-    --sidebar-accent: 32 16% 88%;
-    --sidebar-accent-foreground: 25 16% 20%;
-    --sidebar-border: 30 14% 82%;
-    --sidebar-ring: 14 52% 55%;
+    --sidebar: 0 0% 100%;
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 221 39% 11%;
+    --sidebar-primary: 211 51% 20%;
+    --sidebar-primary-foreground: 210 29% 98%;
+    --sidebar-accent: 210 29% 94%;
+    --sidebar-accent-foreground: 212 38% 23%;
+    --sidebar-border: 210 23% 88%;
+    --sidebar-ring: 207 31% 52%;
 
-    --chart-1: 14 52% 55%;
-    --chart-2: 262 32% 62%;
-    --chart-3: 232 34% 56%;
+    --chart-1: 211 51% 28%;
+    --chart-2: 207 31% 52%;
+    --chart-3: 216 32% 46%;
     --chart-4: 152 34% 42%;
-    --chart-5: 36 48% 48%;
+    --chart-5: 194 30% 42%;
   }
 
   .theme-neon ::selection {
-    background: hsl(262 32% 78%);
-    color: hsl(25 16% 18%);
+    background: hsl(205 40% 82%);
+    color: hsl(221 39% 11%);
   }
 
-  /* Warm paper surfaces inside the app */
+  /* Flat cool surfaces inside the app */
   .theme-neon .soft-card,
   .theme-neon .glass-card,
   .theme-neon .frost-glass,
   .theme-neon .feature-card {
-    background: linear-gradient(160deg, hsl(36 30% 97%), hsl(33 22% 93%));
-    border: 1px solid hsl(30 16% 84%);
-    box-shadow: 0 8px 26px -20px hsl(25 30% 25% / 0.35);
+    background: hsl(var(--card));
+    border: 1px solid hsl(var(--border));
+    box-shadow: var(--shadow-card);
   }
   .theme-neon .soft-card:hover,
   .theme-neon .feature-card:hover {
-    border-color: hsl(14 52% 58% / 0.4);
-    box-shadow: 0 14px 34px -22px hsl(25 34% 30% / 0.42);
+    border-color: hsl(var(--accent) / 0.45);
+    box-shadow: var(--shadow-md);
   }
 
   .theme-neon .glass-nav {
-    background: hsl(36 30% 97% / 0.8);
+    background: hsl(var(--card) / 0.88);
     backdrop-filter: blur(16px) saturate(140%);
     -webkit-backdrop-filter: blur(16px) saturate(140%);
-    border: 1px solid hsl(30 16% 84%);
-    box-shadow: 0 10px 30px -18px hsl(25 30% 25% / 0.3);
+    border: 1px solid hsl(var(--border));
+    box-shadow: var(--shadow-md);
   }
 
   /* shadcn Card + any bg-card surface inside the app */
@@ -270,31 +268,31 @@
   .theme-neon .bg-card\/90,
   .theme-neon .bg-card\/80,
   .theme-neon .bg-white {
-    background: linear-gradient(160deg, hsl(36 30% 97%), hsl(33 22% 93%)) !important;
-    border-color: hsl(30 22% 88%);
+    background: hsl(var(--card)) !important;
+    border-color: hsl(var(--border));
     color: hsl(var(--card-foreground));
   }
 
   .theme-neon .bg-card:hover {
-    border-color: hsl(14 52% 58% / 0.4);
+    border-color: hsl(var(--accent) / 0.45);
   }
 
   /* Elevated surfaces (bottom nav, sheets) */
   .theme-neon .glass-elevated {
-    background: hsl(36 30% 97% / 0.9);
+    background: hsl(var(--card) / 0.92);
     backdrop-filter: blur(18px) saturate(140%);
     -webkit-backdrop-filter: blur(18px) saturate(140%);
-    border-color: hsl(30 22% 88%);
+    border-color: hsl(var(--border));
     box-shadow:
       0 1px 0 hsl(0 0% 100% / 0.7) inset,
-      0 -8px 30px -18px hsl(25 30% 25% / 0.3);
+      0 -8px 30px -18px hsl(214 40% 18% / 0.2);
   }
 
-  /* Muted chrome (tab lists, secondary chips) stays warm, never grey */
+  /* Muted chrome for tab lists and secondary controls */
   .theme-neon .bg-muted,
   .theme-neon .bg-muted\/50,
   .theme-neon .bg-muted\/60 {
-    background-color: hsl(36 28% 93%) !important;
+    background-color: hsl(var(--muted)) !important;
   }
 
   /* Headings inside the app use Syne, body copy Plus Jakarta Sans */
@@ -317,53 +315,53 @@
 
 
   .dark {
-    /* Calm, deep night — espresso-ink, not pure black */
-    --background: 220 18% 9%;
-    --foreground: 30 14% 92%;
+    /* Graphite and deep navy night palette */
+    --background: 217 38% 8%;
+    --foreground: 210 25% 94%;
 
-    --card: 220 16% 12%;
-    --card-foreground: 30 14% 92%;
+    --card: 216 32% 12%;
+    --card-foreground: 210 25% 94%;
 
-    --popover: 220 16% 13%;
-    --popover-foreground: 30 14% 92%;
+    --popover: 216 32% 13%;
+    --popover-foreground: 210 25% 94%;
 
-    --primary: 30 22% 88%;
-    --primary-foreground: 220 22% 12%;
+    --primary: 204 35% 72%;
+    --primary-foreground: 217 38% 10%;
 
     --secondary: 220 14% 18%;
-    --secondary-foreground: 30 12% 86%;
+    --secondary-foreground: 210 22% 88%;
 
     --muted: 220 12% 18%;
-    --muted-foreground: 30 8% 62%;
+    --muted-foreground: 211 14% 66%;
 
-    --accent: 35 18% 22%;
-    --accent-foreground: 35 30% 80%;
+    --accent: 207 30% 28%;
+    --accent-foreground: 204 35% 84%;
 
     --destructive: 5 50% 55%;
     --destructive-foreground: 0 0% 100%;
 
     --border: 220 12% 20%;
     --input: 220 12% 20%;
-    --ring: 30 18% 70%;
+    --ring: 204 35% 64%;
 
     --ice: 215 18% 14%;
     --ice-deep: 215 30% 60%;
     --frost: 220 18% 11%;
     --on-ice: 215 28% 60%;
-    --off-ice: 25 25% 55%;
+    --off-ice: 216 25% 60%;
     --mental: 260 18% 60%;
     --success: 155 28% 50%;
-    --gold: 38 35% 60%;
+    --gold: 204 24% 62%;
     --silver: 220 8% 55%;
 
-    --premium: 30 22% 88%;
+    --premium: 204 35% 72%;
     --premium-soft: 220 16% 14%;
-    --premium-glow: 30 18% 70%;
+    --premium-glow: 201 32% 66%;
 
     --reflect: 260 18% 60%;
     --journal: 215 28% 58%;
     --calm: 175 18% 50%;
-    --warmth: 28 30% 55%;
+    --warmth: 205 24% 58%;
 
     --mint: 160 14% 18%;
     --mint-foreground: 160 22% 70%;
@@ -377,27 +375,27 @@
     --grape: 275 14% 20%;
     --grape-foreground: 275 22% 74%;
 
-    --peach: 25 18% 20%;
-    --peach-foreground: 25 28% 74%;
+    --peach: 204 16% 20%;
+    --peach-foreground: 204 26% 74%;
 
     --sky: 215 18% 18%;
     --sky-foreground: 215 30% 74%;
 
-    --ink: 30 14% 92%;
-    --paper: 220 18% 9%;
+    --ink: 210 25% 94%;
+    --paper: 217 38% 8%;
     --highlight: 215 30% 55%;
 
     --shadow-soft: 0 1px 2px hsl(0 0% 0% / 0.4), 0 12px 32px -16px hsl(0 0% 0% / 0.55);
     --shadow-card: 0 1px 2px hsl(0 0% 0% / 0.35), 0 6px 16px -10px hsl(0 0% 0% / 0.45);
 
     --sidebar-background: 220 16% 11%;
-    --sidebar-foreground: 30 14% 92%;
-    --sidebar-primary: 30 22% 88%;
-    --sidebar-primary-foreground: 220 22% 12%;
+    --sidebar-foreground: 210 25% 94%;
+    --sidebar-primary: 204 35% 72%;
+    --sidebar-primary-foreground: 217 38% 10%;
     --sidebar-accent: 220 14% 18%;
-    --sidebar-accent-foreground: 30 12% 86%;
+    --sidebar-accent-foreground: 210 22% 88%;
     --sidebar-border: 220 12% 20%;
-    --sidebar-ring: 30 18% 70%;
+    --sidebar-ring: 204 35% 64%;
 
     --chart-1: 215 28% 58%;
     --chart-2: 160 22% 50%;

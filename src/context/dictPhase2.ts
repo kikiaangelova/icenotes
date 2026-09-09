@@ -23,8 +23,8 @@ export const PHASE2_DICT: Record<string, { en: string; bg: string }> = {
 
   'ob.s1.title': { en: 'Let’s set up your space', bg: 'Да настроим твоето място' },
   'ob.s1.sub': {
-    en: 'A few questions so the app and the AI support know who they are working with. Nothing here is shared with anyone.',
-    bg: 'Няколко въпроса, за да знае приложението и AI подкрепата с кого работят. Нищо от това не се споделя с никого.',
+    en: 'This helps personalize your experience. Your entries are private by default; see Privacy for details.',
+    bg: 'Това помага да персонализираме преживяването ти. Записките ти са лични по подразбиране; виж „Поверителност“ за подробности.',
   },
   'ob.s1.name': { en: 'What should we call you?', bg: 'Как да се обръщаме към теб?' },
   'ob.s1.namePh': { en: 'Your name', bg: 'Твоето име' },
@@ -40,11 +40,10 @@ export const PHASE2_DICT: Record<string, { en: string; bg: string }> = {
     en: 'Pick the closest one. Systems differ between countries.',
     bg: 'Избери най-близкото. Системите се различават по държави.',
   },
-  'ob.cat.basicNovice': { en: 'Basic / Intermediate Novice', bg: 'Начинаещи / Междинни новици' },
-  'ob.cat.advancedNovice': { en: 'Advanced Novice', bg: 'Напреднали новици' },
-  'ob.cat.junior': { en: 'Junior', bg: 'Юноши' },
-  'ob.cat.senior': { en: 'Senior', bg: 'Мъже / Жени' },
-  'ob.cat.adult': { en: 'Adult / Other', bg: 'Възрастни / Друго' },
+  'ob.cat.advancedNovice': { en: 'Advanced Novice', bg: 'Advanced Novice' },
+  'ob.cat.junior': { en: 'Junior', bg: 'Junior' },
+  'ob.cat.senior': { en: 'Senior', bg: 'Senior' },
+  'ob.cat.other': { en: 'Other', bg: 'Друго' },
   'ob.s2.years': { en: 'Years in skating', bg: 'Години на леда' },
 
   'ob.s3.title': { en: 'This season', bg: 'Този сезон' },
@@ -158,7 +157,7 @@ export const PHASE2_DICT: Record<string, { en: string; bg: string }> = {
     bg: 'Записките ти са лични по подразбиране. Няма фийд, оценки, класация, табло за треньор или родител. Ти решаваш какво да извадиш навън и на кого да го кажеш.',
   },
   'lp.final.title': { en: 'Set up your season in a few minutes.', bg: 'Настрой сезона си за няколко минути.' },
-  'lp.final.sub': { en: 'SkateGoals is in pilot with skaters and coaches. Your feedback shapes what comes next.', bg: 'SkateGoals е в пилотна фаза с фигуристи и треньори. Обратната ти връзка определя какво следва.' },
+  'lp.final.sub': { en: 'SkateGoals is being prepared for pilot testing with competitive skaters. Feedback will shape what comes next.', bg: 'SkateGoals се подготвя за пилотно тестване със състезаващи се фигуристи. Обратната връзка ще определя какво следва.' },
   'lp.final.back': { en: 'I already have an account', bg: 'Вече имам профил' },
 
   // ── AI support page ──
@@ -187,8 +186,8 @@ export const PHASE2_DICT: Record<string, { en: string; bg: string }> = {
   },
   'aisup.limits.title': { en: 'What you should know', bg: 'Какво е добре да знаеш' },
   'aisup.limits.text': {
-    en: 'This is AI. It can be wrong, and it does not know your body, your rink or your coach. Your conversations are stored with your account and are private by default, but this is a product, not professional confidentiality. If something serious is going on — pain, injury, food or weight worries, feeling hopeless — tell an adult you trust and get real help.',
-    bg: 'Това е AI. Може да греши и не познава тялото ти, пързалката ти или треньора ти. Разговорите се пазят към профила ти и са лични по подразбиране, но това е продукт, а не професионална поверителност. Ако става нещо сериозно — болка, контузия, тревоги около храна или тегло, чувство на безнадеждност — кажи на възрастен, на когото имаш доверие, и потърси истинска помощ.',
+    en: 'This is AI. It can be wrong, and it does not know your body, your rink or your coach. AI conversations are not a professional record, and chat history may not be available later in this version. Save anything important to Goals or Journal. If something serious is going on — pain, injury, food or weight worries, or feeling hopeless — tell an adult you trust and seek qualified help.',
+    bg: 'Това е AI. Може да греши и не познава тялото ти, пързалката ти или треньора ти. Разговорите с AI не са професионален запис и в тази версия историята на чата може да не е достъпна по-късно. Запази важния фокус или следваща стъпка в „Цели“ или „Дневник“. Ако става нещо сериозно — болка, контузия, тревоги около храна или тегло, или чувство на безнадеждност — кажи на възрастен, на когото имаш доверие, и потърси квалифицирана помощ.',
   },
   'aisup.cta': { en: 'Create your account', bg: 'Създай профил' },
 };

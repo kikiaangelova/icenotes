@@ -2,7 +2,7 @@ import React from 'react';
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from '@/components/ui/sheet';
 import { Button } from '@/components/ui/button';
 import { AvatarUpload } from '@/components/AvatarUpload';
-import { Home, ChevronLeft, LogOut, Bell, Shield, Mail, ExternalLink, Users, Globe } from 'lucide-react';
+import { Home, ChevronLeft, LogOut, Bell, Shield, Mail, ExternalLink, Globe } from 'lucide-react';
 import { useJournal } from '@/context/JournalContext';
 import { useAuth } from '@/context/AuthContext';
 import { useIsAdmin } from '@/hooks/useIsAdmin';
@@ -177,22 +177,9 @@ export const ProfileSheet: React.FC<ProfileSheetProps> = ({
             )}
           </div>
 
-          {/* Community + Exit */}
+          {/* Public site */}
           <div className="space-y-2">
             <p className="text-[10px] font-bold tracking-[0.2em] uppercase text-muted-foreground px-1">{t('profile.explore')}</p>
-
-            <button
-              onClick={() => { navigate('/share-experience'); onOpenChange(false); }}
-              className="w-full h-14 px-4 rounded-2xl bg-card border border-border/50 flex items-center gap-3 hover:bg-muted/60 active:scale-[0.99] transition-all text-left"
-            >
-              <div className="w-9 h-9 rounded-xl bg-mint/50 flex items-center justify-center">
-                <Users className="w-4 h-4 text-mint-foreground" />
-              </div>
-              <div className="flex-1">
-                <p className="text-sm font-semibold text-foreground">{t('profile.community')}</p>
-                <p className="text-xs text-muted-foreground">{t('profile.communitySub')}</p>
-              </div>
-            </button>
 
             <button
               onClick={() => { navigate('/'); onOpenChange(false); }}

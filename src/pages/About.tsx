@@ -49,7 +49,7 @@ const About: React.FC = () => {
           'Ако тренираш редовно, състезаваш се и искаш да разбираш собствения си прогрес, това е за теб. Ако само започваш, пак може да го ползваш — просто е построено около състезателен ритъм.',
         pilotEyebrow: 'Пилотна фаза',
         pilotBody:
-          'SkateGoals е в пилотна фаза с фигуристи и треньори. Функциите се променят според това, което наистина се ползва. Ако нещо липсва или пречи — пиши ни.',
+          'SkateGoals се подготвя за пилотно тестване със състезаващи се фигуристи. Обратната връзка ще определя какво следва.',
         cta: 'Създай профил',
       }
     : {
@@ -78,9 +78,9 @@ const About: React.FC = () => {
         forTitle: 'Skaters aged 14–18 moving into serious competition.',
         forBody:
           'If you train regularly, compete, and want to understand your own progress, this is for you. If you’re earlier in skating you can still use it — it is simply built around a competitive rhythm.',
-        pilotEyebrow: 'In pilot',
+        pilotEyebrow: 'Pilot preparation',
         pilotBody:
-          'SkateGoals is in pilot with skaters and coaches. Features change based on what actually gets used. If something is missing or in your way, tell us.',
+          'SkateGoals is being prepared for pilot testing with competitive skaters. Feedback will shape what comes next.',
         cta: 'Create your account',
       };
 

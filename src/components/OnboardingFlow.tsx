@@ -12,11 +12,10 @@ import { cn } from '@/lib/utils';
 import { useToast } from '@/hooks/use-toast';
 
 const CATEGORIES = [
-  { value: 'basic-novice', key: 'ob.cat.basicNovice', level: 'foundations' },
   { value: 'advanced-novice', key: 'ob.cat.advancedNovice', level: 'consistency' },
   { value: 'junior', key: 'ob.cat.junior', level: 'refining' },
   { value: 'senior', key: 'ob.cat.senior', level: 'competing' },
-  { value: 'adult-other', key: 'ob.cat.adult', level: 'consistency' },
+  { value: 'other', key: 'ob.cat.other', level: 'consistency' },
 ] as const;
 
 const AREAS = [
@@ -72,8 +71,14 @@ export const OnboardingFlow: React.FC = () => {
     }));
 
   const canProceed = () => {
-    if (step === 1) return form.name.trim().length >= 2;
-    if (step === 2) return form.category !== '';
+    const age = Number(form.age);
+    const yearsSkating = Number(form.yearsSkating);
+    if (step === 1) {
+      return form.name.trim().length >= 2 && Number.isInteger(age) && age >= 14 && age <= 18;
+    }
+    if (step === 2) {
+      return form.category !== '' && Number.isInteger(yearsSkating) && yearsSkating >= 0 && yearsSkating <= 40;
+    }
     if (step === 3) return form.mainFocus.trim().length > 0;
     return true;
   };
@@ -88,9 +93,9 @@ export const OnboardingFlow: React.FC = () => {
         name: form.name.trim(),
         selfLevel,
         mainFocus: form.mainFocus.trim(),
-        age: form.age ? parseInt(form.age, 10) : undefined,
+        age: parseInt(form.age, 10),
         skatingCategory: form.category,
-        yearsSkating: form.yearsSkating ? parseInt(form.yearsSkating, 10) : undefined,
+        yearsSkating: parseInt(form.yearsSkating, 10),
         currentElements: form.currentElements.trim(),
         biggestChallenge: form.biggestChallenge.trim(),
         nextCompetition: form.nextCompetition.trim(),
@@ -155,15 +160,13 @@ export const OnboardingFlow: React.FC = () => {
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="ob-age">
-                  {t('ob.s1.age')} <span className="text-muted-foreground font-normal">· {t('ob.optional')}</span>
-                </Label>
+                <Label htmlFor="ob-age">{t('ob.s1.age')}</Label>
                 <Input
                   id="ob-age"
                   type="number"
                   inputMode="numeric"
-                  min={5}
-                  max={99}
+                  min={14}
+                  max={18}
                   value={form.age}
                   onChange={(e) => set('age', e.target.value)}
                   className={cn(field, 'max-w-[120px]')}
@@ -195,9 +198,7 @@ export const OnboardingFlow: React.FC = () => {
                 <p className="text-xs text-muted-foreground">{t('ob.s2.categoryHint')}</p>
               </div>
               <div className="space-y-2">
-                <Label htmlFor="ob-years">
-                  {t('ob.s2.years')} <span className="text-muted-foreground font-normal">· {t('ob.optional')}</span>
-                </Label>
+                <Label htmlFor="ob-years">{t('ob.s2.years')}</Label>
                 <Input
                   id="ob-years"
                   type="number"
