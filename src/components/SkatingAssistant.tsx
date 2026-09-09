@@ -9,12 +9,13 @@ export type AIRole = 'coach' | 'psych';
 type Msg = { role: 'user' | 'assistant'; content: string };
 
 const ROLE_META: Record<AIRole, {
-  nameKey: string; tagKey: string; greetingKey: string; placeholderKey: string;
+  nameKey: string; tagKey: string; disclaimerKey: string; greetingKey: string; placeholderKey: string;
   starters: string[]; icon: React.ComponentType<{ className?: string }>;
 }> = {
   coach: {
     nameKey: 'ai.coach.name',
     tagKey: 'ai.coach.tag',
+    disclaimerKey: 'ai.disclaimer.coach',
     greetingKey: 'ai.coach.greeting',
     placeholderKey: 'ai.coach.placeholder',
     starters: ['ai.coach.s1', 'ai.coach.s2', 'ai.coach.s3', 'ai.coach.s4'],
@@ -23,6 +24,7 @@ const ROLE_META: Record<AIRole, {
   psych: {
     nameKey: 'ai.psych.name',
     tagKey: 'ai.psych.tag',
+    disclaimerKey: 'ai.disclaimer',
     greetingKey: 'ai.psych.greeting',
     placeholderKey: 'ai.psych.placeholder',
     starters: ['ai.psych.s1', 'ai.psych.s2', 'ai.psych.s3', 'ai.psych.s4'],
@@ -222,7 +224,7 @@ export const SkatingAssistant: React.FC = () => {
         </div>
 
         <div className="border-t px-5 py-2">
-          <p className="text-[10px] leading-snug text-muted-foreground">{t('ai.disclaimer')}</p>
+          <p className="text-[10px] leading-snug text-muted-foreground">{t(meta.disclaimerKey)}</p>
         </div>
 
         <form
