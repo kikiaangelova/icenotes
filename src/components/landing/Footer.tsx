@@ -56,7 +56,7 @@ export const Footer: React.FC = () => {
               <div className="w-9 h-9 rounded-2xl bg-gradient-to-br from-primary via-grape-foreground to-rose-foreground flex items-center justify-center shadow-sm group-hover:shadow-md group-hover:-rotate-6 transition-all duration-300">
                 <Snowflake className="w-4 h-4 text-primary-foreground" />
               </div>
-              <span className="text-base font-black text-foreground font-serif tracking-tight">IceNotes</span>
+              <span className="text-base font-black text-foreground font-serif tracking-tight">SkateGoals</span>
             </Link>
             <p className="text-sm text-muted-foreground leading-relaxed max-w-xs">
               {t('footer.tagline')}
@@ -139,7 +139,7 @@ export const Footer: React.FC = () => {
         {/* Bottom bar */}
         <div className="border-t border-border/30 pt-5 flex flex-col sm:flex-row items-center justify-between gap-2 text-center sm:text-left">
           <p className="text-xs text-muted-foreground">
-            © {new Date().getFullYear()} IceNotes · {t('footer.rights')}
+            © {new Date().getFullYear()} SkateGoals · {t('footer.rights')}
           </p>
           <p className="text-xs text-muted-foreground flex items-center gap-1.5">
             {t('footer.builtWith')} <Heart className="w-3 h-3 text-rose-foreground fill-rose-foreground inline" /> {t('footer.forSkaters')}

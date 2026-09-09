@@ -32,7 +32,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenDailyLog }) => {
             <Snowflake className="w-5 h-5 text-primary-foreground" />
           </div>
           <div>
-            <h1 className="font-bold text-lg leading-none font-serif">IceNotes</h1>
+            <h1 className="font-bold text-lg leading-none font-serif">SkateGoals</h1>
             <p className="text-xs text-muted-foreground">{t('app.tagline')}</p>
           </div>
         </div>

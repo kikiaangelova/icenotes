@@ -18,7 +18,7 @@ interface Props {
 }
 
 /**
- * A plain directory of everything inside IceNotes.
+ * A plain directory of everything inside SkateGoals.
  * Exists because the real tools live two tab levels deep — this makes them
  * findable in one tap, so nothing we promise on the site feels missing inside.
  */

@@ -8,7 +8,7 @@ import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/context/LanguageContext';
 
 /**
- * About IceNotes — honest, simple, skater-first.
+ * About SkateGoals — honest, simple, skater-first.
  * No drama, no invented scenes. Just the real story.
  */
 const About: React.FC = () => {
@@ -22,17 +22,17 @@ const About: React.FC = () => {
 
   const copy = bg
     ? {
-        eyebrow: 'За IceNotes',
+        eyebrow: 'За SkateGoals',
         title: 'Родено край леда, между тренировки, съмнения и малки победи.',
         intro:
-          'IceNotes е твоето лично място за всичко, което остава в теб след тренировка — какво се получи, кое те разклати и с какво искаш да се върнеш на леда утре.',
+          'SkateGoals е твоето лично място за всичко, което остава в теб след тренировка — какво се получи, кое те разклати и с какво искаш да се върнеш на леда утре.',
         storyEyebrow: 'Нашата история',
         storyTitle: 'Всичко започна с един лош ден на тренировка.',
         storyBody: [
           'Всеки фигурист познава този момент: сваляш кънките, ръцете ти още треперят, а в главата ти се върти един и същи скок. Излизаш от пързалката и до вечерта вече не помниш какво точно се обърка — останало е само усещането, че денят е бил тежък.',
           'Дъщеря ми е на 14 и фигурното пързаляне е част от живота ѝ от години. След една трудна тренировка седна на стълбите с кънките в ръце и каза: „Иска ми се да можех да запиша всичко това някъде, преди да го забравя.“ Опитахме с тетрадки, приложения за бележки и гласови съобщения. Нищо не беше създадено за истинския ритъм на един фигурист.',
-          'Тогава направихме IceNotes. Аз съм спортен психолог, тя е състезателка. Тя каза какво ѝ трябва, аз добавих въпросите, които задавам в кабинета: не „Защо не стана?“, а „Какво усети точно преди да скочиш?“.',
-          'Днес IceNotes е за всеки фигурист, който излиза от пързалката с твърде много мисли. Тук няма оценки и класации. Има място да чуеш себе си, да разбереш какво се случва вътре в теб и да вземеш наученото в следващата тренировка.',
+          'Тогава направихме SkateGoals. Аз съм спортен психолог, тя е състезателка. Тя каза какво ѝ трябва, аз добавих въпросите, които задавам в кабинета: не „Защо не стана?“, а „Какво усети точно преди да скочиш?“.',
+          'Днес SkateGoals е за всеки фигурист, който излиза от пързалката с твърде много мисли. Тук няма оценки и класации. Има място да чуеш себе си, да разбереш какво се случва вътре в теб и да вземеш наученото в следващата тренировка.',
         ],
         whyEyebrow: 'Защо главата е част от тренировката',
         whyTitle: 'На леда участва и умът — не само тялото.',
@@ -58,20 +58,20 @@ const About: React.FC = () => {
           'Родители',
           'Треньори',
         ],
-        cta: 'Влез в IceNotes',
+        cta: 'Влез в SkateGoals',
 
       }
     : {
-        eyebrow: 'About IceNotes',
+        eyebrow: 'About SkateGoals',
         title: 'Written on the bench by the rink, between two sessions.',
         intro:
-          'IceNotes is a quiet, private place to leave what happened on the ice today — what worked, what hurt, and what you want to try tomorrow.',
+          'SkateGoals is a quiet, private place to leave what happened on the ice today — what worked, what hurt, and what you want to try tomorrow.',
         storyEyebrow: 'Our story',
         storyTitle: 'It started with one bad practice.',
         storyBody: [
           'Every skater knows the moment: skates off, hands still shaking, one jump replaying on a loop. You walk out of the rink and by evening you can’t remember what actually went wrong — only that it was hard.',
           'My daughter is 14 and has been skating for years. One day she sat on the stairs with her skates in her hands and said, “I wish I could write this down somewhere so I don’t lose it by tomorrow.” We tried notebooks, notes apps, voice memos to herself. Nothing fit — too complicated, or nothing to do with skating.',
-          'So we built IceNotes. I’m a sport psychologist, she’s a competitor. She said what she needed; I added the questions I ask in session: not “Why didn’t it work?” but “What did you feel right before you took off?”',
+          'So we built SkateGoals. I’m a sport psychologist, she’s a competitor. She said what she needed; I added the questions I ask in session: not “Why didn’t it work?” but “What did you feel right before you took off?”',
           'Today it’s for every skater who leaves the rink with a full head. No scores, no rankings, nobody telling you that you didn’t try hard enough. Just you, the ice, and what you learned today.',
         ],
         whyEyebrow: 'Why the head is part of training',
@@ -80,7 +80,7 @@ const About: React.FC = () => {
           'The same jump lands in practice and misses at a competition. The difference is rarely technique — it’s the pressure, the fear of falling, the thoughts a second before the entry. That’s trainable too, but nobody shows you how.',
 
         whyPoints: ['Confidence', 'Focus', 'Emotions', 'Self-reflection', 'Learning from each session'],
-        helpsEyebrow: 'What IceNotes helps with',
+        helpsEyebrow: 'What SkateGoals helps with',
         helpsTitle: 'Small, clear tools for every day on the ice.',
         helps: [
           { h: 'Reflect after practice', p: 'A short moment to process what happened.' },
@@ -107,8 +107,8 @@ const About: React.FC = () => {
       <div className="min-h-screen bg-background">
         <Navbar isDarkMode={isDarkMode} onToggleDarkMode={() => setIsDarkMode(!isDarkMode)} />
         <Seo
-          title="About IceNotes — Created by a young figure skater, for skaters"
-          description="IceNotes is a private journaling and mental preparation space for figure skaters. Created by a 14-year-old skater, with her mom, for other skaters who need the same thing."
+          title="About SkateGoals — Created by a young figure skater, for skaters"
+          description="SkateGoals is a private journaling and mental preparation space for figure skaters. Created by a 14-year-old skater, with her mom, for other skaters who need the same thing."
           path="/about"
         />
 

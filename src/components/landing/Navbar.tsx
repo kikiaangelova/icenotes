@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Moon, Sun, Menu, X, Home, Compass, Sparkles, Brain, Heart } from 'lucide-react';
-import { IceNotesMark } from './IceNotesMark';
+import { SkateGoalsMark } from './SkateGoalsMark';
 import { cn } from '@/lib/utils';
 import { useLanguage } from '@/context/LanguageContext';
 import { LanguageSwitcher } from './LanguageSwitcher';
@@ -31,10 +31,10 @@ export const Navbar: React.FC<NavbarProps> = ({ isDarkMode, onToggleDarkMode }) 
         {/* Logo */}
         <Link to="/" className="flex items-center gap-2.5 shrink-0 group">
           <div className="relative w-9 h-9 rounded-xl bg-accent flex items-center justify-center transition-transform duration-300 group-hover:scale-105">
-            <IceNotesMark className="w-5 h-5 text-accent-foreground" />
+            <SkateGoalsMark className="w-5 h-5 text-accent-foreground" />
           </div>
           <span className="text-[17px] font-extrabold tracking-[-0.03em] text-foreground">
-            IceNotes
+            SkateGoals
           </span>
         </Link>
 
