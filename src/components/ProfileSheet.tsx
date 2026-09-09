@@ -106,7 +106,7 @@ export const ProfileSheet: React.FC<ProfileSheetProps> = ({
           <div className="space-y-2">
             <p className="text-[10px] font-bold tracking-[0.2em] uppercase text-muted-foreground px-1">{t('profile.settings')}</p>
 
-            {/* Language — switch the whole app + Coach Kiki */}
+            {/* Language — switch the whole app + AI support */}
             <div className="w-full px-4 py-3 rounded-2xl bg-card border border-border/50 flex items-center gap-3">
               <div className="w-9 h-9 rounded-xl bg-mint/50 flex items-center justify-center flex-shrink-0">
                 <Globe className="w-4 h-4 text-mint-foreground" />
