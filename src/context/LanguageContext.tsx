@@ -524,7 +524,7 @@ const dict: Dict = {
   'app.tagline': { en: 'Reflect · Train · Perform', bg: 'Дишай · Тренирай · Излез на леда' },
   'app.loadingJourney': { en: 'Loading…', bg: 'Зареждаме…' },
   'app.focusNow': { en: 'What you’re focused on right now', bg: 'Какъв е фокусът ти сега' },
-  'app.everySessionCounts': { en: 'Every session counts. You’re doing great. 💙', bg: 'Всяка тренировка се брои. Справяш се. 💙' },
+  'app.everySessionCounts': { en: 'Consistency over intensity.', bg: 'Постоянството бие интензивността.' },
 
   // ───── Header (in-app) ─────
   'header.dailyLog': { en: 'Daily Log', bg: 'Дневен запис' },
@@ -723,7 +723,7 @@ const dict: Dict = {
 
   // ───── Dashboard misc (extra) ─────
   'dash.focusNow': { en: '✨ What you’re focused on', bg: '✨ Фокусът ти в момента' },
-  'dash.footer.encourage': { en: 'Every session counts. You’re doing great. 💙', bg: 'Всяка тренировка се брои. Справяш се. 💙' },
+  'dash.footer.encourage': { en: 'Consistency over intensity.', bg: 'Постоянството бие интензивността.' },
   'dash.signout.title': { en: 'Sign out?', bg: 'Излизаш ли?' },
   'dash.signout.desc': { en: 'Your data stays safe. Come back whenever. 💙', bg: 'Данните ти остават на сигурно. Върни се, когато решиш. 💙' },
   'dash.signout.stay': { en: 'Stay signed in', bg: 'Остани' },
