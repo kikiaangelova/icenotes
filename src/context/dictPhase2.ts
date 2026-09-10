@@ -21,19 +21,19 @@ export const PHASE2_DICT: Record<string, { en: string; bg: string }> = {
   'ob.saving': { en: 'Saving…', bg: 'Записва се…' },
   'ob.optional': { en: 'Optional', bg: 'По желание' },
 
-  'ob.s1.title': { en: 'Let’s set up your space', bg: 'Да настроим твоето място' },
+  'ob.s1.title': { en: 'Start with the basics', bg: 'Да започнем с основното' },
   'ob.s1.sub': {
-    en: 'This helps personalize your experience. Your entries are private by default; see Privacy for details.',
-    bg: 'Това помага да персонализираме преживяването ти. Записките ти са лични по подразбиране; виж „Поверителност“ за подробности.',
+    en: 'These details help SkateGoals show relevant prompts. Your entries are private by default.',
+    bg: 'Тези данни помагат на SkateGoals да показва подходящи въпроси. Записките са лични по подразбиране.',
   },
   'ob.s1.name': { en: 'What should we call you?', bg: 'Как да се обръщаме към теб?' },
   'ob.s1.namePh': { en: 'Your name', bg: 'Твоето име' },
   'ob.s1.age': { en: 'Age', bg: 'Възраст' },
 
-  'ob.s2.title': { en: 'Where you are in skating', bg: 'Къде си във фигурното' },
+  'ob.s2.title': { en: 'Your skating context', bg: 'Твоята подготовка' },
   'ob.s2.sub': {
-    en: 'Level and experience change what advice is actually useful.',
-    bg: 'Нивото и опитът определят кой съвет наистина ти върши работа.',
+    en: 'Category and experience help make prompts more relevant.',
+    bg: 'Категорията и опитът помагат въпросите да бъдат по-точни.',
   },
   'ob.s2.category': { en: 'Category or level', bg: 'Категория или ниво' },
   'ob.s2.categoryHint': {
@@ -48,8 +48,8 @@ export const PHASE2_DICT: Record<string, { en: string; bg: string }> = {
 
   'ob.s3.title': { en: 'This season', bg: 'Този сезон' },
   'ob.s3.sub': {
-    en: 'The AI Coach uses this to connect your week to what you are actually aiming at.',
-    bg: 'AI треньорът го ползва, за да свърже седмицата ти с това, към което вървиш.',
+    en: 'The AI Coach uses this context to connect weekly priorities to your existing training plan.',
+    bg: 'AI треньорът използва този контекст, за да свърже седмичните приоритети с плана ти за подготовка.',
   },
   'ob.s3.focus': { en: 'Main goal or focus right now', bg: 'Основна цел или фокус в момента' },
   'ob.s3.focusPh': {
@@ -63,8 +63,8 @@ export const PHASE2_DICT: Record<string, { en: string; bg: string }> = {
   },
   'ob.s3.challenge': { en: 'Biggest challenge right now', bg: 'Най-голямото предизвикателство сега' },
   'ob.s3.challengePh': {
-    en: 'e.g. jumps disappear at competitions, tired mid-program',
-    bg: 'напр. скоковете изчезват на състезание, умора по средата на програмата',
+    en: 'e.g. inconsistency under pressure, losing focus mid-program',
+    bg: 'напр. непостоянство под напрежение, загуба на фокус по средата на програмата',
   },
   'ob.s3.comp': { en: 'Next competition', bg: 'Следващо състезание' },
   'ob.s3.compPh': { en: 'Name of the event', bg: 'Име на състезанието' },
@@ -81,7 +81,7 @@ export const PHASE2_DICT: Record<string, { en: string; bg: string }> = {
   'ob.area.nerves': { en: 'Competition nerves', bg: 'Нерви на състезание' },
   'ob.area.goals': { en: 'Goals and planning', bg: 'Цели и планиране' },
   'ob.area.motivation': { en: 'Motivation', bg: 'Мотивация' },
-  'ob.area.reset': { en: 'Reset after a hard session', bg: 'Рестарт след тежка тренировка' },
+  'ob.area.reset': { en: 'Reset after a difficult session', bg: 'Рестарт след трудна тренировка' },
   'ob.s4.style': { en: 'How should the AI talk to you?', bg: 'Как да ти говори AI подкрепата?' },
   'ob.style.direct': { en: 'Direct', bg: 'Директно' },
   'ob.style.directSub': { en: 'Say it straight', bg: 'Право в целта' },
@@ -92,7 +92,7 @@ export const PHASE2_DICT: Record<string, { en: string; bg: string }> = {
   'ob.s4.note': { en: 'What would make SkateGoals genuinely useful for you?', bg: 'Какво би направило SkateGoals наистина полезно за теб?' },
   'ob.s4.notePh': { en: 'Write it in your own words', bg: 'Напиши го със свои думи' },
 
-  'ob.done.title': { en: 'You’re set', bg: 'Готово' },
+  'ob.done.title': { en: 'Profile saved', bg: 'Профилът е записан' },
   'ob.done.desc': { en: 'Start with today’s session or set your first goal.', bg: 'Започни с днешната тренировка или си постави първа цел.' },
   'ob.err.title': { en: 'Didn’t save', bg: 'Не се записа' },
   'ob.err.desc': { en: 'Check your connection and try again.', bg: 'Провери връзката и опитай пак.' },

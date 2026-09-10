@@ -20,11 +20,11 @@ const AFFIRMATION_KEYS = [
 
 const VISUALIZATION_KEYS = ['mt.viz.s1', 'mt.viz.s2', 'mt.viz.s3', 'mt.viz.s4', 'mt.viz.s5', 'mt.viz.s6'];
 
-// 4-7-8 breathing phases in seconds
+// Comfortable paced breathing. The stored usage identifier stays unchanged
+// for compatibility with existing history.
 const PHASES = [
   { labelKey: 'mt.breathing.phase.inhale', seconds: 4, color: 'text-purple-500' },
-  { labelKey: 'mt.breathing.phase.hold', seconds: 7, color: 'text-purple-700' },
-  { labelKey: 'mt.breathing.phase.exhale', seconds: 8, color: 'text-purple-400' },
+  { labelKey: 'mt.breathing.phase.exhale', seconds: 6, color: 'text-purple-400' },
 ] as const;
 
 const interp = (s: string, vars: Record<string, string | number>) =>
@@ -38,8 +38,8 @@ export const MindfulnessTools: React.FC = () => {
   const snoozeTool = (key: string) => {
     setSnoozed(prev => new Set(prev).add(key));
     toast(
-      language === 'bg' ? 'Оставяме го за по-късно.' : 'Resting this one for now.',
-      { description: language === 'bg' ? 'Един ден не определя стойността ти.' : 'Your worth is not measured by today.' }
+      language === 'bg' ? 'Оставено за по-късно.' : 'Saved for later.',
+      { description: language === 'bg' ? 'Можеш да го отвориш отново след час.' : 'You can open it again in an hour.' }
     );
     window.setTimeout(() => {
       setSnoozed(prev => {
@@ -63,7 +63,7 @@ export const MindfulnessTools: React.FC = () => {
         <CardContent className="p-4 space-y-3">
           <div className="flex items-center gap-2">
             <Sparkles className="w-4 h-4 text-purple-500" />
-            <h3 className="font-medium">{language === 'bg' ? 'Практики за фокус и спокойствие' : t('mt.heading')}</h3>
+            <h3 className="font-medium">{t('mt.heading')}</h3>
           </div>
           <p className="text-xs text-muted-foreground">{t('mt.intro')}</p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
@@ -103,7 +103,7 @@ export const MindfulnessTools: React.FC = () => {
   );
 };
 
-// ─────────────────────────── BREATHING 4-7-8 ───────────────────────────
+// ─────────────────────────── PACED BREATHING ───────────────────────────
 const BreathingDialog: React.FC<{ open: boolean; onClose: () => void }> = ({ open, onClose }) => {
   const { t } = useLanguage();
   const [running, setRunning] = useState(false);
@@ -162,7 +162,7 @@ const BreathingDialog: React.FC<{ open: boolean; onClose: () => void }> = ({ ope
   };
 
   const phase = PHASES[phaseIdx];
-  const scale = phase.labelKey === 'mt.breathing.phase.inhale' ? 1.4 : phase.labelKey === 'mt.breathing.phase.exhale' ? 0.7 : 1.4;
+  const scale = phase.labelKey === 'mt.breathing.phase.inhale' ? 1.4 : 0.7;
 
   return (
     <Dialog open={open} onOpenChange={(v) => !v && handleClose()}>
