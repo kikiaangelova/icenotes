@@ -172,7 +172,7 @@ export const GameDayMode: React.FC<GameDayModeProps> = ({ open, onOpenChange }) 
                 <h3 className="text-base font-semibold">{t('cp.week.head')}</h3>
                 <p className="mt-1 text-sm text-white/60 leading-relaxed">{t('cp.week.intro')}</p>
               </div>
-              <Checklist items={[t('cp.week.i1'), t('cp.week.i2'), t('cp.week.i3'), t('cp.week.i4')]} />
+              <Checklist items={[t('cp.week.i1'), t('cp.week.i2'), t('cp.week.i3'), t('cp.week.i4'), t('cp.week.i5')]} />
               <Button
                 variant="outline"
                 onClick={() => { close(); setTimeout(() => openAI('coach', t('cp.week.aiMsg')), 250); }}
