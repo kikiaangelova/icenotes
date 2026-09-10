@@ -22,8 +22,8 @@
 - Copy/visual cleanup of legacy components
 
 ## Authenticated copy + sport psychology pass
-- [ ] Rewrite active EN/BG product copy and AI role boundaries.
-- [ ] Correct Competition Prep and Pre-Training Prep content.
-- [ ] Replace unsafe legacy Sport Psychology and Mindfulness copy.
-- [ ] Run signed-in EN/BG mobile/desktop QA, typecheck, build, and final content searches.
-- [ ] Confirm neutral Bulgarian and no 4-7-8 or long-hold breathing on every reachable signed-in support tool.
+- [x] Rewrite active EN/BG product copy and AI role boundaries.
+- [x] Correct Competition Prep and Pre-Training Prep content.
+- [x] Replace unsafe legacy Sport Psychology and Mindfulness copy.
+- [x] Run signed-in EN/BG mobile/desktop QA, typecheck, build, and final content searches.
+- [x] Confirm neutral Bulgarian and no 4-7-8 or long-hold breathing on every reachable signed-in support tool.
