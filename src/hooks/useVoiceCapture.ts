@@ -63,21 +63,26 @@ export const useVoiceCapture = ({ lang, onFinalText }: Options) => {
 
     const rec = new Ctor();
     rec.lang = lang;
-    rec.continuous = true;
+    // One utterance at a time: more reliable on mobile Safari and Android Chrome
+    // than continuous mode, and it keeps the athlete in control of each capture.
+    rec.continuous = false;
     rec.interimResults = true;
 
     rec.onresult = (e) => {
       let live = '';
+      const finals: string[] = [];
       for (let i = e.resultIndex; i < e.results.length; i += 1) {
         const res = e.results[i];
         const text = res[0]?.transcript ?? '';
         if (res.isFinal) {
           const clean = text.trim();
-          if (clean) finalRef.current(clean);
+          if (clean) finals.push(clean);
         } else {
           live += text;
         }
       }
+      // Commit all final chunks of this event as one string so none is lost.
+      if (finals.length) finalRef.current(finals.join(' '));
       setInterim(live);
     };
 

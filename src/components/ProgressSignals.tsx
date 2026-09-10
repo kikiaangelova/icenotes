@@ -3,13 +3,20 @@ import { useJournal } from '@/context/JournalContext';
 import { useLanguage } from '@/context/LanguageContext';
 import { getWeekSummary, getReviewContinuity } from '@/lib/weekData';
 
-/** Read-only week signals derived from logged sessions, reflections and reviews. */
+/**
+ * Read-only week signals derived from logged sessions, training reflections,
+ * reviews and goals. No streaks, no rates, no invented percentages.
+ */
 export const ProgressSignals: React.FC = () => {
   const { t } = useLanguage();
-  const { entries, trainingSessions, profile } = useJournal();
+  const { entries, trainingSessions, profile, goals } = useJournal();
 
   const week = useMemo(() => getWeekSummary(entries, trainingSessions), [entries, trainingSessions]);
   const reviews = useMemo(() => getReviewContinuity(entries), [entries]);
+  const seasonGoal = useMemo(
+    () => goals.find((g) => !g.completed && g.timeframe === 'season'),
+    [goals],
+  );
 
   const stats = [
     { label: t('ps.weekSess'), value: String(week.sessions) },
@@ -19,7 +26,7 @@ export const ProgressSignals: React.FC = () => {
 
   return (
     <section className="space-y-3">
-      <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">{t('ps.title')}</p>
+      <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">{t('ps.week')}</p>
       <div className="grid grid-cols-3 gap-2">
         {stats.map((s) => (
           <div key={s.label} className="rounded-xl border border-border/70 bg-card p-3">
@@ -28,15 +35,24 @@ export const ProgressSignals: React.FC = () => {
           </div>
         ))}
       </div>
-      <div className="rounded-xl border border-border/70 bg-card p-4 space-y-1.5">
-        <p className="text-xs text-muted-foreground">{t('ps.focus')}</p>
-        <p className="text-sm font-semibold text-foreground">{profile?.mainFocus?.trim() || t('ps.focusNone')}</p>
+
+      <div className="rounded-xl border border-border/70 bg-card p-4 space-y-3">
+        <div className="space-y-1">
+          <p className="text-xs text-muted-foreground">{t('ps.focus')}</p>
+          <p className="text-sm font-semibold text-foreground">{profile?.mainFocus?.trim() || t('ps.focusNone')}</p>
+        </div>
+        <div className="space-y-1">
+          <p className="text-xs text-muted-foreground">{t('ps.goal')}</p>
+          <p className="text-sm font-semibold text-foreground">{seasonGoal?.title?.trim() || t('ps.goalNone')}</p>
+        </div>
         {week.themes.length > 0 && (
-          <p className="text-xs text-muted-foreground pt-1.5">
-            {t('ps.themes')}: <span className="text-foreground/80">{week.themes.map((n) => t(`a.el.${n}`)).join(' · ')}</span>
-          </p>
+          <div className="space-y-1">
+            <p className="text-xs text-muted-foreground">{t('ps.themes')}</p>
+            <p className="text-sm text-foreground/80">{week.themes.map((n) => t(`a.el.${n}`)).join(' · ')}</p>
+          </div>
         )}
       </div>
+
       <p className="text-[11px] text-muted-foreground">{t('ps.readonly')}</p>
     </section>
   );

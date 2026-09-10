@@ -98,8 +98,9 @@ export const TodayCommandCenter: React.FC<Props> = ({
         </p>
         <p className="text-sm text-foreground/80 leading-relaxed">{next}</p>
 
-        <div className="pt-2 space-y-2">
-          {compNear && (
+        {/* At most one strong contextual card: competition first, then weekly review. */}
+        <div className="pt-2 space-y-3">
+          {compNear ? (
             <button
               onClick={onCompetitionPrep}
               className="w-full min-h-[60px] px-4 rounded-xl border border-primary/40 bg-card flex items-center gap-3 text-left hover:border-primary transition-colors"
@@ -117,54 +118,39 @@ export const TodayCommandCenter: React.FC<Props> = ({
               </span>
               <ArrowRight className="w-4 h-4 text-muted-foreground shrink-0" />
             </button>
-          )}
-
-          {reviewRelevant && (
+          ) : reviewRelevant ? (
             <button
               onClick={onWeeklyReview}
               className="w-full min-h-[60px] px-4 rounded-xl border border-border/70 bg-card flex items-center gap-3 text-left hover:border-primary/50 transition-colors"
             >
               <CalendarDays className="w-[18px] h-[18px] text-primary shrink-0" />
-              <span className="min-w-0">
+              <span className="min-w-0 flex-1">
                 <span className="block text-sm font-semibold text-foreground">{t('wr.due')}</span>
                 <span className="block text-xs text-muted-foreground">{t('wr.dueSub')}</span>
               </span>
+              <ArrowRight className="w-4 h-4 text-muted-foreground shrink-0" />
             </button>
-          )}
+          ) : null}
 
-
-          <button
-            onClick={onMentalPrep}
-            className="w-full min-h-[60px] px-4 rounded-xl border border-border/70 bg-card flex items-center gap-3 text-left hover:border-primary/50 transition-colors"
-          >
-            <Brain className="w-[18px] h-[18px] text-primary shrink-0" />
-            <span className="min-w-0">
-              <span className="block text-sm font-semibold text-foreground">{t('a.today.prep')}</span>
-              <span className="block text-xs text-muted-foreground">{t('a.today.prepSub')}</span>
-            </span>
-          </button>
-
-          <button
-            onClick={onSupport}
-            className="w-full min-h-[60px] px-4 rounded-xl border border-border/70 bg-card flex items-center gap-3 text-left hover:border-primary/50 transition-colors"
-          >
-            <ClipboardList className="w-[18px] h-[18px] text-primary shrink-0" />
-            <span className="min-w-0">
-              <span className="block text-sm font-semibold text-foreground">{t('today.support.label')}</span>
-              <span className="block text-xs text-muted-foreground">{t('today.support.sub')}</span>
-            </span>
-          </button>
-
-          <button
-            onClick={onGoals}
-            className="w-full min-h-[60px] px-4 rounded-xl border border-border/70 bg-card flex items-center gap-3 text-left hover:border-primary/50 transition-colors"
-          >
-            <Target className="w-[18px] h-[18px] text-primary shrink-0" />
-            <span className="min-w-0">
-              <span className="block text-sm font-semibold text-foreground">{t('a.goals.title')}</span>
-              <span className="block text-xs text-muted-foreground">{t('a.goals.sub')}</span>
-            </span>
-          </button>
+          {/* Understated links, never equal weight with the primary action. */}
+          <div className="flex flex-wrap items-center gap-x-5 gap-y-1 pt-1">
+            {stage === 'log' && (
+              <button
+                onClick={onMentalPrep}
+                className="min-h-[44px] inline-flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground"
+              >
+                <Brain className="w-4 h-4" />
+                {t('a.today.prep')}
+              </button>
+            )}
+            <button
+              onClick={onSupport}
+              className="min-h-[44px] inline-flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground"
+            >
+              <ClipboardList className="w-4 h-4" />
+              {t('today.support.label')}
+            </button>
+          </div>
         </div>
       </div>
     </section>

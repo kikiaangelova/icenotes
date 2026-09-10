@@ -16,9 +16,7 @@ import { QuotesCollection } from './QuotesCollection';
 import { GoalsScreen } from './GoalsScreen';
 import { WeeklyReview } from './WeeklyReview';
 import { ProgressSignals } from './ProgressSignals';
-import { getWeekSummary, daysUntil } from '@/lib/weekData';
-import { ProgressOverview } from './ProgressOverview';
-import { ProgressInsights } from './ProgressInsights';
+import { getWeekSummary, daysUntil, hasTrainingReflectionToday } from '@/lib/weekData';
 import { SportPsychology } from './SportPsychology';
 import { Button } from '@/components/ui/button';
 import { SELF_LEVELS } from '@/types/journal';
@@ -61,7 +59,7 @@ type MainTab = 'today' | 'train' | 'support' | 'goals' | 'progress';
 type SubView = 'home' | 'prep' | 'psych' | 'library';
 
 export const SimpleDashboard: React.FC = () => {
-  const { profile, setProfile, getTodaysEntry, getTodaysSessions, entries, trainingSessions } = useJournal();
+  const { profile, setProfile, getTodaysSessions, entries, trainingSessions } = useJournal();
   const { signOut, user } = useAuth();
   const { language, t } = useLanguage();
   const { isAdmin } = useIsAdmin();
@@ -81,6 +79,8 @@ export const SimpleDashboard: React.FC = () => {
   const [reflectionOpen, setReflectionOpen] = useState(false);
   const [gameDayOpen, setGameDayOpen] = useState(false);
   const [reviewOpen, setReviewOpen] = useState(false);
+  // Legacy guided tour: opt-in via ?action=start-tour only.
+  const [tourOpen, setTourOpen] = useState(false);
 
   // Persist last viewed destination (legacy key kept so nothing is lost)
   useEffect(() => {
@@ -95,9 +95,7 @@ export const SimpleDashboard: React.FC = () => {
       setCurrentView('home');
       setActiveTab('train');
     } else if (action === 'start-tour') {
-      try { localStorage.removeItem('icenotes:tourV1'); } catch { /* ignore */ }
-      window.location.reload();
-      return;
+      setTourOpen(true);
     } else if (action === 'open-coach') {
       setActiveTab('support');
       window.dispatchEvent(new CustomEvent('ai-assistant:open', { detail: { role: 'coach' } }));
@@ -112,8 +110,10 @@ export const SimpleDashboard: React.FC = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchParams]);
 
-  const todaysEntry = getTodaysEntry();
   const todaysSessions = getTodaysSessions();
+  // Only a post-training reflection counts — a weekly review or competition
+  // debrief written today must not hide the reflection step.
+  const reflectedToday = hasTrainingReflectionToday(entries);
   const levelLabel = SELF_LEVELS.find(l => l.value === profile?.selfLevel)?.label || '';
   const greeting = getGreeting(profile?.name, language);
   const week = getWeekSummary(entries, trainingSessions);
@@ -192,16 +192,6 @@ export const SimpleDashboard: React.FC = () => {
           </div>
         )}
         <div className="flex items-center gap-1.5 flex-shrink-0">
-          <ExportButton />
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={() => goTab('today')}
-            aria-label={t('nav5.today')}
-            className="text-muted-foreground h-11 w-11 rounded-xl"
-          >
-            <HomeIcon className="w-5 h-5" />
-          </Button>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="ghost" size="icon" className="text-muted-foreground h-11 w-11 rounded-xl" aria-label="Settings">
@@ -249,6 +239,7 @@ export const SimpleDashboard: React.FC = () => {
           <h1 className="text-2xl font-bold tracking-tight text-foreground">{t('a.more.label')}</h1>
           <p className="text-sm text-muted-foreground">{t('a.more.hint')}</p>
         </div>
+        <div className="flex justify-start"><ExportButton /></div>
         <SessionTimer type="on-ice" />
         <JumpLog />
         <ActivityCalendar />
@@ -265,7 +256,7 @@ export const SimpleDashboard: React.FC = () => {
           greeting={greeting}
           focus={profile.mainFocus}
           sessionsToday={todaysSessions.length}
-          reflectedToday={!!todaysEntry}
+          reflectedToday={reflectedToday}
           competition={profile.nextCompetition}
           competitionDays={compDays}
           reviewRelevant={week.reviewRelevant}
@@ -308,9 +299,9 @@ export const SimpleDashboard: React.FC = () => {
           <h1 className="text-2xl font-bold tracking-tight text-foreground">{t('a.prog.title')}</h1>
           <p className="text-sm text-muted-foreground">{t('a.prog.sub')}</p>
         </header>
+        {/* Read-only signals only. Legacy insight/overview views stay in the
+            codebase for compatibility but are out of the core destination. */}
         <ProgressSignals />
-        <ProgressInsights />
-        <ProgressOverview />
       </div>
     );
   };
@@ -363,7 +354,9 @@ export const SimpleDashboard: React.FC = () => {
 
       <GameDayMode open={gameDayOpen} onOpenChange={setGameDayOpen} />
 
-      <GuidedTour setActiveTab={(tab) => setActiveTab(tab === 'today' ? 'today' : tab)} />
+      {tourOpen && (
+        <GuidedTour autoStart setActiveTab={(tab) => setActiveTab(tab === 'today' ? 'today' : tab)} />
+      )}
     </div>
   );
 };

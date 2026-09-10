@@ -2,6 +2,23 @@ import { startOfWeek, endOfWeek, isWithinInterval, parseISO } from 'date-fns';
 import type { JournalEntry, TrainingSession } from '@/types/journal';
 
 export const WEEKLY_REVIEW_TYPE = 'weekly-review';
+/** sessionType used by the post-training reflection sheet */
+export const TRAINING_REFLECTION_TYPE = 'training';
+
+const sameDay = (a: Date, b: Date) =>
+  a.getFullYear() === b.getFullYear() && a.getMonth() === b.getMonth() && a.getDate() === b.getDate();
+
+/**
+ * True only when a post-training reflection exists for today.
+ * Weekly reviews, competition debriefs and other entries do not count.
+ */
+export const hasTrainingReflectionToday = (
+  entries: { date: Date | string; sessionType?: string }[],
+  now: Date = new Date(),
+): boolean =>
+  entries.some(
+    (e) => e.sessionType === TRAINING_REFLECTION_TYPE && sameDay(toDate(e.date), now),
+  );
 
 const toDate = (d: Date | string): Date => (d instanceof Date ? d : parseISO(String(d)));
 
@@ -42,7 +59,8 @@ export const getWeekSummary = (
     .map(([name]) => name);
 
   const reviewDone = weekEntries.some((e) => e.sessionType === WEEKLY_REVIEW_TYPE);
-  const reflections = weekEntries.filter((e) => e.sessionType !== WEEKLY_REVIEW_TYPE).length;
+  // Only post-training reflections count — not reviews, debriefs or other entries.
+  const reflections = weekEntries.filter((e) => e.sessionType === TRAINING_REFLECTION_TYPE).length;
   const dayIndex = (now.getDay() + 6) % 7; // 0 = Monday
 
   return {

@@ -11,8 +11,8 @@ export const PHASEB_DICT: Record<string, PhaseBEntry> = {
   'voice.failed':    { en: 'Voice did not work here. Type instead.', bg: 'Гласът не сработи. Напиши го.' },
   'voice.nospeech':  { en: 'Nothing was picked up. Try again.', bg: 'Нищо не се чу. Пробвай пак.' },
   'voice.hint': {
-    en: 'Speech becomes text you can edit before saving. SkateGoals does not keep the audio; your browser or device handles the recognition and may process it on its servers.',
-    bg: 'Говорът се превръща в текст, който можеш да редактираш преди запис. SkateGoals не пази аудиото; разпознаването е на браузъра или устройството ти и може да минава през техни сървъри.',
+    en: 'Speech becomes text you can edit before saving. SkateGoals does not keep the audio; recognition is handled by your browser or device and may be processed externally, depending on the platform.',
+    bg: 'Говорът се превръща в текст, който можеш да редактираш преди запис. SkateGoals не пази аудиото; разпознаването е на браузъра или устройството ти и според платформата може да се обработва външно.',
   },
 
   // ── Goals (one system) ──
@@ -86,12 +86,13 @@ export const PHASEB_DICT: Record<string, PhaseBEntry> = {
   'cp.todayCard':  { en: 'Competition prep', bg: 'Подготовка за старт' },
   'cp.open':       { en: 'Open prep', bg: 'Отвори подготовката' },
 
-  'cp.week.head':  { en: 'Control what you can control', bg: 'Контролирай това, което зависи от теб' },
-  'cp.week.intro': { en: 'The weeks before a start are for the things you decide: what you rehearse, how you sleep, how you warm up.', bg: 'Седмиците преди старт са за нещата, които ти решаваш: какво прокарваш, как спиш, как загряваш.' },
-  'cp.week.i1':    { en: 'Run the program in full, in competition order', bg: 'Прокарай програмата цяла, в състезателен ред' },
-  'cp.week.i2':    { en: 'Rehearse the entry into your hardest element, not just the element', bg: 'Репетирай входа към най-трудния елемент, не само елемента' },
-  'cp.week.i3':    { en: 'Keep your warm-up the same as the one you will use on the day', bg: 'Дръж загрявката същата като тази в деня на старта' },
-  'cp.week.i4':    { en: 'Plan sleep and travel now, so the last days are quiet', bg: 'Планирай съня и пътуването сега, за да са спокойни последните дни' },
+  'cp.week.head':  { en: 'What is yours to control', bg: 'Какво зависи от теб' },
+  'cp.week.intro': { en: 'Training belongs to you and your coach. This part is about being clear on the plan and on what you can decide yourself.', bg: 'Тренировките са между теб и треньора ти. Тук говорим за яснота по плана и за нещата, които зависят от теб.' },
+  'cp.week.i1':    { en: 'You know the plan you agreed with your coach for these weeks', bg: 'Знаеш плана, който сте уговорили с треньора за тези седмици' },
+  'cp.week.i2':    { en: 'Pick one or two process cues to hold on to', bg: 'Избери една-две думи-опори, за които да се държиш' },
+  'cp.week.i3':    { en: 'Competition day logistics and timing are confirmed', bg: 'Логистиката и часовете за деня на старта са уточнени' },
+  'cp.week.i4':    { en: 'Keep the routines you already know instead of adding new ones', bg: 'Пази рутините, които вече познаваш, вместо да добавяш нови' },
+  'cp.week.i5':    { en: 'Note what you want to ask your coach', bg: 'Запиши какво искаш да питаш треньора си' },
   'cp.week.ai':    { en: 'Plan the weeks with AI Coach', bg: 'Планирай седмиците с AI треньора' },
   'cp.week.aiMsg': { en: 'I have a competition coming up. Help me plan the training weeks before it.', bg: 'Скоро имам старт. Помогни ми да разпределя тренировъчните седмици преди него.' },
 
@@ -104,15 +105,15 @@ export const PHASEB_DICT: Record<string, PhaseBEntry> = {
   'cp.eve.cue':    { en: 'Your cues for tomorrow', bg: 'Твоите думи-опори за утре' },
   'cp.eve.cuePh':  { en: 'e.g. long edges · soft knees · my tempo', bg: 'напр. дълги ръбове · меки колене · моето темпо' },
   'cp.eve.ai':     { en: 'Nerves before tomorrow? Sport Psychology', bg: 'Нерви за утре? Спортна психология' },
-  'cp.eve.aiMsg':  { en: 'I compete tomorrow and I am nervous about it.', bg: 'Утре се състезавам и съм изнервен/а от това.' },
+  'cp.eve.aiMsg':  { en: 'I compete tomorrow and I can feel the tension.', bg: 'Утре имам старт и усещам напрежение.' },
 
   'cp.day.head':   { en: 'Short reset', bg: 'Кратък рестарт' },
-  'cp.day.intro':  { en: 'Slow the breath, then hold one cue. Nothing else needs deciding now.', bg: 'Забави дишането и задръж една дума. Нищо друго не се решава сега.' },
-  'cp.day.breathe':{ en: 'Breathe with the circle', bg: 'Дишай с кръга' },
+  'cp.day.intro':  { en: 'A few slower breaths, then one cue. Keep it comfortable — stop whenever you want.', bg: 'Няколко по-бавни вдишвания и една дума-опора. Дръж го удобно — спри, когато решиш.' },
+  'cp.day.breathe':{ en: 'Optional: breathe with the circle', bg: 'По избор: дишай с кръга' },
   'cp.day.inhale': { en: 'In', bg: 'Вдишай' },
-  'cp.day.hold':   { en: 'Hold', bg: 'Задръж' },
-  'cp.day.exhale': { en: 'Out', bg: 'Издишай' },
+  'cp.day.exhale': { en: 'Out, slower', bg: 'Издишай, по-бавно' },
   'cp.day.done':   { en: 'Steady', bg: 'Спокойно' },
+  'cp.day.skip':   { en: 'Skip the breathing', bg: 'Пропусни дишането' },
   'cp.day.cue':    { en: 'The one cue you take on the ice', bg: 'Думата, с която излизаш на лед' },
   'cp.day.ai':     { en: 'Talk it through: Sport Psychology', bg: 'Кажи го на глас: Спортна психология' },
   'cp.day.aiMsg':  { en: 'I skate today and I want to settle down before I go on.', bg: 'Днес се състезавам и искам да се успокоя, преди да изляза.' },
@@ -133,5 +134,11 @@ export const PHASEB_DICT: Record<string, PhaseBEntry> = {
   'ps.focus':      { en: 'Current focus', bg: 'Текущ фокус' },
   'ps.focusNone':  { en: 'Not set', bg: 'Няма зададен' },
   'ps.themes':     { en: 'Most worked on this week', bg: 'Най-много работено тази седмица' },
-  'ps.readonly':   { en: 'Everything here comes from what you logged. Nothing to fill in.', bg: 'Всичко тук идва от това, което си записал/а. Няма какво да попълваш.' },
+  'ps.readonly':   { en: 'Everything here comes from your own entries. Nothing to fill in.', bg: 'Всичко тук идва от записите ти. Няма какво да попълваш.' },
+  'ps.goal':       { en: 'Season goal', bg: 'Цел за сезона' },
+  'ps.goalNone':   { en: 'Not set', bg: 'Няма зададена' },
+  'ps.week':       { en: 'This week', bg: 'Тази седмица' },
+
+  // ── Save state ──
+  'wr.saveFailed': { en: 'Saving did not go through. Your text is still here — try again.', bg: 'Записът не мина. Текстът ти е тук — пробвай пак.' },
 };

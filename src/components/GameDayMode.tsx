@@ -15,11 +15,15 @@ interface GameDayModeProps {
   onOpenChange: (open: boolean) => void;
 }
 
+/**
+ * Comfortable paced breathing: in, then a slightly longer out. No breath hold,
+ * nothing to force — the athlete can stop at any point.
+ */
 const BREATH = [
-  { key: 'cp.day.inhale', seconds: 4, scale: 1.35, opacity: 1 },
-  { key: 'cp.day.hold', seconds: 7, scale: 1.35, opacity: 1 },
-  { key: 'cp.day.exhale', seconds: 8, scale: 0.85, opacity: 0.6 },
+  { key: 'cp.day.inhale', seconds: 4, scale: 1.3, opacity: 1 },
+  { key: 'cp.day.exhale', seconds: 6, scale: 0.85, opacity: 0.6 },
 ] as const;
+const BREATH_ROUNDS = 4;
 
 const openAI = (role: 'coach' | 'psych', message: string) =>
   window.dispatchEvent(new CustomEvent('ai-assistant:open', { detail: { role, message } }));
@@ -39,6 +43,7 @@ export const GameDayMode: React.FC<GameDayModeProps> = ({ open, onOpenChange }) 
   const [checked, setChecked] = useState<Record<string, boolean>>({});
   const [cue, setCue] = useState('');
   const [breathStep, setBreathStep] = useState(0);
+  const [breathRound, setBreathRound] = useState(0);
   const [secondsLeft, setSecondsLeft] = useState<number>(BREATH[0].seconds);
   const [breathDone, setBreathDone] = useState(false);
   const [d1, setD1] = useState('');
@@ -50,6 +55,7 @@ export const GameDayMode: React.FC<GameDayModeProps> = ({ open, onOpenChange }) 
     setChecked({});
     setCue('');
     setBreathStep(0);
+    setBreathRound(0);
     setSecondsLeft(BREATH[0].seconds);
     setBreathDone(false);
     setD1(''); setD2(''); setD3('');
@@ -65,8 +71,16 @@ export const GameDayMode: React.FC<GameDayModeProps> = ({ open, onOpenChange }) 
             setSecondsLeft(BREATH[p + 1].seconds);
             return p + 1;
           }
-          setBreathDone(true);
-          return p;
+          // End of one in/out cycle
+          setBreathRound((r) => {
+            if (r + 1 >= BREATH_ROUNDS) {
+              setBreathDone(true);
+              return r;
+            }
+            setSecondsLeft(BREATH[0].seconds);
+            return r + 1;
+          });
+          return 0;
         });
         return 0;
       });
@@ -158,7 +172,7 @@ export const GameDayMode: React.FC<GameDayModeProps> = ({ open, onOpenChange }) 
                 <h3 className="text-base font-semibold">{t('cp.week.head')}</h3>
                 <p className="mt-1 text-sm text-white/60 leading-relaxed">{t('cp.week.intro')}</p>
               </div>
-              <Checklist items={[t('cp.week.i1'), t('cp.week.i2'), t('cp.week.i3'), t('cp.week.i4')]} />
+              <Checklist items={[t('cp.week.i1'), t('cp.week.i2'), t('cp.week.i3'), t('cp.week.i4'), t('cp.week.i5')]} />
               <Button
                 variant="outline"
                 onClick={() => { close(); setTimeout(() => openAI('coach', t('cp.week.aiMsg')), 250); }}
@@ -229,6 +243,15 @@ export const GameDayMode: React.FC<GameDayModeProps> = ({ open, onOpenChange }) 
                     )}
                   </div>
                 </div>
+                {!breathDone && (
+                  <button
+                    type="button"
+                    onClick={() => setBreathDone(true)}
+                    className="min-h-[44px] px-3 text-sm font-medium text-white/60 hover:text-white"
+                  >
+                    {t('cp.day.skip')}
+                  </button>
+                )}
               </div>
 
               <div className="space-y-2">

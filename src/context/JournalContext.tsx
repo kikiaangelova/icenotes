@@ -33,6 +33,8 @@ interface JournalContextType {
   // Journal entries
   entries: JournalEntry[];
   addEntry: (entry: Omit<JournalEntry, 'id' | 'createdAt'>) => void;
+  /** Resolves only after the row is written, so UI can report honest success. */
+  addEntryAsync: (entry: Omit<JournalEntry, 'id' | 'createdAt'>) => Promise<unknown>;
   getTodaysEntry: () => JournalEntry | null;
   
   // Training sessions
@@ -54,7 +56,10 @@ interface JournalContextType {
   // Goals (timeframe-based)
   goals: SkatingGoal[];
   addGoal: (goal: Omit<SkatingGoal, 'id' | 'progress' | 'completed'>) => void;
+  addGoalAsync: (goal: Omit<SkatingGoal, 'id' | 'progress' | 'completed'>) => Promise<unknown>;
   updateGoal: (id: string, updates: Partial<SkatingGoal>) => void;
+  updateGoalAsync: (id: string, updates: Partial<SkatingGoal>) => Promise<unknown>;
+  setProfileAsync: (profile: SkaterProfile) => Promise<unknown>;
   deleteGoal: (id: string) => void;
   
   getJourneyStats: () => JourneyStats;
@@ -113,6 +118,12 @@ export const JournalProvider: React.FC<{ children: ReactNode }> = ({ children })
     addEntryMutation.mutate(entry);
   };
 
+  const addEntryAsync = (entry: Omit<JournalEntry, 'id' | 'createdAt'>) =>
+    addEntryMutation.mutateAsync(entry);
+
+  const setProfileAsync = (newProfile: SkaterProfile) =>
+    updateProfileMutation.mutateAsync(newProfile);
+
   const getTodaysEntry = (): JournalEntry | null => {
     return getTodaysEntryHelper(entries);
   };
@@ -153,9 +164,15 @@ export const JournalProvider: React.FC<{ children: ReactNode }> = ({ children })
     addGoalMutation.mutate(goal);
   };
 
+  const addGoalAsync = (goal: Omit<SkatingGoal, 'id' | 'progress' | 'completed'>) =>
+    addGoalMutation.mutateAsync(goal);
+
   const updateGoal = (id: string, updates: Partial<SkatingGoal>) => {
     updateGoalMutation.mutate({ id, updates });
   };
+
+  const updateGoalAsync = (id: string, updates: Partial<SkatingGoal>) =>
+    updateGoalMutation.mutateAsync({ id, updates });
 
   const deleteGoal = (id: string) => {
     deleteGoalMutation.mutate(id);
@@ -222,9 +239,11 @@ export const JournalProvider: React.FC<{ children: ReactNode }> = ({ children })
   const value = useMemo(() => ({
     profile: profile ?? null,
     setProfile,
+    setProfileAsync,
     isLoading,
     entries,
     addEntry,
+    addEntryAsync,
     getTodaysEntry,
     trainingSessions,
     addTrainingSession,
@@ -238,7 +257,9 @@ export const JournalProvider: React.FC<{ children: ReactNode }> = ({ children })
     getWeeklyProgress,
     goals,
     addGoal,
+    addGoalAsync,
     updateGoal,
+    updateGoalAsync,
     deleteGoal,
     getJourneyStats,
     resetProfile

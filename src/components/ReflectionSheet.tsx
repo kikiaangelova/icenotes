@@ -18,7 +18,7 @@ interface ReflectionSheetProps {
  */
 export const ReflectionSheet: React.FC<ReflectionSheetProps> = ({ open, onOpenChange }) => {
   const { t } = useLanguage();
-  const { addEntry, profile, setProfile } = useJournal();
+  const { addEntryAsync, profile, setProfileAsync } = useJournal();
 
   const [worked, setWorked] = useState('');
   const [hard, setHard] = useState('');
@@ -31,24 +31,29 @@ export const ReflectionSheet: React.FC<ReflectionSheetProps> = ({ open, onOpenCh
     setFocus('');
   };
 
-  const handleSave = () => {
+  const handleSave = async () => {
     setSaving(true);
-    addEntry({
-      date: new Date(),
-      workedOn: worked.trim(),
-      smallWin: '',
-      sessionType: 'training',
-      whatWentWell: worked.trim() || undefined,
-      whatWasChallenging: hard.trim() || undefined,
-      nextGoal: focus.trim() || undefined,
-    });
-    if (focus.trim() && profile) {
-      setProfile({ ...profile, mainFocus: focus.trim() });
+    try {
+      await addEntryAsync({
+        date: new Date(),
+        workedOn: worked.trim(),
+        smallWin: '',
+        sessionType: 'training',
+        whatWentWell: worked.trim() || undefined,
+        whatWasChallenging: hard.trim() || undefined,
+        nextGoal: focus.trim() || undefined,
+      });
+      if (focus.trim() && profile) {
+        await setProfileAsync({ ...profile, mainFocus: focus.trim() });
+      }
       toast.success(t('a.rf.saved'));
+      reset();
+      onOpenChange(false);
+    } catch {
+      toast.error(t('wr.saveFailed'));
+    } finally {
+      setSaving(false);
     }
-    setSaving(false);
-    reset();
-    onOpenChange(false);
   };
 
   return (
