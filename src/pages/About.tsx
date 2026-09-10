@@ -7,10 +7,7 @@ import { ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/context/LanguageContext';
 
-/**
- * About SkateGoals — product rationale, not a personal story.
- * No professional claims, no invented biography.
- */
+/** A concise origin story without claims about every athlete's experience. */
 const About: React.FC = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const { language } = useLanguage();
@@ -23,23 +20,23 @@ const About: React.FC = () => {
   const copy = bg
     ? {
         eyebrow: 'За SkateGoals',
-        title: 'Продукт за това, което се случва между тренировката и изявата.',
+        title: 'Построено от една реална нужда край пързалката.',
         intro:
-          'SkateGoals е лично работно място за състезаващи се фигуристи: цели, записи от тренировки, рефлексия, подготовка за старт и работа върху психиката — в една система, която принадлежи на спортиста.',
-        whyEyebrow: 'Защо съществува',
-        whyTitle: 'Техниката се тренира. Останалото обикновено се губи.',
+          'SkateGoals започна около една млада фигуристка и нейната майка. Трябваше им прост начин да събират на едно място тренировките, мислите след леда и целите напред.',
+        whyEyebrow: 'Началото',
+        whyTitle: 'Първо беше просто място за записване.',
         whyBody: [
-          'Фигуристите имат треньор за техниката, хореограф за програмата и понякога кондиционен треньор. Това, което рядко има собствено място, е всичко останало: какво научи днес, защо скокът изчезна на състезание, какво ще правиш различно другата седмица.',
-          'Тетрадките се губят. Приложенията за бележки не задават въпроси. Приложенията за трекинг броят скокове, но не помагат да решиш какво следва. Приложенията за уелнес говорят за спокойствие, но не разбират какво е предстартова група.',
-          'SkateGoals стои точно в тази празнина. Не заменя треньора и не се състезава с видео анализа. Свързва планирането, осмислянето, целите, подготовката за старт и психическата подготовка в един цикъл, който се повтаря всяка седмица.',
+          'После стана ясно, че между тренировката и представянето остават важни неща: какво си разбрала днес, къде отива увереността преди старт и как една голяма цел се превръща в следваща малка стъпка.',
+          'Така постепенно се появиха седмичното планиране, подготовката за състезание, спортната психология и двете отделни роли за AI подкрепа.',
+          'IceNotes се превърна в SkateGoals чрез практическо изграждане и vibe coding. Не защото знаем всичко за всеки спортист, а защото построихме това, което ни липсваше между тренировката и представянето.',
         ],
         principlesEyebrow: 'Принципи',
         principlesTitle: 'Как строим продукта.',
         principles: [
           { h: 'Спортистът е собственик на данните', p: 'Без табла за родители и треньори. Ти решаваш какво излиза навън.' },
           { h: 'Инструмент, не дневниче', p: 'Кратко, ясно, използваемо между два прогона на пързалката.' },
-          { h: 'Психиката е част от подготовката', p: 'Увереност, фокус и нерви се тренират — без псевдонаука и без празни мотивационни фрази.' },
-          { h: 'Честни граници', p: 'AI подкрепата е AI. Не е психолог, не е лекар, не е твоят треньор — и го казваме ясно.' },
+          { h: 'Психиката е част от подготовката', p: 'Увереността, фокусът и нервите се тренират. Без псевдонаука и празни мотивационни фрази.' },
+          { h: 'Честни граници', p: 'AI подкрепата е AI. Не е психолог, лекар или твоят треньор. Казваме го ясно.' },
           { h: 'Без класации', p: 'Няма фийд, точки и сравнение с други хора. Сравняваш се със себе си отпреди месец.' },
           { h: 'Два езика, написани отделно', p: 'Английски и български, писани нативно, не преведени машинно.' },
         ],
@@ -54,23 +51,23 @@ const About: React.FC = () => {
       }
     : {
         eyebrow: 'About SkateGoals',
-        title: 'Built for the space between training and performance.',
+        title: 'Built from a real need at the rink.',
         intro:
-          'SkateGoals is a private workspace for competitive figure skaters: goals, training records, reflection, competition preparation and mental performance — in one system the athlete owns.',
-        whyEyebrow: 'Why it exists',
-        whyTitle: 'Technique gets coached. Everything around it gets lost.',
+          'SkateGoals began around a young figure skater and her mother. They needed one simple place for training notes, honest thoughts after the ice, and the goals ahead.',
+        whyEyebrow: 'The beginning',
+        whyTitle: 'At first, it was simply a place to capture the work.',
         whyBody: [
-          'Skaters have a coach for technique, a choreographer for the program, sometimes a strength coach. What rarely has a home is everything else: what you learned today, why the jump disappeared at the competition, what you will do differently next week.',
-          'Notebooks get lost. Notes apps don’t ask questions. Tracking apps count jumps but don’t help you decide what comes next. Wellness apps talk about calm without knowing what a warm-up group feels like.',
-          'SkateGoals sits in that gap. It does not replace your coach and it does not compete with video analysis. It connects planning, reflection, goals, competition prep and mental preparation into one loop you repeat every week.',
+          'Then the gap became clearer: what you learned today, where confidence goes before a competition, and how a season goal becomes one useful next step.',
+          'Weekly planning, competition preparation, sport psychology and two distinct AI support roles grew into the product gradually.',
+          'IceNotes became SkateGoals through hands-on building and vibe coding. Not because we know every athlete, but because we built what we wished existed between training and performance.',
         ],
         principlesEyebrow: 'Principles',
         principlesTitle: 'How we build it.',
         principles: [
           { h: 'The athlete owns the data', p: 'No parent or coach dashboards. You decide what leaves the app.' },
           { h: 'A tool, not a diary', p: 'Short, clear, usable between two run-throughs at the rink.' },
-          { h: 'Mental work is training', p: 'Confidence, focus and nerves are trainable — without pseudo-science or empty motivation.' },
-          { h: 'Honest limits', p: 'AI support is AI. Not a psychologist, not a doctor, not your coach — and we say so.' },
+          { h: 'Mental work is training', p: 'Confidence, focus and nerves are trainable. No pseudo-science or empty motivation.' },
+          { h: 'Honest limits', p: 'AI support is AI. It is not a psychologist, doctor or your coach. We say so clearly.' },
           { h: 'No leaderboards', p: 'No feed, no points, no comparing yourself to strangers. You compare to you, a month ago.' },
           { h: 'Two languages, written separately', p: 'English and Bulgarian written natively, not machine-translated.' },
         ],
@@ -91,7 +88,7 @@ const About: React.FC = () => {
       <div className="public-editorial min-h-screen bg-background">
         <Navbar isDarkMode={isDarkMode} onToggleDarkMode={() => setIsDarkMode(!isDarkMode)} />
         <Seo
-          title="About SkateGoals — a performance companion for competitive skaters"
+          title={bg ? 'За SkateGoals | Историята зад продукта' : 'About SkateGoals | Our Story'}
           description="Why SkateGoals exists: one athlete-owned system connecting training, goals, reflection, competition preparation and mental performance for figure skaters aged 14-18."
           path="/about"
         />

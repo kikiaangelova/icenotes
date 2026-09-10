@@ -48,17 +48,17 @@ export const Footer: React.FC = () => {
   const toggle = (id: string) => setOpenSection((cur) => (cur === id ? null : id));
 
   return (
-    <footer className="px-5 md:px-12 pt-12 pb-[calc(env(safe-area-inset-bottom,0px)+1.5rem)] border-t border-border/30 bg-muted/30">
-      <div className="max-w-5xl mx-auto">
+    <footer className="border-t border-primary-foreground/15 bg-primary px-5 pb-[calc(env(safe-area-inset-bottom,0px)+1.5rem)] pt-12 text-primary-foreground md:px-12">
+      <div className="max-w-6xl mx-auto">
         {/* Top: brand + columns */}
         <div className="grid md:grid-cols-[1.4fr_1fr_1fr_1fr] gap-8 md:gap-10 mb-10">
           {/* Brand */}
           <div className="space-y-3">
             <Link to="/" className="inline-flex items-center gap-2.5 group">
-              <SkateGoalsMark className="w-8 h-8 text-primary" />
-              <span className="text-base font-bold text-foreground tracking-tight">SkateGoals</span>
+              <SkateGoalsMark className="w-8 h-8 text-accent" />
+              <span className="font-display text-base font-bold text-primary-foreground">SkateGoals</span>
             </Link>
-            <p className="text-sm text-muted-foreground leading-relaxed max-w-xs">
+            <p className="max-w-xs text-sm leading-relaxed text-primary-foreground/60">
               {t('footer.tagline')}
             </p>
 
@@ -68,7 +68,7 @@ export const Footer: React.FC = () => {
           {columns.map((col) => {
             const isOpen = openSection === col.id;
             return (
-              <div key={col.id} className="border-b border-border/30 md:border-0">
+              <div key={col.id} className="border-b border-primary-foreground/15 md:border-0">
                 {/* Mobile header (button) */}
                 <button
                   type="button"
@@ -76,17 +76,17 @@ export const Footer: React.FC = () => {
                   aria-expanded={isOpen}
                   className="md:hidden w-full flex items-center justify-between py-3 text-left"
                 >
-                  <span className="text-xs font-bold tracking-wider uppercase text-foreground">{col.title}</span>
+                   <span className="text-xs font-bold tracking-wider uppercase text-primary-foreground">{col.title}</span>
                   <ChevronDown
-                    className={cn(
-                      'w-4 h-4 text-muted-foreground transition-transform duration-200',
+                     className={cn(
+                       'w-4 h-4 text-primary-foreground/55 transition-transform duration-200',
                       isOpen && 'rotate-180'
                     )}
                   />
                 </button>
 
                 {/* Desktop header */}
-                <p className="hidden md:block text-xs font-bold tracking-wider uppercase text-muted-foreground mb-3">
+                 <p className="hidden md:block text-xs font-bold tracking-wider uppercase text-primary-foreground/55 mb-3">
                   {col.title}
                 </p>
 
@@ -101,7 +101,7 @@ export const Footer: React.FC = () => {
                     <Link
                       key={link.label + link.href}
                       to={link.href}
-                      className="text-sm text-muted-foreground hover:text-primary transition-colors font-medium w-fit"
+                      className="w-fit text-sm font-medium text-primary-foreground/65 transition-colors hover:text-primary-foreground"
                     >
                       {link.label}
                     </Link>
@@ -113,8 +113,8 @@ export const Footer: React.FC = () => {
         </div>
 
         {/* Bottom bar */}
-        <div className="border-t border-border/30 pt-5 text-center sm:text-left">
-          <p className="text-xs text-muted-foreground">
+        <div className="border-t border-primary-foreground/15 pt-5 text-center sm:text-left">
+          <p className="text-xs text-primary-foreground/50">
             © {new Date().getFullYear()} SkateGoals · {t('footer.rights')}
           </p>
         </div>

@@ -167,10 +167,10 @@ export const GoalsScreen: React.FC<Props> = ({ onOpenWeeklyReview, onOpenCompeti
               </div>
             </div>
             <div className="flex gap-1 pt-1">
-              <Button variant="ghost" size="sm" className="h-11 rounded-xl gap-1.5 text-xs" onClick={() => openEditor('season', season)}>
+              <Button variant="ghost" size="sm" className="h-11 rounded-sm gap-1.5 text-xs" onClick={() => openEditor('season', season)}>
                 <Pencil className="w-3.5 h-3.5" /> {t('gb.edit')}
               </Button>
-              <Button variant="ghost" size="sm" className="h-11 rounded-xl gap-1.5 text-xs" onClick={() => complete(season)}>
+              <Button variant="ghost" size="sm" className="h-11 rounded-sm gap-1.5 text-xs" onClick={() => complete(season)}>
                 <Check className="w-3.5 h-3.5" /> {t('gb.done')}
               </Button>
             </div>
@@ -209,7 +209,7 @@ export const GoalsScreen: React.FC<Props> = ({ onOpenWeeklyReview, onOpenCompeti
                   <button
                     onClick={() => markStepDone(week)}
                     aria-label={t('gb.done')}
-                    className="w-11 h-11 -mt-2 -mr-1 rounded-xl flex items-center justify-center text-muted-foreground hover:text-primary shrink-0"
+                    className="w-11 h-11 -mt-2 -mr-1 rounded-sm flex items-center justify-center text-muted-foreground hover:text-primary shrink-0"
                   >
                     <Check className="w-5 h-5" />
                   </button>
@@ -220,10 +220,10 @@ export const GoalsScreen: React.FC<Props> = ({ onOpenWeeklyReview, onOpenCompeti
             </div>
 
             <div className="flex gap-1">
-              <Button variant="ghost" size="sm" className="h-11 rounded-xl gap-1.5 text-xs" onClick={() => openEditor('weekly', week)}>
+              <Button variant="ghost" size="sm" className="h-11 rounded-sm gap-1.5 text-xs" onClick={() => openEditor('weekly', week)}>
                 <Pencil className="w-3.5 h-3.5" /> {t('gb.edit')}
               </Button>
-              <Button variant="ghost" size="sm" className="h-11 rounded-xl gap-1.5 text-xs" onClick={() => complete(week)}>
+              <Button variant="ghost" size="sm" className="h-11 rounded-sm gap-1.5 text-xs" onClick={() => complete(week)}>
                 <Check className="w-3.5 h-3.5" /> {t('gb.done')}
               </Button>
             </div>
@@ -290,15 +290,15 @@ export const GoalsScreen: React.FC<Props> = ({ onOpenWeeklyReview, onOpenCompeti
                   <p className="text-sm font-semibold text-foreground">{g.title}</p>
                   {g.targetDate && <p className="text-xs text-muted-foreground mt-0.5">{fmt(g.targetDate)}</p>}
                 </div>
-                <button onClick={() => complete(g)} aria-label={t('gb.done')} className="w-11 h-11 -m-2 rounded-xl flex items-center justify-center text-muted-foreground hover:text-primary">
+                <button onClick={() => complete(g)} aria-label={t('gb.done')} className="w-11 h-11 -m-2 rounded-sm flex items-center justify-center text-muted-foreground hover:text-primary">
                   <Check className="w-4 h-4" />
                 </button>
-                <button onClick={() => deleteGoal(g.id)} aria-label={t('gb.delete')} className="w-11 h-11 -m-2 ml-0 rounded-xl flex items-center justify-center text-muted-foreground hover:text-destructive">
+                <button onClick={() => deleteGoal(g.id)} aria-label={t('gb.delete')} className="w-11 h-11 -m-2 ml-0 rounded-sm flex items-center justify-center text-muted-foreground hover:text-destructive">
                   <Trash2 className="w-4 h-4" />
                 </button>
               </div>
             ))}
-            <Button variant="outline" className="w-full h-12 rounded-xl gap-2" onClick={() => openEditor('monthly')}>
+            <Button variant="outline" className="w-full h-12 rounded-sm gap-2" onClick={() => openEditor('monthly')}>
               <Plus className="w-4 h-4" /> {t('gb.otherAdd')}
             </Button>
           </div>

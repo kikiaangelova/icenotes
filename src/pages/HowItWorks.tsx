@@ -29,7 +29,7 @@ const HowItWorks: React.FC = () => {
 
   return (
     <div className={isDarkMode ? "dark" : ""}>
-      <div className="min-h-screen bg-background">
+      <div className="public-editorial min-h-screen bg-background">
         <Navbar isDarkMode={isDarkMode} onToggleDarkMode={() => setIsDarkMode(!isDarkMode)} />
         <Seo title="How SkateGoals Works — Train, Track, Reflect, Prepare" description="The SkateGoals loop: log a session, reflect, choose the next focus, review the week, prepare for competition, reset. Two distinct AI roles support planning and mental performance." path="/how-it-works" />
 
@@ -50,7 +50,7 @@ const HowItWorks: React.FC = () => {
             {steps.map((step, i) => (
               <div key={step.num} className="flex gap-6 items-start">
                 <div className="flex flex-col items-center shrink-0">
-                  <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
+                  <div className="flex h-12 w-12 items-center justify-center border border-border bg-background">
                     <step.icon className="w-6 h-6 text-primary" />
                   </div>
                   {i < steps.length - 1 && (
