@@ -2,45 +2,32 @@ import React, { useEffect, useState } from 'react';
 import { useJournal } from '@/context/JournalContext';
 import { useAuth } from '@/context/AuthContext';
 import { useLanguage } from '@/context/LanguageContext';
-import { DailyJournal } from './DailyJournal';
 import { JourneyView } from './JourneyView';
-import { ReflectSpace } from './ReflectSpace';
-import { TrainingLog } from './TrainingLog';
 import { JumpLog } from './JumpLog';
 import { WeeklyGoals } from './WeeklyGoals';
 import { PreTrainingPrep } from './PreTrainingPrep';
 import { ExportButton } from './ExportButton';
 import { SessionTimer } from './SessionTimer';
 import { ReminderSettings } from './ReminderSettings';
-import { ProgressSummaryCards } from './ProgressSummaryCards';
 import { ActivityCalendar } from './ActivityCalendar';
 import { AvatarUpload } from './AvatarUpload';
 import { getGreeting } from '@/lib/greeting';
-
-import { MotivationalQuote } from './MotivationalQuote';
 import { QuotesCollection } from './QuotesCollection';
 import { SkatingGoals } from './SkatingGoals';
 import { ProgressOverview } from './ProgressOverview';
 import { ProgressInsights } from './ProgressInsights';
 import { SportPsychology } from './SportPsychology';
-import { MindReflection } from './MindReflection';
-import { TodayJourney } from './TodayJourney';
-import { TodayQuickLog } from './TodayQuickLog';
 import { Button } from '@/components/ui/button';
 import { SELF_LEVELS } from '@/types/journal';
-import { Feather, Compass, Heart, Settings, LogOut, Dumbbell, Target, CalendarCheck, Brain, Timer, Bell, Snowflake, BookHeart, TrendingUp, Sparkles, Sun, Shield, Sparkle, Play, ChevronLeft, Home as HomeIcon } from 'lucide-react';
+import { Settings, LogOut, Bell, Shield, ChevronLeft, Home as HomeIcon } from 'lucide-react';
 import { TodayCommandCenter } from './TodayCommandCenter';
-import { CoachNoticed } from './CoachNoticed';
+import { TrainingScreen } from './TrainingScreen';
+import { ReflectionSheet } from './ReflectionSheet';
+import { SupportScreen } from './SupportScreen';
 import { MobileBottomNav, type BottomTab } from './MobileBottomNav';
-import { FeatureMap, type FeatureDest } from './FeatureMap';
-import { ProgressionCard } from './ProgressionCard';
-
-
 import { ProfileSheet } from './ProfileSheet';
 import { useIsAdmin } from '@/hooks/useIsAdmin';
-import { useStreak } from '@/hooks/useStreak';
-import { StreakCard } from './StreakCard';
-import { GameDayCard, GameDayMode } from '@/components/GameDayMode';
+import { GameDayMode } from '@/components/GameDayMode';
 import { GuidedTour } from '@/components/GuidedTour';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import {
@@ -66,58 +53,53 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
-type DashboardView = 'home' | 'journal' | 'journey' | 'reflect' | 'on-ice' | 'off-ice' | 'jumps' | 'pre-training' | 'timer';
+type MainTab = 'today' | 'train' | 'support' | 'goals' | 'progress';
+type SubView = 'home' | 'prep' | 'psych' | 'library';
 
 export const SimpleDashboard: React.FC = () => {
-  const { profile, setProfile, getTodaysEntry, getTodaysSessions, resetProfile } = useJournal();
+  const { profile, setProfile, getTodaysEntry, getTodaysSessions } = useJournal();
   const { signOut, user } = useAuth();
   const { language, t } = useLanguage();
   const { isAdmin } = useIsAdmin();
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
-  const [currentView, setCurrentView] = useState<DashboardView>('home');
-  const [activeTab, setActiveTab] = useState<'today' | 'train' | 'mind' | 'goals' | 'progress'>(() => {
+
+  const [currentView, setCurrentView] = useState<SubView>('home');
+  const [activeTab, setActiveTab] = useState<MainTab>(() => {
     if (typeof window === 'undefined') return 'today';
-    return (localStorage.getItem('icenotes:lastTab') as any) || 'today';
+    const stored = localStorage.getItem('icenotes:lastTab');
+    const valid: MainTab[] = ['today', 'train', 'support', 'goals', 'progress'];
+    return valid.includes(stored as MainTab) ? (stored as MainTab) : 'today';
   });
   const [profileOpen, setProfileOpen] = useState(false);
   const [showResetDialog, setShowResetDialog] = useState(false);
   const [showReminderSettings, setShowReminderSettings] = useState(false);
-  const [pendingTrainingType, setPendingTrainingType] = useState<'on-ice' | 'off-ice' | null>(null);
-  // Controlled sub-tabs so the feature map can deep-link into any tool.
-  const [trainTab, setTrainTab] = useState<'sessions' | 'jumps' | 'timer'>('sessions');
-  const [mindTab, setMindTab] = useState<'reflect' | 'preskate' | 'psych' | 'inspire'>('reflect');
-  const [goalsTab, setGoalsTab] = useState<'weekly' | 'plan'>('weekly');
-  const [progressTab, setProgressTab] = useState<'progress' | 'journey'>('progress');
+  const [reflectionOpen, setReflectionOpen] = useState(false);
+  const [gameDayOpen, setGameDayOpen] = useState(false);
 
-
-  // Persist last viewed tab so "Continue where you left off" works
+  // Persist last viewed destination (legacy key kept so nothing is lost)
   useEffect(() => {
-    try { localStorage.setItem('icenotes:lastTab', activeTab); } catch {}
+    try { localStorage.setItem('icenotes:lastTab', activeTab); } catch { /* ignore */ }
   }, [activeTab]);
 
-  // Honor ?action=… from Smart CTAs (e.g. SmartStartCTA on landing).
-  // Routes the freshly-arrived user straight to the right next step.
+  // Deep links from landing CTAs and legacy links
   useEffect(() => {
     const action = searchParams.get('action');
     if (!action) return;
     if (action === 'log-today') {
       setCurrentView('home');
-      setActiveTab('today');
-      // small scroll cue so the daily log feels like the destination
-      setTimeout(() => window.scrollTo({ top: 240, behavior: 'smooth' }), 250);
+      setActiveTab('train');
     } else if (action === 'start-tour') {
-      try { localStorage.removeItem('icenotes:tourV1'); } catch {}
+      try { localStorage.removeItem('icenotes:tourV1'); } catch { /* ignore */ }
       window.location.reload();
       return;
     } else if (action === 'open-coach') {
-      window.dispatchEvent(new CustomEvent('coach-iris:open'));
+      setActiveTab('support');
+      window.dispatchEvent(new CustomEvent('ai-assistant:open', { detail: { role: 'coach' } }));
     } else if (action === 'game-day') {
       setGameDayOpen(true);
     }
-    // Clear the param so a refresh doesn't re-trigger.
     const next = new URLSearchParams(searchParams);
     next.delete('action');
     setSearchParams(next, { replace: true });
@@ -126,610 +108,259 @@ export const SimpleDashboard: React.FC = () => {
 
   const todaysEntry = getTodaysEntry();
   const todaysSessions = getTodaysSessions();
-  const hasOnIce = todaysSessions.some(s => s.type === 'on-ice');
-  const hasOffIce = todaysSessions.some(s => s.type === 'off-ice');
   const levelLabel = SELF_LEVELS.find(l => l.value === profile?.selfLevel)?.label || '';
   const greeting = getGreeting(profile?.name, language);
-  
-  const [gameDayOpen, setGameDayOpen] = useState(false);
 
-  // One-tap routing from the feature map into any tool (incl. nested sub-tabs).
-  const openFeature = (dest: FeatureDest) => {
-    if ('special' in dest) {
-      if (dest.special === 'reflect') setCurrentView('reflect');
-      if (dest.special === 'coach') window.dispatchEvent(new CustomEvent('coach-iris:open'));
-      if (dest.special === 'gameday') setGameDayOpen(true);
-      return;
-    }
-    setActiveTab(dest.tab);
-    if (dest.tab === 'train') setTrainTab(dest.sub);
-    if (dest.tab === 'mind') setMindTab(dest.sub);
-    if (dest.tab === 'goals') setGoalsTab(dest.sub);
-    if (dest.tab === 'progress') setProgressTab(dest.sub);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
-
-
-  // Five destinations only. Profile lives in the header avatar; journaling is
-  // reached from Today and Training rather than owning a nav slot.
-  const handleBottomNav = (tab: BottomTab) => {
-    // Any tab change exits sub-views back to home
+  const goTab = (tab: MainTab) => {
     setCurrentView('home');
-    if (tab === 'home') setActiveTab('today');
-    else if (tab === 'training') setActiveTab('train');
-    else setActiveTab(tab);
+    setActiveTab(tab);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  // Derive which bottom-nav item should be highlighted
-  const bottomActive: BottomTab = (() => {
-    if (currentView !== 'home') return 'training';
-    if (activeTab === 'train') return 'training';
-    if (activeTab === 'mind') return 'mind';
-    if (activeTab === 'goals') return 'goals';
-    if (activeTab === 'progress') return 'progress';
-    return 'home';
-  })();
-
-  const tabLabels: Record<typeof activeTab, string> = {
-    today: t('dash.tab.today'),
-    train: t('dash.tab.train'),
-    mind: t('dash.tab.mind'),
-    goals: t('dash.tab.goals'),
-    progress: t('dash.tab.progress'),
+  const handleBottomNav = (tab: BottomTab) => {
+    if (tab === 'home') goTab('today');
+    else if (tab === 'training') goTab('train');
+    else if (tab === 'support') goTab('support');
+    else goTab(tab as MainTab);
   };
 
-  const handleStartTraining = (type: 'on-ice' | 'off-ice') => {
-    setPendingTrainingType(type);
-    setCurrentView('pre-training');
-  };
-
-  const handlePrepComplete = () => {
-    if (pendingTrainingType) {
-      setCurrentView(pendingTrainingType);
-      setPendingTrainingType(null);
-    }
-  };
-
-  if (!profile) return null;
+  const bottomActive: BottomTab =
+    activeTab === 'train' ? 'training'
+    : activeTab === 'support' ? 'support'
+    : activeTab === 'goals' ? 'goals'
+    : activeTab === 'progress' ? 'progress'
+    : 'home';
 
   const handleSignOut = async () => {
     await signOut();
     setShowResetDialog(false);
   };
 
-  // Home view
-  if (currentView === 'home') {
-    return (
-      <div className="min-h-screen bg-background">
+  if (!profile) return null;
 
-        {/* Header */}
-        <header className="border-b border-border/30 bg-background/80 backdrop-blur-xl sticky top-0 z-10">
-          <div className="container max-w-2xl mx-auto px-4 sm:px-5 py-3.5 sm:py-4 flex items-center justify-between">
-            <button
-              type="button"
-              onClick={() => setProfileOpen(true)}
-              className="flex items-center gap-3 min-w-0 flex-1 text-left rounded-2xl -ml-1 px-1 py-1 motion-press hover:bg-muted/40 transition-colors"
-              aria-label={t('bottomNav.profile')}
-            >
-              <AvatarUpload
-                avatarUrl={profile.avatarUrl}
-                name={profile.name}
-                onAvatarChange={(url) => setProfile({ ...profile, avatarUrl: url })}
-                size="sm"
-              />
-              <div className="min-w-0">
-                <p className="text-sm font-bold tracking-tight text-foreground truncate leading-tight">
-                  {profile.name || 'SkateGoals'}
-                </p>
-                <p className="text-xs text-muted-foreground truncate">{levelLabel}</p>
-              </div>
-            </button>
-            <div className="flex items-center gap-1.5 flex-shrink-0">
-              <ExportButton />
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={() => setShowResetDialog(true)}
-                aria-label={t('dash.signout.confirm')}
-                title={t('dash.signout.confirm')}
-                className="text-muted-foreground hover:text-destructive h-11 w-11 rounded-xl"
-              >
-                <LogOut className="w-5 h-5" />
-              </Button>
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Button variant="ghost" size="icon" className="text-muted-foreground h-11 w-11 rounded-xl" aria-label="Settings">
-                    <Settings className="w-5 h-5" />
-                  </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent align="end" className="w-56 rounded-xl">
-                  <div className="px-3 py-2 text-xs text-muted-foreground">
-                    {user?.email}
-                  </div>
-                  <DropdownMenuSeparator />
-                  <DropdownMenuItem onClick={() => setShowReminderSettings(true)} className="rounded-lg">
-                    <Bell className="w-4 h-4 mr-2" />
-                    {t('header.reminders')}
-                  </DropdownMenuItem>
-                  {isAdmin && (
-                    <>
-                      <DropdownMenuSeparator />
-                      <DropdownMenuItem onClick={() => navigate('/admin')} className="rounded-lg">
-                        <Shield className="w-4 h-4 mr-2" />
-                        {t('header.adminDashboard')}
-                      </DropdownMenuItem>
-                    </>
-                  )}
-                  <DropdownMenuSeparator />
-                  <DropdownMenuItem onClick={() => setShowResetDialog(true)} className="text-destructive rounded-lg">
-                    <LogOut className="w-4 h-4 mr-2" />
-                    {t('dash.signout.confirm')}
-                  </DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
+  const subViewLabel: Record<Exclude<SubView, 'home'>, string> = {
+    prep: t('dash.mentalPrep.title'),
+    psych: t('a.sp.psychTools'),
+    library: t('a.more.label'),
+  };
+
+  const header = (
+    <header className="border-b border-border/30 bg-background/80 backdrop-blur-xl sticky top-0 z-10">
+      <div className="container max-w-2xl mx-auto px-4 sm:px-5 py-3.5 flex items-center justify-between">
+        {currentView === 'home' ? (
+          <button
+            type="button"
+            onClick={() => setProfileOpen(true)}
+            className="flex items-center gap-3 min-w-0 flex-1 text-left rounded-2xl -ml-1 px-1 py-1 hover:bg-muted/40 transition-colors"
+            aria-label={t('bottomNav.profile')}
+          >
+            <AvatarUpload
+              avatarUrl={profile.avatarUrl}
+              name={profile.name}
+              onAvatarChange={(url) => setProfile({ ...profile, avatarUrl: url })}
+              size="sm"
+            />
+            <div className="min-w-0">
+              <p className="text-sm font-bold tracking-tight text-foreground truncate leading-tight">
+                {profile.name || 'SkateGoals'}
+              </p>
+              <p className="text-xs text-muted-foreground truncate">{levelLabel}</p>
             </div>
-          </div>
-        </header>
-
-        {/* Main content — Today is the emotional center */}
-        <main className="container max-w-2xl mx-auto px-4 sm:px-5 pt-5 sm:pt-6 pb-5 sm:pb-7">
-
-          {/* Continue where you left off — only when not on Today */}
-          {activeTab !== 'today' && (
-            <button
-              onClick={() => setActiveTab(activeTab)}
-              className="w-full mb-4 p-4 rounded-2xl bg-gradient-to-r from-primary to-primary/85 text-primary-foreground flex items-center gap-3 shadow-md hover:shadow-lg active:scale-[0.99] transition-all text-left min-h-[64px]"
+          </button>
+        ) : (
+          <div className="flex items-center gap-2 min-w-0 flex-1">
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => setCurrentView('home')}
+              className="gap-1.5 -ml-2 rounded-xl font-semibold text-sm h-10"
             >
-              <div className="w-11 h-11 rounded-xl bg-background/20 backdrop-blur flex items-center justify-center flex-shrink-0">
-                <Play className="w-5 h-5 fill-current" />
-              </div>
-              <div className="flex-1 min-w-0">
-                <p className="text-[10px] font-bold tracking-[0.18em] uppercase opacity-80">{t('dash.continue.kicker')}</p>
-                <p className="text-sm font-bold truncate">{t('dash.continue.body')} {tabLabels[activeTab]}</p>
-              </div>
-              <ChevronLeft className="w-4 h-4 rotate-180 opacity-70" />
-            </button>
-          )}
-
-          <Tabs value={activeTab} onValueChange={(v) => setActiveTab(v as typeof activeTab)} className="space-y-5 sm:space-y-7">
-            <TabsList className="sr-only" aria-hidden="true">
-              <TabsTrigger value="today">{t('dash.tab.today')}</TabsTrigger>
-              <TabsTrigger value="train">{t('dash.tab.train')}</TabsTrigger>
-              <TabsTrigger value="mind">{t('dash.tab.mind')}</TabsTrigger>
-              <TabsTrigger value="goals">{t('dash.tab.goals')}</TabsTrigger>
-              <TabsTrigger value="progress">{t('dash.tab.progress')}</TabsTrigger>
-            </TabsList>
-
-            {/* TODAY — performance center: focus, one primary action, core tools, AI support */}
-            <TabsContent value="today" className="space-y-6">
-              <TodayCommandCenter
-                greeting={greeting}
-                focus={profile.mainFocus}
-                loggedToday={todaysSessions.length > 0}
-                onLogTraining={() => handleStartTraining('on-ice')}
-                onContinue={() => setCurrentView('reflect')}
-                onTrainingLog={() => { setActiveTab('train'); setTrainTab('sessions'); }}
-                onGoals={() => { setActiveTab('goals'); setGoalsTab('weekly'); }}
-                onWeeklyReview={() => { setActiveTab('progress'); setProgressTab('progress'); }}
-                onCompetitionPrep={() => setGameDayOpen(true)}
-              />
-
-
-
-
-              {/* SECONDARY — collapsed by default */}
-              <details className="group rounded-3xl border border-border/40 bg-card/40 backdrop-blur-sm overflow-hidden">
-                <summary className="cursor-pointer list-none p-4 flex items-center justify-between min-h-[64px]">
-                  <div className="flex items-center gap-3">
-                    <span className="w-10 h-10 rounded-2xl bg-muted/70 flex items-center justify-center">
-                      <Sparkles className="w-4 h-4 text-foreground/70" />
-                    </span>
-                    <div className="min-w-0">
-                      <p className="text-sm font-bold text-foreground leading-tight">{t('home.section.more')}</p>
-                      <p className="text-[11px] text-foreground/55 leading-tight">{t('home.section.more.hint')}</p>
-                    </div>
-                  </div>
-                  <span className="text-xs text-foreground/60 font-semibold group-open:hidden">
-                    {t('today.deeper.open')}
-                  </span>
-                  <span className="text-xs text-foreground/60 font-semibold hidden group-open:inline">
-                    {t('today.deeper.close')}
-                  </span>
-                </summary>
-
-                <div className="p-4 pt-0 space-y-5">
-                  {/* Ambient cinematic strip — kept available but not first thing you see */}
-                  <div className="relative rounded-2xl overflow-hidden border border-border/40 shadow-md">
-                    <video
-                      src={"/__l5e/assets-v1/1cfcb3da-6ee7-4ddd-ae3a-f6f8c6ec2ebc/hero-skater-girl.mp4"}
-                      autoPlay
-                      muted
-                      loop
-                      playsInline
-                      className="w-full h-32 sm:h-40 object-cover"
-                      style={{ filter: 'saturate(0.92)' }}
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-r from-foreground/70 via-foreground/30 to-transparent" />
-                    <div className="absolute inset-0 flex items-center px-5 sm:px-7">
-                      <div>
-                        <p className="text-[10px] font-bold tracking-[0.25em] uppercase text-background/80 mb-1">{t('dash.hero.kicker')}</p>
-                        <p className="text-lg sm:text-2xl font-black text-background leading-tight max-w-[220px] sm:max-w-none">
-                          {t('dash.hero.poetic.a')}<br className="sm:hidden" /> <span className="italic font-light">{t('dash.hero.poetic.b')}</span>
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-
-                  <ProgressionCard />
-                  <GameDayCard onClick={() => setGameDayOpen(true)} />
-                  <CoachNoticed onOpenReflect={() => setCurrentView('reflect')} />
-                  <FeatureMap onOpen={openFeature} />
-                  <StreakCard />
-                  <MotivationalQuote variant="banner" useDaily showRefresh showSave />
-
-                  {/* Focus reminder */}
-                  <div className="text-center space-y-1.5 py-2">
-                    <p className="text-xs sm:text-sm text-foreground/60 font-medium">{t('dash.focusNow')}</p>
-                    <p className="text-sm sm:text-base font-semibold text-foreground px-4 line-clamp-2">{profile.mainFocus}</p>
-                  </div>
-
-                  <TodayJourney />
-                  <div className="rounded-2xl section-card-progress p-4">
-                    <div className="flex items-center gap-2 mb-1">
-                      <Feather className="w-4 h-4 text-sky-foreground" />
-                      <h2 className="text-sm font-bold text-sky-foreground font-serif">{t('dash.dailyJournal.title')}</h2>
-                    </div>
-                    <p className="text-xs text-sky-foreground/70">{t('dash.dailyJournal.subtitle')}</p>
-                  </div>
-                  <DailyJournal />
-                  <TodayQuickLog />
-                </div>
-              </details>
-            </TabsContent>
-
-
-            {/* TRAIN: training + jumps + timer */}
-            <TabsContent value="train" className="space-y-4">
-              <Tabs value={trainTab} onValueChange={(v) => setTrainTab(v as any)} className="w-full">
-                <TabsList className="grid w-full grid-cols-3 h-10 rounded-xl bg-muted/40 p-0.5">
-                  <TabsTrigger value="sessions" className="text-xs rounded-lg">{t('dash.todayTraining.title')}</TabsTrigger>
-                  <TabsTrigger value="jumps" className="text-xs rounded-lg">{t('dash.jumpTracker.title')}</TabsTrigger>
-                  <TabsTrigger value="timer" className="text-xs rounded-lg">{t('dash.sessionTimer.title')}</TabsTrigger>
-                </TabsList>
-
-                <TabsContent value="sessions" className="space-y-4 mt-4">
-                  <div className="rounded-2xl section-card-training p-4 mb-3">
-                    <div className="flex items-center gap-2 mb-1">
-                      <Snowflake className="w-4 h-4 text-mint-foreground" />
-                      <h2 className="text-sm font-bold text-mint-foreground font-serif">{t('dash.todayTraining.title')}</h2>
-                    </div>
-                    <p className="text-xs text-mint-foreground/70">{t('dash.todayTraining.subtitle')}</p>
-                  </div>
-                  <button
-                    onClick={() => handleStartTraining('on-ice')}
-                    className="w-full p-5 sm:p-6 rounded-2xl bg-gradient-to-br from-sky/60 to-primary/10 border border-sky-foreground/10 hover:shadow-md hover:border-sky-foreground/20 transition-all duration-200 text-left group"
-                  >
-                    <div className="flex items-center gap-4">
-                      <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-sky to-primary/20 flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
-                        <Snowflake className="w-6 h-6 text-sky-foreground" />
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <h3 className="font-bold text-sm sm:text-base text-foreground">{t('dash.onIce.title')}</h3>
-                        <p className="text-xs sm:text-sm text-muted-foreground truncate">
-                          {hasOnIce ? t('dash.onIce.logged') : t('dash.onIce.activities')}
-                        </p>
-                      </div>
-                    </div>
-                  </button>
-                  <button
-                    onClick={() => handleStartTraining('off-ice')}
-                    className="w-full p-5 sm:p-6 rounded-2xl bg-gradient-to-br from-mint/60 to-mint/20 border border-mint-foreground/10 hover:shadow-md hover:border-mint-foreground/20 transition-all duration-200 text-left group"
-                  >
-                    <div className="flex items-center gap-4">
-                      <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-mint to-mint-foreground/10 flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
-                        <Dumbbell className="w-6 h-6 text-mint-foreground" />
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <h3 className="font-bold text-sm sm:text-base text-foreground">{t('dash.offIce.title')}</h3>
-                        <p className="text-xs sm:text-sm text-muted-foreground truncate">
-                          {hasOffIce ? t('dash.onIce.logged') : t('dash.offIce.activities')}
-                        </p>
-                      </div>
-                    </div>
-                  </button>
-                  <button
-                    onClick={() => setCurrentView('reflect')}
-                    className="w-full p-4 sm:p-5 rounded-2xl bg-gradient-to-br from-rose/30 to-peach/20 border border-rose-foreground/10 hover:shadow-md transition-all duration-200 text-left group"
-                  >
-                    <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-rose to-peach/40 flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
-                        <Heart className="w-5 h-5 text-rose-foreground" />
-                      </div>
-                      <div className="min-w-0">
-                        <h3 className="font-bold text-sm sm:text-base text-foreground">{t('dash.reflect.title')}</h3>
-                        <p className="text-xs text-muted-foreground truncate">{t('dash.reflect.subtitle')}</p>
-                      </div>
-                    </div>
-                  </button>
-                </TabsContent>
-
-                <TabsContent value="jumps" className="space-y-4 mt-4">
-                  <div className="rounded-2xl bg-gradient-to-br from-peach/50 to-peach/20 border border-peach-foreground/10 p-4 mb-3">
-                    <div className="flex items-center gap-2 mb-1">
-                      <Target className="w-4 h-4 text-peach-foreground" />
-                      <h2 className="text-sm font-bold text-peach-foreground font-serif">{t('dash.jumpTracker.title')}</h2>
-                    </div>
-                    <p className="text-xs text-peach-foreground/70">{t('dash.jumpTracker.subtitle')}</p>
-                  </div>
-                  <JumpLog />
-                </TabsContent>
-
-                <TabsContent value="timer" className="space-y-4 mt-4">
-                  <div className="rounded-2xl bg-gradient-to-br from-lavender/50 to-grape/20 border border-lavender-foreground/10 p-4 mb-3">
-                    <div className="flex items-center gap-2 mb-1">
-                      <Timer className="w-4 h-4 text-lavender-foreground" />
-                      <h2 className="text-sm font-bold text-lavender-foreground font-serif">{t('dash.sessionTimer.title')}</h2>
-                    </div>
-                    <p className="text-xs text-lavender-foreground/70">{t('dash.sessionTimer.subtitle')}</p>
-                  </div>
-                  <SessionTimer type="on-ice" />
-                </TabsContent>
-              </Tabs>
-            </TabsContent>
-
-            {/* MIND: pre-skate + sport psychology + inspiration */}
-            <TabsContent value="mind" className="space-y-4">
-              <Tabs value={mindTab} onValueChange={(v) => setMindTab(v as any)} className="w-full">
-                <TabsList className="grid w-full grid-cols-4 h-10 rounded-xl bg-muted/40 p-0.5">
-                  <TabsTrigger value="reflect" className="text-xs rounded-lg">{t('dash.mind.reflect')}</TabsTrigger>
-                  <TabsTrigger value="preskate" className="text-xs rounded-lg">{t('dash.mind.preskate')}</TabsTrigger>
-                  <TabsTrigger value="psych" className="text-xs rounded-lg">{t('dash.mind.psych')}</TabsTrigger>
-                  <TabsTrigger value="inspire" className="text-xs rounded-lg">{t('dash.mind.inspire')}</TabsTrigger>
-                </TabsList>
-
-                <TabsContent value="reflect" className="space-y-4 mt-4">
-                  <div className="rounded-2xl section-card-mind p-4 mb-3">
-                    <div className="flex items-center gap-2 mb-1">
-                      <Heart className="w-4 h-4 text-rose-foreground" />
-                      <h2 className="text-sm font-bold text-rose-foreground font-serif">{t('dash.mind.reflect')}</h2>
-                    </div>
-                    <p className="text-xs text-rose-foreground/70">
-                      {language === 'bg'
-                        ? 'Кратки въпроси, за да настроиш ума преди и след леда.'
-                        : 'Short prompts to settle your mind before and after the ice.'}
-                    </p>
-                  </div>
-                  <MindReflection />
-                </TabsContent>
-
-                <TabsContent value="preskate" className="space-y-4 mt-4">
-                  <div className="rounded-2xl section-card-mind p-4 mb-3">
-                    <div className="flex items-center gap-2 mb-1">
-                      <Brain className="w-4 h-4 text-rose-foreground" />
-                      <h2 className="text-sm font-bold text-rose-foreground font-serif">{t('dash.mentalPrep.title')}</h2>
-                    </div>
-                    <p className="text-xs text-rose-foreground/70">{t('dash.mentalPrep.subtitle')}</p>
-                  </div>
-                  <PreTrainingPrep trainingType="on-ice" />
-                </TabsContent>
-
-                <TabsContent value="psych" className="space-y-4 mt-4">
-                  <div className="rounded-2xl section-card-psych p-4 mb-3">
-                    <div className="flex items-center gap-2 mb-1">
-                      <Sparkles className="w-4 h-4 text-grape-foreground" />
-                      <h2 className="text-sm font-bold text-grape-foreground font-serif">{t('dash.sportPsych.title')}</h2>
-                    </div>
-                    <p className="text-xs text-grape-foreground/70">{t('dash.sportPsych.subtitle')}</p>
-                  </div>
-                  <SportPsychology />
-                </TabsContent>
-
-                <TabsContent value="inspire" className="space-y-4 mt-4">
-                  <div className="rounded-2xl bg-gradient-to-br from-peach/50 to-rose/20 border border-peach-foreground/10 p-4 mb-3">
-                    <div className="flex items-center gap-2 mb-1">
-                      <BookHeart className="w-4 h-4 text-peach-foreground" />
-                      <h2 className="text-sm font-bold text-peach-foreground font-serif">{t('dash.inspiration.title')}</h2>
-                    </div>
-                    <p className="text-xs text-peach-foreground/70">{t('dash.inspiration.subtitle')}</p>
-                  </div>
-                  <QuotesCollection />
-                </TabsContent>
-              </Tabs>
-            </TabsContent>
-
-            {/* GOALS: weekly + skating plan */}
-            <TabsContent value="goals" className="space-y-4">
-              <Tabs value={goalsTab} onValueChange={(v) => setGoalsTab(v as any)} className="w-full">
-                <TabsList className="grid w-full grid-cols-2 h-10 rounded-xl bg-muted/40 p-0.5">
-                  <TabsTrigger value="weekly" className="text-xs rounded-lg">{t('dash.weeklyGoals.title')}</TabsTrigger>
-                  <TabsTrigger value="plan" className="text-xs rounded-lg">{t('dash.skatingPlan.title')}</TabsTrigger>
-                </TabsList>
-
-                <TabsContent value="weekly" className="space-y-4 mt-4">
-                  <div className="rounded-2xl section-card-goals p-4 mb-3">
-                    <div className="flex items-center gap-2 mb-1">
-                      <CalendarCheck className="w-4 h-4 text-lavender-foreground" />
-                      <h2 className="text-sm font-bold text-lavender-foreground font-serif">{t('dash.weeklyGoals.title')}</h2>
-                    </div>
-                    <p className="text-xs text-lavender-foreground/70">{t('dash.weeklyGoals.subtitle')}</p>
-                  </div>
-                  <WeeklyGoals />
-                </TabsContent>
-
-                <TabsContent value="plan" className="space-y-4 mt-4">
-                  <div className="rounded-2xl section-card-psych p-4 mb-3">
-                    <div className="flex items-center gap-2 mb-1">
-                      <Target className="w-4 h-4 text-grape-foreground" />
-                      <h2 className="text-sm font-bold text-grape-foreground font-serif">{t('dash.skatingPlan.title')}</h2>
-                    </div>
-                    <p className="text-xs text-grape-foreground/70">{t('dash.skatingPlan.subtitle')}</p>
-                  </div>
-                  <SkatingGoals />
-                </TabsContent>
-              </Tabs>
-            </TabsContent>
-
-            {/* PROGRESS: progress + journey */}
-            <TabsContent value="progress" className="space-y-4">
-              <Tabs value={progressTab} onValueChange={(v) => setProgressTab(v as any)} className="w-full">
-                <TabsList className="grid w-full grid-cols-2 h-10 rounded-xl bg-muted/40 p-0.5">
-                  <TabsTrigger value="progress" className="text-xs rounded-lg">{t('dash.progress.title')}</TabsTrigger>
-                  <TabsTrigger value="journey" className="text-xs rounded-lg">{t('dash.journey.title')}</TabsTrigger>
-                </TabsList>
-
-                <TabsContent value="progress" className="space-y-4 mt-4">
-                  <div className="rounded-2xl section-card-progress p-4 mb-3">
-                    <div className="flex items-center gap-2 mb-1">
-                      <TrendingUp className="w-4 h-4 text-sky-foreground" />
-                      <h2 className="text-sm font-bold text-sky-foreground font-serif">{t('dash.progress.title')}</h2>
-                    </div>
-                    <p className="text-xs text-sky-foreground/70">{t('dash.progress.subtitle')}</p>
-                  </div>
-                  <ProgressInsights />
-                  <ProgressOverview />
-                </TabsContent>
-
-                <TabsContent value="journey" className="space-y-4 mt-4">
-                  <div className="rounded-2xl section-card-training p-4 mb-3">
-                    <div className="flex items-center gap-2 mb-1">
-                      <Compass className="w-4 h-4 text-mint-foreground" />
-                      <h2 className="text-sm font-bold text-mint-foreground font-serif">{t('dash.journey.title')}</h2>
-                    </div>
-                    <p className="text-xs text-mint-foreground/70">{t('dash.journey.subtitle')}</p>
-                  </div>
-                  <ProgressSummaryCards />
-                  <ActivityCalendar />
-                  <JourneyView />
-                </TabsContent>
-              </Tabs>
-            </TabsContent>
-          </Tabs>
-
-          {/* Motivational footer */}
-          <p className="text-center text-xs sm:text-sm text-muted-foreground italic pt-8 sm:pt-10">
-            {t('dash.footer.encourage')}
-          </p>
-          <div className="h-24" aria-hidden="true" />
-        </main>
-
-        {/* Persistent bottom nav */}
-        <MobileBottomNav active={bottomActive} onChange={handleBottomNav} />
-
-        {/* Profile drawer */}
-        <ProfileSheet
-          open={profileOpen}
-          onOpenChange={setProfileOpen}
-          onGoHome={() => { setCurrentView('home'); setActiveTab('today'); }}
-          onOpenReminders={() => setShowReminderSettings(true)}
-          onLogout={() => { setProfileOpen(false); setShowResetDialog(true); }}
-        />
-
-        {/* Sign out confirmation dialog */}
-        <AlertDialog open={showResetDialog} onOpenChange={setShowResetDialog}>
-          <AlertDialogContent className="max-w-[90vw] sm:max-w-lg rounded-2xl">
-            <AlertDialogHeader>
-              <AlertDialogTitle className="font-serif">{t('dash.signout.title')}</AlertDialogTitle>
-              <AlertDialogDescription>{t('dash.signout.desc')}</AlertDialogDescription>
-            </AlertDialogHeader>
-            <AlertDialogFooter className="flex-col sm:flex-row gap-2">
-              <AlertDialogCancel className="w-full sm:w-auto rounded-xl">{t('dash.signout.stay')}</AlertDialogCancel>
-              <AlertDialogAction onClick={handleSignOut} className="w-full sm:w-auto bg-destructive hover:bg-destructive/90 rounded-xl">
+              <ChevronLeft className="w-4 h-4" />
+              {t('dash.back')}
+            </Button>
+            <span className="text-sm font-semibold text-foreground truncate">
+              {subViewLabel[currentView as Exclude<SubView, 'home'>]}
+            </span>
+          </div>
+        )}
+        <div className="flex items-center gap-1.5 flex-shrink-0">
+          <ExportButton />
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={() => goTab('today')}
+            aria-label={t('nav5.today')}
+            className="text-muted-foreground h-11 w-11 rounded-xl"
+          >
+            <HomeIcon className="w-5 h-5" />
+          </Button>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="ghost" size="icon" className="text-muted-foreground h-11 w-11 rounded-xl" aria-label="Settings">
+                <Settings className="w-5 h-5" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end" className="w-56 rounded-xl">
+              <div className="px-3 py-2 text-xs text-muted-foreground">{user?.email}</div>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem onClick={() => setShowReminderSettings(true)} className="rounded-lg">
+                <Bell className="w-4 h-4 mr-2" />
+                {t('header.reminders')}
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={() => setCurrentView('library')} className="rounded-lg">
+                <HomeIcon className="w-4 h-4 mr-2" />
+                {t('a.more.label')}
+              </DropdownMenuItem>
+              {isAdmin && (
+                <>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem onClick={() => navigate('/admin')} className="rounded-lg">
+                    <Shield className="w-4 h-4 mr-2" />
+                    {t('header.adminDashboard')}
+                  </DropdownMenuItem>
+                </>
+              )}
+              <DropdownMenuSeparator />
+              <DropdownMenuItem onClick={() => setShowResetDialog(true)} className="text-destructive rounded-lg">
+                <LogOut className="w-4 h-4 mr-2" />
                 {t('dash.signout.confirm')}
-              </AlertDialogAction>
-            </AlertDialogFooter>
-          </AlertDialogContent>
-        </AlertDialog>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        </div>
+      </div>
+    </header>
+  );
 
-        {/* Reminder Settings Dialog */}
-        <Dialog open={showReminderSettings} onOpenChange={setShowReminderSettings}>
-          <DialogContent className="max-w-[90vw] sm:max-w-md max-h-[90vh] overflow-y-auto rounded-2xl">
-            <DialogHeader>
-              <DialogTitle className="font-serif">{t('header.reminderSettings')}</DialogTitle>
-            </DialogHeader>
-            <ReminderSettings />
-          </DialogContent>
-        </Dialog>
+  const renderSubView = () => {
+    if (currentView === 'prep') return <PreTrainingPrep trainingType="on-ice" onComplete={() => setCurrentView('home')} />;
+    if (currentView === 'psych') return <SportPsychology />;
+    return (
+      <div className="space-y-6">
+        <div>
+          <h1 className="text-2xl font-bold tracking-tight text-foreground">{t('a.more.label')}</h1>
+          <p className="text-sm text-muted-foreground">{t('a.more.hint')}</p>
+        </div>
+        <SessionTimer type="on-ice" />
+        <JumpLog />
+        <ActivityCalendar />
+        <JourneyView />
+        <QuotesCollection />
       </div>
     );
-  }
+  };
 
-  // Sub-views with back + home buttons + persistent bottom nav (no dead ends)
-  const subViewLabel: Record<Exclude<DashboardView, 'home'>, string> = {
-    journal: t('dash.tab.today'),
-    journey: t('dash.journey.title'),
-    reflect: t('dash.mind.reflect'),
-    'on-ice': t('dash.onIce.title'),
-    'off-ice': t('dash.offIce.title'),
-    jumps: t('dash.jumpTracker.title'),
-    'pre-training': t('dash.mentalPrep.title'),
-    timer: t('dash.sessionTimer.title'),
+  const renderTab = () => {
+    if (activeTab === 'today') {
+      return (
+        <TodayCommandCenter
+          greeting={greeting}
+          focus={profile.mainFocus}
+          sessionsToday={todaysSessions.length}
+          reflectedToday={!!todaysEntry}
+          competition={profile.nextCompetition}
+          onLogTraining={() => goTab('train')}
+          onReflect={() => setReflectionOpen(true)}
+          onGoals={() => goTab('goals')}
+          onSupport={() => goTab('support')}
+          onCompetitionPrep={() => setGameDayOpen(true)}
+          onMentalPrep={() => setCurrentView('prep')}
+        />
+      );
+    }
+
+    if (activeTab === 'train') {
+      return (
+        <TrainingScreen
+          onSaved={() => setReflectionOpen(true)}
+          onOpenPrep={() => setCurrentView('prep')}
+        />
+      );
+    }
+
+    if (activeTab === 'support') {
+      return <SupportScreen onOpenExercises={() => setCurrentView('psych')} />;
+    }
+
+    if (activeTab === 'goals') {
+      return (
+        <div className="space-y-8">
+          <header className="space-y-1">
+            <h1 className="text-2xl font-bold tracking-tight text-foreground">{t('a.goals.title')}</h1>
+            <p className="text-sm text-muted-foreground">{t('a.goals.sub')}</p>
+          </header>
+          <SkatingGoals />
+          <details className="rounded-2xl border border-border/60 bg-card/50 overflow-hidden">
+            <summary className="cursor-pointer list-none p-4 min-h-[56px] flex items-center text-sm font-semibold text-foreground">
+              {t('dash.weeklyGoals.title')}
+            </summary>
+            <div className="p-4 pt-0">
+              <WeeklyGoals />
+            </div>
+          </details>
+        </div>
+      );
+    }
+
+    return (
+      <div className="space-y-8">
+        <header className="space-y-1">
+          <h1 className="text-2xl font-bold tracking-tight text-foreground">{t('a.prog.title')}</h1>
+          <p className="text-sm text-muted-foreground">{t('a.prog.sub')}</p>
+        </header>
+        <ProgressInsights />
+        <ProgressOverview />
+      </div>
+    );
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-sky/30 via-background to-lavender/15">
-      <header className="border-b border-border/30 bg-background/80 backdrop-blur-xl sticky top-0 z-10">
-        <div className="container max-w-2xl mx-auto px-4 sm:px-5 py-3 flex items-center justify-between gap-2">
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={() => setCurrentView('home')}
-            className="gap-1.5 -ml-2 rounded-xl font-semibold text-sm h-10"
-          >
-            <ChevronLeft className="w-4 h-4" />
-            {t('dash.back')}
-          </Button>
-          <div className="flex items-center gap-1.5 text-[11px] text-muted-foreground">
-            <HomeIcon className="w-3 h-3" />
-            <span className="opacity-70">Home</span>
-            <span className="opacity-40">/</span>
-            <span className="font-semibold text-foreground">{subViewLabel[currentView as Exclude<DashboardView, 'home'>]}</span>
-          </div>
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={() => { setCurrentView('home'); setActiveTab('today'); }}
-            className="gap-1.5 -mr-2 rounded-xl font-semibold text-sm h-10"
-          >
-            <HomeIcon className="w-4 h-4" />
-            Home
-          </Button>
-        </div>
-      </header>
+    <div className="min-h-screen bg-background">
+      {header}
 
-      <main className="container max-w-2xl mx-auto px-4 sm:px-5 py-5 sm:py-7 pb-28">
-        {currentView === 'timer' && (
-          <SessionTimer type="on-ice" />
-        )}
-        {currentView === 'pre-training' && (
-          <PreTrainingPrep
-            trainingType={pendingTrainingType || 'on-ice'}
-            onComplete={handlePrepComplete}
-          />
-        )}
-        {currentView === 'on-ice' && (
-          <TrainingLog type="on-ice" onComplete={() => setCurrentView('home')} />
-        )}
-        {currentView === 'off-ice' && (
-          <TrainingLog type="off-ice" onComplete={() => setCurrentView('home')} />
-        )}
-        {currentView === 'reflect' && <ReflectSpace />}
+      <main className="container max-w-2xl mx-auto px-4 sm:px-5 pt-6 pb-28">
+        {currentView === 'home' ? renderTab() : renderSubView()}
       </main>
 
       <MobileBottomNav active={bottomActive} onChange={handleBottomNav} />
 
+      <ReflectionSheet open={reflectionOpen} onOpenChange={setReflectionOpen} />
+
       <ProfileSheet
         open={profileOpen}
         onOpenChange={setProfileOpen}
-        onGoHome={() => { setCurrentView('home'); setActiveTab('today'); }}
+        onGoHome={() => goTab('today')}
         onOpenReminders={() => setShowReminderSettings(true)}
         onLogout={() => { setProfileOpen(false); setShowResetDialog(true); }}
       />
 
+      <AlertDialog open={showResetDialog} onOpenChange={setShowResetDialog}>
+        <AlertDialogContent className="max-w-[90vw] sm:max-w-lg rounded-2xl">
+          <AlertDialogHeader>
+            <AlertDialogTitle>{t('dash.signout.title')}</AlertDialogTitle>
+            <AlertDialogDescription>{t('dash.signout.desc')}</AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter className="flex-col sm:flex-row gap-2">
+            <AlertDialogCancel className="w-full sm:w-auto rounded-xl">{t('dash.signout.stay')}</AlertDialogCancel>
+            <AlertDialogAction onClick={handleSignOut} className="w-full sm:w-auto bg-destructive hover:bg-destructive/90 rounded-xl">
+              {t('dash.signout.confirm')}
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+
+      <Dialog open={showReminderSettings} onOpenChange={setShowReminderSettings}>
+        <DialogContent className="max-w-[90vw] sm:max-w-md max-h-[90vh] overflow-y-auto rounded-2xl">
+          <DialogHeader>
+            <DialogTitle>{t('header.reminderSettings')}</DialogTitle>
+          </DialogHeader>
+          <ReminderSettings />
+        </DialogContent>
+      </Dialog>
+
       <GameDayMode open={gameDayOpen} onOpenChange={setGameDayOpen} />
 
-      <GuidedTour setActiveTab={setActiveTab} />
+      <GuidedTour setActiveTab={(tab) => setActiveTab(tab === 'today' ? 'today' : tab)} />
     </div>
   );
 };
