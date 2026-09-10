@@ -105,15 +105,15 @@ export const PHASEB_DICT: Record<string, PhaseBEntry> = {
   'cp.eve.cue':    { en: 'Your cues for tomorrow', bg: 'Твоите думи-опори за утре' },
   'cp.eve.cuePh':  { en: 'e.g. long edges · soft knees · my tempo', bg: 'напр. дълги ръбове · меки колене · моето темпо' },
   'cp.eve.ai':     { en: 'Nerves before tomorrow? Sport Psychology', bg: 'Нерви за утре? Спортна психология' },
-  'cp.eve.aiMsg':  { en: 'I compete tomorrow and I am nervous about it.', bg: 'Утре се състезавам и съм изнервен/а от това.' },
+  'cp.eve.aiMsg':  { en: 'I compete tomorrow and I can feel the tension.', bg: 'Утре имам старт и усещам напрежение.' },
 
   'cp.day.head':   { en: 'Short reset', bg: 'Кратък рестарт' },
-  'cp.day.intro':  { en: 'Slow the breath, then hold one cue. Nothing else needs deciding now.', bg: 'Забави дишането и задръж една дума. Нищо друго не се решава сега.' },
-  'cp.day.breathe':{ en: 'Breathe with the circle', bg: 'Дишай с кръга' },
+  'cp.day.intro':  { en: 'A few slower breaths, then one cue. Keep it comfortable — stop whenever you want.', bg: 'Няколко по-бавни вдишвания и една дума-опора. Дръж го удобно — спри, когато решиш.' },
+  'cp.day.breathe':{ en: 'Optional: breathe with the circle', bg: 'По избор: дишай с кръга' },
   'cp.day.inhale': { en: 'In', bg: 'Вдишай' },
-  'cp.day.hold':   { en: 'Hold', bg: 'Задръж' },
-  'cp.day.exhale': { en: 'Out', bg: 'Издишай' },
+  'cp.day.exhale': { en: 'Out, slower', bg: 'Издишай, по-бавно' },
   'cp.day.done':   { en: 'Steady', bg: 'Спокойно' },
+  'cp.day.skip':   { en: 'Skip the breathing', bg: 'Пропусни дишането' },
   'cp.day.cue':    { en: 'The one cue you take on the ice', bg: 'Думата, с която излизаш на лед' },
   'cp.day.ai':     { en: 'Talk it through: Sport Psychology', bg: 'Кажи го на глас: Спортна психология' },
   'cp.day.aiMsg':  { en: 'I skate today and I want to settle down before I go on.', bg: 'Днес се състезавам и искам да се успокоя, преди да изляза.' },
@@ -134,5 +134,11 @@ export const PHASEB_DICT: Record<string, PhaseBEntry> = {
   'ps.focus':      { en: 'Current focus', bg: 'Текущ фокус' },
   'ps.focusNone':  { en: 'Not set', bg: 'Няма зададен' },
   'ps.themes':     { en: 'Most worked on this week', bg: 'Най-много работено тази седмица' },
-  'ps.readonly':   { en: 'Everything here comes from what you logged. Nothing to fill in.', bg: 'Всичко тук идва от това, което си записал/а. Няма какво да попълваш.' },
+  'ps.readonly':   { en: 'Everything here comes from your own entries. Nothing to fill in.', bg: 'Всичко тук идва от записите ти. Няма какво да попълваш.' },
+  'ps.goal':       { en: 'Season goal', bg: 'Цел за сезона' },
+  'ps.goalNone':   { en: 'Not set', bg: 'Няма зададена' },
+  'ps.week':       { en: 'This week', bg: 'Тази седмица' },
+
+  // ── Save state ──
+  'wr.saveFailed': { en: 'Saving did not go through. Your text is still here — try again.', bg: 'Записът не мина. Текстът ти е тук — пробвай пак.' },
 };
