@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowRight, Target, Brain, Trophy, ClipboardList } from 'lucide-react';
+import { ArrowRight, Target, Brain, Trophy, ClipboardList, CalendarDays } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
 
 interface Props {
@@ -11,12 +11,17 @@ interface Props {
   reflectedToday: boolean;
   /** name of an upcoming competition, if the athlete set one */
   competition?: string;
+  /** days until that competition; only shown when 14 or fewer */
+  competitionDays?: number | null;
+  /** weekly review not done and it makes sense now */
+  reviewRelevant: boolean;
   onLogTraining: () => void;
   onReflect: () => void;
   onGoals: () => void;
   onSupport: () => void;
   onCompetitionPrep: () => void;
   onMentalPrep: () => void;
+  onWeeklyReview: () => void;
 }
 
 /**
