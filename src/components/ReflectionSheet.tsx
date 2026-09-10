@@ -66,65 +66,30 @@ export const ReflectionSheet: React.FC<ReflectionSheetProps> = ({ open, onOpenCh
         </SheetHeader>
 
         <div className="mt-5 space-y-5">
-          <div className="space-y-2">
-            <label className="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">
-              {t('a.rf.worked')}
-            </label>
-            <Textarea
-              value={worked}
-              onChange={(e) => setWorked(e.target.value)}
-              placeholder={t('a.rf.workedPh')}
-              rows={2}
-              className="rounded-xl resize-none"
-            />
-          </div>
+          <VoiceTextarea
+            label={t('a.rf.worked')}
+            value={worked}
+            onChange={setWorked}
+            placeholder={t('a.rf.workedPh')}
+            rows={2}
+          />
 
-          <div className="space-y-2">
-            <label className="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">
-              {t('a.rf.hard')}
-            </label>
-            <Textarea
-              value={hard}
-              onChange={(e) => setHard(e.target.value)}
-              placeholder={t('a.rf.hardPh')}
-              rows={2}
-              className="rounded-xl resize-none"
-            />
-          </div>
+          <VoiceTextarea
+            label={t('a.rf.hard')}
+            value={hard}
+            onChange={setHard}
+            placeholder={t('a.rf.hardPh')}
+            rows={2}
+          />
 
-          <div className="space-y-2">
-            <label className="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">
-              {t('a.rf.focus')}
-            </label>
-            <Textarea
-              value={focus}
-              onChange={(e) => setFocus(e.target.value)}
-              placeholder={t('a.rf.focusPh')}
-              rows={2}
-              className="rounded-xl resize-none"
-            />
-          </div>
-
-          <div className="space-y-2 pb-4">
-            <Button
-              onClick={handleSave}
-              disabled={saving}
-              className="w-full h-14 rounded-xl text-base font-semibold"
-            >
-              {saving ? t('a.rf.saving') : t('a.rf.save')}
-            </Button>
-            <button
-              type="button"
-              onClick={() => {
-                reset();
-                onOpenChange(false);
-              }}
-              className="w-full min-h-[44px] text-sm font-medium text-muted-foreground hover:text-foreground"
-            >
-              {t('a.rf.skip')}
-            </button>
-          </div>
-        </div>
+          <VoiceTextarea
+            label={t('a.rf.focus')}
+            value={focus}
+            onChange={setFocus}
+            placeholder={t('a.rf.focusPh')}
+            rows={2}
+            hint
+          />
       </SheetContent>
     </Sheet>
   );
