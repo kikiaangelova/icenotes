@@ -2,7 +2,7 @@ import React from 'react';
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from '@/components/ui/sheet';
 import { Button } from '@/components/ui/button';
 import { AvatarUpload } from '@/components/AvatarUpload';
-import { Home, ChevronLeft, LogOut, Bell, Shield, Mail, ExternalLink, Globe, Brain } from 'lucide-react';
+import { Home, ChevronLeft, LogOut, Bell, Shield, Mail, ExternalLink, Globe } from 'lucide-react';
 import { useJournal } from '@/context/JournalContext';
 import { useAuth } from '@/context/AuthContext';
 import { useIsAdmin } from '@/hooks/useIsAdmin';
@@ -48,7 +48,7 @@ export const ProfileSheet: React.FC<ProfileSheetProps> = ({
     <Sheet open={open} onOpenChange={onOpenChange}>
       <SheetContent
         side="right"
-        className="w-full sm:max-w-md p-0 flex flex-col bg-gradient-to-b from-peach/20 via-background to-lavender/15"
+        className="w-full sm:max-w-md p-0 flex flex-col bg-background"
       >
         {/* Top bar with Back + Home — always visible exits */}
         <div className="flex items-center justify-between px-4 pt-4 pb-2 border-b border-border/40 bg-background/80 backdrop-blur-xl sticky top-0 z-10">
@@ -62,7 +62,7 @@ export const ProfileSheet: React.FC<ProfileSheetProps> = ({
             {t('profile.back')}
           </Button>
           <SheetHeader className="flex-1 text-center">
-            <SheetTitle className="text-sm font-bold font-serif">{t('profile.title')}</SheetTitle>
+            <SheetTitle className="text-sm font-semibold">{t('profile.title')}</SheetTitle>
           </SheetHeader>
           <Button
             variant="ghost"
@@ -86,7 +86,7 @@ export const ProfileSheet: React.FC<ProfileSheetProps> = ({
               size="lg"
             />
             <div>
-              <h2 className="text-xl font-black text-foreground font-serif">{profile.name}</h2>
+              <h2 className="text-xl font-bold text-foreground">{profile.name}</h2>
               {user?.email && (
                 <p className="text-xs text-muted-foreground inline-flex items-center gap-1 mt-1">
                   <Mail className="w-3 h-3" />
@@ -94,7 +94,7 @@ export const ProfileSheet: React.FC<ProfileSheetProps> = ({
                 </p>
               )}
               {profile.mainFocus && (
-                <p className="text-xs text-muted-foreground mt-2 italic max-w-xs">
+                <p className="text-xs text-muted-foreground mt-2 max-w-xs">
                   {t('profile.focus')}: {profile.mainFocus}
                 </p>
               )}
@@ -107,8 +107,8 @@ export const ProfileSheet: React.FC<ProfileSheetProps> = ({
 
             {/* Language — switch the whole app + AI support */}
             <div className="w-full px-4 py-3 rounded-2xl bg-card border border-border/50 flex items-center gap-3">
-              <div className="w-9 h-9 rounded-xl bg-mint/50 flex items-center justify-center flex-shrink-0">
-                <Globe className="w-4 h-4 text-mint-foreground" />
+              <div className="w-9 h-9 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
+                <Globe className="w-4 h-4 text-primary" />
               </div>
               <div className="flex-1 min-w-0">
                 <p className="text-sm font-semibold text-foreground">{t('profile.language')}</p>
@@ -134,27 +134,11 @@ export const ProfileSheet: React.FC<ProfileSheetProps> = ({
             </div>
 
             <button
-              onClick={() => {
-                onOpenChange(false);
-                setTimeout(() => window.dispatchEvent(new CustomEvent('coach-iris:open')), 220);
-              }}
-              className="w-full h-16 px-4 rounded-2xl bg-gradient-to-r from-peach/50 to-lavender/40 border border-border/50 flex items-center gap-3 hover:brightness-[1.03] active:scale-[0.99] transition-all text-left"
-            >
-              <div className="w-10 h-10 rounded-xl bg-secondary flex items-center justify-center shrink-0">
-                <Brain className="w-5 h-5 text-foreground" />
-              </div>
-              <div className="flex-1">
-                <p className="text-sm font-bold text-foreground">{t('today.support.label')}</p>
-                <p className="text-xs text-muted-foreground">{t('today.support.sub')}</p>
-              </div>
-            </button>
-
-            <button
               onClick={() => { onOpenReminders(); onOpenChange(false); }}
               className="w-full h-14 px-4 rounded-2xl bg-card border border-border/50 flex items-center gap-3 hover:bg-muted/60 active:scale-[0.99] transition-all text-left"
             >
-              <div className="w-9 h-9 rounded-xl bg-lavender/50 flex items-center justify-center">
-                <Bell className="w-4 h-4 text-lavender-foreground" />
+              <div className="w-9 h-9 rounded-xl bg-primary/10 flex items-center justify-center">
+                <Bell className="w-4 h-4 text-primary" />
               </div>
               <div className="flex-1">
                 <p className="text-sm font-semibold text-foreground">{t('profile.reminders')}</p>
@@ -167,8 +151,8 @@ export const ProfileSheet: React.FC<ProfileSheetProps> = ({
                 onClick={() => { navigate('/admin'); onOpenChange(false); }}
                 className="w-full h-14 px-4 rounded-2xl bg-card border border-border/50 flex items-center gap-3 hover:bg-muted/60 active:scale-[0.99] transition-all text-left"
               >
-                <div className="w-9 h-9 rounded-xl bg-grape/40 flex items-center justify-center">
-                  <Shield className="w-4 h-4 text-grape-foreground" />
+                <div className="w-9 h-9 rounded-xl bg-primary/10 flex items-center justify-center">
+                  <Shield className="w-4 h-4 text-primary" />
                 </div>
                 <div className="flex-1">
                   <p className="text-sm font-semibold text-foreground">{t('profile.admin')}</p>
@@ -186,8 +170,8 @@ export const ProfileSheet: React.FC<ProfileSheetProps> = ({
               onClick={() => { navigate('/'); onOpenChange(false); }}
               className="w-full h-14 px-4 rounded-2xl bg-card border border-border/50 flex items-center gap-3 hover:bg-muted/60 active:scale-[0.99] transition-all text-left"
             >
-              <div className="w-9 h-9 rounded-xl bg-peach/50 flex items-center justify-center">
-                <ExternalLink className="w-4 h-4 text-peach-foreground" />
+              <div className="w-9 h-9 rounded-xl bg-primary/10 flex items-center justify-center">
+                <ExternalLink className="w-4 h-4 text-primary" />
               </div>
               <div className="flex-1">
                 <p className="text-sm font-semibold text-foreground">{t('profile.landing')}</p>
