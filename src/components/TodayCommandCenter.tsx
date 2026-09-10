@@ -54,13 +54,13 @@ export const TodayCommandCenter: React.FC<Props> = ({
   }[stage];
 
   return (
-    <section className="space-y-10">
+    <section className="space-y-12">
       {/* What am I working on */}
-      <header className="space-y-5">
+      <header className="space-y-7 border-b border-border pb-8">
         <h1 className="app-page-title">{greeting}</h1>
         <button
           onClick={onGoals}
-          className="w-full border-l-2 border-accent py-1 pl-4 text-left transition-colors hover:border-primary"
+          className="w-full border-l-2 border-accent py-2 pl-5 text-left transition-colors hover:border-primary"
         >
           <p className="app-section-label">
             {t('a.today.working')}
@@ -78,7 +78,7 @@ export const TodayCommandCenter: React.FC<Props> = ({
       <div className="space-y-3">
         <button
           onClick={primary.onClick}
-          className="flex min-h-[80px] w-full items-center gap-4 rounded-lg bg-primary px-5 py-4 text-left text-primary-foreground transition-colors hover:bg-primary/92 active:bg-primary/85"
+            className="flex min-h-[88px] w-full items-center gap-4 rounded-sm bg-primary px-5 py-5 text-left text-primary-foreground transition-colors hover:bg-primary/92 active:bg-primary/85"
         >
           <div className="flex-1 min-w-0">
             <p className="text-base font-bold leading-tight">{primary.label}</p>
@@ -106,7 +106,7 @@ export const TodayCommandCenter: React.FC<Props> = ({
           {compNear ? (
             <button
               onClick={onCompetitionPrep}
-               className="flex min-h-[64px] w-full items-center gap-3 rounded-lg border border-border bg-card px-4 text-left transition-colors hover:border-accent"
+                className="flex min-h-[64px] w-full items-center gap-3 border-y border-border px-1 text-left transition-colors hover:text-accent"
             >
               <Trophy className="w-[18px] h-[18px] text-primary shrink-0" />
               <span className="min-w-0 flex-1">
@@ -124,7 +124,7 @@ export const TodayCommandCenter: React.FC<Props> = ({
           ) : reviewRelevant ? (
             <button
               onClick={onWeeklyReview}
-               className="flex min-h-[64px] w-full items-center gap-3 rounded-lg border border-border bg-card px-4 text-left transition-colors hover:border-accent"
+                className="flex min-h-[64px] w-full items-center gap-3 border-y border-border px-1 text-left transition-colors hover:text-accent"
             >
               <CalendarDays className="w-[18px] h-[18px] text-primary shrink-0" />
               <span className="min-w-0 flex-1">

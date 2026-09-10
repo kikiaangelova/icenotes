@@ -88,7 +88,7 @@ const About: React.FC = () => {
 
   return (
     <div className={isDarkMode ? 'dark' : ''}>
-      <div className="min-h-screen bg-background">
+      <div className="public-editorial min-h-screen bg-background">
         <Navbar isDarkMode={isDarkMode} onToggleDarkMode={() => setIsDarkMode(!isDarkMode)} />
         <Seo
           title="About SkateGoals — a performance companion for competitive skaters"
@@ -146,7 +146,7 @@ const About: React.FC = () => {
               </h2>
               <p className="text-base text-muted-foreground leading-relaxed">{copy.forBody}</p>
             </div>
-            <div className="rounded-2xl border border-border p-6">
+            <div className="border-y border-border py-6">
               <p className={kicker}>{copy.pilotEyebrow}</p>
               <p className="text-base text-foreground/85 leading-relaxed">{copy.pilotBody}</p>
             </div>
@@ -156,7 +156,7 @@ const About: React.FC = () => {
         <section className="px-5 md:px-12 py-16 md:py-24 border-t border-border/50">
           <div className="max-w-xl mx-auto text-center">
             <Link to="/auth" className="inline-block w-full sm:w-auto">
-              <Button size="lg" className="h-14 px-10 text-base font-semibold rounded-xl gap-2 w-full sm:w-auto">
+              <Button size="lg" className="h-14 px-10 text-base font-semibold rounded-sm gap-2 w-full sm:w-auto">
                 {copy.cta} <ArrowRight className="w-4 h-4" />
               </Button>
             </Link>

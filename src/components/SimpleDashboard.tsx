@@ -149,8 +149,8 @@ export const SimpleDashboard: React.FC = () => {
   };
 
   const header = (
-    <header className="sticky top-0 z-30 border-b border-border bg-background/96 backdrop-blur-lg">
-      <div className="mx-auto flex h-16 max-w-3xl items-center justify-between px-4 sm:px-6">
+    <header className="sticky top-0 z-30 border-b border-border bg-background">
+      <div className="mx-auto flex h-[68px] max-w-4xl items-center justify-between px-4 sm:px-8">
         {currentView === 'home' ? (
           <button
             type="button"
@@ -168,7 +168,7 @@ export const SimpleDashboard: React.FC = () => {
               <p className="truncate text-sm font-semibold leading-tight text-foreground">
                 {profile.name || 'SkateGoals'}
               </p>
-              <p className="text-xs text-muted-foreground truncate">SkateGoals</p>
+              <p className="font-mono text-[10px] uppercase text-muted-foreground truncate">SkateGoals / Athlete log</p>
             </div>
           </button>
         ) : (
@@ -303,7 +303,7 @@ export const SimpleDashboard: React.FC = () => {
     <div className="authenticated-app min-h-screen bg-background">
       {header}
 
-      <main className="mx-auto w-full max-w-3xl px-4 pb-28 pt-7 sm:px-6 sm:pt-10">
+      <main className="app-workspace mx-auto w-full max-w-4xl px-4 pb-28 pt-8 sm:px-8 sm:pt-12">
         {currentView === 'home' ? renderTab() : renderSubView()}
       </main>
 

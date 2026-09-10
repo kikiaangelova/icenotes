@@ -38,7 +38,7 @@ const Features: React.FC = () => {
 
   return (
     <div className={isDarkMode ? "dark" : ""}>
-      <div className="min-h-screen bg-background">
+      <div className="public-editorial min-h-screen bg-background">
         <Navbar isDarkMode={isDarkMode} onToggleDarkMode={() => setIsDarkMode(!isDarkMode)} />
         <Seo
           title={language === 'bg' ? 'Функции — тренировки, цели и подготовка за старт' : 'Features — Training, Goals & Competition Prep'}
@@ -64,15 +64,15 @@ const Features: React.FC = () => {
             {categories.map((category) => (
               <div key={category}>
                 <p className="text-xs font-semibold tracking-[0.2em] uppercase text-primary mb-4">{t(`features.cat.${category}`)}</p>
-                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div className="grid border-t border-border sm:grid-cols-2 lg:grid-cols-3">
                   {features
                     .filter(f => f.categoryKey === category)
                     .map((feature) => (
                       <div
                         key={feature.key}
-                        className="p-5 rounded-xl border border-border/60 bg-card hover:shadow-md transition-all duration-200 group"
+                        className="border-b border-border p-5 sm:border-r"
                       >
-                        <div className="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center mb-3 group-hover:bg-primary/15 transition-colors">
+                         <div className="mb-4 flex h-9 w-9 items-center justify-center border border-border">
                           <feature.icon className="w-4 h-4 text-primary" />
                         </div>
                         <h3 className="text-sm font-semibold text-foreground mb-1.5">{t(`features.${feature.key}.title`)}</h3>
@@ -94,7 +94,7 @@ const Features: React.FC = () => {
               {t('features.cta.subtitle')}
             </p>
             <Link to="/auth" className="inline-block w-full sm:w-auto">
-              <Button size="lg" className="h-14 px-10 text-base font-semibold rounded-xl gap-2 w-full sm:w-auto">
+               <Button size="lg" className="h-14 px-10 text-base font-semibold rounded-sm gap-2 w-full sm:w-auto">
                 {t('features.cta.button')} <ArrowRight className="w-4 h-4" />
               </Button>
             </Link>

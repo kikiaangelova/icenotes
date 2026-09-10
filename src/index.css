@@ -8,8 +8,8 @@
 @layer base {
   :root {
     /* SkateGoals — cool, premium, athlete-focused */
-    --background: 210 29% 97%;
-    --foreground: 221 39% 11%;
+    --background: 210 25% 97%;
+    --foreground: 218 58% 9%;
 
     --card: 0 0% 100%;
     --card-foreground: 221 39% 11%;
@@ -17,7 +17,7 @@
     --popover: 0 0% 100%;
     --popover-foreground: 221 39% 11%;
 
-    --primary: 211 51% 20%;
+    --primary: 216 64% 12%;
     --primary-foreground: 210 29% 98%;
 
     --secondary: 210 29% 94%;
@@ -26,18 +26,18 @@
     --muted: 207 27% 95%;
     --muted-foreground: 215 16% 42%;
 
-    --accent: 207 31% 52%;
+    --accent: 198 58% 48%;
     --accent-foreground: 210 29% 98%;
 
     --destructive: 5 50% 50%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 210 23% 88%;
+    --border: 211 20% 80%;
     --input: 210 23% 84%;
     --ring: 207 31% 52%;
 
     /* More refined radii */
-    --radius: 0.625rem;
+    --radius: 0.25rem;
 
     /* Functional tokens (desaturated) */
     --ice: 210 22% 96%;
@@ -125,8 +125,8 @@
   /* Ice Performance — cool, restrained surfaces for app and marketing.
      The class name remains for compatibility with saved application code. */
   .theme-neon {
-    --background: 210 29% 97%;
-    --foreground: 221 39% 11%;
+    --background: 210 25% 97%;
+    --foreground: 218 58% 9%;
 
     --card: 0 0% 100%;
     --card-foreground: 221 39% 11%;
@@ -134,7 +134,7 @@
     --popover: 0 0% 100%;
     --popover-foreground: 221 39% 11%;
 
-    --primary: 211 51% 20%;
+    --primary: 216 64% 12%;
     --primary-foreground: 210 29% 98%;
 
     --secondary: 210 29% 94%;
@@ -143,17 +143,17 @@
     --muted: 207 27% 95%;
     --muted-foreground: 215 16% 42%;
 
-    --accent: 207 31% 52%;
+    --accent: 198 58% 48%;
     --accent-foreground: 210 29% 98%;
 
     --destructive: 4 58% 52%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 210 23% 88%;
+    --border: 211 20% 80%;
     --input: 210 23% 84%;
     --ring: 207 31% 52%;
 
-    --radius: 1rem;
+    --radius: 0.25rem;
 
     --lime: 194 30% 46%;
     --violet: 216 24% 48%;
@@ -434,28 +434,28 @@
     @apply font-semibold tracking-tight;
     font-family: var(--font-serif);
     font-feature-settings: "ss01" 1, "ss02" 1;
-    letter-spacing: -0.01em;
+    letter-spacing: 0;
   }
 
-  h1 { letter-spacing: -0.02em; }
+  h1 { letter-spacing: 0; }
 }
 
 @layer components {
   /* Signed-in product system. Kept scoped so the public site is unchanged. */
   .authenticated-app {
-    --background: 210 33% 98%;
-    --foreground: 221 48% 10%;
+    --background: 210 25% 97%;
+    --foreground: 218 58% 9%;
     --card: 0 0% 100%;
     --card-foreground: 221 48% 10%;
-    --primary: 215 57% 18%;
+    --primary: 216 64% 12%;
     --primary-foreground: 210 40% 98%;
     --secondary: 210 30% 94%;
     --secondary-foreground: 218 38% 20%;
     --muted: 210 25% 95%;
     --muted-foreground: 216 15% 42%;
-    --accent: 202 67% 45%;
+    --accent: 198 58% 48%;
     --accent-foreground: 210 40% 98%;
-    --border: 214 24% 87%;
+    --border: 211 20% 80%;
     --input: 214 24% 82%;
     --ring: 202 67% 45%;
     font-family: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
@@ -472,7 +472,7 @@
   }
 
   .app-page-title {
-    @apply text-2xl font-bold leading-tight text-foreground sm:text-3xl;
+    @apply text-3xl font-extrabold leading-tight text-foreground sm:text-4xl;
   }
 
   .app-page-subtitle {
@@ -480,11 +480,11 @@
   }
 
   .app-section-label {
-    @apply text-xs font-semibold text-muted-foreground;
+    @apply font-mono text-[10px] font-medium uppercase text-muted-foreground;
   }
 
   .app-panel {
-    @apply rounded-lg border border-border bg-card;
+    @apply rounded-sm border border-border bg-card;
   }
 
   .app-row {
@@ -591,6 +591,89 @@
   }
   .section-card-psych {
     @apply bg-grape/40 border border-grape-foreground/20;
+  }
+}
+
+/* SkateGoals V2 — Edge Line public system and notebook-style athlete workspace. */
+@layer components {
+  .font-display { font-family: var(--font-serif); }
+
+  .editorial-kicker {
+    @apply font-mono text-[10px] font-medium uppercase;
+    letter-spacing: 0.12em;
+    color: currentColor;
+    opacity: 0.68;
+  }
+
+  .public-editorial > section,
+  .public-section {
+    position: relative;
+  }
+
+  .public-editorial > section::before,
+  .public-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: max(1.25rem, calc((100vw - 72rem) / 2));
+    width: 3rem;
+    height: 1px;
+    background: hsl(var(--accent));
+  }
+
+  .edge-hero::after {
+    content: '';
+    pointer-events: none;
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: min(46vw, 44rem);
+    opacity: 0.18;
+    background-image: linear-gradient(to right, hsl(var(--primary-foreground) / 0.22) 1px, transparent 1px);
+    background-size: 6rem 100%;
+  }
+
+  .app-workspace::before {
+    content: '';
+    display: block;
+    width: 3rem;
+    height: 2px;
+    margin-bottom: 1.75rem;
+    background: hsl(var(--accent));
+  }
+
+  .app-sequence > header {
+    padding-bottom: 2rem;
+    border-bottom: 1px solid hsl(var(--border));
+  }
+
+  .app-step {
+    position: relative;
+    padding: 1.75rem 0;
+    border-bottom: 1px solid hsl(var(--border));
+  }
+
+  .auth-edge {
+    @apply min-h-screen bg-background;
+  }
+
+  .auth-edge-layout {
+    @apply mx-auto grid min-h-screen w-full max-w-7xl lg:grid-cols-[0.9fr_1.1fr];
+  }
+
+  .auth-edge-brand {
+    @apply relative hidden overflow-hidden border-r border-border bg-primary text-primary-foreground lg:block;
+  }
+
+  .auth-edge-form {
+    @apply flex min-h-screen items-start justify-center px-4 py-5 sm:px-8 lg:items-center lg:px-16;
+  }
+
+  .auth-edge-card {
+    @apply rounded-none border-x-0 border-b-0 border-t border-border bg-transparent shadow-none;
+  }
+
+  .auth-edge-card [role="tablist"] {
+    @apply rounded-none border-b border-border bg-transparent p-0;
   }
 }
 

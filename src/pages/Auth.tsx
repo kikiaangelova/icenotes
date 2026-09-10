@@ -6,11 +6,14 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Loader2, Mail, Lock, User, ArrowLeft, CheckCircle2, Snowflake, ShieldCheck } from 'lucide-react';
+import { Loader2, Mail, Lock, User, ArrowLeft, CheckCircle2, ShieldCheck } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { Seo } from '@/components/Seo';
 import { lovable } from '@/integrations/lovable';
+import heroVideo from '@/assets/hero-skater-girl.mp4.asset.json';
+import { HeroVideo } from '@/components/landing/HeroVideo';
+import { SkateGoalsMark } from '@/components/landing/SkateGoalsMark';
 
 const GoogleIcon = () => (
   <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true">
@@ -22,6 +25,21 @@ const GoogleIcon = () => (
 );
 
 type AuthView = 'auth' | 'forgot' | 'reset';
+
+const AuthVisual: React.FC<{ tagline: string }> = ({ tagline }) => (
+  <aside className="auth-edge-brand">
+    <HeroVideo src={heroVideo.url} className="absolute inset-0 h-full w-full" filter="saturate(0.65) contrast(1.15) brightness(0.52)" />
+    <div className="absolute inset-0 bg-primary/35" />
+    <div className="relative z-10 flex h-full flex-col justify-between p-12">
+      <div className="flex items-center gap-3 font-display text-xl font-bold">
+        <SkateGoalsMark className="h-8 w-8" /> SkateGoals
+      </div>
+      <div className="max-w-md border-t border-primary-foreground/35 pt-6">
+        <p className="font-display text-4xl font-bold leading-tight">{tagline}</p>
+      </div>
+    </div>
+  </aside>
+);
 
 const Auth: React.FC = () => {
   const { signIn, signUp, resetPassword, updatePassword, session } = useAuth();
@@ -261,23 +279,25 @@ const Auth: React.FC = () => {
   // Reset password view
   if (view === 'reset') {
     return (
-      <div className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-b from-ice/30 to-background">
+      <div className="auth-edge">
         <Seo title={t('seo.auth.reset.title')} description={t('seo.auth.reset.desc')} path="/auth?mode=reset" />
-        <div className="w-full max-w-md">
+        <div className="auth-edge-layout">
+          <AuthVisual tagline={t('auth.tagline')} />
+          <div className="auth-edge-form"><div className="w-full max-w-md">
           <BackHome />
           <button
             type="button"
             onClick={() => navigate('/')}
             className="text-center w-full mb-8 group"
           >
-            <div className="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-br from-primary to-ice-deep flex items-center justify-center mb-4 group-hover:scale-105 transition-transform">
-              <Snowflake className="w-8 h-8 text-primary-foreground" />
+             <div className="w-12 h-12 mx-auto border border-border bg-primary flex items-center justify-center mb-4">
+               <SkateGoalsMark className="w-6 h-6 text-primary-foreground" />
             </div>
             <h1 className="text-2xl font-bold text-foreground font-serif">SkateGoals</h1>
             <p className="text-muted-foreground">{t('auth.reset.heading')}</p>
           </button>
 
-          <Card className="border-primary/10 shadow-lg">
+          <Card className="auth-edge-card">
             <CardHeader className="pb-4">
               <CardTitle className="text-xl text-center">{t('auth.reset.title')}</CardTitle>
               <CardDescription className="text-center">{t('auth.reset.desc')}</CardDescription>
@@ -329,6 +349,7 @@ const Auth: React.FC = () => {
               </form>
             </CardContent>
           </Card>
+          </div></div>
         </div>
       </div>
     );
@@ -337,23 +358,25 @@ const Auth: React.FC = () => {
   // Forgot password view
   if (view === 'forgot') {
     return (
-      <div className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-b from-ice/30 to-background">
+      <div className="auth-edge">
         <Seo title={t('seo.auth.forgot.title')} description={t('seo.auth.forgot.desc')} path="/auth?mode=forgot" />
-        <div className="w-full max-w-md">
+        <div className="auth-edge-layout">
+          <AuthVisual tagline={t('auth.tagline')} />
+          <div className="auth-edge-form"><div className="w-full max-w-md">
           <BackHome />
           <button
             type="button"
             onClick={() => navigate('/')}
             className="text-center w-full mb-8 group"
           >
-            <div className="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-br from-primary to-ice-deep flex items-center justify-center mb-4 group-hover:scale-105 transition-transform">
-              <Snowflake className="w-8 h-8 text-primary-foreground" />
+             <div className="w-12 h-12 mx-auto border border-border bg-primary flex items-center justify-center mb-4">
+               <SkateGoalsMark className="w-6 h-6 text-primary-foreground" />
             </div>
             <h1 className="text-2xl font-bold text-foreground font-serif">SkateGoals</h1>
             <p className="text-muted-foreground">{t('auth.forgot.heading')}</p>
           </button>
 
-          <Card className="border-primary/10 shadow-lg">
+          <Card className="auth-edge-card">
             <CardHeader className="pb-4">
               <CardTitle className="text-xl text-center">{t('auth.forgot.title')}</CardTitle>
               <CardDescription className="text-center">
@@ -425,6 +448,7 @@ const Auth: React.FC = () => {
               </button>
             </CardContent>
           </Card>
+          </div></div>
         </div>
       </div>
     );
@@ -432,23 +456,25 @@ const Auth: React.FC = () => {
 
   // Main auth view
   return (
-    <div className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-b from-ice/30 to-background">
+    <div className="auth-edge">
       <Seo title={t('seo.auth.title')} description={t('seo.auth.desc')} path="/auth" />
-      <div className="w-full max-w-md">
+      <div className="auth-edge-layout">
+        <AuthVisual tagline={t('auth.tagline')} />
+        <div className="auth-edge-form"><div className="w-full max-w-md">
         <BackHome />
         <button
           type="button"
           onClick={() => navigate('/')}
           className="text-center w-full mb-8 group"
         >
-          <div className="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-br from-primary to-ice-deep flex items-center justify-center mb-4 group-hover:scale-105 transition-transform">
-            <Snowflake className="w-8 h-8 text-primary-foreground" />
+          <div className="w-12 h-12 mx-auto border border-border bg-primary flex items-center justify-center mb-4">
+            <SkateGoalsMark className="w-6 h-6 text-primary-foreground" />
           </div>
           <h1 className="text-2xl font-bold text-foreground font-serif">SkateGoals</h1>
           <p className="text-muted-foreground">{t('auth.tagline')}</p>
         </button>
 
-        <Card className="border-primary/10 shadow-lg">
+        <Card className="auth-edge-card">
           <CardHeader className="pb-4">
             <CardTitle className="text-xl text-center">{t('auth.welcome')}</CardTitle>
             <CardDescription className="text-center">{t('auth.welcomeSubtitle')}</CardDescription>
@@ -628,6 +654,7 @@ const Auth: React.FC = () => {
         <p className="text-center text-xs text-muted-foreground mt-3 px-4">
           {t('auth.terms')}
         </p>
+        </div></div>
       </div>
     </div>
   );

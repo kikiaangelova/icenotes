@@ -26,20 +26,20 @@ export const Navbar: React.FC<NavbarProps> = ({ isDarkMode, onToggleDarkMode }) 
   ];
 
   return (
-    <header className="sticky top-3 md:top-5 z-50 w-full px-3 md:px-6 animate-float-soft">
-      <div className="max-w-5xl mx-auto glass-nav rounded-2xl px-4 md:px-6 h-14 md:h-16 flex items-center justify-between transition-shadow duration-300 hover:shadow-xl">
+    <header className="sticky top-0 z-50 w-full border-b border-border bg-background">
+      <div className="max-w-7xl mx-auto px-4 md:px-8 h-16 md:h-[72px] flex items-center justify-between">
         {/* Logo */}
         <Link to="/" className="flex items-center gap-2.5 shrink-0 group">
-          <div className="relative w-9 h-9 rounded-xl bg-accent flex items-center justify-center transition-transform duration-300 group-hover:scale-105">
-            <SkateGoalsMark className="w-5 h-5 text-accent-foreground" />
+          <div className="relative w-9 h-9 border border-border bg-primary flex items-center justify-center">
+            <SkateGoalsMark className="w-5 h-5 text-primary-foreground" />
           </div>
-          <span className="text-[17px] font-extrabold tracking-[-0.03em] text-foreground">
+          <span className="font-display text-[17px] font-bold text-foreground">
             SkateGoals
           </span>
         </Link>
 
         {/* Desktop nav */}
-        <nav className="hidden md:flex items-center gap-0.5">
+        <nav className="hidden md:flex items-stretch self-stretch">
           {NAV_LINKS.map((link) => {
             const Icon = link.icon;
             const active = location.pathname === link.href;
@@ -48,10 +48,10 @@ export const Navbar: React.FC<NavbarProps> = ({ isDarkMode, onToggleDarkMode }) 
                 key={link.href}
                 to={link.href}
                 className={cn(
-                  "px-3 py-2 rounded-xl text-sm font-semibold transition-all duration-200 flex items-center gap-1.5",
+                    "relative px-3 py-2 text-xs font-semibold transition-colors duration-150 flex items-center gap-1.5",
                   active
-                    ? "text-primary bg-primary/10"
-                    : "text-muted-foreground hover:text-foreground hover:bg-muted/60 hover:scale-[1.03]"
+                    ? "text-primary after:absolute after:inset-x-3 after:bottom-0 after:h-0.5 after:bg-accent"
+                    : "text-muted-foreground hover:text-foreground"
                 )}
               >
                 <Icon className={cn("w-4 h-4 transition-transform", active ? "" : "group-hover:scale-110")} />
@@ -68,17 +68,17 @@ export const Navbar: React.FC<NavbarProps> = ({ isDarkMode, onToggleDarkMode }) 
             variant="ghost"
             size="icon"
             onClick={onToggleDarkMode}
-            className="rounded-xl w-9 h-9"
+            className="rounded-sm w-9 h-9"
           >
             {isDarkMode ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
           </Button>
           <Link to="/auth">
-            <Button variant="ghost" size="sm" className="font-semibold rounded-xl px-4">
+            <Button variant="ghost" size="sm" className="font-semibold rounded-sm px-4">
               {t('nav.login')}
             </Button>
           </Link>
           <Link to="/auth?mode=signup">
-            <Button size="sm" className="font-bold rounded-xl px-5 shadow-sm">
+            <Button size="sm" className="font-bold rounded-sm px-5">
               {t('nav.getStarted')}
             </Button>
           </Link>
@@ -91,7 +91,7 @@ export const Navbar: React.FC<NavbarProps> = ({ isDarkMode, onToggleDarkMode }) 
             size="icon"
             aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="rounded-xl w-10 h-10"
+            className="rounded-sm w-10 h-10"
           >
             {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </Button>
@@ -100,7 +100,7 @@ export const Navbar: React.FC<NavbarProps> = ({ isDarkMode, onToggleDarkMode }) 
 
       {/* Mobile menu */}
       {mobileOpen && (
-        <div className="md:hidden border-t border-border/30 bg-background/95 backdrop-blur-xl animate-fade-in">
+        <div className="md:hidden border-b border-border bg-background animate-fade-in">
           <nav className="flex flex-col px-5 py-4 gap-1">
             {NAV_LINKS.map((link) => {
               const Icon = link.icon;
@@ -111,10 +111,10 @@ export const Navbar: React.FC<NavbarProps> = ({ isDarkMode, onToggleDarkMode }) 
                   to={link.href}
                   onClick={() => setMobileOpen(false)}
                   className={cn(
-                    "px-4 py-3 rounded-xl text-sm font-semibold transition-all flex items-center gap-3",
+                    "px-4 py-3 border-b border-border text-sm font-semibold transition-colors flex items-center gap-3",
                     active
-                      ? "text-primary bg-primary/10"
-                      : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
+                      ? "text-primary border-l-2 border-l-accent"
+                      : "text-muted-foreground hover:text-foreground"
                   )}
                 >
                   <Icon className="w-4 h-4" />
@@ -124,12 +124,12 @@ export const Navbar: React.FC<NavbarProps> = ({ isDarkMode, onToggleDarkMode }) 
             })}
             <div className="border-t border-border/30 mt-3 pt-4 flex flex-col gap-2.5">
               <Link to="/auth" onClick={() => setMobileOpen(false)}>
-                <Button variant="outline" className="w-full font-semibold rounded-xl h-11">
+                <Button variant="outline" className="w-full font-semibold rounded-sm h-11">
                   {t('nav.login')}
                 </Button>
               </Link>
               <Link to="/auth?mode=signup" onClick={() => setMobileOpen(false)}>
-                <Button className="w-full font-bold rounded-xl h-11 shadow-sm">
+                <Button className="w-full font-bold rounded-sm h-11">
                   {t('nav.getStarted')}
                 </Button>
               </Link>
@@ -141,7 +141,7 @@ export const Navbar: React.FC<NavbarProps> = ({ isDarkMode, onToggleDarkMode }) 
                 size="icon"
                 aria-label="Toggle theme"
                 onClick={onToggleDarkMode}
-                className="rounded-xl w-10 h-10"
+                className="rounded-sm w-10 h-10"
               >
                 {isDarkMode ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
               </Button>
