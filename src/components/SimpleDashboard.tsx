@@ -354,7 +354,9 @@ export const SimpleDashboard: React.FC = () => {
 
       <GameDayMode open={gameDayOpen} onOpenChange={setGameDayOpen} />
 
-      <GuidedTour setActiveTab={(tab) => setActiveTab(tab === 'today' ? 'today' : tab)} />
+      {tourOpen && (
+        <GuidedTour autoStart setActiveTab={(tab) => setActiveTab(tab === 'today' ? 'today' : tab)} />
+      )}
     </div>
   );
 };
