@@ -3,4 +3,4 @@
 - [x] Consolidate every existing-user and post-login path onto the single SkateGoals shell
 - [x] Remove legacy branding, navigation, gamification, and dashboard presentation from active runtime
 - [x] Add editable stored display name to Profile/Settings without changing data contracts
-- [ ] Run typecheck, production build, and complete authenticated responsive QA
+- [x] Run typecheck, production build, and complete authenticated responsive QA
