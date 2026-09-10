@@ -192,16 +192,6 @@ export const SimpleDashboard: React.FC = () => {
           </div>
         )}
         <div className="flex items-center gap-1.5 flex-shrink-0">
-          <ExportButton />
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={() => goTab('today')}
-            aria-label={t('nav5.today')}
-            className="text-muted-foreground h-11 w-11 rounded-xl"
-          >
-            <HomeIcon className="w-5 h-5" />
-          </Button>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="ghost" size="icon" className="text-muted-foreground h-11 w-11 rounded-xl" aria-label="Settings">
