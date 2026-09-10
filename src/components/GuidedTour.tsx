@@ -39,7 +39,7 @@ interface GuidedTourProps {
   autoStart?: boolean;
 }
 
-export const GuidedTour: React.FC<GuidedTourProps> = ({ setActiveTab }) => {
+export const GuidedTour: React.FC<GuidedTourProps> = ({ setActiveTab, autoStart = false }) => {
   const { profile } = useJournal();
   const { toast } = useToast();
   const { t } = useLanguage();
@@ -48,16 +48,10 @@ export const GuidedTour: React.FC<GuidedTourProps> = ({ setActiveTab }) => {
   const [selected, setSelected] = useState<string[]>([]);
   const [customGoal, setCustomGoal] = useState('');
 
-  // Auto-open for first-time users once their profile is loaded
+  // Opt-in only: opened from an explicit deep link, never automatically.
   useEffect(() => {
-    if (!profile) return;
-    try {
-      const done = localStorage.getItem(TOUR_KEY);
-      if (!done) setOpen(true);
-    } catch {
-      /* noop */
-    }
-  }, [profile]);
+    if (autoStart) setOpen(true);
+  }, [autoStart]);
 
   const totalSteps = 4;
   const progress = ((step + 1) / totalSteps) * 100;
