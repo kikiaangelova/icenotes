@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Snowflake, ChevronDown } from 'lucide-react';
+import { ChevronDown } from 'lucide-react';
+import { SkateGoalsMark } from '@/components/landing/SkateGoalsMark';
 import { useLanguage } from '@/context/LanguageContext';
 import { cn } from '@/lib/utils';
 
@@ -37,6 +38,7 @@ export const Footer: React.FC = () => {
       links: [
         { label: t('footer.contact'), href: '/contact' },
         { label: t('footer.privacy'), href: '/privacy' },
+        { label: t('fb.nav'), href: '/feedback' },
         { label: t('footer.login'), href: '/auth' },
         { label: t('footer.signup'), href: '/auth?mode=signup' },
       ],
@@ -53,10 +55,8 @@ export const Footer: React.FC = () => {
           {/* Brand */}
           <div className="space-y-3">
             <Link to="/" className="inline-flex items-center gap-2.5 group">
-              <div className="w-9 h-9 rounded-2xl bg-gradient-to-br from-primary via-grape-foreground to-rose-foreground flex items-center justify-center shadow-sm group-hover:shadow-md group-hover:-rotate-6 transition-all duration-300">
-                <Snowflake className="w-4 h-4 text-primary-foreground" />
-              </div>
-              <span className="text-base font-black text-foreground font-serif tracking-tight">SkateGoals</span>
+              <SkateGoalsMark className="w-8 h-8 text-primary" />
+              <span className="text-base font-bold text-foreground tracking-tight">SkateGoals</span>
             </Link>
             <p className="text-sm text-muted-foreground leading-relaxed max-w-xs">
               {t('footer.tagline')}
