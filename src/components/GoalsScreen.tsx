@@ -102,8 +102,14 @@ export const GoalsScreen: React.FC<Props> = ({ onOpenWeeklyReview, onOpenCompeti
     setEditing(null);
   };
 
-  const complete = (goal: SkatingGoal) =>
-    updateGoal(goal.id, { completed: !goal.completed, progress: goal.completed ? goal.progress : 100 });
+  const complete = (goal: SkatingGoal) => {
+    const closing = !goal.completed;
+    updateGoal(goal.id, { completed: closing, progress: goal.completed ? goal.progress : 100 });
+    // Don't leave Today pointing at a focus the athlete just closed.
+    if (closing && profile && profile.mainFocus?.trim() === goal.title.trim()) {
+      setProfile({ ...profile, mainFocus: '' });
+    }
+  };
 
   const markStepDone = (goal: SkatingGoal) => {
     const meta = parseMeta(goal.notes);
