@@ -257,7 +257,9 @@ export const JournalProvider: React.FC<{ children: ReactNode }> = ({ children })
     getWeeklyProgress,
     goals,
     addGoal,
+    addGoalAsync,
     updateGoal,
+    updateGoalAsync,
     deleteGoal,
     getJourneyStats,
     resetProfile
