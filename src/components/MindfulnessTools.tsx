@@ -5,7 +5,7 @@ import { Badge } from '@/components/ui/badge';
 import { Textarea } from '@/components/ui/textarea';
 import { Input } from '@/components/ui/input';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
-import { Wind, Eye, Heart, Sparkles, Play, Pause, RotateCcw, ChevronLeft, ChevronRight, Check } from 'lucide-react';
+import { Wind, Eye, NotebookPen, MessageSquareText, Play, Pause, RotateCcw, ChevronLeft, ChevronRight, Check } from 'lucide-react';
 import { useMindfulnessTools } from '@/hooks/useMindfulnessTools';
 import { useLanguage } from '@/context/LanguageContext';
 import { toast } from 'sonner';
@@ -23,8 +23,8 @@ const VISUALIZATION_KEYS = ['mt.viz.s1', 'mt.viz.s2', 'mt.viz.s3', 'mt.viz.s4', 
 // Comfortable paced breathing. The stored usage identifier stays unchanged
 // for compatibility with existing history.
 const PHASES = [
-  { labelKey: 'mt.breathing.phase.inhale', seconds: 4, color: 'text-purple-500' },
-  { labelKey: 'mt.breathing.phase.exhale', seconds: 6, color: 'text-purple-400' },
+  { labelKey: 'mt.breathing.phase.inhale', seconds: 4 },
+  { labelKey: 'mt.breathing.phase.exhale', seconds: 6 },
 ] as const;
 
 const interp = (s: string, vars: Record<string, string | number>) =>
@@ -50,19 +50,19 @@ export const MindfulnessTools: React.FC = () => {
     }, 1000 * 60 * 60); // 1h
   };
 
-  const tools: Array<{ key: Exclude<ToolKey, null>; titleKey: string; descKey: string; icon: any; gradient: string }> = [
-    { key: 'breathing', titleKey: 'mt.breathing.title', descKey: 'mt.breathing.desc', icon: Wind, gradient: 'from-purple-500/15 to-purple-300/5' },
-    { key: 'visualization', titleKey: 'mt.viz.title', descKey: 'mt.viz.desc', icon: Eye, gradient: 'from-purple-500/15 to-pink-300/5' },
-    { key: 'gratitude', titleKey: 'mt.gratitude.title', descKey: 'mt.gratitude.desc', icon: Heart, gradient: 'from-pink-400/15 to-purple-300/5' },
-    { key: 'affirmations', titleKey: 'mt.aff.title', descKey: 'mt.aff.desc', icon: Sparkles, gradient: 'from-purple-400/15 to-purple-200/5' },
+  const tools: Array<{ key: Exclude<ToolKey, null>; titleKey: string; descKey: string; icon: any }> = [
+    { key: 'breathing', titleKey: 'mt.breathing.title', descKey: 'mt.breathing.desc', icon: Wind },
+    { key: 'visualization', titleKey: 'mt.viz.title', descKey: 'mt.viz.desc', icon: Eye },
+    { key: 'gratitude', titleKey: 'mt.gratitude.title', descKey: 'mt.gratitude.desc', icon: NotebookPen },
+    { key: 'affirmations', titleKey: 'mt.aff.title', descKey: 'mt.aff.desc', icon: MessageSquareText },
   ];
 
   return (
     <>
-      <Card className="border-purple-200/40">
+      <Card className="rounded-lg border-border shadow-none">
         <CardContent className="p-4 space-y-3">
           <div className="flex items-center gap-2">
-            <Sparkles className="w-4 h-4 text-purple-500" />
+            <Brain className="w-4 h-4 text-accent" />
             <h3 className="font-medium">{t('mt.heading')}</h3>
           </div>
           <p className="text-xs text-muted-foreground">{t('mt.intro')}</p>
@@ -77,11 +77,11 @@ export const MindfulnessTools: React.FC = () => {
               >
                 <button
                   onClick={() => setOpen(tool.key)}
-                  className={`w-full text-left p-4 rounded-xl border border-purple-200/40 bg-gradient-to-br ${tool.gradient} hover:border-purple-400/60 transition-all min-h-[88px]`}
+                  className="min-h-[88px] w-full rounded-md border border-border bg-card p-4 text-left transition-colors hover:border-accent"
                 >
                   <div className="flex items-start gap-3">
-                    <div className="w-10 h-10 rounded-lg bg-purple-500/15 flex items-center justify-center flex-shrink-0">
-                      <tool.icon className="w-5 h-5 text-purple-600" />
+                    <div className="w-10 h-10 rounded-md bg-secondary flex items-center justify-center flex-shrink-0">
+                      <tool.icon className="w-5 h-5 text-accent" />
                     </div>
                     <div>
                       <p className="font-medium text-sm">{t(tool.titleKey)}</p>
@@ -169,7 +169,7 @@ const BreathingDialog: React.FC<{ open: boolean; onClose: () => void }> = ({ ope
       <DialogContent className="max-w-md">
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2">
-            <Wind className="w-5 h-5 text-purple-500" /> {t('mt.breathing.title')}
+            <Wind className="w-5 h-5 text-accent" /> {t('mt.breathing.title')}
           </DialogTitle>
           <DialogDescription>{t('mt.breathing.subtitle')}</DialogDescription>
         </DialogHeader>
@@ -177,20 +177,20 @@ const BreathingDialog: React.FC<{ open: boolean; onClose: () => void }> = ({ ope
         <div className="flex flex-col items-center gap-6 py-6">
           <div className="relative w-48 h-48 flex items-center justify-center">
             <div
-              className="absolute inset-0 rounded-full bg-gradient-to-br from-purple-400/40 to-purple-600/30 transition-transform duration-1000 ease-in-out"
+              className="absolute inset-0 rounded-full bg-accent/20 transition-transform duration-1000 ease-in-out"
               style={{ transform: `scale(${running ? scale : 1})` }}
             />
             <div className="relative text-center">
-              <p className={`text-xl font-medium ${phase.color}`}>{t(phase.labelKey)}</p>
-              <p className="text-5xl font-bold text-purple-700 mt-1">{secondsLeft}</p>
+              <p className="text-xl font-medium text-accent">{t(phase.labelKey)}</p>
+              <p className="text-5xl font-bold text-foreground mt-1">{secondsLeft}</p>
             </div>
           </div>
-          <Badge variant="outline" className="text-purple-600 border-purple-300">
+          <Badge variant="outline" className="text-muted-foreground border-border">
             {interp(t('mt.breathing.cycle'), { count: cycles })}
           </Badge>
           <div className="flex gap-2">
             {!running ? (
-              <Button onClick={start} className="bg-purple-500 hover:bg-purple-600 h-12">
+              <Button onClick={start} className="h-12">
                 <Play className="w-4 h-4 mr-2" /> {t('mt.breathing.start')}
               </Button>
             ) : (
@@ -237,7 +237,7 @@ const VisualizationDialog: React.FC<{ open: boolean; onClose: () => void }> = ({
       <DialogContent className="max-w-md">
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2">
-            <Eye className="w-5 h-5 text-purple-500" /> {t('mt.viz.title')}
+            <Eye className="w-5 h-5 text-accent" /> {t('mt.viz.title')}
           </DialogTitle>
           <DialogDescription>
             {interp(t('mt.viz.step'), { current: step + 1, total: VISUALIZATION_KEYS.length })}
@@ -256,7 +256,7 @@ const VisualizationDialog: React.FC<{ open: boolean; onClose: () => void }> = ({
           </div>
         )}
 
-        <div className="bg-purple-500/5 border border-purple-200/40 rounded-xl p-5 min-h-[140px] flex items-center">
+        <div className="bg-muted/50 border border-border rounded-md p-5 min-h-[140px] flex items-center">
           <p className="text-base leading-relaxed">{t(VISUALIZATION_KEYS[step])}</p>
         </div>
 
@@ -273,16 +273,16 @@ const VisualizationDialog: React.FC<{ open: boolean; onClose: () => void }> = ({
             {VISUALIZATION_KEYS.map((_, i) => (
               <div
                 key={i}
-                className={`h-1.5 rounded-full transition-all ${i === step ? 'w-6 bg-purple-500' : 'w-1.5 bg-purple-200'}`}
+                className={`h-1.5 transition-all ${i === step ? 'w-6 bg-accent' : 'w-1.5 bg-border'}`}
               />
             ))}
           </div>
           {step < VISUALIZATION_KEYS.length - 1 ? (
-            <Button onClick={() => setStep((s) => s + 1)} className="bg-purple-500 hover:bg-purple-600 h-12">
+            <Button onClick={() => setStep((s) => s + 1)} className="h-12">
               <ChevronRight className="w-4 h-4" />
             </Button>
           ) : (
-            <Button onClick={finish} disabled={saving || completed} className="bg-purple-500 hover:bg-purple-600 h-12">
+            <Button onClick={finish} disabled={saving || completed} className="h-12">
               <Check className="w-4 h-4 mr-1" /> {t('mt.viz.complete')}
             </Button>
           )}
@@ -319,7 +319,7 @@ const GratitudeDialog: React.FC<{ open: boolean; onClose: () => void }> = ({ ope
       <DialogContent className="max-w-md">
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2">
-            <Heart className="w-5 h-5 text-pink-500" /> {t('mt.gratitude.title')}
+            <NotebookPen className="w-5 h-5 text-accent" /> {t('mt.gratitude.title')}
           </DialogTitle>
           <DialogDescription>{t('mt.gr.subtitle')}</DialogDescription>
         </DialogHeader>
@@ -328,7 +328,7 @@ const GratitudeDialog: React.FC<{ open: boolean; onClose: () => void }> = ({ ope
           {items.map((val, i) => (
             <div key={i} className="space-y-1">
               <label className="text-xs font-medium text-muted-foreground flex items-center gap-2">
-                <span className="w-5 h-5 rounded-full bg-pink-500/15 text-pink-600 flex items-center justify-center text-xs">
+                <span className="w-5 h-5 rounded bg-secondary text-primary flex items-center justify-center text-xs">
                   {i + 1}
                 </span>
                 {t('mt.gr.label')}
@@ -344,7 +344,7 @@ const GratitudeDialog: React.FC<{ open: boolean; onClose: () => void }> = ({ ope
           ))}
         </div>
 
-        <Button onClick={save} disabled={saving} className="w-full h-12 bg-pink-500 hover:bg-pink-600">
+        <Button onClick={save} disabled={saving} className="w-full h-12">
           <Check className="w-4 h-4 mr-2" /> {t('mt.gr.save')}
         </Button>
       </DialogContent>
@@ -373,13 +373,13 @@ const AffirmationsDialog: React.FC<{ open: boolean; onClose: () => void }> = ({ 
       <DialogContent className="max-w-md">
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2">
-            <Sparkles className="w-5 h-5 text-purple-500" /> {t('mt.aff.title')}
+            <MessageSquareText className="w-5 h-5 text-accent" /> {t('mt.aff.title')}
           </DialogTitle>
           <DialogDescription>{t('mt.aff.subtitle')}</DialogDescription>
         </DialogHeader>
 
-        <div className="bg-gradient-to-br from-purple-500/10 to-pink-300/10 border border-purple-200/40 rounded-2xl p-6 min-h-[160px] flex items-center justify-center text-center">
-          <p className="text-lg font-medium leading-relaxed text-purple-900">
+        <div className="bg-muted/50 border border-border rounded-md p-6 min-h-[160px] flex items-center justify-center text-center">
+          <p className="text-lg font-medium leading-relaxed text-foreground">
             {current}
           </p>
         </div>
@@ -396,8 +396,8 @@ const AffirmationsDialog: React.FC<{ open: boolean; onClose: () => void }> = ({ 
           </Button>
         </div>
 
-        <Button onClick={save} disabled={saving} className="w-full h-12 bg-purple-500 hover:bg-purple-600">
-          <Heart className="w-4 h-4 mr-2" /> {t('mt.aff.save')}
+        <Button onClick={save} disabled={saving} className="w-full h-12">
+          <Check className="w-4 h-4 mr-2" /> {t('mt.aff.save')}
         </Button>
       </DialogContent>
     </Dialog>
