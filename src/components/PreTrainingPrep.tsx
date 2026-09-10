@@ -17,31 +17,28 @@ import {
   Heart,
   Timer,
   ChevronRight,
-  Zap
 } from 'lucide-react';
 
 const PRE_SKATE_CHECKLIST = (bg: boolean) => [
-  { id: 'hydrate', label: bg ? 'Пих достатъчно вода' : 'Hydrated and ready', icon: '💧' },
-  { id: 'warmup', label: bg ? 'Тялото е загрято' : 'Body is warmed up', icon: '🔥' },
-  { id: 'equipment', label: bg ? 'Кънките и екипът са проверени' : 'Skates and gear checked', icon: '⛸️' },
-  { id: 'focus', label: bg ? 'Знам върху какво искам да се фокусирам' : 'Head is clear and focused', icon: '🎯' },
-  { id: 'intention', label: bg ? 'Имам намерение за тази тренировка' : 'I have an intention for this session', icon: '✨' },
+  { id: 'plan', label: bg ? 'Знам плана за тази тренировка' : 'I know the plan for this session', icon: '1' },
+  { id: 'equipment', label: bg ? 'Проверих кънките и екипировката' : 'I checked my skates and equipment', icon: '2' },
+  { id: 'coach', label: bg ? 'Знам какво да уточня с треньора' : 'I know what to clarify with my coach', icon: '3' },
+  { id: 'focus', label: bg ? 'Избрах един фокус за началото' : 'I chose one focus for the start', icon: '4' },
 ];
 
 const FOCUS_REMINDERS = (bg: boolean) => [
-  { text: bg ? "Довери се на подготовката си. Тялото ти помни." : "Trust your training. You're prepared for this.", icon: Target },
-  { text: bg ? "Бъди тук и сега. Един елемент в един момент." : "Be here now. One element at a time.", icon: Brain },
-  { text: bg ? "Дишай дълбоко. Остави напрежението да си тръгне." : "Breathe deep. Let the tension go.", icon: Wind },
-  { text: bg ? "Усети леда под себе си. Бъди тук." : "Embrace the ice. This is your place.", icon: Heart },
-  { text: bg ? "Качество, не количество." : "Quality, not quantity.", icon: Sparkles },
-  { text: bg ? "Тялото ти знае какво да прави." : "Your body knows what to do.", icon: Zap },
+  { text: bg ? 'Следвай плана, който вече имаш.' : 'Follow the plan you already have.', icon: Target },
+  { text: bg ? 'Един елемент наведнъж.' : 'One element at a time.', icon: Brain },
+  { text: bg ? 'По-бавно издишване, после към задачата.' : 'A slower exhale, then back to the task.', icon: Wind },
+  { text: bg ? 'Забележи напрежението, без да спориш с него.' : 'Notice the tension without arguing with it.', icon: Heart },
+  { text: bg ? 'Върни вниманието към една ясна насока.' : 'Return attention to one clear cue.', icon: Sparkles },
 ];
 
 const QUICK_BREATHING = (bg: boolean) => ({
-  name: bg ? 'Бързо центриране с дъх' : 'Quick breath centering',
-  description: bg ? 'Центрирай се, преди да стъпиш на леда' : 'Center yourself before you step on the ice',
-  steps: bg ? ['Поеми въздух', 'Задръж', 'Издишай бавно'] : ['Breathe in', 'Hold', 'Exhale slowly'],
-  durations: [4, 2, 6],
+  name: bg ? 'Ритмично дишане' : 'Paced breathing',
+  description: bg ? 'По желание: вдишай за 4 и издишай за 6. Спри при дискомфорт.' : 'Optional: breathe in for 4 and out for 6. Stop if uncomfortable.',
+  steps: bg ? ['Вдишай', 'Издишай бавно'] : ['Breathe in', 'Breathe out slowly'],
+  durations: [4, 6],
   rounds: 3,
 });
 
@@ -141,7 +138,7 @@ export const PreTrainingPrep: React.FC<PreTrainingPrepProps> = ({
           {trainingType === 'on-ice' ? L('Before you step on the ice', 'Преди да стъпиш на леда') : L('Before the session', 'Преди тренировката')}
         </h2>
         <p className="text-sm text-muted-foreground">
-          {L('Take a minute to get your mind and body ready', 'Отдели минута, за да подготвиш ума и тялото си')}
+          {L('Check the plan, choose a focus, and use the breathing only if it helps.', 'Провери плана, избери фокус и използвай дишането само ако ти е полезно.')}
         </p>
       </div>
 
@@ -186,7 +183,7 @@ export const PreTrainingPrep: React.FC<PreTrainingPrepProps> = ({
                     onCheckedChange={() => handleToggleItem(item.id)}
                     className="data-[state=checked]:bg-mental data-[state=checked]:border-mental"
                   />
-                  <span className="text-lg">{item.icon}</span>
+                  <span className="w-6 h-6 rounded-full bg-muted flex items-center justify-center text-xs font-semibold">{item.icon}</span>
                   <span className={checkedItems.has(item.id) ? 'text-foreground' : 'text-muted-foreground'}>
                     {item.label}
                   </span>
@@ -197,23 +194,13 @@ export const PreTrainingPrep: React.FC<PreTrainingPrepProps> = ({
             <Button
               onClick={() => setStep('breathing')}
               className="w-full bg-mental hover:bg-mental/90"
-              disabled={!allChecked}
             >
-              {allChecked ? (
-                <>
-                  {L('To breathing', 'Към дишането')}
-                  <ChevronRight className="w-4 h-4 ml-1" />
-                </>
-              ) : (
-                L(`Check everything (${checkedItems.size}/${PRE_SKATE.length})`, `Отметни всичко (${checkedItems.size}/${PRE_SKATE.length})`)
-              )}
+              {L('Continue', 'Продължи')}
+              <ChevronRight className="w-4 h-4 ml-1" />
             </Button>
-
-            {!allChecked && (
-              <p className="text-center text-xs text-muted-foreground">
-                {L('Check everything off when you’re ready', 'Отметни всичко, преди да продължиш')}
-              </p>
-            )}
+            <p className="text-center text-xs text-muted-foreground">
+              {L('Use only the checks that are relevant today.', 'Отбележи само това, което е важно днес.')}
+            </p>
           </CardContent>
         </Card>
       )}
@@ -239,18 +226,8 @@ export const PreTrainingPrep: React.FC<PreTrainingPrepProps> = ({
               const secondsRemaining = isBreathing
                 ? Math.max(0, Math.ceil(phaseDuration - (breathProgress / 100) * phaseDuration))
                 : phaseDuration;
-              const targetScale = isBreathing
-                ? breathStep === 0
-                  ? 1.3
-                  : breathStep === 1
-                    ? 1.3
-                    : 0.8
-                : 1;
-              const targetOpacity = isBreathing
-                ? breathStep === 2
-                  ? 0.6
-                  : 1.0
-                : 0.6;
+              const targetScale = isBreathing ? (breathStep === 0 ? 1.3 : 0.8) : 1;
+              const targetOpacity = isBreathing ? (breathStep === 1 ? 0.6 : 1) : 0.6;
               return (
                 <div className="relative mx-auto w-40 h-40">
                   <div
@@ -356,13 +333,12 @@ export const PreTrainingPrep: React.FC<PreTrainingPrepProps> = ({
                   onClick={handleComplete}
                   className="bg-mental hover:bg-mental/90"
                 >
-                  <Sparkles className="w-4 h-4 mr-2" />
-                  {L("I'm ready", 'Готово, към тренировката')}
+                    {L('Use this focus', 'Използвай този фокус')}
                 </Button>
               </div>
 
               <p className="text-xs text-muted-foreground">
-                {L('Carry this intention with you onto the ice', 'Занеси това намерение със себе си на леда')}
+                {L('Return to it when attention moves away from the task.', 'Върни се към него, когато вниманието се отклони от задачата.')}
               </p>
             </div>
           </CardContent>
@@ -377,9 +353,9 @@ export const PreTrainingPrep: React.FC<PreTrainingPrepProps> = ({
               <div className="w-20 h-20 mx-auto rounded-full bg-mental/30 flex items-center justify-center">
                 <CheckCircle2 className="w-10 h-10 text-mental" />
               </div>
-              <h3 className="text-xl font-medium">{L("You're ready!", 'Подготовката приключи!')}</h3>
+              <h3 className="text-xl font-medium">{L('Focus set', 'Фокусът е избран')}</h3>
               <p className="text-muted-foreground">
-                {L('Go show the ice what you’ve got ✨', 'Покажи на леда какво можеш ✨')}
+                {L('Continue to the session plan.', 'Продължи към плана за тренировката.')}
               </p>
             </div>
           </CardContent>

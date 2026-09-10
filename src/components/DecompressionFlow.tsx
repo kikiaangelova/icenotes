@@ -18,7 +18,7 @@ interface DecompressionFlowProps {
 // Pick an opening line tailored to detected themes — never toxic positivity.
 function openingLine(themes: DifficultTheme[] = [], bg = false): string {
   if (themes.includes('injury'))      return bg ? 'Тялото ти иска грижа. Това също е тренировка.' : 'Your body wants care. That’s training too.';
-  if (themes.includes('fear'))        return bg ? 'Страхът често се появява, когато нещо ти е важно. Не си сам(а) в това.' : 'Fear shows up when something matters to you. You’re not alone in this.';
+  if (themes.includes('fear'))        return bg ? 'Страхът често се появява, когато нещо ти е важно. Не е нужно да оставаш насаме с него.' : 'Fear often shows up when something matters. You do not have to handle it alone.';
   if (themes.includes('burnout'))     return bg ? 'Носиш много на гърба си. Хайде да забавим за минута.' : 'You’re carrying a lot right now. Let’s slow down for a minute.';
   if (themes.includes('overwhelm'))   return bg ? 'Това е много за една вечер. Не е нужно да решаваш всичко сега.' : 'That sounds like a lot for one evening. You don’t have to figure it all out now.';
   if (themes.includes('self_doubt'))  return bg ? 'Острият глас в главата ти не е цялата истина.' : 'That harsh voice in your head isn’t the whole truth.';
@@ -27,23 +27,25 @@ function openingLine(themes: DifficultTheme[] = [], bg = false): string {
   return bg ? 'Беше тежък ден. Тук си — и това е достатъчно.' : 'That was a hard day. You’re here — and that’s enough.';
 }
 
-// 4-7-8 breathing — soft, no countdown pressure
+// Optional, user-started paced breathing without a hold.
 const BreatheStep: React.FC<{ onDone: () => void; bg: boolean }> = ({ onDone, bg }) => {
-  const [phase, setPhase] = useState<'in' | 'hold' | 'out'>('in');
+  const [phase, setPhase] = useState<'in' | 'out'>('in');
   const [cycle, setCycle] = useState(0);
+  const [started, setStarted] = useState(false);
 
   useEffect(() => {
-    const durations = { in: 4000, hold: 4000, out: 6000 };
+    if (!started) return;
+    const durations = { in: 4000, out: 6000 };
     const id = setTimeout(() => {
-      setPhase((p) => (p === 'in' ? 'hold' : p === 'hold' ? 'out' : 'in'));
+      setPhase((p) => (p === 'in' ? 'out' : 'in'));
       if (phase === 'out') setCycle((c) => c + 1);
     }, durations[phase]);
     return () => clearTimeout(id);
-  }, [phase]);
+  }, [phase, started]);
 
-  const label = phase === 'in' ? (bg ? 'Вдишвай…' : 'Breathe in…') : phase === 'hold' ? (bg ? 'Задръж…' : 'Hold…') : (bg ? 'Меко издишване…' : 'Soft exhale…');
-  const scale = phase === 'in' ? 'scale-110' : phase === 'hold' ? 'scale-110' : 'scale-90';
-  const dur   = phase === 'in' ? 'duration-[4000ms]' : phase === 'hold' ? 'duration-[4000ms]' : 'duration-[6000ms]';
+  const label = !started ? (bg ? 'По желание' : 'Optional') : phase === 'in' ? (bg ? 'Вдишай…' : 'Breathe in…') : (bg ? 'Издишай по-бавно…' : 'Breathe out more slowly…');
+  const scale = phase === 'in' ? 'scale-110' : 'scale-90';
+  const dur   = phase === 'in' ? 'duration-[4000ms]' : 'duration-[6000ms]';
 
   return (
     <div className="flex flex-col items-center text-center gap-8 py-4">
@@ -56,11 +58,12 @@ const BreatheStep: React.FC<{ onDone: () => void; bg: boolean }> = ({ onDone, bg
         <span className="text-base font-medium text-foreground/85">{label}</span>
       </div>
       <p className="text-sm text-muted-foreground max-w-xs">
-        {bg ? 'Без бързане. Без броене. Остани колкото ти е добре.' : 'No rush. No counting. Stay as long as feels good.'}
+         {bg ? 'Използвай го само ако ти е удобно. Можеш да спреш по всяко време.' : 'Use this only if it feels comfortable. Stop at any time.'}
       </p>
       <div className="flex flex-col gap-2 w-full max-w-xs">
+        {!started && <Button onClick={() => setStarted(true)} className="h-12 rounded-full">{bg ? 'Започни' : 'Start'}</Button>}
         <Button onClick={onDone} variant="outline" className="h-12 rounded-full">
-          {bg ? 'Вече съм малко по-спокоен(на)' : 'I feel a bit softer'}
+          {bg ? 'Продължи без дишането' : 'Continue without breathing'}
         </Button>
       </div>
       {cycle > 0 && <p className="text-xs text-muted-foreground/70">{bg ? `${cycle} спокоен ${cycle === 1 ? 'цикъл' : 'цикъла'}` : `${cycle} calm ${cycle === 1 ? 'cycle' : 'cycles'}`}</p>}
@@ -192,7 +195,7 @@ export const DecompressionFlow: React.FC<DecompressionFlowProps> = ({
                 <ActionCard
                   icon={<Wind className="w-5 h-5" />}
                   title={bg ? 'Бавно дишане' : 'Slow breathing'}
-                  desc={bg ? 'Няколко меки цикъла, без броене.' : 'A few soft cycles, no counting.'}
+                   desc={bg ? 'Няколко удобни цикъла без задържане.' : 'A few comfortable cycles with no breath hold.'}
                   onClick={() => setStep('breathe')}
                 />
                 <ActionCard
@@ -216,7 +219,7 @@ export const DecompressionFlow: React.FC<DecompressionFlowProps> = ({
               </div>
               {level === 'heavy' && (
                 <p className="text-xs text-center text-muted-foreground/80 pt-2 leading-relaxed">
-                  {bg ? 'Ако тази вечер тежестта е по-голяма от случилото се на леда, потърси човек, на когото имаш доверие. Не е нужно да оставаш сам(а) с нея.' : 'If you’re carrying something bigger than skating tonight, please reach out to someone you trust. You don’t have to carry it alone.'}
+                   {bg ? 'Ако тази вечер тежестта е по-голяма от случилото се на леда, потърси човек, на когото имаш доверие. Не оставай насаме с нея.' : 'If you’re carrying something bigger than skating tonight, reach out to someone you trust. You do not have to carry it alone.'}
                 </p>
               )}
             </div>
