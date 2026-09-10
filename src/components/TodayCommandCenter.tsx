@@ -1,118 +1,144 @@
 import React from 'react';
-import { ClipboardList, Brain, Target, CalendarCheck, Trophy, Dumbbell, ArrowRight } from 'lucide-react';
+import { ArrowRight, Target, Brain, Trophy, ClipboardList } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
 
 interface Props {
   greeting: string;
   focus?: string;
-  /** true once the athlete already logged a session today */
-  loggedToday: boolean;
+  /** number of sessions logged today */
+  sessionsToday: number;
+  /** true once a reflection exists for today */
+  reflectedToday: boolean;
+  /** name of an upcoming competition, if the athlete set one */
+  competition?: string;
   onLogTraining: () => void;
-  onContinue: () => void;
-  onTrainingLog: () => void;
+  onReflect: () => void;
   onGoals: () => void;
-  onWeeklyReview: () => void;
+  onSupport: () => void;
   onCompetitionPrep: () => void;
+  onMentalPrep: () => void;
 }
 
-const openAI = (role: 'coach' | 'psych') =>
-  window.dispatchEvent(new CustomEvent('ai-assistant:open', { detail: { role } }));
-
 /**
- * Today = performance center. Above the fold on mobile:
- * greeting + current focus, one primary action, four core actions,
- * then the two clearly distinct AI services.
+ * Today answers three questions only:
+ * What am I working on? What should I do now? What is coming next?
  */
 export const TodayCommandCenter: React.FC<Props> = ({
-  greeting, focus, loggedToday,
-  onLogTraining, onContinue, onTrainingLog, onGoals, onWeeklyReview, onCompetitionPrep,
+  greeting, focus, sessionsToday, reflectedToday, competition,
+  onLogTraining, onReflect, onGoals, onSupport, onCompetitionPrep, onMentalPrep,
 }) => {
   const { t } = useLanguage();
 
-  const core = [
-    { icon: Dumbbell,      label: t('today.core.training'), onClick: onTrainingLog },
-    { icon: Target,        label: t('today.core.goals'),    onClick: onGoals },
-    { icon: CalendarCheck, label: t('today.core.review'),   onClick: onWeeklyReview },
-    { icon: Trophy,        label: t('today.core.comp'),     onClick: onCompetitionPrep },
-  ];
+  const logged = sessionsToday > 0;
+  const stage: 'log' | 'reflect' | 'done' = !logged ? 'log' : !reflectedToday ? 'reflect' : 'done';
+
+  const primary = {
+    log:     { label: t('a.today.cta.log'),     sub: t('a.today.cta.logSub'),     onClick: onLogTraining },
+    reflect: { label: t('a.today.cta.reflect'), sub: t('a.today.cta.reflectSub'), onClick: onReflect },
+    done:    { label: t('a.today.cta.done'),    sub: t('a.today.cta.doneSub'),    onClick: onLogTraining },
+  }[stage];
+
+  const next = {
+    log: t('a.today.next.log'),
+    reflect: t('a.today.next.reflect'),
+    done: t('a.today.next.done'),
+  }[stage];
 
   return (
-    <section className="space-y-6">
-      {/* Header: who you are, what you're working on */}
-      <header className="space-y-1.5">
+    <section className="space-y-8">
+      {/* What am I working on */}
+      <header className="space-y-3">
         <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-foreground">{greeting}</h1>
-        <p className="text-sm text-muted-foreground">
-          <span className="font-semibold text-foreground/70">{t('today.focus.label')}: </span>
-          {focus?.trim() || t('today.focus.empty')}
-        </p>
+        <button
+          onClick={onGoals}
+          className="w-full text-left rounded-xl border border-border/70 bg-card px-4 py-3.5 hover:border-primary/50 transition-colors"
+        >
+          <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">
+            {t('a.today.working')}
+          </p>
+          <p className="mt-1 text-base font-semibold leading-snug text-foreground">
+            {focus?.trim() || t('a.today.noFocus')}
+          </p>
+          {!focus?.trim() && (
+            <p className="mt-1 text-xs text-primary font-medium">{t('a.today.setFocus')}</p>
+          )}
+        </button>
       </header>
 
-      {/* One primary action, context-aware */}
-      <button
-        onClick={loggedToday ? onContinue : onLogTraining}
-        className="w-full min-h-[76px] px-5 py-4 rounded-2xl bg-primary text-primary-foreground flex items-center gap-4 text-left transition-transform active:scale-[0.99]"
-      >
-        <div className="flex-1 min-w-0">
-          <p className="text-base font-bold leading-tight">
-            {loggedToday ? t('today.primary.cont') : t('today.primary.log')}
-          </p>
-          <p className="text-xs opacity-80 leading-snug mt-0.5">
-            {loggedToday ? t('today.primary.contSub') : t('today.primary.logSub')}
-          </p>
-        </div>
-        <ArrowRight className="w-5 h-5 shrink-0 opacity-90" />
-      </button>
+      {/* What should I do now */}
+      <div className="space-y-3">
+        <button
+          onClick={primary.onClick}
+          className="w-full min-h-[76px] px-5 py-4 rounded-2xl bg-primary text-primary-foreground flex items-center gap-4 text-left transition-transform active:scale-[0.99]"
+        >
+          <div className="flex-1 min-w-0">
+            <p className="text-base font-bold leading-tight">{primary.label}</p>
+            <p className="text-xs opacity-80 leading-snug mt-0.5">{primary.sub}</p>
+          </div>
+          <ArrowRight className="w-5 h-5 shrink-0 opacity-90" />
+        </button>
 
-      {/* Core actions */}
-      <div className="space-y-2.5">
-        <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-muted-foreground">{t('today.core.label')}</p>
-        <div className="grid grid-cols-2 gap-2.5">
-          {core.map(({ icon: Icon, label, onClick }) => (
-            <button
-              key={label}
-              onClick={onClick}
-              className="min-h-[72px] px-4 py-3 rounded-xl border border-border/70 bg-card flex flex-col justify-center gap-1.5 text-left hover:border-primary/50 transition-colors"
-            >
-              <Icon className="w-[18px] h-[18px] text-primary" />
-              <span className="text-[13px] font-semibold leading-tight text-foreground">{label}</span>
-            </button>
-          ))}
-        </div>
+        {logged && (
+          <p className="text-xs text-muted-foreground px-1">
+            {t('a.today.sessionsToday')}: {sessionsToday}
+          </p>
+        )}
       </div>
 
-      {/* Two distinct AI services */}
+      {/* What is coming next */}
       <div className="space-y-2.5">
-        <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-muted-foreground">{t('today.support.label')}</p>
+        <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">
+          {t('a.today.next')}
+        </p>
+        <p className="text-sm text-foreground/80 leading-relaxed">{next}</p>
 
-        <button
-          onClick={() => openAI('coach')}
-          className="w-full p-4 rounded-2xl border border-border/70 bg-card text-left hover:border-primary/50 transition-colors"
-        >
-          <div className="flex items-center gap-2.5 mb-1.5">
-            <ClipboardList className="w-[18px] h-[18px] text-primary" />
-            <span className="text-sm font-bold text-foreground">{t('ai.coach.name')}</span>
-            <span className="ml-auto text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
-              {t('ai.coach.tag')}
+        <div className="pt-2 space-y-2">
+          {competition?.trim() && (
+            <button
+              onClick={onCompetitionPrep}
+              className="w-full min-h-[60px] px-4 rounded-xl border border-border/70 bg-card flex items-center gap-3 text-left hover:border-primary/50 transition-colors"
+            >
+              <Trophy className="w-[18px] h-[18px] text-primary shrink-0" />
+              <span className="min-w-0">
+                <span className="block text-sm font-semibold text-foreground truncate">{t('a.today.comp')}</span>
+                <span className="block text-xs text-muted-foreground truncate">{competition}</span>
+              </span>
+            </button>
+          )}
+
+          <button
+            onClick={onMentalPrep}
+            className="w-full min-h-[60px] px-4 rounded-xl border border-border/70 bg-card flex items-center gap-3 text-left hover:border-primary/50 transition-colors"
+          >
+            <Brain className="w-[18px] h-[18px] text-primary shrink-0" />
+            <span className="min-w-0">
+              <span className="block text-sm font-semibold text-foreground">{t('a.today.prep')}</span>
+              <span className="block text-xs text-muted-foreground">{t('a.today.prepSub')}</span>
             </span>
-          </div>
-          <p className="text-xs text-muted-foreground leading-relaxed">{t('ai.coach.desc')}</p>
-        </button>
+          </button>
 
-        <button
-          onClick={() => openAI('psych')}
-          className="w-full p-4 rounded-2xl border border-border/70 bg-card text-left hover:border-primary/50 transition-colors"
-        >
-          <div className="flex items-center gap-2.5 mb-1.5">
-            <Brain className="w-[18px] h-[18px] text-primary" />
-            <span className="text-sm font-bold text-foreground">{t('ai.psych.name')}</span>
-            <span className="ml-auto text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
-              {t('ai.psych.tag')}
+          <button
+            onClick={onSupport}
+            className="w-full min-h-[60px] px-4 rounded-xl border border-border/70 bg-card flex items-center gap-3 text-left hover:border-primary/50 transition-colors"
+          >
+            <ClipboardList className="w-[18px] h-[18px] text-primary shrink-0" />
+            <span className="min-w-0">
+              <span className="block text-sm font-semibold text-foreground">{t('today.support.label')}</span>
+              <span className="block text-xs text-muted-foreground">{t('today.support.sub')}</span>
             </span>
-          </div>
-          <p className="text-xs text-muted-foreground leading-relaxed">{t('ai.psych.desc')}</p>
-        </button>
+          </button>
 
-        <p className="text-[10px] leading-snug text-muted-foreground px-1">{t('ai.disclaimer')}</p>
+          <button
+            onClick={onGoals}
+            className="w-full min-h-[60px] px-4 rounded-xl border border-border/70 bg-card flex items-center gap-3 text-left hover:border-primary/50 transition-colors"
+          >
+            <Target className="w-[18px] h-[18px] text-primary shrink-0" />
+            <span className="min-w-0">
+              <span className="block text-sm font-semibold text-foreground">{t('a.goals.title')}</span>
+              <span className="block text-xs text-muted-foreground">{t('a.goals.sub')}</span>
+            </span>
+          </button>
+        </div>
       </div>
     </section>
   );

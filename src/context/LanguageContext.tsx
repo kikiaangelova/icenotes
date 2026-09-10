@@ -1,5 +1,6 @@
 import { PHASE1_DICT } from './dictPhase1';
 import { PHASE2_DICT } from './dictPhase2';
+import { PHASEA_DICT } from './dictPhaseA';
 import React, { createContext, useContext, useEffect, useState, useCallback } from 'react';
 
 export type Language = 'en' | 'bg';
@@ -1153,6 +1154,7 @@ const dict: Dict = {
   'profile.logout':      { en: 'Log out',               bg: 'Изход' },
   ...PHASE1_DICT,
   ...PHASE2_DICT,
+  ...PHASEA_DICT,
 };
 
 

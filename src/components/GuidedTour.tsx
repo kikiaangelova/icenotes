@@ -31,7 +31,7 @@ const PRESET_GOALS = [
 ];
 
 interface GuidedTourProps {
-  setActiveTab: (tab: 'today' | 'train' | 'mind' | 'goals' | 'progress') => void;
+  setActiveTab: (tab: 'today' | 'train' | 'support' | 'goals' | 'progress') => void;
 }
 
 export const GuidedTour: React.FC<GuidedTourProps> = ({ setActiveTab }) => {
