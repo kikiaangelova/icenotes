@@ -66,7 +66,7 @@ const BreatheStep: React.FC<{ onDone: () => void; bg: boolean }> = ({ onDone, bg
           {bg ? 'Продължи без дишането' : 'Continue without breathing'}
         </Button>
       </div>
-      {cycle > 0 && <p className="text-xs text-muted-foreground/70">{bg ? `${cycle} спокоен ${cycle === 1 ? 'цикъл' : 'цикъла'}` : `${cycle} calm ${cycle === 1 ? 'cycle' : 'cycles'}`}</p>}
+      {cycle > 0 && <p className="text-xs text-muted-foreground/70">{bg ? `Завършени цикли: ${cycle}` : `Completed cycles: ${cycle}`}</p>}
     </div>
   );
 };

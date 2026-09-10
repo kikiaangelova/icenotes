@@ -1099,9 +1099,9 @@ const dict: Dict = {
   'coach.starter.2':     { en: "I'm nervous about the competition this weekend", bg: 'Притеснявам се за състезанието този уикенд' },
   'coach.starter.3':     { en: 'I lost my motivation. What now?', bg: 'Изгубих мотивация. Какво сега?' },
   'coach.starter.4':     { en: 'Hype me up before practice', bg: 'Дай ми енергия преди тренировка' },
-  'coach.err.rate':      { en: 'Slow down a little — too many requests. Try again in a minute.', bg: 'Малко по-бавно — твърде много заявки. Опитай след минута.' },
-  'coach.err.credits':   { en: 'AI credits ran out. Ask the team to top up.', bg: 'AI кредитите свършиха. Помоли екипа да зареди.' },
-  'coach.err.generic':   { en: 'Something got stuck. Try again in a second.', bg: 'Нещо се закачи. Опитай след секунда.' },
+  'coach.err.rate':      { en: 'Too many requests. Try again in a minute.', bg: 'Има твърде много заявки. Опитай отново след минута.' },
+  'coach.err.credits':   { en: 'AI support is temporarily unavailable.', bg: 'AI подкрепата временно не е достъпна.' },
+  'coach.err.generic':   { en: 'The response did not load. Try again.', bg: 'Отговорът не се зареди. Опитай отново.' },
 
   // ───── Guided tour extras ─────
   'tour.quickStart':     { en: 'Quick start',           bg: 'Бърз старт' },
