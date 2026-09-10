@@ -5,7 +5,7 @@ import { Badge } from '@/components/ui/badge';
 import { Textarea } from '@/components/ui/textarea';
 import { Input } from '@/components/ui/input';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
-import { Wind, Eye, NotebookPen, MessageSquareText, Play, Pause, RotateCcw, ChevronLeft, ChevronRight, Check } from 'lucide-react';
+import { Wind, Eye, Brain, NotebookPen, MessageSquareText, Play, Pause, RotateCcw, ChevronLeft, ChevronRight, Check } from 'lucide-react';
 import { useMindfulnessTools } from '@/hooks/useMindfulnessTools';
 import { useLanguage } from '@/context/LanguageContext';
 import { toast } from 'sonner';
