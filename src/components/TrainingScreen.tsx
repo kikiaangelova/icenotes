@@ -86,15 +86,15 @@ export const TrainingScreen: React.FC<TrainingScreenProps> = ({ onSaved, onOpenP
   const recent = useMemo(() => trainingSessions.slice(0, 5), [trainingSessions]);
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-10">
       <header className="space-y-1">
-        <h1 className="text-2xl font-bold tracking-tight text-foreground">{t('a.tr.title')}</h1>
-        <p className="text-sm text-muted-foreground">{t('a.tr.sub')}</p>
+        <h1 className="app-page-title">{t('a.tr.title')}</h1>
+        <p className="app-page-subtitle">{t('a.tr.sub')}</p>
       </header>
 
       {/* Type */}
       <section className="space-y-3">
-        <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">{t('a.tr.type')}</p>
+        <p className="app-section-label">{t('a.tr.type')}</p>
         <div className="grid grid-cols-2 gap-2">
           {([
             { id: 'on-ice' as const, label: t('a.tr.onIce'), Icon: Snowflake },
@@ -106,7 +106,7 @@ export const TrainingScreen: React.FC<TrainingScreenProps> = ({ onSaved, onOpenP
               onClick={() => switchType(id)}
               aria-pressed={type === id}
               className={cn(
-                'min-h-[56px] rounded-xl border px-4 flex items-center gap-2.5 text-sm font-semibold transition-colors',
+                'min-h-[56px] rounded-md border px-4 flex items-center gap-2.5 text-sm font-semibold transition-colors',
                 type === id
                   ? 'border-primary bg-primary text-primary-foreground'
                   : 'border-border bg-card text-foreground hover:bg-muted/50'
@@ -122,7 +122,7 @@ export const TrainingScreen: React.FC<TrainingScreenProps> = ({ onSaved, onOpenP
       {/* What you worked on */}
       <section className="space-y-3">
         <div>
-          <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">{t('a.tr.what')}</p>
+          <p className="app-section-label">{t('a.tr.what')}</p>
           <p className="text-xs text-muted-foreground/80">{t('a.tr.whatHint')}</p>
         </div>
         <div className="flex flex-wrap gap-2">
@@ -135,7 +135,7 @@ export const TrainingScreen: React.FC<TrainingScreenProps> = ({ onSaved, onOpenP
                 onClick={() => toggle(o.name)}
                 aria-pressed={on}
                 className={cn(
-                  'min-h-[44px] rounded-full border px-4 text-sm font-medium transition-colors',
+                  'min-h-[44px] rounded-md border px-4 text-sm font-medium transition-colors',
                   on
                     ? 'border-primary bg-primary/10 text-primary'
                     : 'border-border bg-card text-foreground hover:bg-muted/50'
@@ -150,7 +150,7 @@ export const TrainingScreen: React.FC<TrainingScreenProps> = ({ onSaved, onOpenP
 
       {/* Duration */}
       <section className="space-y-3">
-        <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">{t('a.tr.duration')}</p>
+        <p className="app-section-label">{t('a.tr.duration')}</p>
         <div className="flex flex-wrap gap-2">
           {DURATIONS.map((d) => (
             <button
@@ -159,7 +159,7 @@ export const TrainingScreen: React.FC<TrainingScreenProps> = ({ onSaved, onOpenP
               onClick={() => setDuration(d)}
               aria-pressed={duration === d}
               className={cn(
-                'min-h-[44px] min-w-[72px] rounded-xl border px-3 text-sm font-semibold transition-colors',
+                'min-h-[44px] min-w-[72px] rounded-md border px-3 text-sm font-semibold transition-colors',
                 duration === d
                   ? 'border-primary bg-primary text-primary-foreground'
                   : 'border-border bg-card text-foreground hover:bg-muted/50'
@@ -173,7 +173,7 @@ export const TrainingScreen: React.FC<TrainingScreenProps> = ({ onSaved, onOpenP
 
       {/* How it went */}
       <section className="space-y-3">
-        <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">{t('a.tr.how')}</p>
+        <p className="app-section-label">{t('a.tr.how')}</p>
         <div className="grid grid-cols-4 gap-2">
           {FEELINGS.map((f) => (
             <button
@@ -182,7 +182,7 @@ export const TrainingScreen: React.FC<TrainingScreenProps> = ({ onSaved, onOpenP
               onClick={() => setFeeling(f.value)}
               aria-pressed={feeling === f.value}
               className={cn(
-                'min-h-[48px] rounded-xl border px-2 text-[13px] font-semibold transition-colors',
+                'min-h-[48px] rounded-md border px-2 text-[13px] font-semibold transition-colors',
                 feeling === f.value
                   ? 'border-primary bg-primary/10 text-primary'
                   : 'border-border bg-card text-foreground hover:bg-muted/50'
@@ -211,7 +211,7 @@ export const TrainingScreen: React.FC<TrainingScreenProps> = ({ onSaved, onOpenP
         <Button
           onClick={handleSave}
           disabled={!canSave}
-          className="w-full h-14 rounded-xl text-base font-semibold"
+          className="w-full h-14 text-base font-semibold"
         >
           {saving ? t('a.tr.saving') : t('a.tr.save')}
         </Button>
@@ -232,7 +232,7 @@ export const TrainingScreen: React.FC<TrainingScreenProps> = ({ onSaved, onOpenP
 
       {/* History */}
       <section className="space-y-3 pt-2 border-t border-border/60">
-        <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground pt-5">
+        <p className="app-section-label pt-5">
           {t('a.tr.history')}
         </p>
         {recent.length === 0 ? (
@@ -241,7 +241,7 @@ export const TrainingScreen: React.FC<TrainingScreenProps> = ({ onSaved, onOpenP
           <ul className="divide-y divide-border/60">
             {recent.map((s) => (
               <li key={s.id} className="py-3 flex items-start gap-3">
-                <span className="mt-0.5 w-8 h-8 rounded-lg bg-muted flex items-center justify-center flex-shrink-0">
+                <span className="mt-0.5 w-8 h-8 rounded-md bg-muted flex items-center justify-center flex-shrink-0">
                   {s.type === 'on-ice' ? <Snowflake className="w-4 h-4" /> : <Dumbbell className="w-4 h-4" />}
                 </span>
                 <div className="min-w-0 flex-1">

@@ -69,13 +69,14 @@ export const ReflectionSheet: React.FC<ReflectionSheetProps> = ({ open, onOpenCh
         onOpenChange(o);
       }}
     >
-      <SheetContent side="bottom" className="rounded-t-2xl max-h-[92vh] overflow-y-auto">
-        <SheetHeader className="text-left">
-          <SheetTitle className="text-xl font-bold tracking-tight">{t('a.rf.title')}</SheetTitle>
+      <SheetContent side="bottom" className="authenticated-app app-sheet max-h-[92vh] overflow-y-auto rounded-t-lg px-4 pb-[calc(env(safe-area-inset-bottom)+1rem)] sm:px-6">
+        <div className="mx-auto w-full max-w-xl">
+        <SheetHeader className="border-b border-border pb-5 pr-8 text-left">
+          <SheetTitle className="text-xl font-bold">{t('a.rf.title')}</SheetTitle>
           <SheetDescription className="text-sm">{t('a.rf.sub')}</SheetDescription>
         </SheetHeader>
 
-        <div className="mt-5 space-y-5">
+        <div className="mt-6 space-y-6">
           <VoiceTextarea
             label={t('a.rf.worked')}
             value={worked}
@@ -105,7 +106,7 @@ export const ReflectionSheet: React.FC<ReflectionSheetProps> = ({ open, onOpenCh
             <Button
               onClick={handleSave}
               disabled={saving}
-              className="w-full h-14 rounded-xl text-base font-semibold"
+              className="w-full h-14 text-base font-semibold"
             >
               {saving ? t('a.rf.saving') : t('a.rf.save')}
             </Button>
@@ -120,6 +121,7 @@ export const ReflectionSheet: React.FC<ReflectionSheetProps> = ({ open, onOpenCh
               {t('a.rf.skip')}
             </button>
           </div>
+        </div>
         </div>
       </SheetContent>
     </Sheet>

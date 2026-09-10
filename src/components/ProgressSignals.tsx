@@ -25,28 +25,28 @@ export const ProgressSignals: React.FC = () => {
   ];
 
   return (
-    <section className="space-y-3">
-      <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">{t('ps.week')}</p>
-      <div className="grid grid-cols-3 gap-2">
+    <section className="space-y-7">
+      <p className="app-section-label">{t('ps.week')}</p>
+      <div className="grid grid-cols-3 divide-x divide-border border-y border-border py-4">
         {stats.map((s) => (
-          <div key={s.label} className="rounded-xl border border-border/70 bg-card p-3">
-            <p className="text-2xl font-bold tabular-nums text-foreground">{s.value}</p>
-            <p className="text-[11px] leading-snug text-muted-foreground mt-1">{s.label}</p>
+          <div key={s.label} className="min-w-0 px-3 first:pl-0 last:pr-0">
+            <p className="text-3xl font-bold tabular-nums text-foreground">{s.value}</p>
+            <p className="mt-1 text-xs leading-snug text-muted-foreground">{s.label}</p>
           </div>
         ))}
       </div>
 
-      <div className="rounded-xl border border-border/70 bg-card p-4 space-y-3">
-        <div className="space-y-1">
+      <div className="divide-y divide-border border-y border-border">
+        <div className="space-y-1 py-4">
           <p className="text-xs text-muted-foreground">{t('ps.focus')}</p>
           <p className="text-sm font-semibold text-foreground">{profile?.mainFocus?.trim() || t('ps.focusNone')}</p>
         </div>
-        <div className="space-y-1">
+        <div className="space-y-1 py-4">
           <p className="text-xs text-muted-foreground">{t('ps.goal')}</p>
           <p className="text-sm font-semibold text-foreground">{seasonGoal?.title?.trim() || t('ps.goalNone')}</p>
         </div>
         {week.themes.length > 0 && (
-          <div className="space-y-1">
+          <div className="space-y-1 py-4">
             <p className="text-xs text-muted-foreground">{t('ps.themes')}</p>
             <p className="text-sm text-foreground/80">{week.themes.map((n) => t(`a.el.${n}`)).join(' · ')}</p>
           </div>
