@@ -30,6 +30,10 @@ export const LanguageSync: React.FC = () => {
   // Track whether we have already applied the profile language for this user
   // so we don't fight the user every time the profile object reidentifies.
   const appliedForUserRef = useRef<string | null>(null);
+  // The language we applied during the initial sync. Until the context has
+  // actually caught up to it, effect #2 must stay quiet so it never writes the
+  // stale pre-sync language back to the profile.
+  const expectedLangRef = useRef<Language | null>(null);
   // Track the last value we wrote to avoid redundant writes.
   const lastSavedRef = useRef<Language | null>(null);
 
@@ -51,16 +55,19 @@ export const LanguageSync: React.FC = () => {
       // Profile has an explicit saved preference → it wins (cross-device source of truth).
       setLanguageSilent(fromProfile);
       lastSavedRef.current = fromProfile;
+      expectedLangRef.current = fromProfile;
     } else if (fromStorage) {
       // No profile preference yet — promote the local preference to the profile so
       // the choice follows the user across devices from now on.
       setLanguageSilent(fromStorage);
       lastSavedRef.current = fromStorage;
+      expectedLangRef.current = fromStorage;
       updateProfile.mutate({ language: fromStorage });
     } else {
       // Nothing valid anywhere (or profile has a now-disabled language). Seed with
       // current UI language and persist so the disabled value is overwritten.
       lastSavedRef.current = language;
+      expectedLangRef.current = language;
       if (profile.language && !coerce(profile.language)) {
         updateProfile.mutate({ language });
       }
@@ -74,6 +81,7 @@ export const LanguageSync: React.FC = () => {
     if (!user) {
       appliedForUserRef.current = null;
       lastSavedRef.current = null;
+      expectedLangRef.current = null;
     }
   }, [user]);
 
@@ -81,20 +89,24 @@ export const LanguageSync: React.FC = () => {
   useEffect(() => {
     if (!user || !profile) return;
     if (appliedForUserRef.current !== user.id) return;
-    if (lastSavedRef.current === language) return;
-    // Race guard: if the profile already holds a valid value and the UI hasn't
-    // caught up yet to it, do nothing — the silent sync from effect #1 is still
-    // propagating. We must never write the stale pre-sync language back.
-    const profileLang = coerce(profile.language);
-    if (profileLang && profileLang !== language) {
+
+    // Initial silent sync still propagating: the context hasn't rendered the
+    // profile language yet, so ignore this pass instead of writing back the
+    // stale value.
+    if (expectedLangRef.current !== null && expectedLangRef.current !== language) {
       return;
     }
+    // The context has caught up — from now on any change is a real user choice.
+    expectedLangRef.current = null;
+
+    if (lastSavedRef.current === language) return;
 
     lastSavedRef.current = language;
     updateProfile.mutate({ language });
     // We intentionally exclude updateProfile from deps to avoid mutate() re-creating loops.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [language, user, profile]);
+
 
   return null;
 };
