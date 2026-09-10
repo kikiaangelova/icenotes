@@ -30,6 +30,18 @@ const Auth: React.FC = () => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
 
+  const BackHome = () => (
+    <button
+      type="button"
+      onClick={() => navigate('/')}
+      className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors mb-4"
+      aria-label={t('auth.backHome')}
+    >
+      <ArrowLeft className="w-4 h-4" />
+      {t('auth.backHome')}
+    </button>
+  );
+
   const [view, setView] = useState<AuthView>('auth');
   const [isLoading, setIsLoading] = useState(false);
   const [googleLoading, setGoogleLoading] = useState(false);
@@ -252,13 +264,18 @@ const Auth: React.FC = () => {
       <div className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-b from-ice/30 to-background">
         <Seo title={t('seo.auth.reset.title')} description={t('seo.auth.reset.desc')} path="/auth?mode=reset" />
         <div className="w-full max-w-md">
-          <div className="text-center mb-8">
-            <div className="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-br from-primary to-ice-deep flex items-center justify-center mb-4">
+          <BackHome />
+          <button
+            type="button"
+            onClick={() => navigate('/')}
+            className="text-center w-full mb-8 group"
+          >
+            <div className="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-br from-primary to-ice-deep flex items-center justify-center mb-4 group-hover:scale-105 transition-transform">
               <Snowflake className="w-8 h-8 text-primary-foreground" />
             </div>
             <h1 className="text-2xl font-bold text-foreground font-serif">SkateGoals</h1>
             <p className="text-muted-foreground">{t('auth.reset.heading')}</p>
-          </div>
+          </button>
 
           <Card className="border-primary/10 shadow-lg">
             <CardHeader className="pb-4">
@@ -323,13 +340,18 @@ const Auth: React.FC = () => {
       <div className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-b from-ice/30 to-background">
         <Seo title={t('seo.auth.forgot.title')} description={t('seo.auth.forgot.desc')} path="/auth?mode=forgot" />
         <div className="w-full max-w-md">
-          <div className="text-center mb-8">
-            <div className="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-br from-primary to-ice-deep flex items-center justify-center mb-4">
+          <BackHome />
+          <button
+            type="button"
+            onClick={() => navigate('/')}
+            className="text-center w-full mb-8 group"
+          >
+            <div className="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-br from-primary to-ice-deep flex items-center justify-center mb-4 group-hover:scale-105 transition-transform">
               <Snowflake className="w-8 h-8 text-primary-foreground" />
             </div>
             <h1 className="text-2xl font-bold text-foreground font-serif">SkateGoals</h1>
             <p className="text-muted-foreground">{t('auth.forgot.heading')}</p>
-          </div>
+          </button>
 
           <Card className="border-primary/10 shadow-lg">
             <CardHeader className="pb-4">
@@ -413,14 +435,18 @@ const Auth: React.FC = () => {
     <div className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-b from-ice/30 to-background">
       <Seo title={t('seo.auth.title')} description={t('seo.auth.desc')} path="/auth" />
       <div className="w-full max-w-md">
-        {/* Logo */}
-        <div className="text-center mb-8">
-          <div className="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-br from-primary to-ice-deep flex items-center justify-center mb-4">
+        <BackHome />
+        <button
+          type="button"
+          onClick={() => navigate('/')}
+          className="text-center w-full mb-8 group"
+        >
+          <div className="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-br from-primary to-ice-deep flex items-center justify-center mb-4 group-hover:scale-105 transition-transform">
             <Snowflake className="w-8 h-8 text-primary-foreground" />
           </div>
           <h1 className="text-2xl font-bold text-foreground font-serif">SkateGoals</h1>
           <p className="text-muted-foreground">{t('auth.tagline')}</p>
-        </div>
+        </button>
 
         <Card className="border-primary/10 shadow-lg">
           <CardHeader className="pb-4">
@@ -594,15 +620,7 @@ const Auth: React.FC = () => {
           </CardContent>
         </Card>
 
-        <button
-          onClick={() => navigate('/')}
-          className="flex items-center gap-2 mt-6 text-sm text-muted-foreground hover:text-foreground transition-colors mx-auto"
-        >
-          <ArrowLeft className="w-4 h-4" />
-          {t('auth.backHome')}
-        </button>
-
-        <div className="flex items-center justify-center gap-2 mt-5 text-xs text-muted-foreground">
+        <div className="flex items-center justify-center gap-2 mt-6 text-xs text-muted-foreground">
           <ShieldCheck className="w-3.5 h-3.5 text-primary" />
           <span>{t('auth.private')}</span>
         </div>
