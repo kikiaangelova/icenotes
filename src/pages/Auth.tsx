@@ -637,15 +637,7 @@ const Auth: React.FC = () => {
           </CardContent>
         </Card>
 
-        <button
-          onClick={() => navigate('/')}
-          className="flex items-center gap-2 mt-6 text-sm text-muted-foreground hover:text-foreground transition-colors mx-auto"
-        >
-          <ArrowLeft className="w-4 h-4" />
-          {t('auth.backHome')}
-        </button>
-
-        <div className="flex items-center justify-center gap-2 mt-5 text-xs text-muted-foreground">
+        <div className="flex items-center justify-center gap-2 mt-6 text-xs text-muted-foreground">
           <ShieldCheck className="w-3.5 h-3.5 text-primary" />
           <span>{t('auth.private')}</span>
         </div>
