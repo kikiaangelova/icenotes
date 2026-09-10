@@ -316,7 +316,7 @@ export const GameDayMode: React.FC<GameDayModeProps> = ({ open, onOpenChange }) 
                 <VoiceTextarea label={t('cp.after.q2')} value={d2} onChange={setD2} rows={2} />
                 <VoiceTextarea label={t('cp.after.q3')} value={d3} onChange={setD3} rows={2} />
               </div>
-              <Button onClick={saveDebrief} className="w-full h-14 rounded-xl text-base font-semibold bg-white text-slate-900 hover:bg-white/90">
+              <Button onClick={saveDebrief} disabled={savingDebrief} className="w-full h-14 rounded-xl text-base font-semibold bg-white text-slate-900 hover:bg-white/90">
                 {t('cp.after.save')}
               </Button>
             </section>
