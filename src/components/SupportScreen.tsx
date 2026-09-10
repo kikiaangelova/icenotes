@@ -45,8 +45,9 @@ export const SupportScreen: React.FC<SupportScreenProps> = ({ onOpenExercises })
         <p className="app-page-subtitle">{t('a.sp.sub')}</p>
       </header>
 
+      <div className="grid border-y border-border md:grid-cols-2 md:divide-x md:divide-border">
       {roles.map(({ role, Icon, name, tag, desc, open, starters }) => (
-        <section key={role} className="border-t border-border pt-5 space-y-4 first:border-t-0 first:pt-0">
+        <section key={role} className="space-y-4 border-b border-border py-6 last:border-b-0 md:border-b-0 md:px-7 md:first:pl-0 md:last:pr-0">
           <div className="space-y-1.5">
             <div className="flex items-center gap-2.5">
               <Icon className="w-[18px] h-[18px] text-primary" />
@@ -74,18 +75,19 @@ export const SupportScreen: React.FC<SupportScreenProps> = ({ onOpenExercises })
 
           <button
             onClick={() => openAI(role)}
-            className="min-h-[52px] w-full rounded-md bg-primary text-sm font-semibold text-primary-foreground hover:bg-primary/92"
+             className="min-h-[52px] w-full rounded-sm bg-primary text-sm font-semibold text-primary-foreground hover:bg-primary/92"
           >
             {open}
           </button>
         </section>
       ))}
+      </div>
 
       <section className="space-y-2">
         <p className="app-section-label">{t('a.sp.tools')}</p>
         <button
           onClick={onOpenExercises}
-          className="flex min-h-[64px] w-full items-center gap-3 rounded-lg border border-border bg-card px-4 text-left transition-colors hover:border-accent"
+          className="flex min-h-[64px] w-full items-center gap-3 border-y border-border px-1 text-left transition-colors hover:text-accent"
         >
           <Brain className="w-[18px] h-[18px] text-primary shrink-0" />
           <span className="min-w-0">

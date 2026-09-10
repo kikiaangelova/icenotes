@@ -27,7 +27,7 @@ const SportPsychology: React.FC = () => {
 
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="public-editorial min-h-screen bg-background">
       <Navbar isDarkMode={false} onToggleDarkMode={() => {}} />
         <Seo
           title={language === 'bg' ? 'Спортна психология за фигуристи – SkateGoals' : 'Sport Psychology for Figure Skaters – SkateGoals'}
@@ -48,13 +48,13 @@ const SportPsychology: React.FC = () => {
         </section>
 
         <section className="px-5 md:px-12 pb-16 md:pb-24">
-          <div className="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="max-w-5xl mx-auto grid grid-cols-1 border-t border-border sm:grid-cols-2 lg:grid-cols-3">
             {topics.map((topic) => (
               <div
                 key={topic.title}
-                className="p-5 rounded-xl border border-border/60 bg-card hover:shadow-md transition-all duration-200 group flex flex-col"
+                className="flex flex-col border-b border-border p-5 sm:border-r"
               >
-                <div className="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center mb-3 group-hover:bg-primary/15 transition-colors">
+                 <div className="mb-4 flex h-9 w-9 items-center justify-center border border-border">
                   <topic.icon className="w-4 h-4 text-primary" />
                 </div>
                 <h3 className="text-sm font-semibold text-foreground mb-1.5 font-serif">{topic.title}</h3>
@@ -88,7 +88,7 @@ const SportPsychology: React.FC = () => {
               {t('psy.cta.subtitle')}
             </p>
             <Link to="/auth" className="inline-block w-full sm:w-auto">
-              <Button size="lg" className="h-14 px-10 text-base font-semibold rounded-xl gap-2 w-full sm:w-auto">
+               <Button size="lg" className="h-14 px-10 text-base font-semibold rounded-sm gap-2 w-full sm:w-auto">
                 {t('psy.cta.button')} <ArrowRight className="w-4 h-4" />
               </Button>
             </Link>

@@ -86,14 +86,14 @@ export const TrainingScreen: React.FC<TrainingScreenProps> = ({ onSaved, onOpenP
   const recent = useMemo(() => trainingSessions.slice(0, 5), [trainingSessions]);
 
   return (
-    <div className="space-y-10">
+    <div className="app-sequence space-y-0">
       <header className="space-y-1">
         <h1 className="app-page-title">{t('a.tr.title')}</h1>
         <p className="app-page-subtitle">{t('a.tr.sub')}</p>
       </header>
 
       {/* Type */}
-      <section className="space-y-3">
+      <section className="app-step space-y-3">
         <p className="app-section-label">{t('a.tr.type')}</p>
         <div className="grid grid-cols-2 gap-2">
           {([
@@ -120,7 +120,7 @@ export const TrainingScreen: React.FC<TrainingScreenProps> = ({ onSaved, onOpenP
       </section>
 
       {/* What you worked on */}
-      <section className="space-y-3">
+      <section className="app-step space-y-3">
         <div>
           <p className="app-section-label">{t('a.tr.what')}</p>
           <p className="text-xs text-muted-foreground/80">{t('a.tr.whatHint')}</p>
@@ -149,7 +149,7 @@ export const TrainingScreen: React.FC<TrainingScreenProps> = ({ onSaved, onOpenP
       </section>
 
       {/* Duration */}
-      <section className="space-y-3">
+      <section className="app-step space-y-3">
         <p className="app-section-label">{t('a.tr.duration')}</p>
         <div className="flex flex-wrap gap-2">
           {DURATIONS.map((d) => (
@@ -172,7 +172,7 @@ export const TrainingScreen: React.FC<TrainingScreenProps> = ({ onSaved, onOpenP
       </section>
 
       {/* How it went */}
-      <section className="space-y-3">
+      <section className="app-step space-y-3">
         <p className="app-section-label">{t('a.tr.how')}</p>
         <div className="grid grid-cols-4 gap-2">
           {FEELINGS.map((f) => (
@@ -195,7 +195,7 @@ export const TrainingScreen: React.FC<TrainingScreenProps> = ({ onSaved, onOpenP
       </section>
 
       {/* Note */}
-      <section>
+      <section className="app-step">
         <VoiceTextarea
           label={t('a.tr.note')}
           value={note}
@@ -207,7 +207,7 @@ export const TrainingScreen: React.FC<TrainingScreenProps> = ({ onSaved, onOpenP
       </section>
 
       {/* Primary action */}
-      <section className="space-y-2">
+      <section className="app-step space-y-2">
         <Button
           onClick={handleSave}
           disabled={!canSave}

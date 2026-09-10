@@ -25,7 +25,18 @@ export const ProgressSignals: React.FC = () => {
   ];
 
   return (
-    <section className="space-y-7">
+    <section className="space-y-8">
+      <div className="grid gap-0 border-y border-border md:grid-cols-2 md:divide-x md:divide-border">
+        <div className="space-y-2 py-6 md:pr-7">
+          <p className="app-section-label">{t('ps.focus')}</p>
+          <p className="text-xl font-bold leading-snug text-foreground">{profile?.mainFocus?.trim() || t('ps.focusNone')}</p>
+        </div>
+        <div className="space-y-2 border-t border-border py-6 md:border-t-0 md:pl-7">
+          <p className="app-section-label">{t('ps.goal')}</p>
+          <p className="text-xl font-bold leading-snug text-foreground">{seasonGoal?.title?.trim() || t('ps.goalNone')}</p>
+        </div>
+      </div>
+
       <p className="app-section-label">{t('ps.week')}</p>
       <div className="grid grid-cols-3 divide-x divide-border border-y border-border py-4">
         {stats.map((s) => (
@@ -37,14 +48,6 @@ export const ProgressSignals: React.FC = () => {
       </div>
 
       <div className="divide-y divide-border border-y border-border">
-        <div className="space-y-1 py-4">
-          <p className="text-xs text-muted-foreground">{t('ps.focus')}</p>
-          <p className="text-sm font-semibold text-foreground">{profile?.mainFocus?.trim() || t('ps.focusNone')}</p>
-        </div>
-        <div className="space-y-1 py-4">
-          <p className="text-xs text-muted-foreground">{t('ps.goal')}</p>
-          <p className="text-sm font-semibold text-foreground">{seasonGoal?.title?.trim() || t('ps.goalNone')}</p>
-        </div>
         {week.themes.length > 0 && (
           <div className="space-y-1 py-4">
             <p className="text-xs text-muted-foreground">{t('ps.themes')}</p>
