@@ -228,7 +228,7 @@ export const GoalsScreen: React.FC<Props> = ({ onOpenWeeklyReview, onOpenCompeti
       </button>
 
       {/* Competition context */}
-      {profile?.nextCompetition?.trim() && (
+      {profile?.nextCompetition?.trim() && (compDays === null || compDays >= -3) && (
         <button
           onClick={onOpenCompetitionPrep}
           className="w-full min-h-[64px] px-4 rounded-xl border border-border/70 bg-card flex items-center gap-3 text-left hover:border-primary/50 transition-colors"
