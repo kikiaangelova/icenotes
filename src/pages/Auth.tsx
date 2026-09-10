@@ -42,19 +42,6 @@ const Auth: React.FC = () => {
     </button>
   );
 
-  const BrandHome = () => (
-    <button
-      type="button"
-      onClick={() => navigate('/')}
-      className="text-center w-full mb-8 group"
-    >
-      <div className="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-br from-primary to-ice-deep flex items-center justify-center mb-4 group-hover:scale-105 transition-transform">
-        <Snowflake className="w-8 h-8 text-primary-foreground" />
-      </div>
-      <h1 className="text-2xl font-bold text-foreground font-serif">SkateGoals</h1>
-    </button>
-  );
-
   const [view, setView] = useState<AuthView>('auth');
   const [isLoading, setIsLoading] = useState(false);
   const [googleLoading, setGoogleLoading] = useState(false);
