@@ -243,6 +243,15 @@ export const GameDayMode: React.FC<GameDayModeProps> = ({ open, onOpenChange }) 
                     )}
                   </div>
                 </div>
+                {!breathDone && (
+                  <button
+                    type="button"
+                    onClick={() => setBreathDone(true)}
+                    className="min-h-[44px] px-3 text-sm font-medium text-white/60 hover:text-white"
+                  >
+                    {t('cp.day.skip')}
+                  </button>
+                )}
               </div>
 
               <div className="space-y-2">
