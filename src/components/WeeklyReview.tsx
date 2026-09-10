@@ -36,25 +36,41 @@ export const WeeklyReview: React.FC<Props> = ({ open, onOpenChange }) => {
 
   const reset = () => { setForward(''); setBlocked(''); setNextFocus(''); };
 
-  const handleSave = () => {
+  const handleSave = async () => {
     const focus = nextFocus.trim();
     if (!focus) { toast.error(t('wr.needFocus')); return; }
     setSaving(true);
     const factLine = `${week.sessions} ${t('wr.sessions')} · ${week.onIce} ${t('wr.onIce')} · ${week.offIce} ${t('wr.offIce')} · ${week.minutes} ${t('wr.minutes')}`;
-    addEntry({
-      date: new Date(),
-      workedOn: factLine,
-      smallWin: '',
-      sessionType: WEEKLY_REVIEW_TYPE,
-      whatWentWell: forward.trim() || undefined,
-      whatWasChallenging: blocked.trim() || undefined,
-      nextGoal: focus,
-    });
-    if (profile) setProfile({ ...profile, mainFocus: focus });
-    toast.success(t('wr.saved'));
-    setSaving(false);
-    reset();
-    onOpenChange(false);
+    try {
+      await addEntryAsync({
+        date: new Date(),
+        workedOn: factLine,
+        smallWin: '',
+        sessionType: WEEKLY_REVIEW_TYPE,
+        whatWentWell: forward.trim() || undefined,
+        whatWasChallenging: blocked.trim() || undefined,
+        nextGoal: focus,
+      });
+
+      // One goal system: the review's next focus becomes the active weekly goal.
+      const activeWeekly = goals.find((g) => !g.completed && g.timeframe === 'weekly');
+      if (activeWeekly) {
+        await updateGoalAsync(activeWeekly.id, { title: focus });
+      } else {
+        await addGoalAsync({ title: focus, category: 'general', timeframe: 'weekly' });
+      }
+
+      if (profile) await setProfileAsync({ ...profile, mainFocus: focus });
+
+      toast.success(t('wr.saved'));
+      reset();
+      onOpenChange(false);
+    } catch {
+      // Keep the athlete's text in the fields so nothing is lost.
+      toast.error(t('wr.saveFailed'));
+    } finally {
+      setSaving(false);
+    }
   };
 
   return (

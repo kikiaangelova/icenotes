@@ -18,7 +18,7 @@ interface ReflectionSheetProps {
  */
 export const ReflectionSheet: React.FC<ReflectionSheetProps> = ({ open, onOpenChange }) => {
   const { t } = useLanguage();
-  const { addEntry, profile, setProfile } = useJournal();
+  const { addEntryAsync, profile, setProfileAsync } = useJournal();
 
   const [worked, setWorked] = useState('');
   const [hard, setHard] = useState('');
