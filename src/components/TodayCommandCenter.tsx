@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowRight, Target, Brain, Trophy, ClipboardList, CalendarDays } from 'lucide-react';
+import { ArrowRight, Brain, Trophy, ClipboardList, CalendarDays } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
 
 interface Props {
@@ -7,8 +7,8 @@ interface Props {
   focus?: string;
   /** number of sessions logged today */
   sessionsToday: number;
-  /** true once a reflection exists for today */
-  reflectedToday: boolean;
+  /** number of post-training reflections written today */
+  reflectionsToday: number;
   /** name of an upcoming competition, if the athlete set one */
   competition?: string;
   /** days until that competition; only shown when 14 or fewer */
