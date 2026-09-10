@@ -16,7 +16,7 @@ import { QuotesCollection } from './QuotesCollection';
 import { GoalsScreen } from './GoalsScreen';
 import { WeeklyReview } from './WeeklyReview';
 import { ProgressSignals } from './ProgressSignals';
-import { getWeekSummary, daysUntil, hasTrainingReflectionToday } from '@/lib/weekData';
+import { getWeekSummary, daysUntil, countTrainingReflectionsToday } from '@/lib/weekData';
 import { SportPsychology } from './SportPsychology';
 import { Button } from '@/components/ui/button';
 import { SELF_LEVELS } from '@/types/journal';
@@ -257,7 +257,7 @@ export const SimpleDashboard: React.FC = () => {
           greeting={greeting}
           focus={profile.mainFocus}
           sessionsToday={todaysSessions.length}
-          reflectedToday={reflectedToday}
+          reflectionsToday={reflectionsToday}
           competition={profile.nextCompetition}
           competitionDays={compDays}
           reviewRelevant={week.reviewRelevant}
