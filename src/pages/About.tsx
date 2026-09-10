@@ -22,13 +22,13 @@ const About: React.FC = () => {
         eyebrow: 'За SkateGoals',
         title: 'Построено от една реална нужда край пързалката.',
         intro:
-          'SkateGoals започна около една млада фигуристка и нейната майка. Трябваше им прост начин да събират на едно място тренировките, мислите след леда и целите напред.',
+          'SkateGoals не започна като стартъп идея. Започна между една млада фигуристка и нейната майка, от нуждата да събират на едно място треньорската обратна връзка, тренировките, мислите след леда и целите напред.',
         whyEyebrow: 'Началото',
         whyTitle: 'Първо беше просто място за записване.',
         whyBody: [
-          'После стана ясно, че между тренировката и представянето остават важни неща: какво си разбрала днес, къде отива увереността преди старт и как една голяма цел се превръща в следваща малка стъпка.',
+          'После стана ясно колко много остава между тренировката и представянето: наученото днес, увереността преди старт и превръщането на голямата цел в следваща малка стъпка.',
           'Така постепенно се появиха седмичното планиране, подготовката за състезание, спортната психология и двете отделни роли за AI подкрепа.',
-          'IceNotes се превърна в SkateGoals чрез практическо изграждане и vibe coding. Не защото знаем всичко за всеки спортист, а защото построихме това, което ни липсваше между тренировката и представянето.',
+          'С практическо изграждане и vibe coding IceNotes постепенно се превърна в SkateGoals. Не твърдим, че знаем всичко за всеки спортист. Построихме това, което ни липсваше между тренировката и представянето.',
         ],
         principlesEyebrow: 'Принципи',
         principlesTitle: 'Как строим продукта.',
@@ -43,7 +43,7 @@ const About: React.FC = () => {
         forEyebrow: 'За кого е',
         forTitle: 'Фигуристи на 14–18, които влизат в сериозния спорт.',
         forBody:
-          'Ако тренираш редовно, състезаваш се и искаш да разбираш собствения си прогрес, това е за теб. Ако само започваш, пак може да го ползваш — просто е построено около състезателен ритъм.',
+          'Ако тренираш редовно, състезаваш се и искаш да разбираш собствения си прогрес, това е за теб. Ако само започваш, пак може да го ползваш. Просто е построено около състезателен ритъм.',
         pilotEyebrow: 'Пилотна фаза',
         pilotBody:
           'SkateGoals се подготвя за пилотно тестване със състезаващи се фигуристи. Обратната връзка ще определя какво следва.',
@@ -53,13 +53,13 @@ const About: React.FC = () => {
         eyebrow: 'About SkateGoals',
         title: 'Built from a real need at the rink.',
         intro:
-          'SkateGoals began around a young figure skater and her mother. They needed one simple place for training notes, honest thoughts after the ice, and the goals ahead.',
+          'SkateGoals did not begin as a startup idea. It began between a young figure skater and her mother, who needed one place for coach feedback, training notes, honest thoughts after the ice, and the goals ahead.',
         whyEyebrow: 'The beginning',
         whyTitle: 'At first, it was simply a place to capture the work.',
         whyBody: [
           'Then the gap became clearer: what you learned today, where confidence goes before a competition, and how a season goal becomes one useful next step.',
           'Weekly planning, competition preparation, sport psychology and two distinct AI support roles grew into the product gradually.',
-          'IceNotes became SkateGoals through hands-on building and vibe coding. Not because we know every athlete, but because we built what we wished existed between training and performance.',
+          'Through hands-on building and vibe coding, IceNotes gradually became SkateGoals. We do not claim to know every athlete. We built what we wished existed between training and performance.',
         ],
         principlesEyebrow: 'Principles',
         principlesTitle: 'How we build it.',
@@ -74,7 +74,7 @@ const About: React.FC = () => {
         forEyebrow: 'Who it’s for',
         forTitle: 'Skaters aged 14–18 moving into serious competition.',
         forBody:
-          'If you train regularly, compete, and want to understand your own progress, this is for you. If you’re earlier in skating you can still use it — it is simply built around a competitive rhythm.',
+          'If you train regularly, compete, and want to understand your own progress, this is for you. If you’re earlier in skating you can still use it. It is simply built around a competitive rhythm.',
         pilotEyebrow: 'Pilot preparation',
         pilotBody:
           'SkateGoals is being prepared for pilot testing with competitive skaters. Feedback will shape what comes next.',
