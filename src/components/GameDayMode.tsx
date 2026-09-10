@@ -15,11 +15,15 @@ interface GameDayModeProps {
   onOpenChange: (open: boolean) => void;
 }
 
+/**
+ * Comfortable paced breathing: in, then a slightly longer out. No breath hold,
+ * nothing to force — the athlete can stop at any point.
+ */
 const BREATH = [
-  { key: 'cp.day.inhale', seconds: 4, scale: 1.35, opacity: 1 },
-  { key: 'cp.day.hold', seconds: 7, scale: 1.35, opacity: 1 },
-  { key: 'cp.day.exhale', seconds: 8, scale: 0.85, opacity: 0.6 },
+  { key: 'cp.day.inhale', seconds: 4, scale: 1.3, opacity: 1 },
+  { key: 'cp.day.exhale', seconds: 6, scale: 0.85, opacity: 0.6 },
 ] as const;
+const BREATH_ROUNDS = 4;
 
 const openAI = (role: 'coach' | 'psych', message: string) =>
   window.dispatchEvent(new CustomEvent('ai-assistant:open', { detail: { role, message } }));
