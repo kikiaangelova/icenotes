@@ -380,7 +380,7 @@ export const GoalsScreen: React.FC<Props> = ({ onOpenWeeklyReview, onOpenCompeti
             </div>
 
             <div className="space-y-2 pt-1">
-              <Button onClick={save} disabled={!draft.title.trim()} className="w-full h-14 rounded-xl text-base font-semibold">
+              <Button onClick={save} disabled={!draft.title.trim() || saving} className="w-full h-14 rounded-xl text-base font-semibold">
                 {t('gb.save')}
               </Button>
               <button

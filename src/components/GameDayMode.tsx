@@ -35,7 +35,7 @@ const openAI = (role: 'coach' | 'psych', message: string) =>
  */
 export const GameDayMode: React.FC<GameDayModeProps> = ({ open, onOpenChange }) => {
   const { t } = useLanguage();
-  const { profile, addEntry } = useJournal();
+  const { profile, addEntryAsync } = useJournal();
 
   const days = daysUntil(profile?.nextCompetitionDate);
   const phase: CompPhase = useMemo(() => getCompPhase(days) ?? 'week', [days]);
@@ -90,19 +90,28 @@ export const GameDayMode: React.FC<GameDayModeProps> = ({ open, onOpenChange }) 
 
   const close = () => onOpenChange(false);
 
-  const saveDebrief = () => {
+  const saveDebrief = async () => {
     if (!d1.trim() && !d2.trim() && !d3.trim()) { close(); return; }
-    addEntry({
-      date: new Date(),
-      workedOn: profile?.nextCompetition?.trim() || t('cp.title'),
-      smallWin: '',
-      sessionType: 'competition',
-      whatWentWell: d1.trim() || undefined,
-      whatWasChallenging: d2.trim() || undefined,
-      nextGoal: d3.trim() || undefined,
-    });
-    toast.success(t('cp.after.saved'));
-    close();
+    if (savingDebrief) return;
+    setSavingDebrief(true);
+    try {
+      await addEntryAsync({
+        date: new Date(),
+        workedOn: profile?.nextCompetition?.trim() || t('cp.title'),
+        smallWin: '',
+        sessionType: 'competition',
+        whatWentWell: d1.trim() || undefined,
+        whatWasChallenging: d2.trim() || undefined,
+        nextGoal: d3.trim() || undefined,
+      });
+      toast.success(t('cp.after.saved'));
+      close();
+    } catch {
+      // Keep the debrief text on screen.
+      toast.error(t('wr.saveFailed'));
+    } finally {
+      setSavingDebrief(false);
+    }
   };
 
   const headline =
