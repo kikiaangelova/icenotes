@@ -14,16 +14,16 @@ const SportPsychology: React.FC = () => {
   const [gameDayOpen, setGameDayOpen] = useState(false);
 
   const topics = [
-    { icon: Brain, title: t('psy.t1.title'), description: t('psy.t1.desc'), prompt: language === 'bg' ? 'Искам да избера ясен фокус преди следващата тренировка. Задай ми един въпрос.' : 'I want to choose a clear focus before my next session. Ask me one question.' },
-    { icon: Eye, title: t('psy.t2.title'), description: t('psy.t2.desc'), prompt: language === 'bg' ? 'Искам кратко упражнение за мислено преминаване през програмата с реалистични детайли.' : 'I want a short exercise to rehearse my program with realistic detail.' },
-    { icon: Shield, title: t('psy.t3.title'), description: t('psy.t3.desc'), prompt: language === 'bg' ? 'Увереността ми на леда спадна. Помогни ми да прегледам фактите и да избера следващ фокус.' : 'My confidence on the ice has dropped. Help me review the evidence and choose a next focus.' },
-    { icon: Flame, title: t('psy.t4.title'), description: t('psy.t4.desc'), prompt: language === 'bg' ? 'Напоследък ми е трудно да започна тренировка. Помогни ми да отделя фактите от моментното настроение.' : 'Starting practice has felt difficult lately. Help me separate the facts from my current mood.' },
-    { icon: Heart, title: t('psy.t5.title'), description: t('psy.t5.desc'), prompt: language === 'bg' ? 'Напрежението преди състезание ми пречи да държа внимание върху задачата. Нека избера един контролируем ориентир.' : 'Competition pressure is pulling my attention away from the task. Help me choose one controllable cue.' },
-    { icon: Zap, title: t('psy.t6.title'), description: t('psy.t6.desc'), prompt: language === 'bg' ? 'Губя фокус по време на тренировка. Помогни ми да открия кога става и как да се върна към задачата.' : 'I lose focus during practice. Help me identify when it happens and how to return to the task.' },
+    { icon: Brain, title: t('psy.t1.title'), description: t('psy.t1.desc'), prompt: language === 'bg' ? 'Искам да се подготвя психически за следващата тренировка. Задай ми един въпрос, от който да започнем.' : "I want to work on my mental resilience. Can you guide me through a short session?" },
+    { icon: Eye, title: t('psy.t2.title'), description: t('psy.t2.desc'), prompt: language === 'bg' ? 'Искам да упражня визуализация за програмата си. Помогни ми да започна.' : "I want to practice visualization for my skating. Let's do a guided session." },
+    { icon: Shield, title: t('psy.t3.title'), description: t('psy.t3.desc'), prompt: language === 'bg' ? 'На леда ми липсва увереност. Помогни ми да разбера какво стои зад това.' : "I want to build more confidence on the ice. Can you help me?" },
+    { icon: Flame, title: t('psy.t4.title'), description: t('psy.t4.desc'), prompt: language === 'bg' ? 'Напоследък ми е трудно да намеря мотивация за тренировка. Нека поговорим.' : "I'm struggling with motivation lately. Can we talk about it?" },
+    { icon: Heart, title: t('psy.t5.title'), description: t('psy.t5.desc'), prompt: language === 'bg' ? 'Искам да се справям по-добре с емоциите си по време на състезание.' : "I want to work on managing my emotions during competition." },
+    { icon: Zap, title: t('psy.t6.title'), description: t('psy.t6.desc'), prompt: language === 'bg' ? 'Лесно губя фокус по време на тренировка. Помогни ми да разбера кога се случва.' : "Help me improve my focus and concentration during practice." },
   ];
 
   const startSession = (prompt: string) => {
-    window.dispatchEvent(new CustomEvent('coach-iris:open', { detail: { role: 'psych', message: prompt } }));
+    window.dispatchEvent(new CustomEvent('coach-iris:open', { detail: { message: prompt } }));
   };
 
 
@@ -73,7 +73,7 @@ const SportPsychology: React.FC = () => {
                   className="w-full gap-2 mt-auto border-primary/30 text-primary hover:bg-primary/10 hover:text-primary"
                 >
                   <Sparkles className="w-3.5 h-3.5" />
-                  {language === 'bg' ? 'Отвори спортна психология' : 'Open Sport Psychology'}
+                  {language === 'bg' ? 'Започни разговор с AI подкрепа' : 'Start Session with your AI Coach'}
                 </Button>
               </div>
             ))}
