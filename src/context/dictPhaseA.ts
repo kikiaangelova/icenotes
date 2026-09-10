@@ -63,7 +63,7 @@ export const PHASEA_DICT: Record<string, { en: string; bg: string }> = {
   'a.tr.prepOpen': { en: 'Set a focus first', bg: 'Първо задай фокус' },
 
   // ── On-ice / off-ice element labels (stored value stays canonical) ──
-  'a.el.Edge work & stroking': { en: 'Edges & stroking', bg: 'Ръбове и пързаляне' },
+  'a.el.Edge work & stroking': { en: 'Edges & stroking', bg: 'Пързаляне' },
   'a.el.Spins practice': { en: 'Spins', bg: 'Пируети' },
   'a.el.Jump technique': { en: 'Jumps', bg: 'Скокове' },
   'a.el.Program run-through': { en: 'Program run-through', bg: 'Програма' },
