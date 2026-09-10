@@ -134,17 +134,17 @@ export const GameDayMode: React.FC<GameDayModeProps> = ({ open, onOpenChange }) 
             type="button"
             onClick={() => setChecked((c) => ({ ...c, [label]: !c[label] }))}
             aria-pressed={!!checked[label]}
-            className="w-full min-h-[52px] px-4 py-3 rounded-xl border border-white/15 bg-white/5 flex items-start gap-3 text-left hover:bg-white/10 transition-colors"
+            className="flex min-h-[52px] w-full items-start gap-3 rounded-md border border-primary-foreground/20 bg-primary-foreground/5 px-4 py-3 text-left transition-colors hover:bg-primary-foreground/10"
           >
             <span
               className={cn(
                 'mt-0.5 w-5 h-5 rounded-md border flex items-center justify-center shrink-0',
-                checked[label] ? 'bg-white text-slate-900 border-white' : 'border-white/40',
+                 checked[label] ? 'bg-primary-foreground text-primary border-primary-foreground' : 'border-primary-foreground/40',
               )}
             >
               {checked[label] && <Check className="w-3.5 h-3.5" />}
             </span>
-            <span className={cn('text-sm leading-snug', checked[label] ? 'text-white/60 line-through' : 'text-white')}>
+            <span className={cn('text-sm leading-snug', checked[label] ? 'text-primary-foreground/60 line-through' : 'text-primary-foreground')}>
               {label}
             </span>
           </button>
@@ -158,25 +158,25 @@ export const GameDayMode: React.FC<GameDayModeProps> = ({ open, onOpenChange }) 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent
-        className="max-w-full w-screen h-[100dvh] sm:h-screen p-0 border-0 rounded-none overflow-y-auto [&>button]:hidden bg-[hsl(222_47%_11%)]"
+         className="authenticated-app max-w-full w-screen h-[100dvh] sm:h-screen p-0 border-0 rounded-none overflow-y-auto [&>button]:hidden bg-primary"
       >
         <button
           onClick={close}
           aria-label={t('cp.close')}
-          className="absolute top-4 right-4 z-20 w-11 h-11 rounded-xl bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors"
+          className="absolute top-4 right-4 z-20 flex h-11 w-11 items-center justify-center rounded-md bg-primary-foreground/10 text-primary-foreground transition-colors hover:bg-primary-foreground/20"
         >
           <X className="w-5 h-5" />
         </button>
 
-        <div className="mx-auto w-full max-w-xl px-5 pt-6 pb-12 text-white">
-          <div className="flex items-center gap-2 text-white/70">
+        <div className="mx-auto w-full max-w-xl px-5 pt-6 pb-12 text-primary-foreground">
+          <div className="flex items-center gap-2 text-primary-foreground/70">
             <Trophy className="w-4 h-4" />
-            <span className="text-[11px] font-semibold uppercase tracking-[0.2em]">{t('cp.title')}</span>
+            <span className="text-xs font-semibold">{t('cp.title')}</span>
           </div>
 
           <h2 className="mt-3 text-2xl font-bold tracking-tight">{headline}</h2>
           {profile?.nextCompetition?.trim() && (
-            <p className="mt-1 text-sm text-white/60">{profile.nextCompetition}</p>
+            <p className="mt-1 text-sm text-primary-foreground/60">{profile.nextCompetition}</p>
           )}
 
           {/* Days before */}
@@ -184,13 +184,13 @@ export const GameDayMode: React.FC<GameDayModeProps> = ({ open, onOpenChange }) 
             <section className="mt-7 space-y-4">
               <div>
                 <h3 className="text-base font-semibold">{t('cp.week.head')}</h3>
-                <p className="mt-1 text-sm text-white/60 leading-relaxed">{t('cp.week.intro')}</p>
+                 <p className="mt-1 text-sm text-primary-foreground/60 leading-relaxed">{t('cp.week.intro')}</p>
               </div>
               <Checklist items={[t('cp.week.i1'), t('cp.week.i2'), t('cp.week.i3'), t('cp.week.i4'), t('cp.week.i5')]} />
               <Button
                 variant="outline"
                 onClick={() => { close(); setTimeout(() => openAI('coach', t('cp.week.aiMsg')), 250); }}
-                className="w-full h-12 rounded-xl border-white/30 bg-white/10 text-white hover:bg-white/20 hover:text-white font-semibold"
+                 className="w-full h-12 border-primary-foreground/30 bg-primary-foreground/10 text-primary-foreground hover:bg-primary-foreground/20 hover:text-primary-foreground font-semibold"
               >
                 {t('cp.week.ai')} <ChevronRight className="w-4 h-4 ml-1" />
               </Button>
@@ -202,17 +202,17 @@ export const GameDayMode: React.FC<GameDayModeProps> = ({ open, onOpenChange }) 
             <section className="mt-7 space-y-4">
               <div>
                 <h3 className="text-base font-semibold">{t('cp.eve.head')}</h3>
-                <p className="mt-1 text-sm text-white/60 leading-relaxed">{t('cp.eve.intro')}</p>
+                 <p className="mt-1 text-sm text-primary-foreground/60 leading-relaxed">{t('cp.eve.intro')}</p>
               </div>
               <Checklist items={[t('cp.eve.i1'), t('cp.eve.i2'), t('cp.eve.i3'), t('cp.eve.i4')]} />
               <div className="space-y-2">
-                <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-white/60">{t('cp.eve.cue')}</p>
+                 <p className="text-xs font-semibold text-primary-foreground/60">{t('cp.eve.cue')}</p>
                 <div className="flex items-start gap-2">
                   <Input
                     value={cue}
                     onChange={(e) => setCue(e.target.value)}
                     placeholder={t('cp.eve.cuePh')}
-                    className="h-12 rounded-xl flex-1 bg-white/10 border-white/20 text-white placeholder:text-white/40"
+                     className="h-12 flex-1 bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground placeholder:text-primary-foreground/40"
                   />
                   <VoiceButton value={cue} onChange={setCue} />
                 </div>
@@ -220,7 +220,7 @@ export const GameDayMode: React.FC<GameDayModeProps> = ({ open, onOpenChange }) 
               <Button
                 variant="outline"
                 onClick={() => { close(); setTimeout(() => openAI('psych', t('cp.eve.aiMsg')), 250); }}
-                className="w-full h-12 rounded-xl border-white/30 bg-white/10 text-white hover:bg-white/20 hover:text-white font-semibold"
+                 className="w-full h-12 border-primary-foreground/30 bg-primary-foreground/10 text-primary-foreground hover:bg-primary-foreground/20 hover:text-primary-foreground font-semibold"
               >
                 {t('cp.eve.ai')} <ChevronRight className="w-4 h-4 ml-1" />
               </Button>
@@ -232,14 +232,14 @@ export const GameDayMode: React.FC<GameDayModeProps> = ({ open, onOpenChange }) 
             <section className="mt-7 space-y-6">
               <div>
                 <h3 className="text-base font-semibold">{t('cp.day.head')}</h3>
-                <p className="mt-1 text-sm text-white/60 leading-relaxed">{t('cp.day.intro')}</p>
+                 <p className="mt-1 text-sm text-primary-foreground/60 leading-relaxed">{t('cp.day.intro')}</p>
               </div>
 
               <div className="flex flex-col items-center gap-4">
-                <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-white/60">{t('cp.day.breathe')}</p>
+                 <p className="text-xs font-semibold text-primary-foreground/60">{t('cp.day.breathe')}</p>
                 <div className="relative w-52 h-52 flex items-center justify-center">
                   <div
-                    className="absolute inset-6 rounded-full bg-[hsl(205_70%_45%)]"
+                     className="absolute inset-6 rounded-full bg-accent"
                     style={{
                       transform: `scale(${b.scale})`,
                       opacity: b.opacity,
@@ -255,7 +255,7 @@ export const GameDayMode: React.FC<GameDayModeProps> = ({ open, onOpenChange }) 
                         <div className="text-4xl font-bold tabular-nums mt-1">{secondsLeft}</div>
                       </>
                     ) : (
-                      <span className="text-base font-semibold text-white/70">{t('cp.day.breathe')}</span>
+                       <span className="text-base font-semibold text-primary-foreground/70">{t('cp.day.breathe')}</span>
                     )}
                   </div>
                 </div>
@@ -265,7 +265,7 @@ export const GameDayMode: React.FC<GameDayModeProps> = ({ open, onOpenChange }) 
                       <button
                         type="button"
                         onClick={() => setBreathStarted(true)}
-                        className="min-h-[44px] px-4 rounded-xl bg-white/10 text-sm font-semibold hover:bg-white/15"
+                         className="min-h-[44px] px-4 rounded-md bg-primary-foreground/10 text-sm font-semibold hover:bg-primary-foreground/15"
                       >
                         {t('cp.day.start')}
                       </button>
@@ -273,7 +273,7 @@ export const GameDayMode: React.FC<GameDayModeProps> = ({ open, onOpenChange }) 
                     <button
                       type="button"
                       onClick={() => setBreathDone(true)}
-                      className="min-h-[44px] px-3 text-sm font-medium text-white/60 hover:text-white"
+                       className="min-h-[44px] px-3 text-sm font-medium text-primary-foreground/60 hover:text-primary-foreground"
                     >
                       {t('cp.day.skip')}
                     </button>
@@ -282,13 +282,13 @@ export const GameDayMode: React.FC<GameDayModeProps> = ({ open, onOpenChange }) 
               </div>
 
               <div className="space-y-2">
-                <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-white/60">{t('cp.day.cue')}</p>
+                 <p className="text-xs font-semibold text-primary-foreground/60">{t('cp.day.cue')}</p>
                 <div className="flex items-start gap-2">
                   <Input
                     value={cue}
                     onChange={(e) => setCue(e.target.value)}
                     placeholder={t('cp.eve.cuePh')}
-                    className="h-12 rounded-xl flex-1 bg-white/10 border-white/20 text-white placeholder:text-white/40"
+                     className="h-12 flex-1 bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground placeholder:text-primary-foreground/40"
                   />
                   <VoiceButton value={cue} onChange={setCue} />
                 </div>
@@ -297,7 +297,7 @@ export const GameDayMode: React.FC<GameDayModeProps> = ({ open, onOpenChange }) 
               <Button
                 variant="outline"
                 onClick={() => { close(); setTimeout(() => openAI('psych', t('cp.day.aiMsg')), 250); }}
-                className="w-full h-12 rounded-xl border-white/30 bg-white/10 text-white hover:bg-white/20 hover:text-white font-semibold"
+                 className="w-full h-12 border-primary-foreground/30 bg-primary-foreground/10 text-primary-foreground hover:bg-primary-foreground/20 hover:text-primary-foreground font-semibold"
               >
                 {t('cp.day.ai')} <ChevronRight className="w-4 h-4 ml-1" />
               </Button>
@@ -309,20 +309,20 @@ export const GameDayMode: React.FC<GameDayModeProps> = ({ open, onOpenChange }) 
             <section className="mt-7 space-y-5">
               <div>
                 <h3 className="text-base font-semibold">{t('cp.after.head')}</h3>
-                <p className="mt-1 text-sm text-white/60 leading-relaxed">{t('cp.after.intro')}</p>
+                 <p className="mt-1 text-sm text-primary-foreground/60 leading-relaxed">{t('cp.after.intro')}</p>
               </div>
-              <div className="[&_textarea]:bg-white/10 [&_textarea]:border-white/20 [&_textarea]:text-white [&_textarea]:placeholder:text-white/40 [&_label]:text-white/60 space-y-5">
+               <div className="[&_textarea]:bg-primary-foreground/10 [&_textarea]:border-primary-foreground/20 [&_textarea]:text-primary-foreground [&_textarea]:placeholder:text-primary-foreground/40 [&_label]:text-primary-foreground/60 space-y-5">
                 <VoiceTextarea label={t('cp.after.q1')} value={d1} onChange={setD1} rows={2} />
                 <VoiceTextarea label={t('cp.after.q2')} value={d2} onChange={setD2} rows={2} />
                 <VoiceTextarea label={t('cp.after.q3')} value={d3} onChange={setD3} rows={2} />
               </div>
-              <Button onClick={saveDebrief} disabled={savingDebrief} className="w-full h-14 rounded-xl text-base font-semibold bg-white text-slate-900 hover:bg-white/90">
+               <Button onClick={saveDebrief} disabled={savingDebrief} className="w-full h-14 text-base font-semibold bg-primary-foreground text-primary hover:bg-primary-foreground/90">
                 {t('cp.after.save')}
               </Button>
             </section>
           )}
 
-          <p className="mt-8 text-[11px] leading-snug text-white/45">{t('ai.disclaimer')}</p>
+          <p className="mt-8 text-[11px] leading-snug text-primary-foreground/45">{t('ai.disclaimer')}</p>
         </div>
       </DialogContent>
     </Dialog>
