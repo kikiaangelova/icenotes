@@ -5,7 +5,7 @@ export type PhaseBEntry = { en: string; bg: string };
 export const PHASEB_DICT: Record<string, PhaseBEntry> = {
   // ── Voice capture ──
   'voice.start':     { en: 'Speak instead of typing', bg: 'Кажи го, вместо да пишеш' },
-  'voice.stop':      { en: 'Stop recording', bg: 'Спри записа' },
+  'voice.stop':      { en: 'Stop listening', bg: 'Спри слушането' },
   'voice.listening': { en: 'Listening…', bg: 'Слушам…' },
   'voice.denied':    { en: 'Microphone access is off. Type instead.', bg: 'Достъпът до микрофона е спрян. Напиши го.' },
   'voice.failed':    { en: 'Voice did not work here. Type instead.', bg: 'Гласът не сработи. Напиши го.' },
@@ -94,7 +94,7 @@ export const PHASEB_DICT: Record<string, PhaseBEntry> = {
   'cp.week.i4':    { en: 'Keep the routines you already know instead of adding new ones', bg: 'Пази рутините, които вече познаваш, вместо да добавяш нови' },
   'cp.week.i5':    { en: 'Note what you want to ask your coach', bg: 'Запиши какво искаш да питаш треньора си' },
   'cp.week.ai':    { en: 'Plan the weeks with AI Coach', bg: 'Планирай седмиците с AI треньора' },
-  'cp.week.aiMsg': { en: 'I have a competition coming up. Help me plan the training weeks before it.', bg: 'Скоро имам старт. Помогни ми да разпределя тренировъчните седмици преди него.' },
+  'cp.week.aiMsg': { en: 'I have a competition coming up. Help me organize my priorities around the plan I already have with my coach.', bg: 'Скоро имам старт. Помогни ми да подредя приоритетите около плана, който вече имам с треньора.' },
 
   'cp.eve.head':   { en: 'Tomorrow: routine, logistics, cues', bg: 'Утре: рутина, логистика, думи-опори' },
   'cp.eve.intro':  { en: 'The day before is not for new work. It is for making tomorrow predictable.', bg: 'Денят преди старта не е за нова работа. Той е за да направиш утрешния ден предвидим.' },
@@ -141,4 +141,8 @@ export const PHASEB_DICT: Record<string, PhaseBEntry> = {
 
   // ── Save state ──
   'wr.saveFailed': { en: 'Saving did not go through. Your text is still here — try again.', bg: 'Записът не мина. Текстът ти е тук — пробвай пак.' },
+  'cp.day.start':  { en: 'Start breathing', bg: 'Започни дишането' },
+  'a.rf.needFocus': { en: 'Add a focus for next training to save, or skip for now.', bg: 'Добави фокус за следващата тренировка, за да запишеш, или пропусни засега.' },
+  'a.tr.saveFailed': { en: 'The session did not save. Everything you entered is still here — try again.', bg: 'Тренировката не се записа. Всичко въведено е тук — пробвай пак.' },
+  'gb.saveFailed': { en: 'Saving did not go through. Your text is still here — try again.', bg: 'Записът не мина. Текстът ти е тук — пробвай пак.' },
 };
