@@ -32,6 +32,11 @@ const PRESET_GOALS = [
 
 interface GuidedTourProps {
   setActiveTab: (tab: 'today' | 'train' | 'support' | 'goals' | 'progress') => void;
+  /**
+   * Legacy tour. It no longer opens by itself for new users — onboarding covers
+   * the first run. It is kept as an explicit opt-in (?action=start-tour).
+   */
+  autoStart?: boolean;
 }
 
 export const GuidedTour: React.FC<GuidedTourProps> = ({ setActiveTab }) => {
