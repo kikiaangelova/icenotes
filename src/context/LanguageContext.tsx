@@ -725,6 +725,7 @@ const dict: Dict = {
   'auth.cta.signup': { en: 'Create Account', bg: 'Направи профил' },
   'auth.cta.creating': { en: 'Creating account…', bg: 'Правим профила…' },
   'a11y.primaryNav': { en: 'Main navigation', bg: 'Основна навигация' },
+  'a11y.close': { en: 'Close', bg: 'Затвори' },
   'a11y.settings': { en: 'Settings', bg: 'Настройки' },
   'a11y.language': { en: 'Change language', bg: 'Смени езика' },
   'auth.google': { en: 'Continue with Google', bg: 'Продължи с Google' },
