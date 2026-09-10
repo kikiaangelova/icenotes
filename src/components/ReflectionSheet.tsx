@@ -32,8 +32,16 @@ export const ReflectionSheet: React.FC<ReflectionSheetProps> = ({ open, onOpenCh
   };
 
   const handleSave = async () => {
+    const nextFocus = focus.trim();
+    // The loop is LOG -> REFLECT -> NEXT FOCUS. Skipping stays available.
+    if (!nextFocus) { toast.error(t('a.rf.needFocus')); return; }
     setSaving(true);
     try {
+      // Focus first, reflection row last: a saved reflection never closes the
+      // loop while Today still points at an old focus.
+      if (profile) {
+        await setProfileAsync({ ...profile, mainFocus: nextFocus });
+      }
       await addEntryAsync({
         date: new Date(),
         workedOn: worked.trim(),
@@ -41,11 +49,8 @@ export const ReflectionSheet: React.FC<ReflectionSheetProps> = ({ open, onOpenCh
         sessionType: 'training',
         whatWentWell: worked.trim() || undefined,
         whatWasChallenging: hard.trim() || undefined,
-        nextGoal: focus.trim() || undefined,
+        nextGoal: nextFocus,
       });
-      if (focus.trim() && profile) {
-        await setProfileAsync({ ...profile, mainFocus: focus.trim() });
-      }
       toast.success(t('a.rf.saved'));
       reset();
       onOpenChange(false);
