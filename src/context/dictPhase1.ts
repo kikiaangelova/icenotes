@@ -44,7 +44,7 @@ export const PHASE1_DICT: Record<string, Phase1Entry> = {
   'ai.coach.s4': { en: 'Review what I followed through on this week', bg: 'Нека прегледаме какво изпълних тази седмица' },
 
   'ai.psych.name': { en: 'Sport Psychology', bg: 'Спортна психология' },
-  'ai.psych.tag':  { en: 'Confidence · pressure · focus', bg: 'Увереност · напрежение · фокус' },
+  'ai.psych.tag':  { en: 'Pressure · confidence · focus', bg: 'Напрежение · увереност · фокус' },
   'ai.psych.desc': {
     en: 'Reflect on pressure, attention, confidence, and resets after difficult sessions.',
     bg: 'Разговор за напрежение, внимание, увереност и рестарт след трудна тренировка.',
@@ -61,12 +61,12 @@ export const PHASE1_DICT: Record<string, Phase1Entry> = {
   'ai.psych.s4': { en: 'I want a routine for the minutes before I skate', bg: 'Искам рутина за минутите преди да изляза' },
 
   'ai.disclaimer': {
-    en: 'AI support informed by sport psychology. Not a psychologist, not therapy, not an emergency service. If something serious is going on, talk to an adult you trust.',
-    bg: 'AI подкрепа, базирана на спортна психология. Не е психолог, не е терапия и не е спешна помощ. Ако става нещо сериозно, говори с възрастен, на когото имаш доверие.',
+    en: 'AI informed by sport psychology—not therapy or emergency support. For something serious, talk to a trusted adult.',
+    bg: 'AI с насоки от спортната психология — не е терапия или спешна помощ. При сериозен проблем говори с възрастен, на когото имаш доверие.',
   },
   'ai.disclaimer.coach': {
-    en: 'AI support for planning and goals. It does not replace your skating coach and does not prescribe training load.',
-    bg: 'AI подкрепа за планиране и цели. Не замества треньора ти и не предписва натоварване.',
+    en: 'AI for planning and goals. It does not replace your skating coach or prescribe training load.',
+    bg: 'AI за план и цели. Не замества треньора и не определя натоварването.',
   },
   'ai.switch': { en: 'Switch role', bg: 'Смени ролята' },
   'ai.tryOne': { en: 'You can start with', bg: 'Може да започнеш с' },

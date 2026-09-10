@@ -905,10 +905,10 @@ const dict: Dict = {
   'streak.pause.reason.other':   { en: 'Just need space', bg: 'Имам нужда от пауза' },
 
   // ───── Mindfulness Tools ─────
-  'mt.heading': { en: 'Mental-performance tools', bg: 'Инструменти за ментална подготовка' },
+  'mt.heading': { en: 'Quick tools', bg: 'Бързи инструменти' },
   'mt.intro': {
-    en: 'Optional exercises for attention, pre-performance preparation, and reflection.',
-    bg: 'Упражнения по избор за внимание, подготовка преди изпълнение и рефлексия.',
+    en: 'Paced breathing and visualization for training or competition.',
+    bg: 'Ритмично дишане и визуализация преди тренировка или старт.',
   },
 
   // Tool cards
