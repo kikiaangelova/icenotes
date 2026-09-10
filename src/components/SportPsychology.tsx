@@ -57,7 +57,7 @@ const CONFIDENCE_EXERCISES = (bg: boolean) => [
     title: bg ? 'Доказателства за увереност' : 'Confidence evidence',
     duration: bg ? "2 мин" : "2 min",
     description: bg
-      ? 'Запиши до три конкретни действия, които си изпълнил според плана.'
+      ? 'Запиши до три конкретни действия, които изпълни по плана.'
       : 'Write up to three specific actions you carried out as planned.',
     steps: bg ? [
       'Избери една тренировка или състезание.',
@@ -93,7 +93,7 @@ const CONFIDENCE_EXERCISES = (bg: boolean) => [
     title: bg ? 'Преглед на стабилен момент' : 'Review a stable performance',
     duration: bg ? "3 мин" : "3 min",
     description: bg
-      ? 'Върни се към реален момент, в който си следвал плана под напрежение.'
+      ? 'Върни се към реален момент, когато успя да следваш плана под напрежение.'
       : 'Return to a real moment when you followed the plan under pressure.',
     steps: bg ? [
       'Избери конкретна тренировка или старт.',

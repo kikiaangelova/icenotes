@@ -23,16 +23,16 @@ export const PHASE1_DICT: Record<string, Phase1Entry> = {
   'today.core.review':   { en: 'Weekly review', bg: 'Седмичен преглед' },
   'today.core.comp':     { en: 'Competition prep', bg: 'Подготовка за старт' },
   'today.support.label': { en: 'AI support', bg: 'AI подкрепа' },
-  'today.support.sub':   { en: 'AI Coach · Sport Psychology', bg: 'AI треньор · Спортна психология' },
+  'today.support.sub':   { en: 'AI Coach · Sport Psychology', bg: 'AI Coach · Спортна психология' },
 
   // ── The two AI roles ──
-  'ai.coach.name':  { en: 'AI Coach', bg: 'AI треньор' },
+  'ai.coach.name':  { en: 'AI Coach', bg: 'AI Coach' },
   'ai.coach.tag':   { en: 'Planning · goals · next step', bg: 'План · цели · следваща стъпка' },
   'ai.coach.desc':  {
     en: 'Organize priorities and next actions around the plan you already have with your coach.',
     bg: 'Подреди приоритетите и следващите стъпки около плана, който вече имаш с треньора.',
   },
-  'ai.coach.open':  { en: 'Open AI Coach', bg: 'Отвори AI треньора' },
+  'ai.coach.open':  { en: 'Open AI Coach', bg: 'Отвори AI Coach' },
   'ai.coach.greeting': {
     en: 'Tell me the goal, your coach-led plan, or what happened this week. We’ll define one useful next action.',
     bg: 'Кажи каква е целта, какъв е планът с треньора или как мина седмицата. Ще определим една полезна следваща стъпка.',

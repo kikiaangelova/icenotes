@@ -49,7 +49,7 @@ export const PHASE2_DICT: Record<string, { en: string; bg: string }> = {
   'ob.s3.title': { en: 'This season', bg: 'Този сезон' },
   'ob.s3.sub': {
     en: 'The AI Coach uses this context to connect weekly priorities to your existing training plan.',
-    bg: 'AI треньорът използва този контекст, за да свърже седмичните приоритети с плана ти за подготовка.',
+    bg: 'AI Coach използва този контекст, за да свърже седмичните приоритети с плана ти за подготовка.',
   },
   'ob.s3.focus': { en: 'Main goal or focus right now', bg: 'Основна цел или фокус в момента' },
   'ob.s3.focusPh': {
