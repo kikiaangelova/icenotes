@@ -56,7 +56,10 @@ interface JournalContextType {
   // Goals (timeframe-based)
   goals: SkatingGoal[];
   addGoal: (goal: Omit<SkatingGoal, 'id' | 'progress' | 'completed'>) => void;
+  addGoalAsync: (goal: Omit<SkatingGoal, 'id' | 'progress' | 'completed'>) => Promise<unknown>;
   updateGoal: (id: string, updates: Partial<SkatingGoal>) => void;
+  updateGoalAsync: (id: string, updates: Partial<SkatingGoal>) => Promise<unknown>;
+  setProfileAsync: (profile: SkaterProfile) => Promise<unknown>;
   deleteGoal: (id: string) => void;
   
   getJourneyStats: () => JourneyStats;
@@ -114,6 +117,12 @@ export const JournalProvider: React.FC<{ children: ReactNode }> = ({ children })
   const addEntry = (entry: Omit<JournalEntry, 'id' | 'createdAt'>) => {
     addEntryMutation.mutate(entry);
   };
+
+  const addEntryAsync = (entry: Omit<JournalEntry, 'id' | 'createdAt'>) =>
+    addEntryMutation.mutateAsync(entry);
+
+  const setProfileAsync = (newProfile: SkaterProfile) =>
+    updateProfileMutation.mutateAsync(newProfile);
 
   const getTodaysEntry = (): JournalEntry | null => {
     return getTodaysEntryHelper(entries);
