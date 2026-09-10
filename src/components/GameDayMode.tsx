@@ -43,6 +43,7 @@ export const GameDayMode: React.FC<GameDayModeProps> = ({ open, onOpenChange }) 
   const [checked, setChecked] = useState<Record<string, boolean>>({});
   const [cue, setCue] = useState('');
   const [breathStep, setBreathStep] = useState(0);
+  const [breathRound, setBreathRound] = useState(0);
   const [secondsLeft, setSecondsLeft] = useState<number>(BREATH[0].seconds);
   const [breathDone, setBreathDone] = useState(false);
   const [d1, setD1] = useState('');
