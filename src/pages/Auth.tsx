@@ -453,7 +453,6 @@ const Auth: React.FC = () => {
           type="button"
           onClick={() => navigate('/')}
           className="text-center w-full mb-8 group"
-          aria-label={t('auth.backHome')}
         >
           <div className="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-br from-primary to-ice-deep flex items-center justify-center mb-4 group-hover:scale-105 transition-transform">
             <Snowflake className="w-8 h-8 text-primary-foreground" />
