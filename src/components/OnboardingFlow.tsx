@@ -116,24 +116,24 @@ export const OnboardingFlow: React.FC = () => {
   const field = 'h-12 text-base';
   const chip = (active: boolean) =>
     cn(
-      'min-h-12 px-4 py-3 rounded-xl text-sm font-medium text-left border transition-colors',
+      'min-h-12 px-4 py-3 rounded-md text-sm font-medium text-left border transition-colors',
       active
         ? 'border-primary bg-primary/10 text-foreground'
         : 'border-border bg-card hover:border-primary/40 text-muted-foreground',
     );
 
   return (
-    <div className="min-h-screen bg-background flex flex-col">
-      <div className="w-full max-w-xl mx-auto flex-1 flex flex-col px-5 py-8 sm:py-14">
+    <div className="authenticated-app min-h-screen bg-background flex flex-col">
+      <div className="w-full max-w-2xl mx-auto flex-1 flex flex-col px-5 py-8 sm:px-8 sm:py-14">
         {/* Progress */}
         <div className="mb-8">
-          <div className="flex items-center justify-between text-xs uppercase tracking-widest text-muted-foreground mb-3">
+          <div className="mb-3 flex items-center justify-between text-xs text-muted-foreground">
             <span>
               {t('ob.step')} {step} {t('ob.of')} {TOTAL}
             </span>
             <span className="font-semibold text-foreground">SkateGoals</span>
           </div>
-          <div className="h-1 w-full bg-muted rounded-full overflow-hidden">
+          <div className="h-1 w-full bg-muted overflow-hidden">
             <div
               className="h-full bg-primary transition-all duration-300"
               style={{ width: `${(step / TOTAL) * 100}%` }}
@@ -145,7 +145,7 @@ export const OnboardingFlow: React.FC = () => {
           {step === 1 && (
             <>
               <header className="space-y-2">
-                <h1 className="text-2xl sm:text-3xl font-bold tracking-tight">{t('ob.s1.title')}</h1>
+                <h1 className="app-page-title">{t('ob.s1.title')}</h1>
                 <p className="text-sm text-muted-foreground leading-relaxed">{t('ob.s1.sub')}</p>
               </header>
               <div className="space-y-2">
@@ -178,7 +178,7 @@ export const OnboardingFlow: React.FC = () => {
           {step === 2 && (
             <>
               <header className="space-y-2">
-                <h1 className="text-2xl sm:text-3xl font-bold tracking-tight">{t('ob.s2.title')}</h1>
+                <h1 className="app-page-title">{t('ob.s2.title')}</h1>
                 <p className="text-sm text-muted-foreground leading-relaxed">{t('ob.s2.sub')}</p>
               </header>
               <div className="space-y-3">
@@ -216,7 +216,7 @@ export const OnboardingFlow: React.FC = () => {
           {step === 3 && (
             <>
               <header className="space-y-2">
-                <h1 className="text-2xl sm:text-3xl font-bold tracking-tight">{t('ob.s3.title')}</h1>
+                <h1 className="app-page-title">{t('ob.s3.title')}</h1>
                 <p className="text-sm text-muted-foreground leading-relaxed">{t('ob.s3.sub')}</p>
               </header>
               <div className="space-y-2">
@@ -252,7 +252,7 @@ export const OnboardingFlow: React.FC = () => {
                   maxLength={400}
                 />
               </div>
-              <div className="grid grid-cols-[1fr_auto] gap-3">
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-[1fr_auto] sm:gap-3">
                 <div className="space-y-2">
                   <Label htmlFor="ob-comp">
                     {t('ob.s3.comp')} <span className="text-muted-foreground font-normal">· {t('ob.optional')}</span>
@@ -283,7 +283,7 @@ export const OnboardingFlow: React.FC = () => {
           {step === 4 && (
             <>
               <header className="space-y-2">
-                <h1 className="text-2xl sm:text-3xl font-bold tracking-tight">{t('ob.s4.title')}</h1>
+                <h1 className="app-page-title">{t('ob.s4.title')}</h1>
                 <p className="text-sm text-muted-foreground leading-relaxed">{t('ob.s4.sub')}</p>
               </header>
               <div className="flex flex-wrap gap-2">
@@ -300,7 +300,7 @@ export const OnboardingFlow: React.FC = () => {
               </div>
               <div className="space-y-3">
                 <Label>{t('ob.s4.style')}</Label>
-                <div className="grid grid-cols-3 gap-2">
+                <div className="grid grid-cols-1 gap-2 sm:grid-cols-3">
                   {STYLES.map((s) => (
                     <button
                       key={s.value}
@@ -332,7 +332,7 @@ export const OnboardingFlow: React.FC = () => {
         </div>
 
         {/* Actions */}
-        <div className="flex gap-3 pt-8 sticky bottom-0 bg-background pb-2">
+        <div className="sticky bottom-0 flex gap-3 border-t border-border bg-background py-4">
           {step > 1 && (
             <Button
               variant="outline"
