@@ -4,7 +4,7 @@ import { useAuth } from '@/context/AuthContext';
 import { useLanguage } from '@/context/LanguageContext';
 import { JourneyView } from './JourneyView';
 import { JumpLog } from './JumpLog';
-import { WeeklyGoals } from './WeeklyGoals';
+
 import { PreTrainingPrep } from './PreTrainingPrep';
 import { ExportButton } from './ExportButton';
 import { SessionTimer } from './SessionTimer';
@@ -326,6 +326,8 @@ export const SimpleDashboard: React.FC = () => {
       <MobileBottomNav active={bottomActive} onChange={handleBottomNav} />
 
       <ReflectionSheet open={reflectionOpen} onOpenChange={setReflectionOpen} />
+
+      <WeeklyReview open={reviewOpen} onOpenChange={setReviewOpen} />
 
       <ProfileSheet
         open={profileOpen}
