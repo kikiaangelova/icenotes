@@ -96,7 +96,6 @@ const SportPsychology: React.FC = () => {
         </section>
 
       <Footer />
-      <GameDayMode open={gameDayOpen} onOpenChange={setGameDayOpen} />
     </div>
   );
 };
