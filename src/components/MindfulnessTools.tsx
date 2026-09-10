@@ -53,8 +53,6 @@ export const MindfulnessTools: React.FC = () => {
   const tools: Array<{ key: Exclude<ToolKey, null>; titleKey: string; descKey: string; icon: any }> = [
     { key: 'breathing', titleKey: 'mt.breathing.title', descKey: 'mt.breathing.desc', icon: Wind },
     { key: 'visualization', titleKey: 'mt.viz.title', descKey: 'mt.viz.desc', icon: Eye },
-    { key: 'gratitude', titleKey: 'mt.gratitude.title', descKey: 'mt.gratitude.desc', icon: NotebookPen },
-    { key: 'affirmations', titleKey: 'mt.aff.title', descKey: 'mt.aff.desc', icon: MessageSquareText },
   ];
 
   return (
@@ -97,8 +95,6 @@ export const MindfulnessTools: React.FC = () => {
 
       <BreathingDialog open={open === 'breathing'} onClose={() => setOpen(null)} />
       <VisualizationDialog open={open === 'visualization'} onClose={() => setOpen(null)} />
-      <GratitudeDialog open={open === 'gratitude'} onClose={() => setOpen(null)} />
-      <AffirmationsDialog open={open === 'affirmations'} onClose={() => setOpen(null)} />
     </>
   );
 };

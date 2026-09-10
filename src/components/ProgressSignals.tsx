@@ -21,7 +21,7 @@ export const ProgressSignals: React.FC = () => {
   const stats = [
     { label: t('ps.weekSess'), value: String(week.sessions) },
     { label: t('ps.weekRefl'), value: String(week.reflections) },
-    { label: t('ps.reviews'), value: `${reviews}/4` },
+    { label: t('ps.reviews'), value: String(reviews) },
   ];
 
   return (

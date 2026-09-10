@@ -1152,7 +1152,7 @@ const dict: Dict = {
   'profile.nameSaved':   { en: 'Display name saved',     bg: 'Името е запазено' },
   'profile.nameError':   { en: 'Could not save the name', bg: 'Името не беше запазено' },
   'profile.reminders':   { en: 'Reminders',             bg: 'Напомняния' },
-  'profile.remindersSub': { en: 'Daily journaling & training prompts', bg: 'Дневни напомняния за дневник и тренировка' },
+  'profile.remindersSub': { en: 'Training and review reminders', bg: 'Напомняния за тренировки и прегледи' },
   'profile.admin':       { en: 'Admin Dashboard',       bg: 'Админ панел' },
   'profile.adminSub':    { en: 'Manage users & content', bg: 'Управление на потребители и съдържание' },
   'profile.explore':     { en: 'Explore',               bg: 'Разгледай' },

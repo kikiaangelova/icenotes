@@ -30,12 +30,12 @@ export const PHASE2_DICT: Record<string, { en: string; bg: string }> = {
   'ob.s1.namePh': { en: 'Your name', bg: 'Твоето име' },
   'ob.s1.age': { en: 'Age', bg: 'Възраст' },
 
-  'ob.s2.title': { en: 'Your skating context', bg: 'Твоята подготовка' },
+  'ob.s2.title': { en: 'Your skating', bg: 'За твоето пързаляне' },
   'ob.s2.sub': {
-    en: 'Category and experience help make prompts more relevant.',
-    bg: 'Категорията и опитът помагат въпросите да бъдат по-точни.',
+    en: 'Tell us where you compete and how long you have trained.',
+    bg: 'Кажи в коя категория се състезаваш и от колко време тренираш.',
   },
-  'ob.s2.category': { en: 'Category or level', bg: 'Категория или ниво' },
+  'ob.s2.category': { en: 'Category', bg: 'Категория' },
   'ob.s2.categoryHint': {
     en: 'Pick the closest one. Systems differ between countries.',
     bg: 'Избери най-близкото. Системите се различават по държави.',
@@ -44,14 +44,14 @@ export const PHASE2_DICT: Record<string, { en: string; bg: string }> = {
   'ob.cat.junior': { en: 'Junior', bg: 'Junior' },
   'ob.cat.senior': { en: 'Senior', bg: 'Senior' },
   'ob.cat.other': { en: 'Other', bg: 'Друго' },
-  'ob.s2.years': { en: 'Years in skating', bg: 'Години на леда' },
+  'ob.s2.years': { en: 'How many years have you trained?', bg: 'От колко години тренираш?' },
 
   'ob.s3.title': { en: 'This season', bg: 'Този сезон' },
   'ob.s3.sub': {
     en: 'The AI Coach uses this context to connect weekly priorities to your existing training plan.',
     bg: 'AI Coach използва този контекст, за да свърже седмичните приоритети с плана ти за подготовка.',
   },
-  'ob.s3.focus': { en: 'Main goal or focus right now', bg: 'Основна цел или фокус в момента' },
+  'ob.s3.focus': { en: 'What matters most right now?', bg: 'Какво е най-важно за теб сега?' },
   'ob.s3.focusPh': {
     en: 'e.g. clean short program, consistent double axel, first Junior season',
     bg: 'напр. чиста кратка програма, стабилен двоен аксел, първи сезон при юношите',
@@ -70,7 +70,7 @@ export const PHASE2_DICT: Record<string, { en: string; bg: string }> = {
   'ob.s3.compPh': { en: 'Name of the event', bg: 'Име на състезанието' },
   'ob.s3.compDate': { en: 'Date', bg: 'Дата' },
 
-  'ob.s4.title': { en: 'What you want support with', bg: 'С какво искаш подкрепа' },
+  'ob.s4.title': { en: 'What do you want help with?', bg: 'С какво искаш помощ?' },
   'ob.s4.sub': {
     en: 'Choose as many as you want. You can change this later.',
     bg: 'Избери колкото искаш. Може да се промени по всяко време.',
@@ -82,7 +82,7 @@ export const PHASE2_DICT: Record<string, { en: string; bg: string }> = {
   'ob.area.goals': { en: 'Goals and planning', bg: 'Цели и планиране' },
   'ob.area.motivation': { en: 'Motivation', bg: 'Мотивация' },
   'ob.area.reset': { en: 'Reset after a difficult session', bg: 'Рестарт след трудна тренировка' },
-  'ob.s4.style': { en: 'How should the AI talk to you?', bg: 'Как да ти говори AI подкрепата?' },
+  'ob.s4.style': { en: 'How should the AI respond?', bg: 'Как искаш да ти отговаря AI?' },
   'ob.style.direct': { en: 'Direct', bg: 'Директно' },
   'ob.style.directSub': { en: 'Say it straight', bg: 'Право в целта' },
   'ob.style.calm': { en: 'Calm', bg: 'Спокойно' },
