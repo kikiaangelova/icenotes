@@ -4,3 +4,4 @@
 - [x] Remove legacy branding, navigation, gamification, and dashboard presentation from active runtime
 - [x] Add editable stored display name to Profile/Settings without changing data contracts
 - [x] Run typecheck, production build, and complete authenticated responsive QA
+- [x] Complete final surgical content and focus-flow QA

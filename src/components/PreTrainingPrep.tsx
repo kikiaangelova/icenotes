@@ -1,18 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { useLanguage } from '@/context/LanguageContext';
+import { useJournal } from '@/context/JournalContext';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
 import { Checkbox } from '@/components/ui/checkbox';
 import { 
-  Brain, 
   Wind, 
   Target, 
   Play, 
   Pause, 
-  RotateCcw,
   CheckCircle2,
-  CircleDot,
-  Heart,
   Timer,
   ChevronRight,
 } from 'lucide-react';
@@ -22,14 +19,6 @@ const PRE_SKATE_CHECKLIST = (bg: boolean) => [
   { id: 'equipment', label: bg ? 'Проверих кънките и екипировката' : 'I checked my skates and equipment', icon: '2' },
   { id: 'coach', label: bg ? 'Знам какво да уточня с треньора' : 'I know what to clarify with my coach', icon: '3' },
   { id: 'focus', label: bg ? 'Избрах един фокус за началото' : 'I chose one focus for the start', icon: '4' },
-];
-
-const FOCUS_REMINDERS = (bg: boolean) => [
-  { text: bg ? 'Следвай плана, който вече имаш.' : 'Follow the plan you already have.', icon: Target },
-  { text: bg ? 'Един елемент наведнъж.' : 'One element at a time.', icon: Brain },
-  { text: bg ? 'По-бавно издишване, после към задачата.' : 'A slower exhale, then back to the task.', icon: Wind },
-  { text: bg ? 'Забележи напрежението, без да спориш с него.' : 'Notice the tension without arguing with it.', icon: Heart },
-  { text: bg ? 'Върни вниманието към една ясна насока.' : 'Return attention to one clear cue.', icon: CircleDot },
 ];
 
 const QUICK_BREATHING = (bg: boolean) => ({
@@ -50,25 +39,19 @@ export const PreTrainingPrep: React.FC<PreTrainingPrepProps> = ({
   trainingType = 'on-ice'
 }) => {
   const { language } = useLanguage();
+  const { profile } = useJournal();
   const bg = language === 'bg';
   const L = (en: string, bgs: string) => (bg ? bgs : en);
   const PRE_SKATE = PRE_SKATE_CHECKLIST(bg);
-  const FOCUS_LIST = FOCUS_REMINDERS(bg);
   const BREATHING = QUICK_BREATHING(bg);
   const [step, setStep] = useState<'checklist' | 'breathing' | 'focus' | 'complete'>('checklist');
   const [checkedItems, setCheckedItems] = useState<Set<string>>(new Set());
-  const [focusIndex, setFocusIndex] = useState(0);
   
   // Breathing state
   const [isBreathing, setIsBreathing] = useState(false);
   const [breathStep, setBreathStep] = useState(0);
   const [breathProgress, setBreathProgress] = useState(0);
   const [breathRound, setBreathRound] = useState(1);
-
-  useEffect(() => {
-    // Randomize focus reminder on mount
-    setFocusIndex(Math.floor(Math.random() * FOCUS_LIST.length));
-  }, []);
 
   useEffect(() => {
     let interval: ReturnType<typeof setInterval>;
@@ -113,8 +96,10 @@ export const PreTrainingPrep: React.FC<PreTrainingPrepProps> = ({
     });
   };
 
-  const currentFocus = FOCUS_LIST[focusIndex];
-  const FocusIcon = currentFocus.icon;
+  const currentFocus = profile?.mainFocus?.trim() || L(
+    'Choose one clear task from the plan with your coach.',
+    'Избери една ясна задача от плана с треньора.',
+  );
 
   const handleComplete = () => {
     setStep('complete');
@@ -296,29 +281,21 @@ export const PreTrainingPrep: React.FC<PreTrainingPrepProps> = ({
         <section className="animate-fade-in border-y border-border py-8">
             <div className="text-center space-y-6">
                <div className="w-14 h-14 mx-auto rounded-md bg-secondary flex items-center justify-center">
-                 <FocusIcon className="w-7 h-7 text-accent" />
+                  <Target className="w-7 h-7 text-accent" />
               </div>
               
               <div className="space-y-2">
                  <p className="app-section-label">{L('Focus for today', 'Фокус за днес')}</p>
                 <p className="text-xl font-medium leading-relaxed max-w-sm mx-auto">
-                  "{currentFocus.text}"
+                   {currentFocus}
                 </p>
               </div>
 
-              <div className="flex gap-2 justify-center">
-                <Button
-                  variant="outline"
-                  onClick={() => setFocusIndex((focusIndex + 1) % FOCUS_LIST.length)}
-                >
-                  <RotateCcw className="w-4 h-4 mr-2" />
-                  {L('Another', 'Друг')}
-                </Button>
+               <div className="flex justify-center">
                 <Button
                   onClick={handleComplete}
-                   className=""
                 >
-                    {L('Use this focus', 'Използвай този фокус')}
+                    {L('Continue', 'Продължи')}
                 </Button>
               </div>
 
@@ -336,7 +313,7 @@ export const PreTrainingPrep: React.FC<PreTrainingPrepProps> = ({
                <div className="w-16 h-16 mx-auto rounded-md bg-secondary flex items-center justify-center">
                  <CheckCircle2 className="w-8 h-8 text-accent" />
               </div>
-              <h3 className="text-xl font-medium">{L('Focus set', 'Фокусът е избран')}</h3>
+              <h3 className="text-xl font-medium">{L('Ready for training', 'Готово за тренировка')}</h3>
               <p className="text-muted-foreground">
                 {L('Continue to the session plan.', 'Продължи към плана за тренировката.')}
               </p>

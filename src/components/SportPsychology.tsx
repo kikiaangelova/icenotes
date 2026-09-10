@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Brain, Target, Trophy, CircleDot, ChevronRight, RotateCcw, ListChecks } from 'lucide-react';
+import { Brain, Target, Trophy, CircleDot, ChevronRight, RotateCcw } from 'lucide-react';
 import { MindfulnessTools } from '@/components/MindfulnessTools';
 import { useLanguage } from '@/context/LanguageContext';
 
@@ -395,33 +395,6 @@ export const SportPsychology: React.FC = () => {
       {/* Mindfulness Tools — quick rink-side practices */}
       <MindfulnessTools />
 
-      {/* All Daily Exercises */}
-      <Card className="rounded-lg shadow-none">
-        <CardHeader className="pb-2">
-          <CardTitle className="text-base flex items-center gap-2">
-            <ListChecks className="w-4 h-4 text-accent" />
-            {L('Daily mind exercises', 'Ежедневни упражнения за ума')}
-          </CardTitle>
-        </CardHeader>
-        <CardContent className="space-y-2">
-          {dailyExercises.map((exercise, i) => (
-            <div
-              key={i}
-               className={`p-3 rounded-md border ${
-                i === currentDailyExercise 
-                   ? 'bg-secondary border-accent' 
-                   : 'bg-card border-border'
-              }`}
-            >
-              <div className="flex items-center justify-between mb-1">
-                <h4 className="text-sm font-medium">{exercise.title}</h4>
-                <Badge variant="outline" className="text-xs">{exercise.time}</Badge>
-              </div>
-              <p className="text-xs text-muted-foreground">{exercise.exercise}</p>
-            </div>
-          ))}
-        </CardContent>
-      </Card>
     </div>
   );
 };
