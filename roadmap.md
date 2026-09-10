@@ -1,6 +1,6 @@
 - [x] Audit active authenticated shell and design system
 - [x] Redesign active signed-in surfaces without logic changes
-- [ ] Consolidate every existing-user and post-login path onto the single SkateGoals shell
-- [ ] Remove legacy branding, navigation, gamification, and dashboard presentation from active runtime
-- [ ] Add editable stored display name to Profile/Settings without changing data contracts
+- [x] Consolidate every existing-user and post-login path onto the single SkateGoals shell
+- [x] Remove legacy branding, navigation, gamification, and dashboard presentation from active runtime
+- [x] Add editable stored display name to Profile/Settings without changing data contracts
 - [ ] Run typecheck, production build, and complete authenticated responsive QA

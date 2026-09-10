@@ -6,7 +6,6 @@ import { JourneyView } from './JourneyView';
 import { JumpLog } from './JumpLog';
 
 import { PreTrainingPrep } from './PreTrainingPrep';
-import { ExportButton } from './ExportButton';
 import { SessionTimer } from './SessionTimer';
 import { ReminderSettings } from './ReminderSettings';
 import { ActivityCalendar } from './ActivityCalendar';
@@ -19,7 +18,6 @@ import { ProgressSignals } from './ProgressSignals';
 import { getWeekSummary, daysUntil, countTrainingReflectionsToday } from '@/lib/weekData';
 import { SportPsychology } from './SportPsychology';
 import { Button } from '@/components/ui/button';
-import { SELF_LEVELS } from '@/types/journal';
 import { Settings, LogOut, Bell, Shield, ChevronLeft, Library } from 'lucide-react';
 import { TodayCommandCenter } from './TodayCommandCenter';
 import { TrainingScreen } from './TrainingScreen';
@@ -115,7 +113,6 @@ export const SimpleDashboard: React.FC = () => {
   // debrief written today must not hide the reflection step. Counting them
   // also means a second session today asks for its own reflection.
   const reflectionsToday = countTrainingReflectionsToday(entries);
-  const levelLabel = SELF_LEVELS.find(l => l.value === profile?.selfLevel)?.label || '';
   const greeting = getGreeting(profile?.name, language);
   const week = getWeekSummary(entries, trainingSessions);
   const compDays = daysUntil(profile?.nextCompetitionDate);
@@ -173,7 +170,7 @@ export const SimpleDashboard: React.FC = () => {
               <p className="truncate text-sm font-semibold leading-tight text-foreground">
                 {profile.name || 'SkateGoals'}
               </p>
-              <p className="text-xs text-muted-foreground truncate">{levelLabel}</p>
+              <p className="text-xs text-muted-foreground truncate">SkateGoals</p>
             </div>
           </button>
         ) : (
@@ -240,7 +237,6 @@ export const SimpleDashboard: React.FC = () => {
           <h1 className="app-page-title">{t('a.more.label')}</h1>
           <p className="text-sm text-muted-foreground">{t('a.more.hint')}</p>
         </div>
-        <div className="flex justify-start"><ExportButton /></div>
         <SessionTimer type="on-ice" />
         <JumpLog />
         <ActivityCalendar />
