@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Dialog, DialogContent } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
-import { Sparkles, Wind, Eye, Trophy, ChevronRight, X } from 'lucide-react';
+import { Sparkles, Wind, Eye, Trophy, ChevronRight, X, Brain } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useLanguage } from '@/context/LanguageContext';
 import { celebrate } from '@/lib/celebrate';
-import { IrisAvatar } from '@/components/IrisAvatar';
 
 interface GameDayModeProps {
   open: boolean;
@@ -264,7 +263,9 @@ export const GameDayMode: React.FC<GameDayModeProps> = ({ open, onOpenChange }) 
 
           {step === 3 && (
             <div className="flex flex-col items-center gap-6 animate-fade-in max-w-lg">
-              <IrisAvatar size={72} />
+              <div className="w-16 h-16 rounded-2xl bg-white/10 border border-white/20 flex items-center justify-center">
+                <Brain className="w-7 h-7 text-white" />
+              </div>
               <p className="text-xs font-bold uppercase tracking-[0.2em] text-white/70">
                 {t('gameDay.coachName')}
               </p>

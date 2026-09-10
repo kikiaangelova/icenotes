@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { Moon, Sun, Menu, X, Home, Compass, Sparkles, Brain, Heart } from 'lucide-react';
+import { Moon, Sun, Menu, X, Home, Compass, LayoutGrid, Brain, Info } from 'lucide-react';
 import { SkateGoalsMark } from './SkateGoalsMark';
 import { cn } from '@/lib/utils';
 import { useLanguage } from '@/context/LanguageContext';
@@ -20,9 +20,9 @@ export const Navbar: React.FC<NavbarProps> = ({ isDarkMode, onToggleDarkMode }) 
   const NAV_LINKS = [
     { label: t('nav.home'), href: '/', icon: Home },
     { label: t('nav.howItWorks'), href: '/how-it-works', icon: Compass },
-    { label: t('nav.features'), href: '/features', icon: Sparkles },
+    { label: t('nav.features'), href: '/features', icon: LayoutGrid },
     { label: t('nav.psychology'), href: '/sport-psychology', icon: Brain },
-    { label: t('nav.about'), href: '/about', icon: Heart },
+    { label: t('nav.about'), href: '/about', icon: Info },
   ];
 
   return (

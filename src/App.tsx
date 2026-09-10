@@ -21,6 +21,7 @@ import Contact from "./pages/Contact";
 import JournalPage from "./pages/Journal";
 import AdminPage from "./pages/Admin";
 import Privacy from "./pages/Privacy";
+import Feedback from "./pages/Feedback";
 import NotFound from "./pages/NotFound";
 import { Loader2 } from "lucide-react";
 
@@ -68,7 +69,8 @@ const AppRoutes = () => {
       <Route path="/coach-profile" element={<Navigate to="/ai-support" replace />} />
       <Route path="/contact" element={<Contact />} />
       <Route path="/journal" element={<JournalPage />} />
-      <Route path="/share-experience" element={<Navigate to="/about" replace />} />
+      <Route path="/feedback" element={<Feedback />} />
+      <Route path="/share-experience" element={<Navigate to="/feedback" replace />} />
       <Route path="/privacy" element={<Privacy />} />
       <Route 
         path="/auth" 
