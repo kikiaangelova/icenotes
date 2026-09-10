@@ -237,7 +237,7 @@ export const SportPsychology: React.FC = () => {
           <Brain className="w-5 h-5 text-mental" />
           {L('Sport Psychology', 'Спортна психология')}
         </h2>
-          <p className="text-sm text-muted-foreground">{L('Strong mind, stronger skating', 'По-спокоен ум — по-уверено каране')}</p>
+          <p className="text-sm text-muted-foreground">{L('Practical exercises for pressure, attention, and confidence', 'Практични упражнения за напрежение, внимание и увереност')}</p>
       </div>
 
       {/* Daily Mental Exercise */}
@@ -374,8 +374,8 @@ export const SportPsychology: React.FC = () => {
               </div>
               <p className="text-sm text-muted-foreground">
                 {L(
-                  'Competition can feel intense, but with the right mindset it becomes a chance to show off your hard work.',
-                  'Състезанието може да е интензивно, но с правилната нагласа се превръща във възможност да покажеш труда си.'
+                  'Competition changes the context: one attempt, fixed timing, judges, and an audience. Prepare for those conditions, not for a perfect feeling.',
+                  'Състезанието променя контекста: един опит, точни часове, съдии и публика. Подготви се за тези условия, не за идеално усещане.'
                 )}
               </p>
             </CardContent>

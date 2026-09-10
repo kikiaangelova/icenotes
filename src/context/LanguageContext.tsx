@@ -144,7 +144,7 @@ const dict: Dict = {
   'journal.feeling.label': { en: 'How did today feel?', bg: 'Как ти беше днес?' },
   'journal.smallWin.label': { en: 'One small thing that worked', bg: 'Едно малко нещо, което се получи' },
   'journal.smallWin.helper': { en: 'Doesn’t have to be big. Just something you noticed.', bg: 'Не трябва да е голямо. Просто нещо, което забеляза.' },
-  'journal.smallWin.placeholder': { en: 'Something clicked, I felt calmer, I caught my breath better…', bg: 'Нещо щракна, бях по-спокоен(йна), дишането вървеше по-добре…' },
+  'journal.smallWin.placeholder': { en: 'A correction worked, focus returned, a section felt more stable…', bg: 'Насока проработи, фокусът се върна, част от програмата беше по-стабилна…' },
   'journal.coachNotes.label': { en: 'What your coach said', bg: 'Какво ти каза треньорът' },
   'journal.coachNotes.optional': { en: '(if you want)', bg: '(ако искаш)' },
   'journal.coachNotes.helper': { en: 'A correction, a tip, something to remember.', bg: 'Поправка, съвет, нещо за запомняне.' },
@@ -183,7 +183,7 @@ const dict: Dict = {
   // Gratitude
   'mind.gratitude.title': { en: 'Three good things', bg: 'Три хубави неща' },
   'mind.gratitude.desc': { en: 'Three things from today. Small ones count.', bg: 'Три неща от днес. И малките се броят.' },
-  'mind.gratitude.placeholder': { en: 'Today I’m glad about…', bg: 'Днес съм благодарен(на) за…' },
+  'mind.gratitude.placeholder': { en: 'Something useful today…', bg: 'Нещо полезно от днес…' },
 
   // Body scan
   'mind.body.title': { en: 'Body & feeling check-in', bg: 'Тяло и усещане' },

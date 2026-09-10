@@ -115,7 +115,6 @@ export const PreTrainingPrep: React.FC<PreTrainingPrepProps> = ({
     });
   };
 
-  const allChecked = checkedItems.size === PRE_SKATE.length;
   const currentFocus = FOCUS_LIST[focusIndex];
   const FocusIcon = currentFocus.icon;
 
