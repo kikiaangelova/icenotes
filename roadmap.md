@@ -6,4 +6,4 @@
 - [x] Run typecheck, production build, and complete authenticated responsive QA
 - [x] Complete final surgical content and focus-flow QA
 - [x] Apply the consolidated Edge Line visual system and complete responsive QA
-- [ ] Complete final consolidated public/auth polish and regression QA
+- [x] Complete final consolidated public/auth polish and regression QA
