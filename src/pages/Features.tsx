@@ -41,16 +41,16 @@ const Features: React.FC = () => {
       <div className="min-h-screen bg-background">
         <Navbar isDarkMode={isDarkMode} onToggleDarkMode={() => setIsDarkMode(!isDarkMode)} />
         <Seo
-          title={language === 'bg' ? 'Функции – дневник, скокове и AI подкрепа' : 'Features – Journaling, Jump Tracker & AI support'}
-          description={language === 'bg' ? 'Разгледай дневника, проследяването на скокове, седмичните цели, менталната подготовка и анализа на напредъка в SkateGoals.' : 'Explore SkateGoals features: daily journaling, jump tracker, weekly goals, AI Coach and Sport Psychology support, Game Day mode, and progress analytics.'}
+          title={language === 'bg' ? 'Функции — тренировки, цели и подготовка за старт' : 'Features — Training, Goals & Competition Prep'}
+          description={language === 'bg' ? 'Тренировъчен дневник, цели, седмичен преглед, подготовка за старт, ментална подготовка и прогрес — в SkateGoals.' : 'A performance companion for competitive figure skaters: training log, goals, weekly review, competition prep, mental performance and progress.'}
           path="/features"
-          jsonLd={{"@context": "https://schema.org", "@type": "Service", "name": "SkateGoals", "serviceType": "Figure skating journaling and mental training platform", "provider": {"@type": "Organization", "name": "SkateGoals", "url": "https://skategoals.com/"}, "areaServed": "Worldwide", "description": "Digital journaling, jump tracking, and AI sport-psychology coaching for figure skaters."}}
+          jsonLd={{"@context": "https://schema.org", "@type": "Service", "name": "SkateGoals", "serviceType": "Performance companion for competitive figure skaters", "provider": {"@type": "Organization", "name": "SkateGoals", "url": "https://skategoals.com/"}, "areaServed": "Worldwide", "description": "Training log, goals, weekly review, competition prep, mental performance and progress for competitive figure skaters aged 14-18."}}
         />
 
         <section className="px-5 md:px-12 pt-14 pb-10 md:pt-28 md:pb-16">
           <div className="max-w-3xl mx-auto text-center">
             <p className="text-xs font-semibold tracking-[0.2em] uppercase text-primary mb-3">{t('features.eyebrow')}</p>
-            <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold tracking-tight text-foreground font-serif mb-4">
+            <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold tracking-tight text-foreground mb-4">
               {t('features.title')}
             </h1>
             <p className="text-sm md:text-lg text-muted-foreground leading-relaxed max-w-xl mx-auto">
@@ -75,7 +75,7 @@ const Features: React.FC = () => {
                         <div className="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center mb-3 group-hover:bg-primary/15 transition-colors">
                           <feature.icon className="w-4 h-4 text-primary" />
                         </div>
-                        <h3 className="text-sm font-semibold text-foreground mb-1.5 font-serif">{t(`features.${feature.key}.title`)}</h3>
+                        <h3 className="text-sm font-semibold text-foreground mb-1.5">{t(`features.${feature.key}.title`)}</h3>
                         <p className="text-xs text-muted-foreground leading-relaxed">{t(`features.${feature.key}.desc`)}</p>
                       </div>
                     ))}
@@ -87,7 +87,7 @@ const Features: React.FC = () => {
 
         <section className="px-5 md:px-12 py-14 bg-primary/5 border-t border-border/50">
           <div className="max-w-2xl mx-auto text-center">
-            <h2 className="text-xl md:text-3xl font-bold text-foreground font-serif mb-3">
+            <h2 className="text-xl md:text-3xl font-bold text-foreground mb-3">
               {t('features.cta.title')}
             </h2>
             <p className="text-sm text-muted-foreground mb-6">

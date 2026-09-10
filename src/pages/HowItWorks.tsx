@@ -31,12 +31,12 @@ const HowItWorks: React.FC = () => {
     <div className={isDarkMode ? "dark" : ""}>
       <div className="min-h-screen bg-background">
         <Navbar isDarkMode={isDarkMode} onToggleDarkMode={() => setIsDarkMode(!isDarkMode)} />
-        <Seo title="How SkateGoals Works – Reflect, Train, Grow" description="See the daily SkateGoals flow: log a session, reflect on mindset, set goals, and grow with a warm AI sport-psychology coach." path="/how-it-works" />
+        <Seo title="How SkateGoals Works — Train, Track, Reflect, Prepare" description="The SkateGoals loop: log a session, reflect, choose the next focus, review the week, prepare for competition, reset. Two distinct AI roles support planning and mental performance." path="/how-it-works" />
 
         <section className="px-6 md:px-12 pt-20 pb-16 md:pt-28 md:pb-20">
           <div className="max-w-3xl mx-auto text-center">
             <p className="text-xs font-semibold tracking-[0.2em] uppercase text-primary mb-4">{t('how.eyebrow')}</p>
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-foreground font-serif mb-5">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-foreground mb-5">
               {t('how.title')}
             </h1>
             <p className="text-lg text-muted-foreground leading-relaxed max-w-xl mx-auto">
@@ -59,7 +59,7 @@ const HowItWorks: React.FC = () => {
                 </div>
                 <div className="pt-1">
                   <span className="text-xs font-mono font-medium text-muted-foreground/60 tracking-wider">{step.num}</span>
-                  <h3 className="text-xl font-bold text-foreground font-serif mt-1 mb-2">{step.title}</h3>
+                  <h3 className="text-xl font-bold text-foreground mt-1 mb-2">{step.title}</h3>
                   <p className="text-sm text-muted-foreground leading-relaxed">{step.description}</p>
                 </div>
               </div>
@@ -69,7 +69,7 @@ const HowItWorks: React.FC = () => {
 
         <section className="px-6 md:px-12 py-20 bg-primary/5 border-t border-border/50">
           <div className="max-w-2xl mx-auto text-center">
-            <h2 className="text-2xl md:text-3xl font-bold text-foreground font-serif mb-4">
+            <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
               {t('how.cta.title')}
             </h2>
             <p className="text-muted-foreground mb-8">
