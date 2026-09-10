@@ -78,6 +78,7 @@ export const LandingPage: React.FC<LandingPageProps> = () => {
           <div className="relative min-h-[48svh] overflow-hidden border-t border-primary-foreground/20 md:min-h-0 md:border-l md:border-t-0">
             <HeroVideo
               src={heroVideo.url}
+              poster="/hero-skater-poster.jpg"
               className="absolute inset-0 h-full w-full"
               videoClassName=""
               filter="saturate(0.85) contrast(1.08) brightness(0.9)"
