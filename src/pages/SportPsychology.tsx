@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Seo } from '@/components/Seo';
 import { Navbar } from '@/components/landing/Navbar';
 import { Footer } from '@/components/landing/Footer';
@@ -6,12 +6,11 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, Brain, Shield, Eye, Flame, Heart, Zap, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { MindfulnessTools } from '@/components/MindfulnessTools';
-import { GameDayCard, GameDayMode } from '@/components/GameDayMode';
 import { useLanguage } from '@/context/LanguageContext';
 
 const SportPsychology: React.FC = () => {
   const { t, language } = useLanguage();
-  const [gameDayOpen, setGameDayOpen] = useState(false);
+
 
   const topics = [
     { icon: Brain, title: t('psy.t1.title'), description: t('psy.t1.desc'), prompt: language === 'bg' ? 'Искам да се подготвя психически за следващата тренировка. Задай ми един въпрос, от който да започнем.' : "I want to work on my mental resilience. Can you guide me through a short session?" },
