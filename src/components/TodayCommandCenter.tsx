@@ -54,22 +54,22 @@ export const TodayCommandCenter: React.FC<Props> = ({
   }[stage];
 
   return (
-    <section className="space-y-8">
+    <section className="space-y-10">
       {/* What am I working on */}
-      <header className="space-y-3">
-        <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-foreground">{greeting}</h1>
+      <header className="space-y-5">
+        <h1 className="app-page-title">{greeting}</h1>
         <button
           onClick={onGoals}
-          className="w-full text-left rounded-xl border border-border/70 bg-card px-4 py-3.5 hover:border-primary/50 transition-colors"
+          className="w-full border-l-2 border-accent py-1 pl-4 text-left transition-colors hover:border-primary"
         >
-          <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">
+          <p className="app-section-label">
             {t('a.today.working')}
           </p>
           <p className="mt-1 text-base font-semibold leading-snug text-foreground">
             {focus?.trim() || t('a.today.noFocus')}
           </p>
           {!focus?.trim() && (
-            <p className="mt-1 text-xs text-primary font-medium">{t('a.today.setFocus')}</p>
+            <p className="mt-1 text-xs font-medium text-accent">{t('a.today.setFocus')}</p>
           )}
         </button>
       </header>
@@ -78,7 +78,7 @@ export const TodayCommandCenter: React.FC<Props> = ({
       <div className="space-y-3">
         <button
           onClick={primary.onClick}
-          className="w-full min-h-[76px] px-5 py-4 rounded-2xl bg-primary text-primary-foreground flex items-center gap-4 text-left transition-transform active:scale-[0.99]"
+          className="flex min-h-[80px] w-full items-center gap-4 rounded-lg bg-primary px-5 py-4 text-left text-primary-foreground transition-colors hover:bg-primary/92 active:bg-primary/85"
         >
           <div className="flex-1 min-w-0">
             <p className="text-base font-bold leading-tight">{primary.label}</p>
@@ -96,7 +96,7 @@ export const TodayCommandCenter: React.FC<Props> = ({
 
       {/* What is coming next */}
       <div className="space-y-2.5">
-        <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">
+        <p className="app-section-label">
           {t('a.today.next')}
         </p>
         <p className="text-sm text-foreground/80 leading-relaxed">{next}</p>
@@ -106,7 +106,7 @@ export const TodayCommandCenter: React.FC<Props> = ({
           {compNear ? (
             <button
               onClick={onCompetitionPrep}
-              className="w-full min-h-[60px] px-4 rounded-xl border border-primary/40 bg-card flex items-center gap-3 text-left hover:border-primary transition-colors"
+               className="flex min-h-[64px] w-full items-center gap-3 rounded-lg border border-border bg-card px-4 text-left transition-colors hover:border-accent"
             >
               <Trophy className="w-[18px] h-[18px] text-primary shrink-0" />
               <span className="min-w-0 flex-1">
@@ -124,7 +124,7 @@ export const TodayCommandCenter: React.FC<Props> = ({
           ) : reviewRelevant ? (
             <button
               onClick={onWeeklyReview}
-              className="w-full min-h-[60px] px-4 rounded-xl border border-border/70 bg-card flex items-center gap-3 text-left hover:border-primary/50 transition-colors"
+               className="flex min-h-[64px] w-full items-center gap-3 rounded-lg border border-border bg-card px-4 text-left transition-colors hover:border-accent"
             >
               <CalendarDays className="w-[18px] h-[18px] text-primary shrink-0" />
               <span className="min-w-0 flex-1">

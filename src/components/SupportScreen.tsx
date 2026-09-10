@@ -39,32 +39,32 @@ export const SupportScreen: React.FC<SupportScreenProps> = ({ onOpenExercises })
   ];
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-10">
       <header className="space-y-1">
-        <h1 className="text-2xl font-bold tracking-tight text-foreground">{t('a.sp.title')}</h1>
-        <p className="text-sm text-muted-foreground">{t('a.sp.sub')}</p>
+        <h1 className="app-page-title">{t('a.sp.title')}</h1>
+        <p className="app-page-subtitle">{t('a.sp.sub')}</p>
       </header>
 
       {roles.map(({ role, Icon, name, tag, desc, open, starters }) => (
-        <section key={role} className="rounded-2xl border border-border/70 bg-card p-4 space-y-4">
+        <section key={role} className="border-t border-border pt-5 space-y-4 first:border-t-0 first:pt-0">
           <div className="space-y-1.5">
             <div className="flex items-center gap-2.5">
               <Icon className="w-[18px] h-[18px] text-primary" />
               <h2 className="text-base font-bold text-foreground">{name}</h2>
             </div>
-            <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-muted-foreground">{tag}</p>
+            <p className="text-xs font-semibold text-accent">{tag}</p>
             <p className="text-sm text-muted-foreground leading-relaxed">{desc}</p>
           </div>
 
           <div className="space-y-2">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">
+            <p className="app-section-label">
               {t('a.sp.startersCoach')}
             </p>
             {starters.map((s) => (
               <button
                 key={s}
                 onClick={() => openAI(role, s)}
-                className="w-full min-h-[48px] px-4 rounded-xl border border-border/70 bg-background text-left text-sm font-medium text-foreground hover:border-primary/50 transition-colors flex items-center justify-between gap-3"
+                className="flex min-h-[48px] w-full items-center justify-between gap-3 border-b border-border px-1 py-3 text-left text-sm font-medium text-foreground transition-colors last:border-b-0 hover:text-accent"
               >
                 <span className="min-w-0">{s}</span>
                 <ArrowRight className="w-4 h-4 shrink-0 text-muted-foreground" />
@@ -74,7 +74,7 @@ export const SupportScreen: React.FC<SupportScreenProps> = ({ onOpenExercises })
 
           <button
             onClick={() => openAI(role)}
-            className="w-full min-h-[52px] rounded-xl bg-primary text-primary-foreground text-sm font-semibold"
+            className="min-h-[52px] w-full rounded-md bg-primary text-sm font-semibold text-primary-foreground hover:bg-primary/92"
           >
             {open}
           </button>
@@ -82,10 +82,10 @@ export const SupportScreen: React.FC<SupportScreenProps> = ({ onOpenExercises })
       ))}
 
       <section className="space-y-2">
-        <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">{t('a.sp.tools')}</p>
+        <p className="app-section-label">{t('a.sp.tools')}</p>
         <button
           onClick={onOpenExercises}
-          className="w-full min-h-[60px] px-4 rounded-xl border border-border/70 bg-card flex items-center gap-3 text-left hover:border-primary/50 transition-colors"
+          className="flex min-h-[64px] w-full items-center gap-3 rounded-lg border border-border bg-card px-4 text-left transition-colors hover:border-accent"
         >
           <Brain className="w-[18px] h-[18px] text-primary shrink-0" />
           <span className="min-w-0">

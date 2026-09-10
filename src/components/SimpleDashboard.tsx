@@ -20,7 +20,7 @@ import { getWeekSummary, daysUntil, countTrainingReflectionsToday } from '@/lib/
 import { SportPsychology } from './SportPsychology';
 import { Button } from '@/components/ui/button';
 import { SELF_LEVELS } from '@/types/journal';
-import { Settings, LogOut, Bell, Shield, ChevronLeft, Home as HomeIcon } from 'lucide-react';
+import { Settings, LogOut, Bell, Shield, ChevronLeft, Library } from 'lucide-react';
 import { TodayCommandCenter } from './TodayCommandCenter';
 import { TrainingScreen } from './TrainingScreen';
 import { ReflectionSheet } from './ReflectionSheet';
@@ -154,13 +154,13 @@ export const SimpleDashboard: React.FC = () => {
   };
 
   const header = (
-    <header className="border-b border-border/30 bg-background/80 backdrop-blur-xl sticky top-0 z-10">
-      <div className="container max-w-2xl mx-auto px-4 sm:px-5 py-3.5 flex items-center justify-between">
+    <header className="sticky top-0 z-30 border-b border-border bg-background/96 backdrop-blur-lg">
+      <div className="mx-auto flex h-16 max-w-3xl items-center justify-between px-4 sm:px-6">
         {currentView === 'home' ? (
           <button
             type="button"
             onClick={() => setProfileOpen(true)}
-            className="flex items-center gap-3 min-w-0 flex-1 text-left rounded-2xl -ml-1 px-1 py-1 hover:bg-muted/40 transition-colors"
+            className="flex min-h-11 min-w-0 flex-1 items-center gap-3 text-left"
             aria-label={t('bottomNav.profile')}
           >
             <AvatarUpload
@@ -170,7 +170,7 @@ export const SimpleDashboard: React.FC = () => {
               size="sm"
             />
             <div className="min-w-0">
-              <p className="text-sm font-bold tracking-tight text-foreground truncate leading-tight">
+              <p className="truncate text-sm font-semibold leading-tight text-foreground">
                 {profile.name || 'SkateGoals'}
               </p>
               <p className="text-xs text-muted-foreground truncate">{levelLabel}</p>
@@ -182,12 +182,12 @@ export const SimpleDashboard: React.FC = () => {
               variant="ghost"
               size="sm"
               onClick={() => setCurrentView('home')}
-              className="gap-1.5 -ml-2 rounded-xl font-semibold text-sm h-10"
+              className="-ml-3 h-11 gap-1.5 text-sm"
             >
               <ChevronLeft className="w-4 h-4" />
               {t('dash.back')}
             </Button>
-            <span className="text-sm font-semibold text-foreground truncate">
+            <span className="truncate text-sm font-semibold text-foreground">
               {subViewLabel[currentView as Exclude<SubView, 'home'>]}
             </span>
           </div>
@@ -195,32 +195,32 @@ export const SimpleDashboard: React.FC = () => {
         <div className="flex items-center gap-1.5 flex-shrink-0">
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="ghost" size="icon" className="text-muted-foreground h-11 w-11 rounded-xl" aria-label="Settings">
+              <Button variant="ghost" size="icon" className="text-muted-foreground" aria-label="Settings">
                 <Settings className="w-5 h-5" />
               </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="w-56 rounded-xl">
+            <DropdownMenuContent align="end" className="w-56 rounded-lg">
               <div className="px-3 py-2 text-xs text-muted-foreground">{user?.email}</div>
               <DropdownMenuSeparator />
-              <DropdownMenuItem onClick={() => setShowReminderSettings(true)} className="rounded-lg">
+              <DropdownMenuItem onClick={() => setShowReminderSettings(true)}>
                 <Bell className="w-4 h-4 mr-2" />
                 {t('header.reminders')}
               </DropdownMenuItem>
-              <DropdownMenuItem onClick={() => setCurrentView('library')} className="rounded-lg">
-                <HomeIcon className="w-4 h-4 mr-2" />
+              <DropdownMenuItem onClick={() => setCurrentView('library')}>
+                <Library className="w-4 h-4 mr-2" />
                 {t('a.more.label')}
               </DropdownMenuItem>
               {isAdmin && (
                 <>
                   <DropdownMenuSeparator />
-                  <DropdownMenuItem onClick={() => navigate('/admin')} className="rounded-lg">
+                  <DropdownMenuItem onClick={() => navigate('/admin')}>
                     <Shield className="w-4 h-4 mr-2" />
                     {t('header.adminDashboard')}
                   </DropdownMenuItem>
                 </>
               )}
               <DropdownMenuSeparator />
-              <DropdownMenuItem onClick={() => setShowResetDialog(true)} className="text-destructive rounded-lg">
+              <DropdownMenuItem onClick={() => setShowResetDialog(true)} className="text-destructive">
                 <LogOut className="w-4 h-4 mr-2" />
                 {t('dash.signout.confirm')}
               </DropdownMenuItem>
@@ -235,9 +235,9 @@ export const SimpleDashboard: React.FC = () => {
     if (currentView === 'prep') return <PreTrainingPrep trainingType="on-ice" onComplete={() => setCurrentView('home')} />;
     if (currentView === 'psych') return <SportPsychology />;
     return (
-      <div className="space-y-6">
+        <div className="space-y-8">
         <div>
-          <h1 className="text-2xl font-bold tracking-tight text-foreground">{t('a.more.label')}</h1>
+          <h1 className="app-page-title">{t('a.more.label')}</h1>
           <p className="text-sm text-muted-foreground">{t('a.more.hint')}</p>
         </div>
         <div className="flex justify-start"><ExportButton /></div>
@@ -297,8 +297,8 @@ export const SimpleDashboard: React.FC = () => {
     return (
       <div className="space-y-8">
         <header className="space-y-1">
-          <h1 className="text-2xl font-bold tracking-tight text-foreground">{t('a.prog.title')}</h1>
-          <p className="text-sm text-muted-foreground">{t('a.prog.sub')}</p>
+          <h1 className="app-page-title">{t('a.prog.title')}</h1>
+          <p className="app-page-subtitle">{t('a.prog.sub')}</p>
         </header>
         {/* Read-only signals only. Legacy insight/overview views stay in the
             codebase for compatibility but are out of the core destination. */}
@@ -308,10 +308,10 @@ export const SimpleDashboard: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="authenticated-app min-h-screen bg-background">
       {header}
 
-      <main className="container max-w-2xl mx-auto px-4 sm:px-5 pt-6 pb-28">
+      <main className="mx-auto w-full max-w-3xl px-4 pb-28 pt-7 sm:px-6 sm:pt-10">
         {currentView === 'home' ? renderTab() : renderSubView()}
       </main>
 
@@ -330,14 +330,14 @@ export const SimpleDashboard: React.FC = () => {
       />
 
       <AlertDialog open={showResetDialog} onOpenChange={setShowResetDialog}>
-        <AlertDialogContent className="max-w-[90vw] sm:max-w-lg rounded-2xl">
+        <AlertDialogContent className="max-w-[90vw] sm:max-w-lg rounded-lg">
           <AlertDialogHeader>
             <AlertDialogTitle>{t('dash.signout.title')}</AlertDialogTitle>
             <AlertDialogDescription>{t('dash.signout.desc')}</AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter className="flex-col sm:flex-row gap-2">
-            <AlertDialogCancel className="w-full sm:w-auto rounded-xl">{t('dash.signout.stay')}</AlertDialogCancel>
-            <AlertDialogAction onClick={handleSignOut} className="w-full sm:w-auto bg-destructive hover:bg-destructive/90 rounded-xl">
+            <AlertDialogCancel className="w-full sm:w-auto">{t('dash.signout.stay')}</AlertDialogCancel>
+            <AlertDialogAction onClick={handleSignOut} className="w-full sm:w-auto bg-destructive hover:bg-destructive/90">
               {t('dash.signout.confirm')}
             </AlertDialogAction>
           </AlertDialogFooter>
@@ -345,7 +345,7 @@ export const SimpleDashboard: React.FC = () => {
       </AlertDialog>
 
       <Dialog open={showReminderSettings} onOpenChange={setShowReminderSettings}>
-        <DialogContent className="max-w-[90vw] sm:max-w-md max-h-[90vh] overflow-y-auto rounded-2xl">
+        <DialogContent className="max-w-[90vw] sm:max-w-md max-h-[90vh] overflow-y-auto rounded-lg">
           <DialogHeader>
             <DialogTitle>{t('header.reminderSettings')}</DialogTitle>
           </DialogHeader>

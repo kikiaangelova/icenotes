@@ -35,9 +35,9 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({ active, onChan
     <nav
       role="navigation"
       aria-label="Primary"
-      className="fixed bottom-0 inset-x-0 z-40 border-t border-border/50 bg-background/95 backdrop-blur-xl pb-[env(safe-area-inset-bottom)]"
+      className="authenticated-app fixed inset-x-0 bottom-0 z-40 border-t border-border bg-background/98 pb-[env(safe-area-inset-bottom)] backdrop-blur-lg"
     >
-      <ul className="max-w-2xl mx-auto grid grid-cols-5 gap-1 px-2 pt-1.5 pb-1.5">
+      <ul className="mx-auto grid max-w-3xl grid-cols-5 px-1 pb-1 pt-1 sm:px-4">
         {ITEMS.map((item) => {
           const Icon = item.icon;
           const isActive = active === item.id;
@@ -50,14 +50,14 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({ active, onChan
                 aria-current={isActive ? 'page' : undefined}
                 onClick={() => onChange(item.id)}
                 className={cn(
-                  'w-full min-h-[56px] flex flex-col items-center justify-center gap-1 rounded-xl transition-colors duration-200 touch-manipulation',
+                  'relative flex min-h-[58px] w-full touch-manipulation flex-col items-center justify-center gap-1 border-t-2 transition-colors duration-150',
                   isActive
-                    ? 'text-primary bg-primary/10'
-                    : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'
+                    ? 'border-accent text-primary'
+                    : 'border-transparent text-muted-foreground hover:text-foreground'
                 )}
               >
                 <Icon className="w-[21px] h-[21px]" />
-                <span className="text-[10.5px] leading-none font-semibold tracking-tight truncate max-w-full">
+                <span className="max-w-full truncate text-[10px] font-semibold leading-none sm:text-[11px]">
                   {label}
                 </span>
               </button>

@@ -76,16 +76,17 @@ export const WeeklyReview: React.FC<Props> = ({ open, onOpenChange }) => {
 
   return (
     <Sheet open={open} onOpenChange={(o) => { if (!o) reset(); onOpenChange(o); }}>
-      <SheetContent side="bottom" className="rounded-t-2xl max-h-[94vh] overflow-y-auto">
-        <SheetHeader className="text-left">
-          <SheetTitle className="text-xl font-bold tracking-tight">{t('wr.title')}</SheetTitle>
+      <SheetContent side="bottom" className="authenticated-app app-sheet max-h-[94vh] overflow-y-auto rounded-t-lg px-4 pb-[calc(env(safe-area-inset-bottom)+1rem)] sm:px-6">
+        <div className="mx-auto w-full max-w-xl">
+        <SheetHeader className="border-b border-border pb-5 pr-8 text-left">
+          <SheetTitle className="text-xl font-bold">{t('wr.title')}</SheetTitle>
           <SheetDescription className="text-sm">{t('wr.sub')}</SheetDescription>
         </SheetHeader>
 
         <div className="mt-5 space-y-6">
           {/* Derived facts */}
-          <section className="rounded-xl border border-border/70 bg-card p-4 space-y-3">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">
+          <section className="border-y border-border py-4 space-y-3">
+            <p className="app-section-label">
               {t('wr.glance')}
             </p>
             {week.sessions === 0 && week.reflections === 0 ? (
@@ -122,7 +123,7 @@ export const WeeklyReview: React.FC<Props> = ({ open, onOpenChange }) => {
           <p className="text-xs text-muted-foreground">{t('wr.confirm')}</p>
 
           <div className="space-y-2 pb-4">
-            <Button onClick={handleSave} disabled={saving} className="w-full h-14 rounded-xl text-base font-semibold">
+            <Button onClick={handleSave} disabled={saving} className="w-full h-14 text-base font-semibold">
               {saving ? t('wr.saving') : t('wr.save')}
             </Button>
             <button
@@ -133,6 +134,7 @@ export const WeeklyReview: React.FC<Props> = ({ open, onOpenChange }) => {
               {t('wr.close')}
             </button>
           </div>
+        </div>
         </div>
       </SheetContent>
     </Sheet>

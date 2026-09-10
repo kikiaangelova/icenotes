@@ -3,7 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Brain, Flame, Target, Trophy, Sparkles, ChevronRight, RotateCcw, Heart } from 'lucide-react';
+import { Brain, Target, Trophy, CircleDot, ChevronRight, RotateCcw, ListChecks } from 'lucide-react';
 import { MindfulnessTools } from '@/components/MindfulnessTools';
 import { useLanguage } from '@/context/LanguageContext';
 
@@ -129,7 +129,7 @@ const FOCUS_TECHNIQUES = (bg: boolean) => [
     description: bg
       ? 'Използвай кратката рутина, която вече познаваш от тренировките. Не добавяй нова техника непосредствено преди изпълнение.'
       : 'Use the brief routine you already know from training. Do not add a new technique immediately before performing.',
-    icon: Sparkles,
+    icon: CircleDot,
   },
   {
     title: bg ? "Рестарт при разсейване" : "Reset when distracted",
@@ -231,21 +231,21 @@ export const SportPsychology: React.FC = () => {
   const nextTip = () => setCurrentTip((prev) => (prev + 1) % mentalTips.length);
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-8">
       <div>
-        <h2 className="text-lg font-medium flex items-center gap-2">
-          <Brain className="w-5 h-5 text-mental" />
+        <h2 className="app-page-title flex items-center gap-2">
+          <Brain className="w-5 h-5 text-accent" />
           {L('Sport Psychology', 'Спортна психология')}
         </h2>
           <p className="text-sm text-muted-foreground">{L('Practical exercises for pressure, attention, and confidence', 'Практични упражнения за напрежение, внимание и увереност')}</p>
       </div>
 
       {/* Daily Mental Exercise */}
-      <Card className="bg-gradient-to-br from-mental/10 to-mental/5 border-mental/20">
+      <Card className="rounded-lg border-border border-l-2 border-l-accent shadow-none">
         <CardContent className="p-4">
           <div className="flex items-center gap-2 mb-2">
-            <Sparkles className="w-4 h-4 text-mental" />
-            <span className="text-xs font-medium text-mental uppercase tracking-wide">{L("Today's exercise", 'Упражнение за днес')}</span>
+            <CircleDot className="w-4 h-4 text-accent" />
+            <span className="text-xs font-semibold text-muted-foreground">{L("Today's exercise", 'Упражнение за днес')}</span>
           </div>
           <h3 className="font-medium mb-1">{dailyExercises[currentDailyExercise].title}</h3>
           <p className="text-sm text-muted-foreground mb-2">{dailyExercises[currentDailyExercise].exercise}</p>
@@ -254,7 +254,7 @@ export const SportPsychology: React.FC = () => {
       </Card>
 
       <Tabs defaultValue="tips" className="space-y-4">
-        <TabsList className="grid w-full grid-cols-4 h-10">
+        <TabsList className="grid h-auto min-h-12 w-full grid-cols-4 rounded-md bg-muted p-1">
           <TabsTrigger value="tips" className="text-xs">
             {L('Tips', 'Съвети')}
           </TabsTrigger>
@@ -271,10 +271,10 @@ export const SportPsychology: React.FC = () => {
 
         {/* Mental Training Tips */}
         <TabsContent value="tips" className="space-y-3">
-          <Card>
+          <Card className="rounded-lg shadow-none">
             <CardContent className="p-5">
               <div className="text-center space-y-4">
-                <Badge variant="outline" className="capitalize">{mentalTips[currentTip].category}</Badge>
+                <Badge variant="outline">{mentalTips[currentTip].category}</Badge>
                 <h3 className="text-lg font-medium">{mentalTips[currentTip].title}</h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">
                   {mentalTips[currentTip].tip}
@@ -292,10 +292,10 @@ export const SportPsychology: React.FC = () => {
               <button
                 key={i}
                 onClick={() => setCurrentTip(i)}
-                className={`w-full text-left p-3 rounded-lg border transition-all ${
+                 className={`w-full text-left p-3 rounded-md border transition-colors ${
                   i === currentTip 
-                    ? 'bg-mental/10 border-mental/30' 
-                    : 'bg-muted/30 border-border/50 hover:border-mental/20'
+                     ? 'bg-secondary border-accent' 
+                     : 'bg-card border-border hover:border-accent'
                 }`}
               >
                 <div className="flex items-center justify-between">
@@ -313,7 +313,7 @@ export const SportPsychology: React.FC = () => {
         {/* Confidence Building */}
         <TabsContent value="confidence" className="space-y-3">
           {confidenceExercises.map((exercise, i) => (
-            <Card key={i} className={expandedExercise === i ? 'ring-1 ring-mental' : ''}>
+            <Card key={i} className={`rounded-lg shadow-none ${expandedExercise === i ? 'ring-1 ring-accent' : ''}`}>
               <CardContent className="p-4">
                 <button
                   className="w-full text-left"
@@ -332,7 +332,7 @@ export const SportPsychology: React.FC = () => {
                   <div className="mt-4 space-y-2 border-t pt-4">
                     {exercise.steps.map((step, j) => (
                       <div key={j} className="flex items-start gap-3">
-                        <div className="w-6 h-6 rounded-full bg-mental/10 flex items-center justify-center text-xs font-medium text-mental flex-shrink-0 mt-0.5">
+                         <div className="w-6 h-6 rounded bg-secondary flex items-center justify-center text-xs font-medium text-primary flex-shrink-0 mt-0.5">
                           {j + 1}
                         </div>
                         <p className="text-sm text-muted-foreground">{step}</p>
@@ -348,11 +348,11 @@ export const SportPsychology: React.FC = () => {
         {/* Focus Techniques */}
         <TabsContent value="focus" className="space-y-3">
           {focusTechniques.map((technique, i) => (
-            <Card key={i}>
+            <Card key={i} className="rounded-lg shadow-none">
               <CardContent className="p-4">
                 <div className="flex items-start gap-3">
-                  <div className="w-10 h-10 rounded-lg bg-mental/10 flex items-center justify-center flex-shrink-0">
-                    <technique.icon className="w-5 h-5 text-mental" />
+                   <div className="w-10 h-10 rounded-md bg-secondary flex items-center justify-center flex-shrink-0">
+                     <technique.icon className="w-5 h-5 text-accent" />
                   </div>
                   <div>
                     <h3 className="font-medium">{technique.title}</h3>
@@ -366,11 +366,11 @@ export const SportPsychology: React.FC = () => {
 
         {/* Competition Mindset */}
         <TabsContent value="competition" className="space-y-3">
-          <Card className="bg-gradient-to-br from-gold/10 to-background border-gold/20">
+          <Card className="rounded-lg border-border border-l-2 border-l-accent shadow-none">
             <CardContent className="p-4">
               <div className="flex items-center gap-2 mb-2">
-                <Trophy className="w-4 h-4 text-gold" />
-                <span className="text-xs font-medium text-gold uppercase tracking-wide">{L('Ready to compete', 'Подготовка за старт')}</span>
+                 <Trophy className="w-4 h-4 text-accent" />
+                 <span className="text-xs font-semibold text-muted-foreground">{L('Ready to compete', 'Подготовка за старт')}</span>
               </div>
               <p className="text-sm text-muted-foreground">
                 {L(
@@ -382,7 +382,7 @@ export const SportPsychology: React.FC = () => {
           </Card>
 
           {competitionTips.map((tip, i) => (
-            <Card key={i}>
+            <Card key={i} className="rounded-lg shadow-none">
               <CardContent className="p-4">
                 <h3 className="font-medium text-sm">{tip.title}</h3>
                 <p className="text-sm text-muted-foreground mt-1">{tip.advice}</p>
@@ -396,10 +396,10 @@ export const SportPsychology: React.FC = () => {
       <MindfulnessTools />
 
       {/* All Daily Exercises */}
-      <Card>
+      <Card className="rounded-lg shadow-none">
         <CardHeader className="pb-2">
           <CardTitle className="text-base flex items-center gap-2">
-            <Heart className="w-4 h-4 text-mental" />
+            <ListChecks className="w-4 h-4 text-accent" />
             {L('Daily mind exercises', 'Ежедневни упражнения за ума')}
           </CardTitle>
         </CardHeader>
@@ -407,10 +407,10 @@ export const SportPsychology: React.FC = () => {
           {dailyExercises.map((exercise, i) => (
             <div
               key={i}
-              className={`p-3 rounded-lg border ${
+               className={`p-3 rounded-md border ${
                 i === currentDailyExercise 
-                  ? 'bg-mental/5 border-mental/20' 
-                  : 'bg-muted/20 border-border/50'
+                   ? 'bg-secondary border-accent' 
+                   : 'bg-card border-border'
               }`}
             >
               <div className="flex items-center justify-between mb-1">

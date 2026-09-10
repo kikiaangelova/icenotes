@@ -155,10 +155,10 @@ export const SkatingAssistant: React.FC = () => {
 
   return (
     <Sheet open={open} onOpenChange={setOpen}>
-      <SheetContent side="right" className="w-full sm:max-w-md flex flex-col p-0 gap-0">
-        <SheetHeader className="px-5 pt-5 pb-3 border-b space-y-3">
-          <SheetTitle className="flex items-center gap-3 text-lg font-bold tracking-tight">
-            <span className="w-10 h-10 rounded-xl bg-primary/12 flex items-center justify-center">
+      <SheetContent side="right" className="authenticated-app app-sheet w-full sm:max-w-md flex flex-col p-0 gap-0">
+        <SheetHeader className="space-y-4 border-b border-border px-5 pb-4 pt-5">
+          <SheetTitle className="flex items-center gap-3 pr-8 text-lg font-bold">
+            <span className="flex h-10 w-10 items-center justify-center rounded-md bg-secondary">
               <meta.icon className="w-5 h-5 text-primary" />
             </span>
             <span className="flex flex-col items-start leading-tight">
@@ -168,7 +168,7 @@ export const SkatingAssistant: React.FC = () => {
           </SheetTitle>
 
           {/* Role switcher — two separate services, two separate conversations */}
-          <div className="grid grid-cols-2 gap-1 p-1 rounded-xl bg-muted/50" role="tablist" aria-label={t('ai.switch')}>
+          <div className="grid grid-cols-2 border-b border-border" role="tablist" aria-label={t('ai.switch')}>
             {(['coach', 'psych'] as AIRole[]).map((r) => (
               <button
                 key={r}
@@ -176,8 +176,8 @@ export const SkatingAssistant: React.FC = () => {
                 aria-selected={role === r}
                 onClick={() => setRole(r)}
                 className={cn(
-                  'h-9 rounded-lg text-xs font-semibold transition-colors',
-                  role === r ? 'bg-background text-foreground shadow-sm' : 'text-muted-foreground hover:text-foreground'
+                  'h-11 border-b-2 text-xs font-semibold transition-colors',
+                  role === r ? 'border-accent text-foreground' : 'border-transparent text-muted-foreground hover:text-foreground'
                 )}
               >
                 {t(ROLE_META[r].nameKey)}
@@ -189,16 +189,16 @@ export const SkatingAssistant: React.FC = () => {
         <div ref={scrollRef} className="flex-1 overflow-y-auto px-5 py-4 space-y-4">
           {messages.length === 0 && (
             <div className="space-y-4">
-              <div className="rounded-xl border border-border/60 bg-muted/40 p-4">
+              <div className="border-l-2 border-accent bg-muted/50 p-4">
                 <p className="text-sm leading-relaxed text-foreground">{t(meta.greetingKey)}</p>
               </div>
-              <p className="text-[11px] font-bold uppercase tracking-wider text-muted-foreground">{t('ai.tryOne')}</p>
+              <p className="app-section-label">{t('ai.tryOne')}</p>
               <div className="grid gap-2">
                 {meta.starters.map((k) => (
                   <button
                     key={k}
                     onClick={() => send(role, t(k))}
-                    className="text-left px-4 py-3 rounded-xl border border-border/60 hover:bg-muted/60 active:scale-[0.99] transition-all text-sm font-medium min-h-[48px]"
+                    className="min-h-[48px] border-b border-border px-1 py-3 text-left text-sm font-medium transition-colors last:border-b-0 hover:text-accent"
                   >
                     {t(k)}
                   </button>
@@ -211,10 +211,10 @@ export const SkatingAssistant: React.FC = () => {
             <div key={i} className={cn('flex', m.role === 'user' ? 'justify-end' : 'justify-start')}>
               <div
                 className={cn(
-                  'max-w-[85%] rounded-2xl px-4 py-2.5 text-sm leading-relaxed whitespace-pre-wrap',
+                  'max-w-[88%] rounded-lg px-4 py-3 text-sm leading-relaxed whitespace-pre-wrap',
                   m.role === 'user'
                     ? 'bg-primary text-primary-foreground rounded-br-sm'
-                    : 'bg-muted text-foreground rounded-bl-sm'
+                    : 'border border-border bg-card text-foreground rounded-bl-sm'
                 )}
               >
                 {m.content || <Loader2 className="w-4 h-4 animate-spin" />}
@@ -224,7 +224,7 @@ export const SkatingAssistant: React.FC = () => {
 
           {busy && messages[messages.length - 1]?.role === 'user' && (
             <div className="flex justify-start">
-              <div className="bg-muted rounded-2xl rounded-bl-sm px-4 py-3">
+               <div className="rounded-lg rounded-bl-sm border border-border bg-card px-4 py-3">
                 <Loader2 className="w-4 h-4 animate-spin" />
               </div>
             </div>
@@ -243,11 +243,11 @@ export const SkatingAssistant: React.FC = () => {
             value={input}
             onChange={(e) => setInput(e.target.value)}
             placeholder={t(meta.placeholderKey)}
-            className="flex-1 h-12 px-4 rounded-xl bg-muted/50 border border-border focus:outline-none focus:ring-2 focus:ring-primary text-sm min-w-0"
+            className="min-w-0 flex-1 rounded-md border border-input bg-card px-4 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
             disabled={busy}
           />
           <VoiceButton value={input} onChange={setInput} size="sm" />
-          <Button type="submit" size="icon" className="h-12 w-12 rounded-xl shrink-0" disabled={busy || !input.trim()}>
+          <Button type="submit" size="icon" className="h-12 w-12 shrink-0" disabled={busy || !input.trim()}>
             <Send className="w-4 h-4" />
           </Button>
         </form>

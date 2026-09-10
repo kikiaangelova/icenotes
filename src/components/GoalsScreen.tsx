@@ -143,17 +143,17 @@ export const GoalsScreen: React.FC<Props> = ({ onOpenWeeklyReview, onOpenCompeti
   const fmt = (d: string) => format(parseISO(d), language === 'bg' ? 'd MMM yyyy' : 'MMM d, yyyy');
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-10">
       <header className="space-y-1">
-        <h1 className="text-2xl font-bold tracking-tight text-foreground">{t('gb.title')}</h1>
-        <p className="text-sm text-muted-foreground">{t('gb.sub')}</p>
+        <h1 className="app-page-title">{t('gb.title')}</h1>
+        <p className="app-page-subtitle">{t('gb.sub')}</p>
       </header>
 
       {/* Season goal */}
-      <section className="space-y-2">
-        <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">{t('gb.season')}</p>
+      <section className="space-y-3 border-l-2 border-border pl-4">
+        <p className="app-section-label">{t('gb.season')}</p>
         {season ? (
-          <div className="rounded-xl border border-border/70 bg-card p-4 space-y-2">
+          <div className="space-y-2 py-1">
             <div className="flex items-start gap-3">
               <Trophy className="w-[18px] h-[18px] text-primary mt-0.5 shrink-0" />
               <div className="min-w-0 flex-1">
@@ -178,7 +178,7 @@ export const GoalsScreen: React.FC<Props> = ({ onOpenWeeklyReview, onOpenCompeti
         ) : (
           <button
             onClick={() => openEditor('season')}
-            className="w-full text-left rounded-xl border border-dashed border-border bg-card/50 p-4 min-h-[76px] hover:border-primary/50 transition-colors"
+            className="min-h-[72px] w-full border border-dashed border-border bg-card p-4 text-left transition-colors hover:border-accent"
           >
             <p className="text-sm text-muted-foreground">{t('gb.seasonEmpty')}</p>
             <p className="text-sm font-semibold text-primary mt-1.5 inline-flex items-center gap-1.5">
@@ -189,10 +189,10 @@ export const GoalsScreen: React.FC<Props> = ({ onOpenWeeklyReview, onOpenCompeti
       </section>
 
       {/* This week */}
-      <section className="space-y-2">
-        <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">{t('gb.cycle')}</p>
+      <section className="space-y-3 border-l-2 border-accent pl-4">
+        <p className="app-section-label">{t('gb.cycle')}</p>
         {week ? (
-          <div className="rounded-xl border border-primary/40 bg-card p-4 space-y-3">
+          <div className="space-y-4 py-1">
             <div className="flex items-start gap-3">
               <Target className="w-[18px] h-[18px] text-primary mt-0.5 shrink-0" />
               <div className="min-w-0 flex-1">
@@ -201,8 +201,8 @@ export const GoalsScreen: React.FC<Props> = ({ onOpenWeeklyReview, onOpenCompeti
               </div>
             </div>
 
-            <div className="rounded-lg bg-muted/40 p-3">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">{t('gb.next')}</p>
+            <div className="border-t border-border pt-3">
+              <p className="app-section-label">{t('gb.next')}</p>
               {nextStepOf(week) ? (
                 <div className="flex items-start gap-3 mt-1.5">
                   <p className="text-sm text-foreground flex-1 min-w-0">{nextStepOf(week)}</p>
@@ -231,7 +231,7 @@ export const GoalsScreen: React.FC<Props> = ({ onOpenWeeklyReview, onOpenCompeti
         ) : (
           <button
             onClick={() => openEditor('weekly')}
-            className="w-full text-left rounded-xl border border-dashed border-border bg-card/50 p-4 min-h-[76px] hover:border-primary/50 transition-colors"
+            className="min-h-[72px] w-full border border-dashed border-border bg-card p-4 text-left transition-colors hover:border-accent"
           >
             <p className="text-sm text-muted-foreground">{t('gb.cycleEmpty')}</p>
             <p className="text-sm font-semibold text-primary mt-1.5 inline-flex items-center gap-1.5">
@@ -244,7 +244,7 @@ export const GoalsScreen: React.FC<Props> = ({ onOpenWeeklyReview, onOpenCompeti
       {/* Weekly review entry point */}
       <button
         onClick={onOpenWeeklyReview}
-        className="w-full min-h-[64px] px-4 rounded-xl border border-border/70 bg-card flex items-center gap-3 text-left hover:border-primary/50 transition-colors"
+        className="flex min-h-[64px] w-full items-center gap-3 border-y border-border px-1 text-left transition-colors hover:text-accent"
       >
         <CalendarDays className="w-[18px] h-[18px] text-primary shrink-0" />
         <span className="min-w-0 flex-1">
@@ -258,7 +258,7 @@ export const GoalsScreen: React.FC<Props> = ({ onOpenWeeklyReview, onOpenCompeti
       {profile?.nextCompetition?.trim() && (compDays === null || compDays >= -3) && (
         <button
           onClick={onOpenCompetitionPrep}
-          className="w-full min-h-[64px] px-4 rounded-xl border border-border/70 bg-card flex items-center gap-3 text-left hover:border-primary/50 transition-colors"
+          className="flex min-h-[64px] w-full items-center gap-3 border-b border-border px-1 text-left transition-colors hover:text-accent"
         >
           <Trophy className="w-[18px] h-[18px] text-primary shrink-0" />
           <span className="min-w-0 flex-1">
@@ -277,7 +277,7 @@ export const GoalsScreen: React.FC<Props> = ({ onOpenWeeklyReview, onOpenCompeti
       <section className="space-y-2 border-t border-border/60 pt-5">
         <button
           onClick={() => setShowOther((s) => !s)}
-          className="w-full min-h-[44px] flex items-center justify-between text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground"
+          className="flex min-h-[44px] w-full items-center justify-between text-xs font-semibold text-muted-foreground"
         >
           {t('gb.other')} ({other.length})
           <ChevronDown className={`w-4 h-4 transition-transform ${showOther ? 'rotate-180' : ''}`} />
@@ -285,7 +285,7 @@ export const GoalsScreen: React.FC<Props> = ({ onOpenWeeklyReview, onOpenCompeti
         {showOther && (
           <div className="space-y-2">
             {other.map((g) => (
-              <div key={g.id} className="rounded-xl border border-border/60 bg-card p-3.5 flex items-start gap-3">
+               <div key={g.id} className="flex items-start gap-3 border-b border-border py-3.5">
                 <div className="min-w-0 flex-1">
                   <p className="text-sm font-semibold text-foreground">{g.title}</p>
                   {g.targetDate && <p className="text-xs text-muted-foreground mt-0.5">{fmt(g.targetDate)}</p>}
@@ -310,7 +310,7 @@ export const GoalsScreen: React.FC<Props> = ({ onOpenWeeklyReview, onOpenCompeti
         <section className="space-y-2">
           <button
             onClick={() => setShowDone((s) => !s)}
-            className="w-full min-h-[44px] flex items-center justify-between text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground"
+            className="flex min-h-[44px] w-full items-center justify-between text-xs font-semibold text-muted-foreground"
           >
             {t('gb.archive')} ({reached.length})
             <ChevronDown className={`w-4 h-4 transition-transform ${showDone ? 'rotate-180' : ''}`} />
@@ -332,7 +332,7 @@ export const GoalsScreen: React.FC<Props> = ({ onOpenWeeklyReview, onOpenCompeti
 
       {/* Editor */}
       <Dialog open={!!editing} onOpenChange={(o) => { if (!o) setEditing(null); }}>
-        <DialogContent className="max-w-[92vw] sm:max-w-md max-h-[90vh] overflow-y-auto rounded-2xl">
+        <DialogContent className="authenticated-app max-w-[92vw] sm:max-w-md max-h-[90vh] overflow-y-auto rounded-lg">
           <DialogHeader>
             <DialogTitle className="text-lg font-bold">
               {editing?.timeframe === 'season' ? t('gb.season') : editing?.timeframe === 'weekly' ? t('gb.cycle') : t('gb.newGoal')}
@@ -340,13 +340,13 @@ export const GoalsScreen: React.FC<Props> = ({ onOpenWeeklyReview, onOpenCompeti
           </DialogHeader>
           <div className="space-y-4">
             <div className="space-y-2">
-              <label className="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">{t('gb.titleLabel')}</label>
+              <label className="text-sm font-semibold text-foreground">{t('gb.titleLabel')}</label>
               <div className="flex items-start gap-2">
                 <Input
                   value={draft.title}
                   onChange={(e) => setDraft((d) => ({ ...d, title: e.target.value }))}
                   placeholder={t('gb.titlePh')}
-                  className="h-12 rounded-xl flex-1"
+                  className="h-12 flex-1"
                 />
                 <VoiceButton value={draft.title} onChange={(v) => setDraft((d) => ({ ...d, title: v }))} />
               </div>
@@ -370,17 +370,17 @@ export const GoalsScreen: React.FC<Props> = ({ onOpenWeeklyReview, onOpenCompeti
             />
 
             <div className="space-y-2">
-              <label className="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">{t('gb.dateLabel')}</label>
+              <label className="text-sm font-semibold text-foreground">{t('gb.dateLabel')}</label>
               <Input
                 type="date"
                 value={draft.date}
                 onChange={(e) => setDraft((d) => ({ ...d, date: e.target.value }))}
-                className="h-12 rounded-xl"
+                className="h-12"
               />
             </div>
 
             <div className="space-y-2 pt-1">
-              <Button onClick={save} disabled={!draft.title.trim() || saving} className="w-full h-14 rounded-xl text-base font-semibold">
+              <Button onClick={save} disabled={!draft.title.trim() || saving} className="w-full h-14 text-base font-semibold">
                 {t('gb.save')}
               </Button>
               <button
