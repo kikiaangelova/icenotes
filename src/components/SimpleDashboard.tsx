@@ -80,6 +80,7 @@ export const SimpleDashboard: React.FC = () => {
   const [showReminderSettings, setShowReminderSettings] = useState(false);
   const [reflectionOpen, setReflectionOpen] = useState(false);
   const [gameDayOpen, setGameDayOpen] = useState(false);
+  const [reviewOpen, setReviewOpen] = useState(false);
 
   // Persist last viewed destination (legacy key kept so nothing is lost)
   useEffect(() => {
@@ -100,8 +101,10 @@ export const SimpleDashboard: React.FC = () => {
     } else if (action === 'open-coach') {
       setActiveTab('support');
       window.dispatchEvent(new CustomEvent('ai-assistant:open', { detail: { role: 'coach' } }));
-    } else if (action === 'game-day') {
+    } else if (action === 'game-day' || action === 'competition-prep') {
       setGameDayOpen(true);
+    } else if (action === 'weekly-review') {
+      setReviewOpen(true);
     }
     const next = new URLSearchParams(searchParams);
     next.delete('action');
