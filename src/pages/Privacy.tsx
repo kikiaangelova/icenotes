@@ -17,15 +17,15 @@ const Privacy: React.FC = () => {
 
   const copy = bg ? {
     eyebrow: 'Поверителност',
-    title: 'Това, което преживяваш, принадлежи на теб.',
-    intro: 'SkateGoals е лично пространство. Ето ясно и без сложни термини как пазим данните ти.',
+    title: 'Твоите данни и записки',
+    intro: 'SkateGoals е изграден около поверителността. Ето ясно и без сложни термини как боравим с данните ти.',
     questions: 'Имаш въпрос? Четем всяко съобщение.',
     contact: 'Пиши ни',
     updated: 'Последна актуализация',
   } : {
     eyebrow: 'Privacy',
-    title: 'Your inner world is yours.',
-    intro: "SkateGoals is a safe space first. Here's the short, human version of how we handle your data.",
+    title: 'Your data and reflections',
+    intro: 'SkateGoals is built around privacy. Here is how we handle your data in plain language.',
     questions: 'Questions? We read every message.',
     contact: 'Talk to us',
     updated: 'Last updated',
@@ -34,44 +34,44 @@ const Privacy: React.FC = () => {
   const sections = bg ? [
     {
       icon: Lock,
-      title: 'Дневникът ти остава личен',
-      body: 'Всичко, което записваш — мисли, цели и тренировки — е видимо само в твоя профил. Не продаваме данните ти, не показваме реклами според тях и не ги споделяме с треньори или други фигуристи без твое решение.',
+      title: 'Лично по подразбиране',
+      body: 'Рефлексиите, целите и тренировъчните ти записи са лични за акаунта ти по подразбиране. Не продаваме данните ти, не показваме реклами според тях и не ги споделяме с треньори или други фигуристи без твое решение.',
     },
     {
       icon: Shield,
       title: 'Какво съхраняваме',
-      body: 'Пазим само необходимото, за да работи приложението: имейла ти, създадените от теб записи и настройките ти. Данните се съхраняват защитено и криптирано в Lovable Cloud.',
+      body: 'Съхраняваме данните за акаунта ти, спортния контекст, който предоставяш (като име, възраст, ниво и цели), и всички записи, цели, настройки или рефлексии, които създаваш. Те се пазят в Lovable Cloud със стандартни контроли за достъп.',
     },
     {
       icon: Eye,
-      title: 'Анализ, без следене',
-      body: 'Отчитаме основни анонимни действия — например че е записана тренировка — за да разбираме кое помага и какво да подобрим. Не свързваме тази информация с самоличността ти за маркетингови цели.',
+      title: 'Как използваме данните за използване',
+      body: 'Използваме данни за акаунта и използването на функциите, за да поддържаме SkateGoals, да разбираме кои части се използват и да подобряваме продукта. Не продаваме тези данни и не ги използваме за таргетирана реклама.',
     },
     {
       icon: Mail,
-      title: 'Можеш да изтриеш всичко',
-      body: 'Можеш да изтриеш профила и записите си по всяко време от настройките или като ни пишеш. Без скрити стъпки и без пречки.',
+      title: 'Заяви изтриване',
+      body: 'Можеш да поискаш изтриване на акаунта и данните си по всяко време през страницата за контакт. Ще обработим искането възможно най-скоро; самостоятелно изтриване все още не е налично.',
     },
   ] : [
     {
       icon: Lock,
-      title: 'Your journal stays yours',
-      body: 'Everything you write — reflections, goals, jump logs — is private to your account. We never sell your data, never run ads on it, and never share it with coaches or other skaters unless you choose to.',
+      title: 'Private by default',
+      body: 'Your reflections, goals and training entries are private to your account by default. We do not sell your data, run ads based on it, or share it with coaches or other skaters unless you choose to.',
     },
     {
       icon: Shield,
       title: 'What we store',
-      body: 'Just what makes the app work: your email, the entries you create, your settings. No tracking pixels following you around the web. We use Lovable Cloud (built on Supabase) to keep your data safe and encrypted at rest.',
+      body: 'We store your account information, athlete context you provide (such as name, age, skating level and goals), and any entries, goals, settings or reflections you create. This is kept in Lovable Cloud and protected by standard access controls.',
     },
     {
       icon: Eye,
-      title: 'Light analytics, not surveillance',
-      body: 'We track simple, anonymous events (like “a skater logged a session”) to understand what helps and what to improve. We never link those events to your identity for marketing.',
+      title: 'How we use usage data',
+      body: 'We use account and feature-usage data to operate SkateGoals, understand which parts are used, and improve the product. We do not sell this data or use it to target advertising.',
     },
     {
       icon: Mail,
-      title: 'Delete anytime',
-      body: 'You can wipe your account and all entries whenever you want — from Settings, or by emailing us. No dark patterns, no hoops.',
+      title: 'Request deletion',
+      body: 'You can ask us to delete your account and data at any time through the Contact page. We will process your request as soon as possible; self-service deletion is not available yet.',
     },
   ];
 
