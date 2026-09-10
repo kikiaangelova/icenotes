@@ -239,6 +239,7 @@ export const SimpleDashboard: React.FC = () => {
           <h1 className="text-2xl font-bold tracking-tight text-foreground">{t('a.more.label')}</h1>
           <p className="text-sm text-muted-foreground">{t('a.more.hint')}</p>
         </div>
+        <div className="flex justify-start"><ExportButton /></div>
         <SessionTimer type="on-ice" />
         <JumpLog />
         <ActivityCalendar />
@@ -255,7 +256,7 @@ export const SimpleDashboard: React.FC = () => {
           greeting={greeting}
           focus={profile.mainFocus}
           sessionsToday={todaysSessions.length}
-          reflectedToday={!!todaysEntry}
+          reflectedToday={reflectedToday}
           competition={profile.nextCompetition}
           competitionDays={compDays}
           reviewRelevant={week.reviewRelevant}
