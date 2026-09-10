@@ -112,8 +112,10 @@ export const SimpleDashboard: React.FC = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchParams]);
 
-  const todaysEntry = getTodaysEntry();
   const todaysSessions = getTodaysSessions();
+  // Only a post-training reflection counts — a weekly review or competition
+  // debrief written today must not hide the reflection step.
+  const reflectedToday = hasTrainingReflectionToday(entries);
   const levelLabel = SELF_LEVELS.find(l => l.value === profile?.selfLevel)?.label || '';
   const greeting = getGreeting(profile?.name, language);
   const week = getWeekSummary(entries, trainingSessions);
