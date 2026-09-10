@@ -15,6 +15,7 @@ import {
   Snowflake
 } from 'lucide-react';
 import { toast } from 'sonner';
+import { useLanguage } from '@/context/LanguageContext';
 
 interface ReminderSettings {
   enabled: boolean;
@@ -43,6 +44,7 @@ export const ReminderSettings: React.FC = () => {
     const saved = localStorage.getItem(STORAGE_KEY);
     return saved ? JSON.parse(saved) : DEFAULT_SETTINGS;
   });
+  const { t } = useLanguage();
   const [permissionStatus, setPermissionStatus] = useState<NotificationPermission>('default');
   const [nextReminder, setNextReminder] = useState<string | null>(null);
 
@@ -73,24 +75,15 @@ export const ReminderSettings: React.FC = () => {
       const currentTime = `${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}`;
       
       if (settings.trainingEnabled && currentTime === settings.trainingTime) {
-        showNotification(
-          '🏋️ Time to Train!',
-          'Ready to hit the ice or work on your off-ice training?'
-        );
+        showNotification(t('rem.n.training.title'), t('rem.n.training.body'));
       }
       
       if (settings.reflectionEnabled && currentTime === settings.reflectionTime) {
-        showNotification(
-          '💭 Reflection Time',
-          'Take a moment to reflect on your skating journey today.'
-        );
+        showNotification(t('rem.n.reflection.title'), t('rem.n.reflection.body'));
       }
       
       if (settings.journalEnabled && currentTime === settings.journalTime) {
-        showNotification(
-          '📔 Write Your Ice Journal',
-          'Don\'t forget to log today\'s training and capture your thoughts!'
-        );
+        showNotification(t('rem.n.journal.title'), t('rem.n.journal.body'));
       }
     };
 
@@ -110,13 +103,13 @@ export const ReminderSettings: React.FC = () => {
     const times: { time: string; label: string }[] = [];
     
     if (settings.trainingEnabled) {
-      times.push({ time: settings.trainingTime, label: 'Training' });
+      times.push({ time: settings.trainingTime, label: t('rem.label.training') });
     }
     if (settings.journalEnabled) {
-      times.push({ time: settings.journalTime, label: 'Journal' });
+      times.push({ time: settings.journalTime, label: t('rem.label.journal') });
     }
     if (settings.reflectionEnabled) {
-      times.push({ time: settings.reflectionTime, label: 'Reflection' });
+      times.push({ time: settings.reflectionTime, label: t('rem.label.reflection') });
     }
     
     if (times.length === 0) {
@@ -145,7 +138,7 @@ export const ReminderSettings: React.FC = () => {
     }
     
     if (nextTime) {
-      setNextReminder(`${nextTime.label} at ${nextTime.time}${nextTime.isToday ? ' today' : ' tomorrow'}`);
+      setNextReminder(`${nextTime.label} ${t('rem.at')} ${nextTime.time} ${nextTime.isToday ? t('rem.today') : t('rem.tomorrow')}`);
     }
   };
 
@@ -162,7 +155,7 @@ export const ReminderSettings: React.FC = () => {
 
   const requestPermission = async () => {
     if (!('Notification' in window)) {
-      toast.error('Notifications are not supported in this browser');
+      toast.error(t('rem.unsupported'));
       return;
     }
 
@@ -171,20 +164,17 @@ export const ReminderSettings: React.FC = () => {
       setPermissionStatus(permission);
       
       if (permission === 'granted') {
-        toast.success('Notifications enabled!');
+        toast.success(t('rem.toast.granted'));
         setSettings(prev => ({ ...prev, enabled: true }));
         
         // Show test notification
-        showNotification(
-          '✨ Notifications Enabled',
-          'You\'ll receive gentle reminders at your chosen times.'
-        );
+        showNotification(t('rem.n.on.title'), t('rem.n.on.body'));
       } else if (permission === 'denied') {
-        toast.error('Notifications blocked. Please enable in browser settings.');
+        toast.error(t('rem.toast.denied'));
       }
     } catch (error) {
       console.error('Error requesting notification permission:', error);
-      toast.error('Could not enable notifications');
+      toast.error(t('rem.toast.failed'));
     }
   };
 
@@ -194,22 +184,19 @@ export const ReminderSettings: React.FC = () => {
     } else {
       setSettings(prev => ({ ...prev, enabled }));
       if (enabled) {
-        toast.success('Reminders enabled');
+        toast.success(t('rem.toast.on'));
       } else {
-        toast.info('Reminders disabled');
+        toast.info(t('rem.toast.off'));
       }
     }
   };
 
   const handleTestNotification = () => {
     if (permissionStatus === 'granted') {
-      showNotification(
-        '🧪 Test Notification',
-        'Your reminders are working perfectly!'
-      );
-      toast.success('Test notification sent!');
+      showNotification(t('rem.n.test.title'), t('rem.n.test.body'));
+      toast.success(t('rem.toast.sent'));
     } else {
-      toast.error('Please enable notifications first');
+      toast.error(t('rem.toast.first'));
     }
   };
 
@@ -221,10 +208,10 @@ export const ReminderSettings: React.FC = () => {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Bell className="w-5 h-5 text-primary" />
-            Reminder Notifications
+            {t('rem.title')}
           </CardTitle>
           <CardDescription>
-            Get gentle reminders to train and reflect on your skating journey
+            {t('rem.desc')}
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-6">
@@ -232,7 +219,7 @@ export const ReminderSettings: React.FC = () => {
             <div className="p-4 rounded-lg bg-destructive/10 border border-destructive/20">
               <div className="flex items-center gap-2 text-destructive">
                 <AlertCircle className="w-5 h-5" />
-                <span>Notifications are not supported in this browser</span>
+                <span>{t('rem.unsupported')}</span>
               </div>
             </div>
           ) : (
@@ -243,10 +230,8 @@ export const ReminderSettings: React.FC = () => {
                   <div className="flex items-start gap-2 text-amber-600">
                     <AlertCircle className="w-5 h-5 mt-0.5" />
                     <div>
-                      <p className="font-medium">Notifications are blocked</p>
-                      <p className="text-sm opacity-80">
-                        Please enable notifications in your browser settings to receive reminders.
-                      </p>
+                      <p className="font-medium">{t('rem.blocked.title')}</p>
+                      <p className="text-sm opacity-80">{t('rem.blocked.desc')}</p>
                     </div>
                   </div>
                 </div>
@@ -262,10 +247,10 @@ export const ReminderSettings: React.FC = () => {
                   )}
                   <div>
                     <Label htmlFor="notifications-enabled" className="font-medium">
-                      Enable Reminders
+                      {t('rem.enable')}
                     </Label>
                     <p className="text-xs text-muted-foreground">
-                      Receive daily notifications at your chosen times
+                      {t('rem.enableSub')}
                     </p>
                   </div>
                 </div>
@@ -284,7 +269,7 @@ export const ReminderSettings: React.FC = () => {
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
                         <Snowflake className="w-4 h-4 text-on-ice" />
-                        <Label htmlFor="training-enabled">Training Reminder</Label>
+                        <Label htmlFor="training-enabled">{t('rem.training')}</Label>
                       </div>
                       <Switch
                         id="training-enabled"
@@ -305,7 +290,7 @@ export const ReminderSettings: React.FC = () => {
                           }
                           className="w-32"
                         />
-                        <span className="text-sm text-muted-foreground">daily</span>
+                        <span className="text-sm text-muted-foreground">{t('rem.daily')}</span>
                       </div>
                     )}
                   </div>
@@ -315,7 +300,7 @@ export const ReminderSettings: React.FC = () => {
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
                         <Feather className="w-4 h-4 text-mental" />
-                        <Label htmlFor="reflection-enabled">Reflection Reminder</Label>
+                        <Label htmlFor="reflection-enabled">{t('rem.reflection')}</Label>
                       </div>
                       <Switch
                         id="reflection-enabled"
@@ -336,7 +321,7 @@ export const ReminderSettings: React.FC = () => {
                           }
                           className="w-32"
                         />
-                        <span className="text-sm text-muted-foreground">daily</span>
+                        <span className="text-sm text-muted-foreground">{t('rem.daily')}</span>
                       </div>
                     )}
                   </div>
@@ -346,7 +331,7 @@ export const ReminderSettings: React.FC = () => {
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
                         <Feather className="w-4 h-4 text-primary" />
-                        <Label htmlFor="journal-enabled">Daily Journal Reminder</Label>
+                        <Label htmlFor="journal-enabled">{t('rem.journal')}</Label>
                       </div>
                       <Switch
                         id="journal-enabled"
@@ -367,7 +352,7 @@ export const ReminderSettings: React.FC = () => {
                           }
                           className="w-32"
                         />
-                        <span className="text-sm text-muted-foreground">daily</span>
+                        <span className="text-sm text-muted-foreground">{t('rem.daily')}</span>
                       </div>
                     )}
                   </div>
@@ -377,7 +362,7 @@ export const ReminderSettings: React.FC = () => {
                     <div className="p-3 rounded-lg bg-primary/5 border border-primary/20">
                       <div className="flex items-center gap-2 text-sm">
                         <CheckCircle2 className="w-4 h-4 text-primary" />
-                        <span>Next reminder: <strong>{nextReminder}</strong></span>
+                        <span>{t('rem.next')} <strong>{nextReminder}</strong></span>
                       </div>
                     </div>
                   )}
@@ -390,7 +375,7 @@ export const ReminderSettings: React.FC = () => {
                     className="w-full"
                   >
                     <Bell className="w-4 h-4 mr-2" />
-                    Send Test Notification
+                    {t('rem.test')}
                   </Button>
                 </>
               )}
@@ -400,7 +385,7 @@ export const ReminderSettings: React.FC = () => {
       </Card>
 
       <p className="text-center text-xs text-muted-foreground">
-        Reminders only work when this page is open in your browser
+        {t('rem.foot')}
       </p>
     </div>
   );

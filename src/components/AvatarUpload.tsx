@@ -5,6 +5,7 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { Camera, Loader2, User } from 'lucide-react';
 import { toast } from 'sonner';
+import { useLanguage } from '@/context/LanguageContext';
 
 interface AvatarUploadProps {
   avatarUrl?: string | null;
@@ -20,6 +21,7 @@ export const AvatarUpload: React.FC<AvatarUploadProps> = ({
   size = 'md'
 }) => {
   const { user } = useAuth();
+  const { t } = useLanguage();
   const [uploading, setUploading] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -42,13 +44,13 @@ export const AvatarUpload: React.FC<AvatarUploadProps> = ({
 
     // Validate file type
     if (!file.type.startsWith('image/')) {
-      toast.error('Please select an image file');
+      toast.error(t('av.err.type'));
       return;
     }
 
     // Validate file size (max 2MB)
     if (file.size > 2 * 1024 * 1024) {
-      toast.error('Image must be less than 2MB');
+      toast.error(t('av.err.size'));
       return;
     }
 
@@ -78,10 +80,10 @@ export const AvatarUpload: React.FC<AvatarUploadProps> = ({
       const urlWithCacheBust = `${publicUrl}?t=${Date.now()}`;
       
       onAvatarChange(urlWithCacheBust);
-      toast.success('Avatar updated!');
+      toast.success(t('av.ok'));
     } catch (error: any) {
       console.error('Upload error:', error);
-      toast.error('Failed to upload avatar');
+      toast.error(t('av.err.upload'));
     } finally {
       setUploading(false);
     }
@@ -108,6 +110,7 @@ export const AvatarUpload: React.FC<AvatarUploadProps> = ({
         variant="secondary"
         size="icon"
         className="absolute -bottom-1 -right-1 w-7 h-7 rounded-full shadow-md"
+        aria-label={t('av.change')}
         onClick={() => fileInputRef.current?.click()}
         disabled={uploading}
       >
