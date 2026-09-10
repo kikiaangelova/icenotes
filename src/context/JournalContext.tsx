@@ -239,9 +239,11 @@ export const JournalProvider: React.FC<{ children: ReactNode }> = ({ children })
   const value = useMemo(() => ({
     profile: profile ?? null,
     setProfile,
+    setProfileAsync,
     isLoading,
     entries,
     addEntry,
+    addEntryAsync,
     getTodaysEntry,
     trainingSessions,
     addTrainingSession,
