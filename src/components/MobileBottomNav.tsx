@@ -1,9 +1,9 @@
 import React from 'react';
-import { Home, Target, Snowflake, Brain, TrendingUp } from 'lucide-react';
+import { Home, Target, Snowflake, LifeBuoy, TrendingUp } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useLanguage } from '@/context/LanguageContext';
 
-export type BottomTab = 'home' | 'training' | 'goals' | 'mind' | 'progress';
+export type BottomTab = 'home' | 'training' | 'goals' | 'support' | 'progress';
 
 interface MobileBottomNavProps {
   active: BottomTab;
@@ -24,7 +24,7 @@ const ITEMS: Item[] = [
   { id: 'home',     labelKey: 'nav5.today',    icon: Home },
   { id: 'training', labelKey: 'nav5.training', icon: Snowflake },
   { id: 'goals',    labelKey: 'nav5.goals',    icon: Target },
-  { id: 'mind',     labelKey: 'nav5.mind',     icon: Brain },
+  { id: 'support',  labelKey: 'nav5.support',  icon: LifeBuoy },
   { id: 'progress', labelKey: 'nav5.progress', icon: TrendingUp },
 ];
 
