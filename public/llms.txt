@@ -13,6 +13,7 @@ SkateGoals is not a diary, a social network or a jump-analytics product. It supp
 - [Sport Psychology](/sport-psychology): Practical performance exercises — cue words, breathing, grounding, controllables, process goals, reset routines.
 - [AI Support](/ai-support): The two AI roles, what each one does, and their explicit limits.
 - [Contact](/contact): Reach the SkateGoals team.
+- [Feedback](/feedback): Private product feedback from signed-in athletes.
 - [Privacy](/privacy): How athlete data is handled.
 
 ## Optional
