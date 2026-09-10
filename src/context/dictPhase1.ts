@@ -23,6 +23,7 @@ export const PHASE1_DICT: Record<string, Phase1Entry> = {
   'today.core.review':   { en: 'Weekly review', bg: 'Седмичен преглед' },
   'today.core.comp':     { en: 'Competition prep', bg: 'Подготовка за старт' },
   'today.support.label': { en: 'AI support', bg: 'AI подкрепа' },
+  'today.support.sub':   { en: 'AI Coach · Sport Psychology', bg: 'AI треньор · Спортна психология' },
 
   // ── The two AI roles ──
   'ai.coach.name':  { en: 'AI Coach', bg: 'AI треньор' },
