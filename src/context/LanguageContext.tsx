@@ -325,7 +325,7 @@ const dict: Dict = {
   'training.offIceShort': { en: 'Off-Ice', bg: 'Суха' },
 
   // ───── Footer ─────
-  'footer.tagline': { en: 'Training, goals, competition prep and mental performance — in one place that belongs to the athlete.', bg: 'Тренировки, цели, подготовка за състезание и психическа подготовка — на едно място, което е само на състезателя.' },
+  'footer.tagline': { en: 'Training, goals, competition prep and mental performance, in one place that belongs to the athlete.', bg: 'Тренировки, цели, подготовка за състезание и психическа подготовка. Всичко на едно място, което принадлежи на спортиста.' },
   'footer.navigate': { en: 'Explore', bg: 'Разгледай' },
   'footer.product': { en: 'Product', bg: 'Продукт' },
   'footer.account': { en: 'Support', bg: 'Помощ' },

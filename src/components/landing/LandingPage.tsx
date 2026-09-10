@@ -78,6 +78,7 @@ export const LandingPage: React.FC<LandingPageProps> = () => {
           <div className="relative min-h-[48svh] overflow-hidden border-t border-primary-foreground/20 md:min-h-0 md:border-l md:border-t-0">
             <HeroVideo
               src={heroVideo.url}
+              poster="/hero-skater-poster.jpg"
               className="absolute inset-0 h-full w-full"
               videoClassName=""
               filter="saturate(0.85) contrast(1.08) brightness(0.9)"
@@ -92,7 +93,7 @@ export const LandingPage: React.FC<LandingPageProps> = () => {
       <section className="public-section relative z-10 border-t border-border px-5 py-14 md:px-8 md:py-20">
         <div className="max-w-6xl mx-auto">
           <p className={kicker}>{t('lp.connect.kicker')}</p>
-          <h2 className="mt-4 mb-10 text-2xl md:text-4xl font-bold tracking-tight text-primary-foreground max-w-2xl leading-tight">
+          <h2 className="mt-4 mb-10 max-w-2xl text-2xl font-bold leading-tight text-foreground md:text-4xl">
             {t('lp.connect.title')}
           </h2>
           <div className="grid grid-cols-1 border-t border-border sm:grid-cols-2 lg:grid-cols-5">
@@ -111,7 +112,7 @@ export const LandingPage: React.FC<LandingPageProps> = () => {
       <section className="public-section relative z-10 border-t border-border bg-primary px-5 py-14 text-primary-foreground md:px-8 md:py-20">
         <div className="max-w-6xl mx-auto">
           <p className={kicker}>{t('lp.ai.kicker')}</p>
-          <h2 className="mt-4 mb-10 text-2xl md:text-4xl font-bold tracking-tight text-foreground max-w-2xl leading-tight">
+          <h2 className="mt-4 mb-10 max-w-2xl text-2xl font-bold leading-tight text-primary-foreground md:text-4xl">
             {t('lp.ai.title')}
           </h2>
 

@@ -4,6 +4,7 @@ import { cn } from '@/lib/utils';
 
 interface HeroVideoProps {
   src: string;
+  poster?: string;
   className?: string;
   videoClassName?: string;
   filter?: string;
@@ -18,6 +19,7 @@ interface HeroVideoProps {
  */
 export const HeroVideo: React.FC<HeroVideoProps> = ({
   src,
+  poster,
   className,
   videoClassName,
   filter,
@@ -96,6 +98,7 @@ export const HeroVideo: React.FC<HeroVideoProps> = ({
       <video
         ref={videoRef}
         src={src}
+        poster={poster}
         autoPlay
         muted
         loop

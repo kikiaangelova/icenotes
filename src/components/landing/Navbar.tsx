@@ -15,7 +15,7 @@ interface NavbarProps {
 export const Navbar: React.FC<NavbarProps> = ({ isDarkMode, onToggleDarkMode }) => {
   const location = useLocation();
   const [mobileOpen, setMobileOpen] = useState(false);
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   const NAV_LINKS = [
     { label: t('nav.home'), href: '/', icon: Home },
@@ -89,7 +89,7 @@ export const Navbar: React.FC<NavbarProps> = ({ isDarkMode, onToggleDarkMode }) 
           <Button
             variant="ghost"
             size="icon"
-            aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
+            aria-label={mobileOpen ? (language === 'bg' ? 'Затвори менюто' : 'Close menu') : (language === 'bg' ? 'Отвори менюто' : 'Open menu')}
             onClick={() => setMobileOpen(!mobileOpen)}
             className="rounded-sm w-10 h-10"
           >
@@ -139,7 +139,7 @@ export const Navbar: React.FC<NavbarProps> = ({ isDarkMode, onToggleDarkMode }) 
               <Button
                 variant="ghost"
                 size="icon"
-                aria-label="Toggle theme"
+                aria-label={language === 'bg' ? 'Смени темата' : 'Toggle theme'}
                 onClick={onToggleDarkMode}
                 className="rounded-sm w-10 h-10"
               >
