@@ -55,7 +55,7 @@ export const VoiceButton: React.FC<VoiceButtonProps> = ({ value, onChange, class
         title={listening ? t('voice.stop') : t('voice.start')}
         className={cn(
           dim,
-          'rounded-xl border flex items-center justify-center transition-colors shrink-0',
+          'rounded-md border flex items-center justify-center transition-colors shrink-0',
           listening
             ? 'border-primary bg-primary text-primary-foreground'
             : 'border-border bg-card text-muted-foreground hover:text-foreground hover:border-primary/50'
@@ -93,7 +93,7 @@ export const VoiceTextarea: React.FC<VoiceTextareaProps> = ({
   return (
     <div className="space-y-2">
       {label && (
-        <label className="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">
+        <label className="text-sm font-semibold text-foreground">
           {label}
         </label>
       )}
@@ -103,7 +103,7 @@ export const VoiceTextarea: React.FC<VoiceTextareaProps> = ({
           onChange={(e) => onChange(e.target.value)}
           placeholder={placeholder}
           rows={rows}
-          className="rounded-xl resize-none flex-1"
+          className="resize-none flex-1"
         />
         <VoiceButton value={value} onChange={onChange} />
       </div>

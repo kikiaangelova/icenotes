@@ -292,16 +292,6 @@
     background-color: hsl(var(--muted)) !important;
   }
 
-  /* Headings inside the app use Syne, body copy Plus Jakarta Sans */
-  .theme-neon h1,
-  .theme-neon h2,
-  .theme-neon h3,
-  .theme-neon h4,
-  .theme-neon h5,
-  .theme-neon h6 {
-    font-family: 'Syne', 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
-  }
-
   .theme-neon body,
   .theme-neon input,
   .theme-neon textarea,
@@ -451,6 +441,64 @@
 }
 
 @layer components {
+  /* Signed-in product system. Kept scoped so the public site is unchanged. */
+  .authenticated-app {
+    --background: 210 33% 98%;
+    --foreground: 221 48% 10%;
+    --card: 0 0% 100%;
+    --card-foreground: 221 48% 10%;
+    --primary: 215 57% 18%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 30% 94%;
+    --secondary-foreground: 218 38% 20%;
+    --muted: 210 25% 95%;
+    --muted-foreground: 216 15% 42%;
+    --accent: 202 67% 45%;
+    --accent-foreground: 210 40% 98%;
+    --border: 214 24% 87%;
+    --input: 214 24% 82%;
+    --ring: 202 67% 45%;
+    font-family: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
+  }
+
+  .authenticated-app h1,
+  .authenticated-app h2,
+  .authenticated-app h3,
+  .authenticated-app h4,
+  .authenticated-app h5,
+  .authenticated-app h6 {
+    font-family: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
+    letter-spacing: 0;
+  }
+
+  .app-page-title {
+    @apply text-2xl font-bold leading-tight text-foreground sm:text-3xl;
+  }
+
+  .app-page-subtitle {
+    @apply mt-1 text-sm leading-relaxed text-muted-foreground;
+  }
+
+  .app-section-label {
+    @apply text-xs font-semibold text-muted-foreground;
+  }
+
+  .app-panel {
+    @apply rounded-lg border border-border bg-card;
+  }
+
+  .app-row {
+    @apply border-b border-border last:border-b-0;
+  }
+
+  .app-sheet {
+    @apply border-border bg-background shadow-xl;
+  }
+
+  .app-control {
+    @apply rounded-md border-border bg-card focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2;
+  }
+
   .glass-card {
     @apply bg-card/90 backdrop-blur-md border border-border/60 rounded-xl;
     box-shadow: var(--shadow-card);
