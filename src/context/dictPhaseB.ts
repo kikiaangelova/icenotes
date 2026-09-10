@@ -11,8 +11,8 @@ export const PHASEB_DICT: Record<string, PhaseBEntry> = {
   'voice.failed':    { en: 'Voice did not work here. Type instead.', bg: 'Гласът не сработи. Напиши го.' },
   'voice.nospeech':  { en: 'Nothing was picked up. Try again.', bg: 'Нищо не се чу. Пробвай пак.' },
   'voice.hint': {
-    en: 'Speech becomes text you can edit before saving. SkateGoals does not keep the audio; your browser or device handles the recognition and may process it on its servers.',
-    bg: 'Говорът се превръща в текст, който можеш да редактираш преди запис. SkateGoals не пази аудиото; разпознаването е на браузъра или устройството ти и може да минава през техни сървъри.',
+    en: 'Speech becomes text you can edit before saving. SkateGoals does not keep the audio; recognition is handled by your browser or device and may be processed externally, depending on the platform.',
+    bg: 'Говорът се превръща в текст, който можеш да редактираш преди запис. SkateGoals не пази аудиото; разпознаването е на браузъра или устройството ти и според платформата може да се обработва външно.',
   },
 
   // ── Goals (one system) ──

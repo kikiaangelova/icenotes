@@ -91,7 +91,7 @@ const Privacy: React.FC = () => {
     {
       icon: Mic,
       title: 'Speaking instead of typing',
-      body: 'Writing fields have a microphone. It only runs while you start it and stops when you stop it. SkateGoals does not record or store audio — only the text left in the field after you review it is saved. The speech recognition itself is done by your browser or device, and in most browsers the audio is processed on that company\u2019s servers. If you would rather it did not leave your device, type instead.',
+      body: 'Writing fields have a microphone. It only runs while you start it and stops when you stop it. SkateGoals does not record or store audio — only the text left in the field after you review it is saved. The speech recognition itself is handled by your browser or device. Depending on the platform, the audio may be processed on the device or sent to a server run by the browser, device maker or another external speech service. If you would rather it did not leave your device, type instead.',
     },
     {
       icon: Eye,
