@@ -81,7 +81,7 @@ const Privacy: React.FC = () => {
         <Navbar isDarkMode={isDarkMode} onToggleDarkMode={() => setIsDarkMode(!isDarkMode)} />
         <Seo
           title={bg ? 'Поверителност — SkateGoals' : 'Privacy — SkateGoals'}
-          description={bg ? 'Дневникът ти в SkateGoals е личен. Виж какво съхраняваме, как пазим данните ти и как можеш да ги изтриеш.' : "Your SkateGoals journal is private by default. Here's exactly what we store, what we don't, and how to delete everything anytime."}
+          description={bg ? 'Виж как SkateGoals борави с данните за акаунта, спортния контекст, записите и исканията за изтриване.' : 'Learn how SkateGoals handles your account data, athlete context, entries, and deletion requests.'}
           path="/privacy"
         />
 
