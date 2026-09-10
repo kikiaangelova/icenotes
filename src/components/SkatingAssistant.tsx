@@ -242,9 +242,10 @@ export const SkatingAssistant: React.FC = () => {
             value={input}
             onChange={(e) => setInput(e.target.value)}
             placeholder={t(meta.placeholderKey)}
-            className="flex-1 h-12 px-4 rounded-xl bg-muted/50 border border-border focus:outline-none focus:ring-2 focus:ring-primary text-sm"
+            className="flex-1 h-12 px-4 rounded-xl bg-muted/50 border border-border focus:outline-none focus:ring-2 focus:ring-primary text-sm min-w-0"
             disabled={busy}
           />
+          <VoiceButton value={input} onChange={setInput} size="sm" />
           <Button type="submit" size="icon" className="h-12 w-12 rounded-xl shrink-0" disabled={busy || !input.trim()}>
             <Send className="w-4 h-4" />
           </Button>
