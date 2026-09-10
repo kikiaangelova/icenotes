@@ -186,8 +186,8 @@ export const PHASE2_DICT: Record<string, { en: string; bg: string }> = {
   },
   'aisup.limits.title': { en: 'What you should know', bg: 'Какво е добре да знаеш' },
   'aisup.limits.text': {
-    en: 'This is AI. It can be wrong, and it does not know your body, your rink or your coach. AI conversations are not a professional record, and chat history may not be available later in this version. Save anything important to Goals or Journal. If something serious is going on — pain, injury, food or weight worries, or feeling hopeless — tell an adult you trust and seek qualified help.',
-    bg: 'Това е AI. Може да греши и не познава тялото ти, пързалката ти или треньора ти. Разговорите с AI не са професионален запис и в тази версия историята на чата може да не е достъпна по-късно. Запази важния фокус или следваща стъпка в „Цели“ или „Дневник“. Ако става нещо сериозно — болка, контузия, тревоги около храна или тегло, или чувство на безнадеждност — кажи на възрастен, на когото имаш доверие, и потърси квалифицирана помощ.',
+    en: 'AI can be wrong and does not know your body, rink or coach. Chat history may not remain available. Save important next steps in Goals. For pain, injury, food or weight concerns, or feeling hopeless, tell a trusted adult and seek qualified help.',
+    bg: 'AI може да греши и не познава тялото ти, пързалката или треньора ти. Историята на чата може да не остане достъпна. Запази важните стъпки в „Цели“. При болка, контузия, тревоги около хранене или тегло, или чувство на безнадеждност, кажи на възрастен, на когото имаш доверие, и потърси квалифицирана помощ.',
   },
   'aisup.cta': { en: 'Create your account', bg: 'Създай профил' },
 };

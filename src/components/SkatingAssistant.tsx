@@ -168,7 +168,7 @@ export const SkatingAssistant: React.FC = () => {
           </SheetTitle>
 
           {/* Role switcher — two separate services, two separate conversations */}
-          <div className="grid grid-cols-2 border-b border-border" role="tablist" aria-label={t('ai.switch')}>
+          <div className="grid grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] border-b border-border" role="tablist" aria-label={t('ai.switch')}>
             {(['coach', 'psych'] as AIRole[]).map((r) => (
               <button
                 key={r}
@@ -176,7 +176,7 @@ export const SkatingAssistant: React.FC = () => {
                 aria-selected={role === r}
                 onClick={() => setRole(r)}
                 className={cn(
-                  'h-11 border-b-2 text-xs font-semibold transition-colors',
+                  'min-h-11 min-w-0 border-b-2 px-1 text-center text-[11px] font-semibold leading-tight transition-colors whitespace-normal',
                   role === r ? 'border-accent text-foreground' : 'border-transparent text-muted-foreground hover:text-foreground'
                 )}
               >

@@ -18,7 +18,7 @@ export const PHASE1_DICT: Record<string, Phase1Entry> = {
   'today.primary.cont':  { en: 'Finish today', bg: 'Довърши деня' },
   'today.primary.contSub': { en: 'Add your reflection on today’s session', bg: 'Добави рефлексия за днешната тренировка' },
   'today.core.label':    { en: 'Core', bg: 'Основно' },
-  'today.core.training': { en: 'Training log', bg: 'Дневник' },
+  'today.core.training': { en: 'Training log', bg: 'Запис на тренировка' },
   'today.core.goals':    { en: 'Goals', bg: 'Цели' },
   'today.core.review':   { en: 'Weekly review', bg: 'Преглед на седмицата' },
   'today.core.comp':     { en: 'Competition prep', bg: 'Подготовка за старт' },
