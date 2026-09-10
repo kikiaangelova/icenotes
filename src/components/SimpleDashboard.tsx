@@ -259,12 +259,15 @@ export const SimpleDashboard: React.FC = () => {
           sessionsToday={todaysSessions.length}
           reflectedToday={!!todaysEntry}
           competition={profile.nextCompetition}
+          competitionDays={compDays}
+          reviewRelevant={week.reviewRelevant}
           onLogTraining={() => goTab('train')}
           onReflect={() => setReflectionOpen(true)}
           onGoals={() => goTab('goals')}
           onSupport={() => goTab('support')}
           onCompetitionPrep={() => setGameDayOpen(true)}
           onMentalPrep={() => setCurrentView('prep')}
+          onWeeklyReview={() => setReviewOpen(true)}
         />
       );
     }
@@ -284,21 +287,10 @@ export const SimpleDashboard: React.FC = () => {
 
     if (activeTab === 'goals') {
       return (
-        <div className="space-y-8">
-          <header className="space-y-1">
-            <h1 className="text-2xl font-bold tracking-tight text-foreground">{t('a.goals.title')}</h1>
-            <p className="text-sm text-muted-foreground">{t('a.goals.sub')}</p>
-          </header>
-          <SkatingGoals />
-          <details className="rounded-2xl border border-border/60 bg-card/50 overflow-hidden">
-            <summary className="cursor-pointer list-none p-4 min-h-[56px] flex items-center text-sm font-semibold text-foreground">
-              {t('dash.weeklyGoals.title')}
-            </summary>
-            <div className="p-4 pt-0">
-              <WeeklyGoals />
-            </div>
-          </details>
-        </div>
+        <GoalsScreen
+          onOpenWeeklyReview={() => setReviewOpen(true)}
+          onOpenCompetitionPrep={() => setGameDayOpen(true)}
+        />
       );
     }
 
@@ -308,6 +300,7 @@ export const SimpleDashboard: React.FC = () => {
           <h1 className="text-2xl font-bold tracking-tight text-foreground">{t('a.prog.title')}</h1>
           <p className="text-sm text-muted-foreground">{t('a.prog.sub')}</p>
         </header>
+        <ProgressSignals />
         <ProgressInsights />
         <ProgressOverview />
       </div>
