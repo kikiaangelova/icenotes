@@ -2,13 +2,12 @@ import React from 'react';
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from '@/components/ui/sheet';
 import { Button } from '@/components/ui/button';
 import { AvatarUpload } from '@/components/AvatarUpload';
-import { Home, ChevronLeft, LogOut, Bell, Shield, Mail, ExternalLink, Globe } from 'lucide-react';
+import { Home, ChevronLeft, LogOut, Bell, Shield, Mail, ExternalLink, Globe, Brain } from 'lucide-react';
 import { useJournal } from '@/context/JournalContext';
 import { useAuth } from '@/context/AuthContext';
 import { useIsAdmin } from '@/hooks/useIsAdmin';
 import { useNavigate } from 'react-router-dom';
 import { useLanguage, LANGUAGES, type Language } from '@/context/LanguageContext';
-import { IrisAvatar } from '@/components/IrisAvatar';
 
 interface ProfileSheetProps {
   open: boolean;
@@ -141,10 +140,12 @@ export const ProfileSheet: React.FC<ProfileSheetProps> = ({
               }}
               className="w-full h-16 px-4 rounded-2xl bg-gradient-to-r from-peach/50 to-lavender/40 border border-border/50 flex items-center gap-3 hover:brightness-[1.03] active:scale-[0.99] transition-all text-left"
             >
-              <IrisAvatar size={40} />
+              <div className="w-10 h-10 rounded-xl bg-secondary flex items-center justify-center shrink-0">
+                <Brain className="w-5 h-5 text-foreground" />
+              </div>
               <div className="flex-1">
-                <p className="text-sm font-bold text-foreground">{t('coach.title')}</p>
-                <p className="text-xs text-muted-foreground">{t('coach.subtitle')}</p>
+                <p className="text-sm font-bold text-foreground">{t('today.support.label')}</p>
+                <p className="text-xs text-muted-foreground">{t('today.support.sub')}</p>
               </div>
             </button>
 
