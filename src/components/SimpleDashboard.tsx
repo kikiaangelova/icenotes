@@ -59,7 +59,7 @@ type MainTab = 'today' | 'train' | 'support' | 'goals' | 'progress';
 type SubView = 'home' | 'prep' | 'psych' | 'library';
 
 export const SimpleDashboard: React.FC = () => {
-  const { profile, setProfile, getTodaysEntry, getTodaysSessions, entries, trainingSessions } = useJournal();
+  const { profile, setProfile, getTodaysSessions, entries, trainingSessions } = useJournal();
   const { signOut, user } = useAuth();
   const { language, t } = useLanguage();
   const { isAdmin } = useIsAdmin();
