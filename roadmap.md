@@ -26,3 +26,4 @@
 - [ ] Correct Competition Prep and Pre-Training Prep content.
 - [ ] Replace unsafe legacy Sport Psychology and Mindfulness copy.
 - [ ] Run signed-in EN/BG mobile/desktop QA, typecheck, build, and final content searches.
+- [ ] Confirm neutral Bulgarian and no 4-7-8 or long-hold breathing on every reachable signed-in support tool.
