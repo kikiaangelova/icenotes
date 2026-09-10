@@ -5,6 +5,7 @@ import { Sheet, SheetContent, SheetHeader, SheetTitle } from '@/components/ui/sh
 import { cn } from '@/lib/utils';
 import { supabase } from '@/integrations/supabase/client';
 import { useLanguage } from '@/context/LanguageContext';
+import { VoiceButton } from './VoiceInput';
 
 export type AIRole = 'coach' | 'psych';
 type Msg = { role: 'user' | 'assistant'; content: string };
