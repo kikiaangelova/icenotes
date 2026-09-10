@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Dialog, DialogContent } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
-import { Sparkles, Wind, Eye, Trophy, ChevronRight, X } from 'lucide-react';
+import { Sparkles, Wind, Eye, Trophy, ChevronRight, X, Brain } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useLanguage } from '@/context/LanguageContext';
 import { celebrate } from '@/lib/celebrate';
