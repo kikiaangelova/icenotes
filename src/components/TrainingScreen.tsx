@@ -53,11 +53,12 @@ export const TrainingScreen: React.FC<TrainingScreenProps> = ({ onSaved, onOpenP
   const handleSave = () => {
     if (!canSave) return;
     setSaving(true);
-    const per = Math.max(5, Math.round(duration / selected.length));
+    // Per-activity minutes are not measured here, so we do not invent them.
+    // totalDuration stays the only factual duration; 0 is a compatibility value.
     const activities: TrainingActivity[] = selected.map((name, i) => ({
       id: `${Date.now()}-${i}`,
       name,
-      duration: per,
+      duration: 0,
       completed: true,
     }));
     addTrainingSession({
