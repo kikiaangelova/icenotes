@@ -92,7 +92,7 @@ export const LandingPage: React.FC<LandingPageProps> = () => {
       <section className="public-section relative z-10 border-t border-border px-5 py-14 md:px-8 md:py-20">
         <div className="max-w-6xl mx-auto">
           <p className={kicker}>{t('lp.connect.kicker')}</p>
-          <h2 className="mt-4 mb-10 text-2xl md:text-4xl font-bold tracking-tight text-foreground max-w-2xl leading-tight">
+          <h2 className="mt-4 mb-10 text-2xl md:text-4xl font-bold tracking-tight text-primary-foreground max-w-2xl leading-tight">
             {t('lp.connect.title')}
           </h2>
           <div className="grid grid-cols-1 border-t border-border sm:grid-cols-2 lg:grid-cols-5">
