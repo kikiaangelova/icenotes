@@ -4,7 +4,7 @@ import { useAuth } from '@/context/AuthContext';
 import { useLanguage } from '@/context/LanguageContext';
 import { JourneyView } from './JourneyView';
 import { JumpLog } from './JumpLog';
-import { WeeklyGoals } from './WeeklyGoals';
+
 import { PreTrainingPrep } from './PreTrainingPrep';
 import { ExportButton } from './ExportButton';
 import { SessionTimer } from './SessionTimer';
@@ -13,7 +13,10 @@ import { ActivityCalendar } from './ActivityCalendar';
 import { AvatarUpload } from './AvatarUpload';
 import { getGreeting } from '@/lib/greeting';
 import { QuotesCollection } from './QuotesCollection';
-import { SkatingGoals } from './SkatingGoals';
+import { GoalsScreen } from './GoalsScreen';
+import { WeeklyReview } from './WeeklyReview';
+import { ProgressSignals } from './ProgressSignals';
+import { getWeekSummary, daysUntil } from '@/lib/weekData';
 import { ProgressOverview } from './ProgressOverview';
 import { ProgressInsights } from './ProgressInsights';
 import { SportPsychology } from './SportPsychology';
@@ -58,7 +61,7 @@ type MainTab = 'today' | 'train' | 'support' | 'goals' | 'progress';
 type SubView = 'home' | 'prep' | 'psych' | 'library';
 
 export const SimpleDashboard: React.FC = () => {
-  const { profile, setProfile, getTodaysEntry, getTodaysSessions } = useJournal();
+  const { profile, setProfile, getTodaysEntry, getTodaysSessions, entries, trainingSessions } = useJournal();
   const { signOut, user } = useAuth();
   const { language, t } = useLanguage();
   const { isAdmin } = useIsAdmin();
@@ -77,6 +80,7 @@ export const SimpleDashboard: React.FC = () => {
   const [showReminderSettings, setShowReminderSettings] = useState(false);
   const [reflectionOpen, setReflectionOpen] = useState(false);
   const [gameDayOpen, setGameDayOpen] = useState(false);
+  const [reviewOpen, setReviewOpen] = useState(false);
 
   // Persist last viewed destination (legacy key kept so nothing is lost)
   useEffect(() => {
@@ -97,8 +101,10 @@ export const SimpleDashboard: React.FC = () => {
     } else if (action === 'open-coach') {
       setActiveTab('support');
       window.dispatchEvent(new CustomEvent('ai-assistant:open', { detail: { role: 'coach' } }));
-    } else if (action === 'game-day') {
+    } else if (action === 'game-day' || action === 'competition-prep') {
       setGameDayOpen(true);
+    } else if (action === 'weekly-review') {
+      setReviewOpen(true);
     }
     const next = new URLSearchParams(searchParams);
     next.delete('action');
@@ -110,6 +116,8 @@ export const SimpleDashboard: React.FC = () => {
   const todaysSessions = getTodaysSessions();
   const levelLabel = SELF_LEVELS.find(l => l.value === profile?.selfLevel)?.label || '';
   const greeting = getGreeting(profile?.name, language);
+  const week = getWeekSummary(entries, trainingSessions);
+  const compDays = daysUntil(profile?.nextCompetitionDate);
 
   const goTab = (tab: MainTab) => {
     setCurrentView('home');
@@ -259,12 +267,15 @@ export const SimpleDashboard: React.FC = () => {
           sessionsToday={todaysSessions.length}
           reflectedToday={!!todaysEntry}
           competition={profile.nextCompetition}
+          competitionDays={compDays}
+          reviewRelevant={week.reviewRelevant}
           onLogTraining={() => goTab('train')}
           onReflect={() => setReflectionOpen(true)}
           onGoals={() => goTab('goals')}
           onSupport={() => goTab('support')}
           onCompetitionPrep={() => setGameDayOpen(true)}
           onMentalPrep={() => setCurrentView('prep')}
+          onWeeklyReview={() => setReviewOpen(true)}
         />
       );
     }
@@ -284,21 +295,10 @@ export const SimpleDashboard: React.FC = () => {
 
     if (activeTab === 'goals') {
       return (
-        <div className="space-y-8">
-          <header className="space-y-1">
-            <h1 className="text-2xl font-bold tracking-tight text-foreground">{t('a.goals.title')}</h1>
-            <p className="text-sm text-muted-foreground">{t('a.goals.sub')}</p>
-          </header>
-          <SkatingGoals />
-          <details className="rounded-2xl border border-border/60 bg-card/50 overflow-hidden">
-            <summary className="cursor-pointer list-none p-4 min-h-[56px] flex items-center text-sm font-semibold text-foreground">
-              {t('dash.weeklyGoals.title')}
-            </summary>
-            <div className="p-4 pt-0">
-              <WeeklyGoals />
-            </div>
-          </details>
-        </div>
+        <GoalsScreen
+          onOpenWeeklyReview={() => setReviewOpen(true)}
+          onOpenCompetitionPrep={() => setGameDayOpen(true)}
+        />
       );
     }
 
@@ -308,6 +308,7 @@ export const SimpleDashboard: React.FC = () => {
           <h1 className="text-2xl font-bold tracking-tight text-foreground">{t('a.prog.title')}</h1>
           <p className="text-sm text-muted-foreground">{t('a.prog.sub')}</p>
         </header>
+        <ProgressSignals />
         <ProgressInsights />
         <ProgressOverview />
       </div>
@@ -325,6 +326,8 @@ export const SimpleDashboard: React.FC = () => {
       <MobileBottomNav active={bottomActive} onChange={handleBottomNav} />
 
       <ReflectionSheet open={reflectionOpen} onOpenChange={setReflectionOpen} />
+
+      <WeeklyReview open={reviewOpen} onOpenChange={setReviewOpen} />
 
       <ProfileSheet
         open={profileOpen}

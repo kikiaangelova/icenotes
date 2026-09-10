@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Seo } from '@/components/Seo';
 import { Navbar } from '@/components/landing/Navbar';
 import { Footer } from '@/components/landing/Footer';
-import { Shield, Lock, Eye, Mail, Users, Bot } from 'lucide-react';
+import { Shield, Lock, Eye, Mail, Users, Bot, Mic } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '@/context/LanguageContext';
 
@@ -53,6 +53,11 @@ const Privacy: React.FC = () => {
       body: 'Когато пишеш на AI Coach или на подкрепата по спортна психология, съобщението ти и част от спортния ти контекст се изпращат към AI услугата, за да се генерира отговор. Тоест този текст напуска базата данни на приложението. Не изпращай неща, които не искаш да бъдат обработени външно. AI разговорите не са професионален запис и историята им може да не е достъпна по-късно.',
     },
     {
+      icon: Mic,
+      title: 'Говорене вместо писане',
+      body: 'На местата за писане има микрофон. Той работи само когато ти го натиснеш и спира, когато го спреш. SkateGoals не записва и не пази аудио — записва се само текстът, който остане в полето, след като го прегледаш. Самото разпознаване на речта се извършва от браузъра или устройството ти и при повечето браузъри звукът минава през сървърите на съответната компания. Ако не искаш това, просто пиши.',
+    },
+    {
       icon: Eye,
       title: 'Данни за използване',
       body: 'Използваме данни за акаунта и за използването на функциите, за да поддържаме SkateGoals и да разберем кои части са полезни. Не продаваме тези данни и не ги ползваме за таргетирана реклама.',
@@ -82,6 +87,11 @@ const Privacy: React.FC = () => {
       icon: Bot,
       title: 'When you use AI support',
       body: 'When you message the AI Coach or the sport-psychology support, your message and part of your athlete context are sent to the AI service to generate a reply. That means the text leaves the app database. Do not send anything you would not want processed externally. AI conversations are not a professional record and the history may not be available later.',
+    },
+    {
+      icon: Mic,
+      title: 'Speaking instead of typing',
+      body: 'Writing fields have a microphone. It only runs while you start it and stops when you stop it. SkateGoals does not record or store audio — only the text left in the field after you review it is saved. The speech recognition itself is done by your browser or device, and in most browsers the audio is processed on that company\u2019s servers. If you would rather it did not leave your device, type instead.',
     },
     {
       icon: Eye,

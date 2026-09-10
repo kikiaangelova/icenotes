@@ -3,7 +3,7 @@ import { useJournal } from '@/context/JournalContext';
 import { useLanguage } from '@/context/LanguageContext';
 import { ON_ICE_ACTIVITIES, OFF_ICE_ACTIVITIES, TrainingActivity } from '@/types/journal';
 import { Button } from '@/components/ui/button';
-import { Textarea } from '@/components/ui/textarea';
+import { VoiceTextarea } from './VoiceInput';
 import { cn } from '@/lib/utils';
 import { format } from 'date-fns';
 import { Snowflake, Dumbbell, Brain, Check } from 'lucide-react';
@@ -187,14 +187,14 @@ export const TrainingScreen: React.FC<TrainingScreenProps> = ({ onSaved, onOpenP
       </section>
 
       {/* Note */}
-      <section className="space-y-2">
-        <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">{t('a.tr.note')}</p>
-        <Textarea
+      <section>
+        <VoiceTextarea
+          label={t('a.tr.note')}
           value={note}
-          onChange={(e) => setNote(e.target.value)}
+          onChange={setNote}
           placeholder={t('a.tr.notePh')}
           rows={3}
-          className="rounded-xl resize-none"
+          hint
         />
       </section>
 

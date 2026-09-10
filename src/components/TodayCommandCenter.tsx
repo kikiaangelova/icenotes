@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowRight, Target, Brain, Trophy, ClipboardList } from 'lucide-react';
+import { ArrowRight, Target, Brain, Trophy, ClipboardList, CalendarDays } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
 
 interface Props {
@@ -11,12 +11,17 @@ interface Props {
   reflectedToday: boolean;
   /** name of an upcoming competition, if the athlete set one */
   competition?: string;
+  /** days until that competition; only shown when 14 or fewer */
+  competitionDays?: number | null;
+  /** weekly review not done and it makes sense now */
+  reviewRelevant: boolean;
   onLogTraining: () => void;
   onReflect: () => void;
   onGoals: () => void;
   onSupport: () => void;
   onCompetitionPrep: () => void;
   onMentalPrep: () => void;
+  onWeeklyReview: () => void;
 }
 
 /**
@@ -24,10 +29,11 @@ interface Props {
  * What am I working on? What should I do now? What is coming next?
  */
 export const TodayCommandCenter: React.FC<Props> = ({
-  greeting, focus, sessionsToday, reflectedToday, competition,
-  onLogTraining, onReflect, onGoals, onSupport, onCompetitionPrep, onMentalPrep,
+  greeting, focus, sessionsToday, reflectedToday, competition, competitionDays, reviewRelevant,
+  onLogTraining, onReflect, onGoals, onSupport, onCompetitionPrep, onMentalPrep, onWeeklyReview,
 }) => {
   const { t } = useLanguage();
+  const compNear = competitionDays !== null && competitionDays !== undefined && competitionDays <= 14 && competitionDays >= -1;
 
   const logged = sessionsToday > 0;
   const stage: 'log' | 'reflect' | 'done' = !logged ? 'log' : !reflectedToday ? 'reflect' : 'done';
@@ -93,18 +99,39 @@ export const TodayCommandCenter: React.FC<Props> = ({
         <p className="text-sm text-foreground/80 leading-relaxed">{next}</p>
 
         <div className="pt-2 space-y-2">
-          {competition?.trim() && (
+          {compNear && (
             <button
               onClick={onCompetitionPrep}
-              className="w-full min-h-[60px] px-4 rounded-xl border border-border/70 bg-card flex items-center gap-3 text-left hover:border-primary/50 transition-colors"
+              className="w-full min-h-[60px] px-4 rounded-xl border border-primary/40 bg-card flex items-center gap-3 text-left hover:border-primary transition-colors"
             >
               <Trophy className="w-[18px] h-[18px] text-primary shrink-0" />
+              <span className="min-w-0 flex-1">
+                <span className="block text-sm font-semibold text-foreground truncate">
+                  {competitionDays! > 1 ? `${competitionDays} ${t('cp.inDays')}`
+                    : competitionDays === 1 ? t('cp.tomorrow')
+                    : competitionDays === 0 ? t('cp.today') : t('cp.past')}
+                </span>
+                <span className="block text-xs text-muted-foreground truncate">
+                  {competition?.trim() || t('cp.title')}
+                </span>
+              </span>
+              <ArrowRight className="w-4 h-4 text-muted-foreground shrink-0" />
+            </button>
+          )}
+
+          {reviewRelevant && (
+            <button
+              onClick={onWeeklyReview}
+              className="w-full min-h-[60px] px-4 rounded-xl border border-border/70 bg-card flex items-center gap-3 text-left hover:border-primary/50 transition-colors"
+            >
+              <CalendarDays className="w-[18px] h-[18px] text-primary shrink-0" />
               <span className="min-w-0">
-                <span className="block text-sm font-semibold text-foreground truncate">{t('a.today.comp')}</span>
-                <span className="block text-xs text-muted-foreground truncate">{competition}</span>
+                <span className="block text-sm font-semibold text-foreground">{t('wr.due')}</span>
+                <span className="block text-xs text-muted-foreground">{t('wr.dueSub')}</span>
               </span>
             </button>
           )}
+
 
           <button
             onClick={onMentalPrep}
