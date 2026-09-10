@@ -15,7 +15,7 @@ interface LanguageSwitcherProps {
 }
 
 export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ className }) => {
-  const { language, setLanguage } = useLanguage();
+  const { language, setLanguage, t } = useLanguage();
 
   return (
     <DropdownMenu>
@@ -23,7 +23,7 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ className })
         <Button
           variant="ghost"
           size="sm"
-          aria-label="Change language"
+          aria-label={t('a11y.language')}
           className={cn('rounded-xl h-9 px-2.5 gap-1.5 font-semibold', className)}
         >
           <Globe className="w-4 h-4" />

@@ -190,7 +190,7 @@ export const SimpleDashboard: React.FC = () => {
         <div className="flex items-center gap-1.5 flex-shrink-0">
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="ghost" size="icon" className="text-muted-foreground" aria-label="Settings">
+              <Button variant="ghost" size="icon" className="text-muted-foreground" aria-label={t('a11y.settings')}>
                 <Settings className="w-5 h-5" />
               </Button>
             </DropdownMenuTrigger>

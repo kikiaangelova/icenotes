@@ -250,7 +250,7 @@ const Auth: React.FC = () => {
   if (view === 'reset') {
     return (
       <div className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-b from-ice/30 to-background">
-        <Seo title="Reset Password – SkateGoals" description="Set a new password for your SkateGoals skater account and get back to training, journaling and tracking your progress." path="/auth?mode=reset" />
+        <Seo title={t('seo.auth.reset.title')} description={t('seo.auth.reset.desc')} path="/auth?mode=reset" />
         <div className="w-full max-w-md">
           <div className="text-center mb-8">
             <div className="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-br from-primary to-ice-deep flex items-center justify-center mb-4">
@@ -321,7 +321,7 @@ const Auth: React.FC = () => {
   if (view === 'forgot') {
     return (
       <div className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-b from-ice/30 to-background">
-        <Seo title="Forgot Password – SkateGoals" description="Recover access to your SkateGoals account. We'll email you a secure link to reset your password." path="/auth?mode=forgot" />
+        <Seo title={t('seo.auth.forgot.title')} description={t('seo.auth.forgot.desc')} path="/auth?mode=forgot" />
         <div className="w-full max-w-md">
           <div className="text-center mb-8">
             <div className="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-br from-primary to-ice-deep flex items-center justify-center mb-4">
@@ -411,7 +411,7 @@ const Auth: React.FC = () => {
   // Main auth view
   return (
     <div className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-b from-ice/30 to-background">
-      <Seo title="Sign In or Sign Up – SkateGoals" description="Log in to SkateGoals or create a free account to journal your skating, track jumps and train your mindset with your AI Coach." path="/auth" />
+      <Seo title={t('seo.auth.title')} description={t('seo.auth.desc')} path="/auth" />
       <div className="w-full max-w-md">
         {/* Logo */}
         <div className="text-center mb-8">
@@ -440,12 +440,12 @@ const Auth: React.FC = () => {
               ) : (
                 <GoogleIcon />
               )}
-              {googleLoading ? 'Connecting…' : 'Continue with Google'}
+              {googleLoading ? t('auth.connecting') : t('auth.google')}
             </Button>
 
             <div className="flex items-center gap-3 my-4">
               <div className="flex-1 h-px bg-border" />
-              <span className="text-xs text-muted-foreground font-medium">or with email</span>
+              <span className="text-xs text-muted-foreground font-medium">{t('auth.orEmail')}</span>
               <div className="flex-1 h-px bg-border" />
             </div>
 
@@ -604,7 +604,7 @@ const Auth: React.FC = () => {
 
         <div className="flex items-center justify-center gap-2 mt-5 text-xs text-muted-foreground">
           <ShieldCheck className="w-3.5 h-3.5 text-primary" />
-          <span>Your journal stays private. Always yours.</span>
+          <span>{t('auth.private')}</span>
         </div>
 
         <p className="text-center text-xs text-muted-foreground mt-3 px-4">

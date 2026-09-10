@@ -34,7 +34,7 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({ active, onChan
   return (
     <nav
       role="navigation"
-      aria-label="Primary"
+      aria-label={t('a11y.primaryNav')}
       className="authenticated-app fixed inset-x-0 bottom-0 z-40 border-t border-border bg-background/98 pb-[env(safe-area-inset-bottom)] backdrop-blur-lg"
     >
       <ul className="mx-auto grid max-w-3xl grid-cols-5 px-1 pb-1 pt-1 sm:px-4">

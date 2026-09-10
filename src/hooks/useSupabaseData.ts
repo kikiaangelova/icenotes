@@ -3,7 +3,7 @@ import { supabase } from '@/integrations/supabase/client';
 import { useAuth } from '@/context/AuthContext';
 import { JournalEntry, SkaterProfile, TrainingSession, JumpAttempt, WeeklyGoal, TrainingActivity } from '@/types/journal';
 import { format, parseISO, startOfWeek, endOfWeek, isWithinInterval } from 'date-fns';
-import { toast } from 'sonner';
+import { toastError } from '@/lib/localizedToast';
 
 // Helper to parse dates
 const parseStoredDate = (dateStr: string | Date): Date => {
@@ -91,7 +91,7 @@ export const useUpdateProfile = () => {
       queryClient.invalidateQueries({ queryKey: ['profile'] });
     },
     onError: () => {
-      toast.error('Failed to update profile. Please try again.');
+      toastError('profile');
     }
   });
 };
@@ -171,7 +171,7 @@ export const useAddJournalEntry = () => {
       queryClient.invalidateQueries({ queryKey: ['journal_entries'] });
     },
     onError: () => {
-      toast.error('Failed to save journal entry. Please try again.');
+      toastError('journal');
     }
   });
 };
@@ -234,7 +234,7 @@ export const useAddTrainingSession = () => {
       queryClient.invalidateQueries({ queryKey: ['training_sessions'] });
     },
     onError: () => {
-      toast.error('Failed to save training session. Please try again.');
+      toastError('training');
     }
   });
 };
@@ -296,7 +296,7 @@ export const useAddJumpAttempt = () => {
       queryClient.invalidateQueries({ queryKey: ['jump_attempts'] });
     },
     onError: () => {
-      toast.error('Failed to log jump attempt. Please try again.');
+      toastError('jump');
     }
   });
 };
@@ -379,7 +379,7 @@ export const useSetWeeklyGoal = () => {
       queryClient.invalidateQueries({ queryKey: ['weekly_goals'] });
     },
     onError: () => {
-      toast.error('Failed to save weekly goal. Please try again.');
+      toastError('weeklyGoal');
     }
   });
 };
@@ -456,7 +456,7 @@ export const useAddGoal = () => {
       queryClient.invalidateQueries({ queryKey: ['goals'] });
     },
     onError: () => {
-      toast.error('Failed to create goal. Please try again.');
+      toastError('goalCreate');
     }
   });
 };
@@ -500,7 +500,7 @@ export const useUpdateGoal = () => {
       queryClient.invalidateQueries({ queryKey: ['goals'] });
     },
     onError: () => {
-      toast.error('Failed to update goal. Please try again.');
+      toastError('goalUpdate');
     }
   });
 };
@@ -525,7 +525,7 @@ export const useDeleteGoal = () => {
       queryClient.invalidateQueries({ queryKey: ['goals'] });
     },
     onError: () => {
-      toast.error('Failed to delete goal. Please try again.');
+      toastError('goalDelete');
     }
   });
 };

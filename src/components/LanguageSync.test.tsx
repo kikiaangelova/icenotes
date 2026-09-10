@@ -73,8 +73,8 @@ describe('LanguageSync — login language resolution', () => {
     expect(mockMutate).toHaveBeenCalledWith({ language: 'bg' });
   });
 
-  it('respects each supported language stored in profile (it / ru / fr)', async () => {
-    for (const lang of ['it', 'ru', 'fr'] as const) {
+  it('respects each supported language stored in profile (en / bg)', async () => {
+    for (const lang of ['en', 'bg'] as const) {
       localStorage.clear();
       mockMutate.mockReset();
       mockUseAuth.mockReturnValue({ user: { id: `u-${lang}` } });
@@ -92,7 +92,7 @@ describe('LanguageSync — login language resolution', () => {
   });
 
   it('does not apply or write anything when there is no logged-in user', async () => {
-    localStorage.setItem(STORAGE_KEY, 'fr');
+    localStorage.setItem(STORAGE_KEY, 'bg');
     mockUseAuth.mockReturnValue({ user: null });
     mockUseProfile.mockReturnValue({ data: null });
 
@@ -100,7 +100,7 @@ describe('LanguageSync — login language resolution', () => {
 
     // localStorage seeded the provider, so UI shows 'fr', and no DB write happens.
     await waitFor(() => {
-      expect(screen.getByTestId('lang').textContent).toBe('fr');
+      expect(screen.getByTestId('lang').textContent).toBe('bg');
     });
     expect(mockMutate).not.toHaveBeenCalled();
   });
