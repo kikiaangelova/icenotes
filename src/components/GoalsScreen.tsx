@@ -11,6 +11,7 @@ import { Target, CalendarDays, ArrowRight, Trophy, Plus, Pencil, Trash2, Check, 
 import { format, parseISO } from 'date-fns';
 import { daysUntil } from '@/lib/weekData';
 import type { SkatingGoal } from '@/hooks/useSupabaseData';
+import { toast } from 'sonner';
 
 type Timeframe = 'weekly' | 'monthly' | 'season';
 
@@ -40,8 +41,11 @@ interface Props {
  */
 export const GoalsScreen: React.FC<Props> = ({ onOpenWeeklyReview, onOpenCompetitionPrep }) => {
   const { t, language } = useLanguage();
-  const { goals, addGoal, updateGoal, deleteGoal, profile, setProfile } = useJournal();
+  const {
+    goals, updateGoal, updateGoalAsync, addGoalAsync, deleteGoal, profile, setProfileAsync,
+  } = useJournal();
 
+  const [saving, setSaving] = useState(false);
   const [editing, setEditing] = useState<{ timeframe: Timeframe; goal?: SkatingGoal } | null>(null);
   const [showOther, setShowOther] = useState(false);
   const [showDone, setShowDone] = useState(false);
