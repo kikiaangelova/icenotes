@@ -1,6 +1,7 @@
 import { PHASE1_DICT } from './dictPhase1';
 import { PHASE2_DICT } from './dictPhase2';
 import { PHASEA_DICT } from './dictPhaseA';
+import { PHASE3_DICT } from './dictPhase3';
 import React, { createContext, useContext, useEffect, useState, useCallback } from 'react';
 
 export type Language = 'en' | 'bg';
