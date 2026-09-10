@@ -27,12 +27,18 @@ interface VoiceButtonProps {
  */
 export const VoiceButton: React.FC<VoiceButtonProps> = ({ value, onChange, className, size = 'md' }) => {
   const { t, language } = useLanguage();
+  // Tracks the field value including chunks committed in this same tick, so two
+  // final speech chunks arriving back to back cannot overwrite each other.
   const valueRef = React.useRef(value);
   valueRef.current = value;
 
   const { supported, listening, interim, error, toggle } = useVoiceCapture({
     lang: language === 'bg' ? 'bg-BG' : 'en-US',
-    onFinalText: (text) => onChange(appendText(valueRef.current, text)),
+    onFinalText: (text) => {
+      const next = appendText(valueRef.current, text);
+      valueRef.current = next;
+      onChange(next);
+    },
   });
 
   if (!supported) return null;
