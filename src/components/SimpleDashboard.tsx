@@ -116,6 +116,8 @@ export const SimpleDashboard: React.FC = () => {
   const todaysSessions = getTodaysSessions();
   const levelLabel = SELF_LEVELS.find(l => l.value === profile?.selfLevel)?.label || '';
   const greeting = getGreeting(profile?.name, language);
+  const week = getWeekSummary(entries, trainingSessions);
+  const compDays = daysUntil(profile?.nextCompetitionDate);
 
   const goTab = (tab: MainTab) => {
     setCurrentView('home');
