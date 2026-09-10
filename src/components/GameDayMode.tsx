@@ -35,7 +35,7 @@ const openAI = (role: 'coach' | 'psych', message: string) =>
  */
 export const GameDayMode: React.FC<GameDayModeProps> = ({ open, onOpenChange }) => {
   const { t } = useLanguage();
-  const { profile, addEntry } = useJournal();
+  const { profile, addEntryAsync } = useJournal();
 
   const days = daysUntil(profile?.nextCompetitionDate);
   const phase: CompPhase = useMemo(() => getCompPhase(days) ?? 'week', [days]);
@@ -46,6 +46,9 @@ export const GameDayMode: React.FC<GameDayModeProps> = ({ open, onOpenChange }) 
   const [breathRound, setBreathRound] = useState(0);
   const [secondsLeft, setSecondsLeft] = useState<number>(BREATH[0].seconds);
   const [breathDone, setBreathDone] = useState(false);
+  // Breathing never starts on its own — the athlete decides.
+  const [breathStarted, setBreathStarted] = useState(false);
+  const [savingDebrief, setSavingDebrief] = useState(false);
   const [d1, setD1] = useState('');
   const [d2, setD2] = useState('');
   const [d3, setD3] = useState('');
@@ -58,11 +61,13 @@ export const GameDayMode: React.FC<GameDayModeProps> = ({ open, onOpenChange }) 
     setBreathRound(0);
     setSecondsLeft(BREATH[0].seconds);
     setBreathDone(false);
+    setBreathStarted(false);
+    setSavingDebrief(false);
     setD1(''); setD2(''); setD3('');
   }, [open]);
 
   useEffect(() => {
-    if (!open || phase !== 'day' || breathDone) return;
+    if (!open || phase !== 'day' || breathDone || !breathStarted) return;
     const id = setInterval(() => {
       setSecondsLeft((s) => {
         if (s > 1) return s - 1;
@@ -86,23 +91,32 @@ export const GameDayMode: React.FC<GameDayModeProps> = ({ open, onOpenChange }) 
       });
     }, 1000);
     return () => clearInterval(id);
-  }, [open, phase, breathDone]);
+  }, [open, phase, breathDone, breathStarted]);
 
   const close = () => onOpenChange(false);
 
-  const saveDebrief = () => {
+  const saveDebrief = async () => {
     if (!d1.trim() && !d2.trim() && !d3.trim()) { close(); return; }
-    addEntry({
-      date: new Date(),
-      workedOn: profile?.nextCompetition?.trim() || t('cp.title'),
-      smallWin: '',
-      sessionType: 'competition',
-      whatWentWell: d1.trim() || undefined,
-      whatWasChallenging: d2.trim() || undefined,
-      nextGoal: d3.trim() || undefined,
-    });
-    toast.success(t('cp.after.saved'));
-    close();
+    if (savingDebrief) return;
+    setSavingDebrief(true);
+    try {
+      await addEntryAsync({
+        date: new Date(),
+        workedOn: profile?.nextCompetition?.trim() || t('cp.title'),
+        smallWin: '',
+        sessionType: 'competition',
+        whatWentWell: d1.trim() || undefined,
+        whatWasChallenging: d2.trim() || undefined,
+        nextGoal: d3.trim() || undefined,
+      });
+      toast.success(t('cp.after.saved'));
+      close();
+    } catch {
+      // Keep the debrief text on screen.
+      toast.error(t('wr.saveFailed'));
+    } finally {
+      setSavingDebrief(false);
+    }
   };
 
   const headline =
@@ -235,22 +249,35 @@ export const GameDayMode: React.FC<GameDayModeProps> = ({ open, onOpenChange }) 
                   <div className="relative z-10 text-center">
                     {breathDone ? (
                       <span className="text-xl font-bold">{t('cp.day.done')}</span>
-                    ) : (
+                    ) : breathStarted ? (
                       <>
                         <div className="text-lg font-semibold">{t(b.key)}</div>
                         <div className="text-4xl font-bold tabular-nums mt-1">{secondsLeft}</div>
                       </>
+                    ) : (
+                      <span className="text-base font-semibold text-white/70">{t('cp.day.breathe')}</span>
                     )}
                   </div>
                 </div>
                 {!breathDone && (
-                  <button
-                    type="button"
-                    onClick={() => setBreathDone(true)}
-                    className="min-h-[44px] px-3 text-sm font-medium text-white/60 hover:text-white"
-                  >
-                    {t('cp.day.skip')}
-                  </button>
+                  <div className="flex items-center gap-2">
+                    {!breathStarted && (
+                      <button
+                        type="button"
+                        onClick={() => setBreathStarted(true)}
+                        className="min-h-[44px] px-4 rounded-xl bg-white/10 text-sm font-semibold hover:bg-white/15"
+                      >
+                        {t('cp.day.start')}
+                      </button>
+                    )}
+                    <button
+                      type="button"
+                      onClick={() => setBreathDone(true)}
+                      className="min-h-[44px] px-3 text-sm font-medium text-white/60 hover:text-white"
+                    >
+                      {t('cp.day.skip')}
+                    </button>
+                  </div>
                 )}
               </div>
 
@@ -289,7 +316,7 @@ export const GameDayMode: React.FC<GameDayModeProps> = ({ open, onOpenChange }) 
                 <VoiceTextarea label={t('cp.after.q2')} value={d2} onChange={setD2} rows={2} />
                 <VoiceTextarea label={t('cp.after.q3')} value={d3} onChange={setD3} rows={2} />
               </div>
-              <Button onClick={saveDebrief} className="w-full h-14 rounded-xl text-base font-semibold bg-white text-slate-900 hover:bg-white/90">
+              <Button onClick={saveDebrief} disabled={savingDebrief} className="w-full h-14 rounded-xl text-base font-semibold bg-white text-slate-900 hover:bg-white/90">
                 {t('cp.after.save')}
               </Button>
             </section>

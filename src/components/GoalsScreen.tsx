@@ -11,6 +11,7 @@ import { Target, CalendarDays, ArrowRight, Trophy, Plus, Pencil, Trash2, Check, 
 import { format, parseISO } from 'date-fns';
 import { daysUntil } from '@/lib/weekData';
 import type { SkatingGoal } from '@/hooks/useSupabaseData';
+import { toast } from 'sonner';
 
 type Timeframe = 'weekly' | 'monthly' | 'season';
 
@@ -40,8 +41,11 @@ interface Props {
  */
 export const GoalsScreen: React.FC<Props> = ({ onOpenWeeklyReview, onOpenCompetitionPrep }) => {
   const { t, language } = useLanguage();
-  const { goals, addGoal, updateGoal, deleteGoal, profile, setProfile } = useJournal();
+  const {
+    goals, updateGoal, updateGoalAsync, addGoalAsync, deleteGoal, profile, setProfileAsync,
+  } = useJournal();
 
+  const [saving, setSaving] = useState(false);
   const [editing, setEditing] = useState<{ timeframe: Timeframe; goal?: SkatingGoal } | null>(null);
   const [showOther, setShowOther] = useState(false);
   const [showDone, setShowDone] = useState(false);
@@ -67,8 +71,8 @@ export const GoalsScreen: React.FC<Props> = ({ onOpenWeeklyReview, onOpenCompeti
     setEditing({ timeframe, goal });
   };
 
-  const save = () => {
-    if (!editing) return;
+  const save = async () => {
+    if (!editing || saving) return;
     const title = draft.title.trim();
     if (!title) return;
     const step = draft.step.trim();
@@ -76,38 +80,55 @@ export const GoalsScreen: React.FC<Props> = ({ onOpenWeeklyReview, onOpenCompeti
     const keptDone = existingSteps.filter((s) => s.done);
     const steps: Step[] = step ? [...keptDone, { id: `s-${Date.now()}`, text: step, done: false }] : keptDone;
     const meta: GoalMeta = { why: draft.why.trim() || undefined, steps };
+    const isWeekly = editing.timeframe === 'weekly';
 
-    if (editing.goal) {
-      updateGoal(editing.goal.id, {
-        title,
-        description: meta.why,
-        targetDate: draft.date || undefined,
-        notes: stringify(meta),
-      });
-    } else {
-      addGoal({
-        title,
-        description: meta.why,
-        category: 'general',
-        timeframe: editing.timeframe,
-        targetDate: draft.date || undefined,
-        notes: stringify(meta),
-      });
-    }
+    setSaving(true);
+    try {
+      if (editing.goal) {
+        await updateGoalAsync(editing.goal.id, {
+          title,
+          description: meta.why,
+          targetDate: draft.date || undefined,
+          notes: stringify(meta),
+        });
+      } else {
+        await addGoalAsync({
+          title,
+          description: meta.why,
+          category: 'general',
+          timeframe: editing.timeframe,
+          targetDate: draft.date || undefined,
+          notes: stringify(meta),
+        });
+      }
 
-    // The week focus is what Today shows.
-    if (editing.timeframe === 'weekly' && profile) {
-      setProfile({ ...profile, mainFocus: title });
+      // The week focus is what Today shows — synced only after the goal saved.
+      if (isWeekly && profile) {
+        await setProfileAsync({ ...profile, mainFocus: title });
+      }
+      setEditing(null);
+    } catch {
+      // Keep the draft open so nothing typed is lost.
+      toast.error(t('gb.saveFailed'));
+    } finally {
+      setSaving(false);
     }
-    setEditing(null);
   };
 
-  const complete = (goal: SkatingGoal) => {
+  const complete = async (goal: SkatingGoal) => {
     const closing = !goal.completed;
-    updateGoal(goal.id, { completed: closing, progress: goal.completed ? goal.progress : 100 });
-    // Don't leave Today pointing at a focus the athlete just closed.
-    if (closing && profile && profile.mainFocus?.trim() === goal.title.trim()) {
-      setProfile({ ...profile, mainFocus: '' });
+    try {
+      await updateGoalAsync(goal.id, { completed: closing, progress: goal.completed ? goal.progress : 100 });
+      // Don't leave Today pointing at a focus the athlete just closed.
+      if (closing && profile && profile.mainFocus?.trim() === goal.title.trim()) {
+        await setProfileAsync({ ...profile, mainFocus: '' });
+      }
+      // Reopening a weekly goal makes it the current focus again, explicitly.
+      if (!closing && goal.timeframe === 'weekly' && profile) {
+        await setProfileAsync({ ...profile, mainFocus: goal.title });
+      }
+    } catch {
+      toast.error(t('gb.saveFailed'));
     }
   };
 
@@ -359,7 +380,7 @@ export const GoalsScreen: React.FC<Props> = ({ onOpenWeeklyReview, onOpenCompeti
             </div>
 
             <div className="space-y-2 pt-1">
-              <Button onClick={save} disabled={!draft.title.trim()} className="w-full h-14 rounded-xl text-base font-semibold">
+              <Button onClick={save} disabled={!draft.title.trim() || saving} className="w-full h-14 rounded-xl text-base font-semibold">
                 {t('gb.save')}
               </Button>
               <button

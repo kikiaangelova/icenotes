@@ -42,6 +42,17 @@ export const WeeklyReview: React.FC<Props> = ({ open, onOpenChange }) => {
     setSaving(true);
     const factLine = `${week.sessions} ${t('wr.sessions')} · ${week.onIce} ${t('wr.onIce')} · ${week.offIce} ${t('wr.offIce')} · ${week.minutes} ${t('wr.minutes')}`;
     try {
+      // Goal and focus first; the review row is written last. Retrying after a
+      // failure re-applies the same focus instead of adding a second review.
+      const activeWeekly = goals.find((g) => !g.completed && g.timeframe === 'weekly');
+      if (activeWeekly) {
+        await updateGoalAsync(activeWeekly.id, { title: focus });
+      } else {
+        await addGoalAsync({ title: focus, category: 'general', timeframe: 'weekly' });
+      }
+
+      if (profile) await setProfileAsync({ ...profile, mainFocus: focus });
+
       await addEntryAsync({
         date: new Date(),
         workedOn: factLine,
@@ -51,16 +62,6 @@ export const WeeklyReview: React.FC<Props> = ({ open, onOpenChange }) => {
         whatWasChallenging: blocked.trim() || undefined,
         nextGoal: focus,
       });
-
-      // One goal system: the review's next focus becomes the active weekly goal.
-      const activeWeekly = goals.find((g) => !g.completed && g.timeframe === 'weekly');
-      if (activeWeekly) {
-        await updateGoalAsync(activeWeekly.id, { title: focus });
-      } else {
-        await addGoalAsync({ title: focus, category: 'general', timeframe: 'weekly' });
-      }
-
-      if (profile) await setProfileAsync({ ...profile, mainFocus: focus });
 
       toast.success(t('wr.saved'));
       reset();

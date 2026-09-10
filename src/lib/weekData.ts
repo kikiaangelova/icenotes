@@ -15,10 +15,19 @@ const sameDay = (a: Date, b: Date) =>
 export const hasTrainingReflectionToday = (
   entries: { date: Date | string; sessionType?: string }[],
   now: Date = new Date(),
-): boolean =>
-  entries.some(
+): boolean => countTrainingReflectionsToday(entries, now) > 0;
+
+/**
+ * How many post-training reflections exist for today. Used to compare against
+ * the number of sessions logged today, so a second session still asks to reflect.
+ */
+export const countTrainingReflectionsToday = (
+  entries: { date: Date | string; sessionType?: string }[],
+  now: Date = new Date(),
+): number =>
+  entries.filter(
     (e) => e.sessionType === TRAINING_REFLECTION_TYPE && sameDay(toDate(e.date), now),
-  );
+  ).length;
 
 const toDate = (d: Date | string): Date => (d instanceof Date ? d : parseISO(String(d)));
 

@@ -7,6 +7,7 @@ import { VoiceTextarea } from './VoiceInput';
 import { cn } from '@/lib/utils';
 import { format } from 'date-fns';
 import { Snowflake, Dumbbell, Brain, Check } from 'lucide-react';
+import { toast } from 'sonner';
 
 const DURATIONS = [30, 45, 60, 90, 120];
 const FEELINGS = [
@@ -29,7 +30,7 @@ interface TrainingScreenProps {
  */
 export const TrainingScreen: React.FC<TrainingScreenProps> = ({ onSaved, onOpenPrep }) => {
   const { t } = useLanguage();
-  const { addTrainingSession, trainingSessions } = useJournal();
+  const { addTrainingSessionAsync, trainingSessions } = useJournal();
 
   const [type, setType] = useState<'on-ice' | 'off-ice'>('on-ice');
   const [selected, setSelected] = useState<string[]>([]);
@@ -50,7 +51,7 @@ export const TrainingScreen: React.FC<TrainingScreenProps> = ({ onSaved, onOpenP
 
   const canSave = selected.length > 0 && !saving;
 
-  const handleSave = () => {
+  const handleSave = async () => {
     if (!canSave) return;
     setSaving(true);
     // Per-activity minutes are not measured here, so we do not invent them.
@@ -61,19 +62,25 @@ export const TrainingScreen: React.FC<TrainingScreenProps> = ({ onSaved, onOpenP
       duration: 0,
       completed: true,
     }));
-    addTrainingSession({
-      date: new Date(),
-      type,
-      activities,
-      totalDuration: duration,
-      notes: note.trim() || undefined,
-      feeling: feeling || undefined,
-    });
-    setSelected([]);
-    setNote('');
-    setFeeling(null);
-    setSaving(false);
-    onSaved();
+    try {
+      await addTrainingSessionAsync({
+        date: new Date(),
+        type,
+        activities,
+        totalDuration: duration,
+        notes: note.trim() || undefined,
+        feeling: feeling || undefined,
+      });
+      // Only clear and move on once the row is really written.
+      setSelected([]);
+      setNote('');
+      setFeeling(null);
+      onSaved();
+    } catch {
+      toast.error(t('a.tr.saveFailed'));
+    } finally {
+      setSaving(false);
+    }
   };
 
   const recent = useMemo(() => trainingSessions.slice(0, 5), [trainingSessions]);

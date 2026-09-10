@@ -40,6 +40,8 @@ interface JournalContextType {
   // Training sessions
   trainingSessions: TrainingSession[];
   addTrainingSession: (session: Omit<TrainingSession, 'id' | 'createdAt'>) => void;
+  /** Resolves only after the session row is written. */
+  addTrainingSessionAsync: (session: Omit<TrainingSession, 'id' | 'createdAt'>) => Promise<unknown>;
   getTodaysSessions: () => TrainingSession[];
   
   // Jump attempts
@@ -131,6 +133,9 @@ export const JournalProvider: React.FC<{ children: ReactNode }> = ({ children })
   const addTrainingSession = (session: Omit<TrainingSession, 'id' | 'createdAt'>) => {
     addSessionMutation.mutate(session);
   };
+
+  const addTrainingSessionAsync = (session: Omit<TrainingSession, 'id' | 'createdAt'>) =>
+    addSessionMutation.mutateAsync(session);
 
   const getTodaysSessions = (): TrainingSession[] => {
     return getTodaysSessionsHelper(trainingSessions);
@@ -247,6 +252,7 @@ export const JournalProvider: React.FC<{ children: ReactNode }> = ({ children })
     getTodaysEntry,
     trainingSessions,
     addTrainingSession,
+    addTrainingSessionAsync,
     getTodaysSessions,
     jumpAttempts,
     addJumpAttempt,

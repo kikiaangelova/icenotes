@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowRight, Target, Brain, Trophy, ClipboardList, CalendarDays } from 'lucide-react';
+import { ArrowRight, Brain, Trophy, ClipboardList, CalendarDays } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
 
 interface Props {
@@ -7,8 +7,8 @@ interface Props {
   focus?: string;
   /** number of sessions logged today */
   sessionsToday: number;
-  /** true once a reflection exists for today */
-  reflectedToday: boolean;
+  /** number of post-training reflections written today */
+  reflectionsToday: number;
   /** name of an upcoming competition, if the athlete set one */
   competition?: string;
   /** days until that competition; only shown when 14 or fewer */
@@ -29,14 +29,17 @@ interface Props {
  * What am I working on? What should I do now? What is coming next?
  */
 export const TodayCommandCenter: React.FC<Props> = ({
-  greeting, focus, sessionsToday, reflectedToday, competition, competitionDays, reviewRelevant,
+  greeting, focus, sessionsToday, reflectionsToday, competition, competitionDays, reviewRelevant,
   onLogTraining, onReflect, onGoals, onSupport, onCompetitionPrep, onMentalPrep, onWeeklyReview,
 }) => {
   const { t } = useLanguage();
   const compNear = competitionDays !== null && competitionDays !== undefined && competitionDays <= 14 && competitionDays >= -1;
 
   const logged = sessionsToday > 0;
-  const stage: 'log' | 'reflect' | 'done' = !logged ? 'log' : !reflectedToday ? 'reflect' : 'done';
+  // Every session logged today wants its own reflection, so a second session
+  // reopens the reflect step instead of showing the loop as complete.
+  const stage: 'log' | 'reflect' | 'done' =
+    !logged ? 'log' : sessionsToday > reflectionsToday ? 'reflect' : 'done';
 
   const primary = {
     log:     { label: t('a.today.cta.log'),     sub: t('a.today.cta.logSub'),     onClick: onLogTraining },

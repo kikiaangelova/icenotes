@@ -16,7 +16,7 @@ import { QuotesCollection } from './QuotesCollection';
 import { GoalsScreen } from './GoalsScreen';
 import { WeeklyReview } from './WeeklyReview';
 import { ProgressSignals } from './ProgressSignals';
-import { getWeekSummary, daysUntil, hasTrainingReflectionToday } from '@/lib/weekData';
+import { getWeekSummary, daysUntil, countTrainingReflectionsToday } from '@/lib/weekData';
 import { SportPsychology } from './SportPsychology';
 import { Button } from '@/components/ui/button';
 import { SELF_LEVELS } from '@/types/journal';
@@ -111,9 +111,10 @@ export const SimpleDashboard: React.FC = () => {
   }, [searchParams]);
 
   const todaysSessions = getTodaysSessions();
-  // Only a post-training reflection counts — a weekly review or competition
-  // debrief written today must not hide the reflection step.
-  const reflectedToday = hasTrainingReflectionToday(entries);
+  // Only post-training reflections count — a weekly review or competition
+  // debrief written today must not hide the reflection step. Counting them
+  // also means a second session today asks for its own reflection.
+  const reflectionsToday = countTrainingReflectionsToday(entries);
   const levelLabel = SELF_LEVELS.find(l => l.value === profile?.selfLevel)?.label || '';
   const greeting = getGreeting(profile?.name, language);
   const week = getWeekSummary(entries, trainingSessions);
@@ -256,7 +257,7 @@ export const SimpleDashboard: React.FC = () => {
           greeting={greeting}
           focus={profile.mainFocus}
           sessionsToday={todaysSessions.length}
-          reflectedToday={reflectedToday}
+          reflectionsToday={reflectionsToday}
           competition={profile.nextCompetition}
           competitionDays={compDays}
           reviewRelevant={week.reviewRelevant}
