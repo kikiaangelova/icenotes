@@ -299,9 +299,9 @@ export const SimpleDashboard: React.FC = () => {
           <h1 className="text-2xl font-bold tracking-tight text-foreground">{t('a.prog.title')}</h1>
           <p className="text-sm text-muted-foreground">{t('a.prog.sub')}</p>
         </header>
+        {/* Read-only signals only. Legacy insight/overview views stay in the
+            codebase for compatibility but are out of the core destination. */}
         <ProgressSignals />
-        <ProgressInsights />
-        <ProgressOverview />
       </div>
     );
   };
