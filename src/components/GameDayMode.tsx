@@ -91,7 +91,7 @@ export const GameDayMode: React.FC<GameDayModeProps> = ({ open, onOpenChange }) 
       });
     }, 1000);
     return () => clearInterval(id);
-  }, [open, phase, breathDone]);
+  }, [open, phase, breathDone, breathStarted]);
 
   const close = () => onOpenChange(false);
 
