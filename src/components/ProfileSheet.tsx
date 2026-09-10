@@ -27,7 +27,6 @@ interface ProfileSheetProps {
 export const ProfileSheet: React.FC<ProfileSheetProps> = ({
   open,
   onOpenChange,
-  onGoHome,
   onOpenReminders,
   onLogout,
 }) => {

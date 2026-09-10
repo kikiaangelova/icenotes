@@ -166,7 +166,7 @@ const BreathingDialog: React.FC<{ open: boolean; onClose: () => void }> = ({ ope
 
   return (
     <Dialog open={open} onOpenChange={(v) => !v && handleClose()}>
-      <DialogContent className="max-w-md">
+      <DialogContent className="authenticated-app max-w-md rounded-lg">
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2">
             <Wind className="w-5 h-5 text-accent" /> {t('mt.breathing.title')}
@@ -234,7 +234,7 @@ const VisualizationDialog: React.FC<{ open: boolean; onClose: () => void }> = ({
 
   return (
     <Dialog open={open} onOpenChange={(v) => { if (!v) { reset(); onClose(); } }}>
-      <DialogContent className="max-w-md">
+      <DialogContent className="authenticated-app max-w-md rounded-lg">
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2">
             <Eye className="w-5 h-5 text-accent" /> {t('mt.viz.title')}
@@ -316,7 +316,7 @@ const GratitudeDialog: React.FC<{ open: boolean; onClose: () => void }> = ({ ope
 
   return (
     <Dialog open={open} onOpenChange={(v) => !v && onClose()}>
-      <DialogContent className="max-w-md">
+      <DialogContent className="authenticated-app max-w-md rounded-lg">
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2">
             <NotebookPen className="w-5 h-5 text-accent" /> {t('mt.gratitude.title')}
@@ -370,7 +370,7 @@ const AffirmationsDialog: React.FC<{ open: boolean; onClose: () => void }> = ({ 
 
   return (
     <Dialog open={open} onOpenChange={(v) => !v && onClose()}>
-      <DialogContent className="max-w-md">
+      <DialogContent className="authenticated-app max-w-md rounded-lg">
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2">
             <MessageSquareText className="w-5 h-5 text-accent" /> {t('mt.aff.title')}

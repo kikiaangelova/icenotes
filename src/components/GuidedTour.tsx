@@ -22,12 +22,12 @@ const TOUR_KEY = 'icenotes:tourV1';
 const GOALS_KEY = 'icenotes:firstGoals';
 
 const PRESET_GOALS = [
-  { id: 'consistency', key: 'tour.goal.consistency', emoji: '🗓️' },
-  { id: 'jumps', key: 'tour.goal.jumps', emoji: '⛸️' },
-  { id: 'confidence', key: 'tour.goal.confidence', emoji: '💪' },
-  { id: 'nerves', key: 'tour.goal.nerves', emoji: '🧘' },
-  { id: 'spins', key: 'tour.goal.spins', emoji: '🌀' },
-  { id: 'recovery', key: 'tour.goal.recovery', emoji: '🌙' },
+  { id: 'consistency', key: 'tour.goal.consistency' },
+  { id: 'jumps', key: 'tour.goal.jumps' },
+  { id: 'confidence', key: 'tour.goal.confidence' },
+  { id: 'nerves', key: 'tour.goal.nerves' },
+  { id: 'spins', key: 'tour.goal.spins' },
+  { id: 'recovery', key: 'tour.goal.recovery' },
 ];
 
 interface GuidedTourProps {
