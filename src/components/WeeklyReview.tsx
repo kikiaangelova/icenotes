@@ -19,7 +19,10 @@ interface Props {
  */
 export const WeeklyReview: React.FC<Props> = ({ open, onOpenChange }) => {
   const { t } = useLanguage();
-  const { entries, trainingSessions, addEntry, profile, setProfile } = useJournal();
+  const {
+    entries, trainingSessions, addEntryAsync, profile, setProfileAsync,
+    goals, addGoalAsync, updateGoalAsync,
+  } = useJournal();
 
   const [forward, setForward] = useState('');
   const [blocked, setBlocked] = useState('');
