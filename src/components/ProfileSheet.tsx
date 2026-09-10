@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from '@/components/ui/sheet';
 import { Button } from '@/components/ui/button';
 import { AvatarUpload } from '@/components/AvatarUpload';
@@ -8,6 +8,9 @@ import { useAuth } from '@/context/AuthContext';
 import { useIsAdmin } from '@/hooks/useIsAdmin';
 import { useNavigate } from 'react-router-dom';
 import { useLanguage, LANGUAGES, type Language } from '@/context/LanguageContext';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { useToast } from '@/hooks/use-toast';
 
 interface ProfileSheetProps {
   open: boolean;
@@ -30,13 +33,34 @@ export const ProfileSheet: React.FC<ProfileSheetProps> = ({
   onOpenReminders,
   onLogout,
 }) => {
-  const { profile, setProfile } = useJournal();
+  const { profile, setProfile, setProfileAsync } = useJournal();
   const { user } = useAuth();
   const { isAdmin } = useIsAdmin();
   const navigate = useNavigate();
   const { t, language, setLanguage } = useLanguage();
+  const { toast } = useToast();
+  const [displayName, setDisplayName] = useState(profile?.name ?? '');
+  const [savingName, setSavingName] = useState(false);
+
+  useEffect(() => {
+    if (open) setDisplayName(profile?.name ?? '');
+  }, [open, profile?.name]);
 
   if (!profile) return null;
+
+  const saveDisplayName = async () => {
+    const nextName = displayName.trim();
+    if (!nextName || nextName === profile.name) return;
+    setSavingName(true);
+    try {
+      await setProfileAsync({ ...profile, name: nextName });
+      toast({ title: t('profile.nameSaved') });
+    } catch {
+      toast({ title: t('profile.nameError'), variant: 'destructive' });
+    } finally {
+      setSavingName(false);
+    }
+  };
 
   return (
     <Sheet open={open} onOpenChange={onOpenChange}>
@@ -88,6 +112,28 @@ export const ProfileSheet: React.FC<ProfileSheetProps> = ({
           {/* Quick actions */}
           <div className="space-y-2">
             <p className="app-section-label px-1">{t('profile.settings')}</p>
+
+            <div className="space-y-2 border-b border-border px-1 py-4">
+              <Label htmlFor="profile-display-name">{t('profile.displayName')}</Label>
+              <div className="flex items-center gap-2">
+                <Input
+                  id="profile-display-name"
+                  value={displayName}
+                  onChange={(event) => setDisplayName(event.target.value)}
+                  maxLength={60}
+                  autoComplete="name"
+                  className="min-w-0 flex-1"
+                />
+                <Button
+                  type="button"
+                  variant="outline"
+                  onClick={saveDisplayName}
+                  disabled={savingName || !displayName.trim() || displayName.trim() === profile.name}
+                >
+                  {savingName ? t('profile.nameSaving') : t('profile.nameSave')}
+                </Button>
+              </div>
+            </div>
 
             {/* Language — switch the whole app + AI support */}
             <div className="flex w-full items-center gap-3 border-b border-border px-1 py-4">
