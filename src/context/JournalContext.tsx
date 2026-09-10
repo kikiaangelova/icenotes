@@ -164,9 +164,15 @@ export const JournalProvider: React.FC<{ children: ReactNode }> = ({ children })
     addGoalMutation.mutate(goal);
   };
 
+  const addGoalAsync = (goal: Omit<SkatingGoal, 'id' | 'progress' | 'completed'>) =>
+    addGoalMutation.mutateAsync(goal);
+
   const updateGoal = (id: string, updates: Partial<SkatingGoal>) => {
     updateGoalMutation.mutate({ id, updates });
   };
+
+  const updateGoalAsync = (id: string, updates: Partial<SkatingGoal>) =>
+    updateGoalMutation.mutateAsync({ id, updates });
 
   const deleteGoal = (id: string) => {
     deleteGoalMutation.mutate(id);
