@@ -55,6 +55,7 @@ export const GameDayMode: React.FC<GameDayModeProps> = ({ open, onOpenChange }) 
     setChecked({});
     setCue('');
     setBreathStep(0);
+    setBreathRound(0);
     setSecondsLeft(BREATH[0].seconds);
     setBreathDone(false);
     setD1(''); setD2(''); setD3('');
@@ -70,8 +71,16 @@ export const GameDayMode: React.FC<GameDayModeProps> = ({ open, onOpenChange }) 
             setSecondsLeft(BREATH[p + 1].seconds);
             return p + 1;
           }
-          setBreathDone(true);
-          return p;
+          // End of one in/out cycle
+          setBreathRound((r) => {
+            if (r + 1 >= BREATH_ROUNDS) {
+              setBreathDone(true);
+              return r;
+            }
+            setSecondsLeft(BREATH[0].seconds);
+            return r + 1;
+          });
+          return 0;
         });
         return 0;
       });
