@@ -33,6 +33,8 @@ interface JournalContextType {
   // Journal entries
   entries: JournalEntry[];
   addEntry: (entry: Omit<JournalEntry, 'id' | 'createdAt'>) => void;
+  /** Resolves only after the row is written, so UI can report honest success. */
+  addEntryAsync: (entry: Omit<JournalEntry, 'id' | 'createdAt'>) => Promise<unknown>;
   getTodaysEntry: () => JournalEntry | null;
   
   // Training sessions
