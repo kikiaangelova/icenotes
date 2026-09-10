@@ -82,7 +82,7 @@ export const PHASEB_DICT: Record<string, PhaseBEntry> = {
   'cp.tomorrow':   { en: 'Competition tomorrow', bg: 'Старт утре' },
   'cp.today':      { en: 'Competition today', bg: 'Старт днес' },
   'cp.past':       { en: 'After the competition', bg: 'След старта' },
-  'cp.noDate':     { en: 'No competition date set', bg: 'Няма зададена дата за старт' },
+  'cp.noDate':     { en: 'Preparing for a start', bg: 'Подготовка преди старт' },
   'cp.todayCard':  { en: 'Competition prep', bg: 'Подготовка за старт' },
   'cp.open':       { en: 'Open prep', bg: 'Отвори подготовката' },
 
