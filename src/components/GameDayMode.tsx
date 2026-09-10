@@ -249,22 +249,35 @@ export const GameDayMode: React.FC<GameDayModeProps> = ({ open, onOpenChange }) 
                   <div className="relative z-10 text-center">
                     {breathDone ? (
                       <span className="text-xl font-bold">{t('cp.day.done')}</span>
-                    ) : (
+                    ) : breathStarted ? (
                       <>
                         <div className="text-lg font-semibold">{t(b.key)}</div>
                         <div className="text-4xl font-bold tabular-nums mt-1">{secondsLeft}</div>
                       </>
+                    ) : (
+                      <span className="text-base font-semibold text-white/70">{t('cp.day.breathe')}</span>
                     )}
                   </div>
                 </div>
                 {!breathDone && (
-                  <button
-                    type="button"
-                    onClick={() => setBreathDone(true)}
-                    className="min-h-[44px] px-3 text-sm font-medium text-white/60 hover:text-white"
-                  >
-                    {t('cp.day.skip')}
-                  </button>
+                  <div className="flex items-center gap-2">
+                    {!breathStarted && (
+                      <button
+                        type="button"
+                        onClick={() => setBreathStarted(true)}
+                        className="min-h-[44px] px-4 rounded-xl bg-white/10 text-sm font-semibold hover:bg-white/15"
+                      >
+                        {t('cp.day.start')}
+                      </button>
+                    )}
+                    <button
+                      type="button"
+                      onClick={() => setBreathDone(true)}
+                      className="min-h-[44px] px-3 text-sm font-medium text-white/60 hover:text-white"
+                    >
+                      {t('cp.day.skip')}
+                    </button>
+                  </div>
                 )}
               </div>
 
