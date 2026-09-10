@@ -111,9 +111,10 @@ export const SimpleDashboard: React.FC = () => {
   }, [searchParams]);
 
   const todaysSessions = getTodaysSessions();
-  // Only a post-training reflection counts — a weekly review or competition
-  // debrief written today must not hide the reflection step.
-  const reflectedToday = hasTrainingReflectionToday(entries);
+  // Only post-training reflections count — a weekly review or competition
+  // debrief written today must not hide the reflection step. Counting them
+  // also means a second session today asks for its own reflection.
+  const reflectionsToday = countTrainingReflectionsToday(entries);
   const levelLabel = SELF_LEVELS.find(l => l.value === profile?.selfLevel)?.label || '';
   const greeting = getGreeting(profile?.name, language);
   const week = getWeekSummary(entries, trainingSessions);
