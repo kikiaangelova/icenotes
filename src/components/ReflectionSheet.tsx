@@ -90,6 +90,27 @@ export const ReflectionSheet: React.FC<ReflectionSheetProps> = ({ open, onOpenCh
             rows={2}
             hint
           />
+
+          <div className="space-y-2 pb-4">
+            <Button
+              onClick={handleSave}
+              disabled={saving}
+              className="w-full h-14 rounded-xl text-base font-semibold"
+            >
+              {saving ? t('a.rf.saving') : t('a.rf.save')}
+            </Button>
+            <button
+              type="button"
+              onClick={() => {
+                reset();
+                onOpenChange(false);
+              }}
+              className="w-full min-h-[44px] text-sm font-medium text-muted-foreground hover:text-foreground"
+            >
+              {t('a.rf.skip')}
+            </button>
+          </div>
+        </div>
       </SheetContent>
     </Sheet>
   );
