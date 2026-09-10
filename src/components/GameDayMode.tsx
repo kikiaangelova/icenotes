@@ -46,6 +46,9 @@ export const GameDayMode: React.FC<GameDayModeProps> = ({ open, onOpenChange }) 
   const [breathRound, setBreathRound] = useState(0);
   const [secondsLeft, setSecondsLeft] = useState<number>(BREATH[0].seconds);
   const [breathDone, setBreathDone] = useState(false);
+  // Breathing never starts on its own — the athlete decides.
+  const [breathStarted, setBreathStarted] = useState(false);
+  const [savingDebrief, setSavingDebrief] = useState(false);
   const [d1, setD1] = useState('');
   const [d2, setD2] = useState('');
   const [d3, setD3] = useState('');
@@ -58,11 +61,13 @@ export const GameDayMode: React.FC<GameDayModeProps> = ({ open, onOpenChange }) 
     setBreathRound(0);
     setSecondsLeft(BREATH[0].seconds);
     setBreathDone(false);
+    setBreathStarted(false);
+    setSavingDebrief(false);
     setD1(''); setD2(''); setD3('');
   }, [open]);
 
   useEffect(() => {
-    if (!open || phase !== 'day' || breathDone) return;
+    if (!open || phase !== 'day' || breathDone || !breathStarted) return;
     const id = setInterval(() => {
       setSecondsLeft((s) => {
         if (s > 1) return s - 1;
