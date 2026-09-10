@@ -79,6 +79,8 @@ export const SimpleDashboard: React.FC = () => {
   const [reflectionOpen, setReflectionOpen] = useState(false);
   const [gameDayOpen, setGameDayOpen] = useState(false);
   const [reviewOpen, setReviewOpen] = useState(false);
+  // Legacy guided tour: opt-in via ?action=start-tour only.
+  const [tourOpen, setTourOpen] = useState(false);
 
   // Persist last viewed destination (legacy key kept so nothing is lost)
   useEffect(() => {
@@ -93,9 +95,7 @@ export const SimpleDashboard: React.FC = () => {
       setCurrentView('home');
       setActiveTab('train');
     } else if (action === 'start-tour') {
-      try { localStorage.removeItem('icenotes:tourV1'); } catch { /* ignore */ }
-      window.location.reload();
-      return;
+      setTourOpen(true);
     } else if (action === 'open-coach') {
       setActiveTab('support');
       window.dispatchEvent(new CustomEvent('ai-assistant:open', { detail: { role: 'coach' } }));
