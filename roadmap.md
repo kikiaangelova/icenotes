@@ -20,3 +20,9 @@
 - Merge weekly_goals into goals
 - Contextual Competition Prep by date
 - Copy/visual cleanup of legacy components
+
+## Authenticated copy + sport psychology pass
+- [ ] Rewrite active EN/BG product copy and AI role boundaries.
+- [ ] Correct Competition Prep and Pre-Training Prep content.
+- [ ] Replace unsafe legacy Sport Psychology and Mindfulness copy.
+- [ ] Run signed-in EN/BG mobile/desktop QA, typecheck, build, and final content searches.
