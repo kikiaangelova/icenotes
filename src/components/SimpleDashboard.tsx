@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useJournal } from '@/context/JournalContext';
 import { useAuth } from '@/context/AuthContext';
 import { useLanguage } from '@/context/LanguageContext';
-import { JourneyView } from './JourneyView';
 import { JumpLog } from './JumpLog';
 
 import { PreTrainingPrep } from './PreTrainingPrep';
@@ -11,7 +10,6 @@ import { ReminderSettings } from './ReminderSettings';
 import { ActivityCalendar } from './ActivityCalendar';
 import { AvatarUpload } from './AvatarUpload';
 import { getGreeting } from '@/lib/greeting';
-import { QuotesCollection } from './QuotesCollection';
 import { GoalsScreen } from './GoalsScreen';
 import { WeeklyReview } from './WeeklyReview';
 import { ProgressSignals } from './ProgressSignals';
@@ -240,8 +238,6 @@ export const SimpleDashboard: React.FC = () => {
         <SessionTimer type="on-ice" />
         <JumpLog />
         <ActivityCalendar />
-        <JourneyView />
-        <QuotesCollection />
       </div>
     );
   };
