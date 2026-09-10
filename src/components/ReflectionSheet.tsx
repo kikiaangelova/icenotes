@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetDescription } from '@/components/ui/sheet';
-import { Textarea } from '@/components/ui/textarea';
+import { VoiceTextarea } from './VoiceInput';
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/context/LanguageContext';
 import { useJournal } from '@/context/JournalContext';
