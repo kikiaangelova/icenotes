@@ -43,6 +43,13 @@
       "when": 1794827433224,
       "tag": "0005_create_risk_events",
       "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1794828210086,
+      "tag": "0006_training_energy",
+      "breakpoints": true
     }
   ]
 }

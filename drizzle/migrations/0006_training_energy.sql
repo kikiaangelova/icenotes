@@ -1,0 +1,2 @@
+ALTER TABLE public.training_sessions ADD COLUMN IF NOT EXISTS energy text;
+ALTER TABLE public.training_sessions ADD CONSTRAINT training_sessions_energy_check CHECK (energy IS NULL OR energy IN ('full','normal','tired'));

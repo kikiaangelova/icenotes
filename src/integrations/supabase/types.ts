@@ -717,6 +717,7 @@ export type Database = {
           activities: Json | null
           created_at: string
           date: string
+          energy: string | null
           feeling: string | null
           id: string
           notes: string | null
@@ -728,6 +729,7 @@ export type Database = {
           activities?: Json | null
           created_at?: string
           date?: string
+          energy?: string | null
           feeling?: string | null
           id?: string
           notes?: string | null
@@ -739,6 +741,7 @@ export type Database = {
           activities?: Json | null
           created_at?: string
           date?: string
+          energy?: string | null
           feeling?: string | null
           id?: string
           notes?: string | null
