@@ -15,6 +15,8 @@ import { useLanguage } from '@/context/LanguageContext';
 import heroVideo from '@/assets/hero-skater-girl.mp4.asset.json';
 import { HeroVideo } from './HeroVideo';
 import { SmartStartCTA } from './SmartStartCTA';
+import { AfterPractice } from './AfterPractice';
+import { ProductLoop } from './ProductLoop';
 
 interface LandingPageProps {
   onGetStarted: () => void;
@@ -89,6 +91,8 @@ export const LandingPage: React.FC<LandingPageProps> = () => {
         </div>
       </section>
 
+      <AfterPractice />
+
       {/* ─── What it connects ─── */}
       <section className="public-section relative z-10 border-t border-border px-5 py-14 md:px-8 md:py-20">
         <div className="max-w-6xl mx-auto">
@@ -156,15 +160,7 @@ export const LandingPage: React.FC<LandingPageProps> = () => {
       </section>
 
       {/* ─── The loop ─── */}
-      <section id="loop" className="relative z-10 px-5 md:px-8 py-14 md:py-20 border-t border-border/50">
-        <div className="max-w-3xl mx-auto text-center">
-          <p className={kicker}>{t('lp.loop.kicker')}</p>
-          <h2 className="mt-4 text-xl md:text-3xl font-bold tracking-tight text-foreground leading-snug">
-            {t('lp.loop.title')}
-          </h2>
-          <p className="mt-4 text-base text-muted-foreground">{t('lp.loop.sub')}</p>
-        </div>
-      </section>
+      <ProductLoop />
 
       {/* ─── Privacy ─── */}
       <section className="relative z-10 px-5 md:px-8 py-14 md:py-20 border-t border-border/50">
@@ -179,12 +175,29 @@ export const LandingPage: React.FC<LandingPageProps> = () => {
       </section>
 
       {/* ─── Final CTA ─── */}
+      <section className="public-section border-t border-border px-5 py-14 md:px-8 md:py-20">
+        <div className="mx-auto max-w-4xl">
+          <h2 className="mb-8 text-2xl font-bold text-foreground md:text-3xl">{language === 'bg' ? 'За родители и треньори' : 'For parents and coaches'}</h2>
+          <dl className="border-t border-border">
+            {(language === 'bg' ? [
+              ['Какво виждат родителите', 'Нищо, ако състезателят не реши да сподели.'],
+              ['За кого е', 'За кънкьори над 14 години, които се състезават или тепърва влизат в състезанията.'],
+              ['А треньорът', 'SkateGoals никога не замества треньора. Помага на състезателя да идва на леда с по ясни въпроси.'],
+            ] : [
+              ['What parents see', 'Nothing, unless the skater chooses to share.'],
+              ['Who it is for', 'Skaters aged 14 and older who compete or are moving into competition.'],
+              ['What about the coach', 'SkateGoals never replaces the coach. It helps the skater come to practice with clearer questions.'],
+            ]).map(([title, text]) => <div key={title} className="grid gap-3 border-b border-border py-6 md:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] md:gap-8"><dt className="text-base font-semibold text-foreground">{title}</dt><dd className="text-base leading-relaxed text-muted-foreground">{text}</dd></div>)}
+          </dl>
+        </div>
+      </section>
+
       <section className="relative z-10 px-5 md:px-8 py-16 md:py-24 border-t border-border/50">
         <div className="max-w-2xl mx-auto text-center">
           <h2 className="text-2xl md:text-4xl font-bold tracking-tight text-foreground leading-tight">
             {t('lp.final.title')}
           </h2>
-          <p className="mt-4 text-base text-muted-foreground">{t('lp.final.sub')}</p>
+          <p className="mt-5 text-base font-medium leading-relaxed text-foreground md:text-lg">{language === 'bg' ? 'Пилотен сезон 2026/27. Търсим състезатели, които да тестват SkateGoals и да покажат какво да стане следващо.' : 'Pilot season 2026/27. We are looking for competitive skaters to test SkateGoals and shape what comes next.'}</p>
           <p className="mt-3 text-xs text-muted-foreground">{language === 'bg' ? 'Работи на телефона ти. Добави го на началния екран след регистрация.' : 'Works on your phone. Add it to your home screen after you sign up.'}</p>
           <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
             <SmartStartCTA
@@ -195,7 +208,7 @@ export const LandingPage: React.FC<LandingPageProps> = () => {
             />
             <Link to="/auth" className="w-full sm:w-auto">
                <Button variant="outline" size="lg" className="h-14 px-9 text-base font-semibold rounded-sm w-full">
-                {t('lp.final.back')} <ArrowRight className="w-4 h-4 ml-2" />
+                {t('nav.login')} <ArrowRight className="w-4 h-4 ml-2" />
               </Button>
             </Link>
           </div>
