@@ -6,10 +6,11 @@ import { PHASE2_DICT } from '@/context/dictPhase2';
 import { PHASE3_DICT } from '@/context/dictPhase3';
 import { PHASEA_DICT } from '@/context/dictPhaseA';
 import { PHASEB_DICT } from '@/context/dictPhaseB';
-import { PILOT_AGE_GROUPS } from '@/pages/Pilot';
+import About from '@/pages/About';
+import Pilot, { PILOT_AGE_GROUPS } from '@/pages/Pilot';
 
 // An upper age bound in visible copy: "14 to 18", "14-18", "14 до 18".
-// The lower bound (14) stays, so "14 and older" / "14 и повече" must not match.
+// The 14 floor stays, so "14 and older" / "14 и повече" must not match.
 const UPPER_AGE_BOUND = /\b14\s*(?:to|–|—|-)\s*18\b/i;
 const UPPER_AGE_BOUND_BG = /14\s*до\s*18/i;
 
@@ -47,24 +48,21 @@ describe('no upper age limit in visible copy', () => {
     expect(offenders).toEqual([]);
   });
 
-  it('names skaters as 14 and older on the About page in both languages', () => {
+  it('describes skaters as 14 and older on the About page in both languages', () => {
     language = 'en';
-    const about = require('@/pages/About').default;
-    const { unmount } = render(<MemoryRouter><about /></MemoryRouter>);
+    const { unmount } = render(<MemoryRouter><About /></MemoryRouter>);
     expect(screen.getByText(/Skaters aged 14 and older moving into serious competition\./)).toBeInTheDocument();
     expect(document.body.textContent).not.toMatch(UPPER_AGE_BOUND);
     unmount();
 
     language = 'bg';
-    const AboutBg = require('@/pages/About').default;
-    render(<MemoryRouter><AboutBg /></MemoryRouter>);
+    render(<MemoryRouter><About /></MemoryRouter>);
     expect(screen.getByText(/Фигуристи на 14 и повече години, които влизат в сериозния спорт\./)).toBeInTheDocument();
     expect(document.body.textContent).not.toMatch(UPPER_AGE_BOUND_BG);
   });
 
   it('offers an age group for adult skaters in the pilot form', () => {
     language = 'en';
-    const Pilot = require('@/pages/Pilot').default;
     render(<MemoryRouter><Pilot /></MemoryRouter>);
     const trigger = document.getElementById('pilot-age') as HTMLElement;
     expect(trigger).toBeTruthy();
