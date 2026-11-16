@@ -16,6 +16,7 @@ import { HeroVideo } from './HeroVideo';
 import { SmartStartCTA } from './SmartStartCTA';
 import { AfterPractice } from './AfterPractice';
 import { ProductLoop } from './ProductLoop';
+import { LandingStickyCTA } from './PublicMotion';
 
 interface LandingPageProps {
   onGetStarted: () => void;
@@ -46,12 +47,12 @@ export const LandingPage: React.FC<LandingPageProps> = () => {
       {/* ─── Hero ─── */}
       <section className="edge-hero relative z-10 overflow-hidden bg-primary text-primary-foreground">
         <div className="mx-auto grid max-w-7xl lg:grid-cols-[minmax(0,1fr)_minmax(0,640px)] lg:min-h-[650px]">
-          <div className="relative z-10 min-w-0 flex flex-col justify-center px-5 py-12 md:px-12 lg:px-8 xl:px-16">
+          <div className="energy-hero-copy relative z-10 min-w-0 flex flex-col justify-center px-5 py-12 md:px-12 lg:px-8 xl:px-16">
             <p className={kicker}>{t('lp.chip')}</p>
-            <h1 className="mt-6 max-w-xl font-display text-[2.65rem] font-bold leading-[1.01] text-primary-foreground sm:text-6xl md:text-[4rem] lg:text-5xl xl:text-[4rem] [text-wrap:balance]">
-              {t('lp.h1.a')}
+            <h1 className={`mt-6 max-w-xl font-display text-[2.65rem] font-bold leading-[1.01] text-primary-foreground sm:text-6xl md:text-[4rem] lg:text-5xl xl:text-[4rem] [text-wrap:balance] ${language === 'bg' ? 'energy-hero-bg' : ''}`}>
+              {t('lp.h1.a').split(' ').map((word, index) => <React.Fragment key={`${language}-a-${index}`}><span className={`energy-word energy-word-${index % 10}`}>{word}</span>{' '}</React.Fragment>)}
               <br className="hidden sm:block" />{' '}
-              <span className="text-primary-foreground/62">{t('lp.h1.b')}</span>
+              <span className="energy-hero-second">{t('lp.h1.b').split(' ').map((word, index) => <React.Fragment key={`${language}-b-${index}`}><span className={`energy-word energy-word-${(index + 4) % 10}`}>{word}</span>{' '}</React.Fragment>)}</span>
             </h1>
             <p className="mt-7 max-w-lg text-base leading-relaxed text-primary-foreground/72 md:text-lg">
               {t('lp.sub')}
@@ -76,7 +77,7 @@ export const LandingPage: React.FC<LandingPageProps> = () => {
              <p className="mt-5 text-xs text-primary-foreground/80">{t('lp.trust')}</p>
           </div>
 
-          <div className="relative mx-auto aspect-[4/5] w-full max-w-[min(100%,60svh)] min-w-0 overflow-hidden border-t border-primary-foreground/20 md:max-w-[min(480px,60svh)] lg:aspect-auto lg:max-w-[640px] lg:border-l lg:border-t-0">
+          <div className="energy-hero-media relative mx-auto aspect-[4/5] w-full max-w-[min(100%,60svh)] min-w-0 overflow-hidden border-t border-primary-foreground/20 md:max-w-[min(480px,60svh)] lg:aspect-auto lg:max-w-[640px] lg:border-l lg:border-t-0">
             <HeroVideo
               src="/skategoals-hero.mp4"
               poster="/skategoals-hero-poster.jpg"
@@ -88,6 +89,10 @@ export const LandingPage: React.FC<LandingPageProps> = () => {
         </div>
       </section>
 
+      <div className="energy-marquee" aria-label={language === 'bg' ? 'АКСЕЛ · ЛУТЦ · ФЛИП · РИТЕР · САЛХОВ · ТУЛУП · ПИРУЕТА · СТЪПКОВА ПОРЕДИЦА · КРАТКА ПРОГРАМА · ВОЛНА ПРОГРАМА' : 'AXEL · LUTZ · FLIP · LOOP · SALCHOW · TOE LOOP · SPIN · STEP SEQUENCE · SHORT PROGRAM · FREE SKATE'}>
+        <div className="energy-marquee-track" aria-hidden="true">{[0, 1].map(index => <span key={index}>{language === 'bg' ? 'АКСЕЛ · ЛУТЦ · ФЛИП · РИТЕР · САЛХОВ · ТУЛУП · ПИРУЕТА · СТЪПКОВА ПОРЕДИЦА · КРАТКА ПРОГРАМА · ВОЛНА ПРОГРАМА' : 'AXEL · LUTZ · FLIP · LOOP · SALCHOW · TOE LOOP · SPIN · STEP SEQUENCE · SHORT PROGRAM · FREE SKATE'} · </span>)}</div>
+      </div>
+
       <AfterPractice />
 
       {/* ─── What it connects ─── */}
@@ -97,10 +102,10 @@ export const LandingPage: React.FC<LandingPageProps> = () => {
           <h2 className="mt-4 mb-10 max-w-2xl text-2xl font-bold leading-tight text-foreground md:text-4xl">
             {t('lp.connect.title')}
           </h2>
-          <div className="grid grid-cols-1 border-t border-border md:grid-cols-2 lg:grid-cols-5">
+          <div className="energy-parts grid grid-cols-1 border-t border-border md:grid-cols-2 lg:grid-cols-5">
             {pillars.map((p, index) => (
-              <div key={p.title} className="min-w-0 border-b border-border py-5 md:px-5 lg:border-b-0 lg:border-r lg:last:border-r-0">
-                <span className="mb-5 block font-mono text-4xl font-medium text-muted-foreground">0{index + 1}</span>
+              <div key={p.title} className="energy-part min-w-0 border-b border-border py-5 md:px-5 lg:border-b-0 lg:border-r lg:last:border-r-0">
+                <span className="energy-part-number mb-5 block font-mono text-4xl font-medium text-muted-foreground">0{index + 1}</span>
                 <h3 className="text-base font-semibold text-foreground mb-1.5">{p.title}</h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">{p.text}</p>
               </div>
@@ -163,6 +168,7 @@ export const LandingPage: React.FC<LandingPageProps> = () => {
       <section className="relative z-10 px-5 md:px-8 py-14 md:py-20 border-t border-border/50">
         <div className="max-w-2xl mx-auto">
           <Lock className="w-5 h-5 text-primary mb-5" aria-hidden />
+          <span className="energy-sticker mb-6">{language === 'bg' ? 'ЛИЧНО ПО ПОДРАЗБИРАНЕ' : 'PRIVATE BY DEFAULT'}</span>
           <p className={kicker}>{t('lp.priv.kicker')}</p>
           <h2 className="mt-4 mb-4 text-2xl md:text-3xl font-bold tracking-tight text-foreground leading-tight">
             {t('lp.priv.title')}
@@ -189,8 +195,9 @@ export const LandingPage: React.FC<LandingPageProps> = () => {
         </div>
       </section>
 
-      <section className="relative z-10 px-5 md:px-8 py-16 md:py-24 border-t border-border/50">
+      <section id="final-cta" className="relative z-10 px-5 md:px-8 py-16 md:py-24 border-t border-border/50">
         <div className="max-w-2xl mx-auto text-center">
+          <span className="energy-sticker mb-6">PILOT 26/27</span>
           <h2 className="text-2xl md:text-4xl font-bold tracking-tight text-foreground leading-tight">
             {t('lp.final.title')}
           </h2>
@@ -212,6 +219,7 @@ export const LandingPage: React.FC<LandingPageProps> = () => {
           <Link to="/pilot" className="mt-4 inline-flex min-h-11 items-center text-sm font-medium text-muted-foreground underline underline-offset-4 hover:text-foreground">{language === 'bg' ? 'Включи се в пилота' : 'Join the pilot'}</Link>
         </div>
       </section>
+      <LandingStickyCTA />
     </>
   );
 };

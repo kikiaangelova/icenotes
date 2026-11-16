@@ -120,7 +120,7 @@ const About: React.FC = () => {
             <h2 className="text-2xl md:text-3xl font-bold mb-6">{bg ? 'Кой стои зад SkateGoals' : 'Who builds SkateGoals'}</h2>
             <div className="flex flex-col gap-6 sm:flex-row">
               <div className="flex h-24 w-24 shrink-0 items-center justify-center rounded-full border border-border bg-muted text-xl font-semibold" aria-hidden>KA</div>
-              <p className="text-base text-foreground/80 leading-relaxed">{bg ? 'Кирилка Ангелова. Треньор по групова динамика и организационно поведение, ментор на млади хора от 2010 г. и спортен психолог. И майка на състезателка по фигурно пързаляне. SkateGoals се роди от това, което ни трябваше след тренировките и не намерихме никъде другаде.' : 'Kirilka Angelova. Group dynamics and organizational behaviour trainer, mentor to young people since 2010 and sport psychologist. Also the mother of a competitive figure skater. SkateGoals grew out of what we needed after practices and could not find anywhere else.'}</p>
+              <p className="text-base text-foreground/80 leading-relaxed">{bg ? 'Направено на пързалката, не в офис. Кирилка Ангелова: треньор, ментор от 2010 г., спортен психолог и майка на състезателка. SkateGoals е това, което ни трябваше след тренировка и не намерихме.' : "Made at the rink, not in an office. Kirilka Angelova: trainer, mentor since 2010, sport psychologist and a skater's mom. SkateGoals is what we needed after practice and could not find."}</p>
             </div>
           </div>
         </section>
