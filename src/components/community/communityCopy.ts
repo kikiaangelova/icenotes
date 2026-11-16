@@ -42,6 +42,35 @@ export const RULES = {
   ],
 };
 
+export const PARENT_RULES = {
+  bg: [
+    'Тук сме, за да подкрепяме децата си, не за да ги сравняваме.',
+    'Не пишем за тялото, теглото или храненето на конкретно дете.',
+    'Не споделяме имена, снимки, клубове или лични данни на деца.',
+    'Уважаваме треньорите и другите родители, дори когато не сме съгласни.',
+    'Всяка публикация минава проверка. Някои чакат одобрение, преди да се покажат.',
+  ],
+  en: [
+    'We are here to support our kids, not to compare them.',
+    'We do not write about a specific child\'s body, weight or eating.',
+    'No names, photos, clubs or personal details of children.',
+    'We respect coaches and other parents, even when we disagree.',
+    'Every post is checked. Some wait for approval before they show.',
+  ],
+};
+
+export const PARENT_TOPICS = {
+  competitions: { bg: 'Състезания и пътувания', en: 'Competitions and travel' },
+  equipment: { bg: 'Екипировка и кънки', en: 'Equipment and skates' },
+  support: { bg: 'Как да подкрепям детето си', en: 'Supporting your child' },
+  school: { bg: 'Училище и тренировки', en: 'School and training' },
+  free: { bg: 'Свободни разговори', en: 'Open chat' },
+} as const;
+export type ParentTopic = keyof typeof PARENT_TOPICS;
+
+/** What a linked parent may ever see. AI chats, journal entries and training notes are never listed here. */
+export const SHAREABLE = ['share_streak', 'share_elements', 'share_goals'] as const;
+
 /** Minimum age to join the skater community without a confirmed parent (Bulgaria: 14). */
 export const MIN_INDEPENDENT_AGE = 14;
 export const canJoinSkaterSpace = (role: string, age: number) => role === 'skater' && age >= MIN_INDEPENDENT_AGE;

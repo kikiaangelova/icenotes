@@ -23,3 +23,9 @@ verify_jwt = false
 
 [functions.community-post]
 verify_jwt = false
+
+[functions.parent-link]
+verify_jwt = false
+
+[functions.parent-post]
+verify_jwt = false

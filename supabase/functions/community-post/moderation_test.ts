@@ -1,5 +1,5 @@
 import { assert, assertEquals } from 'https://deno.land/std@0.224.0/assert/mod.ts';
-import { moderate } from './moderation.ts';
+import { moderate } from '../_shared/community-moderation.ts';
 
 Deno.test('level 1 is a crisis and never published', () => {
   assert(moderate('Не искам да живея вече').crisis);
