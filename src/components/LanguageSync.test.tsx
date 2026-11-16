@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, screen, waitFor, fireEvent } from '@testing-library/react';
 import React from 'react';
 
 // ---- Mocks ----
@@ -21,8 +21,8 @@ import { LanguageProvider, useLanguage } from '@/context/LanguageContext';
 import { LanguageSync } from '@/components/LanguageSync';
 
 const ActiveLang: React.FC = () => {
-  const { language } = useLanguage();
-  return <div data-testid="lang">{language}</div>;
+  const { language, setLanguage } = useLanguage();
+  return <><div data-testid="lang">{language}</div><button onClick={() => setLanguage('bg')}>BG</button><button onClick={() => setLanguage('en')}>EN</button></>;
 };
 
 const renderApp = () =>
@@ -43,6 +43,17 @@ beforeEach(() => {
 });
 
 describe('LanguageSync — login language resolution', () => {
+  it('saves user language switches to the profile and local preference', async () => {
+    mockUseAuth.mockReturnValue({ user: { id: 'switch-user' } });
+    mockUseProfile.mockReturnValue({ data: { language: 'en' } });
+    renderApp();
+    await waitFor(() => expect(screen.getByTestId('lang').textContent).toBe('en'));
+    fireEvent.click(screen.getByText('BG'));
+    await waitFor(() => expect(mockMutate).toHaveBeenCalledWith({ language: 'bg' }));
+    expect(localStorage.getItem(STORAGE_KEY)).toBe('bg');
+    fireEvent.click(screen.getByText('EN'));
+    await waitFor(() => expect(mockMutate).toHaveBeenCalledWith({ language: 'en' }));
+  });
   it('uses profile.language when set, even if localStorage has another value', async () => {
     localStorage.setItem(STORAGE_KEY, 'en');
     mockUseAuth.mockReturnValue({ user: { id: 'u1' } });
