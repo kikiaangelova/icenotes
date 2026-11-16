@@ -6,6 +6,7 @@ import { PHASE2_DICT } from '@/context/dictPhase2';
 import { PHASE3_DICT } from '@/context/dictPhase3';
 import { PHASEA_DICT } from '@/context/dictPhaseA';
 import { PHASEB_DICT } from '@/context/dictPhaseB';
+import { OnboardingFlow } from '@/components/OnboardingFlow';
 import About from '@/pages/About';
 import Pilot, { PILOT_AGE_GROUPS } from '@/pages/Pilot';
 
@@ -32,6 +33,13 @@ vi.mock('@/components/landing/Footer', () => ({ Footer: () => null }));
 vi.mock('@/integrations/supabase/client', () => ({
   supabase: { from: () => ({ insert: vi.fn(async () => ({ error: null })) }) },
 }));
+vi.mock('@/context/AuthContext', () => ({
+  useAuth: () => ({ user: { id: 'test-skater' }, session: {} }),
+}));
+vi.mock('@/hooks/useSupabaseData', () => ({
+  useUpdateProfile: () => ({ mutateAsync: vi.fn(async () => undefined) }),
+}));
+vi.mock('@/hooks/use-toast', () => ({ useToast: () => ({ toast: vi.fn() }) }));
 
 afterEach(cleanup);
 
@@ -73,5 +81,17 @@ describe('no upper age limit in visible copy', () => {
 
   it('keeps the adult age group in the pilot option list', () => {
     expect(PILOT_AGE_GROUPS).toContain('18+');
+  });
+
+  it('lets an adult skater through onboarding and still blocks under 14', () => {
+    language = 'bg';
+    render(<OnboardingFlow />);
+    const name = document.getElementById('ob-name') as HTMLInputElement;
+    const age = document.getElementById('ob-age') as HTMLInputElement;
+    fireEvent.change(name, { target: { value: 'Кирилка' } });
+    fireEvent.change(age, { target: { value: '27' } });
+    expect(screen.getByRole('button', { name: /ob\.next/ })).toBeEnabled();
+    fireEvent.change(age, { target: { value: '13' } });
+    expect(screen.getByRole('button', { name: /ob\.next/ })).toBeDisabled();
   });
 });
