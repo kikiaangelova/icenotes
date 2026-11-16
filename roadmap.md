@@ -10,4 +10,4 @@
 - [x] Fix public responsive layout and verify EN/BG across phone, tablet and desktop
 - [x] Add phone installation, guarded offline support, icons, and preview installation QA
 - [ ] Verify real-device installation, published offline launch and Lighthouse (blocked by no-publish scope)
-- [ ] Add landing product examples and content, update language defaults, and verify EN/BG layouts
+- [x] Add landing product examples and content, update language defaults, and verify EN/BG layouts

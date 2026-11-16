@@ -40,7 +40,7 @@ export function AfterPractice() {
     return () => { if (timer) clearInterval(timer); media.removeEventListener('change', update); };
   }, [manual]);
   const icons = [Snowflake, ClipboardList, Target];
-  const titles = [t('nav5.training'), t('a.ref.title'), t('a.goals.title')];
+  const titles = [t('nav5.training'), t('a.rf.title'), t('a.goals.title')];
   return <section id="after-practice" className="public-section border-t border-border px-5 py-14 md:px-8 md:py-20">
     <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,0.8fr)] lg:items-center">
       <div>
