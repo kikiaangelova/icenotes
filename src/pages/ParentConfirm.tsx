@@ -33,7 +33,7 @@ const ParentConfirm: React.FC = () => {
     if (data?.status === 'confirmed') { localStorage.removeItem(PENDING_PARENT_TOKEN); setState('done'); return; }
     const code = data?.error ?? 'invalid_token';
     if (code === 'need_parent_profile') { setState('profile'); return; }
-    if (code === 'invalid_token') localStorage.removeItem(PENDING_PARENT_TOKEN);
+    localStorage.removeItem(PENDING_PARENT_TOKEN);
     setState(code);
   }, [token]);
 
