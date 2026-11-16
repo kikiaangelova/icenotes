@@ -205,6 +205,10 @@ export const SimpleDashboard: React.FC = () => {
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="w-56 rounded-lg">
               <div className="px-3 py-2 text-xs text-muted-foreground">{user?.email}</div>
+              <DropdownMenuItem onClick={() => setProfileOpen(true)} className="min-h-11 font-semibold">
+                <UserRound className="w-4 h-4 mr-2" />
+                {language === 'bg' ? 'Моят профил' : 'My profile'}
+              </DropdownMenuItem>
               <DropdownMenuSeparator />
               <div className="px-3 py-2">
                 <p className="mb-2 text-xs text-muted-foreground">{t('profile.language')}</p>
