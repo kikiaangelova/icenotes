@@ -11,6 +11,7 @@ import { useLanguage, LANGUAGES, type Language } from '@/context/LanguageContext
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { useToast } from '@/hooks/use-toast';
+import { GdprSettings } from '@/components/GdprSettings';
 
 interface ProfileSheetProps {
   open: boolean;
@@ -192,6 +193,7 @@ export const ProfileSheet: React.FC<ProfileSheetProps> = ({
             )}
           </div>
 
+          <GdprSettings />
         </div>
 
         {/* Sticky footer. Logout always visible, no dead end */}

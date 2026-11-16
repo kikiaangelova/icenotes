@@ -33,7 +33,7 @@ async function allRows(table: string, column: string, value: string, caseInsensi
   for (let from = 0; ; from += PAGE_SIZE) {
     let query = admin.from(table).select('*');
     query = caseInsensitive
-      ? query.ilike(column, value.replace(/[%_,]/g, ''))
+      ? query.ilike(column, value.replace(/([\\%_])/g, '\\$1'))
       : query.eq(column, value);
     const { data, error } = await query.range(from, from + PAGE_SIZE - 1);
     if (error) throw new Error(`Could not read ${table}`);
