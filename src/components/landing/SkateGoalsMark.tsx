@@ -9,8 +9,9 @@ interface SkateGoalsMarkProps {
  * Two crossing edge arcs inside a soft square. Deliberately geometric
  * and grown-up: no cartoon boot, no illustration.
  */
-export const SkateGoalsMark: React.FC<SkateGoalsMarkProps> = ({ className }) => (
+export const SkateGoalsMark = React.forwardRef<SVGSVGElement, SkateGoalsMarkProps>(({ className }, ref) => (
   <svg
+    ref={ref}
     viewBox="0 0 32 32"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
@@ -32,4 +33,5 @@ export const SkateGoalsMark: React.FC<SkateGoalsMarkProps> = ({ className }) => 
     />
     <circle cx="24" cy="24" r="2.2" fill="currentColor" />
   </svg>
-);
+));
+SkateGoalsMark.displayName = "SkateGoalsMark";

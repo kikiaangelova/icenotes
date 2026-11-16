@@ -87,6 +87,7 @@ const AppRoutes = () => {
       <Route path="/feedback" element={<Feedback />} />
       <Route path="/share-experience" element={<Navigate to="/feedback" replace />} />
       <Route path="/privacy" element={<Privacy />} />
+      <Route path="/terms" element={<Navigate to="/privacy" replace />} />
       <Route 
         path="/auth" 
         element={

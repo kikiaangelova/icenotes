@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { SmartStartCTA } from './SmartStartCTA';
 import { useLanguage } from '@/context/LanguageContext';
@@ -33,7 +33,7 @@ export function usePublicMotion() {
   }, [pathname]);
 }
 
-export function LandingStickyCTA() {
+export const LandingStickyCTA = React.forwardRef<HTMLDivElement>(function LandingStickyCTA(_props, _ref) {
   const { t } = useLanguage();
   const [visible, setVisible] = useState(false);
   useEffect(() => {
@@ -55,7 +55,7 @@ export function LandingStickyCTA() {
     return () => observer.disconnect();
   }, []);
   if (!visible) return null;
-  return <div className="energy-sticky-cta fixed inset-x-0 bottom-0 z-40 border-t border-border bg-primary p-3 sm:hidden">
+  return <div ref={_ref} className="energy-sticky-cta fixed inset-x-0 bottom-0 z-40 border-t border-border bg-primary p-3 sm:hidden">
     <SmartStartCTA label={t('lp.cta')} className="h-12 w-full bg-primary-foreground text-primary hover:bg-primary-foreground" />
   </div>;
-}
+});

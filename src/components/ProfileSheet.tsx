@@ -13,6 +13,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { useToast } from '@/hooks/use-toast';
 import { GdprSettings } from '@/components/GdprSettings';
+import { SavedQuotesSection } from '@/components/SavedQuotesSection';
 
 interface ProfileSheetProps {
   open: boolean;
@@ -140,6 +141,8 @@ export const ProfileSheet: React.FC<ProfileSheetProps> = ({ open, onOpenChange, 
               ))}
             </div>
           </Section>
+
+          <SavedQuotesSection />
 
           <button type="button" onClick={() => { onOpenReminders(); onOpenChange(false); }} className="rink-card flex min-h-[64px] w-full items-center gap-3 p-4 text-left">
             <Bell className="h-5 w-5 text-accent-ink" />
