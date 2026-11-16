@@ -1,5 +1,6 @@
 import React from 'react';
-import { ArrowRight, Trophy, CalendarDays, Wind, MessageCircle, Users, Target, Timer } from 'lucide-react';
+import { ArrowRight, Trophy, CalendarDays, Wind, MessageCircle, Users, Target, Timer, Flag, Check } from 'lucide-react';
+import { addDays, isSameDay, startOfWeek } from 'date-fns';
 import { useJournal } from '@/context/JournalContext';
 import { weekStreak } from '@/lib/rinkStats';
 import { getWeekSummary } from '@/lib/weekData';
@@ -55,7 +56,7 @@ export const TodayCommandCenter: React.FC<Props> = ({
 }) => {
   const { t, language } = useLanguage();
   const bg = language === 'bg';
-  const { trainingSessions, entries, goals } = useJournal();
+  const { trainingSessions, entries, goals, profile } = useJournal();
   const streak = weekStreak(trainingSessions);
   const now = new Date();
   const dateLabel = now.toLocaleDateString(bg ? 'bg-BG' : 'en-GB', { weekday: 'long', day: 'numeric', month: 'long' });
@@ -68,7 +69,21 @@ export const TodayCommandCenter: React.FC<Props> = ({
     ? { pct: Math.round((steps.filter((s) => s.done).length / steps.length) * 100), label: bg ? `${steps.filter((s) => s.done).length} от ${steps.length} стъпки` : `${steps.filter((s) => s.done).length} of ${steps.length} steps` }
     : { pct: Math.min(100, Math.round((weekSessions / 3) * 100)), label: bg ? `${weekSessions} от 3 тренировки тази седмица` : `${weekSessions} of 3 sessions this week` };
   const exercise = EXERCISES[Math.floor(now.getTime() / 86400000) % EXERCISES.length];
-  const compNear = competitionDays !== null && competitionDays !== undefined && competitionDays <= 14 && competitionDays >= -1;
+  const weekStart = startOfWeek(now, { weekStartsOn: 1 });
+  const weekDays = Array.from({ length: 7 }, (_, i) => {
+    const date = addDays(weekStart, i);
+    return { date, count: trainingSessions.filter((s) => isSameDay(s.date, date)).length };
+  });
+  const weekLetters = bg ? ['П', 'В', 'С', 'Ч', 'П', 'С', 'Н'] : ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
+  const trainedDays = weekDays.filter((d) => d.count > 0).length;
+  const order = { season: 0, monthly: 1, weekly: 2 } as const;
+  const mainGoal = [...goals].filter((g) => !g.completed && g.title.trim() && g.title.trim() !== focus?.trim())
+    .sort((a, b) => order[a.timeframe] - order[b.timeframe])[0];
+  const goalPct = Math.max(0, Math.min(100, Math.round(mainGoal?.progress ?? 0)));
+  const hasComp = competitionDays !== null && competitionDays !== undefined && competitionDays >= 0;
+  const compDateLabel = profile?.nextCompetitionDate
+    ? new Date(`${profile.nextCompetitionDate}T12:00:00`).toLocaleDateString(bg ? 'bg-BG' : 'en-GB', { day: 'numeric', month: 'long' })
+    : '';
 
   const logged = sessionsToday > 0;
   // Every session logged today wants its own reflection, so a second session
@@ -123,6 +138,78 @@ export const TodayCommandCenter: React.FC<Props> = ({
         )}
       </button>
 
+      <section className="rink-card p-5" aria-labelledby="today-week">
+        <div className="flex items-baseline justify-between gap-3">
+          <h2 id="today-week" className="flex items-center gap-2 text-[13px] font-semibold text-accent-ink">
+            <CalendarDays className="h-5 w-5" /> {bg ? 'Тази седмица' : 'This week'}
+          </h2>
+          <span className="text-[13px] font-semibold text-muted-foreground">
+            {bg ? `${trainedDays} от 7 дни` : `${trainedDays} of 7 days`}
+          </span>
+        </div>
+        <ol className="mt-4 grid grid-cols-7 gap-1.5">
+          {weekDays.map((d, i) => {
+            const isToday = isSameDay(d.date, now);
+            const future = d.date > now && !isToday;
+            const label = d.date.toLocaleDateString(bg ? 'bg-BG' : 'en-GB', { weekday: 'long' });
+            return (
+              <li key={i} className="flex flex-col items-center gap-1.5"
+                aria-label={`${label}: ${d.count ? (bg ? `${d.count} тренировки` : `${d.count} sessions`) : (bg ? 'без тренировка' : 'no session')}`}>
+                <span className={`text-[12px] font-semibold ${isToday ? 'text-foreground' : 'text-muted-foreground'}`}>{weekLetters[i]}</span>
+                <span className={`flex aspect-square w-full max-w-[44px] items-center justify-center rounded-xl text-[13px] font-bold transition-colors ${
+                  d.count ? 'bg-accent text-accent-foreground' : future ? 'border border-dashed border-border' : 'bg-muted text-muted-foreground'
+                } ${isToday ? 'ring-2 ring-primary ring-offset-2 ring-offset-card' : ''}`}>
+                  {d.count ? <Check className="h-4 w-4" aria-hidden="true" /> : d.date.getDate()}
+                </span>
+              </li>
+            );
+          })}
+        </ol>
+      </section>
+
+      <div className="grid gap-3 sm:grid-cols-2">
+        <button type="button" onClick={onCompetitionPrep} className="rink-card flex min-h-[96px] w-full items-start gap-4 p-5 text-left">
+          <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-secondary"><Trophy className="h-5 w-5 text-primary" /></span>
+          <span className="min-w-0 flex-1">
+            <span className="block text-[13px] font-semibold text-accent-ink">{bg ? 'Следващ старт' : 'Next competition'}</span>
+            {hasComp ? (
+              <>
+                <span className="block truncate text-[17px] font-bold leading-snug text-foreground">{competition?.trim() || t('cp.title')}</span>
+                <span className="block text-[13px] text-muted-foreground">
+                  {compDateLabel}{compDateLabel ? ', ' : ''}{competitionDays! > 1 ? (bg ? `след ${competitionDays} дни` : `in ${competitionDays} days`) : competitionDays === 1 ? t('cp.tomorrow') : t('cp.today')}
+                </span>
+              </>
+            ) : (
+              <>
+                <span className="block text-[17px] font-bold leading-snug text-foreground">{bg ? 'Няма насрочен старт' : 'No competition set'}</span>
+                <span className="block text-[13px] text-muted-foreground">{bg ? 'Добави го, за да се подготвиш навреме' : 'Add one to prepare in time'}</span>
+              </>
+            )}
+          </span>
+        </button>
+
+        <button type="button" onClick={onGoals} className="rink-card flex min-h-[96px] w-full items-start gap-4 p-5 text-left">
+          <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-secondary"><Flag className="h-5 w-5 text-primary" /></span>
+          <span className="min-w-0 flex-1">
+            <span className="block text-[13px] font-semibold text-accent-ink">{bg ? 'Твоята цел' : 'Your goal'}</span>
+            {mainGoal ? (
+              <>
+                <span className="block text-[17px] font-bold leading-snug text-foreground line-clamp-2">{mainGoal.title}</span>
+                <span className="mt-2 block h-2 overflow-hidden rounded-full bg-muted" role="progressbar" aria-valuenow={goalPct} aria-valuemin={0} aria-valuemax={100}>
+                  <span className="block h-full rounded-full bg-accent" style={{ width: `${goalPct}%` }} />
+                </span>
+                <span className="mt-1 block text-[13px] text-muted-foreground">{goalPct}%</span>
+              </>
+            ) : (
+              <>
+                <span className="block text-[17px] font-bold leading-snug text-foreground">{bg ? 'Още нямаш цел' : 'No goal yet'}</span>
+                <span className="block text-[13px] text-muted-foreground">{bg ? 'Постави една, към която да вървиш' : 'Set one to work towards'}</span>
+              </>
+            )}
+          </span>
+        </button>
+      </div>
+
       <div className="space-y-3">
         <button onClick={primary.onClick} className="rink-cta flex min-h-[80px] w-full items-center gap-4 rounded-2xl px-5 py-4 text-left">
           <div className="min-w-0 flex-1">
@@ -170,25 +257,7 @@ export const TodayCommandCenter: React.FC<Props> = ({
 
         {/* At most one strong contextual card: competition first, then weekly review. */}
         <div className="pt-2 space-y-3">
-          {compNear ? (
-            <button
-              onClick={onCompetitionPrep}
-                className="rink-card flex min-h-[64px] w-full items-center gap-3 px-4 text-left"
-            >
-              <Trophy className="w-[18px] h-[18px] text-primary shrink-0" />
-              <span className="min-w-0 flex-1">
-                <span className="block text-sm font-semibold text-foreground truncate">
-                  {competitionDays! > 1 ? `${competitionDays} ${t('cp.inDays')}`
-                    : competitionDays === 1 ? t('cp.tomorrow')
-                    : competitionDays === 0 ? t('cp.today') : t('cp.past')}
-                </span>
-                <span className="block text-xs text-muted-foreground truncate">
-                  {competition?.trim() || t('cp.title')}
-                </span>
-              </span>
-              <ArrowRight className="w-4 h-4 text-muted-foreground shrink-0" />
-            </button>
-          ) : reviewRelevant ? (
+          {reviewRelevant ? (
             <button
               onClick={onWeeklyReview}
                 className="rink-card flex min-h-[64px] w-full items-center gap-3 px-4 text-left"
