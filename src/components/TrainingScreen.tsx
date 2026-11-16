@@ -9,6 +9,8 @@ import { format } from 'date-fns';
 import { Snowflake, Dumbbell, Brain, Check, Laugh, Smile, Meh, Frown, Angry, BatteryFull, BatteryMedium, BatteryLow } from 'lucide-react';
 import { toast } from 'sonner';
 import { showSkateTrail } from './rink/RinkArt';
+import { celebrateMessage, sessionsThisWeek } from '@/lib/celebrate';
+import { dayStreak } from '@/lib/rinkStats';
 
 const DURATIONS = [30, 45, 60, 90, 120];
 const FEELINGS = [
@@ -96,6 +98,9 @@ export const TrainingScreen: React.FC<TrainingScreenProps> = ({ onSaved, onOpenP
       setFeeling(null);
       setEnergy(null);
       showSkateTrail();
+      const dates = [...trainingSessions.map((x) => new Date(x.date)), new Date()];
+      const msg = celebrateMessage(sessionsThisWeek(dates), dayStreak(dates.map((date) => ({ date }))).current, language === 'bg');
+      toast.success(msg.title, { description: msg.sub, duration: 3500, className: 'rink-celebrate' });
       onSaved();
     } catch {
       toast.error(t('a.tr.saveFailed'));
