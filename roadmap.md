@@ -25,3 +25,4 @@
 - [ ] Compare production Lighthouse performance before and after (requires a comparable production baseline, no publishing in this pass)
 - [x] Add semantic risk flags and differentiated safety cards; verify veiled Bulgarian messages and normal chat
 - [x] Bulgarian copy pass: AI Coach rename, no dashes or semicolons, exercise names, back button, 5-face scale plus Energy, BG dates, shared focus on Goals, install banner only on Today
+- [x] Ice Rink visual pass for the signed-in app: colors, readable labels, cards, Today, Progress heatmap/chart/My elements, empty states, animations

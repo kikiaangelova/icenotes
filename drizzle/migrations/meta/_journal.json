@@ -50,6 +50,13 @@
       "when": 1794828210086,
       "tag": "0006_training_energy",
       "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "7",
+      "when": 1794828675787,
+      "tag": "0007_skater_elements",
+      "breakpoints": true
     }
   ]
 }

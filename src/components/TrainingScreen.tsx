@@ -8,6 +8,7 @@ import { cn } from '@/lib/utils';
 import { format } from 'date-fns';
 import { Snowflake, Dumbbell, Brain, Check, Laugh, Smile, Meh, Frown, Angry, BatteryFull, BatteryMedium, BatteryLow } from 'lucide-react';
 import { toast } from 'sonner';
+import { showSkateTrail } from './rink/RinkArt';
 
 const DURATIONS = [30, 45, 60, 90, 120];
 const FEELINGS = [
@@ -94,6 +95,7 @@ export const TrainingScreen: React.FC<TrainingScreenProps> = ({ onSaved, onOpenP
       setNote('');
       setFeeling(null);
       setEnergy(null);
+      showSkateTrail();
       onSaved();
     } catch {
       toast.error(t('a.tr.saveFailed'));

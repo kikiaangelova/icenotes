@@ -444,23 +444,85 @@
 
 @layer components {
   /* Signed-in product system. Kept scoped so the public site is unchanged. */
+  /* Signed-in product: Ice Rink system. Scoped so the public site is unchanged. */
   .authenticated-app {
-    --background: 210 25% 97%;
-    --foreground: 218 58% 9%;
+    --background: 210 67% 97%;          /* #F4F8FC */
+    --foreground: 214 68% 13%;          /* #0B1F3A */
     --card: 0 0% 100%;
-    --card-foreground: 221 48% 10%;
-    --primary: 216 64% 12%;
-    --primary-foreground: 210 40% 98%;
-    --secondary: 210 30% 94%;
-    --secondary-foreground: 218 38% 20%;
-    --muted: 210 25% 95%;
-    --muted-foreground: 216 15% 42%;
-    --accent: 198 58% 48%;
-    --accent-foreground: 210 40% 98%;
-    --border: 211 20% 80%;
-    --input: 214 24% 82%;
-    --ring: 202 67% 45%;
+    --card-foreground: 214 68% 13%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 214 68% 13%;
+    --primary: 214 68% 13%;
+    --primary-foreground: 210 67% 98%;
+    --secondary: 205 60% 93%;
+    --secondary-foreground: 214 68% 13%;
+    --muted: 208 45% 92%;
+    --muted-foreground: 214 25% 36%;    /* AA on white and on the ice background */
+    --accent: 194 68% 54%;              /* #3BB3D9 for fills, bars, active states */
+    --accent-foreground: 214 68% 13%;
+    --accent-ink: 196 80% 30%;          /* readable turquoise for text */
+    --coral: 12 100% 67%;               /* #FF7A59 achievements only */
+    --border: 210 40% 88%;
+    --input: 210 35% 84%;
+    --ring: 194 68% 45%;
+    --radius: 1rem;
+    --rink-shadow: 0 1px 2px hsl(214 68% 13% / 0.05), 0 8px 24px -12px hsl(214 68% 13% / 0.16);
+    --rink-gradient: linear-gradient(120deg, hsl(214 68% 13%) 0%, hsl(205 70% 28%) 55%, hsl(194 68% 46%) 100%);
+    --heat-1: 205 50% 86%;
+    --heat-2: 200 55% 74%;
+    --heat-3: 196 60% 60%;
+    --heat-4: 196 70% 44%;
+    --heat-5: 205 75% 28%;
     font-family: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
+    font-size: 15px;
+  }
+
+  .dark .authenticated-app, .authenticated-app.dark {
+    --background: 216 69% 10%;          /* #08162B */
+    --foreground: 210 50% 96%;
+    --card: 215 55% 15%;
+    --card-foreground: 210 50% 96%;
+    --popover: 215 55% 15%;
+    --popover-foreground: 210 50% 96%;
+    --primary: 194 68% 54%;
+    --primary-foreground: 216 69% 10%;
+    --secondary: 215 45% 20%;
+    --secondary-foreground: 210 50% 96%;
+    --muted: 215 45% 20%;
+    --muted-foreground: 210 25% 74%;
+    --accent-ink: 194 68% 62%;
+    --border: 215 40% 24%;
+    --input: 215 40% 28%;
+    --rink-shadow: 0 1px 2px hsl(0 0% 0% / 0.3), 0 8px 24px -12px hsl(0 0% 0% / 0.5);
+  }
+
+  /* Readability floor: no tiny mono capitals inside the app. */
+  .authenticated-app .font-mono { font-family: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif; }
+  .authenticated-app .uppercase { text-transform: none; letter-spacing: 0; }
+  .authenticated-app .text-\[10px\], .authenticated-app .text-\[11px\], .authenticated-app .text-\[12px\], .authenticated-app .text-xs { font-size: 13px; line-height: 1.4; }
+  .authenticated-app .text-sm { font-size: 15px; line-height: 1.5; }
+  .authenticated-app .text-muted-foreground\/80, .authenticated-app .text-muted-foreground\/70 { color: hsl(var(--muted-foreground)); }
+  .authenticated-app svg.lucide { stroke-width: 2; }
+
+  .rink-card { background: hsl(var(--card)); border-radius: 16px; box-shadow: var(--rink-shadow); }
+  .rink-focus { background-image: radial-gradient(120% 80% at 100% 0%, hsl(var(--accent) / 0.14), transparent 60%); }
+  .rink-cta { background: var(--rink-gradient); color: hsl(210 67% 98%); box-shadow: 0 10px 24px -12px hsl(194 68% 40% / 0.6); transition: transform .15s ease, filter .15s ease; }
+  .rink-cta:hover { filter: brightness(1.06); }
+  .rink-cta:active { transform: scale(0.98); }
+  .rink-section-title { font-size: 20px; font-weight: 800; line-height: 1.2; color: hsl(var(--foreground)); }
+  .rink-chip { min-height: 48px; border-radius: 14px; background: hsl(var(--secondary)); padding: 0 12px; font-size: 15px; font-weight: 600; color: hsl(var(--foreground)); transition: background-color .15s ease; }
+  .rink-chip-on { background: hsl(var(--primary)); color: hsl(var(--primary-foreground)); }
+  .text-accent-ink { color: hsl(var(--accent-ink)); }
+  .authenticated-app .nav-label { font-size: 13px; letter-spacing: -0.03em; }
+  .rink-date::first-letter { text-transform: uppercase; }
+
+  .rink-trail path { stroke-dasharray: 520; stroke-dashoffset: 520; animation: rink-trail 1.2s ease-out forwards; }
+  @keyframes rink-trail { 0% { stroke-dashoffset: 520; opacity: 1; } 70% { stroke-dashoffset: 0; opacity: 1; } 100% { stroke-dashoffset: 0; opacity: 0; } }
+  .rink-spark span { position: absolute; width: 8px; height: 8px; border-radius: 9999px; background: hsl(12 100% 67%); animation: rink-spark .8s ease-out forwards; transform: rotate(var(--a)) translateY(0); }
+  @keyframes rink-spark { to { transform: rotate(var(--a)) translateY(-56px) scale(0.3); opacity: 0; } }
+  @media (prefers-reduced-motion: reduce) {
+    .rink-trail, .rink-spark { display: none; }
+    .rink-cta { transition: none; }
   }
 
   .authenticated-app h1,
@@ -474,19 +536,21 @@
   }
 
   .app-page-title {
-    @apply text-3xl font-extrabold leading-tight text-foreground sm:text-4xl;
+    @apply text-[32px] font-extrabold leading-[1.1] text-foreground sm:text-[40px];
+    letter-spacing: -0.01em;
   }
 
   .app-page-subtitle {
-    @apply mt-1 text-sm leading-relaxed text-muted-foreground;
+    @apply mt-2 text-[15px] leading-relaxed text-muted-foreground;
   }
 
   .app-section-label {
-    @apply font-mono text-[10px] font-medium uppercase text-muted-foreground;
+    @apply text-[13px] font-semibold text-muted-foreground;
   }
 
   .app-panel {
-    @apply rounded-sm border border-border bg-card;
+    @apply rounded-2xl bg-card;
+    box-shadow: var(--rink-shadow);
   }
 
   .app-row {
@@ -661,14 +725,7 @@
     background-size: 6rem 100%;
   }
 
-  .app-workspace::before {
-    content: '';
-    display: block;
-    width: 3rem;
-    height: 2px;
-    margin-bottom: 1.75rem;
-    background: hsl(var(--accent));
-  }
+
 
   .authenticated-app > header,
   .public-navbar {
@@ -690,29 +747,19 @@
     padding-top: calc(0.5rem + env(safe-area-inset-top, 0px));
   }
 
-  .authenticated-app main {
-    background-image: linear-gradient(to right, hsl(var(--border) / 0.35) 1px, transparent 1px);
-    background-position: 1rem 0;
-    background-size: calc(100% - 2rem) 100%;
-    background-repeat: no-repeat;
-  }
 
-  @media (min-width: 640px) {
-    .authenticated-app main {
-      background-position: 2rem 0;
-      background-size: calc(100% - 4rem) 100%;
-    }
-  }
 
   .app-sequence > header {
-    padding-bottom: 2rem;
-    border-bottom: 1px solid hsl(var(--border));
+    padding-bottom: 1.5rem;
   }
 
   .app-step {
     position: relative;
-    padding: 1.75rem 0;
-    border-bottom: 1px solid hsl(var(--border));
+    margin-bottom: 0.875rem;
+    padding: 1.25rem;
+    border-radius: 16px;
+    background: hsl(var(--card));
+    box-shadow: var(--rink-shadow);
   }
 
   .auth-edge {
