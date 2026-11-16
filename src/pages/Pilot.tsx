@@ -54,7 +54,18 @@ export default function Pilot() {
     if (!parsed.success) { setError('invalid'); return; }
     setBusy(true); setError(null);
     try {
-      const { error: insertError } = await supabase.from('pilot_waitlist').insert(parsed.data);
+      const data = parsed.data;
+      // Explicit required fields keep the insert type sound with this project's non-strict Zod inference.
+      const { error: insertError } = await supabase.from('pilot_waitlist').insert({
+        role: data.role ?? role,
+        first_name: data.first_name ?? '',
+        email: data.email ?? '',
+        age_group: data.age_group ?? null,
+        club: data.club ?? '',
+        note: data.note ?? '',
+        locale: data.locale ?? language,
+        consent: true,
+      });
       if (insertError) { setError(insertError.code === '23505' ? 'duplicate' : 'error'); return; }
       setSuccess(true);
     } catch { setError('error'); } finally { setBusy(false); }
