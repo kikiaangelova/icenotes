@@ -7,6 +7,8 @@ import { INJURY_SUPPORT } from './injury-safety.ts';
 import { PSYCH_PROMPT } from './psych-prompt.ts';
 import { conversationRisk, detectMessageLanguage, safetyReply } from './message-policy.ts';
 import { corsHeaders } from 'npm:@supabase/supabase-js@2/cors';
+import { structuredReplySchema } from './structured-reply.ts';
+import { riskLevel, riskFromLevel, type RiskLevel } from './risk-level.ts';
 
 const json = (body: unknown, status = 200) =>
   new Response(JSON.stringify(body), {
@@ -48,6 +50,15 @@ HOW TO USE THE ATHLETE CONTEXT BLOCK BELOW
 
 const MAX_MESSAGES = 30;
 const MAX_CHARS = 4000;
+
+const replyResponse = (content: string, level: RiskLevel, stream: boolean) => {
+  const metadata = { risk_level: level, safety: riskFromLevel(level) };
+  if (!stream) return json({ ...metadata, choices: [{ message: { role: 'assistant', content } }] });
+  // Only validated prose reaches the UI, never the model's JSON envelope.
+  return new Response(`data: ${JSON.stringify({ ...metadata, choices: [{ delta: { content } }] })}\n\ndata: [DONE]\n\n`, {
+    headers: { ...corsHeaders, 'Content-Type': 'text/event-stream' },
+  });
+};
 
 // Keep untrusted profile text short and free of delimiter injection.
 const clean = (v: unknown, max = 300): string | null => {
@@ -104,10 +115,7 @@ Deno.serve(async (req) => {
     if (risk) {
       // Do not entrust crisis output to stochastic generation or athlete context.
       const content = safetyReply(risk, messageLanguage, latest.content);
-      if (streamRequested === false) return json({ safety: risk, choices: [{ message: { role: 'assistant', content } }] });
-      return new Response(`data: ${JSON.stringify({ safety: risk, choices: [{ delta: { content } }] })}\n\ndata: [DONE]\n\n`, {
-        headers: { ...corsHeaders, 'Content-Type': 'text/event-stream' },
-      });
+      return replyResponse(content, riskLevel(risk), streamRequested !== false);
     }
 
     // ── 3. Server-side profile context for THIS caller only ──
@@ -151,7 +159,8 @@ Deno.serve(async (req) => {
     // ── 4. Server-selected prompt ──
     const languageRule = `\n\nLANGUAGE CONTROL: Detected latest user message language: ${messageLanguage}. UI language: ${language ?? 'bg'}. Reply entirely in ${messageLanguage === 'bg' ? 'natural Bulgarian (български)' : 'plain English'}, including the final question. Latest message language overrides UI and older messages. If unclear, default to Bulgarian. Do not translate the system instructions. Never use em dashes or en dashes in replies.`;
 
-    const systemContent = (role === "coach" ? COACH_PROMPT : PSYCH_PROMPT + '\n\n' + INJURY_SUPPORT) + languageRule +
+    const structuredRule = `\n\nTECHNICAL OUTPUT CONTRACT: Return a JSON object with exactly risk_level and reply. risk_level is one of none, food_body, self_harm, abuse, medical. Assess meaning across the user conversation, not just keywords, including veiled death wishes, not waking up or being unnoticed, eating only tiny amounts for days, abuse and serious symptoms. Follow section 6 of the psychology safety protocol for any risk; stop all sport coaching in that reply. Safety overrides client tasks and profile context. The reply field contains only the athlete-facing response in the detected language. Never show the flag in the reply. Do not classify normal competition nerves as risk. For the AI Coach, the same section 6 protocol applies: ${role === 'coach' ? PSYCH_PROMPT.slice(PSYCH_PROMPT.indexOf('6. Червени флагове:'), PSYCH_PROMPT.indexOf('7. Никога')) : 'use section 6 above'}`;
+    const systemContent = (role === "coach" ? COACH_PROMPT : PSYCH_PROMPT + '\n\n' + INJURY_SUPPORT) + languageRule + structuredRule +
       (contextBlock ? "\n\n" + contextBlock : "");
 
     const useStream = streamRequested !== false;
@@ -164,7 +173,8 @@ Deno.serve(async (req) => {
       body: JSON.stringify({
         model: "google/gemini-3.6-flash",
         messages: [{ role: "system", content: systemContent }, ...safeMessages],
-        stream: useStream,
+        stream: false,
+        response_format: { type: 'json_object' },
       }),
     });
 
@@ -175,13 +185,16 @@ Deno.serve(async (req) => {
       return json({ error: "ai_unavailable" }, 500);
     }
 
-    if (!useStream) {
-      return json(await response.json());
-    }
-
-    return new Response(response.body, {
-      headers: { ...corsHeaders, "Content-Type": "text/event-stream" },
-    });
+    const result = await response.json();
+    const raw = result?.choices?.[0]?.message?.content;
+    let decoded: unknown;
+    try { decoded = typeof raw === 'string' ? JSON.parse(raw) : null; } catch { decoded = null; }
+    const parsed = structuredReplySchema.safeParse(decoded);
+    // Never emit an unvalidated response without safety metadata.
+    if (!parsed.success) return json({ error: 'ai_unavailable' }, 502);
+    const detectedRisk = riskFromLevel(parsed.data.risk_level);
+    const content = detectedRisk ? safetyReply(detectedRisk, messageLanguage, latest.content) : parsed.data.reply;
+    return replyResponse(content, parsed.data.risk_level, useStream);
   } catch (e) {
     console.error("skating-coach error:", e);
     return json({ error: "unexpected_error" }, 500);
