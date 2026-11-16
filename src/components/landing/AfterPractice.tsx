@@ -66,7 +66,7 @@ export function AfterPractice() {
         </ol>
       </div>
       <div className="mx-auto w-full max-w-[330px]">
-        <p className="mb-3 text-center font-mono text-xs uppercase text-muted-foreground">{copy.example}</p>
+        <div className="mb-4 text-center"><span className="energy-sticker">{copy.example}</span></div>
         <div className="relative overflow-hidden rounded-[2rem] border-2 border-primary bg-background p-5">
           <div className="mx-auto mb-5 h-1 w-12 rounded-full bg-primary" aria-hidden />
           <div className="flex items-center justify-between border-b border-border pb-3"><span className="text-sm font-semibold">SkateGoals</span><span className="font-mono text-xs text-muted-foreground">{copy.date}</span></div>

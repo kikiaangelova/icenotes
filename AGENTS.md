@@ -9,3 +9,4 @@ Public contact messages use a dedicated insert-only table with validated fields;
 Comeback ratings and pre-start cues use dedicated athlete-owned tables with schema validation and RLS; Progress reads the same check-ins so mental recovery is never inferred from training records.
 Relaxation practices reuse SessionTimer in compact countdown mode, start only on user action, and bypass physical tension in painful or injured areas; clinical clearance stays with the doctor or physio.
 AI message policy is server-authoritative: detect latest-message language and conversation red flags before generation, return deterministic safety responses with metadata for both streaming and non-streaming consumers, and preserve uploaded psychology instructions verbatim.
+Public motion is CSS plus route-scoped IntersectionObserver mounted through Navbar; keep app/auth styling isolated and honor reduced motion for all public animations.

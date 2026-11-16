@@ -7,6 +7,7 @@ import { SkateGoalsMark } from './SkateGoalsMark';
 import { cn } from '@/lib/utils';
 import { useLanguage } from '@/context/LanguageContext';
 import { LanguageSwitcher } from './LanguageSwitcher';
+import { usePublicMotion } from './PublicMotion';
 
 interface NavbarProps {
   isDarkMode: boolean;
@@ -14,6 +15,7 @@ interface NavbarProps {
 }
 
 export const Navbar: React.FC<NavbarProps> = ({ isDarkMode, onToggleDarkMode }) => {
+  usePublicMotion();
   const location = useLocation();
   const [mobileOpen, setMobileOpen] = useState(false);
   const { t, language } = useLanguage();

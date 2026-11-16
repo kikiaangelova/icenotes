@@ -46,7 +46,7 @@ export const SmartStartCTA: React.FC<SmartStartCTAProps> = ({
     <Button
       onClick={handleClick}
       disabled={loading || rest.disabled}
-      className={cn(className)}
+      className={cn('energy-primary-button', className)}
       {...rest}
     >
       {loading ? (

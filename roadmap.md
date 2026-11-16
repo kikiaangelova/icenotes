@@ -21,3 +21,4 @@
 - [x] Update About trust content and signup consent; add private public contact delivery and verify EN/BG
 - [x] Add private comeback check-ins, Progress trends, injury-safe companion prompts and relaxation tools; verify EN/BG
 - [x] Replace psychology instructions verbatim, enforce message language and code safety, add menu language switch, and verify authenticated crisis and normal conversations
+- [ ] Add public athletic energy, mobile hero and snap panels, shared motion and sticky CTA; verify bilingual layouts and loading
