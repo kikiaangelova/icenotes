@@ -1,0 +1,12 @@
+CREATE TABLE public.comeback_checkins (id uuid PRIMARY KEY DEFAULT gen_random_uuid(), user_id uuid NOT NULL, created_at timestamptz NOT NULL DEFAULT now(), confidence integer NOT NULL CHECK (confidence BETWEEN 0 AND 10), fear integer NOT NULL CHECK (fear BETWEEN 0 AND 10), mood integer NOT NULL CHECK (mood BETWEEN 0 AND 10), can_train text NOT NULL CHECK (length(btrim(can_train)) BETWEEN 1 AND 500), looking_forward text NOT NULL CHECK (length(btrim(looking_forward)) BETWEEN 1 AND 500));
+REVOKE ALL ON public.comeback_checkins FROM PUBLIC,anon,authenticated;
+GRANT SELECT,INSERT,UPDATE,DELETE ON public.comeback_checkins TO authenticated;
+GRANT ALL ON public.comeback_checkins TO service_role;
+ALTER TABLE public.comeback_checkins ENABLE ROW LEVEL SECURITY;
+CREATE POLICY own_comeback ON public.comeback_checkins TO authenticated USING (auth.uid()=user_id) WITH CHECK (auth.uid()=user_id);
+CREATE TABLE public.prestart_routines (user_id uuid PRIMARY KEY, updated_at timestamptz NOT NULL DEFAULT now(), breath text NOT NULL CHECK(length(btrim(breath)) BETWEEN 1 AND 100), body text NOT NULL CHECK(length(btrim(body)) BETWEEN 1 AND 100), focus text NOT NULL CHECK(length(btrim(focus)) BETWEEN 1 AND 100));
+REVOKE ALL ON public.prestart_routines FROM PUBLIC,anon,authenticated;
+GRANT SELECT,INSERT,UPDATE,DELETE ON public.prestart_routines TO authenticated;
+GRANT ALL ON public.prestart_routines TO service_role;
+ALTER TABLE public.prestart_routines ENABLE ROW LEVEL SECURITY;
+CREATE POLICY own_prestart ON public.prestart_routines TO authenticated USING(auth.uid()=user_id) WITH CHECK(auth.uid()=user_id);

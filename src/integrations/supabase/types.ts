@@ -14,6 +14,39 @@ export type Database = {
   }
   public: {
     Tables: {
+      comeback_checkins: {
+        Row: {
+          can_train: string
+          confidence: number
+          created_at: string
+          fear: number
+          id: string
+          looking_forward: string
+          mood: number
+          user_id: string
+        }
+        Insert: {
+          can_train: string
+          confidence: number
+          created_at?: string
+          fear: number
+          id?: string
+          looking_forward: string
+          mood: number
+          user_id: string
+        }
+        Update: {
+          can_train?: string
+          confidence?: number
+          created_at?: string
+          fear?: number
+          id?: string
+          looking_forward?: string
+          mood?: number
+          user_id?: string
+        }
+        Relationships: []
+      }
       contact_messages: {
         Row: {
           consent: boolean
@@ -499,6 +532,30 @@ export type Database = {
           locale?: string
           note?: string | null
           role?: string
+        }
+        Relationships: []
+      }
+      prestart_routines: {
+        Row: {
+          body: string
+          breath: string
+          focus: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          body: string
+          breath: string
+          focus: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          body?: string
+          breath?: string
+          focus?: string
+          updated_at?: string
+          user_id?: string
         }
         Relationships: []
       }
