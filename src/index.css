@@ -462,6 +462,9 @@
     --accent-foreground: 214 68% 13%;
     --accent-ink: 196 80% 30%;          /* readable turquoise for text */
     --coral: 12 100% 67%;               /* #FF7A59 achievements only */
+    --tone-mint: 164 55% 38%;
+    --tone-violet: 248 45% 55%;
+    --tone-amber: 32 90% 48%;
     --border: 210 40% 88%;
     --input: 210 35% 84%;
     --ring: 194 68% 45%;
@@ -1157,3 +1160,13 @@
   font-size: 13px;
   line-height: 1.45;
 }
+
+/* Today: small colour tones for icon tiles. Tinted, never loud. */
+.authenticated-app .tone-ice    { --tone: var(--accent-ink); }
+.authenticated-app .tone-coral  { --tone: var(--coral); }
+.authenticated-app .tone-mint   { --tone: var(--tone-mint); }
+.authenticated-app .tone-violet { --tone: var(--tone-violet); }
+.authenticated-app .tone-amber  { --tone: var(--tone-amber); }
+.authenticated-app .tone-tile { background: hsl(var(--tone) / 0.12); color: hsl(var(--tone)); }
+.authenticated-app .tone-text { color: hsl(var(--tone)); }
+.authenticated-app .tone-edge { box-shadow: inset 4px 0 0 hsl(var(--tone)), var(--rink-shadow); }

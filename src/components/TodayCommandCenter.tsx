@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowRight, Trophy, CalendarDays, Wind, MessageCircle, Users, Target, Timer, Flag, Check } from 'lucide-react';
+import { ArrowRight, Trophy, CalendarDays, Wind, MessageCircle, Users, Target, Timer, Flag, Check, Sparkles } from 'lucide-react';
 import { addDays, isSameDay, startOfWeek } from 'date-fns';
 import { useJournal } from '@/context/JournalContext';
 import { weekStreak } from '@/lib/rinkStats';
@@ -12,12 +12,22 @@ export const SkateIcon: React.FC<{ className?: string }> = ({ className }) => (
   </svg>
 );
 
-const EXERCISES = [
-  { en: 'What depends on me', bg: 'Какво зависи от мен', min: 3 },
-  { en: 'Is what I tell myself true?', bg: 'Вярно ли е това, което си казвам?', min: 4 },
-  { en: 'Mental rehearsal', bg: 'Мислена репетиция', min: 5 },
-  { en: 'What I can already do', bg: 'Какво вече мога', min: 3 },
-  { en: 'Where I tense up', bg: 'Къде се стягам', min: 2 },
+export const EXERCISES = [
+  { en: 'What depends on me', bg: 'Какво зависи от мен', min: 3,
+    howEn: 'Split today in two: what you control and what you do not. Keep only the first list.',
+    howBg: 'Раздели деня на две: какво зависи от теб и какво не. Задръж само първото.' },
+  { en: 'Is what I tell myself true?', bg: 'Вярно ли е това, което си казвам?', min: 4,
+    howEn: 'Catch one harsh thought and look for facts for and against it.',
+    howBg: 'Хвани една строга мисъл и потърси факти за и против нея.' },
+  { en: 'Mental rehearsal', bg: 'Мислена репетиция', min: 5,
+    howEn: 'Skate one part of your program in your head, including a small mistake and how you carry on.',
+    howBg: 'Изкарай наум част от програмата, заедно с малка грешка и как продължаваш.' },
+  { en: 'What I can already do', bg: 'Какво вече мога', min: 3,
+    howEn: 'Write three things you already do well on the ice. Real ones, from this month.',
+    howBg: 'Запиши три неща, които вече ти се получават на леда. Истински, от този месец.' },
+  { en: 'Where I tense up', bg: 'Къде се стягам', min: 2,
+    howEn: 'Scan from shoulders to feet. Notice where you hold tension, then breathe out slowly.',
+    howBg: 'Мини от раменете до краката. Забележи къде се стягаш и издишай бавно.' },
 ];
 import { useLanguage } from '@/context/LanguageContext';
 
@@ -138,6 +148,21 @@ export const TodayCommandCenter: React.FC<Props> = ({
         )}
       </button>
 
+      <button type="button" onClick={onExercises || onSupport} className="rink-card tone-violet tone-edge block w-full p-5 text-left">
+        <span className="flex items-center gap-3">
+          <span className="tone-tile flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl"><Sparkles className="h-5 w-5" /></span>
+          <span className="min-w-0 flex-1">
+            <span className="tone-text block text-[13px] font-semibold">{bg ? 'Упражнение за днес' : "Today's exercise"}</span>
+            <span className="block text-[17px] font-bold leading-snug text-foreground">{bg ? exercise.bg : exercise.en}</span>
+          </span>
+        </span>
+        <span className="mt-3 block text-[15px] leading-relaxed text-foreground/85">{bg ? exercise.howBg : exercise.howEn}</span>
+        <span className="mt-4 flex items-center justify-between">
+          <span className="inline-flex items-center gap-1.5 text-[13px] font-semibold text-muted-foreground"><Timer className="h-4 w-4" />{exercise.min} {bg ? 'мин' : 'min'}</span>
+          <span className="tone-tile inline-flex min-h-11 items-center gap-1.5 rounded-full px-4 text-[14px] font-bold">{bg ? 'Започни' : 'Start'}<ArrowRight className="h-4 w-4" /></span>
+        </span>
+      </button>
+
       <section className="rink-card p-5" aria-labelledby="today-week">
         <div className="flex items-baseline justify-between gap-3">
           <h2 id="today-week" className="flex items-center gap-2 text-[13px] font-semibold text-accent-ink">
@@ -169,7 +194,7 @@ export const TodayCommandCenter: React.FC<Props> = ({
 
       <div className="grid gap-3 sm:grid-cols-2">
         <button type="button" onClick={onCompetitionPrep} className="rink-card flex min-h-[96px] w-full items-start gap-4 p-5 text-left">
-          <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-secondary"><Trophy className="h-5 w-5 text-primary" /></span>
+          <span className="tone-amber tone-tile flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl"><Trophy className="h-5 w-5" /></span>
           <span className="min-w-0 flex-1">
             <span className="block text-[13px] font-semibold text-accent-ink">{bg ? 'Следващ старт' : 'Next competition'}</span>
             {hasComp ? (
@@ -189,7 +214,7 @@ export const TodayCommandCenter: React.FC<Props> = ({
         </button>
 
         <button type="button" onClick={onGoals} className="rink-card flex min-h-[96px] w-full items-start gap-4 p-5 text-left">
-          <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-secondary"><Flag className="h-5 w-5 text-primary" /></span>
+          <span className="tone-mint tone-tile flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl"><Flag className="h-5 w-5" /></span>
           <span className="min-w-0 flex-1">
             <span className="block text-[13px] font-semibold text-accent-ink">{bg ? 'Твоята цел' : 'Your goal'}</span>
             {mainGoal ? (
@@ -223,13 +248,13 @@ export const TodayCommandCenter: React.FC<Props> = ({
 
       <div className="-mx-4 flex snap-x scroll-px-4 gap-3 overflow-x-auto px-4 pb-2 pt-1 sm:mx-0 sm:grid sm:grid-cols-3 sm:px-0">
         {[
-          { Icon: Wind, title: bg ? 'Преди старт' : 'Before the start', sub: bg ? 'Дишане 2 мин' : 'Breathing 2 min', onClick: onMentalPrep },
-          { Icon: MessageCircle, title: bg ? 'Говори с AI' : 'Talk to AI', sub: bg ? 'План или спокойствие' : 'Plan or calm', onClick: onSupport },
-          { Icon: Users, title: bg ? 'Общност' : 'Community', sub: bg ? 'Победи и въпроси' : 'Wins and questions', onClick: onCommunity },
-        ].map(({ Icon, title, sub, onClick }) => (
+          { Icon: Wind, tone: 'tone-ice', title: bg ? 'Преди старт' : 'Before the start', sub: bg ? 'Дишане 2 мин' : 'Breathing 2 min', onClick: onMentalPrep },
+          { Icon: MessageCircle, tone: 'tone-violet', title: bg ? 'Говори с AI' : 'Talk to AI', sub: bg ? 'План или спокойствие' : 'Plan or calm', onClick: onSupport },
+          { Icon: Users, tone: 'tone-coral', title: bg ? 'Общност' : 'Community', sub: bg ? 'Победи и въпроси' : 'Wins and questions', onClick: onCommunity },
+        ].map(({ Icon, tone, title, sub, onClick }) => (
           <button key={title} type="button" onClick={onClick} disabled={!onClick} aria-disabled={!onClick}
             className="rink-card flex min-h-[96px] w-[42%] min-w-[140px] shrink-0 snap-start flex-col justify-between p-4 text-left disabled:opacity-70 sm:w-auto">
-            <Icon className="h-6 w-6 text-accent-ink" />
+            <span className={`${tone} tone-tile flex h-10 w-10 items-center justify-center rounded-xl`}><Icon className="h-5 w-5" /></span>
             <span>
               <span className="block text-[15px] font-bold text-foreground">{title}</span>
               <span className="block text-[13px] text-muted-foreground">{sub}</span>
@@ -238,15 +263,6 @@ export const TodayCommandCenter: React.FC<Props> = ({
         ))}
       </div>
 
-      <button type="button" onClick={onExercises || onSupport} className="rink-card flex w-full items-center gap-4 p-5 text-left">
-        <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-secondary"><Timer className="h-6 w-6 text-primary" /></span>
-        <span className="min-w-0 flex-1">
-          <span className="block text-[13px] font-semibold text-accent-ink">{bg ? 'Упражнение за днес' : "Today's exercise"}</span>
-          <span className="block text-[17px] font-bold leading-snug text-foreground">{bg ? exercise.bg : exercise.en}</span>
-          <span className="block text-[13px] text-muted-foreground">{exercise.min} {bg ? 'мин' : 'min'}</span>
-        </span>
-        <ArrowRight className="h-5 w-5 shrink-0 text-muted-foreground" />
-      </button>
 
       {/* What is coming next */}
       <div className="space-y-2.5">
