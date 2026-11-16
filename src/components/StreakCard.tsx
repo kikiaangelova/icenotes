@@ -8,7 +8,7 @@ import {
 import { Flame, Sparkles, Moon, Pause, Heart, BookOpen, Plane, GraduationCap, HeartPulse, Wind } from 'lucide-react';
 import { format, parseISO } from 'date-fns';
 
-const REASONS: { id: PauseReason. Icon: React.ComponentType<any>; labelKey: string }[] = [
+const REASONS: { id: PauseReason; icon: React.ComponentType<any>; labelKey: string }[] = [
   { id: 'injury',   icon: HeartPulse,      labelKey: 'streak.pause.reason.injury' },
   { id: 'exams',    icon: GraduationCap,   labelKey: 'streak.pause.reason.exams' },
   { id: 'burnout',  icon: Wind,            labelKey: 'streak.pause.reason.burnout' },

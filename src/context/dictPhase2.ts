@@ -1,6 +1,6 @@
 // SkateGoals Phase 2 — onboarding, public positioning and AI support copy.
 // EN and BG written natively side by side, never literal translations.
-export const PHASE2_DICT: Record<string, { en: string. Bg: string }> = {
+export const PHASE2_DICT: Record<string, { en: string; bg: string }> = {
   // ── AI session errors ──
   'ai.err.signin': {
     en: 'Sign in to use AI support.',

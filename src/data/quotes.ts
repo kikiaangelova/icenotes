@@ -6,7 +6,7 @@ export interface Quote {
 }
 
 interface RawQuote {
-  quote: { en: string. Bg: string };
+  quote: { en: string; bg: string };
   author: string;
   category: string;
 }

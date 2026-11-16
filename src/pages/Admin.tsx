@@ -402,7 +402,7 @@ const AdminPage: React.FC = () => {
   );
 };
 
-const StatCard: React.FC<{ label: string. Value: string | number }> = ({
+const StatCard: React.FC<{ label: string; value: string | number }> = ({
   label,
   value,
 }) => (
@@ -414,7 +414,7 @@ const StatCard: React.FC<{ label: string. Value: string | number }> = ({
   </Card>
 );
 
-const DistRow: React.FC<{ label: string. Count: number. Pct: number }> = ({
+const DistRow: React.FC<{ label: string; count: number; pct: number }> = ({
   label,
   count,
   pct,

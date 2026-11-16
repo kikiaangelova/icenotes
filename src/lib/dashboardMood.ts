@@ -175,7 +175,7 @@ export interface WelcomeState {
   eyebrow: string;                     // small label above headline
   headline: string;                    // main welcome line
   micro: string;                       // supportive subtext
-  primary: { label: string. Action: WelcomeAction };
+  primary: { label: string; action: WelcomeAction };
 }
 
 const partOfDay = () => {

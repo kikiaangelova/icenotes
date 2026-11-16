@@ -17,8 +17,8 @@ const injectStyle = () => {
   const style = document.createElement('style');
   style.textContent = `
 @keyframes icenotes-confetti-fall {
-  0%   { transform: translate3d(0,0,0) rotate(0deg). Opacity: 1; }
-  100% { transform: translate3d(var(--dx), var(--dy), 0) rotate(var(--rot)). Opacity: 0; }
+  0%   { transform: translate3d(0,0,0) rotate(0deg); opacity: 1; }
+  100% { transform: translate3d(var(--dx), var(--dy), 0) rotate(var(--rot)); opacity: 0; }
 }
 .icenotes-confetti-piece {
   position: fixed;

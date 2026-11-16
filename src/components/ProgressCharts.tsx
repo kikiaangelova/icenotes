@@ -52,7 +52,7 @@ export const ProgressCharts: React.FC = () => {
     acc[date].total++;
     if (attempt.landed) acc[date].landed++;
     return acc;
-  }, {} as Record<string, { total: number. Landed: number }>);
+  }, {} as Record<string, { total: number; landed: number }>);
 
   const jumpSuccessData = Object.entries(jumpsByDate)
     .slice(-14)
@@ -83,7 +83,7 @@ export const ProgressCharts: React.FC = () => {
     acc[attempt.jumpType].total++;
     if (attempt.landed) acc[attempt.jumpType].landed++;
     return acc;
-  }, {} as Record<string, { total: number. Landed: number }>);
+  }, {} as Record<string, { total: number; landed: number }>);
 
   const pieData = Object.entries(jumpsByType).map(([type, data]) => ({
     name: type.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' '),

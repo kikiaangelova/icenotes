@@ -106,7 +106,7 @@ const LEVEL_KEY = 'icenotes:lastLevelSeen';
  * Detects a level increase between sessions and returns the new level once,
  * so the UI can celebrate it. Returns null when nothing to celebrate.
  */
-export const useLevelUp = (level: number): { celebrating: number | null. Dismiss: () => void } => {
+export const useLevelUp = (level: number): { celebrating: number | null; dismiss: () => void } => {
   const [celebrating, setCelebrating] = useState<number | null>(null);
   const handled = useRef(false);
 

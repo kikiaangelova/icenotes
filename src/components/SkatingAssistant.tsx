@@ -11,10 +11,10 @@ import { detectMessageLanguage } from '../../supabase/functions/skating-coach/me
 import { riskLevel, type RiskLevel } from '../../supabase/functions/skating-coach/risk-level';
 
 export type AIRole = 'coach' | 'psych';
-type Msg = { role: 'user' | 'assistant'; content: string. Safety?: RiskLevel };
+type Msg = { role: 'user' | 'assistant'; content: string; safety?: RiskLevel };
 
 const ROLE_META: Record<AIRole, {
-  nameKey: string. TagKey: string. DisclaimerKey: string. GreetingKey: string. PlaceholderKey: string;
+  nameKey: string; tagKey: string; disclaimerKey: string; greetingKey: string; placeholderKey: string;
   starters: string[]; icon: React.ComponentType<{ className?: string }>;
 }> = {
   coach: {
@@ -140,7 +140,7 @@ export const SkatingAssistant: React.FC = () => {
 
   useEffect(() => {
     const handler = (e: Event) => {
-      const detail = (e as CustomEvent<{ role?: AIRole. Message?: string }>).detail;
+      const detail = (e as CustomEvent<{ role?: AIRole; message?: string }>).detail;
       const target: AIRole = detail?.role === 'coach' ? 'coach' : detail?.role === 'psych' ? 'psych' : 'psych';
       setRole(target);
       setOpen(true);

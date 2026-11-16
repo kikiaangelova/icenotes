@@ -17,7 +17,7 @@ interface PremiumContextType {
   // Daily reflections
   dailyReflections: DailyReflection[];
   addDailyReflection: (reflection: Omit<DailyReflection, 'id' | 'createdAt'>) => void;
-  getTodaysPrompt: () => { id: string. Text: string } | null;
+  getTodaysPrompt: () => { id: string; text: string } | null;
   hasTodaysReflection: () => boolean;
   
   // Weekly reflections

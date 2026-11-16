@@ -16,10 +16,10 @@ type Mode = 'before_training' | 'after_training' | 'before_competition' | 'after
 interface ModeConfig {
   id: Mode;
   icon: React.ElementType;
-  tone: { ring: string. Soft: string. Chip: string. Accent: string };
-  label: { en: string. Bg: string };
-  intro: { en: string. Bg: string };
-  prompts: { en: string. Bg: string }[];
+  tone: { ring: string; soft: string; chip: string; accent: string };
+  label: { en: string; bg: string };
+  intro: { en: string; bg: string };
+  prompts: { en: string; bg: string }[];
 }
 
 const MODES: ModeConfig[] = [
@@ -85,7 +85,7 @@ const MODES: ModeConfig[] = [
   },
 ];
 
-const ModeButton: React.FC<{ mode: ModeConfig. Active: boolean. OnClick: () => void. IsBG: boolean }> = ({ mode, active, onClick, isBG }) => {
+const ModeButton: React.FC<{ mode: ModeConfig; active: boolean; onClick: () => void; isBG: boolean }> = ({ mode, active, onClick, isBG }) => {
   const Icon = mode.icon;
   return (
     <button
@@ -240,7 +240,7 @@ export const MindReflection: React.FC = () => {
   const renderHistoryItem = (h: typeof history[number]) => {
     const m = MODES.find(x => x.id === h.entry_type as Mode);
     if (!m) return null;
-    let parsed: { q: string. A: string }[] = [];
+    let parsed: { q: string; a: string }[] = [];
     try { parsed = h.emotion_notes ? JSON.parse(h.emotion_notes) : []; } catch { /* legacy */ }
     const Icon = m.icon;
     return (

@@ -26,7 +26,7 @@ interface TrainingScreenProps {
 
 /**
  * One training screen: type → what you worked on → duration → how it went → note.
- * Recent sessions live below. Target: under 90 seconds, usable rink-side.
+ * Recent sessions live below; target: under 90 seconds, usable rink-side.
  */
 export const TrainingScreen: React.FC<TrainingScreenProps> = ({ onSaved, onOpenPrep }) => {
   const { t } = useLanguage();

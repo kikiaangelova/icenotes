@@ -169,7 +169,7 @@ export const generateTrainingSummaryPDF = (data: ExportData): void => {
 
   if (jumpAttempts.length > 0) {
     // Group jumps by type and level
-    const jumpStats: Record<string, { attempted: number. Landed: number. AvgQuality: number }> = {};
+    const jumpStats: Record<string, { attempted: number; landed: number; avgQuality: number }> = {};
     
     jumpAttempts.forEach(j => {
       const key = `${j.level}-${j.jumpType}`;

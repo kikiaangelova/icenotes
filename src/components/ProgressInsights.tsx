@@ -20,7 +20,7 @@ const parseDate = (date: Date | string): Date =>
 
 type Trend = 'up' | 'down' | 'same';
 
-const TrendBadge: React.FC<{ trend: Trend. Label?: string }> = ({ trend, label }) => {
+const TrendBadge: React.FC<{ trend: Trend; label?: string }> = ({ trend, label }) => {
   const Icon = trend === 'up' ? ArrowUpRight : trend === 'down' ? ArrowDownRight : Minus;
   const color =
     trend === 'up' ? 'text-emerald-600 bg-emerald-50 border-emerald-200'
@@ -199,7 +199,7 @@ export const ProgressInsights: React.FC = () => {
   }, [entries, jumpAttempts, trainingSessions, goals, language]);
 
   // Build insight cards
-  const insightCards: { key: string. Icon: React.ElementType. Tone: 'mint' | 'sky' | 'lavender' | 'pink' | 'peach'; text: string }[] = [];
+  const insightCards: { key: string; icon: React.ElementType; tone: 'mint' | 'sky' | 'lavender' | 'pink' | 'peach'; text: string }[] = [];
 
   // Consistency
   insightCards.push({

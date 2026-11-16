@@ -8,13 +8,13 @@ import { resolveInitialLanguage } from '@/lib/initialLanguage';
 
 export type Language = 'en' | 'bg';
 
-export const LANGUAGES: { code: Language. Label: string. NativeLabel: string }[] = [
+export const LANGUAGES: { code: Language; label: string; nativeLabel: string }[] = [
   { code: 'en', label: 'English', nativeLabel: 'English' },
   { code: 'bg', label: 'Bulgarian', nativeLabel: 'Български' },
 ];
 
 // Each entry has both EN and BG. EN is the source-of-truth fallback.
-type Entry = { en: string. Bg: string };
+type Entry = { en: string; bg: string };
 type Dict = Record<string, Entry>;
 
 const dict: Dict = {

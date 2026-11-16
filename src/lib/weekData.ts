@@ -13,7 +13,7 @@ const sameDay = (a: Date, b: Date) =>
  * Weekly reviews, competition debriefs and other entries do not count.
  */
 export const hasTrainingReflectionToday = (
-  entries: { date: Date | string. SessionType?: string }[],
+  entries: { date: Date | string; sessionType?: string }[],
   now: Date = new Date(),
 ): boolean => countTrainingReflectionsToday(entries, now) > 0;
 
@@ -22,7 +22,7 @@ export const hasTrainingReflectionToday = (
  * the number of sessions logged today, so a second session still asks to reflect.
  */
 export const countTrainingReflectionsToday = (
-  entries: { date: Date | string. SessionType?: string }[],
+  entries: { date: Date | string; sessionType?: string }[],
   now: Date = new Date(),
 ): number =>
   entries.filter(

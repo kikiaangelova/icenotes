@@ -16,7 +16,7 @@ const CHALLENGE_ICON: Record<string, React.ElementType> = {
 };
 
 /** Small progress ring used by each weekly challenge row. */
-const MiniRing: React.FC<{ progress: number. Done: boolean; Icon: React.ElementType }> = ({ progress, done, Icon }) => (
+const MiniRing: React.FC<{ progress: number; done: boolean; Icon: React.ElementType }> = ({ progress, done, Icon }) => (
   <span className="relative w-11 h-11 shrink-0 grid place-items-center">
     <svg viewBox="0 0 36 36" className="absolute inset-0 w-11 h-11 -rotate-90">
       <circle cx="18" cy="18" r="16" fill="none" stroke="hsl(var(--foreground) / 0.08)" strokeWidth="3" />

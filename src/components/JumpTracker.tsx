@@ -17,7 +17,7 @@ import {
 } from 'lucide-react';
 import { JumpType, JumpLevel, JumpAttempt } from '@/types/skater';
 
-const JUMP_TYPES: { type: JumpType. Name: string. Color: string }[] = [
+const JUMP_TYPES: { type: JumpType; name: string; color: string }[] = [
   { type: 'toe-loop', name: 'Toe Loop', color: 'bg-blue-500' },
   { type: 'salchow', name: 'Salchow', color: 'bg-green-500' },
   { type: 'loop', name: 'Loop', color: 'bg-purple-500' },
@@ -26,7 +26,7 @@ const JUMP_TYPES: { type: JumpType. Name: string. Color: string }[] = [
   { type: 'axel', name: 'Axel', color: 'bg-pink-500' },
 ];
 
-const JUMP_LEVELS: { level: JumpLevel. Name: string. Short: string }[] = [
+const JUMP_LEVELS: { level: JumpLevel; name: string; short: string }[] = [
   { level: 'single', name: 'Single', short: '1' },
   { level: 'double', name: 'Double', short: '2' },
   { level: 'triple', name: 'Triple', short: '3' },

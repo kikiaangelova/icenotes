@@ -1,6 +1,6 @@
 // SkateGoals Phase B — one goal system, weekly review, competition prep, voice capture.
 // EN and BG both written natively for a figure-skating environment.
-export type PhaseBEntry = { en: string. Bg: string };
+export type PhaseBEntry = { en: string; bg: string };
 
 export const PHASEB_DICT: Record<string, PhaseBEntry> = {
   // ── Voice capture ──

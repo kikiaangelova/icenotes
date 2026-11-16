@@ -15,8 +15,8 @@ import { toast } from 'sonner';
 
 type Timeframe = 'weekly' | 'monthly' | 'season';
 
-interface Step { id: string. Text: string. Done: boolean }
-interface GoalMeta { why?: string. Steps?: Step[] }
+interface Step { id: string; text: string; done: boolean }
+interface GoalMeta { why?: string; steps?: Step[] }
 
 const parseMeta = (notes?: string): GoalMeta => {
   if (!notes) return {};
@@ -46,7 +46,7 @@ export const GoalsScreen: React.FC<Props> = ({ onOpenWeeklyReview, onOpenCompeti
   } = useJournal();
 
   const [saving, setSaving] = useState(false);
-  const [editing, setEditing] = useState<{ timeframe: Timeframe. Goal?: SkatingGoal } | null>(null);
+  const [editing, setEditing] = useState<{ timeframe: Timeframe; goal?: SkatingGoal } | null>(null);
   const [showOther, setShowOther] = useState(false);
   const [showDone, setShowDone] = useState(false);
 

@@ -28,7 +28,7 @@ function openingLine(themes: DifficultTheme[] = [], bg = false): string {
 }
 
 // Optional, user-started paced breathing without a hold.
-const BreatheStep: React.FC<{ onDone: () => void. Bg: boolean }> = ({ onDone, bg }) => {
+const BreatheStep: React.FC<{ onDone: () => void; bg: boolean }> = ({ onDone, bg }) => {
   const [phase, setPhase] = useState<'in' | 'out'>('in');
   const [cycle, setCycle] = useState(0);
   const [started, setStarted] = useState(false);
@@ -71,7 +71,7 @@ const BreatheStep: React.FC<{ onDone: () => void. Bg: boolean }> = ({ onDone, bg
   );
 };
 
-const GroundStep: React.FC<{ onDone: () => void. Bg: boolean }> = ({ onDone, bg }) => {
+const GroundStep: React.FC<{ onDone: () => void; bg: boolean }> = ({ onDone, bg }) => {
   const prompts = bg ? [
     '5 неща, които виждаш около себе си',
     '4 неща, които можеш да усетиш. Пода, дрехите, въздуха',
@@ -108,7 +108,7 @@ const GroundStep: React.FC<{ onDone: () => void. Bg: boolean }> = ({ onDone, bg 
   );
 };
 
-const RestStep: React.FC<{ onClose: () => void. Bg: boolean }> = ({ onClose, bg }) => (
+const RestStep: React.FC<{ onClose: () => void; bg: boolean }> = ({ onClose, bg }) => (
   <div className="flex flex-col items-center text-center gap-6 py-4">
     <div className="w-20 h-20 rounded-full bg-gradient-to-br from-lavender/60 to-mint/40 flex items-center justify-center">
       <Moon className="w-9 h-9 text-foreground/70" />

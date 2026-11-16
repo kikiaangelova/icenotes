@@ -17,7 +17,7 @@ type SpeechRecognitionLike = {
   start: () => void;
   stop: () => void;
   abort: () => void;
-  onresult: ((e: { resultIndex: number. Results: ArrayLike<{ isFinal: boolean; 0: { transcript: string } }> }) => void) | null;
+  onresult: ((e: { resultIndex: number; results: ArrayLike<{ isFinal: boolean; 0: { transcript: string } }> }) => void) | null;
   onerror: ((e: { error?: string }) => void) | null;
   onend: (() => void) | null;
 };
@@ -26,7 +26,7 @@ type RecognitionCtor = new () => SpeechRecognitionLike;
 
 const getCtor = (): RecognitionCtor | null => {
   if (typeof window === 'undefined') return null;
-  const w = window as unknown as { SpeechRecognition?: RecognitionCtor. WebkitSpeechRecognition?: RecognitionCtor };
+  const w = window as unknown as { SpeechRecognition?: RecognitionCtor; webkitSpeechRecognition?: RecognitionCtor };
   return w.SpeechRecognition || w.webkitSpeechRecognition || null;
 };
 

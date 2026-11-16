@@ -17,7 +17,7 @@ export const comebackStarters = {
   bg: ['Контузен/а съм и съм ядосан/а', 'Страх ме е да скачам отново', 'Чувствам се извън групата', 'Първата ми тренировка след травмата'],
 };
 const parts = { en: ['feet', 'calves', 'thighs', 'hands', 'arms', 'shoulders', 'face'], bg: ['стъпалата', 'прасците', 'бедрата', 'дланите', 'ръцете', 'раменете', 'лицето'] };
-export type PracticeStep = { seconds: number. Text: string };
+export type PracticeStep = { seconds: number; text: string };
 export function relaxationSteps(kind: 'pmr' | 'scan', language: 'en' | 'bg'): PracticeStep[] {
   const bg = language === 'bg';
   const intro = bg ? 'Настани се удобно. Дишай естествено. Пропусни болезнените или травмираните области. При дискомфорт спри. Следвай ограниченията на лекаря или физиотерапевта.' : 'Settle comfortably. Breathe naturally. Skip painful or injured areas. Stop if uncomfortable. Follow your doctor or physio’s restrictions.';
