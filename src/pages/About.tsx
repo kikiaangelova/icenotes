@@ -40,7 +40,7 @@ const About: React.FC = () => {
           { h: 'Два езика, написани отделно', p: 'Английски и български, писани нативно, не преведени машинно.' },
         ],
         forEyebrow: 'За кого е',
-        forTitle: 'Фигуристи от 14 до 18 години, които влизат в сериозния спорт.',
+        forTitle: 'Фигуристи на 14 и повече години, които влизат в сериозния спорт.',
         forBody:
           'Ако тренираш редовно, състезаваш се и искаш да разбираш собствения си прогрес, това е за теб. SkateGoals е за кънкьори на 14 и повече години.',
         pilotEyebrow: 'Пилотна фаза',
@@ -70,7 +70,7 @@ const About: React.FC = () => {
           { h: 'Two languages, written separately', p: 'English and Bulgarian written natively, not machine-translated.' },
         ],
         forEyebrow: 'Who it’s for',
-        forTitle: 'Skaters aged 14 to 18 moving into serious competition.',
+        forTitle: 'Skaters aged 14 and older moving into serious competition.',
         forBody:
           'If you train regularly, compete, and want to understand your own progress, this is for you. SkateGoals is for skaters aged 14 and older.',
         pilotEyebrow: 'Pilot preparation',
@@ -87,7 +87,7 @@ const About: React.FC = () => {
         <Navbar isDarkMode={isDarkMode} onToggleDarkMode={() => setIsDarkMode(!isDarkMode)} />
         <Seo
           title={bg ? 'За SkateGoals | Историята зад продукта' : 'About SkateGoals | Our Story'}
-          description="Why SkateGoals exists: one athlete-owned system connecting training, goals, reflection, competition preparation and mental performance for figure skaters aged 14-18."
+          description="Why SkateGoals exists: one athlete-owned system connecting training, goals, reflection, competition preparation and mental performance for figure skaters aged 14 and older."
           path="/about"
         />
 
