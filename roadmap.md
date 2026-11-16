@@ -7,4 +7,4 @@
 - [x] Complete final surgical content and focus-flow QA
 - [x] Apply the consolidated Edge Line visual system and complete responsive QA
 - [x] Complete final consolidated public/auth polish and regression QA
-- [ ] Fix public responsive layout and verify EN/BG across phone, tablet and desktop
+- [x] Fix public responsive layout and verify EN/BG across phone, tablet and desktop

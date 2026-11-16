@@ -38,7 +38,7 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ className })
             className="rounded-lg flex items-center justify-between cursor-pointer"
           >
             <span className="flex items-center gap-2">
-              <span className="text-[10px] uppercase tracking-wider text-muted-foreground w-6">
+              <span className="text-xs uppercase tracking-wider text-muted-foreground w-6">
                 {l.code}
               </span>
               <span className="text-sm">{l.nativeLabel}</span>
