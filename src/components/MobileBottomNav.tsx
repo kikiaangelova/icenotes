@@ -57,7 +57,7 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({ active, onChan
                 )}
               >
                 <Icon className="w-[21px] h-[21px]" />
-                <span className="max-w-full truncate text-[10px] font-semibold leading-none sm:text-[11px]">
+                <span className="nav-label max-w-full truncate font-semibold leading-none">
                   {label}
                 </span>
               </button>

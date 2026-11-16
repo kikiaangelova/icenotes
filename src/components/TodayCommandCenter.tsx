@@ -92,7 +92,7 @@ export const TodayCommandCenter: React.FC<Props> = ({
       <header className="flex items-start justify-between gap-4">
         <div className="min-w-0">
           <h1 className="app-page-title">{greeting}</h1>
-          <p className="mt-1 text-[15px] font-medium capitalize text-muted-foreground">{dateLabel}</p>
+          <p className="mt-1 rink-date text-[15px] font-medium text-muted-foreground">{dateLabel}</p>
         </div>
         <div className="rink-card flex shrink-0 items-center gap-2 px-3 py-2" aria-label={bg ? `Серия: ${streak} седмици с поне 3 тренировки` : `Streak: ${streak} weeks with at least 3 sessions`}>
           <SkateIcon className="h-6 w-6 text-accent-ink" />
@@ -133,7 +133,7 @@ export const TodayCommandCenter: React.FC<Props> = ({
         {logged && <p className="px-1 text-[13px] text-muted-foreground">{t('a.today.sessionsToday')}: {sessionsToday}</p>}
       </div>
 
-      <div className="-mx-4 flex snap-x gap-3 overflow-x-auto px-4 pb-1 sm:mx-0 sm:grid sm:grid-cols-3 sm:px-0">
+      <div className="-mx-4 flex snap-x scroll-px-4 gap-3 overflow-x-auto px-4 pb-2 pt-1 sm:mx-0 sm:grid sm:grid-cols-3 sm:px-0">
         {[
           { Icon: Wind, title: bg ? 'Преди старт' : 'Before the start', sub: bg ? 'Дишане 2 мин' : 'Breathing 2 min', onClick: onMentalPrep },
           { Icon: MessageCircle, title: bg ? 'Говори с AI' : 'Talk to AI', sub: bg ? 'План или спокойствие' : 'Plan or calm', onClick: onSupport },
