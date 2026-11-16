@@ -1149,3 +1149,12 @@
   }
 
 }
+
+/* Readable helper text on phones: no grey copy under 13px inside the app */
+.authenticated-app .text-xs.text-muted-foreground,
+.authenticated-app .text-\[11px\].text-muted-foreground,
+.authenticated-app .text-\[10px\].text-muted-foreground {
+  font-size: 13px;
+  line-height: 1.45;
+  color: hsl(214 28% 30%);
+}
