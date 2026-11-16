@@ -2,7 +2,7 @@ import { assert, assertEquals } from 'https://deno.land/std@0.224.0/assert/mod.t
 import { EMAIL_TABLES, USER_TABLES, exportFileName, normalizedEmail } from './account-data.ts';
 
 Deno.test('GDPR export covers training, goals, notes, community and parent records', () => {
-  const tables = new Set(USER_TABLES.map(item => item.table));
+  const tables: Set<string> = new Set(USER_TABLES.map(item => item.table));
   for (const required of [
     'profiles', 'training_sessions', 'journal_entries', 'goals', 'weekly_goals',
     'jump_attempts', 'mind_journal_entries', 'community_posts', 'community_comments',
