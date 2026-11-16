@@ -6,7 +6,6 @@ import { Button } from '@/components/ui/button';
 import { VoiceTextarea } from './VoiceInput';
 import { cn } from '@/lib/utils';
 import { format } from 'date-fns';
-import { bg as bgLocale } from 'date-fns/locale';
 import { Snowflake, Dumbbell, Brain, Check, Laugh, Smile, Meh, Frown, Angry, BatteryFull, BatteryMedium, BatteryLow } from 'lucide-react';
 import { toast } from 'sonner';
 
@@ -27,8 +26,9 @@ const ENERGY = [
 /** "пон, 10 ноем." in BG, "Mon, 10 Nov" in EN. */
 export function formatSessionDate(date: Date, language: string): string {
   if (language === 'bg') {
-    const s = format(date, 'EEEEEE, d MMM', { locale: bgLocale }).replace(/\.$/, '');
-    return s + '.';
+    const days = ['нед', 'пон', 'вт', 'ср', 'чет', 'пет', 'съб'];
+    const months = ['ян.', 'февр.', 'март', 'апр.', 'май', 'юни', 'юли', 'авг.', 'септ.', 'окт.', 'ноем.', 'дек.'];
+    return `${days[date.getDay()]}, ${date.getDate()} ${months[date.getMonth()]}`;
   }
   return format(date, 'EEE, d MMM');
 }
