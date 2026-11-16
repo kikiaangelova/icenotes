@@ -76,7 +76,7 @@ const CONFIDENCE_EXERCISES = (bg: boolean) => [
     title: bg ? 'Проверка на готовността' : 'Readiness check',
     duration: bg ? "2 мин" : "2 min",
     description: bg
-      ? 'Кратка проверка на напрежението, вниманието и първата задача преди излизане на леда.'
+      ? 'Бърза проверка преди леда: колко си напрегнат, къде ти е вниманието и какво правиш първо.'
       : 'A brief check of tension, attention, and the first task before stepping onto the ice.',
     steps: bg ? [
       'Стъпи стабилно и забележи напрежението в тялото.',
@@ -94,7 +94,7 @@ const CONFIDENCE_EXERCISES = (bg: boolean) => [
     title: bg ? 'Преглед на стабилен момент' : 'Review a stable performance',
     duration: bg ? "3 мин" : "3 min",
     description: bg
-      ? 'Върни се към реален момент, когато успя да следваш плана под напрежение.'
+      ? 'Спомни си момент, в който беше напрегнат и пак се справи по план.'
       : 'Return to a real moment when you followed the plan under pressure.',
     steps: bg ? [
       'Избери конкретна тренировка или старт.',
@@ -114,28 +114,28 @@ const FOCUS_TECHNIQUES = (bg: boolean) => [
   {
     title: bg ? "Една дума, един фокус" : "One word, one focus",
     description: bg
-      ? 'Избери една кратка насока от работата с треньора. Когато вниманието се отклони, върни се към нея.'
+      ? 'Избери една кратка мисъл от работата с треньора. Когато се разсееш, върни се към нея.'
       : 'Choose one short cue from your work with your coach. When attention drifts, return to it.',
     icon: Target,
   },
   {
     title: bg ? 'Фокус за тази задача' : 'Focus for this task',
     description: bg
-      ? 'Преди следващата част от плана назови само задачата и сигнала, по който ще разбереш дали я следваш.'
+      ? 'Преди следващата част си кажи само задачата и как ще разбереш, че я изпълняваш.'
       : 'Before the next part of the plan, name the task and the signal that will show whether you followed it.',
     icon: Brain,
   },
   {
     title: bg ? 'Позната рутина' : 'Familiar routine',
     description: bg
-      ? 'Използвай кратката рутина, която вече познаваш от тренировките. Не добавяй нова техника непосредствено преди изпълнение.'
+      ? 'Ползвай рутината, която вече знаеш от тренировките. Не пробвай нищо ново точно преди да излезеш.'
       : 'Use the brief routine you already know from training. Do not add a new technique immediately before performing.',
     icon: CircleDot,
   },
   {
     title: bg ? "Рестарт при разсейване" : "Reset when distracted",
     description: bg
-      ? 'Назови какво те е разсеяло, насочи поглед към една точка и върни вниманието към следващата задача.'
+      ? 'Кажи си какво те разсея, погледни една точка и се върни към следващата задача.'
       : 'Name what pulled your attention, look at one fixed point, and return to the next task.',
     icon: RotateCcw,
   },
@@ -151,19 +151,19 @@ const COMPETITION_TIPS = (bg: boolean) => [
   {
     title: bg ? "Контролирай това, което можеш" : "Control what you can",
     advice: bg
-      ? 'Не контролираш съдиите, другите състезатели или леда. Контролираш подготовката, вниманието и реакцията след грешка.'
+      ? 'Съдиите, другите състезатели и ледът не зависят от теб. Подготовката, вниманието и как продължаваш след грешка зависят.'
       : 'You do not control judges, other skaters, or the ice. You control preparation, attention, and your response after a mistake.',
   },
   {
     title: bg ? 'Напрежението не е инструкция' : 'Pressure is not an instruction',
     advice: bg
-      ? 'Може да усещаш напрежение и пак да следваш плана. Назови първото действие, което зависи от теб.'
+      ? 'Може да си напрегнат и пак да караш по план. Кажи си първото нещо, което зависи от теб.'
       : 'Pressure can be present while you still follow the plan. Name the first action that is under your control.',
   },
   {
     title: bg ? 'Използвай позната рутина' : 'Use a familiar routine',
     advice: bg
-      ? 'Запази частите от рутината, които вече са проверени в тренировка и са съобразени с плана на треньора.'
+      ? 'Остави в рутината само това, което вече работи на тренировка.'
       : 'Keep the parts of your routine that are already familiar from training and aligned with your coach’s plan.',
   },
   {
@@ -179,35 +179,35 @@ const DAILY_EXERCISES = (bg: boolean) => [
     title: bg ? 'Фокус за деня' : 'Focus for the day',
     time: bg ? "1 мин" : "1 min",
     exercise: bg
-      ? 'Запиши една задача за днешната тренировка и един сигнал, по който ще разбереш, че я следваш.'
+      ? 'Запиши една задача за днешната тренировка и как ще разбереш, че я изпълняваш.'
       : 'Write one task for today’s session and one signal that will show you are following it.',
   },
   {
     title: bg ? 'Какво помогна' : 'What helped',
     time: bg ? "1 мин" : "1 min",
     exercise: bg
-      ? 'Назови едно конкретно нещо, което помогна на работата ти днес: ясна насока, достатъчно време или добра подготовка.'
+      ? 'Кое конкретно ти помогна днес? Ясна насока, достатъчно време или добра подготовка.'
       : 'Name one specific thing that supported your work today: clear feedback, enough time, or good preparation.',
   },
   {
     title: bg ? "Кратка визуализация" : "Quick visualization",
     time: bg ? "2 мин" : "2 min",
     exercise: bg
-      ? 'Представи си позната част от програмата, после включи малка грешка и реалистичен рестарт към следващата задача.'
+      ? 'Представи си част от програмата. После малка грешка и как спокойно продължаваш нататък.'
       : 'Picture a familiar section of the program, then include a small mistake and a realistic reset to the next task.',
   },
   {
     title: bg ? 'Къде се стягам' : 'Tension check',
     time: bg ? "3 мин" : "3 min",
     exercise: bg
-      ? 'Забележи къде има напрежение. Не е нужно да го премахваш. Избери дали малка промяна в стойката или дишането ти е полезна.'
+      ? 'Забележи къде се стягаш. Не е нужно да го махаш. Виж дали малка промяна в стойката или дишането ти помага.'
       : 'Notice where tension is present. You do not need to remove it. Decide whether a small change in posture or breathing is useful.',
   },
   {
     title: bg ? "Вечерна рефлексия" : "Evening reflection",
     time: bg ? "2 мин" : "2 min",
     exercise: bg
-      ? 'Запиши един факт от тренировката, една трудност и една ясна следваща стъпка.'
+      ? 'Запиши едно нещо, което стана, едно, което беше трудно, и какво правиш следващия път.'
       : 'Write one fact from the session, one difficulty, and one clear next action.',
   },
 ];
