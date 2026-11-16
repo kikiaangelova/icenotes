@@ -12,6 +12,18 @@ class ObserverStub {
 globalThis.ResizeObserver = globalThis.ResizeObserver || ObserverStub;
 globalThis.IntersectionObserver = globalThis.IntersectionObserver || ObserverStub;
 
+// Radix popups use pointer capture and scrollIntoView, both missing from jsdom.
+const elementProto = Element.prototype as Element & {
+  hasPointerCapture?: (id: number) => boolean;
+  setPointerCapture?: (id: number) => void;
+  releasePointerCapture?: (id: number) => void;
+  scrollIntoView?: () => void;
+};
+elementProto.hasPointerCapture = elementProto.hasPointerCapture || (() => false);
+elementProto.setPointerCapture = elementProto.setPointerCapture || (() => {});
+elementProto.releasePointerCapture = elementProto.releasePointerCapture || (() => {});
+elementProto.scrollIntoView = elementProto.scrollIntoView || (() => {});
+
 Object.defineProperty(window, 'matchMedia', {
   writable: true,
   value: (query: string) => ({
