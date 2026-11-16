@@ -79,6 +79,7 @@ const JoinFlow: React.FC<{ bg: boolean; existing: Member | null; onDone: () => v
     const { error } = existing ? await supabase.from('community_members').update(row).eq('user_id', user.id) : await supabase.from('community_members').insert(row);
     setSaving(false);
     if (error) { toast({ title: bg ? 'Не успяхме да запазим. Опитай пак.' : 'Could not save. Try again.', variant: 'destructive' }); return; }
+    window.scrollTo({ top: 0 });
     onDone();
   };
 
@@ -95,7 +96,7 @@ const JoinFlow: React.FC<{ bg: boolean; existing: Member | null; onDone: () => v
           ))}
         </div>
         <label className="block space-y-1.5">
-          <span className="text-[13px] font-semibold text-muted-foreground">{bg ? 'Години' : 'Age'}</span>
+          <span className="block text-[13px] font-semibold text-muted-foreground">{bg ? 'Години' : 'Age'}</span>
           <input inputMode="numeric" disabled={!!existing} value={age} onChange={e => setAge(e.target.value.replace(/\D/g, '').slice(0, 2))} className="h-12 w-28 rounded-xl border border-input bg-background px-3 text-[15px]" />
         </label>
         <p className="text-[13px] text-muted-foreground">{bg ? 'Ролята и годините не се сменят после. Не се показват на никого.' : 'Role and age cannot be changed later. Nobody else sees them.'}</p>
