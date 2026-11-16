@@ -512,6 +512,23 @@
   .rink-section-title { font-size: 20px; font-weight: 800; line-height: 1.2; color: hsl(var(--foreground)); }
   .rink-chip { min-height: 48px; border-radius: 14px; background: hsl(var(--secondary)); padding: 0 12px; font-size: 15px; font-weight: 600; color: hsl(var(--foreground)); transition: background-color .15s ease; }
   .rink-chip-on { background: hsl(var(--primary)); color: hsl(var(--primary-foreground)); }
+
+  /* Pressable choice chips: soft ice when idle, turquoise when chosen. */
+  .rink-choice {
+    min-height: 48px; border-radius: 14px; border: 1.5px solid transparent;
+    background: hsl(var(--secondary)); color: hsl(var(--foreground));
+    font-size: 15px; font-weight: 600; line-height: 1.25;
+    box-shadow: 0 1px 2px hsl(214 68% 13% / 0.05);
+    transition: background-color .15s ease, border-color .15s ease, box-shadow .15s ease, transform .12s ease;
+  }
+  .rink-choice:hover { border-color: hsl(var(--accent) / 0.55); }
+  .rink-choice:active { transform: scale(0.97); }
+  .rink-choice:focus-visible { outline: 2px solid hsl(var(--ring)); outline-offset: 2px; }
+  .rink-choice-on, .rink-choice-on:hover {
+    background: hsl(var(--accent)); border-color: hsl(var(--accent));
+    color: hsl(var(--accent-foreground));
+    box-shadow: 0 6px 16px -8px hsl(194 68% 40% / 0.7);
+  }
   .text-accent-ink { color: hsl(var(--accent-ink)); }
   .authenticated-app .nav-label { font-size: 13px; letter-spacing: -0.03em; }
   .rink-date::first-letter { text-transform: uppercase; }
@@ -523,6 +540,8 @@
   @media (prefers-reduced-motion: reduce) {
     .rink-trail, .rink-spark { display: none; }
     .rink-cta { transition: none; }
+    .rink-choice { transition: none; }
+    .rink-choice:active { transform: none; }
   }
 
   .authenticated-app h1,

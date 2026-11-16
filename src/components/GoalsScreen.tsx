@@ -181,15 +181,29 @@ export const GoalsScreen: React.FC<Props> = ({ onOpenWeeklyReview, onOpenCompeti
             </div>
           </div>
         ) : (
-          <button
-            onClick={() => openEditor('season')}
-            className="min-h-[72px] w-full border border-dashed border-border bg-card p-4 text-left transition-colors hover:border-accent"
-          >
-            <p className="text-sm text-muted-foreground">{t('gb.seasonEmpty')}</p>
-            <p className="text-sm font-semibold text-primary mt-1.5 inline-flex items-center gap-1.5">
-              <Plus className="w-4 h-4" /> {t('gb.seasonSet')}
-            </p>
-          </button>
+          <div className="border border-dashed border-border bg-card p-4">
+            <p className="text-base font-bold text-foreground">{t('gb.seasonEmpty')}</p>
+            <p className="mt-1.5 text-sm text-muted-foreground">{t('gb.seasonWhy')}</p>
+            <div className="mt-3 rounded-xl bg-card p-3">
+              <p className="app-section-label">{t('gb.exampleLabel')}</p>
+              <p className="mt-1 text-sm font-semibold text-foreground">{t('gb.seasonExample')}</p>
+            </div>
+            <div className="mt-3 flex flex-wrap gap-2">
+              <Button className="h-12 min-w-[180px] flex-1 gap-2 text-sm font-semibold" onClick={() => openEditor('season')}>
+                <Plus className="w-4 h-4" /> {t('gb.seasonSet')}
+              </Button>
+              <Button
+                variant="outline"
+                className="h-12 text-sm font-semibold"
+                onClick={() => {
+                  openEditor('season');
+                  setDraft((d) => ({ ...d, title: t('gb.seasonExample') }));
+                }}
+              >
+                {t('gb.useExample')}
+              </Button>
+            </div>
+          </div>
         )}
       </section>
 
@@ -245,15 +259,29 @@ export const GoalsScreen: React.FC<Props> = ({ onOpenWeeklyReview, onOpenCompeti
             </div>
           </div>
         ) : (
-          <button
-            onClick={() => openEditor('weekly')}
-            className="min-h-[72px] w-full border border-dashed border-border bg-card p-4 text-left transition-colors hover:border-accent"
-          >
-            <p className="text-sm text-muted-foreground">{t('gb.cycleEmpty')}</p>
-            <p className="text-sm font-semibold text-primary mt-1.5 inline-flex items-center gap-1.5">
-              <Plus className="w-4 h-4" /> {t('gb.cycleSet')}
-            </p>
-          </button>
+          <div className="border border-dashed border-border bg-card p-4">
+            <p className="text-base font-bold text-foreground">{t('gb.cycleEmpty')}</p>
+            <p className="mt-1.5 text-sm text-muted-foreground">{t('gb.cycleWhy')}</p>
+            <div className="mt-3 rounded-xl bg-card p-3">
+              <p className="app-section-label">{t('gb.exampleLabel')}</p>
+              <p className="mt-1 text-sm font-semibold text-foreground">{t('gb.cycleExample')}</p>
+            </div>
+            <div className="mt-3 flex flex-wrap gap-2">
+              <Button className="h-12 min-w-[180px] flex-1 gap-2 text-sm font-semibold" onClick={() => openEditor('weekly')}>
+                <Plus className="w-4 h-4" /> {t('gb.cycleSet')}
+              </Button>
+              <Button
+                variant="outline"
+                className="h-12 text-sm font-semibold"
+                onClick={() => {
+                  openEditor('weekly');
+                  setDraft((d) => ({ ...d, title: t('gb.cycleExample') }));
+                }}
+              >
+                {t('gb.useExample')}
+              </Button>
+            </div>
+          </div>
         )}
       </section>
 
