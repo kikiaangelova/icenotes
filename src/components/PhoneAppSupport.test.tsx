@@ -30,9 +30,13 @@ describe('phone app support', () => {
     localStorage.setItem('skategoals:install-dismissed', String(now - 31 * 86400000));
     expect(installCardAllowed(now)).toBe(true);
   });
-  it('stops after being shown 3 times', () => {
+  it('stops after being shown 3 times', async () => {
+    vi.resetModules();
+    const fresh = await import('./PhoneAppSupport');
+    localStorage.setItem('skategoals:install-shown', '2');
+    expect(fresh.installCardAllowed()).toBe(true);
     localStorage.setItem('skategoals:install-shown', '3');
-    expect(installCardAllowed()).toBe(false);
+    expect(fresh.installCardAllowed()).toBe(false);
   });
   it('shows status on connection loss and clears it on reconnection', () => {
     vi.spyOn(navigator, 'onLine', 'get').mockReturnValue(true);
