@@ -10,7 +10,7 @@ const PAUSE_REASON_KEY = 'icenotes:streak:pauseReason';
 
 export type StreakStatus =
   | 'active'      // logged today, on a run
-  | 'resting'     // logged today, but had a gap before — gentle reset
+  | 'resting'     // logged today, but had a gap before. Gentle reset
   | 'returning'   // came back after >1 day off
   | 'paused'      // user paused intentionally
   | 'fresh';      // no data yet

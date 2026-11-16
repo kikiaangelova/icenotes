@@ -59,7 +59,7 @@ export const ProgressionCard: React.FC = () => {
       aria-label={bg ? 'Твоят напредък' : 'Your progress'}
       className="relative overflow-hidden rounded-[1.75rem] border border-border/50 shadow-[var(--shadow-md)]"
     >
-      {/* Layered warm mesh backdrop — this is the hero of the Today screen */}
+      {/* Layered warm mesh backdrop. This is the hero of the Today screen */}
       <div className="absolute inset-0 -z-10 bg-gradient-to-br from-peach/70 via-card to-lavender/50" />
       <div className="absolute -top-16 -right-10 w-52 h-52 rounded-full bg-[hsl(var(--xp-gold)/0.28)] blur-3xl -z-10 pointer-events-none" />
       <div className="absolute -bottom-20 -left-12 w-56 h-56 rounded-full bg-[hsl(var(--primary)/0.16)] blur-3xl -z-10 pointer-events-none" />

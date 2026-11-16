@@ -52,7 +52,10 @@ export const GoalsScreen: React.FC<Props> = ({ onOpenWeeklyReview, onOpenCompeti
 
   const active = useMemo(() => goals.filter((g) => !g.completed), [goals]);
   const season = active.find((g) => g.timeframe === 'season');
-  const week = active.find((g) => g.timeframe === 'weekly');
+  // One focus everywhere: the weekly goal that matches the profile focus wins.
+  const focusText = profile?.mainFocus?.trim() || '';
+  const week = active.find((g) => g.timeframe === 'weekly' && focusText && g.title.trim() === focusText)
+    || active.find((g) => g.timeframe === 'weekly');
   const other = active.filter((g) => g !== season && g !== week);
   const reached = goals.filter((g) => g.completed);
 
@@ -225,6 +228,17 @@ export const GoalsScreen: React.FC<Props> = ({ onOpenWeeklyReview, onOpenCompeti
               </Button>
               <Button variant="ghost" size="sm" className="h-11 rounded-sm gap-1.5 text-xs" onClick={() => complete(week)}>
                 <Check className="w-3.5 h-3.5" /> {t('gb.done')}
+              </Button>
+            </div>
+          </div>
+        ) : focusText ? (
+          <div className="flex items-start gap-3 py-1">
+            <Target className="w-[18px] h-[18px] text-primary mt-0.5 shrink-0" />
+            <div className="min-w-0 flex-1">
+              <p className="text-base font-semibold leading-snug text-foreground">{focusText}</p>
+              <p className="text-xs text-muted-foreground mt-1">{t('gb.focusSynced')}</p>
+              <Button variant="ghost" size="sm" className="h-11 -ml-3 rounded-sm gap-1.5 text-xs" onClick={() => { openEditor('weekly'); setDraft((d) => ({ ...d, title: focusText })); }}>
+                <Pencil className="w-3.5 h-3.5" /> {t('gb.edit')}
               </Button>
             </div>
           </div>

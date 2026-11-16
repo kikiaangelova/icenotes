@@ -81,7 +81,7 @@ export const DAILY_REFLECTION_PROMPTS: ReflectionPrompt[] = [
 export const WEEKLY_QUESTIONS = {
   supportedBy: "What supported you most this week?",
   challenges: "What challenged you mentally or emotionally?",
-  proudOf: "What are you proud of — even if it feels small?",
+  proudOf: "What are you proud of. Even if it feels small?",
   nextFocus: "What would you like to focus on next week?",
   closingMessage: "You don't need to fix everything. Awareness is progress."
 };

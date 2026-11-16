@@ -110,7 +110,7 @@ export function getAdaptiveGreeting(
       ? 'Heavy practice today? You’re safe here.'
       : 'You don’t need a perfect session today.';
   if (signals.mood === 'recovering')
-    return 'Glad you’re back. No rush — soft start.';
+    return 'Glad you’re back. No rush. Soft start.';
   if (signals.mood === 'energized')
     return isMorning
       ? 'Ready to trust your edges?'
@@ -290,8 +290,8 @@ export function getWelcomeState(
       eyebrow: bg ? 'Ново начало' : 'A fresh start',
       headline: bg ? 'Тук си. Това е достатъчно.' : 'You’re here. That’s enough.',
       micro: bg
-        ? 'Започваме спокойно — с един кратък запис.'
-        : 'We’ll start gently — one soft log.',
+        ? 'Започваме спокойно. С един кратък запис.'
+        : 'We’ll start gently. One soft log.',
       primary: { label: bg ? 'Кратък запис' : 'Quick log', action: 'quicklog' },
     };
   }

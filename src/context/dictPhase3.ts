@@ -20,7 +20,7 @@ export const PHASE3_DICT: Record<string, { en: string; bg: string }> = {
   },
   'fb.send': { en: 'Send', bg: 'Изпрати' },
   'fb.sending': { en: 'Sending…', bg: 'Изпраща се…' },
-  'fb.thanks': { en: 'Thanks — we read every message.', bg: 'Благодарим — четем всяко съобщение.' },
+  'fb.thanks': { en: 'Thanks. We read every message.', bg: 'Благодарим. Четем всяко съобщение.' },
   'fb.thanksSub': {
     en: 'Your feedback is stored privately for the SkateGoals team.',
     bg: 'Обратната връзка се пази лично за екипа на SkateGoals.',

@@ -173,7 +173,7 @@ export const SimpleDashboard: React.FC = () => {
               <p className="truncate text-sm font-semibold leading-tight text-foreground">
                 {profile.name || 'SkateGoals'}
               </p>
-              <p className="font-mono text-[10px] uppercase text-muted-foreground truncate">SkateGoals / Athlete log</p>
+              <p className="font-mono text-[10px] uppercase text-muted-foreground truncate">{language === 'bg' ? 'Дневник на фигуриста' : 'Skater log'}</p>
             </div>
           </button>
         ) : (
@@ -320,7 +320,7 @@ export const SimpleDashboard: React.FC = () => {
       {header}
 
       <main className="app-workspace mx-auto w-full max-w-4xl px-4 pb-28 pt-8 sm:px-8 sm:pt-12">
-        <InstallAppCard />
+        {currentView === 'home' && activeTab === 'today' && <InstallAppCard />}
         {currentView === 'home' ? renderTab() : renderSubView()}
       </main>
 

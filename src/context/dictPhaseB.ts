@@ -30,7 +30,7 @@ export const PHASEB_DICT: Record<string, PhaseBEntry> = {
   'gb.titleLabel':   { en: 'Goal', bg: 'Цел' },
   'gb.titlePh':      { en: 'e.g. deliver a consistent short program in competition', bg: 'напр. стабилна кратка програма на състезание' },
   'gb.whyLabel':     { en: 'Why it matters', bg: 'Защо е важно' },
-  'gb.whyPh':        { en: 'Optional — what this changes for you', bg: 'По избор — защо тази цел е важна за теб' },
+  'gb.whyPh':        { en: 'Optional. What this changes for you', bg: 'По избор. Защо тази цел е важна за теб' },
   'gb.dateLabel':    { en: 'Target date', bg: 'Целева дата' },
   'gb.save':         { en: 'Save', bg: 'Запази' },
   'gb.cancel':       { en: 'Cancel', bg: 'Отказ' },
@@ -93,7 +93,7 @@ export const PHASEB_DICT: Record<string, PhaseBEntry> = {
   'cp.week.i3':    { en: 'Competition day logistics and timing are confirmed', bg: 'Логистиката и часовете за деня на старта са уточнени' },
   'cp.week.i4':    { en: 'Keep familiar routines instead of adding something new', bg: 'Следвай познатите рутини, без да добавяш нещо ново' },
   'cp.week.i5':    { en: 'Note what you want to ask your coach', bg: 'Запиши какво искаш да питаш треньора си' },
-  'cp.week.ai':    { en: 'Organize priorities with AI Coach', bg: 'Подреди приоритетите с AI Coach' },
+  'cp.week.ai':    { en: 'Organize priorities with AI Coach', bg: 'Подреди приоритетите с AI помощника за плана' },
   'cp.week.aiMsg': { en: 'I have a competition coming up. Help me organize my priorities around the plan I already have with my coach.', bg: 'Скоро имам старт. Помогни ми да подредя приоритетите около плана, който вече имам с треньора.' },
 
   'cp.eve.head':   { en: 'Tomorrow: routine, logistics, focus', bg: 'Утре: рутина, логистика, фокус' },
@@ -140,9 +140,9 @@ export const PHASEB_DICT: Record<string, PhaseBEntry> = {
   'ps.week':       { en: 'This week', bg: 'Тази седмица' },
 
   // ── Save state ──
-  'wr.saveFailed': { en: 'Saving did not go through. Your text is still here — try again.', bg: 'Записът не мина. Текстът ти е тук — пробвай пак.' },
+  'wr.saveFailed': { en: 'Saving did not go through. Your text is still here. Try again.', bg: 'Записът не мина. Текстът ти е тук. Пробвай пак.' },
   'cp.day.start':  { en: 'Start breathing', bg: 'Започни дишането' },
   'a.rf.needFocus': { en: 'Add a focus for next training to save, or skip for now.', bg: 'Добави фокус за следващата тренировка, за да запишеш, или пропусни засега.' },
-  'a.tr.saveFailed': { en: 'The session did not save. Everything you entered is still here — try again.', bg: 'Тренировката не се записа. Всичко въведено е тук — пробвай пак.' },
-  'gb.saveFailed': { en: 'Saving did not go through. Your text is still here — try again.', bg: 'Записът не мина. Текстът ти е тук — пробвай пак.' },
+  'a.tr.saveFailed': { en: 'The session did not save. Everything you entered is still here. Try again.', bg: 'Тренировката не се записа. Всичко въведено е тук. Пробвай пак.' },
+  'gb.saveFailed': { en: 'Saving did not go through. Your text is still here. Try again.', bg: 'Записът не мина. Текстът ти е тук. Пробвай пак.' },
 };

@@ -49,7 +49,7 @@ export const PHASE2_DICT: Record<string, { en: string; bg: string }> = {
   'ob.s3.title': { en: 'This season', bg: 'Този сезон' },
   'ob.s3.sub': {
     en: 'The AI Coach uses this context to connect weekly priorities to your existing training plan.',
-    bg: 'AI Coach използва този контекст, за да свърже седмичните приоритети с плана ти за подготовка.',
+    bg: 'AI помощникът за плана използва този контекст, за да свърже седмичните приоритети с плана ти за подготовка.',
   },
   'ob.s3.focus': { en: 'What matters most right now?', bg: 'Какво е най-важно за теб сега?' },
   'ob.s3.focusPh': {
@@ -163,7 +163,7 @@ export const PHASE2_DICT: Record<string, { en: string; bg: string }> = {
   // ── AI support page ──
   'aisup.title': { en: 'AI support in SkateGoals', bg: 'AI подкрепата в SkateGoals' },
   'aisup.sub': {
-    en: 'Two roles, two separate conversations. One helps you plan; the other helps you handle the pressure.',
+    en: 'Two roles, two separate conversations. One helps you plan. The other helps you handle the pressure.',
     bg: 'Две роли, два отделни разговора. Едната помага да планираш, другата, да се справиш с напрежението.',
   },
   'aisup.does': { en: 'Helps with', bg: 'Помага с' },

@@ -181,7 +181,7 @@ const AdminPage: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <Seo title="Admin Console – SkateGoals" description="Internal SkateGoals admin dashboard for platform analytics, user insights and operational tools." path="/admin" />
+      <Seo title="Admin Console. SkateGoals" description="Internal SkateGoals admin dashboard for platform analytics, user insights and operational tools." path="/admin" />
       <header className="border-b border-border/60 bg-card/40 backdrop-blur sticky top-0 z-10">
         <div className="container max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center gap-3">

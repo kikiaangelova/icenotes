@@ -65,7 +65,7 @@ export const Footer: React.FC = () => {
 
           </div>
 
-          {/* Columns — collapsible on mobile, open on md+ */}
+          {/* Columns. Collapsible on mobile, open on md+ */}
           {columns.map((col) => {
             const isOpen = openSection === col.id;
             return (

@@ -314,7 +314,7 @@ export const SkatingGoals: React.FC = () => {
               <Sparkles className="w-8 h-8 mx-auto text-muted-foreground/50" />
               <div>
                 <p className="text-sm font-medium">
-                  {isBG ? 'Без цели за момента — и това е добре.' : 'No goals here yet — and that’s okay.'}
+                  {isBG ? 'Без цели за момента. И това е добре.' : 'No goals here yet. And that’s okay.'}
                 </p>
                 <p className="text-xs text-muted-foreground mt-1">
                   {isBG ? 'Започни с една малка цел.' : 'Start with one small goal.'}

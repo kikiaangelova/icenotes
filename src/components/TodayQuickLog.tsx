@@ -18,7 +18,7 @@ type TrainingType = 'on-ice' | 'off-ice' | 'rest';
 interface FormState {
   duration: string; // minutes as text for easy input
   type: TrainingType | '';
-  focus: number; // 1–10
+  focus: number; // 1-10
   mood: typeof FEELING_OPTIONS[number]['value'] | '';
   wentWell: string;
   needsWork: string;

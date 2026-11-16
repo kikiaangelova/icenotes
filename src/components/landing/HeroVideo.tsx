@@ -125,7 +125,7 @@ export const HeroVideo: React.FC<HeroVideoProps> = ({
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-foreground/10 via-foreground/30 to-foreground/85" />
       )}
 
-      {/* Controls — bottom-right, mobile-friendly tap targets */}
+      {/* Controls. Bottom-right, mobile-friendly tap targets */}
       {!reducedMotion && !failed && <div
         className={cn(
           'absolute bottom-4 right-4 md:bottom-6 md:right-6 z-20 flex items-center gap-2 transition-all duration-300',

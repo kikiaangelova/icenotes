@@ -201,6 +201,7 @@ export const useTrainingSessions = () => {
         totalDuration: session.total_duration,
         notes: session.notes || undefined,
         feeling: session.feeling as TrainingSession['feeling'],
+        energy: (session.energy || undefined) as TrainingSession['energy'],
         createdAt: parseStoredDate(session.created_at)
       })) as TrainingSession[];
     },
@@ -225,7 +226,8 @@ export const useAddTrainingSession = () => {
           activities: JSON.parse(JSON.stringify(session.activities)),
           total_duration: session.totalDuration,
           notes: session.notes,
-          feeling: session.feeling
+          feeling: session.feeling,
+          energy: session.energy ?? null
         }]);
       
       if (error) throw error;

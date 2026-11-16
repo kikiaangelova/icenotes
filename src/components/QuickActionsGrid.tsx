@@ -34,7 +34,7 @@ export const QuickActionsGrid: React.FC<QuickActionsGridProps> = ({
         </span>
       </div>
 
-      {/* Hero primary — Reflection */}
+      {/* Hero primary. Reflection */}
       <button
         type="button"
         onClick={onReflect}
@@ -60,7 +60,7 @@ export const QuickActionsGrid: React.FC<QuickActionsGridProps> = ({
         <ChevronRight className="w-6 h-6 text-foreground/50 flex-shrink-0" />
       </button>
 
-      {/* 2x2 grid — Training, Journal, Goals, Mental prep */}
+      {/* 2x2 grid. Training, Journal, Goals, Mental prep */}
       <div className="grid grid-cols-2 gap-3">
         <QuickActionTile
           label={t('quick.training.label')}

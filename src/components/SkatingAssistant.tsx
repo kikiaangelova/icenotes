@@ -174,7 +174,7 @@ export const SkatingAssistant: React.FC = () => {
             </span>
           </SheetTitle>
 
-          {/* Role switcher — two separate services, two separate conversations */}
+          {/* Role switcher. Two separate services, two separate conversations */}
           <div className="grid grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] border-b border-border" role="tablist" aria-label={t('ai.switch')}>
             {(['coach', 'psych'] as AIRole[]).map((r) => (
               <button

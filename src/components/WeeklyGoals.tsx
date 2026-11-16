@@ -357,7 +357,7 @@ export const WeeklyGoals: React.FC = () => {
               No weekly goals set yet
             </p>
             <p className="text-sm text-muted-foreground/70 mt-1">
-              Setting goals can help guide your practice — but there's no pressure.
+              Setting goals can help guide your practice. But there's no pressure.
             </p>
           </CardContent>
         </Card>

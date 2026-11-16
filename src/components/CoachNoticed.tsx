@@ -54,8 +54,8 @@ export const CoachNoticed: React.FC<CoachNoticedProps> = ({ onOpenReflect }) => 
       tone: 'rest',
       title: bg ? 'Възстановяването също е тренировка' : 'Recovery matters too',
       body: bg
-        ? 'Пауза не е загуба — тялото ти учи между сесиите. Радвам се, че се върна.'
-        : 'A pause isn’t lost time — your body learns between sessions. Glad you’re back.',
+        ? 'Пауза не е загуба. Тялото ти учи между сесиите. Радвам се, че се върна.'
+        : 'A pause isn’t lost time. Your body learns between sessions. Glad you’re back.',
     });
   }
 
@@ -67,8 +67,8 @@ export const CoachNoticed: React.FC<CoachNoticedProps> = ({ onOpenReflect }) => 
       tone: 'win',
       title: bg ? 'Малки победи напоследък' : 'Small wins lately',
       body: bg
-        ? 'Записа малки победи тази седмица — забележи колко вече си пораснал/а.'
-        : 'You logged small wins this week — notice how much you’ve already grown.',
+        ? 'Записа малки победи тази седмица. Забележи колко вече си пораснал/а.'
+        : 'You logged small wins this week. Notice how much you’ve already grown.',
     });
   }
 

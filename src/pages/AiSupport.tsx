@@ -43,7 +43,7 @@ const AiSupport: React.FC = () => {
       <div className="min-h-screen bg-background">
         <Navbar isDarkMode={isDarkMode} onToggleDarkMode={() => setIsDarkMode(!isDarkMode)} />
         <Seo
-          title="AI support in SkateGoals — two roles, clear limits"
+          title="AI support in SkateGoals. Two roles, clear limits"
           description="SkateGoals includes two separate AI roles: an AI Coach for goals, planning and next steps, and a sport-psychology-informed companion for confidence, focus and competition nerves."
           path="/ai-support"
         />
