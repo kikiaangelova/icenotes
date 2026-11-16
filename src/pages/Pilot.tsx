@@ -14,6 +14,9 @@ import { useLanguage } from '@/context/LanguageContext';
 import { supabase } from '@/integrations/supabase/client';
 import { pilotWaitlistSchema } from '@/lib/pilotWaitlist';
 
+export const PILOT_AGE_GROUPS = ['14-15', '16-17', '18+'] as const;
+export type PilotAgeGroup = (typeof PILOT_AGE_GROUPS)[number];
+
 const COPY = {
   en: {
     eyebrow: 'PILOT SEASON 2026/27', heading: 'Help shape SkateGoals.',
@@ -38,7 +41,7 @@ export default function Pilot() {
   const copy = COPY[language];
   const [dark, setDark] = useState(false);
   const [role, setRole] = useState<'skater' | 'parent' | 'coach'>('skater');
-  const [age, setAge] = useState<'14-15' | '16-18' | ''>('');
+  const [age, setAge] = useState<PilotAgeGroup | ''>('');
   const [consent, setConsent] = useState(false);
   const [busy, setBusy] = useState(false);
   const [success, setSuccess] = useState(false);
