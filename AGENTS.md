@@ -2,3 +2,4 @@ Use the existing Sheet component for public mobile navigation so focus managemen
 Generate app-shell workers with vite-plugin-pwa and register only through registerAppWorker; deny development, iframe, preview hosts, and ?sw=off so previews cannot become stale.
 Cache only same-origin app HTML and static assets; API, auth, and external requests remain network-only to avoid storing athlete responses in worker caches.
 Keep the public phone example isolated from JournalProvider and mutations, reusing presentation primitives with sample data so public previews cannot access athlete records.
+Pilot signup uses a dedicated validated, insert-only table and never requests returned rows, so public visitors cannot read signup data.

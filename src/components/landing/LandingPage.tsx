@@ -209,6 +209,7 @@ export const LandingPage: React.FC<LandingPageProps> = () => {
               </Button>
             </Link>
           </div>
+          <Link to="/pilot" className="mt-4 inline-flex min-h-11 items-center text-sm font-medium text-muted-foreground underline underline-offset-4 hover:text-foreground">{language === 'bg' ? 'Включи се в пилота' : 'Join the pilot'}</Link>
         </div>
       </section>
     </>
