@@ -45,9 +45,9 @@ export const LandingPage: React.FC<LandingPageProps> = () => {
       {/* ─── Hero ─── */}
       <section className="edge-hero relative z-10 overflow-hidden bg-primary text-primary-foreground">
         <div className="mx-auto grid max-w-7xl lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:min-h-[650px]">
-          <div className="relative z-10 min-w-0 flex flex-col justify-center px-5 py-12 md:px-12 lg:px-16">
+          <div className="relative z-10 min-w-0 flex flex-col justify-center px-5 py-12 md:px-12 lg:px-8 xl:px-16">
             <p className={kicker}>{t('lp.chip')}</p>
-            <h1 className="mt-6 max-w-xl font-display text-[2.65rem] font-bold leading-[1.01] text-primary-foreground sm:text-6xl md:text-[4rem] [text-wrap:balance]">
+            <h1 className="mt-6 max-w-xl font-display text-[2.65rem] font-bold leading-[1.01] text-primary-foreground sm:text-6xl md:text-[4rem] lg:text-5xl xl:text-[4rem] [text-wrap:balance]">
               {t('lp.h1.a')}
               <br className="hidden sm:block" />{' '}
               <span className="text-primary-foreground/62">{t('lp.h1.b')}</span>
@@ -99,7 +99,7 @@ export const LandingPage: React.FC<LandingPageProps> = () => {
           <div className="grid grid-cols-1 border-t border-border md:grid-cols-2 lg:grid-cols-5">
             {pillars.map((p, index) => (
               <div key={p.title} className="min-w-0 border-b border-border py-5 md:px-5 lg:border-b-0 lg:border-r lg:last:border-r-0">
-                <span className="mb-5 block font-mono text-4xl font-medium text-accent/70">0{index + 1}</span>
+                <span className="mb-5 block font-mono text-4xl font-medium text-muted-foreground">0{index + 1}</span>
                 <h3 className="text-base font-semibold text-foreground mb-1.5">{p.title}</h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">{p.text}</p>
               </div>
