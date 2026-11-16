@@ -30,6 +30,7 @@ export const EXERCISES = [
     howBg: 'Мини от раменете до краката. Забележи къде се стягаш и издишай бавно.' },
 ];
 import { useLanguage } from '@/context/LanguageContext';
+import { DailyQuoteCard } from './DailyQuoteCard';
 
 interface Props {
   greeting: string;
@@ -115,7 +116,7 @@ export const TodayCommandCenter: React.FC<Props> = ({
   }[stage];
 
   return (
-    <section className="space-y-8">
+    <section className="space-y-6">
       <header className="flex items-start justify-between gap-4">
         <div className="min-w-0">
           <h1 className="app-page-title">{greeting}</h1>
@@ -136,6 +137,35 @@ export const TodayCommandCenter: React.FC<Props> = ({
         </div>
       </header>
 
+
+      <DailyQuoteCard />
+
+      <div className="space-y-3">
+        <button onClick={primary.onClick} className="rink-cta flex min-h-[80px] w-full items-center gap-4 rounded-2xl px-5 py-4 text-left">
+          <div className="min-w-0 flex-1">
+            <p className="text-[18px] font-extrabold leading-tight">{primary.label}</p>
+            <p className="mt-0.5 text-[13px] leading-snug opacity-90">{primary.sub}</p>
+          </div>
+          <ArrowRight className="h-6 w-6 shrink-0" />
+        </button>
+        {logged && <p className="px-1 text-[13px] text-muted-foreground">{t('a.today.sessionsToday')}: {sessionsToday}</p>}
+      </div>
+
+      <button type="button" onClick={onExercises || onSupport} className="rink-card tone-violet tone-edge block w-full p-5 text-left">
+        <span className="flex items-center gap-3">
+          <span className="tone-tile flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl"><Sparkles className="h-5 w-5" /></span>
+          <span className="min-w-0 flex-1">
+            <span className="tone-text block text-[13px] font-semibold">{bg ? 'Упражнение за днес' : "Today's exercise"}</span>
+            <span className="block text-[17px] font-bold leading-snug text-foreground">{bg ? exercise.bg : exercise.en}</span>
+          </span>
+        </span>
+        <span className="mt-3 block text-[15px] leading-relaxed text-foreground/85">{bg ? exercise.howBg : exercise.howEn}</span>
+        <span className="mt-4 flex items-center justify-between">
+          <span className="inline-flex items-center gap-1.5 text-[13px] font-semibold text-muted-foreground"><Timer className="h-4 w-4" />{exercise.min} {bg ? 'мин' : 'min'}</span>
+          <span className="tone-tile inline-flex min-h-11 items-center gap-1.5 rounded-full px-4 text-[14px] font-bold">{bg ? 'Започни' : 'Start'}<ArrowRight className="h-4 w-4" /></span>
+        </span>
+      </button>
+
       <button onClick={onGoals} className="rink-card rink-focus block w-full p-5 text-left">
         <span className="flex items-center gap-2 text-[13px] font-semibold text-accent-ink">
           <Target className="h-5 w-5" /> {bg ? 'Фокус на седмицата' : 'Focus of the week'}
@@ -153,21 +183,6 @@ export const TodayCommandCenter: React.FC<Props> = ({
         ) : (
           <span className="mt-2 block text-[15px] font-semibold text-accent-ink">{t('a.today.setFocus')}</span>
         )}
-      </button>
-
-      <button type="button" onClick={onExercises || onSupport} className="rink-card tone-violet tone-edge block w-full p-5 text-left">
-        <span className="flex items-center gap-3">
-          <span className="tone-tile flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl"><Sparkles className="h-5 w-5" /></span>
-          <span className="min-w-0 flex-1">
-            <span className="tone-text block text-[13px] font-semibold">{bg ? 'Упражнение за днес' : "Today's exercise"}</span>
-            <span className="block text-[17px] font-bold leading-snug text-foreground">{bg ? exercise.bg : exercise.en}</span>
-          </span>
-        </span>
-        <span className="mt-3 block text-[15px] leading-relaxed text-foreground/85">{bg ? exercise.howBg : exercise.howEn}</span>
-        <span className="mt-4 flex items-center justify-between">
-          <span className="inline-flex items-center gap-1.5 text-[13px] font-semibold text-muted-foreground"><Timer className="h-4 w-4" />{exercise.min} {bg ? 'мин' : 'min'}</span>
-          <span className="tone-tile inline-flex min-h-11 items-center gap-1.5 rounded-full px-4 text-[14px] font-bold">{bg ? 'Започни' : 'Start'}<ArrowRight className="h-4 w-4" /></span>
-        </span>
       </button>
 
       <section className="rink-card p-5" aria-labelledby="today-week">
@@ -242,16 +257,6 @@ export const TodayCommandCenter: React.FC<Props> = ({
         </button>
       </div>
 
-      <div className="space-y-3">
-        <button onClick={primary.onClick} className="rink-cta flex min-h-[80px] w-full items-center gap-4 rounded-2xl px-5 py-4 text-left">
-          <div className="min-w-0 flex-1">
-            <p className="text-[18px] font-extrabold leading-tight">{primary.label}</p>
-            <p className="mt-0.5 text-[13px] leading-snug opacity-90">{primary.sub}</p>
-          </div>
-          <ArrowRight className="h-6 w-6 shrink-0" />
-        </button>
-        {logged && <p className="px-1 text-[13px] text-muted-foreground">{t('a.today.sessionsToday')}: {sessionsToday}</p>}
-      </div>
 
       <div className="grid grid-cols-3 gap-2 pt-1 sm:gap-3">
         {[
