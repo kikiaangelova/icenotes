@@ -21,21 +21,14 @@ export function OfflineBanner() {
 }
 
 const SHOWN_KEY = 'skategoals:install-shown';
-const MAX_SHOWS = 3;
-const SNOOZE_MS = 30 * 24 * 60 * 60 * 1000;
+const MAX_SHOWS = 1;
 let countedThisLoad = false;
 
-/** Banner rules: at most 3 showings in total, and hidden for 30 days after "Close". */
-export function installCardAllowed(now = Date.now()): boolean {
+/** Banner rules: shown in one app session only, and never again after "Close". */
+export function installCardAllowed(): boolean {
   const shown = Number(localStorage.getItem(SHOWN_KEY) || 0);
   if (shown >= MAX_SHOWS && !countedThisLoad) return false;
-  const raw = localStorage.getItem(INSTALL_DISMISSED_KEY);
-  if (raw) {
-    const at = Number(raw);
-    // Legacy value '1' or invalid: treat as dismissed now.
-    if (!Number.isFinite(at) || at < 1e12) return false;
-    if (now - at < SNOOZE_MS) return false;
-  }
+  if (localStorage.getItem(INSTALL_DISMISSED_KEY)) return false;
   return true;
 }
 

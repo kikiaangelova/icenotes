@@ -23,19 +23,15 @@ describe('phone app support', () => {
     expect(screen.queryByRole('button', { name: 'Затвори' })).toBeNull();
     vi.unstubAllGlobals();
   });
-  it('stays hidden for 30 days after Close, then may return', () => {
-    const now = Date.now();
-    localStorage.setItem('skategoals:install-dismissed', String(now - 29 * 86400000));
-    expect(installCardAllowed(now)).toBe(false);
-    localStorage.setItem('skategoals:install-dismissed', String(now - 31 * 86400000));
-    expect(installCardAllowed(now)).toBe(true);
+  it('never returns after Close, even months later', () => {
+    localStorage.setItem('skategoals:install-dismissed', String(Date.now() - 365 * 86400000));
+    expect(installCardAllowed()).toBe(false);
   });
-  it('stops after being shown 3 times', async () => {
+  it('is shown in one app session only', async () => {
     vi.resetModules();
     const fresh = await import('./PhoneAppSupport');
-    localStorage.setItem('skategoals:install-shown', '2');
     expect(fresh.installCardAllowed()).toBe(true);
-    localStorage.setItem('skategoals:install-shown', '3');
+    localStorage.setItem('skategoals:install-shown', '1');
     expect(fresh.installCardAllowed()).toBe(false);
   });
   it('shows status on connection loss and clears it on reconnection', () => {
