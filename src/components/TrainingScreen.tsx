@@ -127,10 +127,8 @@ export const TrainingScreen: React.FC<TrainingScreenProps> = ({ onSaved, onOpenP
               onClick={() => switchType(id)}
               aria-pressed={type === id}
               className={cn(
-                'min-h-[56px] rounded-md border px-4 flex items-center gap-2.5 text-sm font-semibold transition-colors',
-                type === id
-                  ? 'border-primary bg-primary text-primary-foreground'
-                  : 'border-border bg-card text-foreground hover:bg-muted/50'
+                'rink-choice flex min-h-[56px] items-center justify-center gap-2.5 px-4',
+                type === id && 'rink-choice-on'
               )}
             >
               <Icon className="w-4 h-4" />
@@ -155,13 +153,9 @@ export const TrainingScreen: React.FC<TrainingScreenProps> = ({ onSaved, onOpenP
                 type="button"
                 onClick={() => toggle(o.name)}
                 aria-pressed={on}
-                className={cn(
-                  'min-h-[44px] rounded-md border px-4 text-sm font-medium transition-colors',
-                  on
-                    ? 'border-primary bg-primary/10 text-primary'
-                    : 'border-border bg-card text-foreground hover:bg-muted/50'
-                )}
+                className={cn('rink-choice flex items-center gap-2 px-4', on && 'rink-choice-on')}
               >
+                {on && <Check className="w-4 h-4 shrink-0" aria-hidden="true" />}
                 {t(`a.el.${o.name}`)}
               </button>
             );
@@ -179,12 +173,10 @@ export const TrainingScreen: React.FC<TrainingScreenProps> = ({ onSaved, onOpenP
               type="button"
               onClick={() => setDuration(d)}
               aria-pressed={duration === d}
-              className={cn(
-                'min-h-[44px] min-w-[72px] rounded-md border px-3 text-sm font-semibold transition-colors',
-                duration === d
-                  ? 'border-primary bg-primary text-primary-foreground'
-                  : 'border-border bg-card text-foreground hover:bg-muted/50'
-              )}
+                className={cn(
+                  'rink-choice min-w-[80px] px-3',
+                  duration === d && 'rink-choice-on'
+                )}
             >
               {d} {t('a.tr.min')}
             </button>
@@ -202,12 +194,10 @@ export const TrainingScreen: React.FC<TrainingScreenProps> = ({ onSaved, onOpenP
               type="button"
               onClick={() => setFeeling(f.value)}
               aria-pressed={feeling === f.value}
-              className={cn(
-                'min-h-[64px] rounded-md border px-1 py-2 flex flex-col items-center justify-center gap-1 text-[12px] font-semibold leading-tight text-center transition-colors',
-                feeling === f.value
-                  ? 'border-primary bg-primary/10 text-primary'
-                  : 'border-border bg-card text-foreground hover:bg-muted/50'
-              )}
+                className={cn(
+                  'rink-choice flex min-h-[72px] flex-col items-center justify-center gap-1 px-1 py-2 text-[13px] font-semibold leading-tight text-center',
+                  feeling === f.value && 'rink-choice-on'
+                )}
             >
               <f.Icon className="w-5 h-5" aria-hidden="true" />
               {t(f.key)}
@@ -226,12 +216,10 @@ export const TrainingScreen: React.FC<TrainingScreenProps> = ({ onSaved, onOpenP
               type="button"
               onClick={() => setEnergy(f.value)}
               aria-pressed={energy === f.value}
-              className={cn(
-                'min-h-[64px] rounded-md border px-1 py-2 flex flex-col items-center justify-center gap-1 text-[12px] font-semibold leading-tight text-center transition-colors',
-                energy === f.value
-                  ? 'border-primary bg-primary/10 text-primary'
-                  : 'border-border bg-card text-foreground hover:bg-muted/50'
-              )}
+                className={cn(
+                  'rink-choice flex min-h-[72px] flex-col items-center justify-center gap-1 px-1 py-2 text-[13px] font-semibold leading-tight text-center',
+                  energy === f.value && 'rink-choice-on'
+                )}
             >
               <f.Icon className="w-5 h-5" aria-hidden="true" />
               {t(f.key)}
@@ -287,7 +275,7 @@ export const TrainingScreen: React.FC<TrainingScreenProps> = ({ onSaved, onOpenP
           <ul className="divide-y divide-border/60">
             {recent.map((s) => (
               <li key={s.id} className="py-3 flex items-start gap-3">
-                <span className="mt-0.5 w-8 h-8 rounded-md bg-muted flex items-center justify-center flex-shrink-0">
+                <span className="mt-0.5 w-8 h-8 rounded-md bg-accent/12 text-accent-ink flex items-center justify-center flex-shrink-0">
                   {s.type === 'on-ice' ? <Snowflake className="w-4 h-4" /> : <Dumbbell className="w-4 h-4" />}
                 </span>
                 <div className="min-w-0 flex-1">
