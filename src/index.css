@@ -668,6 +668,26 @@
     background: hsl(var(--accent));
   }
 
+  .authenticated-app > header,
+  .public-navbar {
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-left: env(safe-area-inset-left, 0px);
+    padding-right: env(safe-area-inset-right, 0px);
+  }
+
+  .authenticated-app > nav {
+    padding-left: env(safe-area-inset-left, 0px);
+    padding-right: env(safe-area-inset-right, 0px);
+  }
+
+  .authenticated-app > main {
+    padding-bottom: calc(7rem + env(safe-area-inset-bottom, 0px));
+  }
+
+  .phone-offline-banner {
+    padding-top: calc(0.5rem + env(safe-area-inset-top, 0px));
+  }
+
   .authenticated-app main {
     background-image: linear-gradient(to right, hsl(var(--border) / 0.35) 1px, transparent 1px);
     background-position: 1rem 0;

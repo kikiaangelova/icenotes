@@ -28,7 +28,7 @@ interface LandingPageProps {
  * plus two clearly distinct AI roles. No personas, no community placeholders.
  */
 export const LandingPage: React.FC<LandingPageProps> = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   const kicker = 'editorial-kicker';
 
@@ -185,6 +185,7 @@ export const LandingPage: React.FC<LandingPageProps> = () => {
             {t('lp.final.title')}
           </h2>
           <p className="mt-4 text-base text-muted-foreground">{t('lp.final.sub')}</p>
+          <p className="mt-3 text-xs text-muted-foreground">{language === 'bg' ? 'Работи на телефона ти. Добави го на началния екран след регистрация.' : 'Works on your phone. Add it to your home screen after you sign up.'}</p>
           <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
             <SmartStartCTA
               action="log-today"

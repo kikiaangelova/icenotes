@@ -8,3 +8,4 @@
 - [x] Apply the consolidated Edge Line visual system and complete responsive QA
 - [x] Complete final consolidated public/auth polish and regression QA
 - [x] Fix public responsive layout and verify EN/BG across phone, tablet and desktop
+- [ ] Add phone installation, guarded offline support, icons, and installation QA
