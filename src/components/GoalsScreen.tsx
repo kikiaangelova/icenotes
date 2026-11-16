@@ -1,4 +1,5 @@
 import React, { useMemo, useState } from 'react';
+import { showSpark } from './rink/RinkArt';
 import { useJournal } from '@/context/JournalContext';
 import { useLanguage } from '@/context/LanguageContext';
 import { Button } from '@/components/ui/button';
@@ -122,6 +123,7 @@ export const GoalsScreen: React.FC<Props> = ({ onOpenWeeklyReview, onOpenCompeti
     const closing = !goal.completed;
     try {
       await updateGoalAsync(goal.id, { completed: closing, progress: goal.completed ? goal.progress : 100 });
+      if (closing) showSpark();
       // Don't leave Today pointing at a focus the athlete just closed.
       if (closing && profile && profile.mainFocus?.trim() === goal.title.trim()) {
         await setProfileAsync({ ...profile, mainFocus: '' });
