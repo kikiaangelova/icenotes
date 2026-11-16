@@ -137,7 +137,7 @@ export const TodayCommandCenter: React.FC<Props> = ({
         {[
           { Icon: Wind, title: bg ? 'Преди старт' : 'Before the start', sub: bg ? 'Дишане 2 мин' : 'Breathing 2 min', onClick: onMentalPrep },
           { Icon: MessageCircle, title: bg ? 'Говори с AI' : 'Talk to AI', sub: bg ? 'План или спокойствие' : 'Plan or calm', onClick: onSupport },
-          { Icon: Users, title: bg ? 'Общност' : 'Community', sub: bg ? 'Скоро' : 'Coming soon', onClick: undefined },
+          { Icon: Users, title: bg ? 'Общност' : 'Community', sub: bg ? 'Победи и въпроси' : 'Wins and questions', onClick: onCommunity },
         ].map(({ Icon, title, sub, onClick }) => (
           <button key={title} type="button" onClick={onClick} disabled={!onClick} aria-disabled={!onClick}
             className="rink-card flex min-h-[96px] w-[42%] min-w-[140px] shrink-0 snap-start flex-col justify-between p-4 text-left disabled:opacity-70 sm:w-auto">

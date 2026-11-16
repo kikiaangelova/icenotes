@@ -9,6 +9,7 @@ export const PHASE1_DICT: Record<string, Phase1Entry> = {
   'nav5.goals':    { en: 'Goals',    bg: 'Цели' },
   'nav5.mind':     { en: 'Mind',     bg: 'Психика' },
   'nav5.progress': { en: 'Progress', bg: 'Прогрес' },
+  'nav5.community': { en: 'Community', bg: 'Общност' },
 
   // ── Today / performance center ──
   'today.focus.label':   { en: 'Current focus', bg: 'Текущ фокус' },
