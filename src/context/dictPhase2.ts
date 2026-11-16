@@ -59,7 +59,7 @@ export const PHASE2_DICT: Record<string, { en: string; bg: string }> = {
   'ob.s3.elements': { en: 'Elements you are working on', bg: 'Елементи, по които работиш' },
   'ob.s3.elementsPh': {
     en: 'e.g. 2A, 3S, layback, step sequence',
-    bg: 'напр. 2A, 3S, лайбек, стъпкова серия',
+    bg: 'напр. 2A, 3S, лайбек, стъпки',
   },
   'ob.s3.challenge': { en: 'Biggest challenge right now', bg: 'Най-голямото предизвикателство сега' },
   'ob.s3.challengePh': {

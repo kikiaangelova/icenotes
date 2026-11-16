@@ -89,8 +89,8 @@ export const LandingPage: React.FC<LandingPageProps> = () => {
         </div>
       </section>
 
-      <div className="energy-marquee" aria-label={language === 'bg' ? 'АКСЕЛ · ЛУТЦ · ФЛИП · РИТЕР · САЛХОВ · ТУЛУП · ПИРУЕТА · СТЪПКОВА ПОРЕДИЦА · КРАТКА ПРОГРАМА · ВОЛНА ПРОГРАМА' : 'AXEL · LUTZ · FLIP · LOOP · SALCHOW · TOE LOOP · SPIN · STEP SEQUENCE · SHORT PROGRAM · FREE SKATE'}>
-        <div className="energy-marquee-track" aria-hidden="true">{[0, 1].map(index => <span key={index}>{language === 'bg' ? 'АКСЕЛ · ЛУТЦ · ФЛИП · РИТЕР · САЛХОВ · ТУЛУП · ПИРУЕТА · СТЪПКОВА ПОРЕДИЦА · КРАТКА ПРОГРАМА · ВОЛНА ПРОГРАМА' : 'AXEL · LUTZ · FLIP · LOOP · SALCHOW · TOE LOOP · SPIN · STEP SEQUENCE · SHORT PROGRAM · FREE SKATE'} · </span>)}</div>
+      <div className="energy-marquee" aria-label={language === 'bg' ? 'АКСЕЛ · ЛУТЦ · ФЛИП · РИТБЕРГЕР · САЛХОВ · ТУЛУП · ПИРУЕТИ · СТЪПКИ · КРАТКА ПРОГРАМА · ВОЛНА ПРОГРАМА' : 'AXEL · LUTZ · FLIP · LOOP · SALCHOW · TOE LOOP · SPINS · STEP SEQUENCE · SHORT PROGRAM · FREE SKATE'}>
+        <div className="energy-marquee-track" aria-hidden="true">{[0, 1].map(index => <span key={index}>{language === 'bg' ? 'АКСЕЛ · ЛУТЦ · ФЛИП · РИТБЕРГЕР · САЛХОВ · ТУЛУП · ПИРУЕТИ · СТЪПКИ · КРАТКА ПРОГРАМА · ВОЛНА ПРОГРАМА' : 'AXEL · LUTZ · FLIP · LOOP · SALCHOW · TOE LOOP · SPINS · STEP SEQUENCE · SHORT PROGRAM · FREE SKATE'} · </span>)}</div>
       </div>
 
       <AfterPractice />
