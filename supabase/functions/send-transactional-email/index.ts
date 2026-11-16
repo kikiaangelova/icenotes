@@ -6,7 +6,7 @@ import { TEMPLATES } from '../_shared/transactional-email-templates/registry.ts'
 
 // Configuration baked in at scaffold time — do NOT change these manually.
 // To update, re-run the email domain setup flow.
-const SITE_NAME = "Ice Mastery Hub"
+const SITE_NAME = "SkateGoals"
 // SENDER_DOMAIN is the verified sender FQDN: a delegated subdomain (e.g., "notify.example.com"), or, on a
 // domain registered through Lovable, the domain itself or a name under it (e.g., "example.com", "app.example.com").
 // It MUST match the sender verified in Lovable's email setup.
@@ -55,6 +55,11 @@ Deno.serve(async (req) => {
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       }
     )
+  }
+
+  // Owner notifications can only be requested by the trusted database trigger.
+  if (req.headers.get('Authorization') !== `Bearer ${supabaseServiceKey}`) {
+    return new Response(JSON.stringify({ error: 'Forbidden' }), { status: 403, headers: { ...corsHeaders, 'Content-Type': 'application/json' } });
   }
 
   // Parse request body
@@ -127,6 +132,18 @@ Deno.serve(async (req) => {
 
   // Create Supabase client with service role (bypasses RLS)
   const supabase = createClient(supabaseUrl, supabaseServiceKey)
+
+  // Fetch authoritative signup data, never accept notification fields from a caller.
+  if (templateName === 'pilot-signup') {
+    const signupId = templateData.signupId;
+    if (typeof signupId !== 'string' || !/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(signupId)) {
+      return new Response(JSON.stringify({ error: 'Invalid signup ID' }), { status: 400 });
+    }
+    const { data: signup, error } = await supabase.from('pilot_waitlist').select('id, role, first_name, email, age_group, club, note, locale, created_at, consent').eq('id', signupId).single();
+    if (error || !signup || signup.consent !== true) return new Response(JSON.stringify({ error: 'Signup not found' }), { status: 404 });
+    templateData = signup;
+    idempotencyKey = `pilot-signup-${signup.id}`;
+  }
 
   // 2. Check suppression list (fail-closed: if we can't verify, don't send)
   const { data: suppressed, error: suppressionError } = await supabase

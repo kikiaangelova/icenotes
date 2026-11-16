@@ -19,6 +19,7 @@ import SportPsychology from "./pages/SportPsychology";
 import AiSupport from "./pages/AiSupport";
 import Contact from "./pages/Contact";
 import Pilot from "./pages/Pilot";
+import Unsubscribe from "./pages/Unsubscribe";
 import AdminPage from "./pages/Admin";
 import Privacy from "./pages/Privacy";
 import Feedback from "./pages/Feedback";
@@ -70,6 +71,7 @@ const AppRoutes = () => {
       <Route path="/coach-profile" element={<Navigate to="/ai-support" replace />} />
       <Route path="/contact" element={<Contact />} />
       <Route path="/pilot" element={<Pilot />} />
+      <Route path="/unsubscribe" element={<Unsubscribe />} />
       {/* Legacy journal links enter the single authenticated product shell. */}
       <Route
         path="/journal"
