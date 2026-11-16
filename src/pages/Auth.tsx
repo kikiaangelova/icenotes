@@ -11,7 +11,7 @@ import { useToast } from '@/hooks/use-toast';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { Seo } from '@/components/Seo';
 import { lovable } from '@/integrations/lovable';
-import { HeroVideo } from '@/components/landing/HeroVideo';
+import { Checkbox } from '@/components/ui/checkbox';
 import { SkateGoalsMark } from '@/components/landing/SkateGoalsMark';
 
 const GoogleIcon = () => (
@@ -27,21 +27,19 @@ type AuthView = 'auth' | 'forgot' | 'reset';
 
 const AuthVisual: React.FC<{ tagline: string }> = ({ tagline }) => (
   <aside className="auth-edge-brand">
-    <HeroVideo src="/skategoals-hero.mp4" poster="/skategoals-hero-poster.jpg" className="absolute inset-0 h-full w-full" />
+    <img src="/skategoals-hero-poster.jpg" alt="" className="absolute inset-0 h-full w-full object-cover object-[center_30%]" />
     <div className="relative z-10 flex h-full flex-col justify-between p-12">
       <div className="flex items-center gap-3 font-display text-xl font-bold">
         <SkateGoalsMark className="h-8 w-8" /> SkateGoals
       </div>
-      <div className="max-w-md border-t border-primary-foreground/35 pt-6">
-        <p className="font-display text-4xl font-bold leading-tight">{tagline}</p>
-      </div>
+
     </div>
   </aside>
 );
 
 const Auth: React.FC = () => {
   const { signIn, signUp, resetPassword, updatePassword, session } = useAuth();
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const { toast } = useToast();
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
@@ -58,6 +56,9 @@ const Auth: React.FC = () => {
     </button>
   );
 
+  const [authMode, setAuthMode] = useState(searchParams.get('mode') === 'signup' ? 'signup' : 'login');
+  const [signupConsent, setSignupConsent] = useState(false);
+  const consentHelp = language === 'bg' ? 'Потвърди възрастта си и че прочете политиката, за да продължиш.' : 'Confirm your age and that you read the policy to continue.';
   const [view, setView] = useState<AuthView>('auth');
   const [isLoading, setIsLoading] = useState(false);
   const [googleLoading, setGoogleLoading] = useState(false);
@@ -89,6 +90,7 @@ const Auth: React.FC = () => {
   }, [searchParams, session]);
 
   const handleGoogle = async () => {
+    if (authMode === 'signup' && !signupConsent) return;
     setGoogleLoading(true);
     try {
       const result = await lovable.auth.signInWithOAuth('google', {
@@ -147,6 +149,7 @@ const Auth: React.FC = () => {
 
   const handleSignup = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!signupConsent) return;
 
     if (!signupName || !signupEmail || !signupPassword) {
       toast({
@@ -474,15 +477,25 @@ const Auth: React.FC = () => {
 
         <Card className="auth-edge-card">
           <CardHeader className="pb-4">
-            <CardTitle className="text-xl text-center">{t('auth.welcome')}</CardTitle>
+            <CardTitle className="text-xl text-center">{authMode === 'signup' ? t('lp.cta') : t('auth.welcome')}</CardTitle>
             <CardDescription className="text-center">{t('auth.welcomeSubtitle')}</CardDescription>
           </CardHeader>
           <CardContent>
+            {authMode === 'signup' && <div className="mb-5 space-y-2">
+              <div className="flex items-start gap-3">
+                <Checkbox id="signup-consent" checked={signupConsent} onCheckedChange={(value) => setSignupConsent(value === true)} className="mt-1" />
+                <label htmlFor="signup-consent" className="text-sm leading-relaxed">
+                  {language === 'bg' ? 'Навършил/а съм 14 години и прочетох ' : 'I am 14 or older and I have read the '}
+                  <a href="/privacy" target="_blank" rel="noopener noreferrer" className="underline">{language === 'bg' ? 'Политиката за поверителност' : 'Privacy Policy'}</a>.
+                </label>
+              </div>
+              {!signupConsent && <p className="text-xs text-muted-foreground" role="status">{consentHelp}</p>}
+            </div>}
             <Button
               type="button"
               variant="outline"
               onClick={handleGoogle}
-              disabled={googleLoading || isLoading}
+              disabled={googleLoading || isLoading || (authMode === 'signup' && !signupConsent)}
               className="w-full h-12 mb-4 gap-3 bg-background hover:bg-muted/60 font-semibold border-2"
             >
               {googleLoading ? (
@@ -499,7 +512,7 @@ const Auth: React.FC = () => {
               <div className="flex-1 h-px bg-border" />
             </div>
 
-            <Tabs defaultValue={searchParams.get('mode') === 'signup' ? 'signup' : 'login'} className="w-full">
+            <Tabs value={authMode} onValueChange={setAuthMode} className="w-full">
 
               <TabsList className="grid w-full grid-cols-2 mb-6">
                 <TabsTrigger value="login">{t('auth.tab.login')}</TabsTrigger>
@@ -628,7 +641,7 @@ const Auth: React.FC = () => {
                       />
                     </div>
                   </div>
-                  <Button type="submit" className="w-full h-11" disabled={isLoading}>
+                  <Button type="submit" className="w-full h-11" disabled={isLoading || !signupConsent}>
                     {isLoading ? (
                       <>
                         <Loader2 className="w-4 h-4 mr-2 animate-spin" />
@@ -649,9 +662,7 @@ const Auth: React.FC = () => {
           <span>{t('auth.private')}</span>
         </div>
 
-        <p className="text-center text-xs text-muted-foreground mt-3 px-4">
-          {t('auth.terms')}
-        </p>
+
         </div></div>
       </div>
     </div>

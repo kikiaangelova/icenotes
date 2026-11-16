@@ -28,7 +28,6 @@ const About: React.FC = () => {
         whyBody: [
           'После стана ясно колко много остава между тренировката и представянето: наученото днес, увереността преди старт и превръщането на голямата цел в следваща малка стъпка.',
           'Така постепенно се появиха седмичното планиране, подготовката за състезание, спортната психология и двете отделни роли за AI подкрепа.',
-          'С практическо изграждане и vibe coding IceNotes постепенно се превърна в SkateGoals. Не твърдим, че знаем всичко за всеки спортист. Построихме това, което ни липсваше между тренировката и представянето.',
         ],
         principlesEyebrow: 'Принципи',
         principlesTitle: 'Как строим продукта.',
@@ -43,7 +42,7 @@ const About: React.FC = () => {
         forEyebrow: 'За кого е',
         forTitle: 'Фигуристи от 14 до 18 години, които влизат в сериозния спорт.',
         forBody:
-          'Ако тренираш редовно, състезаваш се и искаш да разбираш собствения си прогрес, това е за теб. Ако само започваш, пак може да го ползваш. Просто е построено около състезателен ритъм.',
+          'Ако тренираш редовно, състезаваш се и искаш да разбираш собствения си прогрес, това е за теб. SkateGoals е за кънкьори на 14 и повече години.',
         pilotEyebrow: 'Пилотна фаза',
         pilotBody:
           'SkateGoals се подготвя за пилотно тестване със състезаващи се фигуристи. Обратната връзка ще определя какво следва.',
@@ -59,7 +58,6 @@ const About: React.FC = () => {
         whyBody: [
           'Then the gap became clearer: what you learned today, where confidence goes before a competition, and how a season goal becomes one useful next step.',
           'Weekly planning, competition preparation, sport psychology and two distinct AI support roles grew into the product gradually.',
-          'Through hands-on building and vibe coding, IceNotes gradually became SkateGoals. We do not claim to know every athlete. We built what we wished existed between training and performance.',
         ],
         principlesEyebrow: 'Principles',
         principlesTitle: 'How we build it.',
@@ -74,7 +72,7 @@ const About: React.FC = () => {
         forEyebrow: 'Who it’s for',
         forTitle: 'Skaters aged 14 to 18 moving into serious competition.',
         forBody:
-          'If you train regularly, compete, and want to understand your own progress, this is for you. If you’re earlier in skating you can still use it. It is simply built around a competitive rhythm.',
+          'If you train regularly, compete, and want to understand your own progress, this is for you. SkateGoals is for skaters aged 14 and older.',
         pilotEyebrow: 'Pilot preparation',
         pilotBody:
           'SkateGoals is being prepared for pilot testing with competitive skaters. Feedback will shape what comes next.',
@@ -117,6 +115,16 @@ const About: React.FC = () => {
           </div>
         </section>
 
+        <section className="px-5 md:px-12 py-14 md:py-20 border-t border-border">
+          <div className="max-w-2xl mx-auto">
+            <h2 className="text-2xl md:text-3xl font-bold mb-6">{bg ? 'Кой стои зад SkateGoals' : 'Who builds SkateGoals'}</h2>
+            <div className="flex flex-col gap-6 sm:flex-row">
+              <div className="flex h-24 w-24 shrink-0 items-center justify-center rounded-full border border-border bg-muted text-xl font-semibold" aria-hidden>KA</div>
+              <p className="text-base text-foreground/80 leading-relaxed">{bg ? 'Кирилка Ангелова. Треньор по групова динамика и организационно поведение, ментор на млади хора от 2010 г. и спортен психолог. И майка на състезателка по фигурно пързаляне. SkateGoals се роди от това, което ни трябваше след тренировките и не намерихме никъде другаде.' : 'Kirilka Angelova. Group dynamics and organizational behaviour trainer, mentor to young people since 2010 and sport psychologist. Also the mother of a competitive figure skater. SkateGoals grew out of what we needed after practices and could not find anywhere else.'}</p>
+            </div>
+          </div>
+        </section>
+
         <section className="px-5 md:px-12 py-14 md:py-20 border-y border-border/50 bg-muted/30">
           <div className="max-w-3xl mx-auto">
             <p className={kicker}>{copy.principlesEyebrow}</p>
@@ -151,12 +159,13 @@ const About: React.FC = () => {
         </section>
 
         <section className="px-5 md:px-12 py-16 md:py-24 border-t border-border/50">
-          <div className="max-w-xl mx-auto text-center">
-            <Link to="/auth" className="inline-block w-full sm:w-auto">
+          <div className="max-w-xl mx-auto flex flex-col items-center justify-center gap-4 sm:flex-row">
+            <Link to="/auth?mode=signup" className="inline-block w-full sm:w-auto">
               <Button size="lg" className="h-14 px-10 text-base font-semibold rounded-sm gap-2 w-full sm:w-auto">
                 {copy.cta} <ArrowRight className="w-4 h-4" />
               </Button>
             </Link>
+            <Button asChild variant="outline" className="h-14 w-full sm:w-auto"><Link to="/pilot">{bg ? 'Включи се в пилота' : 'Join the pilot'}</Link></Button>
           </div>
         </section>
 
