@@ -1,73 +1,48 @@
-# Welcome to your Lovable project
+# SkateGoals
 
-## Project info
+**Train. Reflect. Compete.**
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+Приложение за състезатели по фигурно пързаляне, които искат да тренират осъзнато. На едно място са дневникът на тренировките, целите, седмичният преглед, подготовката за състезания и асистент по спортна психология.
 
-## How can I edit this code?
+Сайт: [skategoals.com](https://skategoals.com)
 
-There are several ways of editing your application.
+## Защо го правя
 
-**Use Lovable**
+Казвам се Кирилка Ангелова. Спортен психолог съм, треньор по групова динамика и ментор на млади хора от 2010 г.
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+В работата си със спортисти виждам едно и също. Фигуристите тренират тялото си всеки ден, а мислите и емоциите им остават без план. SkateGoals е мястото, където спортистът записва, обмисля и се подготвя, за да излезе на леда не само готов, но и спокоен.
 
-Changes made via Lovable will be committed automatically to this repo.
+Приложението го проектирам и изграждам сама. Кодът е публичен, за да се вижда как една идея от практиката се превръща в работещ продукт.
 
-**Use your preferred IDE**
+## Какво може
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+* **Дневник на тренировките.** Записваш какво си тренирал и как си се чувствал.
+* **Цели.** Поставяш си ги и следиш напредъка.
+* **Седмичен преглед.** Поглед назад към седмицата и план за следващата.
+* **Подготовка за състезания.** Стъпки, с които да подредиш главата си преди старт.
+* **Мисъл на деня.** Кратко напомняне, което можеш да запазиш в любими.
+* **Асистент по спортна психология.** Разговор, който помага да подредиш мислите си преди и след тренировка. Не замества психолог и го казва ясно.
+* **Треньорска подкрепа с AI.** Практични насоки за тренировъчния процес.
+* **Работи като приложение.** Инсталира се директно от браузъра (PWA), без App Store и Google Play.
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+Приложението е за спортисти от 14 години нагоре.
 
-Follow these steps:
+## С какво е направено
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+React, TypeScript, Vite, Tailwind CSS, shadcn/ui, Supabase и Vitest. Разработено с [Lovable](https://lovable.dev).
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+## Статус
 
-# Step 3: Install the necessary dependencies.
-npm i
+Пилотна фаза. Ако си фигурист, родител или треньор и искаш да го пробваш, пиши ми през страницата за контакт на [skategoals.com](https://skategoals.com).
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
+---
 
-**Edit a file directly in GitHub**
+## English
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+SkateGoals is a performance companion for competitive figure skaters: training log, goals, weekly review, competition prep and two AI support roles, coaching and sport psychology.
 
-**Use GitHub Codespaces**
+I'm Kirilka Angelova, a sport psychologist, group dynamics trainer and mentor to young people since 2010. I design and build SkateGoals myself, and the code is public so you can see how an idea from practice turns into a working product.
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+* **Live:** [skategoals.com](https://skategoals.com)
+* **Stack:** React, TypeScript, Vite, Tailwind CSS, shadcn/ui, Supabase, built with Lovable
+* **Contact:** [LinkedIn](https://www.linkedin.com/in/kirilkaangelova)
