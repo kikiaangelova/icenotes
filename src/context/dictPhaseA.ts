@@ -65,7 +65,7 @@ export const PHASEA_DICT: Record<string, { en: string; bg: string }> = {
   'a.tr.needType': { en: 'Choose at least one area before saving.', bg: 'Избери поне една област преди записа.' },
   'a.tr.history': { en: 'Recent sessions', bg: 'Последни тренировки' },
   'a.tr.historyEmpty': { en: 'Nothing logged yet. Your first session appears here.', bg: 'Още няма записи. Първата ти тренировка ще се появи тук.' },
-  'a.tr.prepOpen': { en: 'Set a focus first', bg: 'Първо задай фокус' },
+  'a.tr.prepOpen': { en: 'Before you go on the ice: 2 min prep', bg: 'Преди леда: подготовка за 2 минути' },
 
   // ── On-ice / off-ice element labels (stored value stays canonical) ──
   'a.el.Edge work & stroking': { en: 'Edges & stroking', bg: 'Пързаляне' },

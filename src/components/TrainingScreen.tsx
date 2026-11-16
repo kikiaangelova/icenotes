@@ -252,16 +252,6 @@ export const TrainingScreen: React.FC<TrainingScreenProps> = ({ onSaved, onOpenP
         <p className="text-xs text-muted-foreground text-center">
           {selected.length === 0 ? t('a.tr.needType') : t('a.tr.saveHint')}
         </p>
-        {onOpenPrep && (
-          <button
-            type="button"
-            onClick={onOpenPrep}
-            className="w-full min-h-[44px] text-sm font-medium text-muted-foreground hover:text-foreground inline-flex items-center justify-center gap-2"
-          >
-            <Brain className="w-4 h-4" />
-            {t('a.tr.prepOpen')}
-          </button>
-        )}
       </section>
 
       {/* History */}

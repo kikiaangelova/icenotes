@@ -1,3 +1,4 @@
+import { useJournal } from '@/context/JournalContext';
 import React from 'react';
 import { ClipboardList, Brain, ArrowRight } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
@@ -8,14 +9,17 @@ const openAI = (role: 'coach' | 'psych', message?: string) =>
 interface SupportScreenProps {
   /** Opens the sport psychology exercises (non-AI). */
   onOpenExercises: () => void;
+  onOpenGoals?: () => void;
 }
 
 /**
  * Support = two explicit choices, each with intent starters.
  * Not a generic chat-first surface.
  */
-export const SupportScreen: React.FC<SupportScreenProps> = ({ onOpenExercises }) => {
+export const SupportScreen: React.FC<SupportScreenProps> = ({ onOpenExercises, onOpenGoals }) => {
   const { t } = useLanguage();
+  const { goals } = useJournal();
+  const hasSeasonGoal = goals.some((g) => g.timeframe === 'season' && !g.completed);
 
   const roles = [
     {
@@ -25,7 +29,7 @@ export const SupportScreen: React.FC<SupportScreenProps> = ({ onOpenExercises })
       tag: t('ai.coach.tag'),
       desc: t('ai.coach.desc'),
       open: t('ai.coach.open'),
-      starters: [t('a.sp.coach.s1'), t('a.sp.coach.s2'), t('a.sp.coach.s3')],
+      starters: hasSeasonGoal ? [t('a.sp.coach.s1'), t('a.sp.coach.s2'), t('a.sp.coach.s3')] : [t('a.sp.coach.s1'), t('a.sp.coach.s2')],
     },
     {
       role: 'psych' as const,
@@ -71,6 +75,15 @@ export const SupportScreen: React.FC<SupportScreenProps> = ({ onOpenExercises })
                 <ArrowRight className="w-4 h-4 shrink-0 text-muted-foreground" />
               </button>
             ))}
+            {role === 'coach' && !hasSeasonGoal && onOpenGoals && (
+              <button
+                onClick={onOpenGoals}
+                className="flex min-h-[48px] w-full items-center justify-between gap-3 px-1 py-3 text-left text-sm font-semibold text-accent-ink transition-colors hover:text-accent"
+              >
+                <span className="min-w-0">{t('gb.seasonSet')}</span>
+                <ArrowRight className="w-4 h-4 shrink-0" />
+              </button>
+            )}
           </div>
 
           <button

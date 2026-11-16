@@ -177,7 +177,7 @@ export const SimpleDashboard: React.FC = () => {
               <p className="truncate text-sm font-semibold leading-tight text-foreground">
                 {profile.name || 'SkateGoals'}
               </p>
-              <p className="font-mono text-[10px] uppercase text-muted-foreground truncate">{language === 'bg' ? 'Дневник на фигуриста' : 'Skater log'}</p>
+              <p className="truncate text-[13px] text-muted-foreground">{language === 'bg' ? 'Дневник на фигуриста' : 'Skater log'}</p>
             </div>
           </button>
         ) : (
@@ -300,7 +300,7 @@ export const SimpleDashboard: React.FC = () => {
     }
 
     if (activeTab === 'support') {
-      return <SupportScreen onOpenExercises={() => setCurrentView('psych')} />;
+      return <SupportScreen onOpenExercises={() => setCurrentView('psych')} onOpenGoals={() => goTab('goals')} />;
     }
 
     if (activeTab === 'community') {
