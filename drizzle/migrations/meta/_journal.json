@@ -57,6 +57,13 @@
       "when": 1794828675787,
       "tag": "0007_skater_elements",
       "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "7",
+      "when": 1794829371335,
+      "tag": "0008_create_skater_community",
+      "breakpoints": true
     }
   ]
 }

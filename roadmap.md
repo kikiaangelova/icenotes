@@ -1,28 +1,3 @@
-- [x] Audit active authenticated shell and design system
-- [x] Redesign active signed-in surfaces without logic changes
-- [x] Consolidate every existing-user and post-login path onto the single SkateGoals shell
-- [x] Remove legacy branding, navigation, gamification, and dashboard presentation from active runtime
-- [x] Add editable stored display name to Profile/Settings without changing data contracts
-- [x] Run typecheck, production build, and complete authenticated responsive QA
-- [x] Complete final surgical content and focus-flow QA
-- [x] Apply the consolidated Edge Line visual system and complete responsive QA
-- [x] Complete final consolidated public/auth polish and regression QA
-- [x] Fix public responsive layout and verify EN/BG across phone, tablet and desktop
-- [x] Add phone installation, guarded offline support, icons, and preview installation QA
-- [ ] Verify real-device installation, published offline launch and Lighthouse (blocked by no-publish scope)
-- [x] Add landing product examples and content, update language defaults, and verify EN/BG layouts
-- [x] Replace hero media and verify playback, reduced motion, and landing spelling corrections
-- [x] Compact the public loop and populate the sample phone states; verify EN/BG at phone and desktop widths
-- [x] Constrain hero media sizing, apply final Bulgarian wording, and audit public punctuation at 390/768/1280
-- [x] Add bilingual pilot signup and links; verify real insertion, duplicate handling, privacy and responsive layouts
-- [x] Enable and verify owner-only pilot signup emails with one test notification
-
-- [x] Update Features and Sport Psychology content; verify companion entry and EN/BG layouts
-- [x] Update About trust content and signup consent; add private public contact delivery and verify EN/BG
-- [x] Add private comeback check-ins, Progress trends, injury-safe companion prompts and relaxation tools; verify EN/BG
-- [x] Replace psychology instructions verbatim, enforce message language and code safety, add menu language switch, and verify authenticated crisis and normal conversations
-- [x] Add public athletic energy, mobile hero and snap panels, shared motion and sticky CTA; verify bilingual layouts and loading
-- [ ] Compare production Lighthouse performance before and after (requires a comparable production baseline, no publishing in this pass)
-- [x] Add semantic risk flags and differentiated safety cards; verify veiled Bulgarian messages and normal chat
-- [x] Bulgarian copy pass: AI Coach rename, no dashes or semicolons, exercise names, back button, 5-face scale plus Energy, BG dates, shared focus on Goals, install banner only on Today
-- [x] Ice Rink visual pass for the signed-in app: colors, readable labels, cards, Today, Progress heatmap/chart/My elements, empty states, animations
+# Roadmap
+- [x] Community stage 1: roles, skater community, moderation, admin tools
+- [ ] Community stage 2: parent space (forum topics, articles), parent email consent for under 14, parent linking and opt-in sharing

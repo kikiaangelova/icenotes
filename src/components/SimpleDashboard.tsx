@@ -23,6 +23,7 @@ import { ReflectionSheet } from './ReflectionSheet';
 import { SupportScreen } from './SupportScreen';
 import { MobileBottomNav, type BottomTab } from './MobileBottomNav';
 import { ProfileSheet } from './ProfileSheet';
+import { CommunityScreen } from './community/CommunityScreen';
 import { InstallAppCard } from './PhoneAppSupport';
 import { ProgressRink } from './rink/ProgressRink';
 import { RinkEffects } from './rink/RinkArt';
@@ -54,7 +55,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 
-type MainTab = 'today' | 'train' | 'support' | 'goals' | 'progress';
+type MainTab = 'today' | 'train' | 'support' | 'goals' | 'progress' | 'community';
 type SubView = 'home' | 'prep' | 'psych' | 'library';
 
 export const SimpleDashboard: React.FC = () => {
@@ -69,7 +70,7 @@ export const SimpleDashboard: React.FC = () => {
   const [activeTab, setActiveTab] = useState<MainTab>(() => {
     if (typeof window === 'undefined') return 'today';
     const stored = localStorage.getItem('icenotes:lastTab');
-    const valid: MainTab[] = ['today', 'train', 'support', 'goals', 'progress'];
+    const valid: MainTab[] = ['today', 'train', 'support', 'goals', 'progress', 'community'];
     return valid.includes(stored as MainTab) ? (stored as MainTab) : 'today';
   });
   const [profileOpen, setProfileOpen] = useState(false);
@@ -140,6 +141,7 @@ export const SimpleDashboard: React.FC = () => {
     : activeTab === 'support' ? 'support'
     : activeTab === 'goals' ? 'goals'
     : activeTab === 'progress' ? 'progress'
+    : activeTab === 'community' ? 'community'
     : 'home';
 
   const handleSignOut = async () => {
@@ -279,6 +281,7 @@ export const SimpleDashboard: React.FC = () => {
           onMentalPrep={() => setCurrentView('prep')}
           onWeeklyReview={() => setReviewOpen(true)}
           onExercises={() => setCurrentView('psych')}
+          onCommunity={() => goTab('community')}
         />
       );
     }
@@ -294,6 +297,10 @@ export const SimpleDashboard: React.FC = () => {
 
     if (activeTab === 'support') {
       return <SupportScreen onOpenExercises={() => setCurrentView('psych')} />;
+    }
+
+    if (activeTab === 'community') {
+      return <CommunityScreen onOpenSupport={() => { goTab('support'); window.dispatchEvent(new CustomEvent('ai-assistant:open', { detail: { role: 'psych' } })); }} />;
     }
 
     if (activeTab === 'goals') {

@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Seo } from '@/components/Seo';
+import { AdminCommunity } from '@/components/community/AdminCommunity';
 import { supabase } from '@/integrations/supabase/client';
 import { useAuth } from '@/context/AuthContext';
 import { useIsAdmin } from '@/hooks/useIsAdmin';
@@ -199,6 +200,7 @@ const AdminPage: React.FC = () => {
       </header>
 
       <main className="container max-w-7xl mx-auto px-4 py-8 space-y-8">
+        <AdminCommunity />
         {/* Users summary */}
         <section>
           <h2 className="text-sm font-medium text-muted-foreground mb-3 flex items-center gap-2">
