@@ -12,6 +12,10 @@ import { supabase } from '@/integrations/supabase/client';
 import { useAuth } from '@/context/AuthContext';
 import { useLanguage } from '@/context/LanguageContext';
 import { useToast } from '@/hooks/use-toast';
+import { validateFeedback, isRateLimited, recentSends, feedbackIssueText, FEEDBACK_LIMITS } from '@/lib/feedbackRules';
+
+const SEND_KEY = 'sg.feedbackSends';
+const readSends = (): number[] => { try { return JSON.parse(localStorage.getItem(SEND_KEY) || '[]'); } catch { return []; } };
 
 /**
  * Private product feedback. Replaces the legacy "share your experience" page.
@@ -35,6 +39,10 @@ const Feedback: React.FC = () => {
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!user) return;
+    const bg = language === 'bg';
+    const issue = validateFeedback({ name, category, message });
+    if (issue) { toast({ title: feedbackIssueText(issue, bg), variant: 'destructive' }); return; }
+    if (isRateLimited(readSends())) { toast({ title: feedbackIssueText('rate', bg) }); return; }
     setBusy(true);
     const { error } = await supabase.from('feedback').insert({
       name: name.trim().slice(0, 80),
@@ -43,9 +51,11 @@ const Feedback: React.FC = () => {
     });
     setBusy(false);
     if (error) {
+      if (/feedback_rate_limit/.test(error.message || '')) { toast({ title: feedbackIssueText('rate', bg) }); return; }
       toast({ title: t('fb.error'), variant: 'destructive' });
       return;
     }
+    localStorage.setItem(SEND_KEY, JSON.stringify([...recentSends(readSends()), Date.now()]));
     setSent(true);
     setName('');
     setCategory('');
@@ -99,6 +109,7 @@ const Feedback: React.FC = () => {
                     onChange={(e) => setName(e.target.value)}
                     placeholder={t('fb.namePh')}
                     required
+                    maxLength={FEEDBACK_LIMITS.name}
                     className="h-12"
                   />
                 </div>
@@ -109,6 +120,7 @@ const Feedback: React.FC = () => {
                     value={category}
                     onChange={(e) => setCategory(e.target.value)}
                     placeholder={t('fb.categoryPh')}
+                    maxLength={FEEDBACK_LIMITS.category}
                     className="h-12"
                   />
                 </div>
@@ -120,6 +132,7 @@ const Feedback: React.FC = () => {
                     onChange={(e) => setMessage(e.target.value)}
                     placeholder={t('fb.messagePh')}
                     required
+                    maxLength={FEEDBACK_LIMITS.message}
                     className="min-h-[150px] resize-none"
                   />
                 </div>

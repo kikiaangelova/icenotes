@@ -543,7 +543,7 @@
     box-shadow: 0 6px 16px -8px hsl(194 68% 40% / 0.7);
   }
   .text-accent-ink { color: hsl(var(--accent-ink)); }
-  .authenticated-app .nav-label { font-size: 13px; letter-spacing: -0.03em; }
+  .authenticated-app .nav-label { font-size: clamp(11px, 3.1vw, 13px); letter-spacing: -0.03em; }
   .rink-date::first-letter { text-transform: uppercase; }
 
   .rink-trail path { stroke-dasharray: 520; stroke-dashoffset: 520; animation: rink-trail 1.2s ease-out forwards; }

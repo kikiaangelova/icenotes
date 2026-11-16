@@ -478,6 +478,7 @@ export type Database = {
           message: string
           name: string
           skating_level: string | null
+          user_id: string | null
         }
         Insert: {
           age?: number | null
@@ -486,6 +487,7 @@ export type Database = {
           message: string
           name: string
           skating_level?: string | null
+          user_id?: string | null
         }
         Update: {
           age?: number | null
@@ -494,6 +496,7 @@ export type Database = {
           message?: string
           name?: string
           skating_level?: string | null
+          user_id?: string | null
         }
         Relationships: []
       }
