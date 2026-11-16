@@ -253,18 +253,18 @@ export const TodayCommandCenter: React.FC<Props> = ({
         {logged && <p className="px-1 text-[13px] text-muted-foreground">{t('a.today.sessionsToday')}: {sessionsToday}</p>}
       </div>
 
-      <div className="-mx-4 flex snap-x scroll-px-4 gap-3 overflow-x-auto px-4 pb-2 pt-1 sm:mx-0 sm:grid sm:grid-cols-3 sm:px-0">
+      <div className="grid grid-cols-3 gap-2 pt-1 sm:gap-3">
         {[
           { Icon: Wind, tone: 'tone-ice', title: bg ? 'Преди старт' : 'Before the start', sub: bg ? 'Дишане 2 мин' : 'Breathing 2 min', onClick: onMentalPrep },
           { Icon: MessageCircle, tone: 'tone-violet', title: bg ? 'Говори с AI' : 'Talk to AI', sub: bg ? 'План или спокойствие' : 'Plan or calm', onClick: onSupport },
           { Icon: Users, tone: 'tone-coral', title: bg ? 'Общност' : 'Community', sub: bg ? 'Победи и въпроси' : 'Wins and questions', onClick: onCommunity },
         ].map(({ Icon, tone, title, sub, onClick }) => (
           <button key={title} type="button" onClick={onClick} disabled={!onClick} aria-disabled={!onClick}
-            className="rink-card flex min-h-[96px] w-[42%] min-w-[140px] shrink-0 snap-start flex-col justify-between p-4 text-left disabled:opacity-70 sm:w-auto">
+            className="rink-card flex min-h-[112px] min-w-0 flex-col justify-between gap-2 p-3 text-left disabled:opacity-70 sm:p-4">
             <span className={`${tone} tone-tile flex h-10 w-10 items-center justify-center rounded-xl`}><Icon className="h-5 w-5" /></span>
             <span>
-              <span className="block text-[15px] font-bold text-foreground">{title}</span>
-              <span className="block text-[13px] text-muted-foreground">{sub}</span>
+              <span className="block text-[14px] font-bold leading-tight text-foreground sm:text-[15px]">{title}</span>
+              <span className="mt-0.5 block text-[13px] leading-snug text-muted-foreground">{sub}</span>
             </span>
           </button>
         ))}

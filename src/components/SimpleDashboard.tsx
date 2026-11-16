@@ -172,6 +172,7 @@ export const SimpleDashboard: React.FC = () => {
               name={profile.name}
               onAvatarChange={(url) => setProfile({ ...profile, avatarUrl: url })}
               size="sm"
+              editable={false}
             />
             <div className="min-w-0">
               <p className="truncate text-sm font-semibold leading-tight text-foreground">

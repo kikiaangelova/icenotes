@@ -106,10 +106,10 @@ export const AvatarUpload: React.FC<AvatarUploadProps> = ({
         className="hidden"
       />
       
-      <Button
+      {editable && <Button
         variant="secondary"
         size="icon"
-        className="absolute -bottom-1 -right-1 w-7 h-7 rounded-full shadow-md"
+        className="absolute bottom-0 right-0 h-8 w-8 translate-x-1/4 translate-y-1/4 rounded-full shadow-md ring-2 ring-background"
         aria-label={t('av.change')}
         onClick={() => fileInputRef.current?.click()}
         disabled={uploading}
@@ -119,7 +119,7 @@ export const AvatarUpload: React.FC<AvatarUploadProps> = ({
         ) : (
           <Camera className="w-3.5 h-3.5" />
         )}
-      </Button>
+      </Button>}
     </div>
   );
 };
