@@ -10,6 +10,7 @@ import { showSpark } from '@/components/rink/RinkArt';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { ParentLinkCard } from './ParentLinkCard';
 import { ParentSpace } from './ParentSpace';
+import { RulesCard } from './RulesCard';
 import { TEMPLATES, PHRASES, REACTIONS, REACTION_LABEL, DISCIPLINES, RULES, PARENT_RULES, canJoinSkaterSpace, type TemplateKey, type PhraseKey, type ReactionKind } from './communityCopy';
 
 type Member = { user_id: string; role: string; age: number; nickname: string; avatar_key: string; discipline: string | null; rules_accepted_at: string | null; is_blocked: boolean };
@@ -228,6 +229,7 @@ const SkaterSpace: React.FC<{ bg: boolean; member: Member; onOpenSupport: () => 
   return (
     <div className="space-y-7">
       <Title bg={bg} />
+      <RulesCard bg={bg} space="skater" />
 
       <div className="-mx-4 flex gap-2 overflow-x-auto px-4 pb-1 sm:mx-0 sm:px-0">
         {groups.map(g => <button key={g.id} type="button" aria-pressed={groupId === g.id} onClick={() => setGroupId(g.id)} className={chip(groupId === g.id)}>{g.is_general ? (bg ? 'Всички фигуристи' : 'All skaters') : g.name}</button>)}
