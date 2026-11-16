@@ -43,7 +43,7 @@ const ROLE_META: Record<AIRole, {
  * Opened from anywhere via:
  *   window.dispatchEvent(new CustomEvent('ai-assistant:open', { detail: { role, message } }))
  */
-export const SkatingAssistant: React.FC = () => {
+export const SkatingAssistant = React.forwardRef<HTMLDivElement>(function SkatingAssistant(_props, _ref) {
   const { t, language } = useLanguage();
   const [open, setOpen] = useState(false);
   const [role, setRole] = useState<AIRole>('coach');
@@ -271,4 +271,4 @@ export const SkatingAssistant: React.FC = () => {
       </SheetContent>
     </Sheet>
   );
-};
+});

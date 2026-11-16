@@ -8,7 +8,7 @@ import { cn } from '@/lib/utils';
 type ColumnLink = { label: string; href: string; external?: boolean };
 type Column = { id: string; title: string; links: ColumnLink[] };
 
-export const Footer: React.FC = () => {
+export const Footer = React.forwardRef<HTMLElement>(function Footer(_props, ref) {
   const { t, language } = useLanguage();
   const [openSection, setOpenSection] = useState<string | null>(null);
 
@@ -49,7 +49,7 @@ export const Footer: React.FC = () => {
   const toggle = (id: string) => setOpenSection((cur) => (cur === id ? null : id));
 
   return (
-    <footer className="border-t border-primary-foreground/15 bg-primary px-5 pb-[calc(env(safe-area-inset-bottom,0px)+1.5rem)] pt-12 text-primary-foreground md:px-12">
+    <footer ref={ref} className="border-t border-primary-foreground/15 bg-primary px-5 pb-[calc(env(safe-area-inset-bottom,0px)+1.5rem)] pt-12 text-primary-foreground md:px-12">
       <div className="max-w-6xl mx-auto">
         {/* Top: brand + columns */}
         <div className="grid md:grid-cols-2 lg:grid-cols-[minmax(0,1.4fr)_repeat(3,minmax(0,1fr))] gap-8 md:gap-10 mb-10">
@@ -122,4 +122,4 @@ export const Footer: React.FC = () => {
       </div>
     </footer>
   );
-};
+});
