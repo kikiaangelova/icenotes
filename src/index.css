@@ -1206,6 +1206,10 @@
 .authenticated-app .tone-card { background: linear-gradient(180deg, hsl(var(--tone) / 0.08), hsl(var(--card)) 60%); border-radius: 16px; box-shadow: var(--rink-shadow); }
 .authenticated-app .tone-btn { background: hsl(var(--tone)); color: hsl(0 0% 100%); }
 .authenticated-app .tone-btn:hover { filter: brightness(1.06); }
+/* AI chat drawer: tinted by the active role (coach blue, psychology soft lavender). */
+.authenticated-app.ai-chat { background: linear-gradient(180deg, hsl(var(--tone) / 0.08), hsl(var(--background)) 45%); }
+.authenticated-app .ai-tab-on { border-color: hsl(var(--tone)); color: hsl(var(--tone)); }
+.authenticated-app .ai-greet { border-left: 3px solid hsl(var(--tone)); background: hsl(var(--tone) / 0.08); border-radius: 12px; }
 
 /* Step 2: onboarding steps and small moments of joy. */
 .authenticated-app .ob-dot { display:flex; height:28px; width:28px; flex-shrink:0; align-items:center; justify-content:center; border-radius:9999px; background:hsl(var(--secondary)); color:hsl(var(--muted-foreground)); font-size:13px; font-weight:700; transition: background-color .3s ease, transform .3s ease; }

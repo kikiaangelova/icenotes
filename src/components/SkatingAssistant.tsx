@@ -162,11 +162,11 @@ export const SkatingAssistant = React.forwardRef<HTMLDivElement>(function Skatin
 
   return (
     <Sheet open={open} onOpenChange={setOpen}>
-      <SheetContent side="right" className="authenticated-app app-sheet w-full sm:max-w-md flex flex-col p-0 gap-0">
+      <SheetContent side="right" className={cn("authenticated-app app-sheet ai-chat w-full sm:max-w-md flex flex-col p-0 gap-0", role === "psych" ? "tone-psych" : "tone-coach")} data-ai-role={role}>
         <SheetHeader className="space-y-4 border-b border-border px-5 pb-4 pt-5">
           <SheetTitle className="flex items-center gap-3 pr-8 text-lg font-bold">
-            <span className="flex h-10 w-10 items-center justify-center rounded-md bg-secondary">
-              <meta.icon className="w-5 h-5 text-primary" />
+            <span className="tone-tile flex h-10 w-10 items-center justify-center rounded-xl">
+              <meta.icon className="w-5 h-5" />
             </span>
             <span className="flex flex-col items-start leading-tight">
               {t(meta.nameKey)}
@@ -184,7 +184,7 @@ export const SkatingAssistant = React.forwardRef<HTMLDivElement>(function Skatin
                 onClick={() => setRole(r)}
                 className={cn(
                   'min-h-11 min-w-0 border-b-2 px-1 text-center text-[11px] font-semibold leading-tight transition-colors whitespace-normal',
-                  role === r ? 'border-accent text-foreground' : 'border-transparent text-muted-foreground hover:text-foreground'
+                  role === r ? 'ai-tab-on' : 'border-transparent text-muted-foreground hover:text-foreground'
                 )}
               >
                 {t(ROLE_META[r].nameKey)}
@@ -196,7 +196,7 @@ export const SkatingAssistant = React.forwardRef<HTMLDivElement>(function Skatin
         <div ref={scrollRef} className="flex-1 overflow-y-auto px-5 py-4 space-y-4">
           {messages.length === 0 && (
             <div className="space-y-4">
-              <div className="border-l-2 border-accent bg-muted/50 p-4">
+              <div className="ai-greet p-4">
                 <p className="text-sm leading-relaxed text-foreground">{t(meta.greetingKey)}</p>
               </div>
               <p className="app-section-label">{t('ai.tryOne')}</p>
@@ -205,7 +205,7 @@ export const SkatingAssistant = React.forwardRef<HTMLDivElement>(function Skatin
                   <button
                     key={k}
                     onClick={() => send(role, t(k))}
-                    className="min-h-[48px] border-b border-border px-1 py-3 text-left text-sm font-medium transition-colors last:border-b-0 hover:text-accent"
+                    className="min-h-[48px] border-b border-border px-1 py-3 text-left text-sm font-medium transition-colors last:border-b-0 hover:text-[hsl(var(--tone))]"
                   >
                     {t(k)}
                   </button>
@@ -222,7 +222,7 @@ export const SkatingAssistant = React.forwardRef<HTMLDivElement>(function Skatin
                 className={cn(
                   'max-w-[88%] rounded-lg px-4 py-3 text-sm leading-relaxed whitespace-pre-wrap',
                   m.role === 'user'
-                    ? 'bg-primary text-primary-foreground rounded-br-sm'
+                    ? 'tone-btn rounded-br-sm'
                     : 'border border-border bg-card text-foreground rounded-bl-sm'
                 )}
               >
@@ -257,7 +257,7 @@ export const SkatingAssistant = React.forwardRef<HTMLDivElement>(function Skatin
             disabled={busy}
           />
           <VoiceButton value={input} onChange={setInput} size="sm" />
-          <Button type="submit" size="icon" className="h-12 w-12 shrink-0" disabled={busy || !input.trim()}>
+          <Button type="submit" size="icon" className="tone-btn h-12 w-12 shrink-0" disabled={busy || !input.trim()}>
             <Send className="w-4 h-4" />
           </Button>
         </form>
