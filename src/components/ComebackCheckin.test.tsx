@@ -3,6 +3,7 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 import { ComebackCheckin } from './ComebackCheckin';
 vi.mock('@/context/LanguageContext', () => ({ useLanguage: () => ({ language: 'en' }) }));
 vi.mock('@/hooks/useComeback', () => ({ useComeback: () => ({ save: { mutateAsync: vi.fn(), isPending: false } }) }));
+vi.mock('@/components/ui/slider', () => ({ Slider: () => null }));
 afterEach(cleanup);
 describe('comeback topic entry', () => {
   it('opens the psychology companion with the selected injury topic', () => {
