@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from '@/components/ui/sheet';
 import { Button } from '@/components/ui/button';
 import { AvatarUpload } from '@/components/AvatarUpload';
-import { ChevronLeft, LogOut, Bell, Shield, Mail, Globe } from 'lucide-react';
+import { ChevronLeft, LogOut, Bell, Shield, Mail, Globe, Trophy, Users, Award, ChevronRight, CalendarDays } from 'lucide-react';
+import { cn } from '@/lib/utils';
 import { useJournal } from '@/context/JournalContext';
 import { useAuth } from '@/context/AuthContext';
 import { useIsAdmin } from '@/hooks/useIsAdmin';
@@ -21,190 +22,145 @@ interface ProfileSheetProps {
   onLogout: () => void;
 }
 
-/**
- * Profile drawer — always exitable.
- * - Back button (closes the sheet)
- * - Home button (jumps to dashboard home)
- * - Logout button (clearly visible at the bottom)
- * No dead ends: every route out is one tap away.
- */
-export const ProfileSheet: React.FC<ProfileSheetProps> = ({
-  open,
-  onOpenChange,
-  onOpenReminders,
-  onLogout,
-}) => {
+export const PROFILE_CATEGORIES = ['advanced-novice', 'junior', 'senior', 'adult', 'other'] as const;
+const CAT_KEY: Record<string, string> = {
+  'advanced-novice': 'ob.cat.advancedNovice', junior: 'ob.cat.junior', senior: 'ob.cat.senior', adult: 'ob.cat.adult', other: 'ob.cat.other',
+};
+const LEVELS = ['foundations', 'consistency', 'refining', 'competing'] as const;
+
+const Section: React.FC<{ icon: React.ComponentType<{ className?: string }>; title: string; children: React.ReactNode }> = ({ icon: Icon, title, children }) => (
+  <section className="rink-card space-y-3 p-4">
+    <p className="flex items-center gap-2 text-[15px] font-bold text-foreground"><Icon className="h-4 w-4 text-accent-ink" />{title}</p>
+    {children}
+  </section>
+);
+
+type Draft = { name: string; club: string; category: string; level: string; comp: string; compDate: string };
+
+/** Full profile screen: photo, club, level, category, next competition, language, reminders. Always exitable. */
+export const ProfileSheet: React.FC<ProfileSheetProps> = ({ open, onOpenChange, onOpenReminders, onLogout }) => {
   const { profile, setProfile, setProfileAsync } = useJournal();
   const { user } = useAuth();
   const { isAdmin } = useIsAdmin();
   const navigate = useNavigate();
   const { t, language, setLanguage } = useLanguage();
   const { toast } = useToast();
-  const [displayName, setDisplayName] = useState(profile?.name ?? '');
-  const [savingName, setSavingName] = useState(false);
+  const bg = language === 'bg';
+  const fromProfile = (): Draft => ({
+    name: profile?.name ?? '', club: profile?.club ?? '', category: profile?.skatingCategory ?? '',
+    level: profile?.selfLevel ?? '', comp: profile?.nextCompetition ?? '', compDate: profile?.nextCompetitionDate ?? '',
+  });
+  const [draft, setDraft] = useState<Draft>(fromProfile);
+  const [saving, setSaving] = useState(false);
 
-  useEffect(() => {
-    if (open) setDisplayName(profile?.name ?? '');
-  }, [open, profile?.name]);
+  useEffect(() => { if (open) setDraft(fromProfile()); // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [open, profile]);
 
   if (!profile) return null;
+  const initial = fromProfile();
+  const dirty = JSON.stringify(draft) !== JSON.stringify(initial);
+  const set = (k: keyof Draft, v: string) => setDraft((d) => ({ ...d, [k]: v }));
 
-  const saveDisplayName = async () => {
-    const nextName = displayName.trim();
-    if (!nextName || nextName === profile.name) return;
-    setSavingName(true);
+  const save = async () => {
+    if (!draft.name.trim()) return;
+    setSaving(true);
     try {
-      await setProfileAsync({ ...profile, name: nextName });
-      toast({ title: t('profile.nameSaved') });
+      await setProfileAsync({
+        ...profile, name: draft.name.trim(), club: draft.club.trim(), skatingCategory: draft.category,
+        selfLevel: (draft.level || profile.selfLevel) as typeof profile.selfLevel,
+        nextCompetition: draft.comp.trim(), nextCompetitionDate: draft.compDate,
+      });
+      toast({ title: bg ? 'Профилът е запазен' : 'Profile saved' });
     } catch {
-      toast({ title: t('profile.nameError'), variant: 'destructive' });
-    } finally {
-      setSavingName(false);
-    }
+      toast({ title: bg ? 'Профилът не беше запазен' : 'Could not save the profile', variant: 'destructive' });
+    } finally { setSaving(false); }
   };
 
+  const choice = (on: boolean) => cn('rink-choice px-3 text-[14px]', on && 'rink-choice-on');
   return (
     <Sheet open={open} onOpenChange={onOpenChange}>
-      <SheetContent
-        side="right"
-        className="authenticated-app app-sheet w-full sm:max-w-md p-0 flex flex-col"
-      >
+      <SheetContent side="right" className="authenticated-app app-sheet w-full sm:max-w-md p-0 flex flex-col">
         <div className="sticky top-0 z-10 flex h-16 items-center border-b border-border bg-background px-4">
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={() => onOpenChange(false)}
-            className="-ml-3 h-11 gap-1.5 text-sm"
-          >
-            <ChevronLeft className="w-4 h-4" />
-            {t('profile.back')}
+          <Button variant="ghost" size="sm" onClick={() => onOpenChange(false)} className="-ml-3 h-11 gap-1.5 text-sm">
+            <ChevronLeft className="w-4 h-4" />{t('profile.back')}
           </Button>
           <SheetHeader className="flex-1 pr-8 text-center">
             <SheetTitle className="text-sm font-semibold">{t('profile.title')}</SheetTitle>
           </SheetHeader>
         </div>
 
-        {/* Body */}
-        <div className="flex-1 overflow-y-auto px-5 py-7 space-y-8">
+        <div className="flex-1 overflow-y-auto bg-background px-4 py-6 space-y-4">
           {/* Identity */}
-          <div className="flex items-center gap-4 border-b border-border pb-6 text-left">
-            <AvatarUpload
-              avatarUrl={profile.avatarUrl}
-              name={profile.name}
-              onAvatarChange={(url) => setProfile({ ...profile, avatarUrl: url })}
-              size="lg"
-            />
-            <div>
-              <h2 className="text-lg font-bold text-foreground">{profile.name}</h2>
-              {user?.email && (
-                <p className="text-xs text-muted-foreground inline-flex items-center gap-1 mt-1">
-                  <Mail className="w-3 h-3" />
-                  {user.email}
-                </p>
-              )}
-              {profile.mainFocus && (
-                <p className="text-xs text-muted-foreground mt-2 max-w-xs">
-                  {t('profile.focus')}: {profile.mainFocus}
-                </p>
-              )}
-            </div>
-          </div>
-
-          {/* Quick actions */}
-          <div className="space-y-2">
-            <p className="app-section-label px-1">{t('profile.settings')}</p>
-
-            <div className="space-y-2 border-b border-border px-1 py-4">
+          <section className="rink-card flex flex-col items-center gap-3 p-5 text-center">
+            <AvatarUpload avatarUrl={profile.avatarUrl} name={profile.name} onAvatarChange={(url) => setProfile({ ...profile, avatarUrl: url })} size="lg" />
+            <p className="text-[13px] text-muted-foreground">{bg ? 'Докосни снимката, за да я смениш' : 'Tap the photo to change it'}</p>
+            <div className="w-full space-y-1.5 text-left">
               <Label htmlFor="profile-display-name">{t('profile.displayName')}</Label>
-              <div className="flex items-center gap-2">
-                <Input
-                  id="profile-display-name"
-                  value={displayName}
-                  onChange={(event) => setDisplayName(event.target.value)}
-                  maxLength={60}
-                  autoComplete="name"
-                  className="min-w-0 flex-1"
-                />
-                <Button
-                  type="button"
-                  variant="outline"
-                  onClick={saveDisplayName}
-                  disabled={savingName || !displayName.trim() || displayName.trim() === profile.name}
-                >
-                  {savingName ? t('profile.nameSaving') : t('profile.nameSave')}
-                </Button>
-              </div>
+              <Input id="profile-display-name" value={draft.name} onChange={(e) => set('name', e.target.value)} maxLength={60} autoComplete="name" className="h-12" />
             </div>
+            {user?.email && <p className="inline-flex items-center gap-1 text-[13px] text-muted-foreground"><Mail className="h-3.5 w-3.5" />{user.email}</p>}
+          </section>
 
-            {/* Language. Switch the whole app + AI support */}
-            <div className="flex w-full items-center gap-3 border-b border-border px-1 py-4">
-              <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-md bg-secondary">
-                <Globe className="w-4 h-4 text-primary" />
-              </div>
-              <div className="flex-1 min-w-0">
-                <p className="text-sm font-semibold text-foreground">{t('profile.language')}</p>
-                <p className="text-xs text-muted-foreground">{t('profile.languageSub')}</p>
-              </div>
-              <div className="flex flex-shrink-0 gap-1 rounded-md bg-muted p-1">
-                {LANGUAGES.map((l) => (
-                  <button
-                    key={l.code}
-                    onClick={() => setLanguage(l.code as Language)}
-                    aria-pressed={language === l.code}
-                    className={
-                       'px-3 h-9 rounded text-xs font-bold transition-colors ' +
-                      (language === l.code
-                         ? 'bg-primary text-primary-foreground'
-                        : 'text-muted-foreground hover:text-foreground')
-                    }
-                  >
-                    {l.code}
-                  </button>
-                ))}
-              </div>
+          <Section icon={Users} title={bg ? 'Клуб' : 'Club'}>
+            <Input aria-label={bg ? 'Клуб' : 'Club'} value={draft.club} onChange={(e) => set('club', e.target.value)} maxLength={80} placeholder={bg ? 'Например СК Ледена пързалка' : 'Your skating club'} className="h-12" />
+          </Section>
+
+          <Section icon={Trophy} title={bg ? 'Категория' : 'Category'}>
+            <div className="grid grid-cols-2 gap-2">
+              {PROFILE_CATEGORIES.map((c) => (
+                <button key={c} type="button" aria-pressed={draft.category === c} onClick={() => set('category', c)} className={choice(draft.category === c)}>{t(CAT_KEY[c])}</button>
+              ))}
             </div>
+          </Section>
 
-            <button
-              onClick={() => { onOpenReminders(); onOpenChange(false); }}
-              className="flex h-14 w-full items-center gap-3 border-b border-border px-1 text-left transition-colors hover:text-accent"
-            >
-              <div className="flex h-9 w-9 items-center justify-center rounded-md bg-secondary">
-                <Bell className="w-4 h-4 text-primary" />
-              </div>
-              <div className="flex-1">
-                <p className="text-sm font-semibold text-foreground">{t('profile.reminders')}</p>
-                <p className="text-xs text-muted-foreground">{t('profile.remindersSub')}</p>
-              </div>
+          <Section icon={Award} title={bg ? 'Ниво' : 'Level'}>
+            <div className="grid grid-cols-2 gap-2">
+              {LEVELS.map((l) => (
+                <button key={l} type="button" aria-pressed={draft.level === l} onClick={() => set('level', l)} className={choice(draft.level === l)}>{t(`level.${l}.label`)}</button>
+              ))}
+            </div>
+          </Section>
+
+          <Section icon={CalendarDays} title={bg ? 'Следващо състезание' : 'Next competition'}>
+            <Input aria-label={bg ? 'Име на състезанието' : 'Competition name'} value={draft.comp} onChange={(e) => set('comp', e.target.value)} maxLength={120} placeholder={bg ? 'Име на състезанието' : 'Competition name'} className="h-12" />
+            <Input type="date" aria-label={bg ? 'Дата' : 'Date'} value={draft.compDate} onChange={(e) => set('compDate', e.target.value)} className="h-12" />
+          </Section>
+
+          <Button onClick={save} disabled={saving || !dirty || !draft.name.trim()} className="h-12 w-full text-[15px] font-bold">
+            {saving ? t('profile.nameSaving') : (bg ? 'Запази профила' : 'Save profile')}
+          </Button>
+
+          <Section icon={Globe} title={t('profile.language')}>
+            <p className="text-[13px] text-muted-foreground">{t('profile.languageSub')}</p>
+            <div className="grid grid-cols-2 gap-2" role="group" aria-label={t('profile.language')}>
+              {LANGUAGES.map((l) => (
+                <button key={l.code} type="button" onClick={() => setLanguage(l.code as Language)} aria-pressed={language === l.code} className={choice(language === l.code)}>
+                  {l.code === 'bg' ? 'Български' : 'English'}
+                </button>
+              ))}
+            </div>
+          </Section>
+
+          <button type="button" onClick={() => { onOpenReminders(); onOpenChange(false); }} className="rink-card flex min-h-[64px] w-full items-center gap-3 p-4 text-left">
+            <Bell className="h-5 w-5 text-accent-ink" />
+            <span className="flex-1"><span className="block text-[15px] font-bold text-foreground">{t('profile.reminders')}</span><span className="block text-[13px] text-muted-foreground">{t('profile.remindersSub')}</span></span>
+            <ChevronRight className="h-5 w-5 text-muted-foreground" />
+          </button>
+
+          {isAdmin && (
+            <button type="button" onClick={() => { navigate('/admin'); onOpenChange(false); }} className="rink-card flex min-h-[64px] w-full items-center gap-3 p-4 text-left">
+              <Shield className="h-5 w-5 text-accent-ink" />
+              <span className="flex-1"><span className="block text-[15px] font-bold text-foreground">{t('profile.admin')}</span><span className="block text-[13px] text-muted-foreground">{t('profile.adminSub')}</span></span>
+              <ChevronRight className="h-5 w-5 text-muted-foreground" />
             </button>
-
-            {isAdmin && (
-              <button
-                onClick={() => { navigate('/admin'); onOpenChange(false); }}
-                className="flex h-14 w-full items-center gap-3 border-b border-border px-1 text-left transition-colors hover:text-accent"
-              >
-                <div className="flex h-9 w-9 items-center justify-center rounded-md bg-secondary">
-                  <Shield className="w-4 h-4 text-primary" />
-                </div>
-                <div className="flex-1">
-                  <p className="text-sm font-semibold text-foreground">{t('profile.admin')}</p>
-                  <p className="text-xs text-muted-foreground">{t('profile.adminSub')}</p>
-                </div>
-              </button>
-            )}
-          </div>
+          )}
 
           <GdprSettings />
         </div>
 
-        {/* Sticky footer. Logout always visible, no dead end */}
         <div className="border-t border-border bg-background px-5 py-4 pb-[calc(env(safe-area-inset-bottom)+1rem)]">
-          <Button
-            onClick={onLogout}
-            variant="outline"
-            className="w-full h-12 gap-2 border-border text-muted-foreground hover:border-destructive/50 hover:bg-background hover:text-destructive"
-          >
-            <LogOut className="w-5 h-5" />
-            {t('profile.logout')}
+          <Button onClick={onLogout} variant="outline" className="w-full h-12 gap-2 border-border text-muted-foreground hover:border-destructive/50 hover:bg-background hover:text-destructive">
+            <LogOut className="w-5 h-5" />{t('profile.logout')}
           </Button>
         </div>
       </SheetContent>

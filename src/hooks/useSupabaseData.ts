@@ -37,6 +37,7 @@ export const useProfile = () => {
         age: data.age || undefined,
         // Athlete context (Phase 2). Height/weight are deliberately NOT read or used.
         skatingCategory: (data as { skating_category?: string }).skating_category || undefined,
+        club: (data as { club?: string }).club || undefined,
         yearsSkating: (data as { years_skating?: number }).years_skating ?? undefined,
         currentElements: (data as { current_elements?: string }).current_elements || undefined,
         biggestChallenge: (data as { biggest_challenge?: string }).biggest_challenge || undefined,
@@ -73,6 +74,7 @@ export const useUpdateProfile = () => {
           age: profile.age,
           avatar_url: profile.avatarUrl,
           ...(profile.skatingCategory !== undefined ? { skating_category: profile.skatingCategory } : {}),
+          ...(profile.club !== undefined ? { club: profile.club || null } : {}),
           ...(profile.yearsSkating !== undefined ? { years_skating: profile.yearsSkating } : {}),
           ...(profile.currentElements !== undefined ? { current_elements: profile.currentElements } : {}),
           ...(profile.biggestChallenge !== undefined ? { biggest_challenge: profile.biggestChallenge } : {}),

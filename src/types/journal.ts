@@ -34,6 +34,7 @@ export interface SkaterProfile {
   weight?: number;
   // Athlete context (Phase 2)
   skatingCategory?: string;
+  club?: string;
   yearsSkating?: number;
   currentElements?: string;
   biggestChallenge?: string;

@@ -6,6 +6,7 @@ import { useLanguage } from '@/context/LanguageContext';
 import { useToast } from '@/hooks/use-toast';
 import { cn } from '@/lib/utils';
 import { AvatarBadge } from './CommunityScreen';
+import { RulesCard } from './RulesCard';
 import { PARENT_TOPICS, type ParentTopic } from './communityCopy';
 
 type PComment = { id: string; body: string; status: string; mine: boolean; nickname: string; avatar_key: string };
@@ -29,6 +30,7 @@ export const ParentSpace: React.FC = () => {
         <h1 className="app-page-title">{bg ? 'За родители' : 'For parents'}</h1>
         <p className="app-page-subtitle">{bg ? 'Отделно пространство само за родители. Децата не го виждат.' : 'A separate space just for parents. Skaters cannot see it.'}</p>
       </header>
+      <RulesCard bg={bg} space="parent" />
       <div className="-mx-4 flex gap-2 overflow-x-auto px-4 pb-1 sm:mx-0 sm:px-0">
         <button type="button" aria-pressed={tab === 'child'} onClick={() => setTab('child')} className={chip(tab === 'child')}><Heart className="h-4 w-4" />{bg ? 'Моето дете' : 'My skater'}</button>
         <button type="button" aria-pressed={tab === 'forum'} onClick={() => setTab('forum')} className={chip(tab === 'forum')}><MessagesSquare className="h-4 w-4" />{bg ? 'Теми' : 'Topics'}</button>
