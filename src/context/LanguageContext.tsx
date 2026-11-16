@@ -652,7 +652,7 @@ const dict: Dict = {
   'dash.todaySummary.cta': { en: 'Want to add a sentence?', bg: 'Искаш ли да добавиш едно изречение?' },
 
   // Back button (in-app)
-  'dash.back': { en: '← Back', bg: '← Назад' },
+  'dash.back': { en: 'Back', bg: 'Назад' },
 
   // ───── Onboarding ─────
   'onb.welcome.title': { en: 'Welcome to SkateGoals', bg: 'Здравей в SkateGoals' },
