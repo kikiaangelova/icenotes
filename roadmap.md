@@ -1,7 +1,4 @@
 # Roadmap
-- [x] Community stage 1: roles, skater community, moderation, admin tools
-- [x] Community stage 2: parent space, parent email consent, linking, opt-in sharing
-- [ ] Add authenticated GDPR JSON export covering every account-linked record
-- [ ] Add confirmed irreversible account deletion, including community and parent links
-- [ ] Add bilingual privacy controls for skater and parent settings
-- [ ] Verify export, confirmation safeguards, tests, build, and mobile layouts
+- [x] Thought of the day card + favourites in Profile
+- [x] Lavender Sport Psychology chat
+- [ ] Later: live test-account walkthrough, 768/1280 app check, remaining dead-code cleanup
