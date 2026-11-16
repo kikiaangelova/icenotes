@@ -6,6 +6,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Brain, Target, Trophy, CircleDot, ChevronRight, RotateCcw } from 'lucide-react';
 import { MindfulnessTools } from '@/components/MindfulnessTools';
 import { useLanguage } from '@/context/LanguageContext';
+import { ComebackCheckin } from './ComebackCheckin';
 
 const MENTAL_TIPS = (bg: boolean) => [
   {
@@ -241,6 +242,7 @@ export const SportPsychology: React.FC = () => {
       </div>
 
       {/* Daily Mental Exercise */}
+      <ComebackCheckin />
       <Card className="rounded-lg border-border border-l-2 border-l-accent shadow-none">
         <CardContent className="p-4">
           <div className="flex items-center gap-2 mb-2">

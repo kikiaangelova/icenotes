@@ -8,6 +8,7 @@ import { Button } from '@/components/ui/button';
 import { MindfulnessTools } from '@/components/MindfulnessTools';
 import { useLanguage } from '@/context/LanguageContext';
 import { useAuth } from '@/context/AuthContext';
+import { injuryNote } from '@/lib/comeback';
 
 const SportPsychology: React.FC = () => {
   const { t, language } = useLanguage();
@@ -81,6 +82,21 @@ const SportPsychology: React.FC = () => {
         <section className="px-5 md:px-12 pb-16 md:pb-24">
           <div className="max-w-5xl mx-auto">
             <MindfulnessTools />
+          </div>
+        </section>
+
+        <section className="px-5 md:px-12 py-14 md:py-20 border-t border-border">
+          <div className="max-w-5xl mx-auto grid gap-10 md:grid-cols-2">
+            <div className="space-y-4">
+              <h2 className="text-2xl font-bold">{language === 'bg' ? 'Връщане след травма' : 'Coming back from injury'}</h2>
+              <p className="text-base leading-relaxed text-muted-foreground">{language === 'bg' ? 'Травмата отнема леда за известно време, но не и кънкьора. Следи как е главата ти, тренирай това, което можеш, и се върни подготвен/а.' : 'An injury takes the ice away for a while, not the skater. Track how your head is doing, keep training what you can, and walk back in ready.'}</p>
+              <ul className="divide-y divide-border">{(language === 'bg' ? ['Седмична равносметка', 'Разговор за връщането след травма', 'Личен преглед в „Прогрес“'] : ['Weekly comeback check-in', 'Injury conversation starters', 'Private trend in Progress']).map(item => <li key={item} className="py-3 text-sm">{item}</li>)}</ul>
+              <p className="text-sm text-muted-foreground">{injuryNote[language]}</p>
+            </div>
+            <div className="space-y-4">
+              <h2 className="text-2xl font-bold">{language === 'bg' ? 'Подготви се и изключи' : 'Prepare and switch off'}</h2>
+              <ul className="divide-y divide-border">{(language === 'bg' ? ['Ритмично дишане. Познат ритъм за връщане на вниманието.', 'Прогресивна мускулна релаксация. Около 8 минути с леко напрягане и отпускане, само ако е удобно.', 'Сканиране на тялото. Около 5 минути наблюдение на усещанията без промяна.', 'Рутина преди старт. Три лични насоки за дишане, тяло и фокус преди загрявката.'] : ['Paced breathing. A familiar rhythm to bring attention back.', 'Progressive muscle relaxation. About 8 minutes of gentle tension and release, only if comfortable.', 'Body scan. About 5 minutes of noticing sensations without changing them.', 'Pre-start routine. Three personal cues for breath, body and focus before warm-up.']).map(item => <li key={item} className="py-3 text-sm leading-relaxed">{item}</li>)}</ul>
+            </div>
           </div>
         </section>
 

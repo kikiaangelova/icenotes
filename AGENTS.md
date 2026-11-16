@@ -6,3 +6,5 @@ Pilot signup uses a dedicated validated, insert-only table and never requests re
 Pilot owner emails are triggered after database insertion and use authoritative row data with fixed recipient and row-derived idempotency; browser callers cannot send notifications.
 Public psychology entry uses the explicit open-psych dashboard action and preserves it through the signed-in auth redirect so the intended companion opens without changing authentication or AI role logic.
 Public contact messages use a dedicated insert-only table with validated fields; a database trigger queues an ID-only owner notification using the shared secured email sender so visitors cannot read messages or choose recipients.
+Comeback ratings and pre-start cues use dedicated athlete-owned tables with schema validation and RLS; Progress reads the same check-ins so mental recovery is never inferred from training records.
+Relaxation practices reuse SessionTimer in compact countdown mode, start only on user action, and bypass physical tension in painful or injured areas; clinical clearance stays with the doctor or physio.
