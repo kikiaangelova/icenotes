@@ -1,13 +1,16 @@
 import { useEffect, useState } from 'react';
-import { Snowflake, Target, ClipboardList } from 'lucide-react';
+import { Snowflake, Target, ClipboardList, Check, Square } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Progress } from '@/components/ui/progress';
+import { Slider } from '@/components/ui/slider';
 import { useLanguage } from '@/context/LanguageContext';
 import { cn } from '@/lib/utils';
 
 const COPY = {
   en: {
     eyebrow: 'AFTER PRACTICE', heading: 'Tuesday, 19:40. Practice is over.', example: 'Example',
+    date: 'Tue 19:40', elements: [['Axel', '3/8'], ['Double Lutz', '5/6'], ['Combination spin', 'done']],
+    trainingNote: 'Landing felt late', nerves: 'Nerves', focus: 'Focus', mindNote: 'Before the run-through',
+    goal: 'Thursday: 5 axel attempts, full attention on the entry', steps: ['Five attempts', 'Full attention on the entry'], prompt: 'Write how it felt',
     moments: [
       ['Log the session in under a minute.', '3 clean axels out of 8, the landing felt late.'],
       ['Note how your head was.', 'Nerves 6 out of 10 before the run-through.'],
@@ -16,6 +19,9 @@ const COPY = {
   },
   bg: {
     eyebrow: 'СЛЕД ТРЕНИРОВКА', heading: 'Вторник, 19:40. Тренировката свърши.', example: 'Пример',
+    date: 'Вт 19:40', elements: [['Аксел', '3/8'], ['Двоен лутц', '5/6'], ['Комбинирана пируета', 'готово']],
+    trainingNote: 'Приземяването закъснява', nerves: 'Нерви', focus: 'Фокус', mindNote: 'Преди прогона',
+    goal: 'Четвъртък: 5 опита за аксел, цялото внимание върху засилването', steps: ['Пет опита', 'Цялото внимание върху засилването'], prompt: 'Запиши как се почувства',
     moments: [
       ['Запиши тренировката за по-малко от минута.', '3 чисти аксела от 8, приземяването закъснява.'],
       ['Отбележи как беше главата ти.', 'Нерви 6 от 10 преди прогона.'],
@@ -61,25 +67,35 @@ export function AfterPractice() {
       </div>
       <div className="mx-auto w-full max-w-[330px]">
         <p className="mb-3 text-center font-mono text-xs uppercase text-muted-foreground">{copy.example}</p>
-        <div className="relative aspect-[9/16] overflow-hidden rounded-[2rem] border-2 border-primary bg-background p-5">
+        <div className="relative overflow-hidden rounded-[2rem] border-2 border-primary bg-background p-5">
           <div className="mx-auto mb-5 h-1 w-12 rounded-full bg-primary" aria-hidden />
-          <div className="flex items-center justify-between border-b border-border pb-3"><span className="text-sm font-semibold">SkateGoals</span><span className="font-mono text-xs text-muted-foreground">19:40</span></div>
-          <div className="relative mt-6 h-[340px]">
-            {copy.moments.map(([, detail], index) => {
+          <div className="flex items-center justify-between border-b border-border pb-3"><span className="text-sm font-semibold">SkateGoals</span><span className="font-mono text-xs text-muted-foreground">{copy.date}</span></div>
+          <div className="mt-5 grid">
+            {copy.moments.map((_, index) => {
               const Icon = icons[index];
-              return <div key={index} aria-hidden={active !== index}
-                className={cn('absolute inset-0 transition-opacity duration-700 motion-reduce:transition-none', active === index ? 'opacity-100' : 'pointer-events-none opacity-0')}>
-                {Icon && <Icon className="mb-4 h-6 w-6 text-primary" />}
-                <h3 className="text-xl font-semibold text-foreground">{titles[index]}</h3>
-                <div className="mt-6 border-y border-border py-5">
-                  <p className="font-mono text-3xl font-medium text-foreground">{index === 0 ? '3 / 8' : index === 1 ? '6 / 10' : '5'}</p>
-                  {index === 1 && <Progress value={60} className="mt-4 h-1 rounded-none" aria-label={copy.moments[1]?.[0]} />}
-                  <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{detail}</p>
-                </div>
+              return <div key={index} aria-hidden={active !== index} data-phone-state={index}
+                className={cn('[grid-area:1/1] transition-opacity duration-700 motion-reduce:transition-none', active === index ? 'opacity-100' : 'pointer-events-none opacity-0')}>
+                <div className="flex items-center gap-3">{Icon && <Icon className="h-5 w-5 shrink-0 text-primary" />}<h3 className="text-lg font-semibold text-foreground">{titles[index]}</h3></div>
+                {index === 0 && <>
+                  <div className="mt-5 border-t border-border">{copy.elements.map(([name, count]) => <div key={name} className="flex min-h-14 items-center justify-between gap-3 border-b border-border py-3"><span className="text-sm font-medium text-foreground">{name}</span><span className="shrink-0 font-mono text-sm text-foreground">{count}</span></div>)}</div>
+                  <p className="mt-5 border-l-2 border-accent pl-3 text-sm leading-relaxed text-muted-foreground">{copy.trainingNote}</p>
+                </>}
+                {index === 1 && <>
+                  <div className="mt-5 space-y-6 border-y border-border py-5">{[[copy.nerves, 6], [copy.focus, 7]].map(([label, value]) => <div key={label}>
+                    <div className="mb-4 flex items-center justify-between text-sm"><span className="font-medium text-foreground">{label}</span><span className="font-mono text-foreground">{value}/10</span></div>
+                    <Slider disabled value={[Number(value)]} min={0} max={10} aria-label={String(label)} className="pointer-events-none" />
+                  </div>)}</div>
+                  <p className="mt-5 border-l-2 border-accent pl-3 text-sm leading-relaxed text-muted-foreground">{copy.mindNote}</p>
+                </>}
+                {index === 2 && <>
+                  <p className="mt-5 border-l-2 border-accent pl-3 text-base font-semibold leading-relaxed text-foreground">{copy.goal}</p>
+                  <ul className="mt-4 space-y-3 border-y border-border py-4">{copy.steps.map((step, stepIndex) => <li key={step} className="flex items-start gap-3 text-sm leading-relaxed text-foreground">{stepIndex === 0 ? <Check className="mt-0.5 h-4 w-4 shrink-0 text-primary" aria-hidden /> : <Square className="mt-0.5 h-4 w-4 shrink-0 text-muted-foreground" aria-hidden />}<span>{step}</span></li>)}</ul>
+                  <p className="mt-4 text-sm text-muted-foreground">{copy.prompt}</p>
+                </>}
               </div>;
             })}
           </div>
-          <div className="absolute inset-x-5 bottom-6 flex justify-between border-t border-border pt-4 text-muted-foreground" aria-hidden><Snowflake className="h-5 w-5" /><ClipboardList className="h-5 w-5" /><Target className="h-5 w-5" /></div>
+          <div className="mt-6 flex justify-between border-t border-border pt-4 text-muted-foreground" aria-hidden><Snowflake className="h-5 w-5" /><ClipboardList className="h-5 w-5" /><Target className="h-5 w-5" /></div>
         </div>
       </div>
     </div>
