@@ -1,11 +1,11 @@
 import { describe, expect, it } from 'vitest';
-import { readFileSync } from 'node:fs';
+import uploadedInstruction from '../../supabase/functions/skating-coach/sport-psychology-system-prompt-bg.md?raw';
 import { conversationRisk, detectMessageLanguage, detectRisk, safetyReply } from '../../supabase/functions/skating-coach/message-policy';
 import { PSYCH_PROMPT } from '../../supabase/functions/skating-coach/psych-prompt';
 
 describe('server AI message policy', () => {
   it('keeps the supplied instruction verbatim', () => {
-    expect(PSYCH_PROMPT).toBe(readFileSync('/mnt/user-uploads/sport-psychology-system-prompt-bg.md', 'utf8'));
+    expect(PSYCH_PROMPT).toBe(uploadedInstruction);
   });
   it('replies to a Bulgarian double axel message in Bulgarian regardless of UI', () => {
     expect(detectMessageLanguage('Притеснявам се преди двойния аксел.')).toBe('bg');
