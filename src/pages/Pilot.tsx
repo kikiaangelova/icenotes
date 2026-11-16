@@ -51,8 +51,8 @@ export default function Pilot() {
     const fields = new FormData(event.currentTarget);
     if (String(fields.get('website') || '').trim()) return;
     const parsed = pilotWaitlistSchema.safeParse({ role, first_name: fields.get('first_name'), email: fields.get('email'), age_group: role === 'skater' ? age || null : null, club: fields.get('club'), note: fields.get('note'), locale: language, consent });
-    if (!parsed.success) { setError('invalid'). Return; }
-    setBusy(true). SetError(null);
+    if (!parsed.success) { setError('invalid'); return; }
+    setBusy(true); setError(null);
     try {
       const data = parsed.data;
       // Explicit required fields keep the insert type sound with this project's non-strict Zod inference.
@@ -66,7 +66,7 @@ export default function Pilot() {
         locale: data.locale ?? language,
         consent: true,
       });
-      if (insertError) { setError(insertError.code === '23505' ? 'duplicate' : 'error'). Return; }
+      if (insertError) { setError(insertError.code === '23505' ? 'duplicate' : 'error'); return; }
       setSuccess(true);
     } catch { setError('error'); } finally { setBusy(false); }
   }
@@ -81,7 +81,7 @@ export default function Pilot() {
       </div>
       <section className="mt-12 max-w-2xl"><h2 className="text-2xl font-bold">{copy.join}</h2>
         {success ? <p role="status" className="mt-6 border-y border-border py-8 text-xl font-semibold">{copy.success}</p> : <form onSubmit={submit} className="mt-6 space-y-6" noValidate>
-          <div className="space-y-2"><Label htmlFor="pilot-role">{copy.role}</Label><Select value={role} onValueChange={(value) => { if (value === 'skater' || value === 'parent' || value === 'coach') { setRole(value). SetAge(''); } }}><SelectTrigger id="pilot-role" className="h-11"><SelectValue /></SelectTrigger><SelectContent>{(['skater','parent','coach'] as const).map((value, i) => <SelectItem key={value} value={value}>{copy.roles[i]}</SelectItem>)}</SelectContent></Select></div>
+          <div className="space-y-2"><Label htmlFor="pilot-role">{copy.role}</Label><Select value={role} onValueChange={(value) => { if (value === 'skater' || value === 'parent' || value === 'coach') { setRole(value); setAge(''); } }}><SelectTrigger id="pilot-role" className="h-11"><SelectValue /></SelectTrigger><SelectContent>{(['skater','parent','coach'] as const).map((value, i) => <SelectItem key={value} value={value}>{copy.roles[i]}</SelectItem>)}</SelectContent></Select></div>
           <div className="grid gap-6 md:grid-cols-2"><div className="space-y-2"><Label htmlFor="pilot-name">{copy.name}</Label><Input id="pilot-name" name="first_name" autoComplete="given-name" maxLength={80} required className="h-11" /></div><div className="space-y-2"><Label htmlFor="pilot-email">{copy.email}</Label><Input id="pilot-email" name="email" type="email" autoComplete="email" maxLength={254} required className="h-11" /></div></div>
           {role === 'skater' && <div className="space-y-2"><Label htmlFor="pilot-age">{copy.age}</Label><Select value={age} onValueChange={(value) => { if (value === '14-15' || value === '16-18') setAge(value); }}><SelectTrigger id="pilot-age" className="h-11"><SelectValue placeholder={copy.choose} /></SelectTrigger><SelectContent><SelectItem value="14-15">{copy.ages[0]}</SelectItem><SelectItem value="16-18">{copy.ages[1]}</SelectItem></SelectContent></Select><p className="text-xs text-muted-foreground">{copy.ageHint}</p></div>}
           <div className="space-y-2"><Label htmlFor="pilot-club">{copy.club}</Label><Input id="pilot-club" name="club" maxLength={120} className="h-11" /></div>

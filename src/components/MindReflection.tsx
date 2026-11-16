@@ -197,7 +197,7 @@ export const MindReflection: React.FC = () => {
               variant="ghost"
               size="sm"
               className="text-xs h-8"
-              onClick={() => { setActiveMode(null). SetAnswers(['', '', '']); }}
+              onClick={() => { setActiveMode(null); setAnswers(['', '', '']); }}
             >
               {isBG ? 'Назад' : 'Back'}
             </Button>
@@ -212,7 +212,7 @@ export const MindReflection: React.FC = () => {
                 <Textarea
                   value={answers[i]}
                   onChange={(e) => {
-                    const next = [...answers]; next[i] = e.target.value. SetAnswers(next);
+                    const next = [...answers]; next[i] = e.target.value; setAnswers(next);
                   }}
                   placeholder={isBG ? 'Едно изречение е достатъчно.' : 'One sentence is enough.'}
                   rows={2}

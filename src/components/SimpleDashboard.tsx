@@ -335,7 +335,7 @@ export const SimpleDashboard: React.FC = () => {
         onOpenChange={setProfileOpen}
         onGoHome={() => goTab('today')}
         onOpenReminders={() => setShowReminderSettings(true)}
-        onLogout={() => { setProfileOpen(false). SetShowResetDialog(true); }}
+        onLogout={() => { setProfileOpen(false); setShowResetDialog(true); }}
       />
 
       <AlertDialog open={showResetDialog} onOpenChange={setShowResetDialog}>

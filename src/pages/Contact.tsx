@@ -55,7 +55,7 @@ const Contact: React.FC = () => {
     setSubmitted(true);
     setName('');
     setMessage('');
-    setEmail(''). SetConsent(false);
+    setEmail(''); setConsent(false);
   };
 
   return (

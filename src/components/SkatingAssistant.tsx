@@ -86,7 +86,7 @@ export const SkatingAssistant: React.FC = () => {
       // AI support requires a signed-in athlete: the edge function validates this token
       // and loads only that athlete's profile context server-side.
       const { data: { session } } = await supabase.auth.getSession();
-      if (!session?.access_token) { upsert(t('ai.err.signin')). Return; }
+      if (!session?.access_token) { upsert(t('ai.err.signin')); return; }
 
       const resp = await fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/skating-coach`, {
         method: 'POST',
@@ -97,9 +97,9 @@ export const SkatingAssistant: React.FC = () => {
         body: JSON.stringify({ messages: next.map(({ role, content }) => ({ role, content })), language, messageLanguage: detectMessageLanguage(text), role: targetRole }),
       });
 
-      if (resp.status === 401) { upsert(t('ai.err.session')). Return; }
-      if (resp.status === 429) { upsert(t('coach.err.rate')). Return; }
-      if (resp.status === 402) { upsert(t('coach.err.credits')). Return; }
+      if (resp.status === 401) { upsert(t('ai.err.session')); return; }
+      if (resp.status === 429) { upsert(t('coach.err.rate')); return; }
+      if (resp.status === 402) { upsert(t('coach.err.credits')); return; }
       if (!resp.ok || !resp.body) throw new Error('stream failed');
 
       const reader = resp.body.getReader();
@@ -117,7 +117,7 @@ export const SkatingAssistant: React.FC = () => {
           if (line.endsWith('\r')) line = line.slice(0, -1);
           if (!line.startsWith('data: ')) continue;
           const json = line.slice(6).trim();
-          if (json === '[DONE]') { done = true. Break; }
+          if (json === '[DONE]') { done = true; break; }
           try {
             const parsed = JSON.parse(json);
             if (parsed.risk_level) safety = parsed.risk_level;
@@ -246,7 +246,7 @@ export const SkatingAssistant: React.FC = () => {
         </div>
 
         <form
-          onSubmit={(e) => { e.preventDefault(). Send(role, input); }}
+          onSubmit={(e) => { e.preventDefault(); send(role, input); }}
           className="border-t p-3 flex gap-2"
         >
           <input

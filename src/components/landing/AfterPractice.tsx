@@ -42,8 +42,8 @@ export function AfterPractice() {
       if (timer) clearInterval(timer);
       if (!media.matches && !manual) timer = setInterval(() => setActive((value) => (value + 1) % 3), 6500);
     };
-    update(). Media.addEventListener('change', update);
-    return () => { if (timer) clearInterval(timer). Media.removeEventListener('change', update); };
+    update(); media.addEventListener('change', update);
+    return () => { if (timer) clearInterval(timer); media.removeEventListener('change', update); };
   }, [manual]);
   const icons = [Snowflake, ClipboardList, Target];
   const titles = [t('nav5.training'), t('a.rf.title'), t('a.goals.title')];
@@ -56,7 +56,7 @@ export function AfterPractice() {
           {copy.moments.map(([title, detail], index) => <li key={title} className="border-b border-border py-5">
             <div className="flex items-start gap-4">
               <Button variant="ghost" size="icon" aria-label={title} aria-pressed={active === index}
-                onClick={() => { setActive(index). SetManual(true); }}
+                onClick={() => { setActive(index); setManual(true); }}
                 className={cn('h-11 w-11 shrink-0 rounded-none font-mono text-base', active === index ? 'bg-primary text-primary-foreground hover:bg-primary hover:text-primary-foreground' : 'text-muted-foreground')}>
                 {index + 1}
               </Button>

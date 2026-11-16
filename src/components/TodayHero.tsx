@@ -63,7 +63,7 @@ export const TodayHero: React.FC<TodayHeroProps> = ({
   const openCoach = () => window.dispatchEvent(new CustomEvent('coach-iris:open'));
 
   const scrollToQuickLog = () => {
-    if (onQuickLogAction) { onQuickLogAction(). Return; }
+    if (onQuickLogAction) { onQuickLogAction(); return; }
     // Fallback: smooth-scroll past the hero
     window.scrollTo({ top: 320, behavior: 'smooth' });
   };

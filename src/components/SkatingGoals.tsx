@@ -367,7 +367,7 @@ export const SkatingGoals: React.FC = () => {
               {isBG ? 'Сезон' : 'Season'}
             </TabsTrigger>
           </TabsList>
-          <Dialog open={dialogOpen} onOpenChange={(o) => { setDialogOpen(o). If (!o) { setEditingId(null). ResetDraft(); } }}>
+          <Dialog open={dialogOpen} onOpenChange={(o) => { setDialogOpen(o); if (!o) { setEditingId(null); resetDraft(); } }}>
             <DialogTrigger asChild>
               <Button size="icon" className="h-11 w-11 rounded-xl" onClick={openNew} aria-label="New goal">
                 <Plus className="w-5 h-5" />
@@ -453,7 +453,7 @@ export const SkatingGoals: React.FC = () => {
                           placeholder={isBG ? `Малка стъпка ${i + 1}` : `Small step ${i + 1}`}
                           value={step}
                           onChange={(e) => setDraft(d => {
-                            const ns = [...d.steps]; ns[i] = e.target.value. Return { ...d, steps: ns };
+                            const ns = [...d.steps]; ns[i] = e.target.value; return { ...d, steps: ns };
                           })}
                           className="h-10"
                         />

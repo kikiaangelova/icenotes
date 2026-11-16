@@ -34,7 +34,7 @@ export const ReflectionSheet: React.FC<ReflectionSheetProps> = ({ open, onOpenCh
   const handleSave = async () => {
     const nextFocus = focus.trim();
     // The loop is LOG -> REFLECT -> NEXT FOCUS. Skipping stays available.
-    if (!nextFocus) { toast.error(t('a.rf.needFocus')). Return; }
+    if (!nextFocus) { toast.error(t('a.rf.needFocus')); return; }
     setSaving(true);
     try {
       // Focus first, reflection row last: a saved reflection never closes the

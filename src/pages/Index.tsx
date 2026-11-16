@@ -21,7 +21,7 @@ const AppContent: React.FC = () => {
     );
   }
 
-  // Legacy athletes may predate the current onboarding fields. Existing
+  // Legacy athletes may predate the current onboarding fields; existing
   // activity always opens the current product without rewriting their data.
   const hasExistingActivity =
     entries.length > 0 ||

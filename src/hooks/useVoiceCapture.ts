@@ -57,7 +57,7 @@ export const useVoiceCapture = ({ lang, onFinalText }: Options) => {
 
   const start = useCallback(() => {
     const Ctor = getCtor();
-    if (!Ctor) { setError('unsupported'). Return; }
+    if (!Ctor) { setError('unsupported'); return; }
     setError(null);
     try { recRef.current?.abort(); } catch { /* no active session */ }
 

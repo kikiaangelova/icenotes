@@ -63,7 +63,7 @@ export const GameDayMode: React.FC<GameDayModeProps> = ({ open, onOpenChange }) 
     setBreathDone(false);
     setBreathStarted(false);
     setSavingDebrief(false);
-    setD1(''). SetD2(''). SetD3('');
+    setD1(''); setD2(''); setD3('');
   }, [open]);
 
   useEffect(() => {
@@ -96,7 +96,7 @@ export const GameDayMode: React.FC<GameDayModeProps> = ({ open, onOpenChange }) 
   const close = () => onOpenChange(false);
 
   const saveDebrief = async () => {
-    if (!d1.trim() && !d2.trim() && !d3.trim()) { close(). Return; }
+    if (!d1.trim() && !d2.trim() && !d3.trim()) { close(); return; }
     if (savingDebrief) return;
     setSavingDebrief(true);
     try {
@@ -189,7 +189,7 @@ export const GameDayMode: React.FC<GameDayModeProps> = ({ open, onOpenChange }) 
               <Checklist items={[t('cp.week.i1'), t('cp.week.i2'), t('cp.week.i3'), t('cp.week.i4'), t('cp.week.i5')]} />
               <Button
                 variant="outline"
-                onClick={() => { close(). SetTimeout(() => openAI('coach', t('cp.week.aiMsg')), 250); }}
+                onClick={() => { close(); setTimeout(() => openAI('coach', t('cp.week.aiMsg')), 250); }}
                  className="w-full h-12 border-primary-foreground/30 bg-primary-foreground/10 text-primary-foreground hover:bg-primary-foreground/20 hover:text-primary-foreground font-semibold"
               >
                 {t('cp.week.ai')} <ChevronRight className="w-4 h-4 ml-1" />
@@ -219,7 +219,7 @@ export const GameDayMode: React.FC<GameDayModeProps> = ({ open, onOpenChange }) 
               </div>
               <Button
                 variant="outline"
-                onClick={() => { close(). SetTimeout(() => openAI('psych', t('cp.eve.aiMsg')), 250); }}
+                onClick={() => { close(); setTimeout(() => openAI('psych', t('cp.eve.aiMsg')), 250); }}
                  className="w-full h-12 border-primary-foreground/30 bg-primary-foreground/10 text-primary-foreground hover:bg-primary-foreground/20 hover:text-primary-foreground font-semibold"
               >
                 {t('cp.eve.ai')} <ChevronRight className="w-4 h-4 ml-1" />
@@ -296,7 +296,7 @@ export const GameDayMode: React.FC<GameDayModeProps> = ({ open, onOpenChange }) 
 
               <Button
                 variant="outline"
-                onClick={() => { close(). SetTimeout(() => openAI('psych', t('cp.day.aiMsg')), 250); }}
+                onClick={() => { close(); setTimeout(() => openAI('psych', t('cp.day.aiMsg')), 250); }}
                  className="w-full h-12 border-primary-foreground/30 bg-primary-foreground/10 text-primary-foreground hover:bg-primary-foreground/20 hover:text-primary-foreground font-semibold"
               >
                 {t('cp.day.ai')} <ChevronRight className="w-4 h-4 ml-1" />

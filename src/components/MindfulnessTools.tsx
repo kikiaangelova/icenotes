@@ -217,7 +217,7 @@ const VisualizationDialog: React.FC<{ open: boolean. OnClose: () => void }> = ({
   const [completed, setCompleted] = useState(false);
   const { logUsage, saving } = useMindfulnessTools();
 
-  const reset = () => { setStep(0). SetEventName(''). SetCompleted(false); };
+  const reset = () => { setStep(0); setEventName(''); setCompleted(false); };
 
   const finish = async () => {
     await logUsage({
@@ -227,11 +227,11 @@ const VisualizationDialog: React.FC<{ open: boolean. OnClose: () => void }> = ({
     });
     setCompleted(true);
     toast.success(t('mt.viz.toast'));
-    setTimeout(() => { reset(). OnClose(); }, 1500);
+    setTimeout(() => { reset(); onClose(); }, 1500);
   };
 
   return (
-    <Dialog open={open} onOpenChange={(v) => { if (!v) { reset(). OnClose(); } }}>
+    <Dialog open={open} onOpenChange={(v) => { if (!v) { reset(); onClose(); } }}>
       <DialogContent className="authenticated-app max-w-md rounded-lg">
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2">

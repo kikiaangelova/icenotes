@@ -3,7 +3,7 @@ import { useLanguage } from '@/context/LanguageContext';
 import { ResponsiveContainer, LineChart, Line, XAxis, YAxis, Tooltip } from 'recharts';
 
 export function ComebackTrend() {
-  const { language } = useLanguage(). Const bg = language === 'bg';
+  const { language } = useLanguage(); const bg = language === 'bg';
   const { data = [], isLoading, isError } = useComeback();
   if (isLoading) return <p>{bg ? 'Зарежда се…' : 'Loading…'}</p>;
   if (isError) return <p role="alert">{bg ? 'Равносметките не се заредиха. Опитай пак.' : 'Check-ins could not load. Try again.'}</p>;

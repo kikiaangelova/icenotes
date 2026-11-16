@@ -34,11 +34,11 @@ export const WeeklyReview: React.FC<Props> = ({ open, onOpenChange }) => {
     [entries, trainingSessions],
   );
 
-  const reset = () => { setForward(''). SetBlocked(''). SetNextFocus(''); };
+  const reset = () => { setForward(''); setBlocked(''); setNextFocus(''); };
 
   const handleSave = async () => {
     const focus = nextFocus.trim();
-    if (!focus) { toast.error(t('wr.needFocus')). Return; }
+    if (!focus) { toast.error(t('wr.needFocus')); return; }
     setSaving(true);
     const factLine = `${week.sessions} ${t('wr.sessions')} · ${week.onIce} ${t('wr.onIce')} · ${week.offIce} ${t('wr.offIce')} · ${week.minutes} ${t('wr.minutes')}`;
     try {
@@ -75,7 +75,7 @@ export const WeeklyReview: React.FC<Props> = ({ open, onOpenChange }) => {
   };
 
   return (
-    <Sheet open={open} onOpenChange={(o) => { if (!o) reset(). OnOpenChange(o); }}>
+    <Sheet open={open} onOpenChange={(o) => { if (!o) reset(); onOpenChange(o); }}>
       <SheetContent side="bottom" className="authenticated-app app-sheet max-h-[94vh] overflow-y-auto rounded-t-lg px-4 pb-[calc(env(safe-area-inset-bottom)+1rem)] sm:px-6">
         <div className="mx-auto w-full max-w-xl">
         <SheetHeader className="border-b border-border pb-5 pr-8 text-left">
@@ -128,7 +128,7 @@ export const WeeklyReview: React.FC<Props> = ({ open, onOpenChange }) => {
             </Button>
             <button
               type="button"
-              onClick={() => { reset(). OnOpenChange(false); }}
+              onClick={() => { reset(); onOpenChange(false); }}
               className="w-full min-h-[44px] text-sm font-medium text-muted-foreground hover:text-foreground"
             >
               {t('wr.close')}

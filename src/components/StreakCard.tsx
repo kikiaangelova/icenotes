@@ -181,7 +181,7 @@ export const StreakCard: React.FC = () => {
                       {t('streak.pause.cancel')}
                     </Button>
                     <Button
-                      onClick={() => { pause(days, reason). SetOpen(false); }}
+                      onClick={() => { pause(days, reason); setOpen(false); }}
                       className="rounded-full"
                     >
                       {t('streak.pause.confirm')}

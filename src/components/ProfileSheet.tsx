@@ -164,7 +164,7 @@ export const ProfileSheet: React.FC<ProfileSheetProps> = ({
             </div>
 
             <button
-              onClick={() => { onOpenReminders(). OnOpenChange(false); }}
+              onClick={() => { onOpenReminders(); onOpenChange(false); }}
               className="flex h-14 w-full items-center gap-3 border-b border-border px-1 text-left transition-colors hover:text-accent"
             >
               <div className="flex h-9 w-9 items-center justify-center rounded-md bg-secondary">
@@ -178,7 +178,7 @@ export const ProfileSheet: React.FC<ProfileSheetProps> = ({
 
             {isAdmin && (
               <button
-                onClick={() => { navigate('/admin'). OnOpenChange(false); }}
+                onClick={() => { navigate('/admin'); onOpenChange(false); }}
                 className="flex h-14 w-full items-center gap-3 border-b border-border px-1 text-left transition-colors hover:text-accent"
               >
                 <div className="flex h-9 w-9 items-center justify-center rounded-md bg-secondary">
