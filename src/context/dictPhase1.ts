@@ -62,7 +62,7 @@ export const PHASE1_DICT: Record<string, Phase1Entry> = {
 
   'ai.disclaimer': {
     en: 'AI informed by sport psychology. Not therapy or emergency support.',
-    bg: 'AI с насоки от спортната психология. Не е терапия или спешна помощ.',
+    bg: 'AI асистент с насоки от спортната психология. Не е терапия и не е спешна помощ.',
   },
   'ai.disclaimer.coach': {
     en: 'AI for planning and goals. It does not replace your skating coach or prescribe training load.',
