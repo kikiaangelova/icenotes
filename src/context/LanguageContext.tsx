@@ -17,7 +17,7 @@ export const LANGUAGES: { code: Language; label: string; nativeLabel: string }[]
 type Entry = { en: string; bg: string };
 type Dict = Record<string, Entry>;
 
-const dict: Dict = {
+export const dict: Dict = {
   // ───── Navbar (marketing) ─────
   'quick.reflection.kicker': { en: '2 min', bg: '2 мин' },
   'profile.language': { en: 'Language', bg: 'Език' },
@@ -560,7 +560,7 @@ const dict: Dict = {
   'jumpLog.quality.good': { en: 'Good', bg: 'Добър' },
   'jumpLog.quality.best': { en: 'Best one yet', bg: 'Най-добрият досега' },
 
-  'jump.toe-loop': { en: 'Toe Loop', bg: 'Тулуп' },
+  'jump.toe-loop': { en: 'Toe Loop', bg: 'Толуп' },
   'jump.salchow': { en: 'Salchow', bg: 'Салхов' },
   'jump.loop': { en: 'Loop', bg: 'Ритбергер' },
   'jump.flip': { en: 'Flip', bg: 'Флип' },

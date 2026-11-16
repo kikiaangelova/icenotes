@@ -23,7 +23,7 @@ const FEATURES = (bg: boolean) => [
     icon: Target,
     title: bg ? 'Скокове' : 'Jumps',
     description: bg
-      ? 'Записвай всеки опит. От тулуп до аксел. Виж кое ти върви и кое не.'
+      ? 'Записвай всеки опит. От толуп до аксел. Виж кое ти върви и кое не.'
       : "Log every attempt. From toe loop to axel. See what's clicking and what's not.",
     color: 'text-primary',
     bg: 'bg-primary/10',
