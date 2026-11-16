@@ -113,7 +113,7 @@ export const QuotesCollection: React.FC<QuotesCollectionProps> = ({ onBack }) =>
                   <p className="text-base font-medium text-foreground leading-relaxed">
                     "{currentQuote.quote}"
                   </p>
-                  <p className="text-sm text-muted-foreground mt-2">— {currentQuote.author}</p>
+                  <p className="text-sm text-muted-foreground mt-2">{currentQuote.author}</p>
                   <p className="text-xs text-muted-foreground/70 mt-1 capitalize">
                     #{currentQuote.category}
                   </p>
@@ -182,7 +182,7 @@ export const QuotesCollection: React.FC<QuotesCollectionProps> = ({ onBack }) =>
                       </p>
                       <div className="flex items-center justify-between mt-2">
                         <div>
-                          <p className="text-xs text-muted-foreground">— {quote.author}</p>
+                          <p className="text-xs text-muted-foreground">{quote.author}</p>
                           <p className="text-xs text-muted-foreground/50">
                             Saved {format(quote.savedAt, 'MMM d, yyyy')}
                           </p>

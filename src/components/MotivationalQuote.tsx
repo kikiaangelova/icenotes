@@ -65,7 +65,7 @@ export const MotivationalQuote: React.FC<MotivationalQuoteProps> = ({
     return (
       <div className={cn("text-center space-y-1", className)}>
         <p className="text-sm italic text-muted-foreground">"{quote.quote}"</p>
-        <p className="text-xs text-muted-foreground/70">— {quote.author}</p>
+        <p className="text-xs text-muted-foreground/70">{quote.author}</p>
       </div>
     );
   }
@@ -84,7 +84,7 @@ export const MotivationalQuote: React.FC<MotivationalQuoteProps> = ({
             <p className="text-sm font-medium text-foreground leading-relaxed">
               "{quote.quote}"
             </p>
-            <p className="text-xs text-muted-foreground mt-1">— {quote.author}</p>
+            <p className="text-xs text-muted-foreground mt-1">{quote.author}</p>
           </div>
           <div className="flex gap-1 flex-shrink-0">
             {showSave && (
@@ -126,7 +126,7 @@ export const MotivationalQuote: React.FC<MotivationalQuoteProps> = ({
             <p className="text-sm sm:text-base font-medium text-foreground leading-relaxed">
               "{quote.quote}"
             </p>
-            <p className="text-xs sm:text-sm text-muted-foreground mt-2">— {quote.author}</p>
+            <p className="text-xs sm:text-sm text-muted-foreground mt-2">{quote.author}</p>
           </div>
         </div>
         {showRefresh && (
