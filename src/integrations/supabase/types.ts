@@ -802,6 +802,179 @@ export type Database = {
         }
         Relationships: []
       }
+      parent_articles: {
+        Row: {
+          body_bg: string
+          body_en: string
+          created_at: string
+          id: string
+          published: boolean
+          title_bg: string
+          title_en: string
+        }
+        Insert: {
+          body_bg: string
+          body_en: string
+          created_at?: string
+          id?: string
+          published?: boolean
+          title_bg: string
+          title_en: string
+        }
+        Update: {
+          body_bg?: string
+          body_en?: string
+          created_at?: string
+          id?: string
+          published?: boolean
+          title_bg?: string
+          title_en?: string
+        }
+        Relationships: []
+      }
+      parent_comments: {
+        Row: {
+          author_id: string
+          body: string
+          created_at: string
+          flags: string[]
+          id: string
+          post_id: string
+          status: string
+        }
+        Insert: {
+          author_id: string
+          body: string
+          created_at?: string
+          flags?: string[]
+          id?: string
+          post_id: string
+          status?: string
+        }
+        Update: {
+          author_id?: string
+          body?: string
+          created_at?: string
+          flags?: string[]
+          id?: string
+          post_id?: string
+          status?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "parent_comments_post_id_fkey"
+            columns: ["post_id"]
+            isOneToOne: false
+            referencedRelation: "parent_posts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      parent_links: {
+        Row: {
+          confirmed_at: string | null
+          created_at: string
+          id: string
+          parent_email: string
+          parent_id: string | null
+          skater_id: string
+          status: string
+          token_hash: string
+        }
+        Insert: {
+          confirmed_at?: string | null
+          created_at?: string
+          id?: string
+          parent_email: string
+          parent_id?: string | null
+          skater_id: string
+          status?: string
+          token_hash: string
+        }
+        Update: {
+          confirmed_at?: string | null
+          created_at?: string
+          id?: string
+          parent_email?: string
+          parent_id?: string | null
+          skater_id?: string
+          status?: string
+          token_hash?: string
+        }
+        Relationships: []
+      }
+      parent_posts: {
+        Row: {
+          author_id: string
+          body: string
+          created_at: string
+          flags: string[]
+          id: string
+          status: string
+          topic: string
+        }
+        Insert: {
+          author_id: string
+          body: string
+          created_at?: string
+          flags?: string[]
+          id?: string
+          status?: string
+          topic: string
+        }
+        Update: {
+          author_id?: string
+          body?: string
+          created_at?: string
+          flags?: string[]
+          id?: string
+          status?: string
+          topic?: string
+        }
+        Relationships: []
+      }
+      parent_reports: {
+        Row: {
+          comment_id: string | null
+          created_at: string
+          id: string
+          post_id: string | null
+          reporter_id: string
+          resolved: boolean
+        }
+        Insert: {
+          comment_id?: string | null
+          created_at?: string
+          id?: string
+          post_id?: string | null
+          reporter_id: string
+          resolved?: boolean
+        }
+        Update: {
+          comment_id?: string | null
+          created_at?: string
+          id?: string
+          post_id?: string | null
+          reporter_id?: string
+          resolved?: boolean
+        }
+        Relationships: [
+          {
+            foreignKeyName: "parent_reports_comment_id_fkey"
+            columns: ["comment_id"]
+            isOneToOne: false
+            referencedRelation: "parent_comments"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "parent_reports_post_id_fkey"
+            columns: ["post_id"]
+            isOneToOne: false
+            referencedRelation: "parent_posts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       pilot_waitlist: {
         Row: {
           age_group: string | null
@@ -1042,6 +1215,30 @@ export type Database = {
         }
         Relationships: []
       }
+      skater_share_settings: {
+        Row: {
+          share_elements: boolean
+          share_goals: boolean
+          share_streak: boolean
+          skater_id: string
+          updated_at: string
+        }
+        Insert: {
+          share_elements?: boolean
+          share_goals?: boolean
+          share_streak?: boolean
+          skater_id: string
+          updated_at?: string
+        }
+        Update: {
+          share_elements?: boolean
+          share_goals?: boolean
+          share_streak?: boolean
+          skater_id?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       suppressed_emails: {
         Row: {
           created_at: string
@@ -1196,6 +1393,9 @@ export type Database = {
         }
         Returns: number
       }
+      parent_can_participate: { Args: { _uid: string }; Returns: boolean }
+      parent_child_view: { Args: never; Returns: Json }
+      parent_feed: { Args: { _topic: string }; Returns: Json }
       read_email_batch: {
         Args: { batch_size: number; queue_name: string; vt: number }
         Returns: {
