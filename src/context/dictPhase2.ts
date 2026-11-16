@@ -40,9 +40,10 @@ export const PHASE2_DICT: Record<string, { en: string; bg: string }> = {
     en: 'Pick the closest one. Systems differ between countries.',
     bg: 'Избери най-близкото. Системите се различават по държави.',
   },
-  'ob.cat.advancedNovice': { en: 'Advanced Novice', bg: 'Advanced Novice' },
-  'ob.cat.junior': { en: 'Junior', bg: 'Junior' },
-  'ob.cat.senior': { en: 'Senior', bg: 'Senior' },
+  'ob.cat.advancedNovice': { en: 'Advanced Novice', bg: 'Напреднали деца' },
+  'ob.cat.junior': { en: 'Junior', bg: 'Девойки и юноши' },
+  'ob.cat.senior': { en: 'Senior', bg: 'Жени и мъже' },
+  'ob.cat.adult': { en: 'Adult skating', bg: 'Възрастни' },
   'ob.cat.other': { en: 'Other', bg: 'Друго' },
   'ob.s2.years': { en: 'How many years have you trained?', bg: 'От колко години тренираш?' },
 
