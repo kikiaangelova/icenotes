@@ -92,7 +92,7 @@ export const TodayQuickLog: React.FC = () => {
     // Always save a journal entry capturing the reflection
     addEntry({
       date: new Date(),
-      workedOn: form.oneLine.trim() || form.wentWell.trim() || '—',
+      workedOn: form.oneLine.trim() || form.wentWell.trim() || '',
       feeling: form.mood || undefined,
       smallWin: form.wentWell.trim(),
       coachNotes: form.needsWork.trim() || undefined,
@@ -128,7 +128,7 @@ export const TodayQuickLog: React.FC = () => {
 
     // Build the human sentence with proper grammar in EN/BG.
     const sentence = (() => {
-      const minutesStr = totalMinutes > 0 ? String(totalMinutes) : '—';
+      const minutesStr = totalMinutes > 0 ? String(totalMinutes) : '';
       const focusStr = `${focus}/10`;
       const moodStr = moodOpt ? t(`feeling.${moodOpt.value}`).toLowerCase() : '';
 
@@ -249,7 +249,7 @@ export const TodayQuickLog: React.FC = () => {
             <div className="rounded-xl bg-background/60 border border-border/50 p-3 flex flex-col items-center text-center">
               <Clock className="w-4 h-4 text-sky-foreground mb-1" />
               <span className="text-base font-bold text-foreground">
-                {totalMinutes > 0 ? totalMinutes : '—'}
+                {totalMinutes > 0 ? totalMinutes : ''}
               </span>
               <span className="text-[10px] uppercase tracking-wider text-muted-foreground">
                 {t('today.summary.minutes')}
@@ -265,7 +265,7 @@ export const TodayQuickLog: React.FC = () => {
             <div className="rounded-xl bg-background/60 border border-border/50 p-3 flex flex-col items-center text-center">
               <Heart className="w-4 h-4 text-rose-foreground mb-1" />
               <span className="text-base font-bold text-foreground">
-                {moodOpt ? moodOpt.emoji : '—'}
+                {moodOpt ? moodOpt.emoji : ''}
               </span>
               <span className="text-[10px] uppercase tracking-wider text-muted-foreground truncate max-w-full">
                 {moodOpt ? t(`feeling.${moodOpt.value}`) : t('today.summary.mood')}

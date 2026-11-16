@@ -69,7 +69,7 @@ export const JumpLog: React.FC<JumpLogProps> = ({ onComplete }) => {
     const jumpName = JUMP_TYPES.find(j => j.type === selectedJump)?.name;
     const levelName = JUMP_LEVELS.find(l => l.level === selectedLevel)?.name;
     const qualityLabel = t(QUALITY_OPTIONS.find(o => o.value === quality)!.labelKey);
-    setLastLogged(`${levelName} ${jumpName} — ${qualityLabel}`);
+    setLastLogged(`${levelName} ${jumpName} · ${qualityLabel}`);
     setNotes('');
 
     setTimeout(() => setLastLogged(null), 2200);

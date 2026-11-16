@@ -51,7 +51,7 @@ export const WeeklyReflectionSpace: React.FC = () => {
             <div>
               <h3 className="font-medium text-foreground">Week reflected</h3>
               <p className="text-sm text-muted-foreground">
-                {format(weekStart, 'MMM d')} – {format(weekEnd, 'MMM d')}
+                {format(weekStart, 'MMM d')} to {format(weekEnd, 'MMM d')}
               </p>
             </div>
           </div>
@@ -75,7 +75,7 @@ export const WeeklyReflectionSpace: React.FC = () => {
             <span className="text-xs font-medium uppercase tracking-wide">Weekly Reflection</span>
           </div>
           <span className="text-xs text-muted-foreground">
-            {format(weekStart, 'MMM d')} – {format(weekEnd, 'MMM d')}
+            {format(weekStart, 'MMM d')} to {format(weekEnd, 'MMM d')}
           </span>
         </div>
         <CardTitle className="text-base font-medium text-foreground">

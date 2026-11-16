@@ -367,7 +367,7 @@ const AdminPage: React.FC = () => {
                 {filteredUsers.map((u) => (
                   <TableRow key={u.id}>
                     <TableCell className="font-medium">
-                      {(u.name ?? '').split(' ')[0] || '—'}
+                      {(u.name ?? '').split(' ')[0] || ''}
                     </TableCell>
                     <TableCell className="text-muted-foreground">
                       {u.email}
@@ -376,7 +376,7 @@ const AdminPage: React.FC = () => {
                     <TableCell>
                       {u.last_active
                         ? new Date(u.last_active).toLocaleDateString()
-                        : '—'}
+                        : ''}
                     </TableCell>
                     <TableCell className="text-right">
                       {u.total_sessions}
