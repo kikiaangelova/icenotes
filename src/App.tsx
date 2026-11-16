@@ -24,6 +24,7 @@ import AdminPage from "./pages/Admin";
 import Privacy from "./pages/Privacy";
 import Feedback from "./pages/Feedback";
 import NotFound from "./pages/NotFound";
+import ParentConfirm from "./pages/ParentConfirm";
 import { Loader2 } from "lucide-react";
 import { OfflineBanner } from '@/components/PhoneAppSupport';
 
@@ -55,7 +56,7 @@ const PublicRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const { user, loading } = useAuth();
   const [searchParams] = useSearchParams();
   if (loading) return <LoadingScreen />;
-  if (user) return <Navigate to={searchParams.get('next') === '/dashboard?action=open-psych' ? '/dashboard?action=open-psych' : '/dashboard'} replace />;
+  if (user) { const next = searchParams.get('next'); return <Navigate to={next === '/dashboard?action=open-psych' || next === '/parent-confirm' ? next : '/dashboard'} replace />; }
   return <>{children}</>;
 };
 
@@ -73,6 +74,7 @@ const AppRoutes = () => {
       <Route path="/contact" element={<Contact />} />
       <Route path="/pilot" element={<Pilot />} />
       <Route path="/unsubscribe" element={<Unsubscribe />} />
+      <Route path="/parent-confirm" element={<ParentConfirm />} />
       {/* Legacy journal links enter the single authenticated product shell. */}
       <Route
         path="/journal"
