@@ -33,7 +33,7 @@ export function usePublicMotion() {
   }, [pathname]);
 }
 
-export function LandingStickyCTA() {
+export const LandingStickyCTA = React.forwardRef<HTMLDivElement>(function LandingStickyCTA(_props, _ref) {
   const { t } = useLanguage();
   const [visible, setVisible] = useState(false);
   useEffect(() => {
