@@ -28,6 +28,13 @@ const CAT_KEY: Record<string, string> = {
 };
 const LEVELS = ['foundations', 'consistency', 'refining', 'competing'] as const;
 
+const Section: React.FC<{ icon: React.ComponentType<{ className?: string }>; title: string; children: React.ReactNode }> = ({ icon: Icon, title, children }) => (
+  <section className="rink-card space-y-3 p-4">
+    <p className="flex items-center gap-2 text-[15px] font-bold text-foreground"><Icon className="h-4 w-4 text-accent-ink" />{title}</p>
+    {children}
+  </section>
+);
+
 type Draft = { name: string; club: string; category: string; level: string; comp: string; compDate: string };
 
 /** Full profile screen: photo, club, level, category, next competition, language, reminders. Always exitable. */
@@ -70,13 +77,6 @@ export const ProfileSheet: React.FC<ProfileSheetProps> = ({ open, onOpenChange, 
   };
 
   const choice = (on: boolean) => cn('rink-choice px-3 text-[14px]', on && 'rink-choice-on');
-  const Section: React.FC<{ icon: React.ComponentType<{ className?: string }>; title: string; children: React.ReactNode }> = ({ icon: Icon, title, children }) => (
-    <section className="rink-card space-y-3 p-4">
-      <p className="flex items-center gap-2 text-[15px] font-bold text-foreground"><Icon className="h-4 w-4 text-accent-ink" />{title}</p>
-      {children}
-    </section>
-  );
-
   return (
     <Sheet open={open} onOpenChange={onOpenChange}>
       <SheetContent side="right" className="authenticated-app app-sheet w-full sm:max-w-md p-0 flex flex-col">

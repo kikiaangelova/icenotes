@@ -16,7 +16,7 @@ import { ProgressSignals } from './ProgressSignals';
 import { getWeekSummary, daysUntil, countTrainingReflectionsToday } from '@/lib/weekData';
 import { SportPsychology } from './SportPsychology';
 import { Button } from '@/components/ui/button';
-import { Settings, LogOut, Bell, Shield, ChevronLeft, Library } from 'lucide-react';
+import { Settings, LogOut, Bell, Shield, ChevronLeft, Library, UserRound } from 'lucide-react';
 import { TodayCommandCenter } from './TodayCommandCenter';
 import { TrainingScreen } from './TrainingScreen';
 import { ReflectionSheet } from './ReflectionSheet';
