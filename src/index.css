@@ -457,7 +457,7 @@
     --secondary: 205 60% 93%;
     --secondary-foreground: 214 68% 13%;
     --muted: 208 45% 92%;
-    --muted-foreground: 214 25% 36%;    /* AA on white and on the ice background */
+    --muted-foreground: 214 28% 31%;    /* AA on white and on the ice background */
     --accent: 194 68% 54%;              /* #3BB3D9 for fills, bars, active states */
     --accent-foreground: 214 68% 13%;
     --accent-ink: 196 80% 30%;          /* readable turquoise for text */
@@ -1148,4 +1148,12 @@
     color: hsl(var(--accent-ink));
   }
 
+}
+
+/* Readable helper text on phones: no grey copy under 13px inside the app */
+.authenticated-app .text-xs.text-muted-foreground,
+.authenticated-app .text-\[11px\].text-muted-foreground,
+.authenticated-app .text-\[10px\].text-muted-foreground {
+  font-size: 13px;
+  line-height: 1.45;
 }

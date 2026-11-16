@@ -112,6 +112,16 @@ export const TrainingScreen: React.FC<TrainingScreenProps> = ({ onSaved, onOpenP
         <h1 className="app-page-title">{t('a.tr.title')}</h1>
         <p className="app-page-subtitle">{t('a.tr.sub')}</p>
       </header>
+      {onOpenPrep && (
+        <button
+          type="button"
+          onClick={onOpenPrep}
+          className="rink-card flex min-h-[56px] w-full items-center gap-3 px-4 text-left text-[15px] font-semibold text-foreground"
+        >
+          <Brain className="w-5 h-5 shrink-0 text-accent-ink" />
+          {t('a.tr.prepOpen')}
+        </button>
+      )}
 
       {/* Type */}
       <section className="app-step space-y-3">
@@ -252,16 +262,6 @@ export const TrainingScreen: React.FC<TrainingScreenProps> = ({ onSaved, onOpenP
         <p className="text-xs text-muted-foreground text-center">
           {selected.length === 0 ? t('a.tr.needType') : t('a.tr.saveHint')}
         </p>
-        {onOpenPrep && (
-          <button
-            type="button"
-            onClick={onOpenPrep}
-            className="w-full min-h-[44px] text-sm font-medium text-muted-foreground hover:text-foreground inline-flex items-center justify-center gap-2"
-          >
-            <Brain className="w-4 h-4" />
-            {t('a.tr.prepOpen')}
-          </button>
-        )}
       </section>
 
       {/* History */}
