@@ -112,7 +112,7 @@ export const AvatarUpload: React.FC<AvatarUploadProps> = ({
       {editable && <Button
         variant="secondary"
         size="icon"
-        className="absolute bottom-0 right-0 h-8 w-8 translate-x-1/4 translate-y-1/4 rounded-full shadow-md ring-2 ring-background"
+        className="absolute bottom-0 right-0 h-8 w-8 translate-x-1/3 translate-y-1/3 rounded-full shadow-md ring-2 ring-background"
         aria-label={t('av.change')}
         onClick={() => fileInputRef.current?.click()}
         disabled={uploading}
