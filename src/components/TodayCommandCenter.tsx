@@ -42,6 +42,7 @@ interface Props {
   onWeeklyReview: () => void;
   /** Opens the exercise list. */
   onExercises?: () => void;
+  onCommunity?: () => void;
 }
 
 /**
@@ -50,7 +51,7 @@ interface Props {
  */
 export const TodayCommandCenter: React.FC<Props> = ({
   greeting, focus, sessionsToday, reflectionsToday, competition, competitionDays, reviewRelevant,
-  onLogTraining, onReflect, onGoals, onSupport, onCompetitionPrep, onMentalPrep, onWeeklyReview, onExercises,
+  onLogTraining, onReflect, onGoals, onSupport, onCompetitionPrep, onMentalPrep, onWeeklyReview, onExercises, onCommunity,
 }) => {
   const { t, language } = useLanguage();
   const bg = language === 'bg';
