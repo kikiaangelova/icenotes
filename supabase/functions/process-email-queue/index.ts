@@ -261,6 +261,18 @@ Deno.serve(async (req) => {
       }
 
       try {
+        // The database queues an ID-only owner notification job; the secured send
+        // function fetches the row and renders the email using its fixed recipient.
+        if (payload.kind === 'pilot-signup-job') {
+          const { data, error } = await supabase.functions.invoke('send-transactional-email', {
+            body: { templateName: 'pilot-signup', templateData: { signupId: payload.signup_id } },
+          });
+          if (error || !data?.success) throw new Error('Pilot notification could not be queued');
+          const { error: deleteError } = await supabase.rpc('delete_email', { queue_name: queue, message_id: msg.msg_id });
+          if (deleteError) throw new Error('Pilot notification job could not be acknowledged');
+          totalProcessed++;
+          continue;
+        }
         await sendLovableEmail(
           {
             run_id: payload.run_id,
