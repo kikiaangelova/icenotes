@@ -85,9 +85,9 @@ export const ProgressInsights: React.FC = () => {
         trainingSessions.some(s => isSameDay(parseDate(s.date), prev)) ||
         entries.some(en => isSameDay(parseDate(en.date), prev) && (en.sessionType || en.workedOn));
       if (trainedYesterday) {
-        focusAfterTrain += e.focusLevel. FocusAfterTrainN++;
+        focusAfterTrain += e.focusLevel; focusAfterTrainN++;
       } else {
-        focusAfterRest += e.focusLevel. FocusAfterRestN++;
+        focusAfterRest += e.focusLevel; focusAfterRestN++;
       }
     });
     const restAvg = focusAfterRestN ? focusAfterRest / focusAfterRestN : 0;
