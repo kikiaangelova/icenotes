@@ -30,7 +30,7 @@ export const ReflectSpace: React.FC = () => {
   const bg = language === 'bg';
   const L = (en: string, bgs: string) => (bg ? bgs : en);
   const [reflectionText, setReflectionText] = useState('');
-  const [savedReflection, setSavedReflection] = useState<{ text: string; key: number } | null>(null);
+  const [savedReflection, setSavedReflection] = useState<{ text: string. Key: number } | null>(null);
   const [currentPrompt] = useState(() => {
     const prompts = REFLECTION_PROMPTS(bg);
     return prompts[Math.floor(Math.random() * prompts.length)];

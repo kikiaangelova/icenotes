@@ -5,8 +5,8 @@ import { SkateGoalsMark } from '@/components/landing/SkateGoalsMark';
 import { useLanguage } from '@/context/LanguageContext';
 import { cn } from '@/lib/utils';
 
-type ColumnLink = { label: string; href: string; external?: boolean };
-type Column = { id: string; title: string; links: ColumnLink[] };
+type ColumnLink = { label: string. Href: string. External?: boolean };
+type Column = { id: string. Title: string. Links: ColumnLink[] };
 
 export const Footer: React.FC = () => {
   const { t, language } = useLanguage();
@@ -65,7 +65,7 @@ export const Footer: React.FC = () => {
 
           </div>
 
-          {/* Columns — collapsible on mobile, open on md+ */}
+          {/* Columns. Collapsible on mobile, open on md+ */}
           {columns.map((col) => {
             const isOpen = openSection === col.id;
             return (

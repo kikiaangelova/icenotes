@@ -153,7 +153,7 @@ export const OFF_ICE_ACTIVITIES = [
   { name: 'Flexibility training', suggestedDuration: 15 },
 ];
 
-export const JUMP_TYPES: { type: JumpType; name: string; color: string }[] = [
+export const JUMP_TYPES: { type: JumpType. Name: string. Color: string }[] = [
   { type: 'toe-loop', name: 'Toe Loop', color: 'bg-blue-500' },
   { type: 'salchow', name: 'Salchow', color: 'bg-green-500' },
   { type: 'loop', name: 'Loop', color: 'bg-purple-500' },
@@ -162,7 +162,7 @@ export const JUMP_TYPES: { type: JumpType; name: string; color: string }[] = [
   { type: 'axel', name: 'Axel', color: 'bg-pink-500' },
 ];
 
-export const JUMP_LEVELS: { level: JumpLevel; name: string; short: string }[] = [
+export const JUMP_LEVELS: { level: JumpLevel. Name: string. Short: string }[] = [
   { level: 'single', name: 'Single', short: '1' },
   { level: 'double', name: 'Double', short: '2' },
   { level: 'triple', name: 'Triple', short: '3' },

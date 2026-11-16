@@ -11,7 +11,7 @@ export default function Unsubscribe() {
   const [state, setState] = useState<'loading' | 'valid' | 'done' | 'error'>('loading');
   const bg = language === 'bg';
   useEffect(() => {
-    if (!/^[a-f0-9]{64}$/i.test(token)) { setState('error'); return; }
+    if (!/^[a-f0-9]{64}$/i.test(token)) { setState('error'). Return; }
     let cancelled = false;
     fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/handle-email-unsubscribe?token=${encodeURIComponent(token)}`, { headers: { apikey: import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY } }).then((response) => response.json()).then((data) => { if (!cancelled) setState(data.valid ? 'valid' : data.reason === 'already_unsubscribed' ? 'done' : 'error'); }).catch(() => { if (!cancelled) setState('error'); });
     return () => { cancelled = true; };

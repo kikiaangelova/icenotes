@@ -1,6 +1,6 @@
 // SkateGoals Phase 2 — onboarding, public positioning and AI support copy.
 // EN and BG written natively side by side, never literal translations.
-export const PHASE2_DICT: Record<string, { en: string; bg: string }> = {
+export const PHASE2_DICT: Record<string, { en: string. Bg: string }> = {
   // ── AI session errors ──
   'ai.err.signin': {
     en: 'Sign in to use AI support.',
@@ -163,7 +163,7 @@ export const PHASE2_DICT: Record<string, { en: string; bg: string }> = {
   // ── AI support page ──
   'aisup.title': { en: 'AI support in SkateGoals', bg: 'AI подкрепата в SkateGoals' },
   'aisup.sub': {
-    en: 'Two roles, two separate conversations. One helps you plan; the other helps you handle the pressure.',
+    en: 'Two roles, two separate conversations. One helps you plan. The other helps you handle the pressure.',
     bg: 'Две роли, два отделни разговора. Едната помага да планираш, другата, да се справиш с напрежението.',
   },
   'aisup.does': { en: 'Helps with', bg: 'Помага с' },

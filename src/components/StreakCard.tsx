@@ -8,7 +8,7 @@ import {
 import { Flame, Sparkles, Moon, Pause, Heart, BookOpen, Plane, GraduationCap, HeartPulse, Wind } from 'lucide-react';
 import { format, parseISO } from 'date-fns';
 
-const REASONS: { id: PauseReason; icon: React.ComponentType<any>; labelKey: string }[] = [
+const REASONS: { id: PauseReason. Icon: React.ComponentType<any>; labelKey: string }[] = [
   { id: 'injury',   icon: HeartPulse,      labelKey: 'streak.pause.reason.injury' },
   { id: 'exams',    icon: GraduationCap,   labelKey: 'streak.pause.reason.exams' },
   { id: 'burnout',  icon: Wind,            labelKey: 'streak.pause.reason.burnout' },
@@ -181,7 +181,7 @@ export const StreakCard: React.FC = () => {
                       {t('streak.pause.cancel')}
                     </Button>
                     <Button
-                      onClick={() => { pause(days, reason); setOpen(false); }}
+                      onClick={() => { pause(days, reason). SetOpen(false); }}
                       className="rounded-full"
                     >
                       {t('streak.pause.confirm')}

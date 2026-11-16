@@ -1,6 +1,6 @@
 // SkateGoals Phase B — one goal system, weekly review, competition prep, voice capture.
 // EN and BG both written natively for a figure-skating environment.
-export type PhaseBEntry = { en: string; bg: string };
+export type PhaseBEntry = { en: string. Bg: string };
 
 export const PHASEB_DICT: Record<string, PhaseBEntry> = {
   // ── Voice capture ──
@@ -30,7 +30,7 @@ export const PHASEB_DICT: Record<string, PhaseBEntry> = {
   'gb.titleLabel':   { en: 'Goal', bg: 'Цел' },
   'gb.titlePh':      { en: 'e.g. deliver a consistent short program in competition', bg: 'напр. стабилна кратка програма на състезание' },
   'gb.whyLabel':     { en: 'Why it matters', bg: 'Защо е важно' },
-  'gb.whyPh':        { en: 'Optional — what this changes for you', bg: 'По избор — защо тази цел е важна за теб' },
+  'gb.whyPh':        { en: 'Optional. What this changes for you', bg: 'По избор. Защо тази цел е важна за теб' },
   'gb.dateLabel':    { en: 'Target date', bg: 'Целева дата' },
   'gb.save':         { en: 'Save', bg: 'Запази' },
   'gb.cancel':       { en: 'Cancel', bg: 'Отказ' },
@@ -140,9 +140,9 @@ export const PHASEB_DICT: Record<string, PhaseBEntry> = {
   'ps.week':       { en: 'This week', bg: 'Тази седмица' },
 
   // ── Save state ──
-  'wr.saveFailed': { en: 'Saving did not go through. Your text is still here — try again.', bg: 'Записът не мина. Текстът ти е тук — пробвай пак.' },
+  'wr.saveFailed': { en: 'Saving did not go through. Your text is still here. Try again.', bg: 'Записът не мина. Текстът ти е тук. Пробвай пак.' },
   'cp.day.start':  { en: 'Start breathing', bg: 'Започни дишането' },
   'a.rf.needFocus': { en: 'Add a focus for next training to save, or skip for now.', bg: 'Добави фокус за следващата тренировка, за да запишеш, или пропусни засега.' },
-  'a.tr.saveFailed': { en: 'The session did not save. Everything you entered is still here — try again.', bg: 'Тренировката не се записа. Всичко въведено е тук — пробвай пак.' },
-  'gb.saveFailed': { en: 'Saving did not go through. Your text is still here — try again.', bg: 'Записът не мина. Текстът ти е тук — пробвай пак.' },
+  'a.tr.saveFailed': { en: 'The session did not save. Everything you entered is still here. Try again.', bg: 'Тренировката не се записа. Всичко въведено е тук. Пробвай пак.' },
+  'gb.saveFailed': { en: 'Saving did not go through. Your text is still here. Try again.', bg: 'Записът не мина. Текстът ти е тук. Пробвай пак.' },
 };

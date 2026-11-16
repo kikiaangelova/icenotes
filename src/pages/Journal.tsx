@@ -22,14 +22,14 @@ import { Calendar } from '@/components/ui/calendar';
 import { useToast } from '@/hooks/use-toast';
 
 const SESSION_TYPES = [
-  { value: 'on-ice-freestyle', label: 'On-Ice – Freestyle' },
-  { value: 'on-ice-moves', label: 'On-Ice – Moves in the Field' },
-  { value: 'on-ice-dance', label: 'On-Ice – Dance' },
-  { value: 'on-ice-program', label: 'On-Ice – Program Run' },
-  { value: 'off-ice-strength', label: 'Off-Ice – Strength' },
-  { value: 'off-ice-flexibility', label: 'Off-Ice – Flexibility' },
-  { value: 'off-ice-ballet', label: 'Off-Ice – Ballet / Dance' },
-  { value: 'off-ice-cardio', label: 'Off-Ice – Cardio' },
+  { value: 'on-ice-freestyle', label: 'On-Ice. Freestyle' },
+  { value: 'on-ice-moves', label: 'On-Ice. Moves in the Field' },
+  { value: 'on-ice-dance', label: 'On-Ice. Dance' },
+  { value: 'on-ice-program', label: 'On-Ice. Program Run' },
+  { value: 'off-ice-strength', label: 'Off-Ice. Strength' },
+  { value: 'off-ice-flexibility', label: 'Off-Ice. Flexibility' },
+  { value: 'off-ice-ballet', label: 'Off-Ice. Ballet / Dance' },
+  { value: 'off-ice-cardio', label: 'Off-Ice. Cardio' },
   { value: 'mental-training', label: 'Mental Training' },
   { value: 'competition', label: 'Competition' },
   { value: 'show', label: 'Show / Exhibition' },
@@ -243,7 +243,7 @@ const JournalForm: React.FC = () => {
           <div className="space-y-2">
             <Label className="text-sm font-medium">What went well</Label>
             <Textarea
-              placeholder="Highlight your wins — big or small..."
+              placeholder="Highlight your wins. Big or small..."
               value={formData.whatWentWell}
               onChange={(e) => update('whatWentWell', e.target.value)}
               className="min-h-[80px] resize-none"
@@ -426,7 +426,7 @@ const JournalPage: React.FC = () => {
     <JournalProvider>
       <div className={cn("min-h-screen bg-background", isDarkMode && "dark")}>
         <Navbar isDarkMode={isDarkMode} onToggleDarkMode={toggleDarkMode} />
-        <Seo title="Skater Journal – Reflect After Every Session" description="Capture jumps, feelings, focus, and coach notes after every practice. The SkateGoals journal turns reflection into progress." path="/journal" />
+        <Seo title="Skater Journal. Reflect After Every Session" description="Capture jumps, feelings, focus, and coach notes after every practice. The SkateGoals journal turns reflection into progress." path="/journal" />
         <main className="px-6 md:px-12 py-10 md:py-16">
           <JournalForm />
         </main>

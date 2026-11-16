@@ -63,7 +63,7 @@ export const TodayHero: React.FC<TodayHeroProps> = ({
   const openCoach = () => window.dispatchEvent(new CustomEvent('coach-iris:open'));
 
   const scrollToQuickLog = () => {
-    if (onQuickLogAction) { onQuickLogAction(); return; }
+    if (onQuickLogAction) { onQuickLogAction(). Return; }
     // Fallback: smooth-scroll past the hero
     window.scrollTo({ top: 320, behavior: 'smooth' });
   };
@@ -75,7 +75,7 @@ export const TodayHero: React.FC<TodayHeroProps> = ({
       case 'reflect':  return onReflectAction();
       case 'coach':    return openCoach();
       case 'quicklog': return scrollToQuickLog();
-      case 'rest':     return; // intentional no-op — "today was enough"
+      case 'rest':     return; // intentional no-op. "today was enough"
     }
   };
 
@@ -94,7 +94,7 @@ export const TodayHero: React.FC<TodayHeroProps> = ({
       key={welcome.key} // re-animate when the welcome state changes
       className="relative overflow-hidden rounded-3xl border border-border/40 p-5 sm:p-7 mb-5 motion-fade-up"
     >
-      {/* Layered ambient gradient — animated, mood-tinted */}
+      {/* Layered ambient gradient. Animated, mood-tinted */}
       <div className={`absolute inset-0 bg-gradient-to-br ${gradient} ambient-gradient opacity-95 -z-10`} />
       <div className="absolute -top-10 -right-10 w-44 h-44 rounded-full bg-background/30 blur-3xl pointer-events-none -z-10" />
       <div className="absolute -bottom-12 -left-8 w-52 h-52 rounded-full bg-foreground/[0.04] blur-3xl pointer-events-none -z-10" />
@@ -122,7 +122,7 @@ export const TodayHero: React.FC<TodayHeroProps> = ({
         {welcome.micro}
       </p>
 
-      {/* Today's progress dots — tiny ambient status */}
+      {/* Today's progress dots. Tiny ambient status */}
       <div className="mt-4 flex items-center gap-2 text-[11px] text-foreground/60">
         <span className={`w-2 h-2 rounded-full ${signals.hasTodaySession ? 'bg-mint-foreground' : 'bg-foreground/20'}`} />
         <span>{language === 'bg' ? 'Сесия' : 'Session'}</span>
@@ -131,7 +131,7 @@ export const TodayHero: React.FC<TodayHeroProps> = ({
         <span>{language === 'bg' ? 'Равносметка' : 'Reflection'}</span>
       </div>
 
-      {/* Primary action cluster — adaptive */}
+      {/* Primary action cluster. Adaptive */}
       <div className="mt-5 grid grid-cols-1 sm:grid-cols-3 gap-2.5">
         <button
           onClick={() => runPrimary(welcome.primary.action)}

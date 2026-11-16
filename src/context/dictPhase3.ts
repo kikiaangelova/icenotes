@@ -1,6 +1,6 @@
 // SkateGoals Phase 3 — private product feedback, contact and privacy copy.
 // EN and BG written natively, not literal translations.
-export const PHASE3_DICT: Record<string, { en: string; bg: string }> = {
+export const PHASE3_DICT: Record<string, { en: string. Bg: string }> = {
   // ── Feedback (private product feedback, formerly "share your experience") ──
   'fb.eyebrow': { en: 'Product feedback', bg: 'Обратна връзка' },
   'fb.title': { en: 'Help improve SkateGoals', bg: 'Помогни да подобрим SkateGoals' },
@@ -20,7 +20,7 @@ export const PHASE3_DICT: Record<string, { en: string; bg: string }> = {
   },
   'fb.send': { en: 'Send', bg: 'Изпрати' },
   'fb.sending': { en: 'Sending…', bg: 'Изпраща се…' },
-  'fb.thanks': { en: 'Thanks — we read every message.', bg: 'Благодарим — четем всяко съобщение.' },
+  'fb.thanks': { en: 'Thanks. We read every message.', bg: 'Благодарим. Четем всяко съобщение.' },
   'fb.thanksSub': {
     en: 'Your feedback is stored privately for the SkateGoals team.',
     bg: 'Обратната връзка се пази лично за екипа на SkateGoals.',

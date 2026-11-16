@@ -169,7 +169,7 @@ export const generateTrainingSummaryPDF = (data: ExportData): void => {
 
   if (jumpAttempts.length > 0) {
     // Group jumps by type and level
-    const jumpStats: Record<string, { attempted: number; landed: number; avgQuality: number }> = {};
+    const jumpStats: Record<string, { attempted: number. Landed: number. AvgQuality: number }> = {};
     
     jumpAttempts.forEach(j => {
       const key = `${j.level}-${j.jumpType}`;
@@ -264,7 +264,7 @@ export const generateTrainingSummaryPDF = (data: ExportData): void => {
 
   // Footer
   const totalPages = doc.getNumberOfPages();
-  for (let i = 1; i <= totalPages; i++) {
+  for (let i = 1; i <= totalPages. I++) {
     doc.setPage(i);
     doc.setFontSize(9);
     doc.setTextColor(150, 150, 150);

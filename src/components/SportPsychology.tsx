@@ -12,8 +12,8 @@ const MENTAL_TIPS = (bg: boolean) => [
   {
     title: bg ? 'Отдели контролируемото' : 'Separate the controllables',
     tip: bg
-      ? 'Раздели ситуацията на две: подготовка, внимание и реакция след грешка са под твой контрол; оценки, стартов ред и другите състезатели не са.'
-      : 'Split the situation in two: preparation, attention, and your response after a mistake are controllable; scores, start order, and other skaters are not.',
+      ? 'Раздели ситуацията на две: подготовка, внимание и реакция след грешка са под твой контрол. Оценки, стартов ред и другите състезатели не са.'
+      : 'Split the situation in two: preparation, attention, and your response after a mistake are controllable. Scores, start order, and other skaters are not.',
     category: bg ? 'внимание' : 'attention',
   },
   {
@@ -200,8 +200,8 @@ const DAILY_EXERCISES = (bg: boolean) => [
     title: bg ? 'Проверка на напрежението' : 'Tension check',
     time: bg ? "3 мин" : "3 min",
     exercise: bg
-      ? 'Забележи къде има напрежение. Не е нужно да го премахваш; избери дали малка промяна в стойката или дишането ти е полезна.'
-      : 'Notice where tension is present. You do not need to remove it; decide whether a small change in posture or breathing is useful.',
+      ? 'Забележи къде има напрежение. Не е нужно да го премахваш. Избери дали малка промяна в стойката или дишането ти е полезна.'
+      : 'Notice where tension is present. You do not need to remove it. Decide whether a small change in posture or breathing is useful.',
   },
   {
     title: bg ? "Вечерна рефлексия" : "Evening reflection",
@@ -394,7 +394,7 @@ export const SportPsychology: React.FC = () => {
         </TabsContent>
       </Tabs>
 
-      {/* Mindfulness Tools — quick rink-side practices */}
+      {/* Mindfulness Tools. Quick rink-side practices */}
       <MindfulnessTools />
 
     </div>

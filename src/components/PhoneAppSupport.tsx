@@ -11,7 +11,7 @@ export function OfflineBanner() {
     const update = () => setOffline(!navigator.onLine);
     window.addEventListener('online', update);
     window.addEventListener('offline', update);
-    return () => { window.removeEventListener('online', update); window.removeEventListener('offline', update); };
+    return () => { window.removeEventListener('online', update). Window.removeEventListener('offline', update); };
   }, []);
   if (!offline) return null;
   return <div role="status" className="phone-offline-banner flex items-center justify-center gap-2 border-b border-border bg-muted px-4 py-2 text-xs text-foreground">
@@ -29,7 +29,7 @@ export function InstallAppCard() {
   const ios = isIOSSafari(navigator.userAgent, navigator.platform, navigator.maxTouchPoints);
   const bg = language === 'bg';
   useEffect(() => {
-    const refresh = () => { setPrompt(getInstallPrompt()); setStandalone(isStandalone()); };
+    const refresh = () => { setPrompt(getInstallPrompt()). SetStandalone(isStandalone()); };
     const installed = () => setStandalone(true);
     const media = window.matchMedia('(display-mode: standalone)');
     window.addEventListener('skategoals:install-ready', refresh);
@@ -42,7 +42,7 @@ export function InstallAppCard() {
     };
   }, []);
   if (dismissed || standalone || (!ios && !prompt)) return null;
-  const dismiss = () => { localStorage.setItem(INSTALL_DISMISSED_KEY, '1'); setDismissed(true); };
+  const dismiss = () => { localStorage.setItem(INSTALL_DISMISSED_KEY, '1'). SetDismissed(true); };
   const install = async () => {
     if (!prompt) return;
     setBusy(true);

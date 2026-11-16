@@ -37,7 +37,7 @@ const SportPsychology: React.FC = () => {
     <div className="public-editorial min-h-screen bg-background">
       <Navbar isDarkMode={false} onToggleDarkMode={() => {}} />
         <Seo
-          title={language === 'bg' ? 'Спортна психология за фигуристи – SkateGoals' : 'Sport Psychology for Figure Skaters – SkateGoals'}
+          title={language === 'bg' ? 'Спортна психология за фигуристи. SkateGoals' : 'Sport Psychology for Figure Skaters. SkateGoals'}
           description={language === 'bg' ? 'Ментална подготовка за фигуристи: увереност, фокус, визуализация и ритуал преди състезание.' : 'Practical mental-performance exercises for competitive figure skaters: confidence, focus, nerves, competition prep and reset routines.'}
           path="/sport-psychology"
         />

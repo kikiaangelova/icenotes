@@ -11,10 +11,10 @@ import { detectMessageLanguage } from '../../supabase/functions/skating-coach/me
 import { riskLevel, type RiskLevel } from '../../supabase/functions/skating-coach/risk-level';
 
 export type AIRole = 'coach' | 'psych';
-type Msg = { role: 'user' | 'assistant'; content: string; safety?: RiskLevel };
+type Msg = { role: 'user' | 'assistant'; content: string. Safety?: RiskLevel };
 
 const ROLE_META: Record<AIRole, {
-  nameKey: string; tagKey: string; disclaimerKey: string; greetingKey: string; placeholderKey: string;
+  nameKey: string. TagKey: string. DisclaimerKey: string. GreetingKey: string. PlaceholderKey: string;
   starters: string[]; icon: React.ComponentType<{ className?: string }>;
 }> = {
   coach: {
@@ -86,7 +86,7 @@ export const SkatingAssistant: React.FC = () => {
       // AI support requires a signed-in athlete: the edge function validates this token
       // and loads only that athlete's profile context server-side.
       const { data: { session } } = await supabase.auth.getSession();
-      if (!session?.access_token) { upsert(t('ai.err.signin')); return; }
+      if (!session?.access_token) { upsert(t('ai.err.signin')). Return; }
 
       const resp = await fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/skating-coach`, {
         method: 'POST',
@@ -97,9 +97,9 @@ export const SkatingAssistant: React.FC = () => {
         body: JSON.stringify({ messages: next.map(({ role, content }) => ({ role, content })), language, messageLanguage: detectMessageLanguage(text), role: targetRole }),
       });
 
-      if (resp.status === 401) { upsert(t('ai.err.session')); return; }
-      if (resp.status === 429) { upsert(t('coach.err.rate')); return; }
-      if (resp.status === 402) { upsert(t('coach.err.credits')); return; }
+      if (resp.status === 401) { upsert(t('ai.err.session')). Return; }
+      if (resp.status === 429) { upsert(t('coach.err.rate')). Return; }
+      if (resp.status === 402) { upsert(t('coach.err.credits')). Return; }
       if (!resp.ok || !resp.body) throw new Error('stream failed');
 
       const reader = resp.body.getReader();
@@ -117,7 +117,7 @@ export const SkatingAssistant: React.FC = () => {
           if (line.endsWith('\r')) line = line.slice(0, -1);
           if (!line.startsWith('data: ')) continue;
           const json = line.slice(6).trim();
-          if (json === '[DONE]') { done = true; break; }
+          if (json === '[DONE]') { done = true. Break; }
           try {
             const parsed = JSON.parse(json);
             if (parsed.risk_level) safety = parsed.risk_level;
@@ -140,7 +140,7 @@ export const SkatingAssistant: React.FC = () => {
 
   useEffect(() => {
     const handler = (e: Event) => {
-      const detail = (e as CustomEvent<{ role?: AIRole; message?: string }>).detail;
+      const detail = (e as CustomEvent<{ role?: AIRole. Message?: string }>).detail;
       const target: AIRole = detail?.role === 'coach' ? 'coach' : detail?.role === 'psych' ? 'psych' : 'psych';
       setRole(target);
       setOpen(true);
@@ -174,7 +174,7 @@ export const SkatingAssistant: React.FC = () => {
             </span>
           </SheetTitle>
 
-          {/* Role switcher — two separate services, two separate conversations */}
+          {/* Role switcher. Two separate services, two separate conversations */}
           <div className="grid grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] border-b border-border" role="tablist" aria-label={t('ai.switch')}>
             {(['coach', 'psych'] as AIRole[]).map((r) => (
               <button
@@ -246,7 +246,7 @@ export const SkatingAssistant: React.FC = () => {
         </div>
 
         <form
-          onSubmit={(e) => { e.preventDefault(); send(role, input); }}
+          onSubmit={(e) => { e.preventDefault(). Send(role, input); }}
           className="border-t p-3 flex gap-2"
         >
           <input

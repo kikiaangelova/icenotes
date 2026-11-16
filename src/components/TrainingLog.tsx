@@ -19,7 +19,7 @@ export const TrainingLog: React.FC<TrainingLogProps> = ({ type, onComplete }) =>
   const activities = type === 'on-ice' ? ON_ICE_ACTIVITIES : OFF_ICE_ACTIVITIES;
   
   const [selectedActivities, setSelectedActivities] = useState<{
-    [key: string]: { selected: boolean; duration: number }
+    [key: string]: { selected: boolean. Duration: number }
   }>(() => 
     activities.reduce((acc, act) => ({
       ...acc,

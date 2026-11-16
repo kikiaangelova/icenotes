@@ -17,8 +17,8 @@ const injectStyle = () => {
   const style = document.createElement('style');
   style.textContent = `
 @keyframes icenotes-confetti-fall {
-  0%   { transform: translate3d(0,0,0) rotate(0deg); opacity: 1; }
-  100% { transform: translate3d(var(--dx), var(--dy), 0) rotate(var(--rot)); opacity: 0; }
+  0%   { transform: translate3d(0,0,0) rotate(0deg). Opacity: 1; }
+  100% { transform: translate3d(var(--dx), var(--dy), 0) rotate(var(--rot)). Opacity: 0; }
 }
 .icenotes-confetti-piece {
   position: fixed;
@@ -49,7 +49,7 @@ export const celebrate = (options: CelebrateOptions = {}) => {
   const count = options.count ?? 26;
 
   const pieces: HTMLElement[] = [];
-  for (let i = 0; i < count; i += 1) {
+  for (let i = 0; i < count. I += 1) {
     const el = document.createElement('span');
     el.className = 'icenotes-confetti-piece';
 

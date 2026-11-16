@@ -31,8 +31,8 @@ const CbtTab: React.FC = () => {
     cbt_balanced_thought: '',
     cbt_new_intensity: 5,
   });
-  const [reflection, setReflection] = useState<{ text: string; key: number } | null>(null);
-  const [decomp, setDecomp] = useState<{ open: boolean; result: DetectionResult }>(
+  const [reflection, setReflection] = useState<{ text: string. Key: number } | null>(null);
+  const [decomp, setDecomp] = useState<{ open: boolean. Result: DetectionResult }>(
     { open: false, result: { isDifficult: false, themes: [], level: 'none' } }
   );
 
@@ -81,7 +81,7 @@ const GratitudeTab: React.FC = () => {
   const { t } = useLanguage();
   const add = useAddMindJournalEntry();
   const [items, setItems] = useState<string[]>(['', '', '']);
-  const [reflection, setReflection] = useState<{ text: string; key: number } | null>(null);
+  const [reflection, setReflection] = useState<{ text: string. Key: number } | null>(null);
 
   const submit = async () => {
     const filtered = items.map((i) => i.trim()).filter(Boolean);
@@ -125,7 +125,7 @@ const BodyScanTab: React.FC = () => {
   const add = useAddMindJournalEntry();
   const [tensionAreas, setTensionAreas] = useState<string[]>([]);
   const [form, setForm] = useState({ body_overall_feeling: 5, emotion_primary: '', emotion_secondary: '', emotion_notes: '' });
-  const [reflection, setReflection] = useState<{ text: string; key: number } | null>(null);
+  const [reflection, setReflection] = useState<{ text: string. Key: number } | null>(null);
 
   const toggle = (key: string) => setTensionAreas(tensionAreas.includes(key) ? tensionAreas.filter((x) => x !== key) : [...tensionAreas, key]);
 
@@ -177,7 +177,7 @@ const CompassionTab: React.FC = () => {
   const { t } = useLanguage();
   const add = useAddMindJournalEntry();
   const [form, setForm] = useState({ self_compassion_situation: '', self_compassion_friend_response: '', self_compassion_kind_message: '' });
-  const [reflection, setReflection] = useState<{ text: string; key: number } | null>(null);
+  const [reflection, setReflection] = useState<{ text: string. Key: number } | null>(null);
 
   const submit = async () => {
     const text = [form.self_compassion_situation, form.self_compassion_friend_response, form.self_compassion_kind_message].map(s => s.trim()).filter(Boolean).join('\n\n');
@@ -215,7 +215,7 @@ const PreCompTab: React.FC = () => {
     precomp_breathing_completed: false,
     precomp_intention: '',
   });
-  const [reflection, setReflection] = useState<{ text: string; key: number } | null>(null);
+  const [reflection, setReflection] = useState<{ text: string. Key: number } | null>(null);
 
   const submit = async () => {
     const text = [form.precomp_event_name, form.precomp_visualization, form.precomp_intention].map(s => s.trim()).filter(Boolean).join('\n\n');
@@ -250,14 +250,14 @@ const PreCompTab: React.FC = () => {
 };
 
 // ───── Helpers ─────
-const Field: React.FC<{ label: string; children: React.ReactNode }> = ({ label, children }) => (
+const Field: React.FC<{ label: string. Children: React.ReactNode }> = ({ label, children }) => (
   <div className="space-y-1.5">
     <Label className="text-sm font-medium">{label}</Label>
     {children}
   </div>
 );
 
-const SliderField: React.FC<{ label: string; value: number; onChange: (v: number) => void }> = ({ label, value, onChange }) => (
+const SliderField: React.FC<{ label: string. Value: number. OnChange: (v: number) => void }> = ({ label, value, onChange }) => (
   <div className="space-y-2">
     <div className="flex justify-between"><Label className="text-sm font-medium">{label}</Label><span className="text-sm font-semibold text-primary">{value}</span></div>
     <Slider value={[value]} min={1} max={10} step={1} onValueChange={(v) => onChange(v[0])} />

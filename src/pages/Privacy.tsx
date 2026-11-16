@@ -110,7 +110,7 @@ const Privacy: React.FC = () => {
       <div className="min-h-screen bg-background">
         <Navbar isDarkMode={isDarkMode} onToggleDarkMode={() => setIsDarkMode(!isDarkMode)} />
         <Seo
-          title={bg ? 'Поверителност — SkateGoals' : 'Privacy — SkateGoals'}
+          title={bg ? 'Поверителност. SkateGoals' : 'Privacy. SkateGoals'}
           description={bg ? 'Виж как SkateGoals борави с данните за акаунта, спортния контекст, записите и исканията за изтриване.' : 'Learn how SkateGoals handles your account data, athlete context, entries, and deletion requests.'}
           path="/privacy"
         />

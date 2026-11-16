@@ -32,8 +32,8 @@ const Features: React.FC = () => {
       <div className="public-editorial min-h-screen bg-background">
         <Navbar isDarkMode={isDarkMode} onToggleDarkMode={() => setIsDarkMode(!isDarkMode)} />
         <Seo
-          title={language === 'bg' ? 'Функции — тренировки, цели и подготовка за старт' : 'Features — Training, Goals & Competition Prep'}
-          description={language === 'bg' ? 'Тренировъчен дневник, цели, седмичен преглед, подготовка за старт, ментална подготовка и прогрес — в SkateGoals.' : 'A performance companion for competitive figure skaters: training log, goals, weekly review, competition prep, mental performance and progress.'}
+          title={language === 'bg' ? 'Функции. Тренировки, цели и подготовка за старт' : 'Features. Training, Goals & Competition Prep'}
+          description={language === 'bg' ? 'Тренировъчен дневник, цели, седмичен преглед, подготовка за старт, ментална подготовка и прогрес. В SkateGoals.' : 'A performance companion for competitive figure skaters: training log, goals, weekly review, competition prep, mental performance and progress.'}
           path="/features"
           jsonLd={{"@context": "https://schema.org", "@type": "Service", "name": "SkateGoals", "serviceType": "Performance companion for competitive figure skaters", "provider": {"@type": "Organization", "name": "SkateGoals", "url": "https://skategoals.com/"}, "areaServed": "Worldwide", "description": "Training log, goals, weekly review, competition prep, mental performance and progress for competitive figure skaters aged 14-18."}}
         />

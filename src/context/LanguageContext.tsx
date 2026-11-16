@@ -8,13 +8,13 @@ import { resolveInitialLanguage } from '@/lib/initialLanguage';
 
 export type Language = 'en' | 'bg';
 
-export const LANGUAGES: { code: Language; label: string; nativeLabel: string }[] = [
+export const LANGUAGES: { code: Language. Label: string. NativeLabel: string }[] = [
   { code: 'en', label: 'English', nativeLabel: 'English' },
   { code: 'bg', label: 'Bulgarian', nativeLabel: 'Български' },
 ];
 
 // Each entry has both EN and BG. EN is the source-of-truth fallback.
-type Entry = { en: string; bg: string };
+type Entry = { en: string. Bg: string };
 type Dict = Record<string, Entry>;
 
 const dict: Dict = {
@@ -48,7 +48,7 @@ const dict: Dict = {
   'rem.toast.sent': { en: 'Test notification sent', bg: 'Тестовото известие е изпратено' },
   'rem.toast.first': { en: 'Enable notifications first.', bg: 'Първо разреши известията.' },
   'rem.n.training.title': { en: 'Time to train', bg: 'Време е за тренировка' },
-  'rem.n.training.body': { en: 'On the ice or off it — your session is waiting.', bg: 'На лед или суха — тренировката те чака.' },
+  'rem.n.training.body': { en: 'On the ice or off it. Your session is waiting.', bg: 'На лед или суха. Тренировката те чака.' },
   'rem.n.reflection.title': { en: 'Reflection time', bg: 'Време за рефлексия' },
   'rem.n.reflection.body': { en: 'Two minutes on how today went.', bg: 'Две минути за това как мина днес.' },
   'rem.n.journal.title': { en: 'Write today down', bg: 'Запиши днешния ден' },
@@ -80,15 +80,15 @@ const dict: Dict = {
   'nav.getStarted': { en: 'Create your account', bg: 'Създай профил' },
 
   // ───── Hero (landing) ─────
-  'hero.badge': { en: 'Made for figure skaters, by a 14-year-old figure skater', bg: 'От 14-годишна фигуристка — за фигуристи' },
+  'hero.badge': { en: 'Made for figure skaters, by a 14-year-old figure skater', bg: 'От 14-годишна фигуристка. За фигуристи' },
   'hero.title.line1': { en: 'Your skating journey', bg: 'Пътят ти на леда' },
   'hero.title.line2.prefix': { en: 'deserves to be', bg: 'заслужава да бъде' },
   'hero.title.highlight': { en: 'remembered', bg: 'запомнен' },
   'hero.subtitle': {
-    en: 'A quiet space to reflect, train, and watch yourself grow — one session at a time.',
-    bg: 'Тихо място, в което да дишаш, да тренираш и да виждаш как растеш — тренировка по тренировка.',
+    en: 'A quiet space to reflect, train, and watch yourself grow. One session at a time.',
+    bg: 'Тихо място, в което да дишаш, да тренираш и да виждаш как растеш. Тренировка по тренировка.',
   },
-  'hero.attribution': { en: 'Created by a young figure skater and her mom 💙', bg: 'От млада фигуристка — с подкрепата на мама 💙' },
+  'hero.attribution': { en: 'Created by a young figure skater and her mom 💙', bg: 'От млада фигуристка. С подкрепата на мама 💙' },
   'hero.cta': { en: 'Trust in the process', bg: 'Започни тихо' },
   'hero.disclaimer': { en: 'Free to use · Private by default · No credit card needed', bg: 'Безплатно · Лично по подразбиране · Без карта' },
   'hero.joinPrefix': { en: 'Join', bg: 'Вече сме' },
@@ -104,11 +104,11 @@ const dict: Dict = {
   'benefit.growth.text': { en: 'Look back in a month and feel how far you\'ve come.', bg: 'След месец се върни назад и виж изминатия път.' },
 
   // ───── Social proof + steps + final CTA ─────
-  'social.text': { en: 'Skaters who feel everything — finally have somewhere to put it. ⛸️', bg: 'Фигуристи, които усещат всичко — най-после имат къде да го оставят. ⛸️' },
+  'social.text': { en: 'Skaters who feel everything. Finally have somewhere to put it. ⛸️', bg: 'Фигуристи, които усещат всичко. Най-после имат къде да го оставят. ⛸️' },
   'social.cta': { en: 'Find your space', bg: 'Намери мястото си' },
   'steps.heading': { en: 'Three small things. Big shift.', bg: 'Три малки неща. Голяма промяна.' },
   'steps.train.title': { en: 'Skate', bg: 'Карай' },
-  'steps.train.text': { en: 'Do your session — on the ice or off it.', bg: 'Изкарай тренировката — на лед или суха.' },
+  'steps.train.text': { en: 'Do your session. On the ice or off it.', bg: 'Изкарай тренировката. На лед или суха.' },
   'steps.reflect.title': { en: 'Write it down', bg: 'Запиши го' },
   'steps.reflect.text': { en: 'Five minutes after practice. Whatever is still in your head.', bg: 'Пет минути след тренировка. Каквото още ти се върти в главата.' },
   'steps.grow.title': { en: 'See the pattern', bg: 'Виж модела' },
@@ -119,16 +119,16 @@ const dict: Dict = {
   'finalCta.welcomeBack': { en: 'Back on the ice', bg: 'Отново на леда' },
 
   // ───── Landing (rebuilt hero + sections) ─────
-  'seo.home.title': { en: 'SkateGoals – Reflect. Train. Perform.', bg: 'SkateGoals – Рефлексия. Тренировка. Представяне.' },
+  'seo.home.title': { en: 'SkateGoals. Reflect. Train. Perform.', bg: 'SkateGoals. Рефлексия. Тренировка. Представяне.' },
   'seo.home.desc': { en: 'A digital journaling and mental-training space for ambitious figure skaters. Track mindset, training and performance with AI support.', bg: 'Дигитален дневник и ментална подготовка за амбициозни фигуристи. Следи мислите, тренировките и представянето си с AI подкрепа.' },
-  'seo.dashboard.title': { en: 'Skater Dashboard – SkateGoals', bg: 'Табло на фигуриста – SkateGoals' },
+  'seo.dashboard.title': { en: 'Skater Dashboard. SkateGoals', bg: 'Табло на фигуриста. SkateGoals' },
   'seo.dashboard.desc': { en: 'Your private SkateGoals dashboard: log training sessions, track jumps, journal your mindset and chat with your AI Coach.', bg: 'Личното ти пространство в SkateGoals: записвай тренировки, следи скоковете, води дневник и говори с AI подкрепа.' },
   'land.chip': { en: 'Mental training for figure skaters', bg: 'Ментална подготовка за фигуристи' },
   'land.h1.a': { en: 'A mental journal for skaters.', bg: 'Ментален дневник за фигуристи.' },
   'land.h1.b': { en: 'Built for competitive skaters.', bg: 'Създадено за състезаващи се фигуристи.' },
   'land.sub': {
-    en: 'Write down how practice actually went — the jumps, the nerves, the good run-throughs. your AI Coach reads it and asks one question back.',
-    bg: 'Запиши как наистина мина тренировката — скоковете, напрежението, чистите изпълнения. AI подкрепа прочита записката ти и ти задава един точен въпрос.',
+    en: 'Write down how practice actually went. The jumps, the nerves, the good run-throughs. your AI Coach reads it and asks one question back.',
+    bg: 'Запиши как наистина мина тренировката. Скоковете, напрежението, чистите изпълнения. AI подкрепа прочита записката ти и ти задава един точен въпрос.',
   },
   'land.cta.primary': { en: 'Start free', bg: 'Започни безплатно' },
   'land.cta.secondary': { en: 'See how it works', bg: 'Виж как работи' },
@@ -137,13 +137,13 @@ const dict: Dict = {
   'land.stat.coach': { en: 'Two AI roles: coaching for goals and planning, sport psychology for nerves and focus.', bg: 'Две AI роли: треньор за целите и плана, спортна психология за нервите и фокуса.' },
   'land.stat.private': { en: 'private by default', bg: 'лично по подразбиране' },
   'land.why.kicker': { en: 'Why skaters use it', bg: 'Защо фигуристите го ползват' },
-  'land.why.title': { en: 'Head, body and ice — in one place.', bg: 'Глава, тяло и лед — на едно място.' },
+  'land.why.title': { en: 'Head, body and ice. In one place.', bg: 'Глава, тяло и лед. На едно място.' },
   'land.inside.kicker': { en: 'Inside SkateGoals', bg: 'Вътре в SkateGoals' },
   'land.inside.title': { en: 'Not another tracker.', bg: 'Повече от дневник на тренировките.' },
   'land.inside.titleAccent': { en: 'A training log with a sport psychologist in it.', bg: 'Място, в което спортната психология е част от подготовката.' },
   'land.inside.sub': {
-    en: 'Goals, session notes, jumps, mood — and your AI Coach asking what a good psychologist would ask.',
-    bg: 'Цели, тренировки, скокове и настроение — плюс въпросите, които един добър спортен психолог би ти задал.',
+    en: 'Goals, session notes, jumps, mood. And your AI Coach asking what a good psychologist would ask.',
+    bg: 'Цели, тренировки, скокове и настроение. Плюс въпросите, които един добър спортен психолог би ти задал.',
   },
   'land.note.label': { en: "Tonight's note", bg: 'Бележка за вечерта' },
   'land.note.text': {
@@ -154,15 +154,15 @@ const dict: Dict = {
   'land.community.title': { en: "The pressure isn't yours alone.", bg: 'Напрежението не е само твое.' },
   'land.community.titleAccent': { en: 'Neither is the progress.', bg: 'Прогресът също.' },
   'land.community.sub': {
-    en: 'Real skaters, real seasons — the shaky warm-ups and the nights it finally clicks.',
-    bg: 'Истински фигуристи, истински сезони — треперещите загрявки и вечерите, в които най-накрая се получава.',
+    en: 'Real skaters, real seasons. The shaky warm-ups and the nights it finally clicks.',
+    bg: 'Истински фигуристи, истински сезони. Треперещите загрявки и вечерите, в които най-накрая се получава.',
   },
   'land.community.share': { en: 'Share your season', bg: 'Сподели своя сезон' },
   'land.count.suffix': { en: 'skaters already here', bg: 'фигуристи вече са тук' },
   'feature.goals.title': { en: 'Goals that hold', bg: 'Цели, които можеш да следваш' },
-  'feature.goals.text': { en: 'Weekly, monthly, season. Broken into the reps it actually takes.', bg: 'За седмицата, месеца или сезона — разделени на ясни, постижими стъпки.' },
+  'feature.goals.text': { en: 'Weekly, monthly, season. Broken into the reps it actually takes.', bg: 'За седмицата, месеца или сезона. Разделени на ясни, постижими стъпки.' },
   'feature.sessions.title': { en: 'Session log', bg: 'Дневник на тренировките' },
-  'feature.sessions.text': { en: 'Jumps, quality, energy — logged in under two minutes.', bg: 'Скокове, качество, енергия — записани за под две минути.' },
+  'feature.sessions.text': { en: 'Jumps, quality, energy. Logged in under two minutes.', bg: 'Скокове, качество, енергия. Записани за под две минути.' },
   'feature.reflect.title': { en: 'Reflection', bg: 'Равносметка' },
   'feature.reflect.text': { en: 'Name the fear, the frustration and the small win. Entries are private by default.', bg: 'Назови страха, напрежението и малката победа. Записките са лични по подразбиране.' },
   'feature.coach.title': { en: 'your AI Coach', bg: 'AI подкрепа' },
@@ -184,7 +184,7 @@ const dict: Dict = {
   'journal.saveReflection': { en: 'Save today', bg: 'Запази деня' },
   'journal.captured': { en: 'Today is saved.', bg: 'Денят е запазен.' },
   'journal.captured.gentle': { en: 'Saved 💙 Get some rest.', bg: 'Запазено 💙 Сега почивай.' },
-  'journal.captured.lowDay': { en: 'Hard days count too. Be easy on yourself — tomorrow is fresh ice. 💙', bg: 'И трудните дни имат значение. Отнеси се към себе си с разбиране — утре е нов ден на леда. 💙' },
+  'journal.captured.lowDay': { en: 'Hard days count too. Be easy on yourself. Tomorrow is fresh ice. 💙', bg: 'И трудните дни имат значение. Отнеси се към себе си с разбиране. Утре е нов ден на леда. 💙' },
   'journal.section.daily': { en: 'Daily journal', bg: 'Дневник' },
   'journal.dateFormat': { en: 'EEEE, MMMM d', bg: 'EEEE, d MMMM' },
   'journal.workedOn.label': { en: 'What did you work on today?', bg: 'Над какво работи днес?' },
@@ -202,7 +202,7 @@ const dict: Dict = {
 
   // Optional rating-context notes (B2)
   'journal.note.emotional': { en: 'What was behind that? (optional)', bg: 'Какво стоеше зад това? (по желание)' },
-  'journal.note.confidence': { en: 'What helped — or didn’t? (optional)', bg: 'Какво ти помогна — или не? (по желание)' },
+  'journal.note.confidence': { en: 'What helped. Or didn’t? (optional)', bg: 'Какво ти помогна. Или не? (по желание)' },
   'journal.note.focus': { en: 'What pulled your focus? (optional)', bg: 'Какво те разсейваше? (по желание)' },
 
   // ───── Mind Journal (Mind tab) ─────
@@ -218,15 +218,15 @@ const dict: Dict = {
 
   // CBT
   'mind.cbt.title': { en: 'Reframe a thought', bg: 'Пренастрой една мисъл' },
-  'mind.cbt.desc': { en: 'Take a tough thought apart. Look at it from a calmer angle.', bg: 'Хвани трудната мисъл и я погледни отстрани — по-спокойно.' },
+  'mind.cbt.desc': { en: 'Take a tough thought apart. Look at it from a calmer angle.', bg: 'Хвани трудната мисъл и я погледни отстрани. По-спокойно.' },
   'mind.cbt.situation': { en: 'What happened?', bg: 'Какво се случи?' },
   'mind.cbt.thought': { en: 'What went through your head?', bg: 'Каква мисъл ти мина?' },
   'mind.cbt.emotion': { en: 'What did you feel?', bg: 'Какво усети?' },
-  'mind.cbt.intensity': { en: 'How strong was it? (1–10)', bg: 'Колко силно беше? (1–10)' },
+  'mind.cbt.intensity': { en: 'How strong was it? (1-10)', bg: 'Колко силно беше? (1-10)' },
   'mind.cbt.evidenceFor': { en: 'What backs the thought up', bg: 'Какво подкрепя мисълта' },
   'mind.cbt.evidenceAgainst': { en: 'What argues against it', bg: 'Какво говори срещу нея' },
   'mind.cbt.balanced': { en: 'A calmer way to put it', bg: 'По-спокоен начин да го кажеш' },
-  'mind.cbt.newIntensity': { en: 'How strong is it now? (1–10)', bg: 'Колко силно е сега? (1–10)' },
+  'mind.cbt.newIntensity': { en: 'How strong is it now? (1-10)', bg: 'Колко силно е сега? (1-10)' },
 
   // Gratitude
   'mind.gratitude.title': { en: 'Three good things', bg: 'Три хубави неща' },
@@ -237,7 +237,7 @@ const dict: Dict = {
   'mind.body.title': { en: 'Body & feeling check-in', bg: 'Тяло и усещане' },
   'mind.body.desc': { en: 'Where are you holding tension? What are you feeling?', bg: 'Къде носиш напрежение? Какво усещаш?' },
   'mind.body.tension': { en: 'Where do you feel tight?', bg: 'Къде ти е стегнато?' },
-  'mind.body.overall': { en: 'How does your body feel? (1–10)', bg: 'Как е тялото? (1–10)' },
+  'mind.body.overall': { en: 'How does your body feel? (1-10)', bg: 'Как е тялото? (1-10)' },
   'mind.body.primary': { en: 'Main feeling', bg: 'Основно усещане' },
   'mind.body.secondary': { en: 'Anything else? (optional)', bg: 'Нещо друго? (по желание)' },
   'mind.body.notes': { en: 'Notes', bg: 'Бележки' },
@@ -264,7 +264,7 @@ const dict: Dict = {
   'mind.precomp.desc': { en: 'Picture it. Breathe. Pick one thing to hold onto.', bg: 'Представи си го. Дишай. Избери едно нещо, за което да се хванеш.' },
   'mind.precomp.event': { en: 'Event name', bg: 'Състезание' },
   'mind.precomp.eventDate': { en: 'Date', bg: 'Дата' },
-  'mind.precomp.visualization': { en: 'Picture your best skate — describe it', bg: 'Представи си най-доброто си каране — опиши го' },
+  'mind.precomp.visualization': { en: 'Picture your best skate. Describe it', bg: 'Представи си най-доброто си каране. Опиши го' },
   'mind.precomp.anchor': { en: 'Something to hold onto (a word, an image, a memory)', bg: 'Нещо, за което да се хванеш (дума, образ, спомен)' },
   'mind.precomp.breathing': { en: 'I did a breathing exercise', bg: 'Направих дихателно упражнение' },
   'mind.precomp.intention': { en: 'Today I’m skating for…', bg: 'Днес карам за…' },
@@ -272,11 +272,11 @@ const dict: Dict = {
   // Post-competition (B4)
   'mind.postcomp.title': { en: 'After the competition', bg: 'След състезанието' },
   'mind.postcomp.desc': {
-    en: 'Three quiet questions — no matter where you placed.',
-    bg: 'Три тихи въпроса — без значение как се класира.',
+    en: 'Three quiet questions. No matter where you placed.',
+    bg: 'Три тихи въпроса. Без значение как се класира.',
   },
-  'mind.postcomp.didWell': { en: 'What went well today, no matter the result?', bg: 'Кое се получи днес — независимо от резултата?' },
-  'mind.postcomp.surprise': { en: 'What surprised you — in the skating or in yourself?', bg: 'Кое те изненада — в карането или в самия теб?' },
+  'mind.postcomp.didWell': { en: 'What went well today, no matter the result?', bg: 'Кое се получи днес. Независимо от резултата?' },
+  'mind.postcomp.surprise': { en: 'What surprised you. In the skating or in yourself?', bg: 'Кое те изненада. В карането или в самия теб?' },
   'mind.postcomp.carryForward': { en: 'What do you want to take into next week?', bg: 'Какво искаш да вземеш със себе си в следващата седмица?' },
   'mind.postcomp.reminder': { en: 'You showed up. That already counts. 💙', bg: 'Излезе на леда. Това вече се брои. 💙' },
 
@@ -297,7 +297,7 @@ const dict: Dict = {
 
   // ───── Training section (marketing keys, kept) ─────
   'training.heading': { en: 'Daily Practice', bg: 'Ежедневни тренировки' },
-  'training.subheading': { en: 'Track your training across all disciplines', bg: 'Следи всичко — на лед, суха тренировка и в главата' },
+  'training.subheading': { en: 'Track your training across all disciplines', bg: 'Следи всичко. На лед, суха тренировка и в главата' },
   'training.onIce.title': { en: 'On-Ice Training', bg: 'На лед' },
   'training.onIce.desc': { en: 'Jumps, spins, footwork, and programs', bg: 'Скокове, пируети, стъпки и програми' },
   'training.offIce.title': { en: 'Off-Ice Training', bg: 'Суха тренировка' },
@@ -340,9 +340,9 @@ const dict: Dict = {
   // ───── About page ─────
   'about.eyebrow': { en: 'About', bg: 'За нас' },
   'about.title': { en: 'Written from experience. Built by a skater and her mom.', bg: 'Написано от личен опит. Направено от фигуристка и майка ѝ.' },
-  'about.subtitle': { en: 'We made it because we missed a place to write down the real stuff after practice — no pressure, just for us.', bg: 'Създадохме го, защото ни липсваше място, където да записваме истинските неща след тренировка — без напрежение, само за нас.' },
+  'about.subtitle': { en: 'We made it because we missed a place to write down the real stuff after practice. No pressure, just for us.', bg: 'Създадохме го, защото ни липсваше място, където да записваме истинските неща след тренировка. Без напрежение, само за нас.' },
   'about.story.title': { en: 'Our Story', bg: 'Историята накратко' },
-  'about.story.lead': { en: 'It started simply: a 14-year-old skater wanted somewhere to write down how practice went — the jumps that worked, the ones that did not, and everything she was carrying off the ice. Her mom, a sport psychologist, helped turn it into an app. No big words, just the thing we were missing.', bg: 'Започна просто: 14-годишна фигуристка искаше къде да записва как е минала тренировката — кои скокове стават, кои не, и всичко, което носи извън леда. Мама ѝ, спортен психолог, помогна да стане приложение. Без големи думи — просто това, което ни липсваше.' },
+  'about.story.lead': { en: 'It started simply: a 14-year-old skater wanted somewhere to write down how practice went. The jumps that worked, the ones that did not, and everything she was carrying off the ice. Her mom, a sport psychologist, helped turn it into an app. No big words, just the thing we were missing.', bg: 'Започна просто: 14-годишна фигуристка искаше къде да записва как е минала тренировката. Кои скокове стават, кои не, и всичко, което носи извън леда. Мама ѝ, спортен психолог, помогна да стане приложение. Без големи думи. Просто това, което ни липсваше.' },
   'about.story.b1': { en: 'Write it down after practice', bg: 'Запис след всяка тренировка' },
   'about.story.b2': { en: 'See what changes over a season', bg: 'Ясен поглед върху прогреса' },
   'about.story.b3': { en: 'Be steadier at competitions', bg: 'По-спокойна глава на състезания' },
@@ -353,7 +353,7 @@ const dict: Dict = {
   'about.mission.b4': { en: 'Make mental prep as valued as ice time', bg: 'За да броим главата толкова, колкото и леда' },
   'about.who.title': { en: "Who It's For", bg: 'За кого е' },
   'about.who.b1': { en: 'Beginners learning their first waltz jump', bg: 'Начинаещи с първите си елементи' },
-  'about.who.b2': { en: 'Competitive skaters training for nationals', bg: 'Състезатели — от клуб до държавно' },
+  'about.who.b2': { en: 'Competitive skaters training for nationals', bg: 'Състезатели. От клуб до държавно' },
   'about.who.b3': { en: 'Coaches and skating families', bg: 'Треньори, родители и хората около леда' },
   'about.cta.title': { en: 'Start using SkateGoals.', bg: 'Започни със SkateGoals.' },
   'about.cta.subtitle': { en: 'Private by default. Built for training, goals and competition prep.', bg: 'Лично по подразбиране. За тренировки, цели и подготовка за старт.' },
@@ -482,7 +482,7 @@ const dict: Dict = {
   'today.stage.training.title': { en: 'Train with focus', bg: 'Тренирай с фокус' },
   'today.stage.training.desc': { en: 'Use the timer, log the session, note your jumps when you’re ready.', bg: 'Пусни таймера, запиши тренировката и отбележи скоковете, когато решиш.' },
   'today.stage.post.label': { en: 'After', bg: 'След' },
-  'today.stage.post.title': { en: 'Reflect — gently', bg: 'Запиши — спокойно' },
+  'today.stage.post.title': { en: 'Reflect. Gently', bg: 'Запиши. Спокойно' },
   'today.stage.post.desc': { en: 'What worked, what was hard, what you took away. Be easy on yourself.', bg: 'Кое се получи, кое беше трудно, какво научи. Без да се натискаш.' },
   'today.stage.grounding.label': { en: 'Grounding', bg: 'Връщане в настоящето' },
   'today.stage.grounding.title': { en: 'Come back to yourself', bg: 'Върни се при себе си' },
@@ -516,11 +516,11 @@ const dict: Dict = {
   'today.quick.needsWork.label': { en: 'What needs work?', bg: 'Над какво има да се работи?' },
   'today.quick.needsWork.placeholder': { en: 'Something to come back to…', bg: 'Нещо, към което да се върнеш…' },
   'today.quick.oneLine.label': { en: 'One sentence about today', bg: 'Едно изречение за днес' },
-  'today.quick.oneLine.placeholder': { en: 'In a few words — how was it?', bg: 'С няколко думи — как беше?' },
+  'today.quick.oneLine.placeholder': { en: 'In a few words. How was it?', bg: 'С няколко думи. Как беше?' },
   'today.quick.save': { en: 'Save today', bg: 'Запази деня' },
   'today.quick.helper': { en: 'Fill in only what feels useful. Half is fine.', bg: 'Попълни само това, което ти е полезно. И половината е окей.' },
   'today.quick.saved.title': { en: 'Today is saved. Nice work.', bg: 'Денят е запазен. Браво.' },
-  'today.quick.saved.subtitle': { en: 'Come back tomorrow — or open the full journal below.', bg: 'Върни се утре — или отвори пълния дневник по-долу.' },
+  'today.quick.saved.subtitle': { en: 'Come back tomorrow. Or open the full journal below.', bg: 'Върни се утре. Или отвори пълния дневник по-долу.' },
   'today.deeper.title': { en: 'Want to go deeper?', bg: 'Искаш ли по-надълбоко?' },
   'today.deeper.open': { en: 'Open', bg: 'Отвори' },
   'today.deeper.close': { en: 'Hide', bg: 'Скрий' },
@@ -532,8 +532,8 @@ const dict: Dict = {
   'today.summary.title.celebratory': { en: 'What a day. Hold on to this. ✨', bg: 'Какъв ден. Запази усещането. ✨' },
   // Three rotating gentle messages for hard days (low confidence/mood/energy)
   'today.summary.gentle.0': {
-    en: 'Saved. Take a breath — recovery is part of the work.',
-    bg: 'Запазено. Поеми дъх — възстановяването също е работа.',
+    en: 'Saved. Take a breath. Recovery is part of the work.',
+    bg: 'Запазено. Поеми дъх. Възстановяването също е работа.',
   },
   'today.summary.gentle.1': {
     en: 'Not every session has to feel strong to count.',
@@ -619,7 +619,7 @@ const dict: Dict = {
   'dash.weeklyGoals.title': { en: 'This week’s goals', bg: 'Цели за седмицата' },
   'dash.weeklyGoals.subtitle': { en: 'What do you want to work on?', bg: 'Над какво искаш да работиш?' },
   'dash.skatingPlan.title': { en: 'Skating plan', bg: 'Планът ти' },
-  'dash.skatingPlan.subtitle': { en: 'Week, month, season — your choice.', bg: 'Седмица, месец, сезон — ти избираш.' },
+  'dash.skatingPlan.subtitle': { en: 'Week, month, season. Your choice.', bg: 'Седмица, месец, сезон. Ти избираш.' },
   'dash.mentalPrep.title': { en: 'Mental prep', bg: 'Ментална подготовка' },
   'dash.mentalPrep.subtitle': { en: 'Settle your head before you skate.', bg: 'Успокой мислите си, преди да излезеш на леда.' },
   'dash.sportPsych.title': { en: 'Sport psychology', bg: 'Спортна психология' },
@@ -627,7 +627,7 @@ const dict: Dict = {
   'dash.inspiration.title': { en: 'Inspiration', bg: 'Вдъхновение' },
   'dash.inspiration.subtitle': { en: 'A few words to keep you going.', bg: 'Няколко думи, които те държат.' },
   'dash.todayTraining.title': { en: 'Today’s training', bg: 'Днешната тренировка' },
-  'dash.todayTraining.subtitle': { en: 'On-ice and off-ice, in one place.', bg: 'На лед и суха тренировка — на едно място.' },
+  'dash.todayTraining.subtitle': { en: 'On-ice and off-ice, in one place.', bg: 'На лед и суха тренировка. На едно място.' },
   'dash.sessionTimer.title': { en: 'Session timer', bg: 'Таймер за тренировка' },
   'dash.sessionTimer.subtitle': { en: 'Time your session, lap by lap.', bg: 'Засичай тренировката по обиколки.' },
   'dash.onIce.title': { en: 'On-ice', bg: 'На лед' },
@@ -640,7 +640,7 @@ const dict: Dict = {
   'dash.jumpTracker.title': { en: 'Jumps', bg: 'Скокове' },
   'dash.jumpTracker.subtitle': { en: 'Log them. See the pattern.', bg: 'Записвай ги. Виж модела.' },
   'dash.dailyJournal.title': { en: 'Daily journal', bg: 'Дневник' },
-  'dash.dailyJournal.subtitle': { en: 'Today, in your own words.', bg: 'Днес — със собствените ти думи.' },
+  'dash.dailyJournal.subtitle': { en: 'Today, in your own words.', bg: 'Днес. Със собствените ти думи.' },
   'dash.progress.title': { en: 'Progress', bg: 'Прогрес' },
   'dash.progress.subtitle': { en: 'See how far you’ve come.', bg: 'Виж изминатия път.' },
   'dash.journey.title': { en: 'Your progress', bg: 'Твоят път' },
@@ -648,7 +648,7 @@ const dict: Dict = {
 
   // Today summary
   'dash.todaySummary.title': { en: 'Yesterday', bg: 'Вчера' },
-  'dash.todaySummary.empty': { en: 'No training yesterday — rest is part of it too.', bg: 'Вчера не тренира — и почивката е част от това.' },
+  'dash.todaySummary.empty': { en: 'No training yesterday. Rest is part of it too.', bg: 'Вчера не тренира. И почивката е част от това.' },
   'dash.todaySummary.cta': { en: 'Want to add a sentence?', bg: 'Искаш ли да добавиш едно изречение?' },
 
   // Back button (in-app)
@@ -663,7 +663,7 @@ const dict: Dict = {
   'onb.continue': { en: 'Continue', bg: 'Продължи' },
 
   'onb.level.title': { en: 'How do you see yourself right now?', bg: 'Как се виждаш в момента?' },
-  'onb.level.subtitle': { en: 'Not a grade — just where you are. You can change it anytime.', bg: 'Не е оценка — просто къде си сега. Можеш да го смениш по всяко време.' },
+  'onb.level.subtitle': { en: 'Not a grade. Just where you are. You can change it anytime.', bg: 'Не е оценка. Просто къде си сега. Можеш да го смениш по всяко време.' },
 
   'onb.goals.title': { en: 'What do you want to focus on?', bg: 'Върху какво искаш да се фокусираш?' },
   'onb.goals.subtitle': { en: 'This will change. That’s the point.', bg: 'Това ще се променя. Точно това е идеята.' },
@@ -733,11 +733,11 @@ const dict: Dict = {
   'auth.connecting': { en: 'Connecting…', bg: 'Свързване…' },
   'auth.orEmail': { en: 'or with email', bg: 'или с имейл' },
   'auth.private': { en: 'Your notes stay private. Always yours.', bg: 'Записките ти остават лични. Винаги твои.' },
-  'seo.auth.title': { en: 'Sign In or Sign Up – SkateGoals', bg: 'Вход или регистрация – SkateGoals' },
+  'seo.auth.title': { en: 'Sign In or Sign Up. SkateGoals', bg: 'Вход или регистрация. SkateGoals' },
   'seo.auth.desc': { en: 'Log in to SkateGoals or create a free account to log training, track elements and prepare mentally.', bg: 'Влез в SkateGoals или си направи безплатен профил, за да записваш тренировки, да следиш елементите си и да се подготвяш ментално.' },
-  'seo.auth.reset.title': { en: 'Reset Password – SkateGoals', bg: 'Нова парола – SkateGoals' },
+  'seo.auth.reset.title': { en: 'Reset Password. SkateGoals', bg: 'Нова парола. SkateGoals' },
   'seo.auth.reset.desc': { en: 'Set a new password for your SkateGoals account.', bg: 'Задай нова парола за профила си в SkateGoals.' },
-  'seo.auth.forgot.title': { en: 'Forgot Password – SkateGoals', bg: 'Забравена парола – SkateGoals' },
+  'seo.auth.forgot.title': { en: 'Forgot Password. SkateGoals', bg: 'Забравена парола. SkateGoals' },
   'seo.auth.forgot.desc': { en: 'Recover access to your SkateGoals account with a secure email link.', bg: 'Възстанови достъпа до профила си в SkateGoals със защитен линк по имейл.' },
   'auth.backHome': { en: 'Back to home', bg: 'Към началото' },
   'auth.terms': { en: 'By continuing, you’re saying yes to journaling your skating with us.', bg: 'С продължаването казваш „да“, да водиш дневник за карането си тук.' },
@@ -837,7 +837,7 @@ const dict: Dict = {
   // ───── Progress · Insights ─────
   'progress.insights.title': { en: 'What we’re noticing', bg: 'Какво забелязваме' },
   'progress.insights.subtitle': { en: 'A few patterns from your last days.', bg: 'Няколко модела от последните дни.' },
-  'progress.insights.empty': { en: 'Keep logging — patterns will show up here as we get to know your rhythm.', bg: 'Продължавай да записваш — моделите ще се появят, щом опознаем ритъма ти.' },
+  'progress.insights.empty': { en: 'Keep logging. Patterns will show up here as we get to know your rhythm.', bg: 'Продължавай да записваш. Моделите ще се появят, щом опознаем ритъма ти.' },
 
   'progress.section.frequency': { en: 'How often you trained', bg: 'Колко често тренира' },
   'progress.section.frequency.sub': { en: 'Sessions per day, last 14 days', bg: 'Тренировки на ден, последните 14 дни' },
@@ -857,7 +857,7 @@ const dict: Dict = {
   'progress.goals.active': { en: 'Active', bg: 'Активни' },
   'progress.goals.completed': { en: 'Done', bg: 'Завършени' },
   'progress.goals.avg': { en: 'Average progress', bg: 'Среден прогрес' },
-  'progress.goals.none': { en: 'No active goals — set one to start.', bg: 'Няма активни цели — задай една, за да започнеш.' },
+  'progress.goals.none': { en: 'No active goals. Set one to start.', bg: 'Няма активни цели. Задай една, за да започнеш.' },
 
   // Insight cards (variants)
   'progress.insight.consistency.up': {
@@ -865,8 +865,8 @@ const dict: Dict = {
     bg: 'Тренира по-постоянно тази седмица.'
   },
   'progress.insight.consistency.same': {
-    en: 'Same rhythm as last week — that’s consistency.',
-    bg: 'Същият ритъм като миналата седмица — това е постоянство.'
+    en: 'Same rhythm as last week. That’s consistency.',
+    bg: 'Същият ритъм като миналата седмица. Това е постоянство.'
   },
   'progress.insight.consistency.down': {
     en: 'Fewer sessions this week. Rest is part of the work.',
@@ -889,8 +889,8 @@ const dict: Dict = {
     bg: '{jump} беше по-труден тази седмица. Добре е да знаем.'
   },
   'progress.insight.jumpVolume': {
-    en: 'More {jump} attempts this week — volume builds it.',
-    bg: 'Повече опити за {jump} тази седмица — обемът го гради.'
+    en: 'More {jump} attempts this week. Volume builds it.',
+    bg: 'Повече опити за {jump} тази седмица. Обемът го гради.'
   },
   'progress.insight.reflection.up': {
     en: 'You reflected more this week. Awareness grows here.',
@@ -947,15 +947,15 @@ const dict: Dict = {
 
   'streak.pause.title': { en: 'A gentle pause', bg: 'Мека пауза' },
   'streak.pause.intro': {
-    en: 'Rest, recovery, exams, travel — life happens. Pausing isn’t failing. Your progress stays safe.',
-    bg: 'Почивка, възстановяване, изпити, пътуване — животът се случва. Паузата не е провал. Прогресът ти остава.',
+    en: 'Rest, recovery, exams, travel. Life happens. Pausing isn’t failing. Your progress stays safe.',
+    bg: 'Почивка, възстановяване, изпити, пътуване. Животът се случва. Паузата не е провал. Прогресът ти остава.',
   },
   'streak.pause.reasonLabel': { en: 'What’s happening?', bg: 'Какво се случва?' },
   'streak.pause.durationLabel': { en: 'For how long?', bg: 'За колко време?' },
   'streak.pause.days': { en: 'days', bg: 'дни' },
   'streak.pause.reassurance': {
-    en: 'You can come back anytime — even sooner. This is just for you.',
-    bg: 'Можеш да се върнеш по всяко време — и по-рано. Това е само за теб.',
+    en: 'You can come back anytime. Even sooner. This is just for you.',
+    bg: 'Можеш да се върнеш по всяко време. И по-рано. Това е само за теб.',
   },
   'streak.pause.cancel':  { en: 'Not now', bg: 'Не сега' },
   'streak.pause.confirm': { en: 'Pause gently', bg: 'Да, направи пауза' },
@@ -1026,7 +1026,7 @@ const dict: Dict = {
   'mt.aff.3': { en: 'Notice. Reset. Continue.', bg: 'Забележи. Рестартирай. Продължи.' },
   'mt.aff.4': { en: 'Stay with my tempo.', bg: 'Оставам в моето темпо.' },
   'mt.aff.5': { en: 'A slower exhale, then the next task.', bg: 'По-бавно издишване, после следващата задача.' },
-  'mt.aff.6': { en: 'Pressure can be present; attention stays on the task.', bg: 'Напрежението може да е тук; вниманието остава в задачата.' },
+  'mt.aff.6': { en: 'Pressure can be present. Attention stays on the task.', bg: 'Напрежението може да е тук. Вниманието остава в задачата.' },
   'mt.aff.7': { en: 'Use the plan I know.', bg: 'Следвам познатия план.' },
   'mt.aff.8': { en: 'A mistake is information for the next action.', bg: 'Грешката е информация за следващото действие.' },
   'mt.aff.9': { en: 'My job is the next controllable action.', bg: 'Моята задача е следващото действие под мой контрол.' },
@@ -1129,7 +1129,7 @@ const dict: Dict = {
   'tour.goals.hint':     { en: 'Pick up to 3. You can change them anytime.', bg: 'Избери до 3. Можеш да ги смениш по всяко време.' },
   'tour.goals.custom':   { en: 'Or write your own focus…', bg: 'Или напиши свой фокус…' },
   'tour.today.title':    { en: 'Your daily to-do lives here', bg: 'Дневните ти задачи са тук' },
-  'tour.today.body':     { en: "Mood check-in, quick notes, and today's focus — one tap away.", bg: 'Настроение, бързи бележки и днешен фокус — на един допир.' },
+  'tour.today.body':     { en: "Mood check-in, quick notes, and today's focus. One tap away.", bg: 'Настроение, бързи бележки и днешен фокус. На един допир.' },
   'tour.today.cta':      { en: 'Show me Today',         bg: 'Покажи ми Днес' },
   'tour.train.title':    { en: 'Track your training',   bg: 'Проследи тренировките си' },
   'tour.train.body':     { en: 'Log sessions, jumps, and timed practices in the Train tab.', bg: 'Записвай тренировки, скокове и засечени упражнения в раздел Тренировка.' },
@@ -1155,9 +1155,9 @@ const dict: Dict = {
   'coach.title':         { en: 'Ask your AI Coach',        bg: 'Питай AI подкрепа' },
   'coach.subtitle':      { en: 'planning · priorities · accountability', bg: 'планиране · приоритети · отчетност' },
   'coach.placeholder':   { en: "What's going on?",  bg: 'Какво се случва?' },
-  'coach.greeting':      { en: "Jumps, nerves, motivation — tell me what's going on. Even if it's just \"today was hard\".", bg: 'Скокове, нерви, мотивация — кажи какво се случва. Дори да е „днес беше тежко“.' },
+  'coach.greeting':      { en: "Jumps, nerves, motivation. Tell me what's going on. Even if it's just \"today was hard\".", bg: 'Скокове, нерви, мотивация. Кажи какво се случва. Дори да е „днес беше тежко“.' },
   'coach.tryOne':        { en: 'Try one',               bg: 'Опитай едно' },
-  'coach.starter.1':     { en: 'I keep falling on my Lutz — what do I do?', bg: 'Все падам на лутца — какво да правя?' },
+  'coach.starter.1':     { en: 'I keep falling on my Lutz. What do I do?', bg: 'Все падам на лутца. Какво да правя?' },
   'coach.starter.2':     { en: "I'm nervous about the competition this weekend", bg: 'Притеснявам се за състезанието този уикенд' },
   'coach.starter.3':     { en: 'I lost my motivation. What now?', bg: 'Изгубих мотивация. Какво сега?' },
   'coach.starter.4':     { en: 'Hype me up before practice', bg: 'Дай ми енергия преди тренировка' },

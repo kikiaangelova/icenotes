@@ -116,7 +116,7 @@ export const GuidedTour: React.FC<GuidedTourProps> = ({ setActiveTab, autoStart 
         </div>
 
         <div className="p-6 space-y-5">
-          {/* Step 0 — Welcome */}
+          {/* Step 0. Welcome */}
           {step === 0 && (
             <div className="space-y-4 animate-fade-in text-center">
               <div className="mx-auto w-14 h-14 rounded-md bg-secondary flex items-center justify-center">
@@ -135,7 +135,7 @@ export const GuidedTour: React.FC<GuidedTourProps> = ({ setActiveTab, autoStart 
             </div>
           )}
 
-          {/* Step 1 — Pick goals */}
+          {/* Step 1. Pick goals */}
           {step === 1 && (
             <div className="space-y-4 animate-fade-in">
               <div className="flex items-start gap-3">
@@ -193,7 +193,7 @@ export const GuidedTour: React.FC<GuidedTourProps> = ({ setActiveTab, autoStart 
             </div>
           )}
 
-          {/* Step 2 — Daily log */}
+          {/* Step 2. Daily log */}
           {step === 2 && (
             <div className="space-y-4 animate-fade-in">
               <div className="flex items-start gap-3">
@@ -233,7 +233,7 @@ export const GuidedTour: React.FC<GuidedTourProps> = ({ setActiveTab, autoStart 
             </div>
           )}
 
-          {/* Step 3 — Tracking */}
+          {/* Step 3. Tracking */}
           {step === 3 && (
             <div className="space-y-4 animate-fade-in">
               <div className="flex items-start gap-3">

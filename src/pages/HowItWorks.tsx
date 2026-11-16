@@ -31,7 +31,7 @@ const HowItWorks: React.FC = () => {
     <div className={isDarkMode ? "dark" : ""}>
       <div className="public-editorial min-h-screen bg-background">
         <Navbar isDarkMode={isDarkMode} onToggleDarkMode={() => setIsDarkMode(!isDarkMode)} />
-        <Seo title="How SkateGoals Works — Train, Track, Reflect, Prepare" description="The SkateGoals loop: log a session, reflect, choose the next focus, review the week, prepare for competition, reset. Two distinct AI roles support planning and mental performance." path="/how-it-works" />
+        <Seo title="How SkateGoals Works. Train, Track, Reflect, Prepare" description="The SkateGoals loop: log a session, reflect, choose the next focus, review the week, prepare for competition, reset. Two distinct AI roles support planning and mental performance." path="/how-it-works" />
 
         <section className="px-6 md:px-12 pt-20 pb-16 md:pt-28 md:pb-20">
           <div className="max-w-3xl mx-auto text-center">

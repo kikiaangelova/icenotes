@@ -20,8 +20,8 @@ import { format } from 'date-fns';
 
 type Timeframe = 'weekly' | 'monthly' | 'season';
 
-interface ActionStep { id: string; text: string; done: boolean; }
-interface GoalMeta { why?: string; steps?: ActionStep[]; }
+interface ActionStep { id: string. Text: string. Done: boolean; }
+interface GoalMeta { why?: string. Steps?: ActionStep[]; }
 
 const parseMeta = (notes?: string): GoalMeta => {
   if (!notes) return {};
@@ -40,7 +40,7 @@ const computeProgress = (steps: ActionStep[] = [], fallback = 0) => {
   return Math.round((done / steps.length) * 100);
 };
 
-const TIMEFRAME_TONE: Record<Timeframe, { ring: string; chip: string; soft: string; accent: string; label: { en: string; bg: string }; sub: { en: string; bg: string } }> = {
+const TIMEFRAME_TONE: Record<Timeframe, { ring: string. Chip: string. Soft: string. Accent: string. Label: { en: string. Bg: string }; sub: { en: string. Bg: string } }> = {
   weekly:  { ring: 'border-violet-200', chip: 'bg-violet-100 text-violet-700', soft: 'bg-violet-50/60', accent: 'text-violet-700', label: { en: 'This week',   bg: 'Тази седмица' },   sub: { en: 'Small wins, 7 days at a time', bg: 'Малки победи, седмица по седмица' } },
   monthly: { ring: 'border-sky-200',    chip: 'bg-sky-100 text-sky-700',       soft: 'bg-sky-50/60',    accent: 'text-sky-700',    label: { en: 'This month',  bg: 'Този месец' },     sub: { en: 'Building blocks for the season', bg: 'Тухличките за сезона' } },
   season:  { ring: 'border-pink-200',   chip: 'bg-pink-100 text-pink-700',     soft: 'bg-pink-50/60',   accent: 'text-pink-700',   label: { en: 'This season', bg: 'Този сезон' },     sub: { en: 'The bigger picture', bg: 'По-голямата картина' } },
@@ -314,7 +314,7 @@ export const SkatingGoals: React.FC = () => {
               <Sparkles className="w-8 h-8 mx-auto text-muted-foreground/50" />
               <div>
                 <p className="text-sm font-medium">
-                  {isBG ? 'Без цели за момента — и това е добре.' : 'No goals here yet — and that’s okay.'}
+                  {isBG ? 'Без цели за момента. И това е добре.' : 'No goals here yet. And that’s okay.'}
                 </p>
                 <p className="text-xs text-muted-foreground mt-1">
                   {isBG ? 'Започни с една малка цел.' : 'Start with one small goal.'}
@@ -367,7 +367,7 @@ export const SkatingGoals: React.FC = () => {
               {isBG ? 'Сезон' : 'Season'}
             </TabsTrigger>
           </TabsList>
-          <Dialog open={dialogOpen} onOpenChange={(o) => { setDialogOpen(o); if (!o) { setEditingId(null); resetDraft(); } }}>
+          <Dialog open={dialogOpen} onOpenChange={(o) => { setDialogOpen(o). If (!o) { setEditingId(null). ResetDraft(); } }}>
             <DialogTrigger asChild>
               <Button size="icon" className="h-11 w-11 rounded-xl" onClick={openNew} aria-label="New goal">
                 <Plus className="w-5 h-5" />
@@ -453,7 +453,7 @@ export const SkatingGoals: React.FC = () => {
                           placeholder={isBG ? `Малка стъпка ${i + 1}` : `Small step ${i + 1}`}
                           value={step}
                           onChange={(e) => setDraft(d => {
-                            const ns = [...d.steps]; ns[i] = e.target.value; return { ...d, steps: ns };
+                            const ns = [...d.steps]; ns[i] = e.target.value. Return { ...d, steps: ns };
                           })}
                           className="h-10"
                         />

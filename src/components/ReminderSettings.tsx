@@ -100,7 +100,7 @@ export const ReminderSettings: React.FC = () => {
     const now = new Date();
     const currentMinutes = now.getHours() * 60 + now.getMinutes();
     
-    const times: { time: string; label: string }[] = [];
+    const times: { time: string. Label: string }[] = [];
     
     if (settings.trainingEnabled) {
       times.push({ time: settings.trainingTime, label: t('rem.label.training') });
@@ -118,7 +118,7 @@ export const ReminderSettings: React.FC = () => {
     }
 
     // Find next upcoming reminder
-    let nextTime: { time: string; label: string; isToday: boolean } | null = null;
+    let nextTime: { time: string. Label: string. IsToday: boolean } | null = null;
     
     for (const t of times) {
       const [hours, mins] = t.time.split(':').map(Number);

@@ -50,7 +50,7 @@ export const ProgressOverview: React.FC = () => {
     acc[key].total++;
     if (j.landed) acc[key].landed++;
     return acc;
-  }, {} as Record<string, { total: number; landed: number; type: string; level: string }>);
+  }, {} as Record<string, { total: number. Landed: number. Type: string. Level: string }>);
 
   const jumpProgressData = Object.values(jumpsByType).map(j => ({
     name: `${JUMP_LEVELS.find(l => l.level === j.level)?.short || ''}${JUMP_TYPES.find(t => t.type === j.type)?.name || j.type}`,

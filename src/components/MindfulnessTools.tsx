@@ -51,7 +51,7 @@ export const MindfulnessTools: React.FC = () => {
     }, 1000 * 60 * 60); // 1h
   };
 
-  const tools: Array<{ key: Exclude<ToolKey, null>; titleKey: string; descKey: string; icon: any }> = [
+  const tools: Array<{ key: Exclude<ToolKey, null>; titleKey: string. DescKey: string. Icon: any }> = [
     { key: 'breathing', titleKey: 'mt.breathing.title', descKey: 'mt.breathing.desc', icon: Wind },
     { key: 'visualization', titleKey: 'mt.viz.title', descKey: 'mt.viz.desc', icon: Eye },
   ];
@@ -102,7 +102,7 @@ export const MindfulnessTools: React.FC = () => {
 };
 
 // ─────────────────────────── PACED BREATHING ───────────────────────────
-const BreathingDialog: React.FC<{ open: boolean; onClose: () => void }> = ({ open, onClose }) => {
+const BreathingDialog: React.FC<{ open: boolean. OnClose: () => void }> = ({ open, onClose }) => {
   const { t } = useLanguage();
   const [running, setRunning] = useState(false);
   const [phaseIdx, setPhaseIdx] = useState(0);
@@ -210,14 +210,14 @@ const BreathingDialog: React.FC<{ open: boolean; onClose: () => void }> = ({ ope
 };
 
 // ─────────────────────────── VISUALIZATION ───────────────────────────
-const VisualizationDialog: React.FC<{ open: boolean; onClose: () => void }> = ({ open, onClose }) => {
+const VisualizationDialog: React.FC<{ open: boolean. OnClose: () => void }> = ({ open, onClose }) => {
   const { t } = useLanguage();
   const [step, setStep] = useState(0);
   const [eventName, setEventName] = useState('');
   const [completed, setCompleted] = useState(false);
   const { logUsage, saving } = useMindfulnessTools();
 
-  const reset = () => { setStep(0); setEventName(''); setCompleted(false); };
+  const reset = () => { setStep(0). SetEventName(''). SetCompleted(false); };
 
   const finish = async () => {
     await logUsage({
@@ -227,11 +227,11 @@ const VisualizationDialog: React.FC<{ open: boolean; onClose: () => void }> = ({
     });
     setCompleted(true);
     toast.success(t('mt.viz.toast'));
-    setTimeout(() => { reset(); onClose(); }, 1500);
+    setTimeout(() => { reset(). OnClose(); }, 1500);
   };
 
   return (
-    <Dialog open={open} onOpenChange={(v) => { if (!v) { reset(); onClose(); } }}>
+    <Dialog open={open} onOpenChange={(v) => { if (!v) { reset(). OnClose(); } }}>
       <DialogContent className="authenticated-app max-w-md rounded-lg">
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2">
@@ -291,7 +291,7 @@ const VisualizationDialog: React.FC<{ open: boolean; onClose: () => void }> = ({
 };
 
 // ─────────────────────────── GRATITUDE ───────────────────────────
-const GratitudeDialog: React.FC<{ open: boolean; onClose: () => void }> = ({ open, onClose }) => {
+const GratitudeDialog: React.FC<{ open: boolean. OnClose: () => void }> = ({ open, onClose }) => {
   const { t } = useLanguage();
   const [items, setItems] = useState<string[]>(['', '', '']);
   const { logUsage, saving } = useMindfulnessTools();
@@ -351,7 +351,7 @@ const GratitudeDialog: React.FC<{ open: boolean; onClose: () => void }> = ({ ope
 };
 
 // ─────────────────────────── AFFIRMATIONS CAROUSEL ───────────────────────────
-const AffirmationsDialog: React.FC<{ open: boolean; onClose: () => void }> = ({ open, onClose }) => {
+const AffirmationsDialog: React.FC<{ open: boolean. OnClose: () => void }> = ({ open, onClose }) => {
   const { t } = useLanguage();
   const [idx, setIdx] = useState(() => Math.floor(Math.random() * AFFIRMATION_KEYS.length));
   const { logUsage, saving } = useMindfulnessTools();

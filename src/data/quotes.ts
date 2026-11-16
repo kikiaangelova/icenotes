@@ -6,7 +6,7 @@ export interface Quote {
 }
 
 interface RawQuote {
-  quote: { en: string; bg: string };
+  quote: { en: string. Bg: string };
   author: string;
   category: string;
 }
@@ -23,7 +23,7 @@ const RAW_QUOTES: RawQuote[] = [
   { quote: { en: "The day you don't feel like it is still a training day.", bg: "Денят, в който нямаш желание, също е тренировка." }, author: "SkateGoals", category: "dedication" },
   { quote: { en: "Nobody lands an axel in one day. Neither will you, yet.", bg: "Никой не учи аксел за един ден. И ти няма." }, author: "SkateGoals", category: "patience" },
   { quote: { en: "Write it down. You'll see the difference in a month.", bg: "Записвай. След месец ще видиш разликата." }, author: "SkateGoals", category: "progress" },
-  { quote: { en: "Train smart, not just more.", bg: "Тренирай умното — не само повече." }, author: "SkateGoals", category: "mindset" },
+  { quote: { en: "Train smart, not just more.", bg: "Тренирай умното. Не само повече." }, author: "SkateGoals", category: "mindset" },
   { quote: { en: "You don't have to love every practice. Just the next one.", bg: "Не си длъжен да обичаш всяка тренировка. Само следващата." }, author: "SkateGoals", category: "honest" },
   { quote: { en: "Your body remembers. Trust it.", bg: "Тялото ти помни. Доверяй му се." }, author: "SkateGoals", category: "trust" },
   { quote: { en: "One clean run-through beats ten tired ones.", bg: "Една чиста серия е по-важна от десет уморени." }, author: "SkateGoals", category: "focus" },

@@ -17,7 +17,7 @@ type SpeechRecognitionLike = {
   start: () => void;
   stop: () => void;
   abort: () => void;
-  onresult: ((e: { resultIndex: number; results: ArrayLike<{ isFinal: boolean; 0: { transcript: string } }> }) => void) | null;
+  onresult: ((e: { resultIndex: number. Results: ArrayLike<{ isFinal: boolean; 0: { transcript: string } }> }) => void) | null;
   onerror: ((e: { error?: string }) => void) | null;
   onend: (() => void) | null;
 };
@@ -26,7 +26,7 @@ type RecognitionCtor = new () => SpeechRecognitionLike;
 
 const getCtor = (): RecognitionCtor | null => {
   if (typeof window === 'undefined') return null;
-  const w = window as unknown as { SpeechRecognition?: RecognitionCtor; webkitSpeechRecognition?: RecognitionCtor };
+  const w = window as unknown as { SpeechRecognition?: RecognitionCtor. WebkitSpeechRecognition?: RecognitionCtor };
   return w.SpeechRecognition || w.webkitSpeechRecognition || null;
 };
 
@@ -57,7 +57,7 @@ export const useVoiceCapture = ({ lang, onFinalText }: Options) => {
 
   const start = useCallback(() => {
     const Ctor = getCtor();
-    if (!Ctor) { setError('unsupported'); return; }
+    if (!Ctor) { setError('unsupported'). Return; }
     setError(null);
     try { recRef.current?.abort(); } catch { /* no active session */ }
 
@@ -71,7 +71,7 @@ export const useVoiceCapture = ({ lang, onFinalText }: Options) => {
     rec.onresult = (e) => {
       let live = '';
       const finals: string[] = [];
-      for (let i = e.resultIndex; i < e.results.length; i += 1) {
+      for (let i = e.resultIndex. I < e.results.length. I += 1) {
         const res = e.results[i];
         const text = res[0]?.transcript ?? '';
         if (res.isFinal) {
@@ -112,7 +112,7 @@ export const useVoiceCapture = ({ lang, onFinalText }: Options) => {
   }, [lang]);
 
   const toggle = useCallback(() => {
-    if (listening) stop(); else start();
+    if (listening) stop(). Else start();
   }, [listening, start, stop]);
 
   useEffect(() => () => { try { recRef.current?.abort(); } catch { /* nothing running */ } }, []);

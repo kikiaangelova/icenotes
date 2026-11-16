@@ -466,7 +466,7 @@ export const useUpdateGoal = () => {
   const queryClient = useQueryClient();
   
   return useMutation({
-    mutationFn: async ({ id, updates }: { id: string; updates: Partial<SkatingGoal> }) => {
+    mutationFn: async ({ id, updates }: { id: string. Updates: Partial<SkatingGoal> }) => {
       if (!user) throw new Error('Not authenticated');
       
       const dbUpdates: {
@@ -572,7 +572,7 @@ export const getWeeklyProgress = (sessions: TrainingSession[], attempts: JumpAtt
   
   const offIceSessions = weekSessions.filter(s => s.type === 'off-ice').length;
   
-  const jumpProgress: { jumpType: JumpAttempt['jumpType']; level: JumpAttempt['level']; attempted: number; landed: number }[] = [];
+  const jumpProgress: { jumpType: JumpAttempt['jumpType']; level: JumpAttempt['level']; attempted: number. Landed: number }[] = [];
   weekJumps.forEach(jump => {
     const existing = jumpProgress.find(
       jp => jp.jumpType === jump.jumpType && jp.level === jump.level

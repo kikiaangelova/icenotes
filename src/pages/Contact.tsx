@@ -55,14 +55,14 @@ const Contact: React.FC = () => {
     setSubmitted(true);
     setName('');
     setMessage('');
-    setEmail(''); setConsent(false);
+    setEmail(''). SetConsent(false);
   };
 
   return (
     <div className={isDarkMode ? "dark" : ""}>
       <div className="public-editorial min-h-screen bg-background">
         <Navbar isDarkMode={isDarkMode} onToggleDarkMode={() => setIsDarkMode(!isDarkMode)} />
-        <Seo title="Contact SkateGoals – Get in Touch" description="Questions about SkateGoals, your account or your data? Contact the SkateGoals team." path="/contact" />
+        <Seo title="Contact SkateGoals. Get in Touch" description="Questions about SkateGoals, your account or your data? Contact the SkateGoals team." path="/contact" />
 
         <section className="px-6 md:px-12 pt-20 pb-24 md:pt-28 md:pb-32">
           <div className="max-w-5xl mx-auto">

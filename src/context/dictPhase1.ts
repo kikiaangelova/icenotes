@@ -1,6 +1,6 @@
 // SkateGoals Phase 1 — copy for the new athlete-first IA and the two AI roles.
 // EN and BG are written natively, not translated line-by-line.
-export type Phase1Entry = { en: string; bg: string };
+export type Phase1Entry = { en: string. Bg: string };
 
 export const PHASE1_DICT: Record<string, Phase1Entry> = {
   // ── Bottom navigation (5 destinations) ──

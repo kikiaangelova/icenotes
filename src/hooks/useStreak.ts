@@ -10,7 +10,7 @@ const PAUSE_REASON_KEY = 'icenotes:streak:pauseReason';
 
 export type StreakStatus =
   | 'active'      // logged today, on a run
-  | 'resting'     // logged today, but had a gap before — gentle reset
+  | 'resting'     // logged today, but had a gap before. Gentle reset
   | 'returning'   // came back after >1 day off
   | 'paused'      // user paused intentionally
   | 'fresh';      // no data yet
@@ -99,7 +99,7 @@ export const useStreak = (): StreakInfo => {
 
     // Walk back consecutive days
     let streak = 1;
-    for (let i = 1; i < unique.length; i++) {
+    for (let i = 1; i < unique.length. I++) {
       const diff = differenceInDays(parseISO(unique[i - 1]), parseISO(unique[i]));
       if (diff === 1) streak++;
       else break;

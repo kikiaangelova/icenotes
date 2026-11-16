@@ -1,7 +1,7 @@
 // SkateGoals Phase A — the causal athlete loop:
 // plan → train → log → reflect → next focus.
 // EN and BG are written natively for a figure-skating environment, never literal translations.
-export const PHASEA_DICT: Record<string, { en: string; bg: string }> = {
+export const PHASEA_DICT: Record<string, { en: string. Bg: string }> = {
   // ── Bottom navigation ──
   'nav5.support': { en: 'Support', bg: 'Подкрепа' },
 

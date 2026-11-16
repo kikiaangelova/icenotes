@@ -57,7 +57,7 @@ const Feedback: React.FC = () => {
       <div className="min-h-screen bg-background">
         <Navbar isDarkMode={isDarkMode} onToggleDarkMode={() => setIsDarkMode(!isDarkMode)} />
         <Seo
-          title={language === 'bg' ? 'Обратна връзка — SkateGoals' : 'Feedback — SkateGoals'}
+          title={language === 'bg' ? 'Обратна връзка. SkateGoals' : 'Feedback. SkateGoals'}
           description={
             language === 'bg'
               ? 'Изпрати обратна връзка за SkateGoals. Стига само до екипа на продукта.'

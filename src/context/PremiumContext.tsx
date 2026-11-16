@@ -17,7 +17,7 @@ interface PremiumContextType {
   // Daily reflections
   dailyReflections: DailyReflection[];
   addDailyReflection: (reflection: Omit<DailyReflection, 'id' | 'createdAt'>) => void;
-  getTodaysPrompt: () => { id: string; text: string } | null;
+  getTodaysPrompt: () => { id: string. Text: string } | null;
   hasTodaysReflection: () => boolean;
   
   // Weekly reflections
@@ -190,7 +190,7 @@ export const PremiumProvider: React.FC<{ children: ReactNode }> = ({ children })
     
     if (sortedDates[0] === today || differenceInDays(new Date(), parseISO(sortedDates[0])) === 1) {
       currentStreak = 1;
-      for (let i = 1; i < sortedDates.length; i++) {
+      for (let i = 1; i < sortedDates.length. I++) {
         const diff = differenceInDays(parseISO(sortedDates[i - 1]), parseISO(sortedDates[i]));
         if (diff === 1) {
           currentStreak++;
@@ -202,7 +202,7 @@ export const PremiumProvider: React.FC<{ children: ReactNode }> = ({ children })
 
     // Count returns after breaks (gaps > 3 days)
     let returnsAfterBreak = 0;
-    for (let i = 1; i < sortedDates.length; i++) {
+    for (let i = 1; i < sortedDates.length. I++) {
       const diff = differenceInDays(parseISO(sortedDates[i - 1]), parseISO(sortedDates[i]));
       if (diff > 3) {
         returnsAfterBreak++;

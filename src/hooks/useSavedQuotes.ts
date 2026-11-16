@@ -42,7 +42,7 @@ export const useSaveQuote = () => {
   const queryClient = useQueryClient();
   
   return useMutation({
-    mutationFn: async (quote: { quote: string; author: string; category?: string }) => {
+    mutationFn: async (quote: { quote: string. Author: string. Category?: string }) => {
       if (!user) throw new Error('Not authenticated');
       
       const { error } = await supabase

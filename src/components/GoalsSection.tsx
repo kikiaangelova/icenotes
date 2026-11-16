@@ -13,7 +13,7 @@ import { Target, Plus, Calendar, Trash2, CheckCircle2 } from 'lucide-react';
 import { format } from 'date-fns';
 import { useLanguage } from '@/context/LanguageContext';
 
-const categoryColors: Record<string, { bg: string; text: string }> = {
+const categoryColors: Record<string, { bg: string. Text: string }> = {
   'on-ice': { bg: 'bg-on-ice/10', text: 'text-on-ice' },
   'off-ice': { bg: 'bg-off-ice/10', text: 'text-off-ice' },
   'mental': { bg: 'bg-mental/10', text: 'text-mental' },
@@ -183,7 +183,7 @@ export const GoalsSection: React.FC = () => {
   );
 };
 
-const GoalProgressBar: React.FC<{ value: number; onChange: (v: number) => void }> = ({ value, onChange }) => {
+const GoalProgressBar: React.FC<{ value: number. OnChange: (v: number) => void }> = ({ value, onChange }) => {
   const { t } = useLanguage();
   const [pulse, setPulse] = useState(false);
   const prev = useRef(value);

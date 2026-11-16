@@ -16,10 +16,10 @@ type Mode = 'before_training' | 'after_training' | 'before_competition' | 'after
 interface ModeConfig {
   id: Mode;
   icon: React.ElementType;
-  tone: { ring: string; soft: string; chip: string; accent: string };
-  label: { en: string; bg: string };
-  intro: { en: string; bg: string };
-  prompts: { en: string; bg: string }[];
+  tone: { ring: string. Soft: string. Chip: string. Accent: string };
+  label: { en: string. Bg: string };
+  intro: { en: string. Bg: string };
+  prompts: { en: string. Bg: string }[];
 }
 
 const MODES: ModeConfig[] = [
@@ -30,7 +30,7 @@ const MODES: ModeConfig[] = [
     label: { en: 'Before training', bg: 'Преди тренировка' },
     intro: { en: 'A short check-in before you step on the ice.', bg: 'Кратка настройка, преди да стъпиш на леда.' },
     prompts: [
-      { en: 'How am I arriving today — body and mind?', bg: 'Как се чувствам днес — физически и психически?' },
+      { en: 'How am I arriving today. Body and mind?', bg: 'Как се чувствам днес. Физически и психически?' },
       { en: 'One thing I want to focus on.', bg: 'Едно нещо, на което искам да обърна внимание.' },
       { en: 'A word for today’s session.', bg: 'Една дума за днешната тренировка.' },
     ],
@@ -64,7 +64,7 @@ const MODES: ModeConfig[] = [
     icon: Trophy,
     tone: { ring: 'border-sky-200', soft: 'bg-sky-50/60', chip: 'bg-sky-100 text-sky-700', accent: 'text-sky-700' },
     label: { en: 'After competition', bg: 'След състезание' },
-    intro: { en: 'Notice everything — not just the score.', bg: 'Забележи всичко — не само оценката.' },
+    intro: { en: 'Notice everything. Not just the score.', bg: 'Забележи всичко. Не само оценката.' },
     prompts: [
       { en: 'One moment I’m proud of.', bg: 'Един момент, с който се гордея.' },
       { en: 'What surprised me?', bg: 'Кое ме изненада?' },
@@ -78,14 +78,14 @@ const MODES: ModeConfig[] = [
     label: { en: 'Pressure moment', bg: 'Под напрежение' },
     intro: { en: 'A 30-second pause when it gets heavy.', bg: 'Пауза от 30 секунди, когато стане тежко.' },
     prompts: [
-      { en: 'What am I feeling right now, in one word?', bg: 'Какво усещам сега — с една дума?' },
+      { en: 'What am I feeling right now, in one word?', bg: 'Какво усещам сега. С една дума?' },
       { en: 'What do I need in this moment?', bg: 'От какво имам нужда сега?' },
       { en: 'What’s one breath I can take before the next move?', bg: 'Мога ли да си дам един бавен дъх преди следващия елемент?' },
     ],
   },
 ];
 
-const ModeButton: React.FC<{ mode: ModeConfig; active: boolean; onClick: () => void; isBG: boolean }> = ({ mode, active, onClick, isBG }) => {
+const ModeButton: React.FC<{ mode: ModeConfig. Active: boolean. OnClick: () => void. IsBG: boolean }> = ({ mode, active, onClick, isBG }) => {
   const Icon = mode.icon;
   return (
     <button
@@ -197,7 +197,7 @@ export const MindReflection: React.FC = () => {
               variant="ghost"
               size="sm"
               className="text-xs h-8"
-              onClick={() => { setActiveMode(null); setAnswers(['', '', '']); }}
+              onClick={() => { setActiveMode(null). SetAnswers(['', '', '']); }}
             >
               {isBG ? 'Назад' : 'Back'}
             </Button>
@@ -212,7 +212,7 @@ export const MindReflection: React.FC = () => {
                 <Textarea
                   value={answers[i]}
                   onChange={(e) => {
-                    const next = [...answers]; next[i] = e.target.value; setAnswers(next);
+                    const next = [...answers]; next[i] = e.target.value. SetAnswers(next);
                   }}
                   placeholder={isBG ? 'Едно изречение е достатъчно.' : 'One sentence is enough.'}
                   rows={2}
@@ -240,7 +240,7 @@ export const MindReflection: React.FC = () => {
   const renderHistoryItem = (h: typeof history[number]) => {
     const m = MODES.find(x => x.id === h.entry_type as Mode);
     if (!m) return null;
-    let parsed: { q: string; a: string }[] = [];
+    let parsed: { q: string. A: string }[] = [];
     try { parsed = h.emotion_notes ? JSON.parse(h.emotion_notes) : []; } catch { /* legacy */ }
     const Icon = m.icon;
     return (

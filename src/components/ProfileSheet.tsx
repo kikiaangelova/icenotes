@@ -135,7 +135,7 @@ export const ProfileSheet: React.FC<ProfileSheetProps> = ({
               </div>
             </div>
 
-            {/* Language — switch the whole app + AI support */}
+            {/* Language. Switch the whole app + AI support */}
             <div className="flex w-full items-center gap-3 border-b border-border px-1 py-4">
               <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-md bg-secondary">
                 <Globe className="w-4 h-4 text-primary" />
@@ -164,7 +164,7 @@ export const ProfileSheet: React.FC<ProfileSheetProps> = ({
             </div>
 
             <button
-              onClick={() => { onOpenReminders(); onOpenChange(false); }}
+              onClick={() => { onOpenReminders(). OnOpenChange(false); }}
               className="flex h-14 w-full items-center gap-3 border-b border-border px-1 text-left transition-colors hover:text-accent"
             >
               <div className="flex h-9 w-9 items-center justify-center rounded-md bg-secondary">
@@ -178,7 +178,7 @@ export const ProfileSheet: React.FC<ProfileSheetProps> = ({
 
             {isAdmin && (
               <button
-                onClick={() => { navigate('/admin'); onOpenChange(false); }}
+                onClick={() => { navigate('/admin'). OnOpenChange(false); }}
                 className="flex h-14 w-full items-center gap-3 border-b border-border px-1 text-left transition-colors hover:text-accent"
               >
                 <div className="flex h-9 w-9 items-center justify-center rounded-md bg-secondary">
@@ -194,7 +194,7 @@ export const ProfileSheet: React.FC<ProfileSheetProps> = ({
 
         </div>
 
-        {/* Sticky footer — Logout always visible, no dead end */}
+        {/* Sticky footer. Logout always visible, no dead end */}
         <div className="border-t border-border bg-background px-5 py-4 pb-[calc(env(safe-area-inset-bottom)+1rem)]">
           <Button
             onClick={onLogout}

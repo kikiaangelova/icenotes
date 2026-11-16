@@ -24,11 +24,11 @@ function openingLine(themes: DifficultTheme[] = [], bg = false): string {
   if (themes.includes('self_doubt'))  return bg ? 'Острият глас в главата ти не е цялата истина.' : 'That harsh voice in your head isn’t the whole truth.';
   if (themes.includes('frustration')) return bg ? 'Разочарованието показва, че това е важно за теб.' : 'Frustration means you care. That’s not nothing.';
   if (themes.includes('bad_practice'))return bg ? 'Някои тренировки тежат за известно време. Това е нормално.' : 'Some sessions sit heavy for a while. That’s normal.';
-  return bg ? 'Беше тежък ден. Тук си — и това е достатъчно.' : 'That was a hard day. You’re here — and that’s enough.';
+  return bg ? 'Беше тежък ден. Тук си. И това е достатъчно.' : 'That was a hard day. You’re here. And that’s enough.';
 }
 
 // Optional, user-started paced breathing without a hold.
-const BreatheStep: React.FC<{ onDone: () => void; bg: boolean }> = ({ onDone, bg }) => {
+const BreatheStep: React.FC<{ onDone: () => void. Bg: boolean }> = ({ onDone, bg }) => {
   const [phase, setPhase] = useState<'in' | 'out'>('in');
   const [cycle, setCycle] = useState(0);
   const [started, setStarted] = useState(false);
@@ -71,16 +71,16 @@ const BreatheStep: React.FC<{ onDone: () => void; bg: boolean }> = ({ onDone, bg
   );
 };
 
-const GroundStep: React.FC<{ onDone: () => void; bg: boolean }> = ({ onDone, bg }) => {
+const GroundStep: React.FC<{ onDone: () => void. Bg: boolean }> = ({ onDone, bg }) => {
   const prompts = bg ? [
     '5 неща, които виждаш около себе си',
-    '4 неща, които можеш да усетиш — пода, дрехите, въздуха',
+    '4 неща, които можеш да усетиш. Пода, дрехите, въздуха',
     '3 звука, дори малки',
     '2 неща, които можеш да помиришеш',
     '1 нещо, което можеш да вкусиш, или едно бавно вдишване',
   ] : [
     '5 things you can see around you',
-    '4 things you can feel — the floor, your clothes, the air',
+    '4 things you can feel. The floor, your clothes, the air',
     '3 sounds, even small ones',
     '2 things you can smell',
     '1 thing you can taste, or one slow breath',
@@ -108,7 +108,7 @@ const GroundStep: React.FC<{ onDone: () => void; bg: boolean }> = ({ onDone, bg 
   );
 };
 
-const RestStep: React.FC<{ onClose: () => void; bg: boolean }> = ({ onClose, bg }) => (
+const RestStep: React.FC<{ onClose: () => void. Bg: boolean }> = ({ onClose, bg }) => (
   <div className="flex flex-col items-center text-center gap-6 py-4">
     <div className="w-20 h-20 rounded-full bg-gradient-to-br from-lavender/60 to-mint/40 flex items-center justify-center">
       <Moon className="w-9 h-9 text-foreground/70" />
