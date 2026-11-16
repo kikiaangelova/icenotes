@@ -37,11 +37,11 @@ const About: React.FC = () => {
           { h: 'Инструмент, не дневниче', p: 'Кратко, ясно, използваемо между два прогона на пързалката.' },
           { h: 'Психиката е част от подготовката', p: 'Увереността, фокусът и нервите се тренират. Без псевдонаука и празни мотивационни фрази.' },
           { h: 'Честни граници', p: 'AI подкрепата е AI. Не е психолог, лекар или твоят треньор. Казваме го ясно.' },
-          { h: 'Без класации', p: 'Няма фийд, точки и сравнение с други хора. Сравняваш се със себе си отпреди месец.' },
+          { h: 'Без класации', p: 'Няма лента с публикации, точки и сравнение с други хора. Сравняваш се със себе си отпреди месец.' },
           { h: 'Два езика, написани отделно', p: 'Английски и български, писани нативно, не преведени машинно.' },
         ],
         forEyebrow: 'За кого е',
-        forTitle: 'Фигуристи на 14–18, които влизат в сериозния спорт.',
+        forTitle: 'Фигуристи от 14 до 18 години, които влизат в сериозния спорт.',
         forBody:
           'Ако тренираш редовно, състезаваш се и искаш да разбираш собствения си прогрес, това е за теб. Ако само започваш, пак може да го ползваш. Просто е построено около състезателен ритъм.',
         pilotEyebrow: 'Пилотна фаза',
@@ -72,7 +72,7 @@ const About: React.FC = () => {
           { h: 'Two languages, written separately', p: 'English and Bulgarian written natively, not machine-translated.' },
         ],
         forEyebrow: 'Who it’s for',
-        forTitle: 'Skaters aged 14–18 moving into serious competition.',
+        forTitle: 'Skaters aged 14 to 18 moving into serious competition.',
         forBody:
           'If you train regularly, compete, and want to understand your own progress, this is for you. If you’re earlier in skating you can still use it. It is simply built around a competitive rhythm.',
         pilotEyebrow: 'Pilot preparation',

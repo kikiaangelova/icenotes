@@ -110,7 +110,7 @@ export const PHASE2_DICT: Record<string, { en: string; bg: string }> = {
   'lp.trust': { en: 'Built for skaters aged 14 to 18 moving into serious competition.', bg: 'За фигуристи от 14 до 18 години, които влизат в сериозния спорт.' },
 
   'lp.connect.kicker': { en: 'What SkateGoals connects', bg: 'Какво свързва SkateGoals' },
-  'lp.connect.title': { en: 'Five parts of your skating, in one system.', bg: 'Пет части от твоето фигурно, в една система.' },
+  'lp.connect.title': { en: 'Five parts of your skating, in one system.', bg: 'Пет части от твоето пързаляне в една система.' },
   'lp.connect.training': { en: 'Training', bg: 'Тренировки' },
   'lp.connect.trainingText': { en: 'Log sessions and elements while the details are still fresh.', bg: 'Записваш тренировки и елементи, докато детайлите са пресни.' },
   'lp.connect.goals': { en: 'Goals', bg: 'Цели' },
@@ -154,7 +154,7 @@ export const PHASE2_DICT: Record<string, { en: string; bg: string }> = {
   'lp.priv.title': { en: 'Written for you, not for an audience.', bg: 'Пишеш за себе си, не за публика.' },
   'lp.priv.text': {
     en: 'Your entries are private by default. No feed, no scores, no ranking, no coach or parent dashboard. You decide what you take out of the app and tell someone.',
-    bg: 'Записките ти са лични по подразбиране. Няма фийд, оценки, класация, табло за треньор или родител. Ти решаваш какво да извадиш навън и на кого да го кажеш.',
+    bg: 'Записките ти са лични по подразбиране. Няма лента с публикации, оценки, класация, табло за треньор или родител. Ти решаваш какво да извадиш навън и на кого да го кажеш.',
   },
   'lp.final.title': { en: 'Set up your season in a few minutes.', bg: 'Настрой сезона си за няколко минути.' },
   'lp.final.sub': { en: 'SkateGoals is being prepared for pilot testing with competitive skaters. Feedback will shape what comes next.', bg: 'SkateGoals се подготвя за пилотно тестване със състезаващи се фигуристи. Обратната връзка ще определя какво следва.' },
@@ -164,7 +164,7 @@ export const PHASE2_DICT: Record<string, { en: string; bg: string }> = {
   'aisup.title': { en: 'AI support in SkateGoals', bg: 'AI подкрепата в SkateGoals' },
   'aisup.sub': {
     en: 'Two roles, two separate conversations. One helps you plan; the other helps you handle the pressure.',
-    bg: 'Две роли, два отделни разговора. Едната помага да планираш, другата — да се справиш с напрежението.',
+    bg: 'Две роли, два отделни разговора. Едната помага да планираш, другата, да се справиш с напрежението.',
   },
   'aisup.does': { en: 'Helps with', bg: 'Помага с' },
   'aisup.doesnt': { en: 'Does not do', bg: 'Не прави' },

@@ -45,7 +45,7 @@ export const LandingPage: React.FC<LandingPageProps> = () => {
     <>
       {/* ─── Hero ─── */}
       <section className="edge-hero relative z-10 overflow-hidden bg-primary text-primary-foreground">
-        <div className="mx-auto grid max-w-7xl lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:min-h-[650px]">
+        <div className="mx-auto grid max-w-7xl lg:grid-cols-[minmax(0,1fr)_minmax(0,640px)] lg:min-h-[650px]">
           <div className="relative z-10 min-w-0 flex flex-col justify-center px-5 py-12 md:px-12 lg:px-8 xl:px-16">
             <p className={kicker}>{t('lp.chip')}</p>
             <h1 className="mt-6 max-w-xl font-display text-[2.65rem] font-bold leading-[1.01] text-primary-foreground sm:text-6xl md:text-[4rem] lg:text-5xl xl:text-[4rem] [text-wrap:balance]">
@@ -76,7 +76,7 @@ export const LandingPage: React.FC<LandingPageProps> = () => {
              <p className="mt-5 text-xs text-primary-foreground/80">{t('lp.trust')}</p>
           </div>
 
-          <div className="relative aspect-[4/5] w-full min-w-0 overflow-hidden border-t border-primary-foreground/20 md:aspect-video lg:aspect-auto lg:border-l lg:border-t-0">
+          <div className="relative mx-auto aspect-[4/5] w-full max-w-[min(100%,60svh)] min-w-0 overflow-hidden border-t border-primary-foreground/20 md:max-w-[min(480px,60svh)] lg:aspect-auto lg:max-w-[640px] lg:border-l lg:border-t-0">
             <HeroVideo
               src="/skategoals-hero.mp4"
               poster="/skategoals-hero-poster.jpg"
@@ -194,7 +194,7 @@ export const LandingPage: React.FC<LandingPageProps> = () => {
           <h2 className="text-2xl md:text-4xl font-bold tracking-tight text-foreground leading-tight">
             {t('lp.final.title')}
           </h2>
-          <p className="mt-5 text-base font-medium leading-relaxed text-foreground md:text-lg">{language === 'bg' ? 'Пилотен сезон 2026/27. Търсим състезатели, които да тестват SkateGoals и да покажат какво да стане следващо.' : 'Pilot season 2026/27. We are looking for competitive skaters to test SkateGoals and shape what comes next.'}</p>
+          <p className="mt-5 text-base font-medium leading-relaxed text-foreground md:text-lg">{language === 'bg' ? 'Пилотен сезон 2026/27. Търсим състезатели, които да тестват SkateGoals и да помогнат да решим какво да добавим след това.' : 'Pilot season 2026/27. We are looking for competitive skaters to test SkateGoals and shape what comes next.'}</p>
           <p className="mt-3 text-xs text-muted-foreground">{language === 'bg' ? 'Работи на телефона ти. Добави го на началния екран след регистрация.' : 'Works on your phone. Add it to your home screen after you sign up.'}</p>
           <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
             <SmartStartCTA
