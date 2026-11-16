@@ -13,3 +13,4 @@
 - [x] Add landing product examples and content, update language defaults, and verify EN/BG layouts
 - [x] Replace hero media and verify playback, reduced motion, and landing spelling corrections
 - [x] Compact the public loop and populate the sample phone states; verify EN/BG at phone and desktop widths
+- [x] Constrain hero media sizing, apply final Bulgarian wording, and audit public punctuation at 390/768/1280

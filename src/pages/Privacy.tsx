@@ -18,14 +18,14 @@ const Privacy: React.FC = () => {
   const copy = bg ? {
     eyebrow: 'Поверителност',
     title: 'Твоите данни в SkateGoals',
-    intro: 'Ето какво съхраняваме, кой има достъп и какво се случва, когато ползваш AI подкрепата — без юридически език.',
+    intro: 'Ето какво съхраняваме, кой има достъп и какво се случва, когато ползваш AI подкрепата, без юридически език.',
     questions: 'Имаш въпрос за данните си? Пиши ни.',
     contact: 'Пиши ни',
     updated: 'Последна актуализация',
   } : {
     eyebrow: 'Privacy',
     title: 'Your data in SkateGoals',
-    intro: 'What we store, who can reach it, and what happens when you use AI support — in plain language.',
+    intro: 'What we store, who can reach it, and what happens when you use AI support, in plain language.',
     questions: 'Question about your data? Write to us.',
     contact: 'Contact us',
     updated: 'Last updated',
@@ -55,7 +55,7 @@ const Privacy: React.FC = () => {
     {
       icon: Mic,
       title: 'Говорене вместо писане',
-      body: 'На местата за писане има микрофон. Той работи само когато ти го натиснеш и спира, когато го спреш. SkateGoals не записва и не пази аудио — записва се само текстът, който остане в полето, след като го прегледаш. Самото разпознаване на речта се извършва от браузъра или устройството ти. В зависимост от платформата звукът може да се обработва на устройството или да се изпраща към сървър на браузъра, устройството или друга външна услуга. Ако не искаш това, просто пиши.',
+      body: 'На местата за писане има микрофон. Той работи само когато ти го натиснеш и спира, когато го спреш. SkateGoals не записва и не пази аудио. Записва се само текстът, който остане в полето, след като го прегледаш. Самото разпознаване на речта се извършва от браузъра или устройството ти. В зависимост от платформата звукът може да се обработва на устройството или да се изпраща към сървър на браузъра, устройството или друга външна услуга. Ако не искаш това, просто пиши.',
     },
     {
       icon: Eye,
@@ -91,7 +91,7 @@ const Privacy: React.FC = () => {
     {
       icon: Mic,
       title: 'Speaking instead of typing',
-      body: 'Writing fields have a microphone. It only runs while you start it and stops when you stop it. SkateGoals does not record or store audio — only the text left in the field after you review it is saved. The speech recognition itself is handled by your browser or device. Depending on the platform, the audio may be processed on the device or sent to a server run by the browser, device maker or another external speech service. If you would rather it did not leave your device, type instead.',
+      body: 'Writing fields have a microphone. It only runs while you start it and stops when you stop it. SkateGoals does not record or store audio. Only the text left in the field after you review it is saved. The speech recognition itself is handled by your browser or device. Depending on the platform, the audio may be processed on the device or sent to a server run by the browser, device maker or another external speech service. If you would rather it did not leave your device, type instead.',
     },
     {
       icon: Eye,
