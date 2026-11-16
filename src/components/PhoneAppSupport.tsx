@@ -20,9 +20,34 @@ export function OfflineBanner() {
   </div>;
 }
 
+const SHOWN_KEY = 'skategoals:install-shown';
+const MAX_SHOWS = 3;
+const SNOOZE_MS = 30 * 24 * 60 * 60 * 1000;
+let countedThisLoad = false;
+
+/** Banner rules: at most 3 showings in total, and hidden for 30 days after "Close". */
+export function installCardAllowed(now = Date.now()): boolean {
+  const shown = Number(localStorage.getItem(SHOWN_KEY) || 0);
+  if (shown >= MAX_SHOWS && !countedThisLoad) return false;
+  const raw = localStorage.getItem(INSTALL_DISMISSED_KEY);
+  if (raw) {
+    const at = Number(raw);
+    // Legacy value '1' or invalid: treat as dismissed now.
+    if (!Number.isFinite(at) || at < 1e12) return false;
+    if (now - at < SNOOZE_MS) return false;
+  }
+  return true;
+}
+
+function recordInstallCardShown() {
+  if (countedThisLoad) return;
+  countedThisLoad = true;
+  localStorage.setItem(SHOWN_KEY, String(Number(localStorage.getItem(SHOWN_KEY) || 0) + 1));
+}
+
 export function InstallAppCard() {
   const { language } = useLanguage();
-  const [dismissed, setDismissed] = useState(() => localStorage.getItem(INSTALL_DISMISSED_KEY) === '1');
+  const [dismissed, setDismissed] = useState(() => !installCardAllowed());
   const [standalone, setStandalone] = useState(isStandalone);
   const [prompt, setPrompt] = useState(getInstallPrompt);
   const [busy, setBusy] = useState(false);
@@ -41,8 +66,10 @@ export function InstallAppCard() {
       media.removeEventListener('change', refresh);
     };
   }, []);
-  if (dismissed || standalone || (!ios && !prompt)) return null;
-  const dismiss = () => { localStorage.setItem(INSTALL_DISMISSED_KEY, '1'); setDismissed(true); };
+  const visible = !dismissed && !standalone && (ios || !!prompt);
+  useEffect(() => { if (visible) recordInstallCardShown(); }, [visible]);
+  if (!visible) return null;
+  const dismiss = () => { localStorage.setItem(INSTALL_DISMISSED_KEY, String(Date.now())); setDismissed(true); };
   const install = async () => {
     if (!prompt) return;
     setBusy(true);

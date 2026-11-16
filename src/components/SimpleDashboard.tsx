@@ -320,7 +320,7 @@ export const SimpleDashboard: React.FC = () => {
       {header}
 
       <main className="app-workspace mx-auto w-full max-w-4xl px-4 pb-28 pt-8 sm:px-8 sm:pt-12">
-        <InstallAppCard />
+        {currentView === 'home' && activeTab === 'today' && <InstallAppCard />}
         {currentView === 'home' ? renderTab() : renderSubView()}
       </main>
 
