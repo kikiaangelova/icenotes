@@ -12,3 +12,4 @@
 - [ ] Verify real-device installation, published offline launch and Lighthouse (blocked by no-publish scope)
 - [x] Add landing product examples and content, update language defaults, and verify EN/BG layouts
 - [x] Replace hero media and verify playback, reduced motion, and landing spelling corrections
+- [ ] Compact the public loop and populate the sample phone states; verify EN/BG at phone and desktop widths
