@@ -1,6 +1,6 @@
 # SkateGoals
 
-> A private performance companion for competitive figure skaters aged 14-18. SkateGoals connects training logs, goals, reflection, competition preparation and mental performance in one athlete-owned system, with two distinct AI roles: an AI Coach for planning and next steps, and a sport-psychology-informed companion for confidence, focus and competition nerves.
+> A private performance companion for competitive figure skaters aged 14 and older. SkateGoals connects training logs, goals, reflection, competition preparation and mental performance in one athlete-owned system, with two distinct AI roles: an AI Coach for planning and next steps, and a sport-psychology-informed companion for confidence, focus and competition nerves.
 
 SkateGoals is not a diary, a social network or a jump-analytics product. It supports the space between training and performance: what the athlete learns, plans, processes and carries into the next session. AI support inside the product is AI — it does not replace a coach, a psychologist or a doctor.
 

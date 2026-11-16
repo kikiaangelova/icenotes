@@ -35,7 +35,7 @@ const Features: React.FC = () => {
           title={language === 'bg' ? 'Функции. Тренировки, цели и подготовка за старт' : 'Features. Training, Goals & Competition Prep'}
           description={language === 'bg' ? 'Тренировъчен дневник, цели, седмичен преглед, подготовка за старт, ментална подготовка и прогрес. В SkateGoals.' : 'A performance companion for competitive figure skaters: training log, goals, weekly review, competition prep, mental performance and progress.'}
           path="/features"
-          jsonLd={{"@context": "https://schema.org", "@type": "Service", "name": "SkateGoals", "serviceType": "Performance companion for competitive figure skaters", "provider": {"@type": "Organization", "name": "SkateGoals", "url": "https://skategoals.com/"}, "areaServed": "Worldwide", "description": "Training log, goals, weekly review, competition prep, mental performance and progress for competitive figure skaters aged 14-18."}}
+          jsonLd={{"@context": "https://schema.org", "@type": "Service", "name": "SkateGoals", "serviceType": "Performance companion for competitive figure skaters", "provider": {"@type": "Organization", "name": "SkateGoals", "url": "https://skategoals.com/"}, "areaServed": "Worldwide", "description": "Training log, goals, weekly review, competition prep, mental performance and progress for competitive figure skaters aged 14 and older."}}
         />
 
         <section className="px-5 md:px-12 pt-14 pb-10 md:pt-28 md:pb-16">

@@ -107,7 +107,7 @@ export const PHASE2_DICT: Record<string, { en: string; bg: string }> = {
   },
   'lp.cta': { en: 'Create your account', bg: 'Създай профил' },
   'lp.cta2': { en: 'See what’s inside', bg: 'Виж какво има вътре' },
-  'lp.trust': { en: 'Built for skaters aged 14 to 18 moving into serious competition.', bg: 'За фигуристи от 14 до 18 години, които влизат в сериозния спорт.' },
+  'lp.trust': { en: 'Built for skaters aged 14 and older moving into serious competition.', bg: 'За фигуристи на 14 и повече години, които влизат в сериозния спорт.' },
 
   'lp.connect.kicker': { en: 'What SkateGoals connects', bg: 'Какво свързва SkateGoals' },
   'lp.connect.title': { en: 'Five parts of your skating, in one system.', bg: 'Пет части от твоето пързаляне в една система.' },

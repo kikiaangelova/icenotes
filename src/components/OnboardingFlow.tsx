@@ -74,7 +74,7 @@ export const OnboardingFlow: React.FC = () => {
     const age = Number(form.age);
     const yearsSkating = Number(form.yearsSkating);
     if (step === 1) {
-      return form.name.trim().length >= 2 && Number.isInteger(age) && age >= 14 && age <= 18;
+      return form.name.trim().length >= 2 && Number.isInteger(age) && age >= 14 && age <= 99;
     }
     if (step === 2) {
       return form.category !== '' && form.yearsSkating !== '' && Number.isInteger(yearsSkating) && yearsSkating >= 0 && yearsSkating <= 40;
@@ -166,7 +166,7 @@ export const OnboardingFlow: React.FC = () => {
                   type="number"
                   inputMode="numeric"
                   min={14}
-                  max={18}
+                  max={99}
                   value={form.age}
                   onChange={(e) => set('age', e.target.value)}
                   className={cn(field, 'max-w-[120px]')}
