@@ -1,5 +1,23 @@
 import React from 'react';
-import { ArrowRight, Brain, Trophy, ClipboardList, CalendarDays } from 'lucide-react';
+import { ArrowRight, Trophy, CalendarDays, Wind, MessageCircle, Users, Target, Timer } from 'lucide-react';
+import { useJournal } from '@/context/JournalContext';
+import { weekStreak } from '@/lib/rinkStats';
+import { getWeekSummary } from '@/lib/weekData';
+
+/** Skate boot icon in the same 2px Lucide line style. */
+const SkateIcon: React.FC<{ className?: string }> = ({ className }) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true">
+    <path d="M6 3h5v6c0 1 .8 2 2 2h3a3 3 0 0 1 3 3v2H5V4a1 1 0 0 1 1-1z" /><path d="M8 16v3M16 16v3M3 19h16a2 2 0 0 0 2-2" />
+  </svg>
+);
+
+const EXERCISES = [
+  { en: 'What depends on me', bg: 'Какво зависи от мен', min: 3 },
+  { en: 'Is what I tell myself true?', bg: 'Вярно ли е това, което си казвам?', min: 4 },
+  { en: 'Mental rehearsal', bg: 'Мислена репетиция', min: 5 },
+  { en: 'What I can already do', bg: 'Какво вече мога', min: 3 },
+  { en: 'Where I tense up', bg: 'Къде се стягам', min: 2 },
+];
 import { useLanguage } from '@/context/LanguageContext';
 
 interface Props {
@@ -22,6 +40,8 @@ interface Props {
   onCompetitionPrep: () => void;
   onMentalPrep: () => void;
   onWeeklyReview: () => void;
+  /** Opens the exercise list. */
+  onExercises?: () => void;
 }
 
 /**
@@ -30,9 +50,23 @@ interface Props {
  */
 export const TodayCommandCenter: React.FC<Props> = ({
   greeting, focus, sessionsToday, reflectionsToday, competition, competitionDays, reviewRelevant,
-  onLogTraining, onReflect, onGoals, onSupport, onCompetitionPrep, onMentalPrep, onWeeklyReview,
+  onLogTraining, onReflect, onGoals, onSupport, onCompetitionPrep, onMentalPrep, onWeeklyReview, onExercises,
 }) => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
+  const bg = language === 'bg';
+  const { trainingSessions, entries, goals } = useJournal();
+  const streak = weekStreak(trainingSessions);
+  const now = new Date();
+  const dateLabel = now.toLocaleDateString(bg ? 'bg-BG' : 'en-GB', { weekday: 'long', day: 'numeric', month: 'long' });
+  // Focus progress: steps done on the matching weekly goal, else sessions toward 3 this week.
+  const weekGoal = goals.find((g) => !g.completed && g.timeframe === 'weekly' && g.title.trim() === focus?.trim());
+  let steps: { done: boolean }[] = [];
+  try { steps = weekGoal?.notes ? (JSON.parse(weekGoal.notes).steps || []) : []; } catch { steps = []; }
+  const weekSessions = getWeekSummary(entries, trainingSessions).sessions;
+  const progress = steps.length
+    ? { pct: Math.round((steps.filter((s) => s.done).length / steps.length) * 100), label: bg ? `${steps.filter((s) => s.done).length} от ${steps.length} стъпки` : `${steps.filter((s) => s.done).length} of ${steps.length} steps` }
+    : { pct: Math.min(100, Math.round((weekSessions / 3) * 100)), label: bg ? `${weekSessions} от 3 тренировки тази седмица` : `${weekSessions} of 3 sessions this week` };
+  const exercise = EXERCISES[Math.floor(now.getTime() / 86400000) % EXERCISES.length];
   const compNear = competitionDays !== null && competitionDays !== undefined && competitionDays <= 14 && competitionDays >= -1;
 
   const logged = sessionsToday > 0;
@@ -54,45 +88,77 @@ export const TodayCommandCenter: React.FC<Props> = ({
   }[stage];
 
   return (
-    <section className="space-y-12">
-      {/* What am I working on */}
-      <header className="space-y-7 border-b border-border pb-8">
-        <h1 className="app-page-title">{greeting}</h1>
-        <button
-          onClick={onGoals}
-          className="w-full border-l-2 border-accent py-2 pl-5 text-left transition-colors hover:border-primary"
-        >
-          <p className="app-section-label">
-            {t('a.today.working')}
-          </p>
-          <p className="mt-1 text-base font-semibold leading-snug text-foreground">
-            {focus?.trim() || t('a.today.noFocus')}
-          </p>
-          {!focus?.trim() && (
-            <p className="mt-1 text-xs font-medium text-accent">{t('a.today.setFocus')}</p>
-          )}
-        </button>
+    <section className="space-y-8">
+      <header className="flex items-start justify-between gap-4">
+        <div className="min-w-0">
+          <h1 className="app-page-title">{greeting}</h1>
+          <p className="mt-1 text-[15px] font-medium capitalize text-muted-foreground">{dateLabel}</p>
+        </div>
+        <div className="rink-card flex shrink-0 items-center gap-2 px-3 py-2" aria-label={bg ? `Серия: ${streak} седмици с поне 3 тренировки` : `Streak: ${streak} weeks with at least 3 sessions`}>
+          <SkateIcon className="h-6 w-6 text-accent-ink" />
+          <span className="text-left leading-tight">
+            <span className="block text-[20px] font-extrabold tabular-nums text-foreground">{streak}</span>
+            <span className="block text-[11px] font-semibold text-muted-foreground">{bg ? 'седм. подред' : 'weeks in a row'}</span>
+          </span>
+        </div>
       </header>
 
-      {/* What should I do now */}
-      <div className="space-y-3">
-        <button
-          onClick={primary.onClick}
-            className="flex min-h-[88px] w-full items-center gap-4 rounded-sm bg-primary px-5 py-5 text-left text-primary-foreground transition-colors hover:bg-primary/92 active:bg-primary/85"
-        >
-          <div className="flex-1 min-w-0">
-            <p className="text-base font-bold leading-tight">{primary.label}</p>
-            <p className="text-xs opacity-80 leading-snug mt-0.5">{primary.sub}</p>
-          </div>
-          <ArrowRight className="w-5 h-5 shrink-0 opacity-90" />
-        </button>
-
-        {logged && (
-          <p className="text-xs text-muted-foreground px-1">
-            {t('a.today.sessionsToday')}: {sessionsToday}
-          </p>
+      <button onClick={onGoals} className="rink-card rink-focus block w-full p-5 text-left">
+        <span className="flex items-center gap-2 text-[13px] font-semibold text-accent-ink">
+          <Target className="h-5 w-5" /> {bg ? 'Фокус на седмицата' : 'Focus of the week'}
+        </span>
+        <span className="mt-2 block text-[22px] font-extrabold leading-tight text-foreground">
+          {focus?.trim() || t('a.today.noFocus')}
+        </span>
+        {focus?.trim() ? (
+          <>
+            <span className="mt-4 block h-2.5 overflow-hidden rounded-full bg-muted" role="progressbar" aria-valuenow={progress.pct} aria-valuemin={0} aria-valuemax={100}>
+              <span className="block h-full rounded-full bg-accent transition-[width] duration-700" style={{ width: `${progress.pct}%` }} />
+            </span>
+            <span className="mt-2 block text-[13px] font-medium text-muted-foreground">{progress.label}</span>
+          </>
+        ) : (
+          <span className="mt-2 block text-[15px] font-semibold text-accent-ink">{t('a.today.setFocus')}</span>
         )}
+      </button>
+
+      <div className="space-y-3">
+        <button onClick={primary.onClick} className="rink-cta flex min-h-[80px] w-full items-center gap-4 rounded-2xl px-5 py-4 text-left">
+          <div className="min-w-0 flex-1">
+            <p className="text-[18px] font-extrabold leading-tight">{primary.label}</p>
+            <p className="mt-0.5 text-[13px] leading-snug opacity-90">{primary.sub}</p>
+          </div>
+          <ArrowRight className="h-6 w-6 shrink-0" />
+        </button>
+        {logged && <p className="px-1 text-[13px] text-muted-foreground">{t('a.today.sessionsToday')}: {sessionsToday}</p>}
       </div>
+
+      <div className="-mx-4 flex snap-x gap-3 overflow-x-auto px-4 pb-1 sm:mx-0 sm:grid sm:grid-cols-3 sm:px-0">
+        {[
+          { Icon: Wind, title: bg ? 'Преди старт' : 'Before the start', sub: bg ? 'Дишане 2 мин' : 'Breathing 2 min', onClick: onMentalPrep },
+          { Icon: MessageCircle, title: bg ? 'Говори с AI' : 'Talk to AI', sub: bg ? 'План или спокойствие' : 'Plan or calm', onClick: onSupport },
+          { Icon: Users, title: bg ? 'Общност' : 'Community', sub: bg ? 'Скоро' : 'Coming soon', onClick: undefined },
+        ].map(({ Icon, title, sub, onClick }) => (
+          <button key={title} type="button" onClick={onClick} disabled={!onClick} aria-disabled={!onClick}
+            className="rink-card flex min-h-[96px] w-[42%] min-w-[140px] shrink-0 snap-start flex-col justify-between p-4 text-left disabled:opacity-70 sm:w-auto">
+            <Icon className="h-6 w-6 text-accent-ink" />
+            <span>
+              <span className="block text-[15px] font-bold text-foreground">{title}</span>
+              <span className="block text-[13px] text-muted-foreground">{sub}</span>
+            </span>
+          </button>
+        ))}
+      </div>
+
+      <button type="button" onClick={onExercises || onSupport} className="rink-card flex w-full items-center gap-4 p-5 text-left">
+        <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-secondary"><Timer className="h-6 w-6 text-primary" /></span>
+        <span className="min-w-0 flex-1">
+          <span className="block text-[13px] font-semibold text-accent-ink">{bg ? 'Упражнение за днес' : "Today's exercise"}</span>
+          <span className="block text-[17px] font-bold leading-snug text-foreground">{bg ? exercise.bg : exercise.en}</span>
+          <span className="block text-[13px] text-muted-foreground">{exercise.min} {bg ? 'мин' : 'min'}</span>
+        </span>
+        <ArrowRight className="h-5 w-5 shrink-0 text-muted-foreground" />
+      </button>
 
       {/* What is coming next */}
       <div className="space-y-2.5">
@@ -106,7 +172,7 @@ export const TodayCommandCenter: React.FC<Props> = ({
           {compNear ? (
             <button
               onClick={onCompetitionPrep}
-                className="flex min-h-[64px] w-full items-center gap-3 border-y border-border px-1 text-left transition-colors hover:text-accent"
+                className="rink-card flex min-h-[64px] w-full items-center gap-3 px-4 text-left"
             >
               <Trophy className="w-[18px] h-[18px] text-primary shrink-0" />
               <span className="min-w-0 flex-1">
@@ -124,7 +190,7 @@ export const TodayCommandCenter: React.FC<Props> = ({
           ) : reviewRelevant ? (
             <button
               onClick={onWeeklyReview}
-                className="flex min-h-[64px] w-full items-center gap-3 border-y border-border px-1 text-left transition-colors hover:text-accent"
+                className="rink-card flex min-h-[64px] w-full items-center gap-3 px-4 text-left"
             >
               <CalendarDays className="w-[18px] h-[18px] text-primary shrink-0" />
               <span className="min-w-0 flex-1">
@@ -135,25 +201,6 @@ export const TodayCommandCenter: React.FC<Props> = ({
             </button>
           ) : null}
 
-          {/* Understated links, never equal weight with the primary action. */}
-          <div className="flex flex-wrap items-center gap-x-5 gap-y-1 pt-1">
-            {stage === 'log' && (
-              <button
-                onClick={onMentalPrep}
-                className="min-h-[44px] inline-flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground"
-              >
-                <Brain className="w-4 h-4" />
-                {t('a.today.prep')}
-              </button>
-            )}
-            <button
-              onClick={onSupport}
-              className="min-h-[44px] inline-flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground"
-            >
-              <ClipboardList className="w-4 h-4" />
-              {t('today.support.label')}
-            </button>
-          </div>
         </div>
       </div>
     </section>

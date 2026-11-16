@@ -24,6 +24,8 @@ import { SupportScreen } from './SupportScreen';
 import { MobileBottomNav, type BottomTab } from './MobileBottomNav';
 import { ProfileSheet } from './ProfileSheet';
 import { InstallAppCard } from './PhoneAppSupport';
+import { ProgressRink } from './rink/ProgressRink';
+import { RinkEffects } from './rink/RinkArt';
 import { useIsAdmin } from '@/hooks/useIsAdmin';
 import { GameDayMode } from '@/components/GameDayMode';
 import { GuidedTour } from '@/components/GuidedTour';
@@ -276,6 +278,7 @@ export const SimpleDashboard: React.FC = () => {
           onCompetitionPrep={() => setGameDayOpen(true)}
           onMentalPrep={() => setCurrentView('prep')}
           onWeeklyReview={() => setReviewOpen(true)}
+          onExercises={() => setCurrentView('psych')}
         />
       );
     }
@@ -310,7 +313,8 @@ export const SimpleDashboard: React.FC = () => {
         </header>
         {/* Read-only signals only. Legacy insight/overview views stay in the
             codebase for compatibility but are out of the core destination. */}
-        <ProgressSignals />
+        <ProgressRink onLogTraining={() => goTab('train')} />
+        {trainingSessions.length > 0 && <ProgressSignals />}
       </div>
     );
   };
@@ -324,6 +328,7 @@ export const SimpleDashboard: React.FC = () => {
         {currentView === 'home' ? renderTab() : renderSubView()}
       </main>
 
+      <RinkEffects />
       <MobileBottomNav active={bottomActive} onChange={handleBottomNav} />
 
       <ReflectionSheet open={reflectionOpen} onOpenChange={setReflectionOpen} />
