@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { Moon, Sun, Menu } from 'lucide-react';
+import { Moon, Sun, Menu, ArrowRight } from 'lucide-react';
 import { Sheet, SheetContent, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { SkateGoalsMark } from './SkateGoalsMark';
 import { cn } from '@/lib/utils';
@@ -80,8 +80,8 @@ export const Navbar: React.FC<NavbarProps> = ({ isDarkMode, onToggleDarkMode }) 
             </Button>
           </Link>
           <Link to="/auth?mode=signup">
-            <Button size="sm" className="h-11 font-bold rounded-sm px-3 xl:px-5">
-              {t('nav.getStarted')}
+            <Button size="sm" className="energy-primary-button h-11 font-bold rounded-sm px-3 xl:px-5">
+              {t('nav.getStarted')} <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
           </Link>
         </div>
@@ -125,8 +125,8 @@ export const Navbar: React.FC<NavbarProps> = ({ isDarkMode, onToggleDarkMode }) 
                 </Button>
               </Link>
               <Link to="/auth?mode=signup" onClick={() => setMobileOpen(false)}>
-                <Button className="w-full font-bold rounded-sm h-11">
-                  {t('nav.getStarted')}
+                <Button className="energy-primary-button w-full font-bold rounded-sm h-11">
+                  {t('nav.getStarted')} <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
               </Link>
             </div>

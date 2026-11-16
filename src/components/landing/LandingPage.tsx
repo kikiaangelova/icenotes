@@ -49,7 +49,7 @@ export const LandingPage: React.FC<LandingPageProps> = () => {
         <div className="mx-auto grid max-w-7xl lg:grid-cols-[minmax(0,1fr)_minmax(0,640px)] lg:min-h-[650px]">
           <div className="energy-hero-copy relative z-10 min-w-0 flex flex-col justify-center px-5 py-12 md:px-12 lg:px-8 xl:px-16">
             <p className={kicker}>{t('lp.chip')}</p>
-            <h1 className="mt-6 max-w-xl font-display text-[2.65rem] font-bold leading-[1.01] text-primary-foreground sm:text-6xl md:text-[4rem] lg:text-5xl xl:text-[4rem] [text-wrap:balance]">
+            <h1 className={`mt-6 max-w-xl font-display text-[2.65rem] font-bold leading-[1.01] text-primary-foreground sm:text-6xl md:text-[4rem] lg:text-5xl xl:text-[4rem] [text-wrap:balance] ${language === 'bg' ? 'energy-hero-bg' : ''}`}>
               {t('lp.h1.a').split(' ').map((word, index) => <React.Fragment key={`${language}-a-${index}`}><span className={`energy-word energy-word-${index % 10}`}>{word}</span>{' '}</React.Fragment>)}
               <br className="hidden sm:block" />{' '}
               <span className="energy-hero-second">{t('lp.h1.b').split(' ').map((word, index) => <React.Fragment key={`${language}-b-${index}`}><span className={`energy-word energy-word-${(index + 4) % 10}`}>{word}</span>{' '}</React.Fragment>)}</span>
