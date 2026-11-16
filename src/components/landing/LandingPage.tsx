@@ -12,7 +12,6 @@ import {
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '@/context/LanguageContext';
-import heroVideo from '@/assets/hero-skater-girl.mp4.asset.json';
 import { HeroVideo } from './HeroVideo';
 import { SmartStartCTA } from './SmartStartCTA';
 import { AfterPractice } from './AfterPractice';
@@ -79,14 +78,12 @@ export const LandingPage: React.FC<LandingPageProps> = () => {
 
           <div className="relative aspect-[4/5] w-full min-w-0 overflow-hidden border-t border-primary-foreground/20 md:aspect-video lg:aspect-auto lg:border-l lg:border-t-0">
             <HeroVideo
-              src={heroVideo.url}
-              poster="/hero-skater-poster.jpg"
+              src="/skategoals-hero.mp4"
+              poster="/skategoals-hero-poster.jpg"
               className="absolute inset-0 h-full w-full"
               videoClassName=""
-              filter="saturate(0.85) contrast(1.08) brightness(0.9)"
               withOverlay={false}
             />
-            <div className="pointer-events-none absolute inset-0 bg-primary/10" />
           </div>
         </div>
       </section>
@@ -182,7 +179,7 @@ export const LandingPage: React.FC<LandingPageProps> = () => {
             {(language === 'bg' ? [
               ['Какво виждат родителите', 'Нищо, ако състезателят не реши да сподели.'],
               ['За кого е', 'За кънкьори над 14 години, които се състезават или тепърва влизат в състезанията.'],
-              ['А треньорът', 'SkateGoals никога не замества треньора. Помага на състезателя да идва на леда с по ясни въпроси.'],
+              ['А треньорът', 'SkateGoals никога не замества треньора. Помага на състезателя да идва на леда с по-ясни въпроси.'],
             ] : [
               ['What parents see', 'Nothing, unless the skater chooses to share.'],
               ['Who it is for', 'Skaters aged 14 and older who compete or are moving into competition.'],

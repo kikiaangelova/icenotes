@@ -11,3 +11,4 @@
 - [x] Add phone installation, guarded offline support, icons, and preview installation QA
 - [ ] Verify real-device installation, published offline launch and Lighthouse (blocked by no-publish scope)
 - [x] Add landing product examples and content, update language defaults, and verify EN/BG layouts
+- [ ] Replace hero media and verify playback, reduced motion, and landing spelling corrections

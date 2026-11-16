@@ -11,7 +11,6 @@ import { useToast } from '@/hooks/use-toast';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { Seo } from '@/components/Seo';
 import { lovable } from '@/integrations/lovable';
-import heroVideo from '@/assets/hero-skater-girl.mp4.asset.json';
 import { HeroVideo } from '@/components/landing/HeroVideo';
 import { SkateGoalsMark } from '@/components/landing/SkateGoalsMark';
 
@@ -28,8 +27,7 @@ type AuthView = 'auth' | 'forgot' | 'reset';
 
 const AuthVisual: React.FC<{ tagline: string }> = ({ tagline }) => (
   <aside className="auth-edge-brand">
-    <HeroVideo src={heroVideo.url} poster="/hero-skater-poster.jpg" className="absolute inset-0 h-full w-full" filter="saturate(0.65) contrast(1.15) brightness(0.52)" />
-    <div className="absolute inset-0 bg-primary/35" />
+    <HeroVideo src="/skategoals-hero.mp4" poster="/skategoals-hero-poster.jpg" className="absolute inset-0 h-full w-full" />
     <div className="relative z-10 flex h-full flex-col justify-between p-12">
       <div className="flex items-center gap-3 font-display text-xl font-bold">
         <SkateGoalsMark className="h-8 w-8" /> SkateGoals
