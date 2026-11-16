@@ -1,3 +1,4 @@
+import { createHash, timingSafeEqual } from 'node:crypto'
 import { sendLovableEmail } from 'npm:@lovable.dev/email-js'
 import { createClient } from 'npm:@supabase/supabase-js@2'
 
@@ -52,6 +53,15 @@ function parseJwtClaims(token: string): Record<string, unknown> | null {
   }
 }
 
+// Digests give timingSafeEqual the equal-length inputs it requires.
+function keyMatches(provided: string, expected: string): boolean {
+  if (!provided) {
+    return false
+  }
+  const digest = (value: string) => createHash('sha256').update(value).digest()
+  return timingSafeEqual(digest(provided), digest(expected))
+}
+
 // Move a message to the dead letter queue and log the reason.
 async function moveToDlq(
   supabase: ReturnType<typeof createClient>,
@@ -74,7 +84,7 @@ async function moveToDlq(
     payload,
   })
   if (error) {
-    console.error('Failed to move message to DLQ', { queue, msg_id: msg.msg_id, reason, error })
+    console.error('Failed to move message to DLQ', { queue, msg_id: msg.msg_id, reason, code: error.code, message: error.message })
   }
 }
 
@@ -92,23 +102,24 @@ Deno.serve(async (req) => {
   }
 
   const authHeader = req.headers.get('Authorization')
-  if (!authHeader?.startsWith('Bearer ')) {
-    return new Response(
-      JSON.stringify({ error: 'Unauthorized' }),
-      { status: 401, headers: { 'Content-Type': 'application/json' } }
-    )
-  }
+  const token = authHeader?.startsWith('Bearer ') ? authHeader.slice('Bearer '.length).trim() : ''
 
-  // Defense in depth: verify_jwt=true already requires a valid JWT at the
-  // gateway layer. This adds an explicit role check so only service-role
-  // callers can trigger queue processing.
-  const token = authHeader.slice('Bearer '.length).trim()
-  const claims = parseJwtClaims(token)
-  if (claims?.role !== 'service_role') {
-    return new Response(
-      JSON.stringify({ error: 'Forbidden' }),
-      { status: 403, headers: { 'Content-Type': 'application/json' } }
-    )
+  // verify_jwt=true also lets the new API keys through the gateway. Accept only the service role
+  // key as the Bearer (Cloud Proxy puts its own secret key in apikey) or a service_role JWT.
+  if (!keyMatches(token, supabaseServiceKey)) {
+    if (!token) {
+      return new Response(
+        JSON.stringify({ error: 'Unauthorized' }),
+        { status: 401, headers: { 'Content-Type': 'application/json' } }
+      )
+    }
+    const claims = parseJwtClaims(token)
+    if (claims?.role !== 'service_role') {
+      return new Response(
+        JSON.stringify({ error: 'Forbidden' }),
+        { status: 403, headers: { 'Content-Type': 'application/json' } }
+      )
+    }
   }
 
   const supabase = createClient(supabaseUrl, supabaseServiceKey)
@@ -144,7 +155,7 @@ Deno.serve(async (req) => {
     })
 
     if (readError) {
-      console.error('Failed to read email batch', { queue, error: readError })
+      console.error('Failed to read email batch', { queue, code: readError.code, message: readError.message })
       continue
     }
 
@@ -175,7 +186,8 @@ Deno.serve(async (req) => {
       if (failedRowsError) {
         console.error('Failed to load failed-attempt counters', {
           queue,
-          error: failedRowsError,
+          code: failedRowsError.code,
+          message: failedRowsError.message,
         })
       } else {
         for (const row of failedRows ?? []) {
@@ -242,13 +254,30 @@ Deno.serve(async (req) => {
             message_id: msg.msg_id,
           })
           if (dupDelError) {
-            console.error('Failed to delete duplicate message from queue', { queue, msg_id: msg.msg_id, error: dupDelError })
+            console.error('Failed to delete duplicate message from queue', { queue, msg_id: msg.msg_id, code: dupDelError.code, message: dupDelError.message })
           }
           continue
         }
       }
 
       try {
+        // The database queues an ID-only owner notification job; the secured send
+        // function fetches the row and renders the email using its fixed recipient.
+        if (payload.kind === 'pilot-signup-job') {
+          const { data, error } = await supabase.functions.invoke('send-transactional-email', {
+            headers: { Authorization: `Bearer ${supabaseServiceKey}` },
+            body: { templateName: 'pilot-signup', templateData: { signupId: payload.signup_id } },
+          });
+          if (error || !data?.success) {
+            const response = error && 'context' in error ? error.context : null;
+            const detail = response instanceof Response ? await response.text() : '';
+            throw new Error(`Pilot notification could not be queued: ${error?.message || data?.reason || ''} ${detail}`);
+          }
+          const { error: deleteError } = await supabase.rpc('delete_email', { queue_name: queue, message_id: msg.msg_id });
+          if (deleteError) throw new Error('Pilot notification job could not be acknowledged');
+          totalProcessed++;
+          continue;
+        }
         await sendLovableEmail(
           {
             run_id: payload.run_id,
@@ -284,7 +313,7 @@ Deno.serve(async (req) => {
           message_id: msg.msg_id,
         })
         if (delError) {
-          console.error('Failed to delete sent message from queue', { queue, msg_id: msg.msg_id, error: delError })
+          console.error('Failed to delete sent message from queue', { queue, msg_id: msg.msg_id, code: delError.code, message: delError.message })
         }
         totalProcessed++
       } catch (error) {
