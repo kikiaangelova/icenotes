@@ -560,7 +560,7 @@ const dict: Dict = {
   'jumpLog.quality.good': { en: 'Good', bg: 'Добър' },
   'jumpLog.quality.best': { en: 'Best one yet', bg: 'Най-добрият досега' },
 
-  'jump.toe-loop': { en: 'Toe Loop', bg: 'Тулуп' },
+  'jump.toe-loop': { en: 'Toe Loop', bg: 'Толуп' },
   'jump.salchow': { en: 'Salchow', bg: 'Салхов' },
   'jump.loop': { en: 'Loop', bg: 'Ритбергер' },
   'jump.flip': { en: 'Flip', bg: 'Флип' },
