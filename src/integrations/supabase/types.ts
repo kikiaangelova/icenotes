@@ -640,6 +640,27 @@ export type Database = {
         }
         Relationships: []
       }
+      risk_events: {
+        Row: {
+          created_at: string
+          id: string
+          level: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          level: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          level?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       saved_quotes: {
         Row: {
           author: string
