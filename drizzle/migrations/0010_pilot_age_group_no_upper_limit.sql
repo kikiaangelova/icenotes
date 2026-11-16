@@ -1,0 +1,2 @@
+ALTER TABLE public.pilot_waitlist DROP CONSTRAINT IF EXISTS pilot_waitlist_age_group_check;
+ALTER TABLE public.pilot_waitlist ADD CONSTRAINT pilot_waitlist_age_group_check CHECK (age_group IS NULL OR age_group = ANY (ARRAY['14-15'::text, '16-17'::text, '18+'::text, '16-18'::text]));
