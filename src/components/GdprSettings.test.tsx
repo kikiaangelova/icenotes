@@ -11,7 +11,7 @@ vi.mock('@/integrations/supabase/client', () => ({
   },
 }));
 vi.mock('@/context/AuthContext', () => ({ useAuth: () => ({ user: { email: 'Athlete@Example.com' } }) }));
-vi.mock('@/context/LanguageContext', () => ({ useLanguage: () => ({ language: 'bg' }) }));
+vi.mock('@/context/LanguageContext', () => ({ useLanguage: () => ({ language: 'bg', t: (key: string) => key }) }));
 vi.mock('@/hooks/use-toast', () => ({ useToast: () => ({ toast: vi.fn() }) }));
 vi.mock('@/lib/gdprDownload', async importOriginal => {
   const actual = await importOriginal<typeof import('@/lib/gdprDownload')>();
