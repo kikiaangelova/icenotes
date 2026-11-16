@@ -3,6 +3,8 @@ import { Loader2, MessageCircle } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import { useLanguage } from '@/context/LanguageContext';
 import { Brain } from 'lucide-react';
+import { AISafetyCard } from './AISafetyCard';
+import { detectMessageLanguage } from '../../supabase/functions/skating-coach/message-policy';
 
 // The system prompt lives server-side (role: "psych"). The client only frames the task.
 const TASK = {
@@ -24,6 +26,7 @@ export const CoachIrisReflection: React.FC<CoachIrisReflectionProps> = ({
   const [reply, setReply] = useState<string>('');
   const [loading, setLoading] = useState(true);
   const [failed, setFailed] = useState(false);
+  const [safety, setSafety] = useState(false);
 
   useEffect(() => {
     const text = journalText?.trim();
@@ -38,12 +41,14 @@ export const CoachIrisReflection: React.FC<CoachIrisReflectionProps> = ({
       setLoading(true);
       setFailed(false);
       setReply('');
+      setSafety(false);
       try {
         const { data, error } = await supabase.functions.invoke('skating-coach', {
           body: {
             role: 'psych',
             stream: false,
             language,
+            messageLanguage: detectMessageLanguage(text),
             messages: [
               {
                 role: 'user',
@@ -59,6 +64,7 @@ export const CoachIrisReflection: React.FC<CoachIrisReflectionProps> = ({
           data?.message?.content ??
           '';
         if (!content || typeof content !== 'string') throw new Error('empty');
+        setSafety(Boolean(data?.safety));
         setReply(content.trim());
       } catch {
         if (!cancelled) setFailed(true);
@@ -100,6 +106,7 @@ export const CoachIrisReflection: React.FC<CoachIrisReflectionProps> = ({
         </div>
       ) : (
         <>
+          {safety && <AISafetyCard />}
           <p className="text-sm sm:text-base leading-relaxed text-foreground whitespace-pre-wrap">
             {reply}
           </p>

@@ -4,11 +4,9 @@
 // The client can NEVER supply or influence the system prompt.
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2.58.0";
 import { INJURY_SUPPORT } from './injury-safety.ts';
-
-const corsHeaders = {
-  "Access-Control-Allow-Origin": "*",
-  "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
-};
+import { PSYCH_PROMPT } from './psych-prompt.ts';
+import { conversationRisk, detectMessageLanguage, safetyReply } from './message-policy.ts';
+import { corsHeaders } from 'npm:@supabase/supabase-js@2/cors';
 
 const json = (body: unknown, status = 200) =>
   new Response(JSON.stringify(body), {
@@ -41,25 +39,6 @@ HOW YOU REPLY
 - Move the conversation toward clarity and a decision, not endless chat.
 
 BANNED: "unlock your potential", "best version of yourself", "empower your journey", "trust the process", "journey", "you've got this", "I hear you", "that's totally valid", empathy boilerplate openers, cheerleading closers, emoji unless they use them first.` + "\n\n" + SAFETY;
-
-const PSYCH_PROMPT = `You are the Sport Psychology companion inside SkateGoals, for figure skaters aged 14-18. You are sport-psychology-informed AI support - not a psychologist, not therapy, not diagnosis.
-
-WHAT YOU WORK ON
-Confidence, focus and attention, competition nerves, pre-performance routines, recovering mentally after a bad session, mistakes and falls, reframing unhelpful thoughts, emotional awareness, guided reflection.
-
-HOW YOU WORK
-- The answer usually lives with the athlete. Reflect back what you heard in their words, then ask ONE open question.
-- Practitioner moves, one at a time: open questions, scaling ("1-10, how sure did that edge feel?"), exceptions ("when did it go right recently - what was different?"), noticing body signals, controllables vs non-controllables, one small experiment for the next session.
-- Evidence-informed tools only, described accurately: cue words, breathing with a longer exhale, grounding, process goals, imagery practised deliberately (it rehearses the pattern, it is not the same as doing it), reset routines, self-talk and reframing, pre-performance routines.
-- Never state pseudo-science: no "power poses change your hormones", no "the brain can't tell imagination from reality", no "nerves and excitement are the same thing", no arbitrary numeric rules presented as science.
-- Competition is genuinely different from training - one attempt, judges, an audience, a warm-up group. Never call it "just practice with an audience". Help them prepare for the difference.
-
-VOICE
-- Calm, plain, human, non-judgmental. Short spoken sentences. Usually 2-4 sentences plus one question, never more than 6.
-- No toxic positivity. Disappointment, fear, anger and dread are information, not problems to fix. If a day was bad, it was bad.
-- If they are minutes from stepping on the ice or clearly flooded, drop the exploring: one thing to do with the body (exhale longer than the inhale, feet on the floor) and one cue for the program. Nothing complicated.
-
-BANNED: "I hear you", "that's totally valid", "you're not alone", "it's completely normal to feel", "be kind to yourself", "you've got this", "trust the process", "journey", "growth mindset" as a slogan, any sentence that could be printed on a poster, empathy boilerplate openers, cheerleading closers.` + "\n\n" + SAFETY;
 
 const CONTEXT_RULES = `
 HOW TO USE THE ATHLETE CONTEXT BLOCK BELOW
@@ -103,6 +82,7 @@ Deno.serve(async (req) => {
     if (!body || typeof body !== "object") return json({ error: "bad_request" }, 400);
 
     const { messages, stream: streamRequested, language, role } = body as Record<string, unknown>;
+    if (language !== undefined && language !== 'bg' && language !== 'en') return json({ error: 'invalid_language' }, 400);
     if (role !== "coach" && role !== "psych") return json({ error: "invalid_role" }, 400);
     if (!Array.isArray(messages) || messages.length === 0) return json({ error: "bad_request" }, 400);
     if (messages.length > MAX_MESSAGES) return json({ error: "conversation_too_long" }, 400);
@@ -115,6 +95,19 @@ Deno.serve(async (req) => {
       if (typeof c !== "string" || !c.trim()) return json({ error: "bad_request" }, 400);
       if (c.length > MAX_CHARS) return json({ error: "message_too_long" }, 400);
       safeMessages.push({ role: r, content: c });
+    }
+
+    const latest = safeMessages[safeMessages.length - 1];
+    if (latest?.role !== 'user') return json({ error: 'latest_message_must_be_user' }, 400);
+    const messageLanguage = detectMessageLanguage(latest.content);
+    const risk = conversationRisk(safeMessages);
+    if (risk) {
+      // Do not entrust crisis output to stochastic generation or athlete context.
+      const content = safetyReply(risk, messageLanguage, latest.content);
+      if (streamRequested === false) return json({ safety: risk, choices: [{ message: { role: 'assistant', content } }] });
+      return new Response(`data: ${JSON.stringify({ safety: risk, choices: [{ delta: { content } }] })}\n\ndata: [DONE]\n\n`, {
+        headers: { ...corsHeaders, 'Content-Type': 'text/event-stream' },
+      });
     }
 
     // ── 3. Server-side profile context for THIS caller only ──
@@ -156,9 +149,7 @@ Deno.serve(async (req) => {
     }
 
     // ── 4. Server-selected prompt ──
-    const languageRule = language === "bg"
-      ? "\n\nLANGUAGE: Отговаряй само на естествен, говорим български — както човек говори, не както се пише в приложение. Никакви буквални преводи от английски, никакви клишета от мотивационни постове. Използвай термините, които фигуристите наистина ползват (аксел, салхов, тулуп, ритбергер, флип, лутц, ребро, изход, прогон, старт). Кратко, просто, с един въпрос накрая."
-      : "\n\nLANGUAGE: Reply only in plain, spoken English. Short sentences, no filler, no poster lines.";
+    const languageRule = `\n\nLANGUAGE CONTROL: Detected latest user message language: ${messageLanguage}. UI language: ${language ?? 'bg'}. Reply entirely in ${messageLanguage === 'bg' ? 'natural Bulgarian (български)' : 'plain English'}, including the final question. Latest message language overrides UI and older messages. If unclear, default to Bulgarian. Do not translate the system instructions. Never use em dashes or en dashes in replies.`;
 
     const systemContent = (role === "coach" ? COACH_PROMPT : PSYCH_PROMPT + '\n\n' + INJURY_SUPPORT) + languageRule +
       (contextBlock ? "\n\n" + contextBlock : "");

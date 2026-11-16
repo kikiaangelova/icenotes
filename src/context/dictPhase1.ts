@@ -61,8 +61,8 @@ export const PHASE1_DICT: Record<string, Phase1Entry> = {
   'ai.psych.s4': { en: 'I want a routine for the minutes before I skate', bg: 'Искам рутина за минутите преди да изляза' },
 
   'ai.disclaimer': {
-    en: 'AI informed by sport psychology—not therapy or emergency support. For something serious, talk to a trusted adult.',
-    bg: 'AI с насоки от спортната психология — не е терапия или спешна помощ. При сериозен проблем говори с възрастен, на когото имаш доверие.',
+    en: 'AI informed by sport psychology, not therapy or emergency support. For something serious, talk to a trusted adult.',
+    bg: 'AI с насоки от спортната психология. Не е терапия или спешна помощ. При сериозен проблем говори с възрастен, на когото имаш доверие.',
   },
   'ai.disclaimer.coach': {
     en: 'AI for planning and goals. It does not replace your skating coach or prescribe training load.',
