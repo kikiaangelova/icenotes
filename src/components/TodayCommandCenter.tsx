@@ -5,7 +5,7 @@ import { weekStreak } from '@/lib/rinkStats';
 import { getWeekSummary } from '@/lib/weekData';
 
 /** Skate boot icon in the same 2px Lucide line style. */
-const SkateIcon: React.FC<{ className?: string }> = ({ className }) => (
+export const SkateIcon: React.FC<{ className?: string }> = ({ className }) => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true">
     <path d="M6 3h5v6c0 1 .8 2 2 2h3a3 3 0 0 1 3 3v2H5V4a1 1 0 0 1 1-1z" /><path d="M8 16v3M16 16v3M3 19h16a2 2 0 0 0 2-2" />
   </svg>
