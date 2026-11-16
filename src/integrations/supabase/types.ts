@@ -1043,6 +1043,7 @@ export type Database = {
           age: number | null
           avatar_url: string | null
           biggest_challenge: string | null
+          club: string | null
           created_at: string
           current_elements: string | null
           dismissed_weight_prompt: boolean
@@ -1069,6 +1070,7 @@ export type Database = {
           age?: number | null
           avatar_url?: string | null
           biggest_challenge?: string | null
+          club?: string | null
           created_at?: string
           current_elements?: string | null
           dismissed_weight_prompt?: boolean
@@ -1095,6 +1097,7 @@ export type Database = {
           age?: number | null
           avatar_url?: string | null
           biggest_challenge?: string | null
+          club?: string | null
           created_at?: string
           current_elements?: string | null
           dismissed_weight_prompt?: boolean
