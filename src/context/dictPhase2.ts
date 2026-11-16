@@ -99,8 +99,8 @@ export const PHASE2_DICT: Record<string, { en: string; bg: string }> = {
 
   // ── Landing page ──
   'lp.chip': { en: 'For competitive figure skaters', bg: 'За състезаващи се фигуристи' },
-  'lp.h1.a': { en: 'Your training doesn’t end', bg: 'Тренировката ти не свършва,' },
-  'lp.h1.b': { en: 'when you leave the ice.', bg: 'когато слезеш от леда.' },
+  'lp.h1.a': { en: 'Your training doesn’t end', bg: 'Тренировката ти продължава' },
+  'lp.h1.b': { en: 'when you leave the ice.', bg: 'и извън леда.' },
   'lp.sub': {
     en: 'SkateGoals connects what happens on the ice with what you do next: goals, reflection, competition prep, confidence and progress, in one place that belongs to you.',
     bg: 'SkateGoals свързва случилото се на леда с това, което идва след него: цели, рефлексия, подготовка за старт, увереност и прогрес, на едно място, което е твое.',
