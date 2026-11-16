@@ -14,6 +14,7 @@ import {
   Clock
 } from 'lucide-react';
 import { Snowflake } from 'lucide-react';
+import { useLanguage } from '@/context/LanguageContext';
 
 interface Lap {
   id: number;
@@ -24,6 +25,9 @@ interface Lap {
 interface SessionTimerProps {
   type?: 'on-ice' | 'off-ice';
   onSessionComplete?: (duration: number, laps: Lap[]) => void;
+  compact?: boolean;
+  durationSeconds?: number;
+  onElapsedChange?: (seconds: number) => void;
 }
 
 const formatTime = (ms: number): string => {
@@ -53,8 +57,12 @@ const formatLapTime = (ms: number): string => {
 
 export const SessionTimer: React.FC<SessionTimerProps> = ({ 
   type = 'on-ice',
-  onSessionComplete 
+  onSessionComplete,
+  compact = false,
+  durationSeconds,
+  onElapsedChange,
 }) => {
+  const { language } = useLanguage();
   const [isRunning, setIsRunning] = useState(false);
   const [elapsedTime, setElapsedTime] = useState(0);
   const [laps, setLaps] = useState<Lap[]>([]);
@@ -127,6 +135,23 @@ export const SessionTimer: React.FC<SessionTimerProps> = ({
   };
 
   const hasStarted = elapsedTime > 0;
+
+  useEffect(() => {
+    const seconds = Math.floor(elapsedTime / 1000);
+    onElapsedChange?.(durationSeconds ? Math.min(seconds, durationSeconds) : seconds);
+    if (durationSeconds && seconds >= durationSeconds) setIsRunning(false);
+  }, [elapsedTime, durationSeconds, onElapsedChange]);
+
+  if (compact) return <div className="space-y-4 border-y border-border py-4">
+    <p className="text-center text-3xl font-mono tabular-nums">{formatTime(Math.max(0, (durationSeconds ?? 0) * 1000 - elapsedTime))}</p>
+    <div className="flex justify-center gap-3">
+      <Button className="h-11" onClick={isRunning ? handlePause : handleStart} disabled={!!durationSeconds && elapsedTime >= durationSeconds * 1000}>
+        {isRunning ? <Pause className="mr-2 h-4 w-4" /> : <Play className="mr-2 h-4 w-4" />}
+        {isRunning ? (language === 'bg' ? 'Пауза' : 'Pause') : (language === 'bg' ? 'Започни' : 'Start')}
+      </Button>
+      <Button variant="outline" size="icon" className="h-11 w-11" onClick={handleReset} aria-label={language === 'bg' ? 'Отначало' : 'Reset'}><RotateCcw className="h-4 w-4" /></Button>
+    </div>
+  </div>;
 
   return (
     <div className="space-y-4">

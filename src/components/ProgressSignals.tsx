@@ -2,6 +2,7 @@ import React, { useMemo } from 'react';
 import { useJournal } from '@/context/JournalContext';
 import { useLanguage } from '@/context/LanguageContext';
 import { getWeekSummary, getReviewContinuity } from '@/lib/weekData';
+import { ComebackTrend } from './ComebackTrend';
 
 /**
  * Read-only week signals derived from logged sessions, training reflections,
@@ -57,6 +58,7 @@ export const ProgressSignals: React.FC = () => {
       </div>
 
       <p className="text-[11px] text-muted-foreground">{t('ps.readonly')}</p>
+      <ComebackTrend />
     </section>
   );
 };

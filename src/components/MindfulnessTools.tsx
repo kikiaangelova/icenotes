@@ -10,6 +10,7 @@ import { useMindfulnessTools } from '@/hooks/useMindfulnessTools';
 import { useLanguage } from '@/context/LanguageContext';
 import { toast } from 'sonner';
 import { SwipeableCard } from '@/components/ui/SwipeableCard';
+import { RelaxationTools } from './RelaxationTools';
 
 type ToolKey = 'breathing' | 'visualization' | 'gratitude' | 'affirmations' | null;
 
@@ -94,6 +95,7 @@ export const MindfulnessTools: React.FC = () => {
       </Card>
 
       <BreathingDialog open={open === 'breathing'} onClose={() => setOpen(null)} />
+      <RelaxationTools />
       <VisualizationDialog open={open === 'visualization'} onClose={() => setOpen(null)} />
     </>
   );

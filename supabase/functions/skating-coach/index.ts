@@ -3,6 +3,7 @@
 // action) and "psych" (sport-psychology-informed mental support).
 // The client can NEVER supply or influence the system prompt.
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2.58.0";
+import { INJURY_SUPPORT } from './injury-safety.ts';
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -159,7 +160,7 @@ Deno.serve(async (req) => {
       ? "\n\nLANGUAGE: Отговаряй само на естествен, говорим български — както човек говори, не както се пише в приложение. Никакви буквални преводи от английски, никакви клишета от мотивационни постове. Използвай термините, които фигуристите наистина ползват (аксел, салхов, тулуп, ритбергер, флип, лутц, ребро, изход, прогон, старт). Кратко, просто, с един въпрос накрая."
       : "\n\nLANGUAGE: Reply only in plain, spoken English. Short sentences, no filler, no poster lines.";
 
-    const systemContent = (role === "coach" ? COACH_PROMPT : PSYCH_PROMPT) + languageRule +
+    const systemContent = (role === "coach" ? COACH_PROMPT : PSYCH_PROMPT + '\n\n' + INJURY_SUPPORT) + languageRule +
       (contextBlock ? "\n\n" + contextBlock : "");
 
     const useStream = streamRequested !== false;
