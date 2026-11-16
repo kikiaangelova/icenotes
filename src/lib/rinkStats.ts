@@ -61,3 +61,32 @@ export type ElementStatus = typeof ELEMENT_STATUSES[number];
 export const DEFAULT_ELEMENTS = ['1A', '2S', '2T', '2Lo', '2F', '2Lz', '2A', '3S', '3T', '3Lo', '3F', '3Lz', 'CSp', 'LSp', 'CCoSp'];
 export const isStatusUp = (from: ElementStatus | undefined, to: ElementStatus) =>
   ELEMENT_STATUSES.indexOf(to) > (from ? ELEMENT_STATUSES.indexOf(from) : -1);
+
+/**
+ * Consecutive calendar days with at least one session. The current run stays
+ * alive through today until midnight, so it does not reset before you train.
+ */
+export function dayStreak(sessions: { date: Date }[], now = new Date()): { current: number; best: number } {
+  const days = Array.from(new Set(sessions.map((s) => startOfDay(s.date).getTime()))).sort((a, b) => a - b);
+  let best = 0, run = 0, prev: number | null = null;
+  for (const d of days) {
+    run = prev !== null && differenceInCalendarDays(d, prev) === 1 ? run + 1 : 1;
+    best = Math.max(best, run); prev = d;
+  }
+  const set = new Set(days);
+  let cursor = startOfDay(now);
+  if (!set.has(cursor.getTime())) cursor = addDays(cursor, -1);
+  let current = 0;
+  while (set.has(cursor.getTime())) { current++; cursor = addDays(cursor, -1); }
+  return { current, best };
+}
+
+/** Weekly average confidence (1 to 10) from any dated ratings. Weeks without ratings stay null. */
+export function weeklyConfidence(points: { date: Date; value: number }[], now = new Date(), weeks = 12): { week: Date; confidence: number | null }[] {
+  const first = addDays(startOfWeek(now, { weekStartsOn: 1 }), -(weeks - 1) * 7);
+  return Array.from({ length: weeks }, (_, i) => {
+    const week = addDays(first, i * 7);
+    const v = points.filter((p) => weekKey(p.date) === week.getTime() && p.value >= 1 && p.value <= 10).map((p) => p.value);
+    return { week, confidence: v.length ? Math.round((v.reduce((a, b) => a + b, 0) / v.length) * 10) / 10 : null };
+  });
+}
