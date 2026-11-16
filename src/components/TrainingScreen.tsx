@@ -6,16 +6,32 @@ import { Button } from '@/components/ui/button';
 import { VoiceTextarea } from './VoiceInput';
 import { cn } from '@/lib/utils';
 import { format } from 'date-fns';
-import { Snowflake, Dumbbell, Brain, Check } from 'lucide-react';
+import { bg as bgLocale } from 'date-fns/locale';
+import { Snowflake, Dumbbell, Brain, Check, Laugh, Smile, Meh, Frown, Angry, BatteryFull, BatteryMedium, BatteryLow } from 'lucide-react';
 import { toast } from 'sonner';
 
 const DURATIONS = [30, 45, 60, 90, 120];
 const FEELINGS = [
-  { value: 'great' as const, key: 'a.tr.feel.great' },
-  { value: 'good' as const, key: 'a.tr.feel.good' },
-  { value: 'okay' as const, key: 'a.tr.feel.okay' },
-  { value: 'tough' as const, key: 'a.tr.feel.tough' },
+  { value: 'great' as const, key: 'a.tr.feel.great', Icon: Laugh },
+  { value: 'good' as const, key: 'a.tr.feel.good', Icon: Smile },
+  { value: 'okay' as const, key: 'a.tr.feel.okay', Icon: Meh },
+  { value: 'tough' as const, key: 'a.tr.feel.tough', Icon: Frown },
+  { value: 'very_tough' as const, key: 'a.tr.feel.very_tough', Icon: Angry },
 ];
+const ENERGY = [
+  { value: 'full' as const, key: 'a.tr.energy.full', Icon: BatteryFull },
+  { value: 'normal' as const, key: 'a.tr.energy.normal', Icon: BatteryMedium },
+  { value: 'tired' as const, key: 'a.tr.energy.tired', Icon: BatteryLow },
+];
+
+/** "пон, 10 ноем." in BG, "Mon, 10 Nov" in EN. */
+export function formatSessionDate(date: Date, language: string): string {
+  if (language === 'bg') {
+    const s = format(date, 'EEEEEE, d MMM', { locale: bgLocale }).replace(/\.$/, '');
+    return s + '.';
+  }
+  return format(date, 'EEE, d MMM');
+}
 
 interface TrainingScreenProps {
   /** Called after the session is saved so the reflection step can open. */
@@ -29,13 +45,14 @@ interface TrainingScreenProps {
  * Recent sessions live below; target: under 90 seconds, usable rink-side.
  */
 export const TrainingScreen: React.FC<TrainingScreenProps> = ({ onSaved, onOpenPrep }) => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const { addTrainingSessionAsync, trainingSessions } = useJournal();
 
   const [type, setType] = useState<'on-ice' | 'off-ice'>('on-ice');
   const [selected, setSelected] = useState<string[]>([]);
   const [duration, setDuration] = useState(60);
-  const [feeling, setFeeling] = useState<'great' | 'good' | 'okay' | 'tough' | null>(null);
+  const [feeling, setFeeling] = useState<'great' | 'good' | 'okay' | 'tough' | 'very_tough' | null>(null);
+  const [energy, setEnergy] = useState<'full' | 'normal' | 'tired' | null>(null);
   const [note, setNote] = useState('');
   const [saving, setSaving] = useState(false);
 
@@ -70,11 +87,13 @@ export const TrainingScreen: React.FC<TrainingScreenProps> = ({ onSaved, onOpenP
         totalDuration: duration,
         notes: note.trim() || undefined,
         feeling: feeling || undefined,
+        energy: energy || undefined,
       });
       // Only clear and move on once the row is really written.
       setSelected([]);
       setNote('');
       setFeeling(null);
+      setEnergy(null);
       onSaved();
     } catch {
       toast.error(t('a.tr.saveFailed'));
@@ -174,7 +193,7 @@ export const TrainingScreen: React.FC<TrainingScreenProps> = ({ onSaved, onOpenP
       {/* How it went */}
       <section className="app-step space-y-3">
         <p className="app-section-label">{t('a.tr.how')}</p>
-        <div className="grid grid-cols-4 gap-2">
+        <div className="grid grid-cols-5 gap-2">
           {FEELINGS.map((f) => (
             <button
               key={f.value}
@@ -182,12 +201,37 @@ export const TrainingScreen: React.FC<TrainingScreenProps> = ({ onSaved, onOpenP
               onClick={() => setFeeling(f.value)}
               aria-pressed={feeling === f.value}
               className={cn(
-                'min-h-[48px] rounded-md border px-2 text-[13px] font-semibold transition-colors',
+                'min-h-[64px] rounded-md border px-1 py-2 flex flex-col items-center justify-center gap-1 text-[12px] font-semibold leading-tight text-center transition-colors',
                 feeling === f.value
                   ? 'border-primary bg-primary/10 text-primary'
                   : 'border-border bg-card text-foreground hover:bg-muted/50'
               )}
             >
+              <f.Icon className="w-5 h-5" aria-hidden="true" />
+              {t(f.key)}
+            </button>
+          ))}
+        </div>
+      </section>
+
+      {/* Energy */}
+      <section className="app-step space-y-3">
+        <p className="app-section-label">{t('a.tr.energy')}</p>
+        <div className="grid grid-cols-3 gap-2">
+          {ENERGY.map((f) => (
+            <button
+              key={f.value}
+              type="button"
+              onClick={() => setEnergy(f.value)}
+              aria-pressed={energy === f.value}
+              className={cn(
+                'min-h-[64px] rounded-md border px-1 py-2 flex flex-col items-center justify-center gap-1 text-[12px] font-semibold leading-tight text-center transition-colors',
+                energy === f.value
+                  ? 'border-primary bg-primary/10 text-primary'
+                  : 'border-border bg-card text-foreground hover:bg-muted/50'
+              )}
+            >
+              <f.Icon className="w-5 h-5" aria-hidden="true" />
               {t(f.key)}
             </button>
           ))}
@@ -252,7 +296,7 @@ export const TrainingScreen: React.FC<TrainingScreenProps> = ({ onSaved, onOpenP
                     {s.activities.map((a) => t(`a.el.${a.name}`)).join(' · ')}
                   </p>
                 </div>
-                <span className="text-xs text-muted-foreground flex-shrink-0">{format(s.date, 'dd.MM')}</span>
+                <span className="text-xs text-muted-foreground flex-shrink-0">{formatSessionDate(s.date, language)}</span>
               </li>
             ))}
           </ul>

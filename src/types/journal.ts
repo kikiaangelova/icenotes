@@ -71,7 +71,8 @@ export interface TrainingSession {
   activities: TrainingActivity[];
   totalDuration: number;
   notes?: string;
-  feeling?: 'great' | 'good' | 'okay' | 'tough';
+  feeling?: 'great' | 'good' | 'okay' | 'tough' | 'very_tough';
+  energy?: 'full' | 'normal' | 'tired';
   createdAt: Date;
 }
 
