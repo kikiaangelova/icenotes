@@ -1,4 +1,4 @@
-import { classifyText, type RiskFlag } from '../skating-coach/risk-flag.ts';
+import { classifyText, type RiskFlag } from '../_shared/risk-flag.ts';
 
 export type ModFlag = 'body' | 'insult' | 'personal_data' | RiskFlag;
 export type ModResult = { flags: ModFlag[]; crisis: boolean };
