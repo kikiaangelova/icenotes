@@ -5,3 +5,4 @@ Keep the public phone example isolated from JournalProvider and mutations, reusi
 Pilot signup uses a dedicated validated, insert-only table and never requests returned rows, so public visitors cannot read signup data.
 Pilot owner emails are triggered after database insertion and use authoritative row data with fixed recipient and row-derived idempotency; browser callers cannot send notifications.
 Public psychology entry uses the explicit open-psych dashboard action and preserves it through the signed-in auth redirect so the intended companion opens without changing authentication or AI role logic.
+Public contact messages use a dedicated insert-only table with validated fields; a database trigger queues an ID-only owner notification using the shared secured email sender so visitors cannot read messages or choose recipients.
