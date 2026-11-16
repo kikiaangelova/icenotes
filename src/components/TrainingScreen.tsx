@@ -9,7 +9,7 @@ import { format } from 'date-fns';
 import { Snowflake, Dumbbell, Brain, Check, Laugh, Smile, Meh, Frown, Angry, BatteryFull, BatteryMedium, BatteryLow } from 'lucide-react';
 import { toast } from 'sonner';
 import { showSkateTrail } from './rink/RinkArt';
-import { celebrateMessage, sessionsThisWeek } from '@/lib/celebrate';
+import { celebrateMessage, sessionsThisWeek } from '@/lib/sessionCelebrate';
 import { dayStreak } from '@/lib/rinkStats';
 
 const DURATIONS = [30, 45, 60, 90, 120];
