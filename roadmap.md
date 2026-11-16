@@ -15,4 +15,4 @@
 - [x] Compact the public loop and populate the sample phone states; verify EN/BG at phone and desktop widths
 - [x] Constrain hero media sizing, apply final Bulgarian wording, and audit public punctuation at 390/768/1280
 - [x] Add bilingual pilot signup and links; verify real insertion, duplicate handling, privacy and responsive layouts
-- [ ] Enable and verify owner-only pilot signup emails with one test notification
+- [x] Enable and verify owner-only pilot signup emails with one test notification
