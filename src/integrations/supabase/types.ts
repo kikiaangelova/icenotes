@@ -1376,6 +1376,10 @@ export type Database = {
         Args: { payload: Json; queue_name: string }
         Returns: number
       }
+      gdpr_delete_account_data: {
+        Args: { account_email: string; target_user_id: string }
+        Returns: undefined
+      }
       get_admin_stats: { Args: never; Returns: Json }
       has_role: {
         Args: {

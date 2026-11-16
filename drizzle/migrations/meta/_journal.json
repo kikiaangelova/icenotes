@@ -78,6 +78,13 @@
       "when": 1794834661803,
       "tag": "0010_pilot_age_group_no_upper_limit",
       "breakpoints": true
+    },
+    {
+      "idx": 11,
+      "version": "7",
+      "when": 1794835495493,
+      "tag": "0011_gdpr_account_data_deletion",
+      "breakpoints": true
     }
   ]
 }
