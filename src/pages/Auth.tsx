@@ -27,12 +27,11 @@ type AuthView = 'auth' | 'forgot' | 'reset';
 
 const AuthVisual: React.FC<{ tagline: string }> = ({ tagline }) => (
   <aside className="auth-edge-brand">
-    <img src="/skategoals-hero-poster.jpg" alt="" className="absolute inset-0 h-full w-full object-cover object-[center_30%]" />
     <div className="relative z-10 flex h-full flex-col justify-between p-12">
       <div className="flex items-center gap-3 font-display text-xl font-bold">
         <SkateGoalsMark className="h-8 w-8" /> SkateGoals
       </div>
-
+      <p className="max-w-md font-display text-4xl font-bold leading-tight" aria-hidden>SkateGoals</p>
     </div>
   </aside>
 );
