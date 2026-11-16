@@ -99,6 +99,13 @@
       "when": 1794842018433,
       "tag": "0013_harden_email_functions_and_feedback",
       "breakpoints": true
+    },
+    {
+      "idx": 14,
+      "version": "7",
+      "when": 1794845664394,
+      "tag": "0014_restrict_role_checks_to_self",
+      "breakpoints": true
     }
   ]
 }
