@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Play, Pause, Volume2, VolumeX, Maximize2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { Button } from '@/components/ui/button';
+import { useLanguage } from '@/context/LanguageContext';
 
 interface HeroVideoProps {
   src: string;
@@ -25,6 +27,10 @@ export const HeroVideo: React.FC<HeroVideoProps> = ({
   filter,
   withOverlay = true,
 }) => {
+  const { language } = useLanguage();
+  const description = language === 'bg' ? 'Състезателка по фигурно пързаляне на леда' : 'Competitive figure skater performing on ice';
+  const [reducedMotion, setReducedMotion] = useState(() => window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+  const [failed, setFailed] = useState(false);
   const wrapperRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const hideTimer = useRef<number | null>(null);
@@ -40,7 +46,11 @@ export const HeroVideo: React.FC<HeroVideoProps> = ({
   };
 
   useEffect(() => {
+    const media = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const update = () => setReducedMotion(media.matches);
+    media.addEventListener('change', update);
     return () => {
+      media.removeEventListener('change', update);
       if (hideTimer.current) window.clearTimeout(hideTimer.current);
     };
   }, []);
@@ -50,8 +60,7 @@ export const HeroVideo: React.FC<HeroVideoProps> = ({
     const v = videoRef.current;
     if (!v) return;
     if (v.paused) {
-      v.play();
-      setPlaying(true);
+      void v.play().catch(() => setFailed(true));
     } else {
       v.pause();
       setPlaying(false);
@@ -95,49 +104,50 @@ export const HeroVideo: React.FC<HeroVideoProps> = ({
       onMouseMove={revealControls}
       onTouchStart={revealControls}
     >
-      <video
+      {reducedMotion || failed ? <img src={poster} alt={description} className="w-full h-full object-cover object-[center_30%]" /> : <video
         ref={videoRef}
         src={src}
         poster={poster}
+        aria-label={description}
         autoPlay
         muted
         loop
         playsInline
         {...({ 'webkit-playsinline': 'true', fetchpriority: 'high' } as Record<string, string>)}
-        preload="auto"
-        className={cn('w-full h-full object-cover', videoClassName)}
-        style={filter ? { filter } : undefined}
+        preload="metadata"
+        className={cn('w-full h-full object-cover object-[center_30%]', videoClassName)}
+        onError={() => setFailed(true)}
         onPlay={() => setPlaying(true)}
         onPause={() => setPlaying(false)}
-      />
+      />}
 
       {withOverlay && (
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-foreground/10 via-foreground/30 to-foreground/85" />
       )}
 
       {/* Controls — bottom-right, mobile-friendly tap targets */}
-      <div
+      {!reducedMotion && !failed && <div
         className={cn(
           'absolute bottom-4 right-4 md:bottom-6 md:right-6 z-20 flex items-center gap-2 transition-all duration-300',
           showControls ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2 pointer-events-none'
         )}
       >
         <ControlButton
-          ariaLabel={playing ? 'Pause video' : 'Play video'}
+          ariaLabel={language === 'bg' ? (playing ? 'Спри видеото' : 'Пусни видеото') : (playing ? 'Pause video' : 'Play video')}
           onClick={togglePlay}
         >
           {playing ? <Pause className="w-5 h-5" /> : <Play className="w-5 h-5 fill-current" />}
         </ControlButton>
         <ControlButton
-          ariaLabel={muted ? 'Unmute video' : 'Mute video'}
+          ariaLabel={language === 'bg' ? (muted ? 'Включи звука' : 'Изключи звука') : (muted ? 'Unmute video' : 'Mute video')}
           onClick={toggleMute}
         >
           {muted ? <VolumeX className="w-5 h-5" /> : <Volume2 className="w-5 h-5" />}
         </ControlButton>
-        <ControlButton ariaLabel="Fullscreen" onClick={goFullscreen}>
+        <ControlButton ariaLabel={language === 'bg' ? 'Цял екран' : 'Fullscreen'} onClick={goFullscreen}>
           <Maximize2 className="w-5 h-5" />
         </ControlButton>
-      </div>
+      </div>}
     </div>
   );
 };
@@ -147,12 +157,14 @@ const ControlButton: React.FC<{
   onClick: (e: React.MouseEvent) => void;
   children: React.ReactNode;
 }> = ({ ariaLabel, onClick, children }) => (
-  <button
+  <Button
+    variant="ghost"
+    size="icon"
     type="button"
     aria-label={ariaLabel}
     onClick={onClick}
     className="w-11 h-11 md:w-12 md:h-12 rounded-full bg-background/20 hover:bg-background/35 active:scale-95 backdrop-blur-xl border border-background/30 text-background flex items-center justify-center shadow-lg transition-all touch-manipulation"
   >
     {children}
-  </button>
+  </Button>
 );

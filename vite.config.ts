@@ -17,7 +17,7 @@ export default defineConfig(({ mode }) => ({
     manifest: false,
     devOptions: { enabled: false },
     filename: 'sw.js',
-    includeAssets: ['manifest.webmanifest', 'icons/*.png', 'favicon.ico', 'hero-skater-poster.jpg'],
+    includeAssets: ['manifest.webmanifest', 'icons/*.png', 'favicon.ico', 'skategoals-hero-poster.jpg'],
     workbox: {
       globPatterns: ['**/*.{js,css,html,png,jpg,svg,ico,woff,woff2}'],
       maximumFileSizeToCacheInBytes: 5 * 1024 * 1024,
