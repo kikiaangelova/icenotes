@@ -9,7 +9,7 @@ type ColumnLink = { label: string; href: string; external?: boolean };
 type Column = { id: string; title: string; links: ColumnLink[] };
 
 export const Footer: React.FC = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const [openSection, setOpenSection] = useState<string | null>(null);
 
   const columns: Column[] = [
@@ -30,6 +30,7 @@ export const Footer: React.FC = () => {
         { label: t('nav.features'), href: '/features' },
         { label: t('nav.psychology'), href: '/sport-psychology' },
         { label: t('aisup.title'), href: '/ai-support' },
+        { label: language === 'bg' ? 'Включи се в пилота' : 'Join the pilot', href: '/pilot' },
       ],
     },
     {

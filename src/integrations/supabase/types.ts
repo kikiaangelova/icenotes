@@ -433,6 +433,45 @@ export type Database = {
         }
         Relationships: []
       }
+      pilot_waitlist: {
+        Row: {
+          age_group: string | null
+          club: string | null
+          consent: boolean
+          created_at: string
+          email: string
+          first_name: string
+          id: string
+          locale: string
+          note: string | null
+          role: string
+        }
+        Insert: {
+          age_group?: string | null
+          club?: string | null
+          consent: boolean
+          created_at?: string
+          email: string
+          first_name: string
+          id?: string
+          locale: string
+          note?: string | null
+          role: string
+        }
+        Update: {
+          age_group?: string | null
+          club?: string | null
+          consent?: boolean
+          created_at?: string
+          email?: string
+          first_name?: string
+          id?: string
+          locale?: string
+          note?: string | null
+          role?: string
+        }
+        Relationships: []
+      }
       profiles: {
         Row: {
           age: number | null

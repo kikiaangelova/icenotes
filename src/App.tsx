@@ -18,6 +18,7 @@ import Features from "./pages/Features";
 import SportPsychology from "./pages/SportPsychology";
 import AiSupport from "./pages/AiSupport";
 import Contact from "./pages/Contact";
+import Pilot from "./pages/Pilot";
 import AdminPage from "./pages/Admin";
 import Privacy from "./pages/Privacy";
 import Feedback from "./pages/Feedback";
@@ -68,6 +69,7 @@ const AppRoutes = () => {
       <Route path="/ai-support" element={<AiSupport />} />
       <Route path="/coach-profile" element={<Navigate to="/ai-support" replace />} />
       <Route path="/contact" element={<Contact />} />
+      <Route path="/pilot" element={<Pilot />} />
       {/* Legacy journal links enter the single authenticated product shell. */}
       <Route
         path="/journal"
