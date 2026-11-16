@@ -1129,12 +1129,4 @@
     color: hsl(var(--accent-ink));
   }
 
-  /* Headings with a small accent tick for rhythm. */
-  .authenticated-app main h2:not(.app-page-title)::after {
-    content: ''; display: block; width: 28px; height: 3px; margin-top: 8px;
-    border-radius: 9999px; background: hsl(var(--accent));
-  }
-  .authenticated-app main [role="dialog"] h2::after,
-  .authenticated-app main .rink-card h2::after,
-  .authenticated-app main .border-l-2 h2::after { display: none; }
 }
