@@ -36,6 +36,13 @@
       "when": 1794825003196,
       "tag": "0004_comeback_checkins",
       "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1794827433224,
+      "tag": "0005_create_risk_events",
+      "breakpoints": true
     }
   ]
 }

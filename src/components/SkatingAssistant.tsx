@@ -261,6 +261,13 @@ export const SkatingAssistant: React.FC = () => {
             <Send className="w-4 h-4" />
           </Button>
         </form>
+        <p className="px-4 pb-[max(0.75rem,env(safe-area-inset-bottom))] text-xs leading-snug text-muted-foreground">
+          {language === 'bg' ? 'Ако ти е много тежко: ' : 'If things feel really heavy: '}
+          <a href="tel:116111" className="inline-flex min-h-[44px] items-center font-semibold text-foreground underline underline-offset-2">116 111</a>
+          {language === 'bg' ? ' (безплатно, денонощно) · ' : ' (free, day and night) · '}
+          <a href="tel:112" className="inline-flex min-h-[44px] items-center font-semibold text-foreground underline underline-offset-2">112</a>
+          {language === 'bg' ? ' при опасност' : ' if you are in danger'}
+        </p>
       </SheetContent>
     </Sheet>
   );

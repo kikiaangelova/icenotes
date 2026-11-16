@@ -5,10 +5,11 @@
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2.58.0";
 import { INJURY_SUPPORT } from './injury-safety.ts';
 import { PSYCH_PROMPT } from './psych-prompt.ts';
-import { conversationRisk, detectMessageLanguage, safetyReply } from './message-policy.ts';
+import { detectMessageLanguage } from './message-policy.ts';
+import { conversationFlags, flagToCard, riskNote, tooSimilar, LEVEL1_FALLBACK_BG, type RiskFlag } from './risk-flag.ts';
 import { corsHeaders } from 'npm:@supabase/supabase-js@2/cors';
 import { structuredReplySchema } from './structured-reply.ts';
-import { riskLevel, riskFromLevel, type RiskLevel } from './risk-level.ts';
+import { riskFromLevel, type RiskLevel } from './risk-level.ts';
 
 const json = (body: unknown, status = 200) =>
   new Response(JSON.stringify(body), {
@@ -111,12 +112,16 @@ Deno.serve(async (req) => {
     const latest = safeMessages[safeMessages.length - 1];
     if (latest?.role !== 'user') return json({ error: 'latest_message_must_be_user' }, 400);
     const messageLanguage = detectMessageLanguage(latest.content);
-    const risk = conversationRisk(safeMessages);
-    if (risk) {
-      // Do not entrust crisis output to stochastic generation or athlete context.
-      const content = safetyReply(risk, messageLanguage, latest.content);
-      return replyResponse(content, riskLevel(risk), streamRequested !== false);
-    }
+    // Keywords only mark risk; the model always writes the reply from the full conversation.
+    const flags = conversationFlags(safeMessages);
+    const note = riskNote(flags);
+    const keywordCard: RiskLevel = flags.latest ? flagToCard[flags.latest] : flags.earlier ? flagToCard[flags.earlier] : 'none';
+    const isLevel1 = flags.latest === 'level_1_self_harm' || flags.earlier === 'level_1_self_harm';
+    const logRisk = async (level: RiskFlag) => {
+      const { error } = await supabase.from('risk_events').insert({ user_id: user.id, level });
+      if (error) console.error('risk_events insert failed:', error.message);
+    };
+    if (flags.latest) await logRisk(flags.latest);
 
     // ── 3. Server-side profile context for THIS caller only ──
     let contextBlock = "";
@@ -164,37 +169,51 @@ Deno.serve(async (req) => {
       (contextBlock ? "\n\n" + contextBlock : "");
 
     const useStream = streamRequested !== false;
-    const response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${LOVABLE_API_KEY}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        model: "google/gemini-3.6-flash",
-        messages: [{ role: "system", content: systemContent }, ...safeMessages],
-        stream: false,
-        response_format: { type: 'json_object' },
-      }),
-    });
+    const fallback = () => isLevel1 ? replyResponse(LEVEL1_FALLBACK_BG, 'self_harm', useStream) : null;
+    const baseMessages = [{ role: "system", content: systemContent }, ...safeMessages, ...(note ? [{ role: 'system', content: note }] : [])];
+    const isRisky = !!note;
+    let lastReply: { risk_level: RiskLevel; reply: string } | null = null;
 
-    if (response.status === 429) return json({ error: "rate_limited" }, 429);
-    if (response.status === 402) return json({ error: "credits_required" }, 402);
-    if (!response.ok) {
-      console.error("AI gateway error:", response.status, await response.text());
-      return json({ error: "ai_unavailable" }, 500);
+    for (let attempt = 0; attempt < 3; attempt++) {
+      const extra = attempt > 0 ? [{ role: 'system', content: 'Предишният ти вариант почти повтаря вече изпратен отговор. Напиши нов отговор с други думи, свързан с последното съобщение.' }] : [];
+      const response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
+        method: "POST",
+        headers: { Authorization: `Bearer ${LOVABLE_API_KEY}`, "Content-Type": "application/json" },
+        body: JSON.stringify({
+          model: "google/gemini-3.6-flash",
+          messages: [...baseMessages, ...extra],
+          stream: false,
+          response_format: { type: 'json_object' },
+        }),
+      }).catch((e) => { console.error('AI fetch failed:', e); return null; });
+
+      if (!response || !response.ok) {
+        if (response) console.error("AI gateway error:", response.status, await response.text());
+        const fb = fallback();
+        if (fb) return fb;
+        if (response?.status === 429) return json({ error: "rate_limited" }, 429);
+        if (response?.status === 402) return json({ error: "credits_required" }, 402);
+        return json({ error: "ai_unavailable" }, 500);
+      }
+      const result = await response.json().catch(() => null);
+      const raw = result?.choices?.[0]?.message?.content;
+      let decoded: unknown;
+      try { decoded = typeof raw === 'string' ? JSON.parse(raw) : null; } catch { decoded = null; }
+      const parsed = structuredReplySchema.safeParse(decoded);
+      if (!parsed.success) { const fb = fallback(); if (fb) return fb; return json({ error: 'ai_unavailable' }, 502); }
+      lastReply = parsed.data;
+      const modelRisky = !!riskFromLevel(parsed.data.risk_level);
+      if (!(isRisky || modelRisky) || !tooSimilar(parsed.data.reply, safeMessages)) break;
     }
 
-    const result = await response.json();
-    const raw = result?.choices?.[0]?.message?.content;
-    let decoded: unknown;
-    try { decoded = typeof raw === 'string' ? JSON.parse(raw) : null; } catch { decoded = null; }
-    const parsed = structuredReplySchema.safeParse(decoded);
-    // Never emit an unvalidated response without safety metadata.
-    if (!parsed.success) return json({ error: 'ai_unavailable' }, 502);
-    const detectedRisk = riskFromLevel(parsed.data.risk_level);
-    const content = detectedRisk ? safetyReply(detectedRisk, messageLanguage, latest.content) : parsed.data.reply;
-    return replyResponse(content, parsed.data.risk_level, useStream);
+    if (!lastReply) { const fb = fallback(); if (fb) return fb; return json({ error: 'ai_unavailable' }, 502); }
+    const modelLevel = lastReply.risk_level;
+    if (modelLevel !== 'none' && !flags.latest) {
+      const map: Record<string, RiskFlag> = { self_harm: 'level_1_self_harm', food_body: 'level_2_eating', abuse: 'level_3_adult_harm', medical: 'level_4_medical' };
+      await logRisk(map[modelLevel]);
+    }
+    const card: RiskLevel = modelLevel !== 'none' ? modelLevel : flags.latest && flags.latest !== 'possible_figurative' ? keywordCard : 'none';
+    return replyResponse(lastReply.reply, card, useStream);
   } catch (e) {
     console.error("skating-coach error:", e);
     return json({ error: "unexpected_error" }, 500);
