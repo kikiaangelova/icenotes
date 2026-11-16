@@ -265,9 +265,14 @@ Deno.serve(async (req) => {
         // function fetches the row and renders the email using its fixed recipient.
         if (payload.kind === 'pilot-signup-job') {
           const { data, error } = await supabase.functions.invoke('send-transactional-email', {
+            headers: { Authorization: `Bearer ${supabaseServiceKey}` },
             body: { templateName: 'pilot-signup', templateData: { signupId: payload.signup_id } },
           });
-          if (error || !data?.success) throw new Error('Pilot notification could not be queued');
+          if (error || !data?.success) {
+            const response = error && 'context' in error ? error.context : null;
+            const detail = response instanceof Response ? await response.text() : '';
+            throw new Error(`Pilot notification could not be queued: ${error?.message || data?.reason || ''} ${detail}`);
+          }
           const { error: deleteError } = await supabase.rpc('delete_email', { queue_name: queue, message_id: msg.msg_id });
           if (deleteError) throw new Error('Pilot notification job could not be acknowledged');
           totalProcessed++;
