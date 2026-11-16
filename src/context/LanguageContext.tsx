@@ -17,7 +17,7 @@ export const LANGUAGES: { code: Language; label: string; nativeLabel: string }[]
 type Entry = { en: string; bg: string };
 type Dict = Record<string, Entry>;
 
-const dict: Dict = {
+export const dict: Dict = {
   // ───── Navbar (marketing) ─────
   'quick.reflection.kicker': { en: '2 min', bg: '2 мин' },
   'profile.language': { en: 'Language', bg: 'Език' },
