@@ -4,6 +4,7 @@ import { PHASEA_DICT } from './dictPhaseA';
 import { PHASE3_DICT } from './dictPhase3';
 import { PHASEB_DICT } from './dictPhaseB';
 import React, { createContext, useContext, useEffect, useState, useCallback } from 'react';
+import { resolveInitialLanguage } from '@/lib/initialLanguage';
 
 export type Language = 'en' | 'bg';
 
@@ -75,8 +76,8 @@ const dict: Dict = {
   'nav.psychology': { en: 'Psychology', bg: 'Психология' },
   'nav.coach': { en: 'Coach', bg: 'Треньор' },
   'nav.contact': { en: 'Contact', bg: 'Контакти' },
-  'nav.login': { en: 'Log In', bg: 'Влез' },
-  'nav.getStarted': { en: 'Get Started', bg: 'Започни' },
+  'nav.login': { en: 'Log in', bg: 'Влез' },
+  'nav.getStarted': { en: 'Create your account', bg: 'Създай профил' },
 
   // ───── Hero (landing) ─────
   'hero.badge': { en: 'Made for figure skaters, by a 14-year-old figure skater', bg: 'От 14-годишна фигуристка — за фигуристи' },
@@ -330,7 +331,7 @@ const dict: Dict = {
   'footer.product': { en: 'Product', bg: 'Продукт' },
   'footer.account': { en: 'Support', bg: 'Помощ' },
   'footer.journal': { en: 'Journal', bg: 'Дневник' },
-  'footer.signup': { en: 'Join free', bg: 'Влез безплатно' },
+  'footer.signup': { en: 'Create your account', bg: 'Създай профил' },
   'footer.login': { en: 'Log in', bg: 'Влез' },
   'footer.privacy': { en: 'Privacy', bg: 'Поверителност' },
   'footer.contact': { en: 'Contact', bg: 'Контакти' },
@@ -1277,15 +1278,13 @@ const isLanguage = (val: unknown): val is Language =>
   typeof val === 'string' && (SUPPORTED as ReadonlyArray<string>).includes(val);
 
 const detectInitialLanguage = (): Language => {
-  // English is the default everywhere. Bulgarian only when the visitor picks it
-  // from the language switcher (their choice is remembered).
   try {
     const saved = localStorage.getItem(STORAGE_KEY);
-    if (isLanguage(saved)) return saved;
+    return resolveInitialLanguage(saved, navigator.language);
   } catch {
     /* storage unavailable */
   }
-  return 'en';
+  return resolveInitialLanguage(null, navigator.language);
 };
 
 // Dev-only: warn once per missing key so silent gaps are visible.
