@@ -6,13 +6,13 @@
 
 Сайт: [skategoals.com](https://skategoals.com)
 
-## Защо го правя
+## Как започна
 
-Казвам се Кирилка Ангелова. Спортен психолог съм, треньор по групова динамика и ментор на млади хора от 2010 г.
+SkateGoals е първият проект, който направихме заедно с дъщеря ми. Тя е състезателка по фигурно пързаляне и започнахме след първата ѝ травма. Тогава видяхме колко малко място има за всичко, което се случва в главата на един спортист: страхът да се върнеш на леда, търпението, малките победи, които никой не записва.
 
-В работата си със спортисти виждам едно и също. Фигуристите тренират тялото си всеки ден, а мислите и емоциите им остават без план. SkateGoals е мястото, където спортистът записва, обмисля и се подготвя, за да излезе на леда не само готов, но и спокоен.
+Казвам се Кирилка Ангелова. Спортен психолог съм, треньор по групова динамика и ментор на млади хора от 2010 г. Фигуристите тренират тялото си всеки ден, а мислите и емоциите им остават без план. SkateGoals е мястото, където спортистът записва, обмисля и се подготвя, за да излезе на леда не само готов, но и спокоен.
 
-Приложението го проектирам и изграждам сама. Кодът е публичен, за да се вижда как една идея от практиката се превръща в работещ продукт.
+Кодът е публичен, за да се вижда как една идея от живота и от практиката се превръща в работещ продукт.
 
 ## Какво може
 
@@ -41,7 +41,9 @@ React, TypeScript, Vite, Tailwind CSS, shadcn/ui, Supabase и Vitest. Разра
 
 SkateGoals is a performance companion for competitive figure skaters: training log, goals, weekly review, competition prep and two AI support roles, coaching and sport psychology.
 
-I'm Kirilka Angelova, a sport psychologist, group dynamics trainer and mentor to young people since 2010. I design and build SkateGoals myself, and the code is public so you can see how an idea from practice turns into a working product.
+It was the first project my daughter and I built together. She is a competitive figure skater, and we started it after her first injury, when we saw how little room there was for everything that happens in a skater's head on the way back to the ice.
+
+I'm Kirilka Angelova, a sport psychologist, group dynamics trainer and mentor to young people since 2010. The code is public so you can see how an idea from real life and practice turns into a working product.
 
 * **Live:** [skategoals.com](https://skategoals.com)
 * **Stack:** React, TypeScript, Vite, Tailwind CSS, shadcn/ui, Supabase, built with Lovable
