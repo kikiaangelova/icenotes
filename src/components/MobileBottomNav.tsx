@@ -37,7 +37,7 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({ active, onChan
       aria-label={t('a11y.primaryNav')}
       className="authenticated-app fixed inset-x-0 bottom-0 z-40 border-t border-border bg-background pb-[env(safe-area-inset-bottom)]"
     >
-      <ul className="mx-auto grid max-w-3xl grid-cols-5 px-1 pb-1 pt-1 sm:px-4">
+      <ul className="mx-auto grid max-w-3xl grid-cols-5 px-0 pb-1 pt-1 sm:px-4">
         {ITEMS.map((item) => {
           const Icon = item.icon;
           const isActive = active === item.id;
@@ -57,7 +57,7 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({ active, onChan
                 )}
               >
                 <Icon className="w-[21px] h-[21px]" />
-                <span className="nav-label max-w-full truncate font-semibold leading-none">
+                <span className="nav-label whitespace-nowrap font-semibold leading-none">
                   {label}
                 </span>
               </button>

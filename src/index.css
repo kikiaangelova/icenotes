@@ -513,7 +513,7 @@
   .rink-chip { min-height: 48px; border-radius: 14px; background: hsl(var(--secondary)); padding: 0 12px; font-size: 15px; font-weight: 600; color: hsl(var(--foreground)); transition: background-color .15s ease; }
   .rink-chip-on { background: hsl(var(--primary)); color: hsl(var(--primary-foreground)); }
   .text-accent-ink { color: hsl(var(--accent-ink)); }
-  .authenticated-app .nav-label { font-size: 13px; letter-spacing: -0.02em; }
+  .authenticated-app .nav-label { font-size: 13px; letter-spacing: -0.03em; }
   .rink-date::first-letter { text-transform: uppercase; }
 
   .rink-trail path { stroke-dasharray: 520; stroke-dashoffset: 520; animation: rink-trail 1.2s ease-out forwards; }
