@@ -599,10 +599,10 @@
   .font-display { font-family: var(--font-serif); }
 
   .editorial-kicker {
-    @apply font-mono text-[10px] font-medium uppercase;
+    @apply font-mono text-xs font-medium uppercase;
     letter-spacing: 0.12em;
     color: currentColor;
-    opacity: 0.68;
+    opacity: 0.85;
   }
 
   .public-editorial > section,
@@ -613,6 +613,24 @@
   .public-editorial {
     background: hsl(var(--background));
     color: hsl(var(--foreground));
+  }
+
+  /* Let public content shrink inside editorial grids without clipping it. */
+  .public-editorial,
+  :has(> .public-navbar) {
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+
+  .public-editorial :is(.grid, .flex) > *,
+  :has(> .public-navbar) > section :is(.grid, .flex) > *,
+  footer .grid > * {
+    min-width: 0;
+  }
+
+  .public-editorial .font-mono,
+  .public-nav-sheet .font-mono {
+    font-size: max(12px, 0.75rem);
   }
 
   .public-editorial h1 {

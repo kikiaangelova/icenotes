@@ -44,10 +44,10 @@ export const LandingPage: React.FC<LandingPageProps> = () => {
     <>
       {/* ─── Hero ─── */}
       <section className="edge-hero relative z-10 overflow-hidden bg-primary text-primary-foreground">
-        <div className="mx-auto grid min-h-[calc(100svh-4rem)] max-w-7xl md:grid-cols-[0.9fr_1.1fr] md:min-h-[650px]">
-          <div className="relative z-10 flex flex-col justify-center px-5 py-12 md:px-12 lg:px-16">
+        <div className="mx-auto grid max-w-7xl lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:min-h-[650px]">
+          <div className="relative z-10 min-w-0 flex flex-col justify-center px-5 py-12 md:px-12 lg:px-8 xl:px-16">
             <p className={kicker}>{t('lp.chip')}</p>
-            <h1 className="mt-6 max-w-xl font-display text-[2.65rem] font-bold leading-[1.01] text-primary-foreground sm:text-6xl md:text-[4rem] [text-wrap:balance]">
+            <h1 className="mt-6 max-w-xl font-display text-[2.65rem] font-bold leading-[1.01] text-primary-foreground sm:text-6xl md:text-[4rem] lg:text-5xl xl:text-[4rem] [text-wrap:balance]">
               {t('lp.h1.a')}
               <br className="hidden sm:block" />{' '}
               <span className="text-primary-foreground/62">{t('lp.h1.b')}</span>
@@ -55,7 +55,7 @@ export const LandingPage: React.FC<LandingPageProps> = () => {
             <p className="mt-7 max-w-lg text-base leading-relaxed text-primary-foreground/72 md:text-lg">
               {t('lp.sub')}
             </p>
-            <div className="mt-8 flex flex-col sm:flex-row gap-3">
+            <div className="mt-8 flex flex-col sm:flex-row lg:flex-col xl:flex-row gap-3">
               <SmartStartCTA
                 action="log-today"
                 size="lg"
@@ -72,10 +72,10 @@ export const LandingPage: React.FC<LandingPageProps> = () => {
                 </Button>
               </a>
             </div>
-             <p className="mt-5 text-xs text-primary-foreground/55">{t('lp.trust')}</p>
+             <p className="mt-5 text-xs text-primary-foreground/80">{t('lp.trust')}</p>
           </div>
 
-          <div className="relative min-h-[48svh] overflow-hidden border-t border-primary-foreground/20 md:min-h-0 md:border-l md:border-t-0">
+          <div className="relative aspect-[4/5] w-full min-w-0 overflow-hidden border-t border-primary-foreground/20 md:aspect-video lg:aspect-auto lg:border-l lg:border-t-0">
             <HeroVideo
               src={heroVideo.url}
               poster="/hero-skater-poster.jpg"
@@ -96,10 +96,10 @@ export const LandingPage: React.FC<LandingPageProps> = () => {
           <h2 className="mt-4 mb-10 max-w-2xl text-2xl font-bold leading-tight text-foreground md:text-4xl">
             {t('lp.connect.title')}
           </h2>
-          <div className="grid grid-cols-1 border-t border-border sm:grid-cols-2 lg:grid-cols-5">
+          <div className="grid grid-cols-1 border-t border-border md:grid-cols-2 lg:grid-cols-5">
             {pillars.map((p, index) => (
-              <div key={p.title} className="border-b border-border py-5 sm:px-5 sm:first:pl-0 lg:border-b-0 lg:border-r lg:last:border-r-0">
-                <span className="mb-5 block font-mono text-4xl font-medium text-accent/70">0{index + 1}</span>
+              <div key={p.title} className="min-w-0 border-b border-border py-5 md:px-5 lg:border-b-0 lg:border-r lg:last:border-r-0">
+                <span className="mb-5 block font-mono text-4xl font-medium text-muted-foreground">0{index + 1}</span>
                 <h3 className="text-base font-semibold text-foreground mb-1.5">{p.title}</h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">{p.text}</p>
               </div>
@@ -136,9 +136,9 @@ export const LandingPage: React.FC<LandingPageProps> = () => {
               <div key={r.name} className="p-6 first:border-b first:border-primary-foreground/20 md:p-10 md:first:border-b-0">
                 <r.icon className="w-6 h-6 text-accent mb-5" aria-hidden />
                 <h3 className="text-xl font-bold text-primary-foreground">{r.name}</h3>
-                <p className="mt-1 text-xs uppercase tracking-[0.16em] text-primary-foreground/55">{r.tag}</p>
+                <p className="mt-1 text-xs uppercase tracking-[0.16em] text-primary-foreground/80">{r.tag}</p>
                 <p className="mt-5 text-sm text-primary-foreground/82 leading-relaxed">{r.list}</p>
-                <p className="mt-5 pt-5 border-t border-primary-foreground/20 text-xs text-primary-foreground/55 leading-relaxed">
+                <p className="mt-5 pt-5 border-t border-primary-foreground/20 text-xs text-primary-foreground/80 leading-relaxed">
                   {r.limit}
                 </p>
               </div>

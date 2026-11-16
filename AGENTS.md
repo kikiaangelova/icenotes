@@ -1,0 +1,1 @@
+Use the existing Sheet component for public mobile navigation so focus management, Escape dismissal, and scroll locking stay consistent with other dialogs.
