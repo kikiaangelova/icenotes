@@ -6,9 +6,11 @@ import { cn } from '@/lib/utils';
 import { supabase } from '@/integrations/supabase/client';
 import { useLanguage } from '@/context/LanguageContext';
 import { VoiceButton } from './VoiceInput';
+import { AISafetyCard } from './AISafetyCard';
+import { detectMessageLanguage } from '../../supabase/functions/skating-coach/message-policy';
 
 export type AIRole = 'coach' | 'psych';
-type Msg = { role: 'user' | 'assistant'; content: string };
+type Msg = { role: 'user' | 'assistant'; content: string; safety?: boolean };
 
 const ROLE_META: Record<AIRole, {
   nameKey: string; tagKey: string; disclaimerKey: string; greetingKey: string; placeholderKey: string;
@@ -66,14 +68,15 @@ export const SkatingAssistant: React.FC = () => {
     setLoadingRole(targetRole);
 
     let soFar = '';
+    let safety = false;
     const upsert = (chunk: string) => {
       soFar += chunk;
       setThreads((prev) => {
         const cur = prev[targetRole];
         const last = cur[cur.length - 1];
         const updated = last?.role === 'assistant'
-          ? cur.map((m, i) => (i === cur.length - 1 ? { ...m, content: soFar } : m))
-          : [...cur, { role: 'assistant' as const, content: soFar }];
+          ? cur.map((m, i) => (i === cur.length - 1 ? { ...m, content: soFar, safety } : m))
+          : [...cur, { role: 'assistant' as const, content: soFar, safety }];
         return { ...prev, [targetRole]: updated };
       });
     };
@@ -90,7 +93,7 @@ export const SkatingAssistant: React.FC = () => {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${session.access_token}`,
         },
-        body: JSON.stringify({ messages: next, language, role: targetRole }),
+        body: JSON.stringify({ messages: next.map(({ role, content }) => ({ role, content })), language, messageLanguage: detectMessageLanguage(text), role: targetRole }),
       });
 
       if (resp.status === 401) { upsert(t('ai.err.session')); return; }
@@ -116,6 +119,7 @@ export const SkatingAssistant: React.FC = () => {
           if (json === '[DONE]') { done = true; break; }
           try {
             const parsed = JSON.parse(json);
+            if (parsed.safety) safety = true;
             const c = parsed.choices?.[0]?.delta?.content;
             if (c) upsert(c);
           } catch {
@@ -138,7 +142,8 @@ export const SkatingAssistant: React.FC = () => {
       const target: AIRole = detail?.role === 'coach' ? 'coach' : detail?.role === 'psych' ? 'psych' : 'psych';
       setRole(target);
       setOpen(true);
-      if (detail?.message) setTimeout(() => send(target, detail.message!, { reset: true }), 150);
+      const message = detail?.message;
+      if (message) setTimeout(() => send(target, message, { reset: true }), 150);
     };
     window.addEventListener('ai-assistant:open', handler as EventListener);
     // Legacy event name kept so existing entry points keep working.
@@ -208,7 +213,9 @@ export const SkatingAssistant: React.FC = () => {
           )}
 
           {messages.map((m, i) => (
-            <div key={i} className={cn('flex', m.role === 'user' ? 'justify-end' : 'justify-start')}>
+            <div key={i} className="space-y-3">
+              {m.role === 'assistant' && m.safety && <AISafetyCard />}
+            <div className={cn('flex', m.role === 'user' ? 'justify-end' : 'justify-start')}>
               <div
                 className={cn(
                   'max-w-[88%] rounded-lg px-4 py-3 text-sm leading-relaxed whitespace-pre-wrap',
@@ -219,6 +226,7 @@ export const SkatingAssistant: React.FC = () => {
               >
                 {m.content || <Loader2 className="w-4 h-4 animate-spin" />}
               </div>
+            </div>
             </div>
           ))}
 

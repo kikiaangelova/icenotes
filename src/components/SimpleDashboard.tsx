@@ -58,7 +58,7 @@ type SubView = 'home' | 'prep' | 'psych' | 'library';
 export const SimpleDashboard: React.FC = () => {
   const { profile, setProfile, getTodaysSessions, entries, trainingSessions } = useJournal();
   const { signOut, user } = useAuth();
-  const { language, t } = useLanguage();
+  const { language, setLanguage, t } = useLanguage();
   const { isAdmin } = useIsAdmin();
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
@@ -201,6 +201,17 @@ export const SimpleDashboard: React.FC = () => {
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="w-56 rounded-lg">
               <div className="px-3 py-2 text-xs text-muted-foreground">{user?.email}</div>
+              <DropdownMenuSeparator />
+              <div className="px-3 py-2">
+                <p className="mb-2 text-xs text-muted-foreground">{t('profile.language')}</p>
+                <div className="flex gap-2" role="group" aria-label={t('profile.language')}>
+                  {(['en', 'bg'] as const).map(code => (
+                    <Button key={code} type="button" variant={language === code ? 'default' : 'outline'} className="h-11 flex-1" aria-pressed={language === code} onClick={() => setLanguage(code)}>
+                      {code.toUpperCase()}
+                    </Button>
+                  ))}
+                </div>
+              </div>
               <DropdownMenuSeparator />
               <DropdownMenuItem onClick={() => setShowReminderSettings(true)}>
                 <Bell className="w-4 h-4 mr-2" />
