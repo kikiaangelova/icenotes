@@ -93,7 +93,7 @@ export const PHASEB_DICT: Record<string, PhaseBEntry> = {
   'cp.week.i3':    { en: 'Competition day logistics and timing are confirmed', bg: 'Логистиката и часовете за деня на старта са уточнени' },
   'cp.week.i4':    { en: 'Keep familiar routines instead of adding something new', bg: 'Следвай познатите рутини, без да добавяш нещо ново' },
   'cp.week.i5':    { en: 'Note what you want to ask your coach', bg: 'Запиши какво искаш да питаш треньора си' },
-  'cp.week.ai':    { en: 'Organize priorities with AI Coach', bg: 'Подреди приоритетите с AI Coach' },
+  'cp.week.ai':    { en: 'Organize priorities with AI Coach', bg: 'Подреди приоритетите с AI помощника за плана' },
   'cp.week.aiMsg': { en: 'I have a competition coming up. Help me organize my priorities around the plan I already have with my coach.', bg: 'Скоро имам старт. Помогни ми да подредя приоритетите около плана, който вече имам с треньора.' },
 
   'cp.eve.head':   { en: 'Tomorrow: routine, logistics, focus', bg: 'Утре: рутина, логистика, фокус' },

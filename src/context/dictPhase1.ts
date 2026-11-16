@@ -23,10 +23,10 @@ export const PHASE1_DICT: Record<string, Phase1Entry> = {
   'today.core.review':   { en: 'Weekly review', bg: 'Преглед на седмицата' },
   'today.core.comp':     { en: 'Competition prep', bg: 'Подготовка за старт' },
   'today.support.label': { en: 'AI support', bg: 'AI подкрепа' },
-  'today.support.sub':   { en: 'AI Coach · Sport Psychology', bg: 'AI Coach · Спортна психология' },
+  'today.support.sub':   { en: 'AI Coach · Sport Psychology', bg: 'AI помощник за плана · Спортна психология' },
 
   // ── The two AI roles ──
-  'ai.coach.name':  { en: 'AI Coach', bg: 'AI Coach' },
+  'ai.coach.name':  { en: 'AI Coach', bg: 'AI помощник за плана' },
   'ai.coach.tag':   { en: 'Planning · goals · next step', bg: 'План · цели · следваща стъпка' },
   'ai.coach.desc':  {
     en: 'Organize priorities and next actions around the plan you already have with your coach.',
