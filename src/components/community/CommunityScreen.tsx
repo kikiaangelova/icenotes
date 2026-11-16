@@ -61,8 +61,6 @@ export const CommunityScreen: React.FC<{ onOpenSupport: () => void }> = ({ onOpe
 
 const JoinFlow: React.FC<{ bg: boolean; existing: Member | null; onDone: () => void }> = ({ bg, existing, onDone }) => {
   const { user } = useAuth();
-  const { profile } = { profile: null as null };
-  void profile;
   const [role, setRole] = useState<'skater' | 'parent' | null>((existing?.role as 'skater' | 'parent') ?? null);
   const [age, setAge] = useState(existing ? String(existing.age) : '');
   const [nickname, setNickname] = useState(existing?.nickname ?? '');
@@ -286,7 +284,7 @@ const SkaterSpace: React.FC<{ bg: boolean; member: Member; onOpenSupport: () => 
         {posts === null ? <Loader2 className="mx-auto h-6 w-6 animate-spin text-muted-foreground" /> : posts.length === 0 ? (
           <div className="rink-card px-6 py-8 text-center text-[15px] font-semibold text-foreground">{bg ? 'Още няма публикации тук. Сподели първата си победа.' : 'No posts here yet. Share your first win.'}</div>
         ) : posts.map(p => (
-          <article key={p.id} className={cn('rink-card space-y-3 p-5', p.kind === 'win' && 'border-l-4 border-[hsl(var(--rink-coral,14_100%_67%))]')}>
+          <article key={p.id} className={cn('rink-card space-y-3 p-5', p.kind === 'win' && 'border-l-4 border-[hsl(var(--coral))]')}>
             <div className="flex items-center gap-3">
               <AvatarBadge k={p.avatar_key} />
               <div className="min-w-0 flex-1">
@@ -296,13 +294,13 @@ const SkaterSpace: React.FC<{ bg: boolean; member: Member; onOpenSupport: () => 
               {!p.mine && <button type="button" onClick={() => report({ post_id: p.id })} aria-label={bg ? 'Сигнализирай' : 'Report'} className="flex h-11 w-11 items-center justify-center rounded-full text-muted-foreground hover:bg-secondary"><Flag className="h-4 w-4" /></button>}
             </div>
             {p.status === 'pending' && <p className="rounded-xl bg-secondary px-3 py-2 text-[13px] font-semibold text-foreground">{bg ? 'Чака преглед. Виждаш я само ти.' : 'Waiting for review. Only you can see it.'}</p>}
-            {p.kind === 'win' && p.template_key && <p className="flex items-center gap-2 text-[17px] font-extrabold text-foreground"><Trophy className="h-5 w-5 text-[hsl(var(--rink-coral,14_100%_67%))]" />{bg ? TEMPLATES[p.template_key].bg : TEMPLATES[p.template_key].en}</p>}
+            {p.kind === 'win' && p.template_key && <p className="flex items-center gap-2 text-[17px] font-extrabold text-foreground"><Trophy className="h-5 w-5 text-[hsl(var(--coral))]" />{bg ? TEMPLATES[p.template_key].bg : TEMPLATES[p.template_key].en}</p>}
             {p.body && <p className="whitespace-pre-wrap break-words text-[15px] text-foreground">{p.body}</p>}
             {p.status === 'published' && <>
               <div className="flex flex-wrap gap-2">
                 {REACTIONS.map(k => { const Icon = REACTION_ICON[k]; const on = p.my_reactions.includes(k); return (
                   <button key={k} type="button" aria-pressed={on} aria-label={bg ? REACTION_LABEL[k].bg : REACTION_LABEL[k].en} onClick={() => react(p, k)}
-                    className={cn('flex min-h-11 items-center gap-1.5 rounded-full px-3 text-[14px] font-bold transition-colors', on ? 'bg-[hsl(var(--rink-coral,14_100%_67%)/0.15)] text-[hsl(var(--rink-coral-ink,14_80%_40%))]' : 'bg-secondary text-foreground')}>
+                    className={cn('flex min-h-11 items-center gap-1.5 rounded-full px-3 text-[14px] font-bold transition-colors', on ? 'bg-[hsl(var(--coral)/0.18)] text-foreground [&>svg]:text-[hsl(var(--coral))]' : 'bg-secondary text-foreground')}>
                     <Icon className="h-5 w-5" />{p.reactions[k] ?? ''}
                   </button>); })}
               </div>
