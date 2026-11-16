@@ -12,13 +12,16 @@ interface AvatarUploadProps {
   name: string;
   onAvatarChange: (url: string) => void;
   size?: 'sm' | 'md' | 'lg';
+  /** Show the camera button. Off for small header avatars that open the profile instead. */
+  editable?: boolean;
 }
 
 export const AvatarUpload: React.FC<AvatarUploadProps> = ({ 
   avatarUrl, 
   name, 
   onAvatarChange,
-  size = 'md'
+  size = 'md',
+  editable = true
 }) => {
   const { user } = useAuth();
   const { t } = useLanguage();
