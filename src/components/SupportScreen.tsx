@@ -49,15 +49,15 @@ export const SupportScreen: React.FC<SupportScreenProps> = ({ onOpenExercises, o
         <p className="app-page-subtitle">{t('a.sp.sub')}</p>
       </header>
 
-      <div className="grid border-y border-border md:grid-cols-2 md:divide-x md:divide-border">
+      <div className="grid gap-4 md:grid-cols-2">
       {roles.map(({ role, Icon, name, tag, desc, open, starters }) => (
-        <section key={role} className="space-y-4 border-b border-border py-6 last:border-b-0 md:border-b-0 md:px-7 md:first:pl-0 md:last:pr-0">
+        <section key={role} className={`${role === 'psych' ? 'tone-psych' : 'tone-coach'} tone-card space-y-4 p-5`}>
           <div className="space-y-1.5">
             <div className="flex items-center gap-2.5">
-              <Icon className="w-[18px] h-[18px] text-primary" />
+              <span className="tone-tile flex h-9 w-9 items-center justify-center rounded-xl"><Icon className="w-[18px] h-[18px]" /></span>
               <h2 className="text-base font-bold text-foreground">{name}</h2>
             </div>
-            <p className="text-xs font-semibold text-accent">{tag}</p>
+            <p className="tone-text text-[13px] font-semibold">{tag}</p>
             <p className="text-sm text-muted-foreground leading-relaxed">{desc}</p>
           </div>
 
@@ -88,7 +88,7 @@ export const SupportScreen: React.FC<SupportScreenProps> = ({ onOpenExercises, o
 
           <button
             onClick={() => openAI(role)}
-             className="min-h-[52px] w-full rounded-sm bg-primary text-sm font-semibold text-primary-foreground hover:bg-primary/92"
+             className="tone-btn min-h-[52px] w-full rounded-xl text-sm font-semibold"
           >
             {open}
           </button>
