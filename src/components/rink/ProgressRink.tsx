@@ -71,7 +71,7 @@ export const ProgressRink: React.FC<{ onLogTraining: () => void }> = ({ onLogTra
               <ResponsiveContainer width="100%" height="100%">
                 <LineChart data={confidence} margin={{ top: 8, right: 8, bottom: 0, left: -24 }}>
                   <XAxis dataKey="label" tick={{ fontSize: 12, fill: 'hsl(var(--muted-foreground))' }} tickLine={false} axisLine={false} interval={1} />
-                  <YAxis domain={[1, 10]} ticks={[1, 5, 10]} tick={{ fontSize: 12, fill: 'hsl(var(--muted-foreground))' }} tickLine={false} axisLine={false} />
+                  <YAxis domain={[1, 10]} ticks={[5, 10]} tick={{ fontSize: 12, fill: 'hsl(var(--muted-foreground))' }} tickLine={false} axisLine={false} />
                   <Tooltip contentStyle={{ borderRadius: 12, border: 'none', boxShadow: 'var(--rink-shadow)' }} />
                   <Line type="monotone" dataKey="confidence" name={bg ? 'Увереност (1 до 10)' : 'Confidence (1 to 10)'} stroke="hsl(var(--primary))" strokeWidth={3} dot={{ r: 4 }} connectNulls />
                 </LineChart>
