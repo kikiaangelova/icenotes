@@ -107,7 +107,7 @@ export const PHASEA_DICT: Record<string, { en: string; bg: string }> = {
   'a.sp.psych.s2': { en: 'A hard session is still on my mind', bg: 'Още мисля за трудната тренировка' },
   'a.sp.psych.s3': { en: 'I lose focus in the program', bg: 'Губя фокус в програмата' },
   'a.sp.tools': { en: 'Without AI', bg: 'Без AI' },
-  'a.sp.psychTools': { en: 'Sport psychology exercises', bg: 'Упражнения' },
+  'a.sp.psychTools': { en: 'Exercises', bg: 'Упражнения' },
   'a.sp.psychToolsSub': { en: 'Short, practical, no chat', bg: 'Кратки, практични, без чат' },
 
   // ── Section labels for reused surfaces ──

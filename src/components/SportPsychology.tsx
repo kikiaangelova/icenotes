@@ -236,7 +236,7 @@ export const SportPsychology: React.FC = () => {
       <div>
         <h2 className="app-page-title flex items-center gap-2">
           <Brain className="w-5 h-5 text-accent" />
-          {L('Sport Psychology', 'Спортна психология')}
+          {L('Exercises', 'Упражнения')}
         </h2>
           <p className="text-sm text-muted-foreground">{L('Practical exercises for pressure, attention, and confidence', 'Практични упражнения за напрежение, внимание и увереност')}</p>
       </div>
