@@ -23,6 +23,7 @@ import Privacy from "./pages/Privacy";
 import Feedback from "./pages/Feedback";
 import NotFound from "./pages/NotFound";
 import { Loader2 } from "lucide-react";
+import { OfflineBanner } from '@/components/PhoneAppSupport';
 
 const queryClient = new QueryClient();
 
@@ -130,6 +131,7 @@ const App = () => {
           <Toaster />
           <Sonner />
           <BrowserRouter>
+            <OfflineBanner />
             <AppRoutes />
             <SkatingAssistant />
           </BrowserRouter>

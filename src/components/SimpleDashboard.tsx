@@ -23,6 +23,7 @@ import { ReflectionSheet } from './ReflectionSheet';
 import { SupportScreen } from './SupportScreen';
 import { MobileBottomNav, type BottomTab } from './MobileBottomNav';
 import { ProfileSheet } from './ProfileSheet';
+import { InstallAppCard } from './PhoneAppSupport';
 import { useIsAdmin } from '@/hooks/useIsAdmin';
 import { GameDayMode } from '@/components/GameDayMode';
 import { GuidedTour } from '@/components/GuidedTour';
@@ -304,6 +305,7 @@ export const SimpleDashboard: React.FC = () => {
       {header}
 
       <main className="app-workspace mx-auto w-full max-w-4xl px-4 pb-28 pt-8 sm:px-8 sm:pt-12">
+        <InstallAppCard />
         {currentView === 'home' ? renderTab() : renderSubView()}
       </main>
 
