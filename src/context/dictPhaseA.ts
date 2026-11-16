@@ -72,7 +72,7 @@ export const PHASEA_DICT: Record<string, { en: string; bg: string }> = {
   'a.el.Spins practice': { en: 'Spins', bg: 'Пируети' },
   'a.el.Jump technique': { en: 'Jumps', bg: 'Скокове' },
   'a.el.Program run-through': { en: 'Program run-through', bg: 'Програма' },
-  'a.el.Footwork sequences': { en: 'Step sequences', bg: 'Стъпкови серии' },
+  'a.el.Footwork sequences': { en: 'Step sequences', bg: 'Стъпки' },
   'a.el.Choreography': { en: 'Choreography', bg: 'Хореография' },
   'a.el.Warm-up & stretching': { en: 'Warm-up & stretching', bg: 'Загрявка и разтягане' },
   'a.el.Core strengthening': { en: 'Core', bg: 'Коремна преса и стабилност' },

@@ -562,7 +562,7 @@ const dict: Dict = {
 
   'jump.toe-loop': { en: 'Toe Loop', bg: 'Тулуп' },
   'jump.salchow': { en: 'Salchow', bg: 'Салхов' },
-  'jump.loop': { en: 'Loop', bg: 'Луп' },
+  'jump.loop': { en: 'Loop', bg: 'Ритбергер' },
   'jump.flip': { en: 'Flip', bg: 'Флип' },
   'jump.lutz': { en: 'Lutz', bg: 'Лутц' },
   'jump.axel': { en: 'Axel', bg: 'Аксел' },
