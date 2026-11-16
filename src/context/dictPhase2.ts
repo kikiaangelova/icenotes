@@ -12,6 +12,10 @@ export const PHASE2_DICT: Record<string, { en: string; bg: string }> = {
   },
 
   // ── Onboarding ──
+  'ob.welcome.title': { en: 'You are in, {name}!', bg: 'Готово, {name}!' },
+  'ob.welcome.sub': { en: 'Your space is ready. Start with today, one session at a time.', bg: 'Мястото ти е готово. Започни от днешния ден, тренировка по тренировка.' },
+  'ob.welcome.chip': { en: 'All set', bg: 'Всичко е готово' },
+  'ob.welcome.enter': { en: 'Let’s go', bg: 'Влизам' },
   'ob.step': { en: 'Step', bg: 'Стъпка' },
   'ob.of': { en: 'of', bg: 'от' },
   'ob.skip': { en: 'Skip', bg: 'Пропусни' },

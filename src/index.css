@@ -1206,3 +1206,20 @@
 .authenticated-app .tone-card { background: linear-gradient(180deg, hsl(var(--tone) / 0.08), hsl(var(--card)) 60%); border-radius: 16px; box-shadow: var(--rink-shadow); }
 .authenticated-app .tone-btn { background: hsl(var(--tone)); color: hsl(0 0% 100%); }
 .authenticated-app .tone-btn:hover { filter: brightness(1.06); }
+
+/* Step 2: onboarding steps and small moments of joy. */
+.authenticated-app .ob-dot { display:flex; height:28px; width:28px; flex-shrink:0; align-items:center; justify-content:center; border-radius:9999px; background:hsl(var(--secondary)); color:hsl(var(--muted-foreground)); font-size:13px; font-weight:700; transition: background-color .3s ease, transform .3s ease; }
+.authenticated-app .ob-dot-on { background:hsl(var(--accent)); color:hsl(var(--accent-foreground)); transform:scale(1.12); box-shadow:0 0 0 4px hsl(var(--accent) / 0.2); }
+.authenticated-app .ob-dot-done { background:hsl(var(--primary)); color:hsl(var(--primary-foreground)); }
+.authenticated-app .ob-line { height:3px; flex:1; border-radius:9999px; background:hsl(var(--secondary)); transition: background-color .4s ease; }
+.authenticated-app .ob-line-done { background:hsl(var(--primary)); }
+.authenticated-app .ob-step { animation: ob-in .35s ease-out both; }
+@keyframes ob-in { from { opacity:0; transform: translateX(18px); } to { opacity:1; transform:none; } }
+.authenticated-app .ob-welcome-badge { display:flex; height:88px; width:88px; align-items:center; justify-content:center; border-radius:28px; background: var(--rink-gradient); color:hsl(var(--primary-foreground)); animation: ob-pop .6s cubic-bezier(.2,1.4,.4,1) both; box-shadow: 0 16px 32px -14px hsl(12 90% 50% / .6); }
+@keyframes ob-pop { from { transform: scale(.4) rotate(-12deg); opacity:0; } to { transform:none; opacity:1; } }
+.authenticated-app .rink-pop { animation: ob-pop .5s cubic-bezier(.2,1.4,.4,1) both; }
+.rink-celebrate { border-left: 4px solid hsl(12 90% 62%) !important; animation: ob-pop .45s cubic-bezier(.2,1.4,.4,1) both; }
+@media (prefers-reduced-motion: reduce) {
+  .authenticated-app .ob-step, .authenticated-app .ob-welcome-badge, .authenticated-app .rink-pop, .rink-celebrate { animation: none; }
+  .authenticated-app .ob-dot, .authenticated-app .ob-line { transition: none; }
+}

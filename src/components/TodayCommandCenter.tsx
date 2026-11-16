@@ -2,7 +2,7 @@ import React from 'react';
 import { ArrowRight, Trophy, CalendarDays, Wind, MessageCircle, Users, Target, Timer, Flag, Check, Sparkles } from 'lucide-react';
 import { addDays, isSameDay, startOfWeek } from 'date-fns';
 import { useJournal } from '@/context/JournalContext';
-import { weekStreak } from '@/lib/rinkStats';
+import { weekStreak, dayStreak } from '@/lib/rinkStats';
 import { getWeekSummary } from '@/lib/weekData';
 
 /** Skate boot icon in the same 2px Lucide line style. */
@@ -68,6 +68,7 @@ export const TodayCommandCenter: React.FC<Props> = ({
   const bg = language === 'bg';
   const { trainingSessions, entries, goals, profile } = useJournal();
   const streak = weekStreak(trainingSessions);
+  const days = dayStreak(trainingSessions.map((x) => ({ date: new Date(x.date) }))).current;
   const now = new Date();
   const dateLabel = now.toLocaleDateString(bg ? 'bg-BG' : 'en-GB', { weekday: 'long', day: 'numeric', month: 'long' });
   // Focus progress: steps done on the matching weekly goal, else sessions toward 3 this week.
@@ -120,12 +121,18 @@ export const TodayCommandCenter: React.FC<Props> = ({
           <h1 className="app-page-title">{greeting}</h1>
           <p className="mt-1 rink-date text-[15px] font-medium text-muted-foreground">{dateLabel}</p>
         </div>
-        <div className="rink-card flex shrink-0 items-center gap-2 px-3 py-2" aria-label={bg ? `Серия: ${streak} седмици с поне 3 тренировки` : `Streak: ${streak} weeks with at least 3 sessions`}>
+        <div className="flex shrink-0 flex-col gap-2">
+        <div className="rink-card tone-coral flex items-center gap-2 px-3 py-2" aria-label={bg ? `${days} дни подред с тренировка` : `${days} days in a row`}>
+          <span className={`tone-tile flex h-7 w-7 items-center justify-center rounded-lg text-[15px] font-extrabold ${days > 0 ? 'rink-pop' : ''}`} aria-hidden="true">{days}</span>
+          <span className="block text-[11px] font-semibold leading-tight text-muted-foreground">{bg ? 'дни\nподред' : 'days\nin a row'}</span>
+        </div>
+        <div className="rink-card flex items-center gap-2 px-3 py-2" aria-label={bg ? `Серия: ${streak} седмици с поне 3 тренировки` : `Streak: ${streak} weeks with at least 3 sessions`}>
           <SkateIcon className="h-6 w-6 text-accent-ink" />
           <span className="text-left leading-tight">
             <span className="block text-[20px] font-extrabold tabular-nums text-foreground">{streak}</span>
             <span className="block text-[11px] font-semibold text-muted-foreground">{bg ? 'седм. подред' : 'weeks in a row'}</span>
           </span>
+        </div>
         </div>
       </header>
 

@@ -7,7 +7,7 @@ import { useUpdateProfile } from '@/hooks/useSupabaseData';
 import { useAuth } from '@/context/AuthContext';
 import { useLanguage } from '@/context/LanguageContext';
 import { SkaterProfile } from '@/types/journal';
-import { ArrowRight, ArrowLeft, Loader2 } from 'lucide-react';
+import { ArrowRight, ArrowLeft, Loader2, Check, Sparkles } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useToast } from '@/hooks/use-toast';
 
@@ -129,19 +129,30 @@ export const OnboardingFlow: React.FC = () => {
         <div className="mb-8">
           <div className="mb-3 flex items-center justify-between text-xs text-muted-foreground">
             <span>
-              {t('ob.step')} {step} {t('ob.of')} {TOTAL}
+              {step <= TOTAL ? `${t('ob.step')} ${step} ${t('ob.of')} ${TOTAL}` : t('ob.welcome.chip')}
             </span>
             <span className="font-semibold text-foreground">SkateGoals</span>
           </div>
-          <div className="h-1 w-full bg-muted overflow-hidden">
-            <div
-              className="h-full bg-primary transition-all duration-300"
-              style={{ width: `${(step / TOTAL) * 100}%` }}
-            />
-          </div>
+          <ol className="flex items-center gap-2" aria-label={`${t('ob.step')} ${Math.min(step, TOTAL)} ${t('ob.of')} ${TOTAL}`}>
+            {Array.from({ length: TOTAL + 1 }, (_, i) => i + 1).map((n) => (
+              <li key={n} className="flex flex-1 items-center gap-2">
+                <span className={cn('ob-dot', n < step && 'ob-dot-done', n === step && 'ob-dot-on')}>
+                  {n < step ? <Check className="h-3.5 w-3.5" /> : n === TOTAL + 1 ? <Sparkles className="h-3.5 w-3.5" /> : n}
+                </span>
+                {n <= TOTAL && <span className={cn('ob-line', n < step && 'ob-line-done')} />}
+              </li>
+            ))}
+          </ol>
         </div>
 
-        <div className="flex-1 space-y-7 animate-fade-in" key={step}>
+        <div className="ob-step flex-1 space-y-7" key={step}>
+          {step === TOTAL + 1 && (
+            <div className="flex flex-col items-center py-10 text-center">
+              <span className="ob-welcome-badge"><Sparkles className="h-9 w-9" /></span>
+              <h1 className="app-page-title mt-6">{t('ob.welcome.title').replace('{name}', form.name.trim().split(' ')[0])}</h1>
+              <p className="mt-3 max-w-sm text-base text-muted-foreground">{t('ob.welcome.sub')}</p>
+            </div>
+          )}
           {step === 1 && (
             <>
               <header className="space-y-2">
@@ -344,7 +355,7 @@ export const OnboardingFlow: React.FC = () => {
               {t('ob.back')}
             </Button>
           )}
-          {step < TOTAL ? (
+          {step <= TOTAL ? (
             <Button
               className="flex-1 h-12 text-base"
               disabled={!canProceed()}
@@ -361,7 +372,7 @@ export const OnboardingFlow: React.FC = () => {
                   {t('ob.saving')}
                 </>
               ) : (
-                t('ob.finish')
+                t('ob.welcome.enter')
               )}
             </Button>
           )}
