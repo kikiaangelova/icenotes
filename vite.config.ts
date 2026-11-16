@@ -25,7 +25,7 @@ export default defineConfig(({ mode }) => ({
       navigateFallback: null,
       runtimeCaching: [
         {
-          urlPattern: ({ request, url }) => request.mode === 'navigate' && url.origin === self.location.origin &&
+          urlPattern: ({ request, url, sameOrigin }) => request.mode === 'navigate' && sameOrigin &&
             !/^\/(?:~oauth|auth|api|functions|rest|storage)(?:\/|$)/.test(url.pathname),
           handler: 'NetworkFirst',
           options: {
@@ -37,7 +37,7 @@ export default defineConfig(({ mode }) => ({
           },
         },
         {
-          urlPattern: ({ url }) => url.origin === self.location.origin && /^\/assets\/[^/]+-[\w-]+\.(?:js|css|woff2?|png|jpe?g|svg)$/.test(url.pathname),
+          urlPattern: ({ url, sameOrigin }) => sameOrigin && /^\/assets\/[^/]+-[\w-]+\.(?:js|css|woff2?|png|jpe?g|svg)$/.test(url.pathname),
           handler: 'CacheFirst',
           options: { cacheName: 'skategoals-static', cacheableResponse: { statuses: [200] } },
         },
