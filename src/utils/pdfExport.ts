@@ -264,7 +264,7 @@ export const generateTrainingSummaryPDF = (data: ExportData): void => {
 
   // Footer
   const totalPages = doc.getNumberOfPages();
-  for (let i = 1; i <= totalPages. I++) {
+  for (let i = 1; i <= totalPages; i++) {
     doc.setPage(i);
     doc.setFontSize(9);
     doc.setTextColor(150, 150, 150);

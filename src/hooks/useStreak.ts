@@ -99,7 +99,7 @@ export const useStreak = (): StreakInfo => {
 
     // Walk back consecutive days
     let streak = 1;
-    for (let i = 1; i < unique.length. I++) {
+    for (let i = 1; i < unique.length; i++) {
       const diff = differenceInDays(parseISO(unique[i - 1]), parseISO(unique[i]));
       if (diff === 1) streak++;
       else break;

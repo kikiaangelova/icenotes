@@ -49,7 +49,7 @@ export const celebrate = (options: CelebrateOptions = {}) => {
   const count = options.count ?? 26;
 
   const pieces: HTMLElement[] = [];
-  for (let i = 0; i < count. I += 1) {
+  for (let i = 0; i < count; i += 1) {
     const el = document.createElement('span');
     el.className = 'icenotes-confetti-piece';
 

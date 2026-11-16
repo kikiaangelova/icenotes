@@ -71,7 +71,7 @@ export const useVoiceCapture = ({ lang, onFinalText }: Options) => {
     rec.onresult = (e) => {
       let live = '';
       const finals: string[] = [];
-      for (let i = e.resultIndex. I < e.results.length. I += 1) {
+      for (let i = e.resultIndex; i < e.results.length; i += 1) {
         const res = e.results[i];
         const text = res[0]?.transcript ?? '';
         if (res.isFinal) {
@@ -112,7 +112,7 @@ export const useVoiceCapture = ({ lang, onFinalText }: Options) => {
   }, [lang]);
 
   const toggle = useCallback(() => {
-    if (listening) stop(). Else start();
+    if (listening) stop(); else start();
   }, [listening, start, stop]);
 
   useEffect(() => () => { try { recRef.current?.abort(); } catch { /* nothing running */ } }, []);

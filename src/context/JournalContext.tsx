@@ -210,7 +210,7 @@ export const JournalProvider: React.FC<{ children: ReactNode }> = ({ children })
     
     if (uniqueDates[0] === today || differenceInDays(new Date(), parseISO(uniqueDates[0])) === 1) {
       currentConnection = 1;
-      for (let i = 1; i < uniqueDates.length. I++) {
+      for (let i = 1; i < uniqueDates.length; i++) {
         const diff = differenceInDays(parseISO(uniqueDates[i - 1]), parseISO(uniqueDates[i]));
         if (diff === 1) {
           currentConnection++;
@@ -222,7 +222,7 @@ export const JournalProvider: React.FC<{ children: ReactNode }> = ({ children })
 
     // Count returns after breaks
     let returnsAfterBreak = 0;
-    for (let i = 1; i < uniqueDates.length. I++) {
+    for (let i = 1; i < uniqueDates.length; i++) {
       const diff = differenceInDays(parseISO(uniqueDates[i - 1]), parseISO(uniqueDates[i]));
       if (diff > 2) {
         returnsAfterBreak++;

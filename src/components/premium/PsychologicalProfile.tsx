@@ -91,7 +91,7 @@ export const PsychologicalProfile: React.FC = () => {
     }
     // Returns after a 3+ day break
     let returns = 0;
-    for (let i = 1; i < sorted.length. I++) {
+    for (let i = 1; i < sorted.length; i++) {
       if (differenceInCalendarDays(sorted[i].date, sorted[i - 1].date) >= 3) returns++;
     }
     const resilienceBase = hardDays > 0 ? (comebacks / hardDays) * 100 : 60;
