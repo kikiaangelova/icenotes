@@ -1,10 +1,10 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { Loader2, UserCheck } from 'lucide-react';
-import { supabase } from '@/integrations/supabase/client';
 import { useAuth } from '@/context/AuthContext';
 import { useLanguage } from '@/context/LanguageContext';
 import { Seo } from '@/components/Seo';
+import { invokeFn } from '@/lib/invokeFn';
 import { JoinFlow } from '@/components/community/CommunityScreen';
 
 export const PENDING_PARENT_TOKEN = 'sg:parentToken';
@@ -29,7 +29,7 @@ const ParentConfirm: React.FC = () => {
 
   const confirm = useCallback(async () => {
     setState('working');
-    const { data } = await supabase.functions.invoke('parent-link', { body: { action: 'confirm', token } });
+    const data = await invokeFn<{ status?: string; error?: string }>('parent-link', { action: 'confirm', token });
     if (data?.status === 'confirmed') { localStorage.removeItem(PENDING_PARENT_TOKEN); setState('done'); return; }
     const code = data?.error ?? 'invalid_token';
     if (code === 'need_parent_profile') { setState('profile'); return; }
@@ -68,6 +68,7 @@ const ParentConfirm: React.FC = () => {
   if (state === 'done') return card(bg ? 'Свързани сте' : 'You are linked',
     bg ? 'Ще виждаш само това, което детето реши да сподели. Разговорите с AI асистента, записите и бележките от тренировките остават лични.' : 'You will only see what your child chooses to share. AI conversations, training entries and notes stay private.',
     <button type="button" onClick={() => navigate('/dashboard')} className="rink-cta flex min-h-12 w-full items-center justify-center gap-2 rounded-2xl text-[15px] font-bold"><UserCheck className="h-5 w-5" />{bg ? 'Към пространството за родители' : 'Go to the parent space'}</button>);
-  return card(bg ? 'Не успяхме да потвърдим' : 'We could not confirm', (ERRORS[state] ?? ERRORS.invalid_token)[bg ? 'bg' : 'en']);
+  return card(bg ? 'Не успяхме да потвърдим' : 'We could not confirm', (ERRORS[state] ?? ERRORS.invalid_token)[bg ? 'bg' : 'en'],
+    <Link to="/dashboard" className="flex min-h-12 items-center justify-center rounded-2xl bg-secondary text-[15px] font-bold">{bg ? 'Към приложението' : 'Go to the app'}</Link>);
 };
 export default ParentConfirm;

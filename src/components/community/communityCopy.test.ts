@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { canJoinSkaterSpace, PHRASES, REACTIONS } from './communityCopy';
+import { canJoinSkaterSpace, PHRASES, REACTIONS, SHAREABLE } from './communityCopy';
 
 describe('community access rules', () => {
   it('skaters under 14 cannot join the skater space yet', () => {
@@ -14,5 +14,8 @@ describe('community access rules', () => {
   it('comments are limited to the four ready phrases and reactions to four icons', () => {
     expect(Object.keys(PHRASES)).toEqual(['bravo', 'me_too', 'you_can', 'share_how']);
     expect([...REACTIONS]).toEqual(['skate', 'fire', 'clap', 'heart']);
+  });
+  it('a parent can only ever be shown streak, elements and completed goals', () => {
+    expect([...SHAREABLE]).toEqual(['share_streak', 'share_elements', 'share_goals']);
   });
 });

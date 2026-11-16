@@ -5,6 +5,7 @@ import { useAuth } from '@/context/AuthContext';
 import { useLanguage } from '@/context/LanguageContext';
 import { useToast } from '@/hooks/use-toast';
 import { Switch } from '@/components/ui/switch';
+import { invokeFn } from '@/lib/invokeFn';
 
 type Link = { id: string; parent_email: string; status: string };
 type Share = { share_streak: boolean; share_elements: boolean; share_goals: boolean };
@@ -36,9 +37,9 @@ export const ParentLinkCard: React.FC<{ bg: boolean; underAge?: boolean; onChang
 
   const invite = async () => {
     setSending(true);
-    const { data, error } = await supabase.functions.invoke('parent-link', { body: { action: 'request', email, locale: language } });
+    const data = await invokeFn<{ status?: string; error?: string }>('parent-link', { action: 'request', email, locale: language });
     setSending(false);
-    if (error || data?.status !== 'sent') {
+    if (data?.status !== 'sent') {
       const code = data?.error;
       toast({ variant: 'destructive', title: code === 'rate_limited' ? (bg ? 'Твърде много покани днес. Опитай утре.' : 'Too many invites today. Try tomorrow.') : code === 'own_email' ? (bg ? 'Това е твоят имейл. Напиши имейла на родителя.' : 'That is your email. Enter your parent\'s email.') : (bg ? 'Не успяхме да изпратим поканата.' : 'Could not send the invite.') });
       return;
