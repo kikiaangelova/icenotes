@@ -9,8 +9,8 @@ class ObserverStub {
     return [];
   }
 }
-globalThis.ResizeObserver = globalThis.ResizeObserver || ObserverStub;
-globalThis.IntersectionObserver = globalThis.IntersectionObserver || ObserverStub;
+globalThis.ResizeObserver = (globalThis.ResizeObserver || ObserverStub) as unknown as typeof ResizeObserver;
+globalThis.IntersectionObserver = (globalThis.IntersectionObserver || ObserverStub) as unknown as typeof IntersectionObserver;
 
 // Radix popups use pointer capture and scrollIntoView, both missing from jsdom.
 const elementProto = Element.prototype as Element & {
