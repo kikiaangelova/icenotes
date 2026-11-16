@@ -18,3 +18,4 @@
 - [x] Enable and verify owner-only pilot signup emails with one test notification
 
 - [x] Update Features and Sport Psychology content; verify companion entry and EN/BG layouts
+- [ ] Update About trust content and signup consent; add private public contact delivery and verify EN/BG
