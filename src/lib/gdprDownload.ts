@@ -1,0 +1,28 @@
+export function downloadBlob(blob: Blob, filename: string) {
+  const url = URL.createObjectURL(blob);
+  const anchor = document.createElement('a');
+  anchor.href = url;
+  anchor.download = filename;
+  document.body.appendChild(anchor);
+  anchor.click();
+  anchor.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 30_000);
+}
+
+export async function deliverFile(blob: Blob, filename: string) {
+  const file = new File([blob], filename, { type: blob.type });
+  const touch = matchMedia('(pointer: coarse)').matches;
+  if (touch && navigator.canShare?.({ files: [file] })) {
+    try {
+      await navigator.share({ files: [file], title: filename });
+      return;
+    } catch (error) {
+      if ((error as DOMException).name === 'AbortError') return;
+    }
+  }
+  downloadBlob(blob, filename);
+}
+
+export function personalDataBlob(data: unknown): Blob {
+  return new Blob([JSON.stringify(data, null, 2)], { type: 'application/json;charset=utf-8' });
+}
