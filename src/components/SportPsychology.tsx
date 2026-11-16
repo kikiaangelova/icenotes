@@ -10,7 +10,7 @@ import { ComebackCheckin } from './ComebackCheckin';
 
 const MENTAL_TIPS = (bg: boolean) => [
   {
-    title: bg ? 'Отдели контролируемото' : 'Separate the controllables',
+    title: bg ? 'Какво зависи от мен' : 'Separate the controllables',
     tip: bg
       ? 'Раздели ситуацията на две: подготовка, внимание и реакция след грешка са под твой контрол. Оценки, стартов ред и другите състезатели не са.'
       : 'Split the situation in two: preparation, attention, and your response after a mistake are controllable. Scores, start order, and other skaters are not.',
@@ -24,21 +24,21 @@ const MENTAL_TIPS = (bg: boolean) => [
     category: bg ? 'рестарт' : 'reset',
   },
   {
-    title: bg ? 'Провери мисълта' : 'Check the thought',
+    title: bg ? 'Вярно ли е това, което си казвам?' : 'Check the thought',
     tip: bg
       ? 'Ако мисълта е „винаги провалям програмата“, потърси конкретните факти за и против нея. После я замени с по-точно изречение.'
       : 'If the thought is “I always ruin the program,” look for specific evidence for and against it. Then replace it with a more accurate sentence.',
     category: bg ? 'увереност' : 'confidence',
   },
   {
-    title: bg ? 'Репетирай процеса' : 'Rehearse the process',
+    title: bg ? 'Мислена репетиция' : 'Rehearse the process',
     tip: bg
       ? 'Представи си познатата рутина, обстановката и реакцията след малка грешка. Визуализацията не заменя техническите указания от треньора.'
       : 'Picture the familiar routine, the setting, and your response after a small mistake. Visualization does not replace technical guidance from your coach.',
     category: bg ? 'подготовка' : 'preparation',
   },
   {
-    title: bg ? 'Събирай доказателства' : 'Collect evidence',
+    title: bg ? 'Какво вече мога' : 'Collect evidence',
     tip: bg
       ? 'Записвай конкретни примери: спазен план, върнат фокус, стабилна секция. Увереността е по-надеждна, когато стъпва на факти.'
       : 'Record specific examples: following the plan, returning focus, or delivering a stable section. Confidence is more useful when it is based on evidence.',
@@ -197,7 +197,7 @@ const DAILY_EXERCISES = (bg: boolean) => [
       : 'Picture a familiar section of the program, then include a small mistake and a realistic reset to the next task.',
   },
   {
-    title: bg ? 'Проверка на напрежението' : 'Tension check',
+    title: bg ? 'Къде се стягам' : 'Tension check',
     time: bg ? "3 мин" : "3 min",
     exercise: bg
       ? 'Забележи къде има напрежение. Не е нужно да го премахваш. Избери дали малка промяна в стойката или дишането ти е полезна.'
