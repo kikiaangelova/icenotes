@@ -24,12 +24,12 @@ const dict: Dict = {
 
   // ───── Reminders (settings dialog) ─────
   'rem.title': { en: 'Reminders', bg: 'Напомняния' },
-  'rem.desc': { en: 'Gentle prompts to train and reflect.', bg: 'Тихи напомняния да тренираш и да си запишеш.' },
+  'rem.desc': { en: 'Gentle prompts to train and reflect.', bg: 'Кратко напомняне за тренировка и за записа след нея.' },
   'rem.unsupported': { en: 'Notifications are not supported in this browser.', bg: 'Този браузър не поддържа известия.' },
   'rem.blocked.title': { en: 'Notifications are blocked', bg: 'Известията са блокирани' },
   'rem.blocked.desc': { en: 'Enable notifications in your browser settings to receive reminders.', bg: 'Разреши известията в настройките на браузъра, за да получаваш напомняния.' },
   'rem.enable': { en: 'Enable reminders', bg: 'Включи напомнянията' },
-  'rem.enableSub': { en: 'Daily notifications at times you choose.', bg: 'Всекидневни известия в избрани от теб часове.' },
+  'rem.enableSub': { en: 'Daily notifications at times you choose.', bg: 'Известие всеки ден в часа, който избереш.' },
   'rem.training': { en: 'Training reminder', bg: 'Напомняне за тренировка' },
   'rem.reflection': { en: 'Reflection reminder', bg: 'Напомняне за рефлексия' },
   'rem.journal': { en: 'Daily note reminder', bg: 'Напомняне за запис' },
@@ -489,7 +489,7 @@ const dict: Dict = {
   'today.stage.grounding.desc': { en: 'A small gratitude, a body check, an honest read on how you feel.', bg: 'Спри за миг, усети тялото си и назови честно как си.' },
   'today.stage.weekly.label': { en: 'Weekly', bg: 'Седмично' },
   'today.stage.weekly.title': { en: 'Look back, look ahead', bg: 'Поглед назад, поглед напред' },
-  'today.stage.weekly.desc': { en: 'See the patterns of the week. Pick one focus for the next.', bg: 'Виж моделите от седмицата. Избери един фокус за следващата.' },
+  'today.stage.weekly.desc': { en: 'See the patterns of the week. Pick one focus for the next.', bg: 'Виж как мина седмицата и избери фокус за следващата.' },
   'today.weekly.improved': { en: 'What got better this week?', bg: 'Кое стана по-добро тази седмица?' },
   'today.weekly.patterns': { en: 'Any patterns you noticed?', bg: 'Забеляза ли модели?' },
   'today.weekly.next': { en: 'What’s your focus next week?', bg: 'Кой ти е фокусът за следващата седмица?' },
@@ -582,7 +582,7 @@ const dict: Dict = {
   'header.signOut.confirm.title': { en: 'Sign out?', bg: 'Излизаш ли?' },
   'header.signOut.confirm.desc': { en: 'Your data stays safe. Come back whenever. 💙', bg: 'Данните ти остават на сигурно. Върни се, когато решиш. 💙' },
   'header.signOut.confirm.stay': { en: 'Stay signed in', bg: 'Остани' },
-  'header.logoutConfirm': { en: 'Sure you want to log out? Your data stays saved.', bg: 'Сигурен(на) ли си, че искаш изход? Данните остават.' },
+  'header.logoutConfirm': { en: 'Sure you want to log out? Your data stays saved.', bg: 'Наистина ли излизаш? Данните ти остават.' },
   'header.skaterSuffix': { en: 'Skater', bg: 'Фигурист' },
   'header.reminders': { en: 'Reminders', bg: 'Напомняния' },
   'header.adminDashboard': { en: 'Admin dashboard', bg: 'Админ панел' },
@@ -837,7 +837,7 @@ const dict: Dict = {
   // ───── Progress · Insights ─────
   'progress.insights.title': { en: 'What we’re noticing', bg: 'Какво забелязваме' },
   'progress.insights.subtitle': { en: 'A few patterns from your last days.', bg: 'Няколко модела от последните дни.' },
-  'progress.insights.empty': { en: 'Keep logging. Patterns will show up here as we get to know your rhythm.', bg: 'Продължавай да записваш. Моделите ще се появят, щом опознаем ритъма ти.' },
+  'progress.insights.empty': { en: 'Keep logging. Patterns will show up here as we get to know your rhythm.', bg: 'Продължавай да записваш. Скоро тук ще се вижда как вървиш.' },
 
   'progress.section.frequency': { en: 'How often you trained', bg: 'Колко често тренира' },
   'progress.section.frequency.sub': { en: 'Sessions per day, last 14 days', bg: 'Тренировки на ден, последните 14 дни' },
@@ -977,11 +977,11 @@ const dict: Dict = {
   'mt.breathing.title': { en: 'Paced breathing', bg: 'Ритмично дишане' },
   'mt.breathing.desc': { en: 'Optional slower exhale with a visual timer', bg: 'По желание: по-бавно издишване с визуален таймер' },
   'mt.viz.title': { en: 'Pre-performance visualization', bg: 'Визуализация преди изява' },
-  'mt.viz.desc': { en: 'Rehearse the setting, routine, and response to mistakes', bg: 'Мислена репетиция на обстановката, рутината и реакцията след грешка' },
+  'mt.viz.desc': { en: 'Rehearse the setting, routine, and response to mistakes', bg: 'Мини наум през пързалката, рутината и какво правиш след грешка' },
   'mt.gratitude.title': { en: 'What supported you', bg: 'Какво ти помогна' },
   'mt.gratitude.desc': { en: 'Notice up to three useful things from today', bg: 'Отбележи до три полезни неща от днес' },
   'mt.aff.title': { en: 'Process cues', bg: 'Кратки насоки' },
-  'mt.aff.desc': { en: 'Realistic phrases that direct attention', bg: 'Реалистични фрази, които насочват вниманието' },
+  'mt.aff.desc': { en: 'Realistic phrases that direct attention', bg: 'Кратки реални фрази, които ти връщат вниманието' },
 
   // Breathing dialog
   'mt.breathing.subtitle': { en: 'Breathe in for 4 · breathe out for 6 · stop if uncomfortable', bg: 'Вдишай за 4 · издишай за 6 · спри при дискомфорт' },
@@ -1003,14 +1003,14 @@ const dict: Dict = {
   'mt.viz.completeNote': { en: 'Visualization complete', bg: 'Завършена визуализация' },
   'mt.viz.toast': { en: 'Visualization saved.', bg: 'Визуализацията е записана.' },
   'mt.viz.s1': { en: 'Choose a comfortable position. Let your breathing stay natural.', bg: 'Заеми удобна позиция. Остави дишането естествено.' },
-  'mt.viz.s2': { en: 'Picture arriving at the rink. Notice the setting, sounds, and timing.', bg: 'Представи си пристигането на пързалката. Забележи обстановката, звуците и часовете.' },
-  'mt.viz.s3': { en: 'Mentally run through your familiar warm-up and pre-start routine.', bg: 'Премини мислено през познатата загрявка и рутината преди старта.' },
-  'mt.viz.s4': { en: 'Picture the opening of the program and one familiar process cue.', bg: 'Представи си началото на програмата и една позната кратка насока.' },
-  'mt.viz.s5': { en: 'Include a small mistake. Rehearse noticing it, resetting, and continuing.', bg: 'Включи малка грешка. Репетирай как я забелязваш, рестартираш и продължаваш.' },
-  'mt.viz.s6': { en: 'Picture the finish, then name what remains under your control.', bg: 'Представи си финала, после назови какво остава под твой контрол.' },
+  'mt.viz.s2': { en: 'Picture arriving at the rink. Notice the setting, sounds, and timing.', bg: 'Представи си, че пристигаш на пързалката. Какво виждаш и чуваш?' },
+  'mt.viz.s3': { en: 'Mentally run through your familiar warm-up and pre-start routine.', bg: 'Мини наум през загрявката и рутината си преди старт.' },
+  'mt.viz.s4': { en: 'Picture the opening of the program and one familiar process cue.', bg: 'Представи си началото на програмата и една кратка мисъл, която ти помага.' },
+  'mt.viz.s5': { en: 'Include a small mistake. Rehearse noticing it, resetting, and continuing.', bg: 'Сега си представи малка грешка. Забелязваш я, оставяш я и продължаваш.' },
+  'mt.viz.s6': { en: 'Picture the finish, then name what remains under your control.', bg: 'Представи си финала. После си кажи какво зависи от теб.' },
 
   // Gratitude dialog
-  'mt.gr.subtitle': { en: 'What supported your training or recovery today?', bg: 'Какво помогна на тренировката или възстановяването ти днес?' },
+  'mt.gr.subtitle': { en: 'What supported your training or recovery today?', bg: 'Какво ти помогна днес на тренировката или после?' },
   'mt.gr.label': { en: 'Useful today…', bg: 'Полезно днес…' },
   'mt.gr.placeholder': { en: 'e.g. clear feedback from my coach', bg: 'напр. ясна обратна връзка от треньора' },
   'mt.gr.empty': { en: 'Write at least one item.', bg: 'Напиши поне едно нещо.' },
@@ -1018,7 +1018,7 @@ const dict: Dict = {
   'mt.gr.toast': { en: 'Note saved.', bg: 'Бележката е записана.' },
 
   // Affirmations dialog
-  'mt.aff.subtitle': { en: 'Choose one short cue that feels realistic and useful.', bg: 'Избери една кратка насока, която е реалистична и полезна.' },
+  'mt.aff.subtitle': { en: 'Choose one short cue that feels realistic and useful.', bg: 'Избери една кратка фраза, която наистина ти помага.' },
   'mt.aff.save': { en: 'Save this cue', bg: 'Запиши тази насока' },
   'mt.aff.toast': { en: 'Process cue saved.', bg: 'Насоката е записана.' },
   'mt.aff.1': { en: 'One element at a time.', bg: 'Един елемент наведнъж.' },
@@ -1028,9 +1028,9 @@ const dict: Dict = {
   'mt.aff.5': { en: 'A slower exhale, then the next task.', bg: 'По-бавно издишване, после следващата задача.' },
   'mt.aff.6': { en: 'Pressure can be present. Attention stays on the task.', bg: 'Напрежението може да е тук. Вниманието остава в задачата.' },
   'mt.aff.7': { en: 'Use the plan I know.', bg: 'Следвам познатия план.' },
-  'mt.aff.8': { en: 'A mistake is information for the next action.', bg: 'Грешката е информация за следващото действие.' },
-  'mt.aff.9': { en: 'My job is the next controllable action.', bg: 'Моята задача е следващото действие под мой контрол.' },
-  'mt.aff.10': { en: 'Commit to the opening, then respond to what happens.', bg: 'Изпълнявам началото, после реагирам на случващото се.' },
+  'mt.aff.8': { en: 'A mistake is information for the next action.', bg: 'Грешката ми казва какво да направя следващия път.' },
+  'mt.aff.9': { en: 'My job is the next controllable action.', bg: 'Моята работа е следващото нещо, което зависи от мен.' },
+  'mt.aff.10': { en: 'Commit to the opening, then respond to what happens.', bg: 'Първо началото. После каквото дойде.' },
 
   // ───── Dashboard hero + continue card ─────
   'dash.hero.kicker':     { en: 'Today on the ice',  bg: 'Днес на леда' },
@@ -1124,7 +1124,7 @@ const dict: Dict = {
 
   // ───── Guided tour (new user) ─────
   'tour.welcome.title':  { en: 'Welcome 👋',            bg: 'Здравей 👋' },
-  'tour.welcome.body':   { en: "Let's take 30 seconds to set your focus.", bg: 'Нека отделим 30 секунди, за да зададем твоя фокус.' },
+  'tour.welcome.body':   { en: "Let's take 30 seconds to set your focus.", bg: 'Дай ни 30 секунди, за да изберем фокуса ти.' },
   'tour.goals.title':    { en: 'What are you here for?', bg: 'За какво си тук?' },
   'tour.goals.hint':     { en: 'Pick up to 3. You can change them anytime.', bg: 'Избери до 3. Можеш да ги смениш по всяко време.' },
   'tour.goals.custom':   { en: 'Or write your own focus…', bg: 'Или напиши свой фокус…' },

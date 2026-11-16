@@ -12,14 +12,14 @@ const MENTAL_TIPS = (bg: boolean) => [
   {
     title: bg ? 'Какво зависи от мен' : 'Separate the controllables',
     tip: bg
-      ? 'Раздели ситуацията на две: подготовка, внимание и реакция след грешка са под твой контрол. Оценки, стартов ред и другите състезатели не са.'
+      ? 'Раздели нещата на две. Подготовката, вниманието и как реагираш след грешка зависят от теб. Оценките, стартовият ред и другите състезатели не зависят.'
       : 'Split the situation in two: preparation, attention, and your response after a mistake are controllable. Scores, start order, and other skaters are not.',
     category: bg ? 'Фокус' : 'Focus',
   },
   {
     title: bg ? 'Рестарт след грешка' : 'Reset after a mistake',
     tip: bg
-      ? 'Назови факта без оценка, издишай спокойно и върни вниманието към една позната насока за следващия елемент.'
+      ? 'Кажи си какво стана, без да се съдиш. Издишай и мисли само за следващия елемент.'
       : 'Name the fact without judging it, breathe out comfortably, and return attention to one familiar cue for the next element.',
     category: bg ? 'Фокус' : 'Focus',
   },
@@ -33,21 +33,21 @@ const MENTAL_TIPS = (bg: boolean) => [
   {
     title: bg ? 'Мислена репетиция' : 'Rehearse the process',
     tip: bg
-      ? 'Представи си познатата рутина, обстановката и реакцията след малка грешка. Визуализацията не заменя техническите указания от треньора.'
+      ? 'Представи си рутината, пързалката и как продължаваш след малка грешка. Това не заменя указанията на треньора.'
       : 'Picture the familiar routine, the setting, and your response after a small mistake. Visualization does not replace technical guidance from your coach.',
     category: bg ? 'Старт' : 'Competition',
   },
   {
     title: bg ? 'Какво вече мога' : 'Collect evidence',
     tip: bg
-      ? 'Записвай конкретни примери: спазен план, върнат фокус, стабилна секция. Увереността е по-надеждна, когато стъпва на факти.'
+      ? 'Записвай конкретни неща: спазен план, върнат фокус, чиста част от програмата. Увереността е по-здрава, когато стъпва на факти.'
       : 'Record specific examples: following the plan, returning focus, or delivering a stable section. Confidence is more useful when it is based on evidence.',
     category: bg ? 'Увереност' : 'Confidence',
   },
   {
     title: bg ? 'По-бавно издишване' : 'A slower exhale',
     tip: bg
-      ? 'Ако ти е удобно, направи няколко вдишвания с малко по-дълго издишване. Целта не е да премахнеш напрежението, а да върнеш вниманието към задачата.'
+      ? 'Ако ти е удобно, дишай няколко пъти с малко по-дълго издишване. Напрежението може да остане. Важното е да се върнеш към задачата.'
       : 'If comfortable, take a few breaths with a slightly longer exhale. The aim is not to remove pressure, but to return attention to the task.',
     category: bg ? 'Старт' : 'Competition',
   },
@@ -238,7 +238,7 @@ export const SportPsychology: React.FC = () => {
           <Brain className="w-5 h-5 text-accent" />
           {L('Exercises', 'Упражнения')}
         </h2>
-          <p className="text-sm text-muted-foreground">{L('Practical exercises for pressure, attention, and confidence', 'Практични упражнения за напрежение, внимание и увереност')}</p>
+          <p className="text-sm text-muted-foreground">{L('Practical exercises for pressure, attention, and confidence', 'Кратки упражнения за нерви, фокус и увереност')}</p>
       </div>
 
       {/* Daily Mental Exercise */}
