@@ -23,3 +23,4 @@
 - [x] Replace psychology instructions verbatim, enforce message language and code safety, add menu language switch, and verify authenticated crisis and normal conversations
 - [x] Add public athletic energy, mobile hero and snap panels, shared motion and sticky CTA; verify bilingual layouts and loading
 - [ ] Compare production Lighthouse performance before and after (requires a comparable production baseline, no publishing in this pass)
+- [x] Add semantic risk flags and differentiated safety cards; verify veiled Bulgarian messages and normal chat

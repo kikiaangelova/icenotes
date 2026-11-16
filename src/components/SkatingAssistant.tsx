@@ -8,9 +8,10 @@ import { useLanguage } from '@/context/LanguageContext';
 import { VoiceButton } from './VoiceInput';
 import { AISafetyCard } from './AISafetyCard';
 import { detectMessageLanguage } from '../../supabase/functions/skating-coach/message-policy';
+import { riskLevel, type RiskLevel } from '../../supabase/functions/skating-coach/risk-level';
 
 export type AIRole = 'coach' | 'psych';
-type Msg = { role: 'user' | 'assistant'; content: string; safety?: boolean };
+type Msg = { role: 'user' | 'assistant'; content: string; safety?: RiskLevel };
 
 const ROLE_META: Record<AIRole, {
   nameKey: string; tagKey: string; disclaimerKey: string; greetingKey: string; placeholderKey: string;
@@ -68,7 +69,7 @@ export const SkatingAssistant: React.FC = () => {
     setLoadingRole(targetRole);
 
     let soFar = '';
-    let safety = false;
+    let safety: RiskLevel = 'none';
     const upsert = (chunk: string) => {
       soFar += chunk;
       setThreads((prev) => {
@@ -119,7 +120,8 @@ export const SkatingAssistant: React.FC = () => {
           if (json === '[DONE]') { done = true; break; }
           try {
             const parsed = JSON.parse(json);
-            if (parsed.safety) safety = true;
+            if (parsed.risk_level) safety = parsed.risk_level;
+            else if (parsed.safety) safety = riskLevel(parsed.safety);
             const c = parsed.choices?.[0]?.delta?.content;
             if (c) upsert(c);
           } catch {
@@ -214,7 +216,7 @@ export const SkatingAssistant: React.FC = () => {
 
           {messages.map((m, i) => (
             <div key={i} className="space-y-3">
-              {m.role === 'assistant' && m.safety && <AISafetyCard />}
+              {m.role === 'assistant' && m.safety && m.safety !== 'none' && <AISafetyCard riskLevel={m.safety} />}
             <div className={cn('flex', m.role === 'user' ? 'justify-end' : 'justify-start')}>
               <div
                 className={cn(
