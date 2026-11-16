@@ -81,7 +81,7 @@ const About: React.FC = () => {
         cta: 'Create your account',
       };
 
-  const kicker = 'text-[11px] font-semibold tracking-[0.24em] uppercase text-muted-foreground mb-4';
+  const kicker = 'text-xs font-semibold tracking-[0.24em] uppercase text-muted-foreground mb-4';
 
   return (
     <div className={isDarkMode ? 'dark' : ''}>

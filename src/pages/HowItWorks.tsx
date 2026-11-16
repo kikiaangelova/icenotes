@@ -58,7 +58,7 @@ const HowItWorks: React.FC = () => {
                   )}
                 </div>
                 <div className="pt-1">
-                  <span className="text-xs font-mono font-medium text-muted-foreground/60 tracking-wider">{step.num}</span>
+                  <span className="text-xs font-mono font-medium text-muted-foreground tracking-wider">{step.num}</span>
                   <h3 className="text-xl font-bold text-foreground mt-1 mb-2">{step.title}</h3>
                   <p className="text-sm text-muted-foreground leading-relaxed">{step.description}</p>
                 </div>
