@@ -17,4 +17,4 @@
 - [x] Add bilingual pilot signup and links; verify real insertion, duplicate handling, privacy and responsive layouts
 - [x] Enable and verify owner-only pilot signup emails with one test notification
 
-- [ ] Update Features and Sport Psychology content; verify companion entry and EN/BG layouts
+- [x] Update Features and Sport Psychology content; verify companion entry and EN/BG layouts
