@@ -146,6 +146,17 @@ Deno.serve(async (req) => {
   }
 
   // 2. Check suppression list (fail-closed: if we can't verify, don't send)
+  if (templateName === 'contact-message') {
+    const contactId = templateData.contactId;
+    if (typeof contactId !== 'string' || !/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(contactId)) {
+      return new Response(JSON.stringify({ error: 'Invalid contact ID' }), { status: 400 });
+    }
+    const { data: contact, error } = await supabase.from('contact_messages').select('id, name, email, message, locale, created_at, consent').eq('id', contactId).single();
+    if (error || !contact || contact.consent !== true) return new Response(JSON.stringify({ error: 'Contact not found' }), { status: 404 });
+    templateData = contact;
+    idempotencyKey = `contact-message-${contact.id}`;
+  }
+
   const { data: suppressed, error: suppressionError } = await supabase
     .from('suppressed_emails')
     .select('id')

@@ -10,7 +10,8 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/com
 import { Mail, MessageSquare, Send, CheckCircle2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { supabase } from '@/integrations/supabase/client';
-import { useAuth } from '@/context/AuthContext';
+import { Checkbox } from '@/components/ui/checkbox';
+import { contactMessageSchema } from '@/lib/contactMessage';
 import { useToast } from '@/hooks/use-toast';
 import { useLanguage } from '@/context/LanguageContext';
 
@@ -18,8 +19,10 @@ const Contact: React.FC = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const { toast } = useToast();
-  const { t } = useLanguage();
-  const { user } = useAuth();
+  const { t, language } = useLanguage();
+  const [email, setEmail] = useState('');
+  const [consent, setConsent] = useState(false);
+  const [website, setWebsite] = useState('');
   const [name, setName] = useState('');
   const [message, setMessage] = useState('');
   const [busy, setBusy] = useState(false);
@@ -34,29 +37,30 @@ const Contact: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!user) return;
-    setBusy(true);
-    const { error } = await supabase.from('feedback').insert({
-      name: name.trim().slice(0, 80),
-      message: message.trim().slice(0, 4000),
-    });
-    setBusy(false);
-    if (error) {
-      toast({ title: t('fb.error'), variant: 'destructive' });
+    if (busy || website.trim()) return;
+    const parsed = contactMessageSchema.safeParse({ name, email, message, locale: language, consent });
+    if (!parsed.success) {
+      toast({ title: language === 'bg' ? 'Провери името, имейла, съобщението и съгласието.' : 'Check your name, email, message and consent.', variant: 'destructive' });
       return;
     }
+    setBusy(true);
+    try {
+      const { error } = await supabase.from('contact_messages').insert({ name: parsed.data.name ?? '', email: parsed.data.email ?? '', message: parsed.data.message ?? '', locale: language, consent: true });
+      if (error) throw error;
+    } catch {
+      toast({ title: t('fb.error'), variant: 'destructive' });
+      return;
+    } finally { setBusy(false); }
+
     setSubmitted(true);
     setName('');
     setMessage('');
-    toast({
-      title: t('contact.toast.title'),
-      description: t('contact.toast.desc'),
-    });
+    setEmail(''); setConsent(false);
   };
 
   return (
     <div className={isDarkMode ? "dark" : ""}>
-      <div className="min-h-screen bg-background">
+      <div className="public-editorial min-h-screen bg-background">
         <Navbar isDarkMode={isDarkMode} onToggleDarkMode={() => setIsDarkMode(!isDarkMode)} />
         <Seo title="Contact SkateGoals – Get in Touch" description="Questions about SkateGoals, your account or your data? Contact the SkateGoals team." path="/contact" />
 
@@ -85,10 +89,8 @@ const Contact: React.FC = () => {
                         <div className="w-14 h-14 rounded-full bg-success/10 flex items-center justify-center mx-auto">
                           <CheckCircle2 className="w-7 h-7 text-success" />
                         </div>
-                        <h3 className="text-lg font-semibold text-foreground">{t('contact.form.thanks')}</h3>
-                        <p className="text-sm text-muted-foreground">
-                          {t('contact.form.thanksDesc')}
-                        </p>
+                        <h3 className="text-lg font-semibold text-foreground">{language === 'bg' ? 'Благодарим ти. Ще ти отговорим по имейл.' : 'Thank you. We will reply by email.'}</h3>
+
                         <Button variant="outline" onClick={() => setSubmitted(false)} className="mt-2">
                           {t('contact.form.another')}
                         </Button>
@@ -97,25 +99,25 @@ const Contact: React.FC = () => {
                       <form onSubmit={handleSubmit} className="space-y-5">
                         <div className="space-y-2">
                           <Label htmlFor="name">{t('contact.form.name')}</Label>
-                          <Input id="name" value={name} onChange={(e) => setName(e.target.value)} placeholder={t('contact.form.namePh')} required className="h-11" />
+                          <Input id="name" value={name} onChange={(e) => setName(e.target.value)} placeholder={t('contact.form.namePh')} maxLength={80} required className="h-11" />
+                        </div>
+                        <div className="space-y-2">
+                          <Label htmlFor="contact-email">{t('contact.form.email')}</Label>
+                          <Input id="contact-email" type="email" value={email} onChange={e => setEmail(e.target.value)} maxLength={254} autoComplete="email" required className="h-11" />
                         </div>
                         <div className="space-y-2">
                           <Label htmlFor="message">{t('contact.form.message')}</Label>
-                          <Textarea id="message" value={message} onChange={(e) => setMessage(e.target.value)} placeholder={t('contact.form.messagePh')} required className="min-h-[140px] resize-none" />
+                          <Textarea id="message" value={message} onChange={(e) => setMessage(e.target.value)} placeholder={t('contact.form.messagePh')} maxLength={4000} required className="min-h-[140px] resize-none" />
                         </div>
-                        {user ? (
-                          <Button type="submit" disabled={busy} className="w-full h-11 font-semibold gap-2">
-                            <Send className="w-4 h-4" />
-                            {busy ? t('fb.sending') : t('contact.form.send')}
-                          </Button>
-                        ) : (
-                          <div className="space-y-2">
-                            <p className="text-sm text-muted-foreground">{t('fb.signinSub')}</p>
-                            <Link to="/auth" className="block">
-                              <Button type="button" className="w-full h-11 font-semibold">{t('fb.signin')}</Button>
-                            </Link>
-                          </div>
-                        )}
+                        <div className="hidden" aria-hidden><input name="website" value={website} onChange={e => setWebsite(e.target.value)} tabIndex={-1} autoComplete="off" /></div>
+                        <div className="flex items-start gap-3">
+                          <Checkbox id="contact-consent" checked={consent} onCheckedChange={value => setConsent(value === true)} className="mt-1" />
+                          <label htmlFor="contact-consent" className="text-sm leading-relaxed">{language === 'bg' ? 'Съгласен/на съм SkateGoals да пази тези данни, за да отговори на съобщението ми. ' : 'I agree that SkateGoals stores these details to reply to my message. '}<Link to="/privacy" target="_blank" rel="noopener noreferrer" className="underline">{language === 'bg' ? 'Политиката за поверителност' : 'Privacy Policy'}</Link></label>
+                        </div>
+                        <Button type="submit" disabled={busy || !consent} className="w-full h-11 font-semibold gap-2">
+                          <Send className="w-4 h-4" />
+                          {busy ? t('fb.sending') : t('contact.form.send')}
+                        </Button>
                       </form>
                     )}
                   </CardContent>
@@ -139,7 +141,7 @@ const Contact: React.FC = () => {
                   </div>
                   <h3 className="text-base font-semibold text-foreground">{t('contact.feedback.title')}</h3>
                   <p className="text-sm text-muted-foreground">
-                    {t('contact.feedback.desc')}
+                    {language === 'bg' ? 'Идея или въпрос за SkateGoals? Използвай формата, независимо дали имаш профил.' : 'An idea or question about SkateGoals? Use the form whether or not you have an account.'}
                   </p>
                 </div>
 

@@ -263,10 +263,13 @@ Deno.serve(async (req) => {
       try {
         // The database queues an ID-only owner notification job; the secured send
         // function fetches the row and renders the email using its fixed recipient.
-        if (payload.kind === 'pilot-signup-job') {
+        if (payload.kind === 'pilot-signup-job' || payload.kind === 'contact-message-job') {
+          const isContact = payload.kind === 'contact-message-job';
           const { data, error } = await supabase.functions.invoke('send-transactional-email', {
             headers: { Authorization: `Bearer ${supabaseServiceKey}` },
-            body: { templateName: 'pilot-signup', templateData: { signupId: payload.signup_id } },
+            body: isContact
+              ? { templateName: 'contact-message', templateData: { contactId: payload.contact_id } }
+              : { templateName: 'pilot-signup', templateData: { signupId: payload.signup_id } },
           });
           if (error || !data?.success) {
             const response = error && 'context' in error ? error.context : null;
