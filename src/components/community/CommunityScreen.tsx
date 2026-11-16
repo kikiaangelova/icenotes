@@ -8,7 +8,9 @@ import { cn } from '@/lib/utils';
 import { SkateIcon } from '@/components/TodayCommandCenter';
 import { showSpark } from '@/components/rink/RinkArt';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog';
-import { TEMPLATES, PHRASES, REACTIONS, REACTION_LABEL, DISCIPLINES, RULES, canJoinSkaterSpace, type TemplateKey, type PhraseKey, type ReactionKind } from './communityCopy';
+import { ParentLinkCard } from './ParentLinkCard';
+import { ParentSpace } from './ParentSpace';
+import { TEMPLATES, PHRASES, REACTIONS, REACTION_LABEL, DISCIPLINES, RULES, PARENT_RULES, canJoinSkaterSpace, type TemplateKey, type PhraseKey, type ReactionKind } from './communityCopy';
 
 type Member = { user_id: string; role: string; age: number; nickname: string; avatar_key: string; discipline: string | null; rules_accepted_at: string | null; is_blocked: boolean };
 type Group = { id: string; name: string; is_general: boolean };
@@ -35,10 +37,13 @@ export const CommunityScreen: React.FC<{ onOpenSupport: () => void }> = ({ onOpe
   const { language } = useLanguage();
   const bg = language === 'bg';
   const [member, setMember] = useState<Member | null | undefined>(undefined);
+  const [hasParent, setHasParent] = useState(false);
 
   const load = useCallback(async () => {
     if (!user) return;
     const { data } = await supabase.from('community_members').select('*').eq('user_id', user.id).maybeSingle();
+    const { count } = await supabase.from('parent_links').select('id', { count: 'exact', head: true }).eq('skater_id', user.id).eq('status', 'confirmed');
+    setHasParent((count ?? 0) > 0);
     setMember((data as Member) ?? null);
   }, [user]);
   useEffect(() => { load(); }, [load]);
@@ -54,14 +59,14 @@ export const CommunityScreen: React.FC<{ onOpenSupport: () => void }> = ({ onOpe
       </div></div>
   );
   if (member.is_blocked) return <Notice icon={<Lock className="h-8 w-8 text-muted-foreground" />} title={bg ? 'Достъпът ти е спрян' : 'Your access is paused'} text={bg ? 'Достъпът до общността е спрян от модератор. Дневникът и всичко останало работят както досега.' : 'A moderator paused your community access. Your log and everything else work as usual.'} />;
-  if (member.role === 'parent') return <Notice icon={<Users className="h-8 w-8 text-accent-ink" />} title={bg ? 'Пространството за родители идва скоро' : 'The parent space is coming soon'} text={bg ? 'Ще има отделни теми и статии от спортен психолог, само за родители. Общността на фигуристите е само за тях.' : 'Separate topics and articles from a sport psychologist, just for parents. The skater community is for skaters only.'} />;
-  if (!canJoinSkaterSpace(member.role, member.age)) return <Notice icon={<ShieldCheck className="h-8 w-8 text-accent-ink" />} title={bg ? 'Нужно е съгласие от родител' : 'A parent needs to agree first'} text={bg ? 'Под 14 години общността се отключва, след като родител потвърди. Скоро ще можеш да поканиш родител от тук. Дневникът, целите и AI помощниците работят и сега.' : 'Under 14, the community unlocks once a parent confirms. Soon you can invite a parent from here. Your log, goals and AI helpers already work.'} />;
+  if (member.role === 'parent') return <ParentSpace />;
+  if (!canJoinSkaterSpace(member.role, member.age) && !hasParent) return <><Notice icon={<ShieldCheck className="h-8 w-8 text-accent-ink" />} title={bg ? 'Нужно е съгласие от родител' : 'A parent needs to agree first'} text={bg ? 'Под 14 години общността се отключва, след като родител потвърди. Покани родител отдолу. Дневникът, целите и AI помощниците работят и сега.' : 'Under 14, the community unlocks once a parent confirms. Invite a parent below. Your log, goals and AI helpers already work.'} /><div className="mt-6"><ParentLinkCard bg={bg} underAge onChange={load} /></div></>;
   return <SkaterSpace bg={bg} member={member} onOpenSupport={onOpenSupport} />;
 };
 
-const JoinFlow: React.FC<{ bg: boolean; existing: Member | null; onDone: () => void }> = ({ bg, existing, onDone }) => {
+export const JoinFlow: React.FC<{ bg: boolean; existing: Member | null; onDone: () => void; fixedRole?: 'parent' }> = ({ bg, existing, onDone, fixedRole }) => {
   const { user } = useAuth();
-  const [role, setRole] = useState<'skater' | 'parent' | null>((existing?.role as 'skater' | 'parent') ?? null);
+  const [role, setRole] = useState<'skater' | 'parent' | null>((existing?.role as 'skater' | 'parent') ?? fixedRole ?? null);
   const [age, setAge] = useState(existing ? String(existing.age) : '');
   const [nickname, setNickname] = useState(existing?.nickname ?? '');
   const [avatar, setAvatar] = useState(existing?.avatar_key ?? 'snowflake');
@@ -90,7 +95,7 @@ const JoinFlow: React.FC<{ bg: boolean; existing: Member | null; onDone: () => v
         <p className="text-[15px] font-bold text-foreground">{bg ? 'Ти си' : 'You are'}</p>
         <div className="grid grid-cols-2 gap-2">
           {(['skater', 'parent'] as const).map(r => (
-            <button key={r} type="button" disabled={!!existing} aria-pressed={role === r} onClick={() => setRole(r)} className={chip(role === r)}>
+            <button key={r} type="button" disabled={!!existing || !!fixedRole} aria-pressed={role === r} onClick={() => setRole(r)} className={chip(role === r)}>
               {r === 'skater' ? (bg ? 'Фигурист' : 'Skater') : (bg ? 'Родител' : 'Parent')}
             </button>
           ))}
@@ -125,7 +130,7 @@ const JoinFlow: React.FC<{ bg: boolean; existing: Member | null; onDone: () => v
 
       <section className="rink-card space-y-3 p-5">
         <p className="text-[17px] font-bold text-foreground">{bg ? 'Правила на общността' : 'Community rules'}</p>
-        <ol className="list-decimal space-y-1.5 pl-5 text-[15px] text-foreground">{(bg ? RULES.bg : RULES.en).map(r => <li key={r}>{r}</li>)}</ol>
+        <ol className="list-decimal space-y-1.5 pl-5 text-[15px] text-foreground">{(role === 'parent' ? (bg ? PARENT_RULES.bg : PARENT_RULES.en) : (bg ? RULES.bg : RULES.en)).map(r => <li key={r}>{r}</li>)}</ol>
         <label className="flex min-h-11 items-center gap-3 text-[15px] font-semibold">
           <input type="checkbox" checked={agree} onChange={e => setAgree(e.target.checked)} className="h-5 w-5 accent-[hsl(var(--primary))]" />
           {bg ? 'Приемам правилата' : 'I accept the rules'}
@@ -316,6 +321,8 @@ const SkaterSpace: React.FC<{ bg: boolean; member: Member; onOpenSupport: () => 
           </article>
         ))}
       </section>
+
+      <ParentLinkCard bg={bg} />
 
       <Dialog open={crisis} onOpenChange={setCrisis}>
         <DialogContent className="authenticated-app max-w-sm rounded-2xl">
