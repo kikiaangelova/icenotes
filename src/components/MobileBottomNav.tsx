@@ -51,10 +51,10 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({ active, onChan
                 aria-current={isActive ? 'page' : undefined}
                 onClick={() => onChange(item.id)}
                 className={cn(
-                  'relative flex min-h-[62px] w-full touch-manipulation flex-col items-center justify-center gap-1 transition-colors duration-150 after:absolute after:inset-x-3 after:top-0 after:h-0.5',
+                  'relative flex min-h-[62px] w-full touch-manipulation flex-col items-center justify-center gap-1 transition-colors duration-150',
                   isActive
-                    ? 'text-primary after:bg-accent'
-                    : 'text-muted-foreground after:bg-transparent hover:text-foreground'
+                    ? 'text-primary rink-nav-on'
+                    : 'text-muted-foreground hover:text-foreground'
                 )}
               >
                 <Icon className="w-[21px] h-[21px]" />
