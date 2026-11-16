@@ -96,6 +96,10 @@ export const SimpleDashboard: React.FC = () => {
     } else if (action === 'open-coach') {
       setActiveTab('support');
       window.dispatchEvent(new CustomEvent('ai-assistant:open', { detail: { role: 'coach' } }));
+    } else if (action === 'open-psych') {
+      setCurrentView('home');
+      setActiveTab('support');
+      window.dispatchEvent(new CustomEvent('ai-assistant:open', { detail: { role: 'psych' } }));
     } else if (action === 'game-day' || action === 'competition-prep') {
       setGameDayOpen(true);
     } else if (action === 'weekly-review') {
