@@ -12,11 +12,11 @@ import { showSkateTrail } from './rink/RinkArt';
 
 const DURATIONS = [30, 45, 60, 90, 120];
 const FEELINGS = [
-  { value: 'great' as const, key: 'a.tr.feel.great', Icon: Laugh },
-  { value: 'good' as const, key: 'a.tr.feel.good', Icon: Smile },
-  { value: 'okay' as const, key: 'a.tr.feel.okay', Icon: Meh },
-  { value: 'tough' as const, key: 'a.tr.feel.tough', Icon: Frown },
-  { value: 'very_tough' as const, key: 'a.tr.feel.very_tough', Icon: Angry },
+  { value: 'great' as const, tone: 'tone-feel-1', key: 'a.tr.feel.great', Icon: Laugh },
+  { value: 'good' as const, tone: 'tone-feel-2', key: 'a.tr.feel.good', Icon: Smile },
+  { value: 'okay' as const, tone: 'tone-feel-3', key: 'a.tr.feel.okay', Icon: Meh },
+  { value: 'tough' as const, tone: 'tone-feel-4', key: 'a.tr.feel.tough', Icon: Frown },
+  { value: 'very_tough' as const, tone: 'tone-feel-5', key: 'a.tr.feel.very_tough', Icon: Angry },
 ];
 const ENERGY = [
   { value: 'full' as const, key: 'a.tr.energy.full', Icon: BatteryFull },
@@ -128,16 +128,17 @@ export const TrainingScreen: React.FC<TrainingScreenProps> = ({ onSaved, onOpenP
         <p className="app-section-label">{t('a.tr.type')}</p>
         <div className="grid grid-cols-2 gap-2">
           {([
-            { id: 'on-ice' as const, label: t('a.tr.onIce'), Icon: Snowflake },
-            { id: 'off-ice' as const, label: t('a.tr.offIce'), Icon: Dumbbell },
-          ]).map(({ id, label, Icon }) => (
+            { id: 'on-ice' as const, label: t('a.tr.onIce'), Icon: Snowflake, tone: 'tone-onice' },
+            { id: 'off-ice' as const, label: t('a.tr.offIce'), Icon: Dumbbell, tone: 'tone-office' },
+          ]).map(({ id, label, Icon, tone }) => (
             <button
               key={id}
               type="button"
               onClick={() => switchType(id)}
               aria-pressed={type === id}
+              data-tone=""
               className={cn(
-                'rink-choice flex min-h-[56px] items-center justify-center gap-2.5 px-4',
+                tone, 'rink-choice flex min-h-[56px] items-center justify-center gap-2.5 px-4',
                 type === id && 'rink-choice-on'
               )}
             >
@@ -204,8 +205,9 @@ export const TrainingScreen: React.FC<TrainingScreenProps> = ({ onSaved, onOpenP
               type="button"
               onClick={() => setFeeling(f.value)}
               aria-pressed={feeling === f.value}
+                data-tone=""
                 className={cn(
-                  'rink-choice flex min-h-[72px] flex-col items-center justify-center gap-1 px-1 py-2 text-[13px] font-semibold leading-tight text-center',
+                  f.tone, 'rink-choice flex min-h-[72px] flex-col items-center justify-center gap-1 px-1 py-2 text-[13px] font-semibold leading-tight text-center',
                   feeling === f.value && 'rink-choice-on'
                 )}
             >

@@ -446,18 +446,18 @@
   /* Signed-in product system. Kept scoped so the public site is unchanged. */
   /* Signed-in product: Ice Rink system. Scoped so the public site is unchanged. */
   .authenticated-app {
-    --background: 210 67% 97%;          /* #F4F8FC */
+    --background: 200 70% 98%;
     --foreground: 214 68% 13%;          /* #0B1F3A */
     --card: 0 0% 100%;
     --card-foreground: 214 68% 13%;
     --popover: 0 0% 100%;
     --popover-foreground: 214 68% 13%;
-    --primary: 214 68% 13%;
-    --primary-foreground: 210 67% 98%;
-    --secondary: 205 60% 93%;
+    --primary: 12 90% 62%;              /* warm coral for main buttons and wins */
+    --primary-foreground: 214 68% 13%;
+    --secondary: 188 60% 94%;          /* light turquoise */
     --secondary-foreground: 214 68% 13%;
-    --muted: 208 45% 92%;
-    --muted-foreground: 214 28% 31%;    /* AA on white and on the ice background */
+    --muted: 195 45% 94%;
+    --muted-foreground: 214 32% 26%;    /* AA on white and on the ice background */
     --accent: 194 68% 54%;              /* #3BB3D9 for fills, bars, active states */
     --accent-foreground: 214 68% 13%;
     --accent-ink: 196 80% 30%;          /* readable turquoise for text */
@@ -470,14 +470,24 @@
     --ring: 194 68% 45%;
     --radius: 1rem;
     --rink-shadow: 0 1px 2px hsl(214 68% 13% / 0.05), 0 8px 24px -12px hsl(214 68% 13% / 0.16);
-    --rink-gradient: linear-gradient(120deg, hsl(214 68% 13%) 0%, hsl(205 70% 28%) 55%, hsl(194 68% 46%) 100%);
+    --rink-gradient: linear-gradient(120deg, hsl(12 90% 62%) 0%, hsl(22 95% 68%) 100%);
+    --ice-gradient: linear-gradient(135deg, hsl(194 75% 92%) 0%, hsl(180 60% 95%) 100%);
+    --tone-onice: 196 80% 38%;
+    --tone-office: 164 55% 34%;
+    --tone-coach: 200 75% 36%;
+    --tone-psych: 255 35% 55%;
+    --feel-1: 150 55% 34%;
+    --feel-2: 110 45% 36%;
+    --feel-3: 42 90% 40%;
+    --feel-4: 28 90% 46%;
+    --feel-5: 16 85% 48%;
     --heat-1: 205 50% 86%;
     --heat-2: 200 55% 74%;
     --heat-3: 196 60% 60%;
     --heat-4: 196 70% 44%;
     --heat-5: 205 75% 28%;
     font-family: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
-    font-size: 15px;
+    font-size: 16px;
   }
 
   .dark .authenticated-app, .authenticated-app.dark {
@@ -509,7 +519,7 @@
 
   .rink-card { background: hsl(var(--card)); border-radius: 16px; box-shadow: var(--rink-shadow); }
   .rink-focus { background-image: radial-gradient(120% 80% at 100% 0%, hsl(var(--accent) / 0.14), transparent 60%); }
-  .rink-cta { background: var(--rink-gradient); color: hsl(210 67% 98%); box-shadow: 0 10px 24px -12px hsl(194 68% 40% / 0.6); transition: transform .15s ease, filter .15s ease; }
+  .rink-cta { background: var(--rink-gradient); color: hsl(214 68% 13%); box-shadow: 0 10px 24px -12px hsl(12 90% 50% / 0.55); transition: transform .15s ease, filter .15s ease; }
   .rink-cta:hover { filter: brightness(1.06); }
   .rink-cta:active { transform: scale(0.98); }
   .rink-section-title { font-size: 20px; font-weight: 800; line-height: 1.2; color: hsl(var(--foreground)); }
@@ -1170,3 +1180,29 @@
 .authenticated-app .tone-tile { background: hsl(var(--tone) / 0.12); color: hsl(var(--tone)); }
 .authenticated-app .tone-text { color: hsl(var(--tone)); }
 .authenticated-app .tone-edge { box-shadow: inset 4px 0 0 hsl(var(--tone)), var(--rink-shadow); }
+
+/* Step 1 visual system: cold base, warm coral actions, colour coding, rounded cards. */
+.authenticated-app main .rounded-sm, .authenticated-app main .rounded-none, .authenticated-app main .rounded { border-radius: 12px; }
+.authenticated-app main .rounded-md { border-radius: 12px; }
+.authenticated-app main .rounded-lg { border-radius: 14px; }
+.authenticated-app main .space-y-10 > * + * { margin-top: 2.75rem; }
+.authenticated-app .app-section-label, .authenticated-app main .font-mono { font-size: 15px; }
+.authenticated-app p, .authenticated-app li { line-height: 1.55; }
+/* Tone-aware choice: idle shows tone icon, chosen fills with tone tint. */
+.authenticated-app .rink-choice[data-tone] svg { color: hsl(var(--tone)); }
+.authenticated-app .rink-choice[data-tone].rink-choice-on {
+  background: hsl(var(--tone) / 0.16); border-color: hsl(var(--tone)); color: hsl(var(--foreground));
+  box-shadow: 0 6px 16px -10px hsl(var(--tone) / 0.8);
+}
+.authenticated-app .tone-onice  { --tone: var(--tone-onice); }
+.authenticated-app .tone-office { --tone: var(--tone-office); }
+.authenticated-app .tone-coach  { --tone: var(--tone-coach); }
+.authenticated-app .tone-psych  { --tone: var(--tone-psych); }
+.authenticated-app .tone-feel-1 { --tone: var(--feel-1); }
+.authenticated-app .tone-feel-2 { --tone: var(--feel-2); }
+.authenticated-app .tone-feel-3 { --tone: var(--feel-3); }
+.authenticated-app .tone-feel-4 { --tone: var(--feel-4); }
+.authenticated-app .tone-feel-5 { --tone: var(--feel-5); }
+.authenticated-app .tone-card { background: linear-gradient(180deg, hsl(var(--tone) / 0.08), hsl(var(--card)) 60%); border-radius: 16px; box-shadow: var(--rink-shadow); }
+.authenticated-app .tone-btn { background: hsl(var(--tone)); color: hsl(0 0% 100%); }
+.authenticated-app .tone-btn:hover { filter: brightness(1.06); }
